@@ -49,6 +49,8 @@ struct SlideDetailView: View {
                     }
                     .tabViewStyle(.page(indexDisplayMode: .never))
 
+                    filmstrip
+
                     Picker("보기", selection: $showOriginal) {
                         Text("보정본").tag(false)
                         Text("원본").tag(true)
@@ -113,6 +115,57 @@ struct SlideDetailView: View {
             return "\(index + 1) / \(slides.count)"
         }
         return "장표"
+    }
+
+    /// 사진앱처럼 아래쪽에 작은 썸네일을 나열해 장표 사이를 빠르게 오갑니다.
+    private var filmstrip: some View {
+        ScrollViewReader { proxy in
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 6) {
+                    ForEach(Array(slides.enumerated()), id: \.element.id) { index, slide in
+                        filmstripThumb(slide, number: index + 1)
+                            .id(slide.id)
+                            .onTapGesture {
+                                withAnimation(.easeInOut(duration: 0.2)) {
+                                    currentSlideID = slide.id
+                                }
+                            }
+                    }
+                }
+                .padding(.horizontal, 12)
+                .padding(.vertical, 8)
+            }
+            .onChange(of: currentSlideID) { _, newID in
+                withAnimation(.easeInOut(duration: 0.25)) {
+                    proxy.scrollTo(newID, anchor: .center)
+                }
+            }
+            .onAppear {
+                proxy.scrollTo(currentSlideID, anchor: .center)
+            }
+        }
+        .frame(height: 64)
+        .background(Color(.secondarySystemBackground))
+    }
+
+    private func filmstripThumb(_ slide: Slide, number: Int) -> some View {
+        let selected = slide.id == currentSlideID
+        return Group {
+            if let image = store.loadImage(slide.thumbFile) {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFill()
+            } else {
+                Rectangle().fill(Color(.tertiarySystemBackground))
+            }
+        }
+        .frame(width: 48, height: 48)
+        .clipShape(RoundedRectangle(cornerRadius: 6))
+        .overlay(
+            RoundedRectangle(cornerRadius: 6)
+                .stroke(selected ? Color.accentColor : Color.clear, lineWidth: 2.5)
+        )
+        .opacity(selected ? 1 : 0.6)
     }
 
     private func slideImage(_ slide: Slide) -> some View {

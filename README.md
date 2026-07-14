@@ -4,13 +4,21 @@
 비스듬하게 찍힌 사진도 슬라이드 영역을 자동으로 감지해 반듯한 네모로 펴 주고,
 주변 배경은 잘라냅니다.
 
+## 링크
+
+- 📄 [지원 페이지 (Support)](https://m1zz.github.io/SlideSnap/)
+- 🔒 [개인정보 처리방침 (Privacy Policy)](https://m1zz.github.io/SlideSnap/privacy.html)
+
 ## 주요 기능
 
-- **발표별 정리** — 발표(세션)를 만들고 그 안에 장표를 순서대로 쌓습니다.
+- **발표별 정리** — 발표(세션)를 만들고 그 안에 장표를 순서대로 쌓습니다. 5분 이내 이어 찍은 장표는 자동으로 같은 발표에 묶입니다.
 - **빠른 연속 촬영** — 전용 카메라 화면에서 셔터만 계속 누르면 됩니다. 촬영 즉시 백그라운드에서 보정됩니다.
 - **자동 원근 보정** — Vision 프레임워크(`VNDetectRectanglesRequest`)로 슬라이드 사각형을 감지하고, Core Image(`CIPerspectiveCorrection`)로 반듯하게 폅니다. 원본은 항상 함께 보관됩니다.
+- **사진에서 가져오기** — 이미 찍어둔 강의 사진을 여러 장 불러와 동일한 자동 보정 파이프라인으로 담습니다(PHPicker, 사진 권한 불필요).
+- **텍스트 검색 (OCR)** — Vision(`VNRecognizeTextRequest`)으로 장표 속 글자를 온디바이스 인식해, 목록 화면에서 키워드로 해당 장표를 바로 찾습니다.
 - **수동 모서리 조정** — 자동 감지가 어긋났을 때 네 모서리를 드래그해서 다시 보정할 수 있습니다. ("자동 감지" 재실행, "전체 영역" 선택도 가능)
-- **PDF 내보내기** — 발표 하나를 장표 순서대로 묶은 PDF로 만들어 공유(에어드랍, 메신저 등)할 수 있습니다.
+- **장표 정리** — 그리드에서 드래그로 순서 변경, 길게 눌러 개별 삭제·공유, 선택 모드에서 여러 장 일괄 삭제.
+- **복습용 PDF 내보내기** — 장표에 번호가 매겨진 PDF를 한 장/두 장/네 장 레이아웃으로 만들어 공유(에어드랍, 메신저, 파일 저장 등)할 수 있습니다.
 
 ## 요구 사항
 
@@ -40,17 +48,18 @@
 | 파일 | 역할 |
 |---|---|
 | `Models.swift` | `Presentation`, `Slide`, `Quad` 데이터 모델 |
-| `Store.swift` | JSON + 이미지 파일 영속화, 앱 상태 관리 |
-| `ImageProcessing.swift` | Vision 사각형 감지, 원근 보정, 슬라이드 생성 파이프라인 |
+| `Store.swift` | JSON + 이미지 파일 영속화, 앱 상태 관리, 텍스트 검색·OCR 백필 |
+| `ImageProcessing.swift` | Vision 사각형 감지·텍스트 인식(OCR), 원근 보정, 슬라이드 생성 파이프라인 |
 | `CameraController.swift` | AVFoundation 캡처 세션 |
 | `CameraCaptureView.swift` | 전체 화면 연속 촬영 UI |
-| `PresentationListView.swift` | 발표 목록 |
-| `PresentationDetailView.swift` | 장표 그리드, PDF 내보내기 |
-| `SlideDetailView.swift` | 장표 상세 (보정본/원본, 공유, 삭제) |
+| `PhotoImportPicker.swift` | 사진 앱에서 장표 가져오기(PHPicker) |
+| `PresentationListView.swift` | 발표 목록, 텍스트 검색, 사진 가져오기 |
+| `PresentationDetailView.swift` | 장표 그리드, 드래그 재배열, 일괄 삭제, PDF 내보내기 |
+| `SlideDetailView.swift` | 장표 상세 (보정본/원본, 하단 썸네일 스트립, 공유, 삭제) |
 | `CornerAdjustView.swift` | 모서리 드래그 수동 보정 |
-| `PDFExporter.swift` | PDF 생성 |
+| `PDFExporter.swift` | PDF 생성 (번호·제목, 1/2/4장 레이아웃) |
 
 ## 참고
 
-- 사진은 앱 내부(Documents/Images)에만 저장됩니다. 사진 앱에는 저장하지 않습니다.
-- 앱 아이콘은 비어 있습니다. `Assets.xcassets/AppIcon.appiconset`에 1024x1024 이미지를 넣으면 됩니다.
+- 사진은 앱 내부(Documents/Images)에만 저장됩니다. 사진 앱에는 저장하지 않습니다. 텍스트 인식(OCR)도 온디바이스로 처리되어 외부로 전송되지 않습니다.
+- 지원·개인정보 처리방침 페이지 소스는 `docs/`에 있으며 GitHub Pages로 배포됩니다.

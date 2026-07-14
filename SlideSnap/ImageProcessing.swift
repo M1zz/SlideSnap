@@ -51,6 +51,28 @@ enum ImageProcessor {
         )
     }
 
+    /// 장표 이미지에서 텍스트를 인식합니다(온디바이스 Vision, 한국어+영어).
+    /// 인식된 줄들을 개행으로 이어 반환하며, 글자가 없으면 빈 문자열을 반환합니다.
+    static func recognizeText(in image: UIImage) -> String {
+        // 정확도를 위해 너무 작지 않게, 대신 과도한 해상도는 줄여서 인식합니다.
+        guard let cgImage = image.downsampled(maxDimension: 2000).cgImage else { return "" }
+
+        let request = VNRecognizeTextRequest()
+        request.recognitionLevel = .accurate
+        request.usesLanguageCorrection = true
+        request.recognitionLanguages = ["ko-KR", "en-US"]
+
+        let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
+        do {
+            try handler.perform([request])
+        } catch {
+            return ""
+        }
+
+        let lines = request.results?.compactMap { $0.topCandidates(1).first?.string } ?? []
+        return lines.joined(separator: "\n")
+    }
+
     /// 주어진 모서리를 기준으로 원근 보정을 적용해 반듯한 직사각형 이미지를 만듭니다.
     static func perspectiveCorrected(_ image: UIImage, quad: Quad) -> UIImage? {
         guard let cgImage = image.cgImage else { return nil }
@@ -129,6 +151,8 @@ enum SlideFactory {
         }
         let tCorrect = CACurrentMediaTime()
 
+        let recognizedText = ImageProcessor.recognizeText(in: corrected)
+
         let id = UUID()
         let slide = Slide(
             id: id,
@@ -137,7 +161,8 @@ enum SlideFactory {
             correctedFile: "\(id.uuidString)-corr.jpg",
             thumbFile: "\(id.uuidString)-thumb.jpg",
             corners: quad,
-            autoDetected: quad != nil
+            autoDetected: quad != nil,
+            recognizedText: recognizedText
         )
 
         guard
@@ -166,6 +191,7 @@ enum SlideFactory {
             updated.corners = nil
         }
         updated.autoDetected = false
+        updated.recognizedText = ImageProcessor.recognizeText(in: corrected)
 
         guard
             write(corrected, quality: 0.9, to: directory.appendingPathComponent(updated.correctedFile)),

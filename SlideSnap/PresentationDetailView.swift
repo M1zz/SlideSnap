@@ -1,4 +1,5 @@
 import SwiftUI
+import UniformTypeIdentifiers
 
 /// 슬라이드 상세 화면으로 이동하기 위한 라우트
 struct SlideRoute: Hashable {
@@ -41,9 +42,21 @@ struct PresentationDetailView: View {
     @State private var isExporting = false
     @State private var shareBundle: ShareBundle?
 
+    // 이름 변경
+    @State private var showingRenameAlert = false
+    @State private var renameText = ""
+
     // 선택 모드
     @State private var isSelecting = false
     @State private var selectedIDs: Set<UUID> = []
+    @State private var showingDeleteConfirm = false
+
+    // 드래그 재배열
+    @State private var draggingSlide: Slide?
+
+    // 사진 가져오기
+    @State private var showingPhotoImport = false
+    @State private var importProgress: (done: Int, total: Int)?
 
     private var presentation: Presentation? {
         store.presentation(presentationID)
@@ -53,11 +66,7 @@ struct PresentationDetailView: View {
         Group {
             if let presentation {
                 if presentation.slides.isEmpty {
-                    ContentUnavailableView(
-                        "장표가 없습니다",
-                        systemImage: "camera.viewfinder",
-                        description: Text("오른쪽 위 카메라 버튼을 눌러\n첫 장표를 촬영해 보세요.")
-                    )
+                    emptyState
                 } else {
                     grid(presentation)
                 }
@@ -65,17 +74,96 @@ struct PresentationDetailView: View {
                 Color.clear
             }
         }
+        .overlay { importOverlay }
         .navigationTitle(navTitle)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar { toolbarContent }
         .fullScreenCover(isPresented: $showingCamera) {
             CameraCaptureView(presentationID: presentationID)
         }
+        .sheet(isPresented: $showingPhotoImport) {
+            PhotoImportPicker { providers in
+                importPhotos(providers)
+            }
+            .ignoresSafeArea()
+        }
         .sheet(item: $shareBundle) { bundle in
             ShareSheet(items: bundle.items)
         }
         .navigationDestination(for: SlideRoute.self) { route in
             SlideDetailView(presentationID: route.presentationID, slideID: route.slideID)
+        }
+        .confirmationDialog(
+            "선택한 \(selectedIDs.count)장을 삭제할까요?",
+            isPresented: $showingDeleteConfirm,
+            titleVisibility: .visible
+        ) {
+            Button("삭제", role: .destructive) { deleteSelected() }
+            Button("취소", role: .cancel) {}
+        }
+        .alert("발표 제목 수정", isPresented: $showingRenameAlert) {
+            TextField("발표 제목", text: $renameText)
+            Button("저장") {
+                store.renamePresentation(presentationID, to: renameText)
+            }
+            Button("취소", role: .cancel) {}
+        } message: {
+            Text("새 발표 제목을 입력하세요.")
+        }
+    }
+
+    private func startRename() {
+        renameText = presentation?.title ?? ""
+        showingRenameAlert = true
+    }
+
+    // MARK: - 빈 화면 / 가져오기
+
+    private var emptyState: some View {
+        ContentUnavailableView {
+            Label("장표가 없습니다", systemImage: "camera.viewfinder")
+        } description: {
+            Text("장표를 촬영하거나\n사진 앱에서 강의 사진을 가져올 수 있어요.")
+        } actions: {
+            Button {
+                showingCamera = true
+            } label: {
+                Label("촬영하기", systemImage: "camera.fill")
+            }
+            .buttonStyle(.borderedProminent)
+            Button {
+                showingPhotoImport = true
+            } label: {
+                Label("사진에서 가져오기", systemImage: "photo.on.rectangle")
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var importOverlay: some View {
+        if let importProgress {
+            ZStack {
+                Color.black.opacity(0.35).ignoresSafeArea()
+                VStack(spacing: 14) {
+                    ProgressView(value: Double(importProgress.done), total: Double(max(importProgress.total, 1)))
+                        .progressViewStyle(.circular)
+                    Text("사진 가져오는 중 \(importProgress.done)/\(importProgress.total)")
+                        .font(.subheadline.weight(.semibold))
+                }
+                .padding(24)
+                .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
+            }
+            .transition(.opacity)
+        }
+    }
+
+    private func importPhotos(_ providers: [NSItemProvider]) {
+        guard !providers.isEmpty else { return }
+        Task {
+            await store.importImages(providers, to: presentationID) { done, total in
+                importProgress = (done, total)
+            }
+            importProgress = nil
         }
     }
 
@@ -101,6 +189,14 @@ struct PresentationDetailView: View {
                 shareMenu(label: Image(systemName: "square.and.arrow.up"))
                     .disabled(selectedIDs.isEmpty || isExporting)
             }
+            ToolbarItem(placement: .bottomBar) {
+                Button(role: .destructive) {
+                    showingDeleteConfirm = true
+                } label: {
+                    Label("삭제", systemImage: "trash")
+                }
+                .disabled(selectedIDs.isEmpty)
+            }
         } else {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
@@ -112,29 +208,38 @@ struct PresentationDetailView: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {
                     Button {
-                        shareImages()
+                        startRename()
                     } label: {
-                        Label("전체 이미지 공유", systemImage: "photo.on.rectangle")
+                        Label("이름 변경", systemImage: "pencil")
                     }
                     Button {
-                        exportPDF()
+                        showingPhotoImport = true
                     } label: {
-                        Label("전체 PDF로 내보내기", systemImage: "doc.richtext")
+                        Label("사진에서 가져오기", systemImage: "photo.on.rectangle.angled")
                     }
-                    Divider()
-                    Button {
-                        enterSelection()
-                    } label: {
-                        Label("선택", systemImage: "checkmark.circle")
+                    if !(presentation?.slides.isEmpty ?? true) {
+                        Divider()
+                        Button {
+                            shareImages()
+                        } label: {
+                            Label("전체 이미지 공유", systemImage: "photo.on.rectangle")
+                        }
+                        pdfMenu(titleSuffix: "")
+                        Divider()
+                        Button {
+                            enterSelection()
+                        } label: {
+                            Label("선택", systemImage: "checkmark.circle")
+                        }
                     }
                 } label: {
                     if isExporting {
                         ProgressView()
                     } else {
-                        Image(systemName: "square.and.arrow.up")
+                        Image(systemName: "ellipsis.circle")
                     }
                 }
-                .disabled(isExporting || (presentation?.slides.isEmpty ?? true))
+                .disabled(isExporting)
             }
         }
     }
@@ -147,13 +252,24 @@ struct PresentationDetailView: View {
             } label: {
                 Label("이미지로 공유 (\(selectedIDs.count)장)", systemImage: "photo.on.rectangle")
             }
-            Button {
-                exportPDF()
-            } label: {
-                Label("PDF로 내보내기 (\(selectedIDs.count)장)", systemImage: "doc.richtext")
-            }
+            pdfMenu(titleSuffix: " (\(selectedIDs.count)장)")
         } label: {
             if isExporting { ProgressView() } else { label }
+        }
+    }
+
+    /// PDF 레이아웃(한 장/두 장/네 장)을 고르는 하위 메뉴.
+    private func pdfMenu(titleSuffix: String) -> some View {
+        Menu {
+            ForEach([PDFLayout.one, .two, .four]) { layout in
+                Button {
+                    exportPDF(layout: layout)
+                } label: {
+                    Text(layout.label)
+                }
+            }
+        } label: {
+            Label("PDF로 내보내기" + titleSuffix, systemImage: "doc.richtext")
         }
     }
 
@@ -175,6 +291,35 @@ struct PresentationDetailView: View {
                             thumbnail(slide, number: index + 1)
                         }
                         .buttonStyle(.plain)
+                        .opacity(draggingSlide?.id == slide.id ? 0.3 : 1)
+                        .onDrag {
+                            draggingSlide = slide
+                            return NSItemProvider(object: slide.id.uuidString as NSString)
+                        }
+                        .onDrop(
+                            of: [.text],
+                            delegate: SlideReorderDropDelegate(
+                                item: slide,
+                                dragging: $draggingSlide,
+                                presentationID: presentationID,
+                                store: store
+                            )
+                        )
+                        .contextMenu {
+                            NavigationLink(value: SlideRoute(presentationID: presentationID, slideID: slide.id)) {
+                                Label("열기", systemImage: "arrow.up.left.and.arrow.down.right")
+                            }
+                            Button {
+                                shareBundle = ShareBundle(items: [store.imageURL(slide.correctedFile)])
+                            } label: {
+                                Label("이미지 공유", systemImage: "square.and.arrow.up")
+                            }
+                            Button(role: .destructive) {
+                                store.deleteSlide(slide.id, from: presentationID)
+                            } label: {
+                                Label("삭제", systemImage: "trash")
+                            }
+                        }
                     }
                 }
             }
@@ -257,6 +402,11 @@ struct PresentationDetailView: View {
         }
     }
 
+    private func deleteSelected() {
+        store.deleteSlides(selectedIDs, from: presentationID)
+        exitSelection()
+    }
+
     // MARK: - 공유 / 내보내기
 
     /// 공유 대상 장표: 선택 모드면 선택된 것, 아니면 전체.
@@ -274,7 +424,7 @@ struct PresentationDetailView: View {
         shareBundle = ShareBundle(items: urls)
     }
 
-    private func exportPDF() {
+    private func exportPDF(layout: PDFLayout = .one) {
         let slides = targetSlides()
         guard !slides.isEmpty, let presentation else { return }
         let title = presentation.title
@@ -283,7 +433,7 @@ struct PresentationDetailView: View {
 
         Task {
             let pdfURL = await Task.detached(priority: .userInitiated) {
-                PDFExporter.makePDF(title: title, imageURLs: urls)
+                PDFExporter.makePDF(title: title, imageURLs: urls, layout: layout)
             }.value
 
             isExporting = false
@@ -291,5 +441,30 @@ struct PresentationDetailView: View {
                 shareBundle = ShareBundle(items: [pdfURL])
             }
         }
+    }
+}
+
+/// 그리드에서 장표를 길게 눌러 드래그하면 순서를 바꿉니다.
+/// 드래그 중인 장표가 다른 장표 위로 들어오면 그 자리로 실시간 이동합니다.
+private struct SlideReorderDropDelegate: DropDelegate {
+    let item: Slide
+    @Binding var dragging: Slide?
+    let presentationID: UUID
+    let store: Store
+
+    func dropEntered(info: DropInfo) {
+        guard let dragging, dragging.id != item.id else { return }
+        MainActor.assumeIsolated {
+            store.moveSlide(dragging.id, before: item.id, in: presentationID)
+        }
+    }
+
+    func dropUpdated(info: DropInfo) -> DropProposal? {
+        DropProposal(operation: .move)
+    }
+
+    func performDrop(info: DropInfo) -> Bool {
+        dragging = nil
+        return true
     }
 }

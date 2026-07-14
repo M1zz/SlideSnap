@@ -8,6 +8,14 @@ struct PresentationListView: View {
     @State private var showingNewAlert = false
     @State private var newTitle = ""
 
+    @State private var renamingID: UUID?
+    @State private var renameText = ""
+
+    @State private var showingPhotoImport = false
+    @State private var importProgress: (done: Int, total: Int)?
+
+    @State private var searchText = ""
+
     @State private var path = NavigationPath()
     @State private var showingCamera = false
     @State private var cameraPresentationID: UUID?
@@ -20,27 +28,14 @@ struct PresentationListView: View {
 
     var body: some View {
         NavigationStack(path: $path) {
-            Group {
-                if store.presentations.isEmpty {
-                    ContentUnavailableView(
-                        "발표가 없습니다",
-                        systemImage: "rectangle.on.rectangle.angled",
-                        description: Text("오른쪽 위 + 버튼으로 새 발표를 만들고\n장표를 촬영해 보세요.")
-                    )
-                } else {
-                    List {
-                        ForEach(store.presentations) { presentation in
-                            NavigationLink(value: presentation.id) {
-                                row(presentation)
-                            }
-                        }
-                        .onDelete(perform: delete)
-                    }
-                }
-            }
+            content
             .navigationTitle("장표스냅")
+            .searchable(text: $searchText, prompt: "장표 텍스트·제목 검색")
             .navigationDestination(for: UUID.self) { id in
                 PresentationDetailView(presentationID: id)
+            }
+            .navigationDestination(for: SlideRoute.self) { route in
+                SlideDetailView(presentationID: route.presentationID, slideID: route.slideID)
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -51,9 +46,18 @@ struct PresentationListView: View {
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        newTitle = Store.defaultTitle()
-                        showingNewAlert = true
+                    Menu {
+                        Button {
+                            newTitle = Store.defaultTitle()
+                            showingNewAlert = true
+                        } label: {
+                            Label("빈 발표 만들기", systemImage: "rectangle.badge.plus")
+                        }
+                        Button {
+                            showingPhotoImport = true
+                        } label: {
+                            Label("사진에서 가져오기", systemImage: "photo.on.rectangle.angled")
+                        }
                     } label: {
                         Image(systemName: "plus")
                     }
@@ -66,6 +70,13 @@ struct PresentationListView: View {
                     }
                 }
             }
+            .sheet(isPresented: $showingPhotoImport) {
+                PhotoImportPicker { providers in
+                    importPhotos(providers)
+                }
+                .ignoresSafeArea()
+            }
+            .overlay { importOverlay }
             .onAppear {
                 guard !hasAutoLaunchedCamera else { return }
                 hasAutoLaunchedCamera = true
@@ -79,6 +90,152 @@ struct PresentationListView: View {
                 Button("취소", role: .cancel) {}
             } message: {
                 Text("발표 제목을 입력하세요.")
+            }
+            .alert("발표 제목 수정", isPresented: renameBinding) {
+                TextField("발표 제목", text: $renameText)
+                Button("저장") {
+                    if let id = renamingID {
+                        store.renamePresentation(id, to: renameText)
+                    }
+                }
+                Button("취소", role: .cancel) {}
+            } message: {
+                Text("새 발표 제목을 입력하세요.")
+            }
+        }
+    }
+
+    private var renameBinding: Binding<Bool> {
+        Binding(
+            get: { renamingID != nil },
+            set: { if !$0 { renamingID = nil } }
+        )
+    }
+
+    private func startRename(_ presentation: Presentation) {
+        renameText = presentation.title
+        renamingID = presentation.id
+    }
+
+    // MARK: - 화면 내용
+
+    @ViewBuilder
+    private var content: some View {
+        if !searchText.trimmingCharacters(in: .whitespaces).isEmpty {
+            searchResults
+        } else if store.presentations.isEmpty {
+            ContentUnavailableView(
+                "발표가 없습니다",
+                systemImage: "rectangle.on.rectangle.angled",
+                description: Text("오른쪽 위 + 버튼으로 새 발표를 만들고\n장표를 촬영해 보세요.")
+            )
+        } else {
+            presentationsList
+        }
+    }
+
+    private var presentationsList: some View {
+        List {
+            ForEach(store.presentations) { presentation in
+                NavigationLink(value: presentation.id) {
+                    row(presentation)
+                }
+                .swipeActions(edge: .leading) {
+                    Button {
+                        startRename(presentation)
+                    } label: {
+                        Label("이름 변경", systemImage: "pencil")
+                    }
+                    .tint(.blue)
+                }
+                .contextMenu {
+                    Button {
+                        startRename(presentation)
+                    } label: {
+                        Label("이름 변경", systemImage: "pencil")
+                    }
+                }
+            }
+            .onDelete(perform: delete)
+        }
+    }
+
+    // MARK: - 검색 결과
+
+    @ViewBuilder
+    private var searchResults: some View {
+        let results = store.searchSlides(searchText)
+        if results.isEmpty {
+            ContentUnavailableView.search(text: searchText)
+        } else {
+            List(results) { result in
+                NavigationLink(value: SlideRoute(presentationID: result.presentationID, slideID: result.id)) {
+                    searchRow(result)
+                }
+            }
+        }
+    }
+
+    private func searchRow(_ result: SlideSearchResult) -> some View {
+        HStack(spacing: 12) {
+            Group {
+                if let image = store.loadImage(result.slide.thumbFile) {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFill()
+                } else {
+                    Rectangle().fill(Color(.secondarySystemBackground))
+                }
+            }
+            .frame(width: 54, height: 54)
+            .clipShape(RoundedRectangle(cornerRadius: 6))
+
+            VStack(alignment: .leading, spacing: 3) {
+                Text("\(result.presentationTitle) · \(result.slideNumber)번")
+                    .font(.subheadline.weight(.semibold))
+                    .lineLimit(1)
+                Text(result.snippet.isEmpty ? "(텍스트 없음)" : result.snippet)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(2)
+            }
+        }
+        .padding(.vertical, 2)
+    }
+
+    // MARK: - 사진 가져오기
+
+    @ViewBuilder
+    private var importOverlay: some View {
+        if let importProgress {
+            ZStack {
+                Color.black.opacity(0.35).ignoresSafeArea()
+                VStack(spacing: 14) {
+                    ProgressView(value: Double(importProgress.done), total: Double(max(importProgress.total, 1)))
+                        .progressViewStyle(.circular)
+                    Text("사진 가져오는 중 \(importProgress.done)/\(importProgress.total)")
+                        .font(.subheadline.weight(.semibold))
+                }
+                .padding(24)
+                .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
+            }
+        }
+    }
+
+    /// 고른 사진들로 새 발표를 만들어 넣고, 처리가 끝나면 그 발표로 이동합니다.
+    private func importPhotos(_ providers: [NSItemProvider]) {
+        guard !providers.isEmpty else { return }
+        let presentation = store.addPresentation(title: Store.defaultTitle())
+        Task {
+            await store.importImages(providers, to: presentation.id) { done, total in
+                importProgress = (done, total)
+            }
+            importProgress = nil
+            // 한 장도 못 넣었으면 빈 발표를 지운다.
+            if store.presentation(presentation.id)?.slides.isEmpty ?? true {
+                store.deletePresentation(presentation.id)
+            } else {
+                path.append(presentation.id)
             }
         }
     }

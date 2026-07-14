@@ -40,6 +40,8 @@ struct Slide: Identifiable, Codable, Equatable {
     var corners: Quad?
     /// 자동 감지로 보정되었는지 여부
     var autoDetected: Bool
+    /// OCR로 인식한 장표 텍스트. nil = 아직 인식 전(기존 데이터), "" = 인식했으나 글자 없음.
+    var recognizedText: String?
 }
 
 /// 발표(세션) 하나 — 장표들이 순서대로 담긴다
