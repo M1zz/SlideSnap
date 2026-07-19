@@ -73,6 +73,32 @@ enum ImageProcessor {
         return lines.joined(separator: "\n")
     }
 
+    /// 강의 장표를 다시 보기 좋게 가독성을 보정합니다.
+    /// 그림자를 밝히고 대비·채도를 살짝 올려 글씨가 또렷해지도록 합니다(스캔 느낌).
+    static func enhanceReadability(_ image: UIImage) -> UIImage? {
+        guard let cgImage = image.cgImage else { return nil }
+        var ci = CIImage(cgImage: cgImage)
+
+        // 1) 그림자/반사로 어두워진 부분을 밝혀 배경을 고르게.
+        if let f = CIFilter(name: "CIHighlightShadowAdjust") {
+            f.setValue(ci, forKey: kCIInputImageKey)
+            f.setValue(0.9, forKey: "inputShadowAmount")
+            f.setValue(1.0, forKey: "inputHighlightAmount")
+            if let out = f.outputImage { ci = out }
+        }
+        // 2) 대비·밝기·채도를 살짝 끌어올려 글씨를 또렷하게.
+        if let f = CIFilter(name: "CIColorControls") {
+            f.setValue(ci, forKey: kCIInputImageKey)
+            f.setValue(1.12, forKey: kCIInputContrastKey)
+            f.setValue(0.03, forKey: kCIInputBrightnessKey)
+            f.setValue(1.08, forKey: kCIInputSaturationKey)
+            if let out = f.outputImage { ci = out }
+        }
+
+        guard let outCG = ciContext.createCGImage(ci, from: ci.extent) else { return nil }
+        return UIImage(cgImage: outCG)
+    }
+
     /// 주어진 모서리를 기준으로 원근 보정을 적용해 반듯한 직사각형 이미지를 만듭니다.
     static func perspectiveCorrected(_ image: UIImage, quad: Quad) -> UIImage? {
         guard let cgImage = image.cgImage else { return nil }
@@ -107,6 +133,49 @@ extension UIImage {
         return renderer.image { _ in
             draw(in: CGRect(origin: .zero, size: size))
         }
+    }
+
+    /// 라플라시안 분산으로 선명도를 추정합니다. 값이 낮을수록 흐릿(흔들림/초점 나감)합니다.
+    /// 계산할 수 없으면 nil을 반환합니다. 속도를 위해 256px 그레이스케일로 계산합니다.
+    func sharpnessVariance() -> Double? {
+        guard let cg = downsampled(maxDimension: 256).cgImage else { return nil }
+        let w = cg.width, h = cg.height
+        guard w >= 3, h >= 3 else { return nil }
+
+        var gray = [UInt8](repeating: 0, count: w * h)
+        let colorSpace = CGColorSpaceCreateDeviceGray()
+        guard let ctx = CGContext(
+            data: &gray, width: w, height: h,
+            bitsPerComponent: 8, bytesPerRow: w,
+            space: colorSpace, bitmapInfo: CGImageAlphaInfo.none.rawValue
+        ) else { return nil }
+        ctx.draw(cg, in: CGRect(x: 0, y: 0, width: w, height: h))
+
+        // 4-이웃 라플라시안의 분산(에지 강도의 분산). 흐린 이미지는 에지가 약해 분산이 낮습니다.
+        var sum = 0.0, sumSq = 0.0
+        var n = 0
+        for y in 1..<(h - 1) {
+            for x in 1..<(w - 1) {
+                let i = y * w + x
+                let lap = 4.0 * Double(gray[i])
+                    - Double(gray[i - 1]) - Double(gray[i + 1])
+                    - Double(gray[i - w]) - Double(gray[i + w])
+                sum += lap
+                sumSq += lap * lap
+                n += 1
+            }
+        }
+        guard n > 0 else { return nil }
+        let mean = sum / Double(n)
+        return max(0, sumSq / Double(n) - mean * mean)
+    }
+
+    /// 흔들리거나 초점이 나가 흐릿한지 여부. 선명도가 threshold 미만이면 흐릿하다고 봅니다.
+    /// 계산할 수 없으면(안전) false를 반환해 걸러내지 않습니다.
+    /// - Note: threshold는 콘텐츠·기기에 따라 달라 실기기 튜닝이 필요합니다(기본값은 보수적).
+    func isBlurry(threshold: Double = 90) -> Bool {
+        guard let variance = sharpnessVariance() else { return false }
+        return variance < threshold
     }
 
     /// 긴 변이 maxDimension을 넘지 않도록 축소한 이미지를 반환합니다.
@@ -193,11 +262,51 @@ enum SlideFactory {
         updated.autoDetected = false
         updated.recognizedText = ImageProcessor.recognizeText(in: corrected)
 
-        guard
-            write(corrected, quality: 0.9, to: directory.appendingPathComponent(updated.correctedFile)),
-            write(corrected.downsampled(maxDimension: 600), quality: 0.7, to: directory.appendingPathComponent(updated.thumbFile))
-        else { return nil }
+        guard write(corrected, quality: 0.9, to: directory.appendingPathComponent(updated.correctedFile)) else {
+            return nil
+        }
 
+        // 가독성 보정이 켜져 있던 장표는 새 보정본을 기준으로 보정본·썸네일을 다시 만든다.
+        if slide.enhanced == true, let enhanced = ImageProcessor.enhanceReadability(corrected) {
+            let enhancedName = updated.enhancedFile ?? "\(updated.id.uuidString)-enh.jpg"
+            guard
+                write(enhanced, quality: 0.9, to: directory.appendingPathComponent(enhancedName)),
+                write(enhanced.downsampled(maxDimension: 600), quality: 0.7, to: directory.appendingPathComponent(updated.thumbFile))
+            else { return nil }
+            updated.enhanced = true
+            updated.enhancedFile = enhancedName
+        } else {
+            guard write(corrected.downsampled(maxDimension: 600), quality: 0.7, to: directory.appendingPathComponent(updated.thumbFile)) else {
+                return nil
+            }
+        }
+
+        return updated
+    }
+
+    /// 가독성 보정을 켜거나 끕니다.
+    /// - 켜면: 원근 보정본에서 보정본(enhancedFile)을 만들어 저장하고, 썸네일도 보정본 기준으로 갱신합니다.
+    /// - 끄면: 썸네일을 원근 보정본 기준으로 되돌립니다(보정본 파일은 남겨 빠른 재적용에 씁니다).
+    static func setEnhancement(_ enabled: Bool, slide: Slide, in directory: URL) -> Slide? {
+        let correctedURL = directory.appendingPathComponent(slide.correctedFile)
+        guard let corrected = UIImage(contentsOfFile: correctedURL.path) else { return nil }
+
+        var updated = slide
+        if enabled {
+            guard let enhanced = ImageProcessor.enhanceReadability(corrected) else { return nil }
+            let enhancedName = slide.enhancedFile ?? "\(slide.id.uuidString)-enh.jpg"
+            guard
+                write(enhanced, quality: 0.9, to: directory.appendingPathComponent(enhancedName)),
+                write(enhanced.downsampled(maxDimension: 600), quality: 0.7, to: directory.appendingPathComponent(slide.thumbFile))
+            else { return nil }
+            updated.enhanced = true
+            updated.enhancedFile = enhancedName
+        } else {
+            guard write(corrected.downsampled(maxDimension: 600), quality: 0.7, to: directory.appendingPathComponent(slide.thumbFile)) else {
+                return nil
+            }
+            updated.enhanced = false
+        }
         return updated
     }
 

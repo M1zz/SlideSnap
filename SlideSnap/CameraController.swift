@@ -26,12 +26,24 @@ final class CameraController: NSObject, ObservableObject {
     /// 허용되는 최대 줌 배율
     @Published var maxZoomFactor: CGFloat = 1.0
 
-    /// 초록(락인) 상태가 되면 자동으로 촬영할지 여부
+    /// 장표가 바뀌면 자동으로 촬영할지 여부. 사용자의 선택을 앱 전역에 기억한다.
     @Published var autoCaptureEnabled = true {
-        didSet { autoCaptureFlag = autoCaptureEnabled }
+        didSet {
+            autoCaptureFlag = autoCaptureEnabled
+            UserDefaults.standard.set(autoCaptureEnabled, forKey: Self.autoCaptureDefaultsKey)
+        }
     }
+    private static let autoCaptureDefaultsKey = "camera.autoCaptureEnabled"
+
     /// 자동 촬영 신호. 값이 바뀌면 뷰가 촬영을 실행한다.
     @Published var autoCaptureTick = 0
+
+    override init() {
+        super.init()
+        // 저장된 사용자 선택을 복원한다(기본값: 켜짐).
+        let stored = (UserDefaults.standard.object(forKey: Self.autoCaptureDefaultsKey) as? Bool) ?? true
+        autoCaptureEnabled = stored
+    }
 
     private let photoOutput = AVCapturePhotoOutput()
     private let videoDataOutput = AVCaptureVideoDataOutput()
@@ -64,9 +76,18 @@ final class CameraController: NSObject, ObservableObject {
 
     // 자동 촬영 상태 (videoQueue에서만 접근)
     private var autoCaptureFlag = true            // autoCaptureEnabled의 스레드 안전 사본
-    private var wasLocked = false                 // 직전 프레임의 잠금 상태(상승 에지 감지용)
     private var lastAutoCaptureAt: CFTimeInterval = 0
-    private let autoCaptureCooldown: CFTimeInterval = 1.5   // 최소 촬영 간격(초)
+    private let autoCaptureCooldown: CFTimeInterval = 1.2   // 최소 촬영 간격(초) — 전환 중 중복만 방지
+
+    // 자동 촬영 중복 방지용 내용 지문 (videoQueue에서만 접근)
+    private var lastCapturedSignature: [Float]?   // 직전에 담은 장표의 저해상 휘도 지문
+    private var currentSignature: [Float]?        // 최근 프레임의 지문
+    private var autoCapturePending = false        // 자동 촬영 신호를 내고 결과를 기다리는 중
+    private let fingerprintEdge = 16              // 지문 해상도 (16×16)
+    private var fingerprintPool: CVPixelBufferPool?
+    /// 지문이 이 값 이상 다르면 "다른 장표"로 본다 (0~255 휘도, 평균 절대차).
+    /// 작을수록 예민(작은 변화도 새 장표로), 클수록 둔감. 필요시 조정.
+    private let contentChangeThreshold: Float = 12
 
     private let rectangleRequest: VNDetectRectanglesRequest = {
         let request = VNDetectRectanglesRequest()
@@ -308,6 +329,10 @@ extension CameraController: AVCaptureVideoDataOutputSampleBufferDelegate {
         // 재사용 컨텍스트/버퍼로 렌더링해 매 프레임 리소스를 새로 만들지 않습니다.
         // 정규화 좌표(0...1)는 축소해도 그대로라 오버레이/보정에 영향이 없습니다.
         let target = downscaledBuffer(from: pixelBuffer) ?? pixelBuffer
+
+        // 자동 촬영 중복 방지를 위해 현재 화면의 내용 지문을 갱신한다.
+        currentSignature = makeSignature(from: target)
+
         let handler = VNImageRequestHandler(cvPixelBuffer: target, orientation: .up, options: [:])
         try? handler.perform([rectangleRequest])
 
@@ -333,13 +358,12 @@ extension CameraController: AVCaptureVideoDataOutputSampleBufferDelegate {
     }
 
     /// 지터를 줄이도록 부드럽게 이어 붙이고, 여러 프레임 안정되면 잠금(lock) 상태로 표시합니다.
-    /// 자동 촬영은 "잠금이 새로 걸리는 순간"에 딱 한 번만 냅니다.
-    /// (계속 비춰도 반복 촬영하지 않고, 다시 조준해 잠금이 재획득될 때만 한 장 더.)
+    /// 잠금이 유지되는 동안 매 감지 주기에 자동 촬영 여부를 판단합니다(실제 촬영은
+    /// 내용이 직전에 담은 장표와 충분히 다를 때만 — `maybeAutoCapture` 참고).
     private func publish(_ quad: Quad?, aspect: CGFloat) {
         guard let quad else {
             smoothedQuad = nil
             stableFrames = 0
-            wasLocked = false
             DispatchQueue.main.async {
                 self.detectedQuad = nil
                 self.isLocked = false
@@ -357,8 +381,6 @@ extension CameraController: AVCaptureVideoDataOutputSampleBufferDelegate {
         }
         smoothedQuad = smoothed
         let locked = stableFrames >= 3
-        let risingEdge = locked && !wasLocked
-        wasLocked = locked
 
         DispatchQueue.main.async {
             self.sourceAspect = aspect
@@ -366,18 +388,112 @@ extension CameraController: AVCaptureVideoDataOutputSampleBufferDelegate {
             self.isLocked = locked
         }
 
-        if risingEdge {
+        if locked {
             maybeAutoCapture()
         }
     }
 
-    /// 잠금이 새로 걸린 순간 자동 촬영 신호를 낸다(쿨다운으로 잠금 깜빡임에 의한 중복만 방지).
+    /// 잠금 상태에서, 직전에 담은 장표와 내용이 충분히 다를 때만 자동 촬영 신호를 낸다.
+    /// - 같은 장표를 계속 비춰도 지문이 비슷하므로 재촬영하지 않는다(스팸 방지).
+    /// - 화면(프레임)은 고정이고 장표 내용만 바뀌는 상황에서도 지문 차이로 새로 담는다.
+    /// - 쿨다운은 전환 순간의 흐릿한 중간 프레임이 중복 촬영되는 것만 막는다.
     private func maybeAutoCapture() {
-        guard autoCaptureFlag else { return }
+        // 직전 신호의 결과(저장/버림)를 기다리는 동안은 새로 내지 않는다.
+        guard autoCaptureFlag, !autoCapturePending else { return }
         let now = CACurrentMediaTime()
         guard now - lastAutoCaptureAt > autoCaptureCooldown else { return }
+
+        // 첫 장표(기준 지문 없음)는 바로 담고, 이후엔 내용이 바뀌었을 때만 담는다.
+        if let last = lastCapturedSignature, let current = currentSignature {
+            guard Self.signatureDistance(last, current) > contentChangeThreshold else { return }
+        }
+
+        // 기준 지문은 여기서 올리지 않는다. 흐릿해서 버려질 수 있으므로,
+        // 실제로 저장에 성공했을 때(finishAutoCapture(saved:true))만 갱신한다.
+        autoCapturePending = true
         lastAutoCaptureAt = now
         DispatchQueue.main.async { self.autoCaptureTick &+= 1 }
+    }
+
+    /// 자동 촬영 결과를 반영한다.
+    /// - saved=true: 이 화면을 기준 지문으로 삼아 같은 장표를 다시 담지 않는다.
+    /// - saved=false(흔들림 등으로 버림): 기준을 그대로 두어, 안정되면 다시 담게 한다.
+    func finishAutoCapture(saved: Bool) {
+        videoQueue.async { [weak self] in
+            guard let self else { return }
+            self.autoCapturePending = false
+            if saved, let current = self.currentSignature {
+                self.lastCapturedSignature = current
+            }
+            self.lastAutoCaptureAt = CACurrentMediaTime()
+        }
+    }
+
+    /// 수동 촬영 등 외부에서 한 장 담았을 때, 그 화면을 기준 지문으로 삼는다.
+    /// (직후 자동 촬영이 같은 장표를 중복으로 담지 않도록)
+    func markCaptured() {
+        videoQueue.async { [weak self] in
+            guard let self else { return }
+            self.lastAutoCaptureAt = CACurrentMediaTime()
+            if let current = self.currentSignature { self.lastCapturedSignature = current }
+        }
+    }
+
+    /// 프레임에서 16×16 저해상 휘도 지문을 만든다. 전역 밝기 변화(자동 노출)에 둔감하도록
+    /// 평균을 빼서 반환한다. 값이 클수록 밝은 픽셀.
+    private func makeSignature(from buffer: CVPixelBuffer) -> [Float]? {
+        let edge = fingerprintEdge
+        if fingerprintPool == nil {
+            let attrs: [String: Any] = [
+                kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA,
+                kCVPixelBufferWidthKey as String: edge,
+                kCVPixelBufferHeightKey as String: edge,
+                kCVPixelBufferIOSurfacePropertiesKey as String: [:]
+            ]
+            var pool: CVPixelBufferPool?
+            CVPixelBufferPoolCreate(nil, nil, attrs as CFDictionary, &pool)
+            fingerprintPool = pool
+        }
+        guard let pool = fingerprintPool else { return nil }
+        var out: CVPixelBuffer?
+        CVPixelBufferPoolCreatePixelBuffer(nil, pool, &out)
+        guard let outBuffer = out else { return nil }
+
+        let w = CGFloat(CVPixelBufferGetWidth(buffer))
+        let h = CGFloat(CVPixelBufferGetHeight(buffer))
+        guard w > 0, h > 0 else { return nil }
+        let scaled = CIImage(cvPixelBuffer: buffer)
+            .transformed(by: CGAffineTransform(scaleX: CGFloat(edge) / w, y: CGFloat(edge) / h))
+        detectionContext.render(scaled, to: outBuffer)
+
+        CVPixelBufferLockBaseAddress(outBuffer, .readOnly)
+        defer { CVPixelBufferUnlockBaseAddress(outBuffer, .readOnly) }
+        guard let base = CVPixelBufferGetBaseAddress(outBuffer) else { return nil }
+        let bytesPerRow = CVPixelBufferGetBytesPerRow(outBuffer)
+        let ptr = base.assumingMemoryBound(to: UInt8.self)
+
+        var lumas = [Float](repeating: 0, count: edge * edge)
+        var sum: Float = 0
+        for y in 0..<edge {
+            let row = ptr + y * bytesPerRow
+            for x in 0..<edge {
+                let px = row + x * 4          // BGRA
+                let l = 0.114 * Float(px[0]) + 0.587 * Float(px[1]) + 0.299 * Float(px[2])
+                lumas[y * edge + x] = l
+                sum += l
+            }
+        }
+        let mean = sum / Float(edge * edge)
+        for i in lumas.indices { lumas[i] -= mean }
+        return lumas
+    }
+
+    /// 두 지문의 평균 절대차(0~255 휘도 기준). 클수록 다른 화면.
+    private static func signatureDistance(_ a: [Float], _ b: [Float]) -> Float {
+        guard a.count == b.count, !a.isEmpty else { return .greatestFiniteMagnitude }
+        var s: Float = 0
+        for i in a.indices { s += abs(a[i] - b[i]) }
+        return s / Float(a.count)
     }
 
     // MARK: - Quad 보조 계산

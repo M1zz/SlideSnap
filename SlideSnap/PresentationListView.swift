@@ -4,9 +4,20 @@ import SwiftUI
 struct PresentationListView: View {
 
     @EnvironmentObject private var store: Store
+    @EnvironmentObject private var feedbackPrompt: FeedbackPromptManager
+    @EnvironmentObject private var router: AppRouter
+
+    @Environment(\.scenePhase) private var scenePhase
 
     @State private var showingNewAlert = false
     @State private var newTitle = ""
+
+    @State private var showingFeedback = false
+    @State private var showingProfile = false
+    @State private var feedbackInitialType: FeedbackType = .improvement
+
+    /// 목록/그리드 보기 선택(기억됨). 그리드는 썸네일 미리보기를 보여준다.
+    @AppStorage("presentationsGridView") private var isGridView = false
 
     @State private var renamingID: UUID?
     @State private var renameText = ""
@@ -29,7 +40,8 @@ struct PresentationListView: View {
     var body: some View {
         NavigationStack(path: $path) {
             content
-            .navigationTitle("장표스냅")
+            .navigationTitle("")
+            .navigationBarTitleDisplayMode(.inline)
             .searchable(text: $searchText, prompt: "장표 텍스트·제목 검색")
             .navigationDestination(for: UUID.self) { id in
                 PresentationDetailView(presentationID: id)
@@ -38,6 +50,33 @@ struct PresentationListView: View {
                 SlideDetailView(presentationID: route.presentationID, slideID: route.slideID)
             }
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Menu {
+                        Button {
+                            showingProfile = true
+                        } label: {
+                            Label("내 정보", systemImage: "person.crop.circle")
+                        }
+                        Button {
+                            feedbackInitialType = .improvement
+                            showingFeedback = true
+                        } label: {
+                            Label("피드백 보내기", systemImage: "paperplane")
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis.circle")
+                    }
+                }
+                if !store.presentations.isEmpty {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button {
+                            withAnimation(.easeInOut(duration: 0.2)) { isGridView.toggle() }
+                        } label: {
+                            Image(systemName: isGridView ? "list.bullet" : "square.grid.2x2")
+                        }
+                        .accessibilityLabel(isGridView ? "목록으로 보기" : "그리드로 보기")
+                    }
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         openCamera()
@@ -77,10 +116,44 @@ struct PresentationListView: View {
                 .ignoresSafeArea()
             }
             .overlay { importOverlay }
+            .sheet(isPresented: $showingFeedback) {
+                FeedbackView(initialType: feedbackInitialType)
+            }
+            .sheet(isPresented: $showingProfile) {
+                ProfileView()
+            }
+            .alert("사용하시면서 어떠세요?", isPresented: nudgeBinding) {
+                Button("의견 남기기") {
+                    feedbackPrompt.dismiss()
+                    feedbackInitialType = .improvement
+                    showingFeedback = true
+                }
+                Button("다음에 할게요", role: .cancel) {
+                    feedbackPrompt.dismiss()
+                }
+                Button("다시 묻지 않기", role: .destructive) {
+                    feedbackPrompt.optOut()
+                }
+            } message: {
+                Text("불편한 점이나 개선했으면 하는 점이 있으신가요?\n작은 의견도 앱을 더 좋게 만드는 데 큰 도움이 돼요.")
+            }
             .onAppear {
                 guard !hasAutoLaunchedCamera else { return }
                 hasAutoLaunchedCamera = true
                 openCamera()
+            }
+            .onChange(of: scenePhase) { _, phase in
+                if phase == .active {
+                    feedbackPrompt.registerLaunch()
+                    cleanupEmptyPresentations()
+                }
+            }
+            .onChange(of: path) { _, newPath in
+                // 상세/촬영에서 목록으로 돌아오면 빈 발표를 정리한다.
+                if newPath.isEmpty { cleanupEmptyPresentations() }
+            }
+            .onChange(of: router.cameraLaunchRequest) { _, _ in
+                openCamera()   // 위젯 등 딥링크로 카메라 즉시 실행
             }
             .alert("새 발표", isPresented: $showingNewAlert) {
                 TextField("발표 제목", text: $newTitle)
@@ -103,6 +176,18 @@ struct PresentationListView: View {
                 Text("새 발표 제목을 입력하세요.")
             }
         }
+    }
+
+    /// 넛지는 목록 화면에 머물러 있고(카메라·다른 시트가 없고) 아직 노출 대상일 때만 띄운다.
+    private var nudgeBinding: Binding<Bool> {
+        Binding(
+            get: {
+                feedbackPrompt.shouldPrompt
+                    && !showingCamera && !showingFeedback && !showingProfile
+                    && !showingNewAlert && path.isEmpty
+            },
+            set: { if !$0 { feedbackPrompt.dismiss() } }
+        )
     }
 
     private var renameBinding: Binding<Bool> {
@@ -129,10 +214,89 @@ struct PresentationListView: View {
                 systemImage: "rectangle.on.rectangle.angled",
                 description: Text("오른쪽 위 + 버튼으로 새 발표를 만들고\n장표를 촬영해 보세요.")
             )
+        } else if isGridView {
+            presentationsGrid
         } else {
             presentationsList
         }
     }
+
+    // MARK: - 그리드 보기 (썸네일)
+
+    private var presentationsGrid: some View {
+        ScrollView {
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 14)], spacing: 14) {
+                ForEach(store.presentations) { presentation in
+                    NavigationLink(value: presentation.id) {
+                        presentationCard(presentation)
+                    }
+                    .buttonStyle(.plain)
+                    .contextMenu {
+                        Button {
+                            startRename(presentation)
+                        } label: {
+                            Label("이름 변경", systemImage: "pencil")
+                        }
+                        Button(role: .destructive) {
+                            store.deletePresentation(presentation.id)
+                        } label: {
+                            Label("삭제", systemImage: "trash")
+                        }
+                    }
+                }
+            }
+            .padding()
+        }
+    }
+
+    private func presentationCard(_ presentation: Presentation) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(Color(.secondarySystemBackground))
+                if let cover = coverImage(presentation) {
+                    Image(uiImage: cover)
+                        .resizable()
+                        .scaledToFill()
+                } else {
+                    Image(systemName: "rectangle.on.rectangle.angled")
+                        .font(.largeTitle)
+                        .foregroundStyle(.tertiary)
+                }
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: 130)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .overlay(alignment: .bottomTrailing) {
+                Text("\(presentation.slides.count)장")
+                    .font(.caption2.weight(.semibold))
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, 7)
+                    .padding(.vertical, 3)
+                    .background(.black.opacity(0.55), in: Capsule())
+                    .padding(6)
+            }
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text(presentation.title)
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(.primary)
+                    .lineLimit(1)
+                Text(Self.dateString(presentation.createdAt))
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(1)
+            }
+        }
+    }
+
+    /// 발표 대표 썸네일 — 첫 장표의 썸네일.
+    private func coverImage(_ presentation: Presentation) -> UIImage? {
+        guard let first = presentation.slides.first else { return nil }
+        return store.loadImage(first.thumbFile)
+    }
+
+    // MARK: - 목록 보기
 
     private var presentationsList: some View {
         List {
@@ -240,11 +404,22 @@ struct PresentationListView: View {
         }
     }
 
+    /// 장표가 0장인 발표를 자동으로 정리한다.
+    /// - 목록 루트에서 카메라가 없을 때만 실행한다(상세/촬영 중 보고 있는 발표가 사라지는 것 방지).
+    /// - 촬영 중인 발표는 남겨 두고, 방금 만든 발표는 Store의 유예 시간이 보호한다(저장 경합 방지).
+    private func cleanupEmptyPresentations() {
+        guard path.isEmpty, !showingCamera else { return }
+        var keep: Set<UUID> = []
+        if let cameraPresentationID { keep.insert(cameraPresentationID) }
+        store.removeEmptyPresentations(except: keep)
+    }
+
     // MARK: - 바로 촬영
 
     /// 카메라를 띄운다. 최근 발표의 마지막 촬영이 5분 이내면 그 발표에 이어 붙이고,
     /// 아니면 새 발표를 만든다.
     private func openCamera() {
+        guard !showingCamera else { return }   // 이미 촬영 중이면(딥링크 중복 등) 무시
         cameraCaptured = false
         if let recent = store.presentations.first,
            let lastTime = recent.slides.last?.createdAt,
@@ -274,12 +449,30 @@ struct PresentationListView: View {
     }
 
     private func row(_ presentation: Presentation) -> some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text(presentation.title)
-                .font(.headline)
-            Text("\(Self.dateString(presentation.createdAt)) · 장표 \(presentation.slides.count)장")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
+        HStack(spacing: 12) {
+            Group {
+                if let cover = coverImage(presentation) {
+                    Image(uiImage: cover)
+                        .resizable()
+                        .scaledToFill()
+                } else {
+                    ZStack {
+                        Rectangle().fill(Color(.secondarySystemBackground))
+                        Image(systemName: "rectangle.on.rectangle.angled")
+                            .foregroundStyle(.tertiary)
+                    }
+                }
+            }
+            .frame(width: 64, height: 64)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+
+            VStack(alignment: .leading, spacing: 4) {
+                Text(presentation.title)
+                    .font(.headline)
+                Text("\(Self.dateString(presentation.createdAt)) · 장표 \(presentation.slides.count)장")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
         }
         .padding(.vertical, 2)
     }

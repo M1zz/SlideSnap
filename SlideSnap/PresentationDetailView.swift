@@ -310,7 +310,7 @@ struct PresentationDetailView: View {
                                 Label("열기", systemImage: "arrow.up.left.and.arrow.down.right")
                             }
                             Button {
-                                shareBundle = ShareBundle(items: [store.imageURL(slide.correctedFile)])
+                                shareBundle = ShareBundle(items: [store.imageURL(store.displayFile(for: slide))])
                             } label: {
                                 Label("이미지 공유", systemImage: "square.and.arrow.up")
                             }
@@ -419,7 +419,7 @@ struct PresentationDetailView: View {
     }
 
     private func shareImages() {
-        let urls = targetSlides().map { store.imageURL($0.correctedFile) }
+        let urls = targetSlides().map { store.imageURL(store.displayFile(for: $0)) }
         guard !urls.isEmpty else { return }
         shareBundle = ShareBundle(items: urls)
     }
@@ -428,7 +428,7 @@ struct PresentationDetailView: View {
         let slides = targetSlides()
         guard !slides.isEmpty, let presentation else { return }
         let title = presentation.title
-        let urls = slides.map { store.imageURL($0.correctedFile) }
+        let urls = slides.map { store.imageURL(store.displayFile(for: $0)) }
         isExporting = true
 
         Task {

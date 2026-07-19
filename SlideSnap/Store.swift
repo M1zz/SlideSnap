@@ -88,6 +88,23 @@ final class Store: ObservableObject {
         presentations.first { $0.id == id }
     }
 
+    /// 장표가 한 장도 없는 발표를 지웁니다.
+    /// - Parameters:
+    ///   - keep: 지금 촬영/작업 중이라 비어 있어도 남겨 둘 발표들.
+    ///   - grace: 생성 직후에는 촬영한 장표가 아직 백그라운드 저장 중일 수 있으므로,
+    ///     만들어진 지 이 시간이 지난 발표만 지운다(저장 경합에 의한 유실 방지).
+    func removeEmptyPresentations(except keep: Set<UUID> = [], grace: TimeInterval = 120) {
+        let now = Date()
+        func isRemovable(_ p: Presentation) -> Bool {
+            p.slides.isEmpty
+                && !keep.contains(p.id)
+                && now.timeIntervalSince(p.createdAt) >= grace
+        }
+        guard presentations.contains(where: isRemovable) else { return }
+        presentations.removeAll(where: isRemovable)
+        persist()
+    }
+
     // MARK: - 장표
 
     /// 촬영한 사진을 감지·보정·저장. 무거운 처리는 백그라운드에서 수행됩니다.
@@ -186,6 +203,31 @@ final class Store: ObservableObject {
         persist()
     }
 
+    // MARK: - 가독성 보정
+
+    /// 화면·공유·내보내기에 쓸 "보이는 이미지" 파일명. 가독성 보정이 켜져 있으면 보정본을 씁니다.
+    func displayFile(for slide: Slide) -> String {
+        slide.isEnhanced ? (slide.enhancedFile ?? slide.correctedFile) : slide.correctedFile
+    }
+
+    /// 가독성 보정을 켜거나 끕니다. 무거운 이미지 처리는 백그라운드에서 수행합니다.
+    func setEnhanced(_ enabled: Bool, slideID: UUID, presentationID: UUID) async {
+        guard let pIndex = presentations.firstIndex(where: { $0.id == presentationID }),
+              let sIndex = presentations[pIndex].slides.firstIndex(where: { $0.id == slideID }) else { return }
+
+        let slide = presentations[pIndex].slides[sIndex]
+        let directory = imagesDirectoryURL
+        let updated = await Task.detached(priority: .userInitiated) {
+            SlideFactory.setEnhancement(enabled, slide: slide, in: directory)
+        }.value
+
+        guard let updated,
+              let pIdx = presentations.firstIndex(where: { $0.id == presentationID }),
+              let sIdx = presentations[pIdx].slides.firstIndex(where: { $0.id == slideID }) else { return }
+        presentations[pIdx].slides[sIdx] = updated
+        persist()
+    }
+
     // MARK: - 이미지 파일
 
     func imageURL(_ fileName: String) -> URL {
@@ -197,7 +239,9 @@ final class Store: ObservableObject {
     }
 
     private func deleteFiles(of slide: Slide) {
-        for file in [slide.originalFile, slide.correctedFile, slide.thumbFile] {
+        var files = [slide.originalFile, slide.correctedFile, slide.thumbFile]
+        if let enhancedFile = slide.enhancedFile { files.append(enhancedFile) }
+        for file in files {
             try? fileManager.removeItem(at: imageURL(file))
         }
     }

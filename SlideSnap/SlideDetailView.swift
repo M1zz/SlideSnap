@@ -16,6 +16,7 @@ struct SlideDetailView: View {
     @State private var showingAdjust = false
     @State private var showingDeleteConfirm = false
     @State private var shareItem: ShareItem?
+    @State private var isEnhancing = false
 
     init(presentationID: UUID, slideID: UUID) {
         self.presentationID = presentationID
@@ -61,11 +62,30 @@ struct SlideDetailView: View {
                 .background(Color(.systemBackground))
             }
         }
+        .overlay {
+            if isEnhancing {
+                ZStack {
+                    Color.black.opacity(0.25).ignoresSafeArea()
+                    ProgressView("가독성 보정 중…")
+                        .padding(20)
+                        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
+                }
+            }
+        }
         .navigationTitle(pageTitle)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {
+                    if let slide = currentSlide {
+                        Button {
+                            toggleEnhance(slide)
+                        } label: {
+                            Label(slide.isEnhanced ? "가독성 보정 끄기" : "가독성 보정",
+                                  systemImage: slide.isEnhanced ? "wand.and.stars.inverse" : "wand.and.stars")
+                        }
+                    }
+
                     Button {
                         showingAdjust = true
                     } label: {
@@ -74,7 +94,7 @@ struct SlideDetailView: View {
 
                     Button {
                         if let slide = currentSlide {
-                            shareItem = ShareItem(url: store.imageURL(slide.correctedFile))
+                            shareItem = ShareItem(url: store.imageURL(store.displayFile(for: slide)))
                         }
                     } label: {
                         Label("이미지 공유", systemImage: "square.and.arrow.up")
@@ -170,7 +190,7 @@ struct SlideDetailView: View {
 
     private func slideImage(_ slide: Slide) -> some View {
         Group {
-            if let image = store.loadImage(showOriginal ? slide.originalFile : slide.correctedFile) {
+            if let image = store.loadImage(showOriginal ? slide.originalFile : store.displayFile(for: slide)) {
                 ZoomableImage(image: image)
                     .padding(.horizontal, 12)
             } else {
@@ -178,6 +198,15 @@ struct SlideDetailView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    /// 가독성 보정을 켜거나 끈다.
+    private func toggleEnhance(_ slide: Slide) {
+        isEnhancing = true
+        Task {
+            await store.setEnhanced(!slide.isEnhanced, slideID: slide.id, presentationID: presentationID)
+            isEnhancing = false
+        }
     }
 
     /// 현재 장표를 삭제하고, 남은 장표가 있으면 인접 장표로 이동한다.

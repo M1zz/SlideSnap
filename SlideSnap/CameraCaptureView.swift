@@ -121,6 +121,7 @@ struct CameraCaptureView: View {
     @State private var processingCount = 0
     @State private var lastThumbnail: UIImage?
     @State private var flashOpacity: Double = 0
+    @State private var showBlurHint = false
 
     // 줌 제스처가 시작될 때의 기준 배율
     @State private var zoomBaseline: CGFloat = 1.0
@@ -167,7 +168,26 @@ struct CameraCaptureView: View {
             }
         }
         .onChange(of: camera.autoCaptureTick) { _, _ in
-            capture()   // 초록(락인)되면 자동으로 촬영
+            capture(auto: true)   // 장표가 바뀌어 초록(락인)되면 자동으로 촬영
+        }
+        .overlay(alignment: .top) { blurHintLabel }
+    }
+
+    /// 흔들린 자동 촬영을 건너뛰었을 때 잠깐 보여주는 안내.
+    @ViewBuilder
+    private var blurHintLabel: some View {
+        if showBlurHint {
+            HStack(spacing: 6) {
+                Image(systemName: "wind")
+                Text("흔들린 컷은 건너뛰었어요")
+                    .font(.subheadline.weight(.semibold))
+            }
+            .foregroundStyle(.white)
+            .padding(.horizontal, 14)
+            .padding(.vertical, 8)
+            .background(.black.opacity(0.6), in: Capsule())
+            .padding(.top, 60)
+            .transition(.opacity)
         }
     }
 
@@ -296,7 +316,9 @@ struct CameraCaptureView: View {
 
             Spacer()
 
-            Button(action: capture) {
+            Button {
+                capture()
+            } label: {
                 ZStack {
                     Circle()
                         .stroke(camera.isLocked ? Color.green : .white, lineWidth: 4)
@@ -367,7 +389,9 @@ struct CameraCaptureView: View {
 
     // MARK: - 촬영
 
-    private func capture() {
+    /// - Parameter auto: 자동 촬영이면 흔들린(흐릿한) 컷을 걸러내고, 결과를 카메라에 알린다.
+    ///   수동 촬영은 사용자의 의도이므로 걸러내지 않고 그대로 담는다.
+    private func capture(auto: Bool = false) {
         withAnimation(.easeIn(duration: 0.05)) { flashOpacity = 0.7 }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             withAnimation(.easeOut(duration: 0.2)) { flashOpacity = 0 }
@@ -375,10 +399,24 @@ struct CameraCaptureView: View {
 
         // 셔터를 누른 순간 화면에서 잡혀 있던 모서리를 그대로 사용해 폅니다.
         let quadAtCapture = camera.detectedQuad
+        // 수동 촬영은 방금 담은 화면을 자동 촬영의 기준으로 삼아 같은 장표 중복을 막는다.
+        if !auto { camera.markCaptured() }
 
         processingCount += 1
         camera.capturePhoto { image in
             Task { @MainActor in
+                // 자동 촬영이면 흐릿한 컷은 버린다(락인 상태라 대부분 선명하지만 전환 순간을 거른다).
+                if auto {
+                    let blurry = await Task.detached(priority: .userInitiated) { image.isBlurry() }.value
+                    if blurry {
+                        processingCount = max(0, processingCount - 1)
+                        camera.finishAutoCapture(saved: false)   // 기준 유지 → 안정되면 다시 시도
+                        flashBlurHint()
+                        return
+                    }
+                    camera.finishAutoCapture(saved: true)
+                }
+
                 // 즉시 피드백: 사진이 도착하자마자 카운트를 올리고 빠른 미리보기를 띄운다.
                 captureCount += 1
                 onCapture?()
@@ -391,6 +429,13 @@ struct CameraCaptureView: View {
                 await store.addSlide(image: image, to: presentationID, detectedQuad: quadAtCapture)
                 processingCount = max(0, processingCount - 1)
             }
+        }
+    }
+
+    private func flashBlurHint() {
+        withAnimation(.easeOut(duration: 0.2)) { showBlurHint = true }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.4) {
+            withAnimation(.easeOut(duration: 0.3)) { showBlurHint = false }
         }
     }
 }

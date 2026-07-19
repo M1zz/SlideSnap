@@ -34,7 +34,11 @@ struct CornerAdjustView: View {
     let onApply: (Quad?) -> Void
 
     @State private var quad: Quad
+    @State private var activeCorner: Corner?
     @Environment(\.dismiss) private var dismiss
+
+    private let loupeDiameter: CGFloat = 132
+    private let loupeMagnification: CGFloat = 2.5
 
     init(image: UIImage, initialQuad: Quad, onApply: @escaping (Quad?) -> Void) {
         self.image = image
@@ -63,6 +67,10 @@ struct CornerAdjustView: View {
 
                     ForEach(Corner.allCases, id: \.self) { corner in
                         handle(corner, in: fitted)
+                    }
+
+                    if let activeCorner {
+                        loupe(for: activeCorner, in: fitted, canvas: geometry.size)
                     }
                 }
                 .coordinateSpace(name: "canvas")
@@ -113,8 +121,54 @@ struct CornerAdjustView: View {
             DragGesture(minimumDistance: 0, coordinateSpace: .named("canvas"))
                 .onChanged { value in
                     quad[corner] = Self.normalizedPoint(value.location, in: rect)
+                    activeCorner = corner
+                }
+                .onEnded { _ in
+                    activeCorner = nil
                 }
         )
+    }
+
+    // MARK: - 돋보기(루페)
+
+    /// 드래그 중인 모서리 주변을 확대해 보여줘 정확히 맞출 수 있게 합니다.
+    /// 손가락에 가리지 않도록 위쪽(위가 좁으면 아래쪽)에 띄웁니다.
+    private func loupe(for corner: Corner, in rect: CGRect, canvas: CGSize) -> some View {
+        let target = Self.viewPoint(quad[corner], in: rect)
+        let d = loupeDiameter
+        let gap: CGFloat = 28
+
+        var cx = min(max(target.x, d / 2), canvas.width - d / 2)
+        var cy = target.y - d / 2 - gap
+        if cy - d / 2 < 0 { cy = target.y + d / 2 + gap }        // 위가 좁으면 아래로
+        cy = min(max(cy, d / 2), canvas.height - d / 2)
+        cx = min(max(cx, d / 2), canvas.width - d / 2)
+
+        let m = loupeMagnification
+
+        return ZStack(alignment: .topLeading) {
+            // 베이스와 동일한 이미지 레이어를 확대해, 대상 모서리가 루페 중앙에 오도록 이동.
+            Image(uiImage: image)
+                .resizable()
+                .scaledToFit()
+                .frame(width: canvas.width, height: canvas.height)
+                .scaleEffect(m, anchor: .topLeading)
+                .offset(x: d / 2 - m * target.x, y: d / 2 - m * target.y)
+
+            // 십자선
+            Path { p in
+                p.move(to: CGPoint(x: d / 2 - 10, y: d / 2)); p.addLine(to: CGPoint(x: d / 2 + 10, y: d / 2))
+                p.move(to: CGPoint(x: d / 2, y: d / 2 - 10)); p.addLine(to: CGPoint(x: d / 2, y: d / 2 + 10))
+            }
+            .stroke(Color.yellow, lineWidth: 1.5)
+        }
+        .frame(width: d, height: d, alignment: .topLeading)
+        .background(Color.black)
+        .clipShape(Circle())
+        .overlay(Circle().stroke(.white, lineWidth: 3))
+        .shadow(radius: 6)
+        .position(x: cx, y: cy)
+        .allowsHitTesting(false)
     }
 
     // MARK: - 좌표 변환
