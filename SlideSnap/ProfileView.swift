@@ -16,6 +16,11 @@ struct ProfileView: View {
     @State private var email = ""
     @State private var justSaved = false
 
+    /// 마스터(개발자) 모드 — 버전 행 7번 탭으로 토글. 피드백 수신함 진입점 노출.
+    @AppStorage("dev.masterMode") private var masterModeEnabled = false
+    @State private var versionTapCount = 0
+    @State private var showMasterModeAlert = false
+
     private var isValidEmail: Bool {
         let e = email.trimmed
         return e.isEmpty || (e.contains("@") && e.contains("."))
@@ -49,6 +54,22 @@ struct ProfileView: View {
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                 }
+
+                Section("앱 정보") {
+                    LabeledContent("버전", value: AppInfo.appVersion)
+                        .contentShape(Rectangle())
+                        .onTapGesture { handleVersionTap() }
+                }
+
+                if masterModeEnabled {
+                    Section("개발자") {
+                        NavigationLink {
+                            FeedbackInboxView()
+                        } label: {
+                            Label("접수된 피드백", systemImage: "tray.full")
+                        }
+                    }
+                }
             }
             .navigationTitle("내 정보")
             .navigationBarTitleDisplayMode(.inline)
@@ -66,6 +87,16 @@ struct ProfileView: View {
                 name = profile.name
                 email = profile.email
             }
+            .alert(
+                masterModeEnabled ? "개발자 모드가 켜졌어요" : "개발자 모드가 꺼졌어요",
+                isPresented: $showMasterModeAlert
+            ) {
+                Button("확인", role: .cancel) {}
+            } message: {
+                if masterModeEnabled {
+                    Text("아래에 '접수된 피드백' 메뉴가 나타납니다.")
+                }
+            }
             .overlay(alignment: .bottom) {
                 if justSaved {
                     Label("저장했어요", systemImage: "checkmark.circle.fill")
@@ -76,6 +107,16 @@ struct ProfileView: View {
                 }
             }
         }
+    }
+
+    /// 버전 행 7번 탭 → 마스터(개발자) 모드 토글.
+    private func handleVersionTap() {
+        versionTapCount += 1
+        guard versionTapCount >= 7 else { return }
+        versionTapCount = 0
+        masterModeEnabled.toggle()
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        showMasterModeAlert = true
     }
 
     private func save() {

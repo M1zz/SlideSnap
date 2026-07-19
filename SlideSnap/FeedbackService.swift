@@ -13,6 +13,7 @@
 
 import Foundation
 import CloudKit
+import UserNotifications
 #if canImport(UIKit)
 import UIKit
 #endif
@@ -33,7 +34,7 @@ final class FeedbackService {
     private init() {}
 
     /// 앱 iCloud 컨테이너 (SlideSnap.entitlements와 동일해야 한다).
-    private static let containerIdentifier = "iCloud.com.leeo.slidesnap"
+    static let containerIdentifier = "iCloud.com.leeo.slidesnap"
     static let recordType = "Feedback"
 
     enum FeedbackError: LocalizedError {
@@ -93,5 +94,61 @@ final class FeedbackService {
             print("❌ [FeedbackService.submit] 제출 실패: \(error)")
             throw FeedbackError.saveFailed(error)
         }
+    }
+
+    // MARK: - 새 피드백 푸시 알림 (개발자 기기 전용)
+
+    /// 새 Feedback 레코드 생성 시 이 기기(iCloud 계정)로 오는 CKQuerySubscription ID.
+    static let newFeedbackSubscriptionID = "feedback-new-v1"
+
+    enum NotificationError: LocalizedError {
+        case permissionDenied
+
+        var errorDescription: String? {
+            "알림 권한이 꺼져 있어요. iOS 설정 > 장표스냅 > 알림에서 허용해 주세요."
+        }
+    }
+
+    /// 새 피드백 푸시 알림 구독 여부 (서버 기준 — 재설치해도 유지).
+    func isNewFeedbackNotificationEnabled() async -> Bool {
+        let db = CKContainer(identifier: Self.containerIdentifier).publicCloudDatabase
+        let sub = try? await db.subscription(for: Self.newFeedbackSubscriptionID)
+        return sub != nil
+    }
+
+    /// 새 피드백 푸시 알림 켜기 — 알림 권한 요청 + APNs 등록 + CKQuerySubscription 저장.
+    /// ⚠️ 구독이 발화하려면 이 계정이 Feedback을 읽을 수 있어야 한다 (admin 역할 read).
+    func enableNewFeedbackNotifications() async throws {
+        #if canImport(UIKit)
+        let granted = try await UNUserNotificationCenter.current()
+            .requestAuthorization(options: [.alert, .sound])
+        guard granted else { throw NotificationError.permissionDenied }
+        await MainActor.run {
+            UIApplication.shared.registerForRemoteNotifications()
+        }
+        #endif
+
+        let subscription = CKQuerySubscription(
+            recordType: Self.recordType,
+            predicate: NSPredicate(value: true),
+            subscriptionID: Self.newFeedbackSubscriptionID,
+            options: .firesOnRecordCreation
+        )
+        let info = CKSubscription.NotificationInfo()
+        info.title = "새 피드백이 도착했어요 📬"
+        info.alertBody = "사용자가 의견을 남겼어요. 수신함에서 확인해 보세요."
+        info.soundName = "default"
+        subscription.notificationInfo = info
+
+        let db = CKContainer(identifier: Self.containerIdentifier).publicCloudDatabase
+        _ = try await db.save(subscription)
+        print("🔔 [FeedbackService.enableNewFeedbackNotifications] 구독 등록 완료")
+    }
+
+    /// 새 피드백 푸시 알림 끄기 — 구독 삭제.
+    func disableNewFeedbackNotifications() async throws {
+        let db = CKContainer(identifier: Self.containerIdentifier).publicCloudDatabase
+        _ = try await db.deleteSubscription(withID: Self.newFeedbackSubscriptionID)
+        print("🔕 [FeedbackService.disableNewFeedbackNotifications] 구독 해제 완료")
     }
 }

@@ -357,6 +357,18 @@ struct PresentationDetailView: View {
                 .background(.black.opacity(0.6), in: Capsule())
                 .padding(5)
 
+            // 모서리 탐지 실패 → 보정 없이 원본 그대로인 장표 표시
+            if slide.corners == nil && !isSelecting {
+                Image(systemName: "exclamationmark.triangle.fill")
+                    .font(.caption)
+                    .foregroundStyle(.orange)
+                    .padding(4)
+                    .background(.black.opacity(0.5), in: Circle())
+                    .padding(5)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                    .accessibilityLabel("장표를 인식하지 못해 원본 그대로예요. 모서리 조정에서 직접 지정할 수 있어요.")
+            }
+
             if isSelecting {
                 Image(systemName: selected ? "checkmark.circle.fill" : "circle")
                     .font(.title3)
