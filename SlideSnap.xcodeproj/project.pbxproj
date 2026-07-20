@@ -6,17 +6,28 @@
 	objectVersion = 70;
 	objects = {
 
-/* Begin PBXFileReference section */
-		1A0000000000000000000004 /* SlideSnap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlideSnap.app; sourceTree = BUILT_PRODUCTS_DIR; };
-/* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		1A0000000000000000000002 /* SlideSnap */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SlideSnap; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
-
 /* Begin PBXBuildFile section */
 		1EE0C0DE5A9E000000000003 /* LeeoKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1EE0C0DE5A9E000000000002 /* LeeoKit */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1A0000000000000000000004 /* SlideSnap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlideSnap.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		812A5EE69DF8F41C3A0F884A /* Version.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		1A0000000000000000000002 /* SlideSnap */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = SlideSnap;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		1A0000000000000000000008 /* Frameworks */ = {
@@ -35,6 +46,7 @@
 			children = (
 				1A0000000000000000000002 /* SlideSnap */,
 				1A0000000000000000000003 /* Products */,
+				812A5EE69DF8F41C3A0F884A /* Version.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -74,21 +86,6 @@
 		};
 /* End PBXNativeTarget section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		1EE0C0DE5A9E000000000001 /* XCLocalSwiftPackageReference "../LeeoKit" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../LeeoKit;
-		};
-/* End XCLocalSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		1EE0C0DE5A9E000000000002 /* LeeoKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1EE0C0DE5A9E000000000001 /* XCLocalSwiftPackageReference "../LeeoKit" */;
-			productName = LeeoKit;
-		};
-/* End XCSwiftPackageProductDependency section */
-
 /* Begin PBXProject section */
 		1A0000000000000000000006 /* Project object */ = {
 			isa = PBXProject;
@@ -114,7 +111,7 @@
 			mainGroup = 1A0000000000000000000001;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				1EE0C0DE5A9E000000000001 /* XCLocalSwiftPackageReference "../LeeoKit" */,
+				1EE0C0DE5A9E000000000001 /* XCLocalSwiftPackageReference "LeeoKit" */,
 			);
 			productRefGroup = 1A0000000000000000000003 /* Products */;
 			projectDirPath = "";
@@ -148,6 +145,7 @@
 /* Begin XCBuildConfiguration section */
 		1A000000000000000000000A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 812A5EE69DF8F41C3A0F884A /* Version.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -211,6 +209,7 @@
 		};
 		1A000000000000000000000B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 812A5EE69DF8F41C3A0F884A /* Version.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -272,7 +271,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SlideSnap/SlideSnap.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QGAQ3AY3R3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -288,7 +286,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.leeo.slidesnap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -306,7 +303,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SlideSnap/SlideSnap.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QGAQ3AY3R3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -322,7 +318,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.leeo.slidesnap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -355,6 +350,21 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		1EE0C0DE5A9E000000000001 /* XCLocalSwiftPackageReference "LeeoKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../LeeoKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1EE0C0DE5A9E000000000002 /* LeeoKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1EE0C0DE5A9E000000000001 /* XCLocalSwiftPackageReference "LeeoKit" */;
+			productName = LeeoKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1A0000000000000000000006 /* Project object */;
 }
