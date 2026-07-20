@@ -14,11 +14,16 @@
 		1A0000000000000000000002 /* SlideSnap */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SlideSnap; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
+/* Begin PBXBuildFile section */
+		1EE0C0DE5A9E000000000003 /* LeeoKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1EE0C0DE5A9E000000000002 /* LeeoKit */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		1A0000000000000000000008 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EE0C0DE5A9E000000000003 /* LeeoKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,12 +66,28 @@
 			);
 			name = SlideSnap;
 			packageProductDependencies = (
+				1EE0C0DE5A9E000000000002 /* LeeoKit */,
 			);
 			productName = SlideSnap;
 			productReference = 1A0000000000000000000004 /* SlideSnap.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		1EE0C0DE5A9E000000000001 /* XCLocalSwiftPackageReference "../LeeoKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../LeeoKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1EE0C0DE5A9E000000000002 /* LeeoKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1EE0C0DE5A9E000000000001 /* XCLocalSwiftPackageReference "../LeeoKit" */;
+			productName = LeeoKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin PBXProject section */
 		1A0000000000000000000006 /* Project object */ = {
@@ -83,7 +104,7 @@
 			};
 			buildConfigurationList = 1A000000000000000000000E /* Build configuration list for PBXProject "SlideSnap" */;
 			compatibilityVersion = "Xcode 15.0";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -92,6 +113,9 @@
 			);
 			mainGroup = 1A0000000000000000000001;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				1EE0C0DE5A9E000000000001 /* XCLocalSwiftPackageReference "../LeeoKit" */,
+			);
 			productRefGroup = 1A0000000000000000000003 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
