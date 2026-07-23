@@ -1,4 +1,5 @@
 import SwiftUI
+import LeeoKit
 
 @main
 struct SlideSnapApp: App {
@@ -23,6 +24,14 @@ struct SlideSnapApp: App {
                     if UserDefaults.standard.bool(forKey: "dev.masterMode") {
                         UIApplication.shared.registerForRemoteNotifications()
                     }
+                    // 익명 사용 통계 — 실행 카운트 + FeedbackHub로 설치 스냅샷 전송(하루 1회 throttle).
+                    // 앱 대략 지표(발표 수·장표 수)도 함께 담는다.
+                    LeeoEngagement.shared.registerLaunch()
+                    let slideCount = store.presentations.reduce(0) { $0 + $1.slides.count }
+                    LeeoUsageReporter(spec: SlideSnapSpec.self).reportInBackground(metrics: [
+                        "presentations": Double(store.presentations.count),
+                        "slides": Double(slideCount)
+                    ])
                 }
         }
     }

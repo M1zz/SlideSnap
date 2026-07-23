@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import LeeoKit
 
 struct ProfileView: View {
     @EnvironmentObject private var profile: UserProfileStore
@@ -67,6 +68,11 @@ struct ProfileView: View {
                             FeedbackInboxView()
                         } label: {
                             Label("접수된 피드백", systemImage: "tray.full")
+                        }
+                        NavigationLink {
+                            LeeoUsageStatsView<SlideSnapSpec>()
+                        } label: {
+                            Label("사용 통계", systemImage: "chart.bar.xaxis")
                         }
                     }
                 }

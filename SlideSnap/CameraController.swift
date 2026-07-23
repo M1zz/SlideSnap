@@ -77,7 +77,7 @@ final class CameraController: NSObject, ObservableObject {
     // 자동 촬영 상태 (videoQueue에서만 접근)
     private var autoCaptureFlag = true            // autoCaptureEnabled의 스레드 안전 사본
     private var lastAutoCaptureAt: CFTimeInterval = 0
-    private let autoCaptureCooldown: CFTimeInterval = 1.2   // 최소 촬영 간격(초) — 전환 중 중복만 방지
+    private let autoCaptureCooldown: CFTimeInterval = 5.0   // 최소 자동 촬영 간격(초) — 너무 빠른 연속 촬영 방지
 
     // 자동 촬영 중복 방지용 내용 지문 (videoQueue에서만 접근)
     private var lastCapturedSignature: [Float]?   // 직전에 담은 장표의 저해상 휘도 지문

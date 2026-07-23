@@ -1,5 +1,6 @@
 import SwiftUI
 import AVFoundation
+import LeeoKit
 
 /// 카메라 프리뷰 레이어를 SwiftUI에서 사용하기 위한 래퍼
 struct CameraPreview: UIViewRepresentable {
@@ -24,6 +25,9 @@ struct CameraPreview: UIViewRepresentable {
 
 /// 감지된 장표 모서리를 프리뷰 위에 그리는 오버레이.
 /// 잘 잡히면(locked) 초록색으로 "락인"된 느낌을 줍니다.
+///
+/// 실제 감지는 몇 프레임에 한 번씩 뚝뚝 갱신되지만, 사용자에게는 모서리가
+/// 느리고 부드럽게 따라가도록 SwiftUI가 네 모서리 좌표를 프레임 단위로 보간한다.
 struct DetectionOverlay: View {
 
     let quad: Quad
@@ -32,61 +36,84 @@ struct DetectionOverlay: View {
     let locked: Bool
 
     var body: some View {
-        GeometryReader { geo in
-            let pts = corners(in: geo.size)
-            let color: Color = locked ? .green : .white
+        let color: Color = locked ? .green : .white
 
-            ZStack {
-                // 안쪽 살짝 채우기 + 외곽선
-                polygon(pts)
-                    .fill(color.opacity(locked ? 0.16 : 0.08))
-                polygon(pts)
-                    .stroke(color.opacity(0.9), lineWidth: locked ? 3 : 2)
+        ZStack {
+            // 안쪽 살짝 채우기 + 외곽선
+            DetectionQuadShape(quad: quad, aspect: aspect, style: .polygon)
+                .fill(color.opacity(locked ? 0.16 : 0.08))
+            DetectionQuadShape(quad: quad, aspect: aspect, style: .polygon)
+                .stroke(color.opacity(0.9), lineWidth: locked ? 3 : 2)
 
-                // 네 모서리 브래킷 (락인 느낌의 코너 마커)
-                ForEach(0..<4, id: \.self) { i in
-                    bracket(at: pts[i],
-                            toward1: pts[(i + 1) % 4],
-                            toward2: pts[(i + 3) % 4])
-                        .stroke(color, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
-                        .shadow(color: .black.opacity(0.35), radius: 2)
+            // 네 모서리 브래킷 (락인 느낌의 코너 마커)
+            DetectionQuadShape(quad: quad, aspect: aspect, style: .brackets)
+                .stroke(color, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
+                .shadow(color: .black.opacity(0.35), radius: 2)
+        }
+        // 감지 값이 바뀔 때마다 모서리를 부드럽게 보간(느린 트레일링 모션).
+        .animation(.easeOut(duration: 0.35), value: quad)
+        .animation(.easeOut(duration: 0.2), value: locked)
+    }
+}
+
+/// 정규화(0...1, 왼쪽 위 원점) 사각형을 aspectFill 프리뷰 좌표로 그리는 애니메이터블 Shape.
+/// `animatableData`로 네 모서리(8개 좌표)를 노출해 SwiftUI가 프레임 단위로 보간한다.
+private struct DetectionQuadShape: Shape {
+    enum Style { case polygon, brackets }
+
+    var quad: Quad
+    var aspect: CGFloat
+    var style: Style
+
+    var animatableData: AnimatablePair<
+        AnimatablePair<CGPoint.AnimatableData, CGPoint.AnimatableData>,
+        AnimatablePair<CGPoint.AnimatableData, CGPoint.AnimatableData>
+    > {
+        get {
+            .init(
+                .init(quad.topLeft.animatableData, quad.topRight.animatableData),
+                .init(quad.bottomRight.animatableData, quad.bottomLeft.animatableData)
+            )
+        }
+        set {
+            quad.topLeft.animatableData = newValue.first.first
+            quad.topRight.animatableData = newValue.first.second
+            quad.bottomRight.animatableData = newValue.second.first
+            quad.bottomLeft.animatableData = newValue.second.second
+        }
+    }
+
+    func path(in rect: CGRect) -> Path {
+        let pts = [quad.topLeft, quad.topRight, quad.bottomRight, quad.bottomLeft]
+            .map { map($0, in: rect.size) }
+        switch style {
+        case .polygon:
+            return Path { path in
+                path.move(to: pts[0])
+                path.addLine(to: pts[1])
+                path.addLine(to: pts[2])
+                path.addLine(to: pts[3])
+                path.closeSubpath()
+            }
+        case .brackets:
+            return Path { path in
+                for i in 0..<4 {
+                    path.move(to: pointFrom(pts[i], toward: pts[(i + 1) % 4]))
+                    path.addLine(to: pts[i])
+                    path.addLine(to: pointFrom(pts[i], toward: pts[(i + 3) % 4]))
                 }
             }
-            .animation(.easeOut(duration: 0.15), value: locked)
         }
     }
 
-    private func polygon(_ pts: [CGPoint]) -> Path {
-        Path { path in
-            guard pts.count == 4 else { return }
-            path.move(to: pts[0])
-            path.addLine(to: pts[1])
-            path.addLine(to: pts[2])
-            path.addLine(to: pts[3])
-            path.closeSubpath()
-        }
-    }
-
-    private func bracket(at corner: CGPoint, toward1: CGPoint, toward2: CGPoint) -> Path {
+    private func pointFrom(_ from: CGPoint, toward to: CGPoint) -> CGPoint {
         let length: CGFloat = 26
-        func point(from: CGPoint, to: CGPoint) -> CGPoint {
-            let dx = to.x - from.x, dy = to.y - from.y
-            let m = max(hypot(dx, dy), 0.0001)
-            return CGPoint(x: from.x + dx / m * length, y: from.y + dy / m * length)
-        }
-        return Path { path in
-            path.move(to: point(from: corner, to: toward1))
-            path.addLine(to: corner)
-            path.addLine(to: point(from: corner, to: toward2))
-        }
+        let dx = to.x - from.x, dy = to.y - from.y
+        let m = max(hypot(dx, dy), 0.0001)
+        return CGPoint(x: from.x + dx / m * length, y: from.y + dy / m * length)
     }
 
-    /// 정규화(왼쪽 위 원점) 좌표 4개를 aspectFill 기준의 뷰 좌표로 변환
-    private func corners(in size: CGSize) -> [CGPoint] {
-        [quad.topLeft, quad.topRight, quad.bottomRight, quad.bottomLeft]
-            .map { map($0, in: size) }
-    }
-
+    /// 정규화 좌표를 aspectFill 기준의 뷰 좌표로 변환
     private func map(_ p: CGPoint, in size: CGSize) -> CGPoint {
         guard size.width > 0, size.height > 0 else { return .zero }
         let viewAspect = size.width / size.height
@@ -420,6 +447,8 @@ struct CameraCaptureView: View {
                 // 즉시 피드백: 사진이 도착하자마자 카운트를 올리고 빠른 미리보기를 띄운다.
                 captureCount += 1
                 onCapture?()
+                // 촬영은 핵심 행동 — 로컬 카운트만 올린다(사용 통계 스냅샷의 eventCount에 반영).
+                LeeoEngagement.shared.registerSignificantEvent()
                 Task.detached(priority: .userInitiated) {
                     let quick = image.downsampled(maxDimension: 160)
                     await MainActor.run { lastThumbnail = quick }

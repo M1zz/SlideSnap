@@ -19,6 +19,8 @@ struct FeedbackView: View {
     var initialType: FeedbackType = .improvement
 
     var body: some View {
+        // CloudKit 실패 시 네이티브 메일 컴포저 → mailto: 폴백은 LeeoKit이 내장 처리한다.
+        // (앱별 EmailController/emailFallback 불필요 — LeeoKit 2.2.0+)
         LeeoFeedbackView<SlideSnapSpec>(
             types: [.improvement, .bug, .feature, .other],
             initialType: initialType,

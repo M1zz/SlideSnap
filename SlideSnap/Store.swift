@@ -88,6 +88,30 @@ final class Store: ObservableObject {
         presentations.first { $0.id == id }
     }
 
+    /// 여러 발표를 하나로 병합한다.
+    /// - 목록 순서상 가장 위(가장 최근)인 선택 발표를 대상으로 삼고, 나머지 선택 발표의
+    ///   장표를 목록 순서대로 그 뒤에 이어 붙인다. 소스 발표는 제거한다.
+    /// - 이미지 파일은 그대로 재사용하므로 재보정/복사가 없다(장표가 그대로 옮겨감).
+    /// - Returns: 병합 결과가 담긴 대상 발표 id. 선택이 2개 미만이면 nil.
+    @discardableResult
+    func mergePresentations(_ ids: Set<UUID>) -> UUID? {
+        // presentations의 현재 순서를 유지한 채 선택된 것만 추린다.
+        let selected = presentations.filter { ids.contains($0.id) }
+        guard selected.count >= 2, let target = selected.first,
+              let tIndex = presentations.firstIndex(where: { $0.id == target.id }) else { return nil }
+
+        // 대상 외 소스들의 장표를 목록 순서대로 이어 붙인다.
+        let sources = selected.dropFirst()
+        let appendedSlides = sources.flatMap { $0.slides }
+        presentations[tIndex].slides.append(contentsOf: appendedSlides)
+
+        // 소스 발표 제거 — 장표(이미지 파일)는 대상으로 옮겨갔으니 파일은 지우지 않는다.
+        let removeIDs = Set(sources.map { $0.id })
+        presentations.removeAll { removeIDs.contains($0.id) }
+        persist()
+        return target.id
+    }
+
     /// 장표가 한 장도 없는 발표를 지웁니다.
     /// - Parameters:
     ///   - keep: 지금 촬영/작업 중이라 비어 있어도 남겨 둘 발표들.

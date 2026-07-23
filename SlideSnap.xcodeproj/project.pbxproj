@@ -8,25 +8,42 @@
 
 /* Begin PBXBuildFile section */
 		1EE0C0DE5A9E000000000003 /* LeeoKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1EE0C0DE5A9E000000000002 /* LeeoKit */; };
+		2A00000000000000000000AF /* SlideSnapWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2A00000000000000000000A4 /* SlideSnapWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2A00000000000000000000AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1A0000000000000000000006 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2A00000000000000000000A3;
+			remoteInfo = SlideSnapWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2A00000000000000000000AE /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				2A00000000000000000000AF /* SlideSnapWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1A0000000000000000000004 /* SlideSnap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlideSnap.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A00000000000000000000A4 /* SlideSnapWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SlideSnapWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		812A5EE69DF8F41C3A0F884A /* Version.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		1A0000000000000000000002 /* SlideSnap */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
-			explicitFileTypes = {
-			};
-			explicitFolders = (
-			);
-			path = SlideSnap;
-			sourceTree = "<group>";
-		};
+		1A0000000000000000000002 /* SlideSnap */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SlideSnap; sourceTree = "<group>"; };
+		2A00000000000000000000A5 /* SlideSnapWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SlideSnapWidget; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +55,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2A00000000000000000000A7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -45,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				1A0000000000000000000002 /* SlideSnap */,
+				2A00000000000000000000A5 /* SlideSnapWidget */,
 				1A0000000000000000000003 /* Products */,
 				812A5EE69DF8F41C3A0F884A /* Version.xcconfig */,
 			);
@@ -54,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				1A0000000000000000000004 /* SlideSnap.app */,
+				2A00000000000000000000A4 /* SlideSnapWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -68,10 +94,12 @@
 				1A0000000000000000000007 /* Sources */,
 				1A0000000000000000000008 /* Frameworks */,
 				1A0000000000000000000009 /* Resources */,
+				2A00000000000000000000AE /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2A00000000000000000000AC /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				1A0000000000000000000002 /* SlideSnap */,
@@ -84,6 +112,28 @@
 			productReference = 1A0000000000000000000004 /* SlideSnap.app */;
 			productType = "com.apple.product-type.application";
 		};
+		2A00000000000000000000A3 /* SlideSnapWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A00000000000000000000A9 /* Build configuration list for PBXNativeTarget "SlideSnapWidgetExtension" */;
+			buildPhases = (
+				2A00000000000000000000A6 /* Sources */,
+				2A00000000000000000000A7 /* Frameworks */,
+				2A00000000000000000000A8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				2A00000000000000000000A5 /* SlideSnapWidget */,
+			);
+			name = SlideSnapWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = SlideSnapWidgetExtension;
+			productReference = 2A00000000000000000000A4 /* SlideSnapWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -95,6 +145,9 @@
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					1A0000000000000000000005 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					2A00000000000000000000A3 = {
 						CreatedOnToolsVersion = 16.0;
 					};
 				};
@@ -111,19 +164,27 @@
 			mainGroup = 1A0000000000000000000001;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				1EE0C0DE5A9E000000000001 /* XCLocalSwiftPackageReference "LeeoKit" */,
+				1EE0C0DE5A9E000000000001 /* XCRemoteSwiftPackageReference "LeeoKit" */,
 			);
 			productRefGroup = 1A0000000000000000000003 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				1A0000000000000000000005 /* SlideSnap */,
+				2A00000000000000000000A3 /* SlideSnapWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1A0000000000000000000009 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A00000000000000000000A8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -140,7 +201,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2A00000000000000000000A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2A00000000000000000000AC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2A00000000000000000000A3 /* SlideSnapWidgetExtension */;
+			targetProxy = 2A00000000000000000000AD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1A000000000000000000000A /* Debug */ = {
@@ -274,6 +350,7 @@
 				DEVELOPMENT_TEAM = QGAQ3AY3R3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SlideSnap-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "장표스냅";
 				INFOPLIST_KEY_NSCameraUsageDescription = "발표 장표를 촬영하기 위해 카메라 접근이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -306,6 +383,7 @@
 				DEVELOPMENT_TEAM = QGAQ3AY3R3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SlideSnap-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "장표스냅";
 				INFOPLIST_KEY_NSCameraUsageDescription = "발표 장표를 촬영하기 위해 카메라 접근이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -320,6 +398,65 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leeo.slidesnap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		2A00000000000000000000AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QGAQ3AY3R3;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SlideSnapWidget-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "장표스냅";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.leeo.slidesnap.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		2A00000000000000000000AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QGAQ3AY3R3;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SlideSnapWidget-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "장표스냅";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.leeo.slidesnap.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -349,19 +486,32 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		2A00000000000000000000A9 /* Build configuration list for PBXNativeTarget "SlideSnapWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A00000000000000000000AA /* Debug */,
+				2A00000000000000000000AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		1EE0C0DE5A9E000000000001 /* XCLocalSwiftPackageReference "LeeoKit" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../LeeoKit;
+/* Begin XCRemoteSwiftPackageReference section */
+		1EE0C0DE5A9E000000000001 /* XCRemoteSwiftPackageReference "LeeoKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/M1zz/LeeoKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.0;
+			};
 		};
-/* End XCLocalSwiftPackageReference section */
+/* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		1EE0C0DE5A9E000000000002 /* LeeoKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1EE0C0DE5A9E000000000001 /* XCLocalSwiftPackageReference "LeeoKit" */;
+			package = 1EE0C0DE5A9E000000000001 /* XCRemoteSwiftPackageReference "LeeoKit" */;
 			productName = LeeoKit;
 		};
 /* End XCSwiftPackageProductDependency section */

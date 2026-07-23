@@ -1,4 +1,5 @@
 import SwiftUI
+import LeeoKit
 
 /// 첫 화면 — 발표 목록
 struct PresentationListView: View {
@@ -22,6 +23,11 @@ struct PresentationListView: View {
     @State private var renamingID: UUID?
     @State private var renameText = ""
 
+    /// 여러 발표를 골라 하나로 합치는 선택 모드.
+    @State private var isSelecting = false
+    @State private var selectedIDs: Set<UUID> = []
+    @State private var showingMergeConfirm = false
+
     @State private var showingPhotoImport = false
     @State private var importProgress: (done: Int, total: Int)?
 
@@ -40,7 +46,7 @@ struct PresentationListView: View {
     var body: some View {
         NavigationStack(path: $path) {
             content
-            .navigationTitle("")
+            .navigationTitle(isSelecting ? "\(selectedIDs.count)개 선택" : "")
             .navigationBarTitleDisplayMode(.inline)
             .searchable(text: $searchText, prompt: "장표 텍스트·제목 검색")
             .navigationDestination(for: UUID.self) { id in
@@ -49,59 +55,7 @@ struct PresentationListView: View {
             .navigationDestination(for: SlideRoute.self) { route in
                 SlideDetailView(presentationID: route.presentationID, slideID: route.slideID)
             }
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Menu {
-                        Button {
-                            showingProfile = true
-                        } label: {
-                            Label("내 정보", systemImage: "person.crop.circle")
-                        }
-                        Button {
-                            feedbackInitialType = .improvement
-                            showingFeedback = true
-                        } label: {
-                            Label("피드백 보내기", systemImage: "paperplane")
-                        }
-                    } label: {
-                        Image(systemName: "ellipsis.circle")
-                    }
-                }
-                if !store.presentations.isEmpty {
-                    ToolbarItem(placement: .topBarLeading) {
-                        Button {
-                            withAnimation(.easeInOut(duration: 0.2)) { isGridView.toggle() }
-                        } label: {
-                            Image(systemName: isGridView ? "list.bullet" : "square.grid.2x2")
-                        }
-                        .accessibilityLabel(isGridView ? "목록으로 보기" : "그리드로 보기")
-                    }
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        openCamera()
-                    } label: {
-                        Image(systemName: "camera.fill")
-                    }
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Menu {
-                        Button {
-                            newTitle = Store.defaultTitle()
-                            showingNewAlert = true
-                        } label: {
-                            Label("빈 발표 만들기", systemImage: "rectangle.badge.plus")
-                        }
-                        Button {
-                            showingPhotoImport = true
-                        } label: {
-                            Label("사진에서 가져오기", systemImage: "photo.on.rectangle.angled")
-                        }
-                    } label: {
-                        Image(systemName: "plus")
-                    }
-                }
-            }
+            .toolbar { toolbarContent }
             .fullScreenCover(isPresented: $showingCamera, onDismiss: cameraFinished) {
                 if let cameraPresentationID {
                     CameraCaptureView(presentationID: cameraPresentationID) {
@@ -175,7 +129,130 @@ struct PresentationListView: View {
             } message: {
                 Text("새 발표 제목을 입력하세요.")
             }
+            .alert("발표 합치기", isPresented: $showingMergeConfirm) {
+                Button("합치기") { mergeSelected() }
+                Button("취소", role: .cancel) {}
+            } message: {
+                Text("선택한 \(selectedIDs.count)개 발표를 하나로 합칩니다.\n장표는 목록 순서대로 이어 붙고, 되돌릴 수 없어요.")
+            }
         }
+    }
+
+    // MARK: - 툴바
+
+    @ToolbarContentBuilder
+    private var toolbarContent: some ToolbarContent {
+        if isSelecting {
+            ToolbarItem(placement: .topBarLeading) {
+                Button("취소") { exitSelection() }
+            }
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    showingMergeConfirm = true
+                } label: {
+                    Text(selectedIDs.count >= 2 ? "합치기 (\(selectedIDs.count))" : "합치기")
+                        .fontWeight(.semibold)
+                }
+                .disabled(selectedIDs.count < 2)
+            }
+        } else {
+            ToolbarItem(placement: .topBarLeading) {
+                Menu {
+                    Button {
+                        showingProfile = true
+                    } label: {
+                        Label("내 정보", systemImage: "person.crop.circle")
+                    }
+                    Button {
+                        feedbackInitialType = .improvement
+                        showingFeedback = true
+                    } label: {
+                        Label("피드백 보내기", systemImage: "paperplane")
+                    }
+                    if store.presentations.count >= 2 {
+                        Divider()
+                        Button {
+                            enterSelection()
+                        } label: {
+                            Label("발표 합치기", systemImage: "arrow.triangle.merge")
+                        }
+                    }
+                } label: {
+                    Image(systemName: "ellipsis.circle")
+                }
+            }
+            if !store.presentations.isEmpty {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        withAnimation(.easeInOut(duration: 0.2)) { isGridView.toggle() }
+                    } label: {
+                        Image(systemName: isGridView ? "list.bullet" : "square.grid.2x2")
+                    }
+                    .accessibilityLabel(isGridView ? "목록으로 보기" : "그리드로 보기")
+                }
+            }
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    openCamera()
+                } label: {
+                    Image(systemName: "camera.fill")
+                }
+            }
+            ToolbarItem(placement: .topBarTrailing) {
+                Menu {
+                    Button {
+                        newTitle = Store.defaultTitle()
+                        showingNewAlert = true
+                    } label: {
+                        Label("빈 발표 만들기", systemImage: "rectangle.badge.plus")
+                    }
+                    Button {
+                        showingPhotoImport = true
+                    } label: {
+                        Label("사진에서 가져오기", systemImage: "photo.on.rectangle.angled")
+                    }
+                } label: {
+                    Image(systemName: "plus")
+                }
+            }
+        }
+    }
+
+    // MARK: - 발표 선택·병합
+
+    private func enterSelection() {
+        selectedIDs = []
+        withAnimation(.easeInOut(duration: 0.2)) { isSelecting = true }
+    }
+
+    private func exitSelection() {
+        withAnimation(.easeInOut(duration: 0.2)) { isSelecting = false }
+        selectedIDs = []
+    }
+
+    private func toggleSelect(_ id: UUID) {
+        if selectedIDs.contains(id) {
+            selectedIDs.remove(id)
+        } else {
+            selectedIDs.insert(id)
+        }
+    }
+
+    /// 선택한 발표들을 하나로 합치고, 합쳐진 발표로 이동한다.
+    private func mergeSelected() {
+        guard let merged = store.mergePresentations(selectedIDs) else { return }
+        LeeoUsageReporter(spec: SlideSnapSpec.self).logEventInBackground("merge")
+        exitSelection()
+        path.append(merged)
+    }
+
+    /// 선택 모드에서 각 발표 앞에 붙는 체크 표시.
+    @ViewBuilder
+    private func selectionMark(_ id: UUID) -> some View {
+        let on = selectedIDs.contains(id)
+        Image(systemName: on ? "checkmark.circle.fill" : "circle")
+            .font(.title3)
+            .foregroundStyle(on ? Color.accentColor : Color.secondary)
     }
 
     /// 넛지는 목록 화면에 머물러 있고(카메라·다른 시트가 없고) 아직 노출 대상일 때만 띄운다.
@@ -227,20 +304,41 @@ struct PresentationListView: View {
         ScrollView {
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 14)], spacing: 14) {
                 ForEach(store.presentations) { presentation in
-                    NavigationLink(value: presentation.id) {
-                        presentationCard(presentation)
-                    }
-                    .buttonStyle(.plain)
-                    .contextMenu {
+                    if isSelecting {
                         Button {
-                            startRename(presentation)
+                            toggleSelect(presentation.id)
                         } label: {
-                            Label("이름 변경", systemImage: "pencil")
+                            presentationCard(presentation)
+                                .overlay(alignment: .topLeading) {
+                                    selectionMark(presentation.id)
+                                        .padding(6)
+                                        .background(.black.opacity(0.35), in: Circle())
+                                        .padding(6)
+                                }
+                                .overlay {
+                                    if selectedIDs.contains(presentation.id) {
+                                        RoundedRectangle(cornerRadius: 12)
+                                            .stroke(Color.accentColor, lineWidth: 3)
+                                    }
+                                }
                         }
-                        Button(role: .destructive) {
-                            store.deletePresentation(presentation.id)
-                        } label: {
-                            Label("삭제", systemImage: "trash")
+                        .buttonStyle(.plain)
+                    } else {
+                        NavigationLink(value: presentation.id) {
+                            presentationCard(presentation)
+                        }
+                        .buttonStyle(.plain)
+                        .contextMenu {
+                            Button {
+                                startRename(presentation)
+                            } label: {
+                                Label("이름 변경", systemImage: "pencil")
+                            }
+                            Button(role: .destructive) {
+                                store.deletePresentation(presentation.id)
+                            } label: {
+                                Label("삭제", systemImage: "trash")
+                            }
                         }
                     }
                 }
@@ -301,26 +399,38 @@ struct PresentationListView: View {
     private var presentationsList: some View {
         List {
             ForEach(store.presentations) { presentation in
-                NavigationLink(value: presentation.id) {
-                    row(presentation)
-                }
-                .swipeActions(edge: .leading) {
+                if isSelecting {
                     Button {
-                        startRename(presentation)
+                        toggleSelect(presentation.id)
                     } label: {
-                        Label("이름 변경", systemImage: "pencil")
+                        HStack(spacing: 12) {
+                            selectionMark(presentation.id)
+                            row(presentation)
+                        }
                     }
-                    .tint(.blue)
-                }
-                .contextMenu {
-                    Button {
-                        startRename(presentation)
-                    } label: {
-                        Label("이름 변경", systemImage: "pencil")
+                    .buttonStyle(.plain)
+                } else {
+                    NavigationLink(value: presentation.id) {
+                        row(presentation)
+                    }
+                    .swipeActions(edge: .leading) {
+                        Button {
+                            startRename(presentation)
+                        } label: {
+                            Label("이름 변경", systemImage: "pencil")
+                        }
+                        .tint(.blue)
+                    }
+                    .contextMenu {
+                        Button {
+                            startRename(presentation)
+                        } label: {
+                            Label("이름 변경", systemImage: "pencil")
+                        }
                     }
                 }
             }
-            .onDelete(perform: delete)
+            .onDelete(perform: isSelecting ? nil : delete)
         }
     }
 
@@ -389,6 +499,7 @@ struct PresentationListView: View {
     /// 고른 사진들로 새 발표를 만들어 넣고, 처리가 끝나면 그 발표로 이동합니다.
     private func importPhotos(_ providers: [NSItemProvider]) {
         guard !providers.isEmpty else { return }
+        LeeoUsageReporter(spec: SlideSnapSpec.self).logEventInBackground("photo_import")
         let presentation = store.addPresentation(title: Store.defaultTitle())
         Task {
             await store.importImages(providers, to: presentation.id) { done, total in

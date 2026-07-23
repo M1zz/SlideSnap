@@ -17,9 +17,10 @@ enum SlideSnapSpec: LeeoAppSpec {
     static let developerEmail = AppInfo.developerEmail
 
     /// SlideSnap.entitlements의 iCloud 컨테이너와 동일해야 한다.
-    /// appIdentifier는 nil — 단일 앱 스키마 (기존 배포 스키마와 호환).
+    /// 공용 피드백 허브(FeedbackHub)로 수집 — appIdentifier로 앱을 구분한다.
     static let feedback = LeeoFeedbackConfig(
-        containerIdentifier: "iCloud.com.leeo.slidesnap"
+        containerIdentifier: "iCloud.com.Ysoup.FeedbackHub",
+        appIdentifier: "com.leeo.slidesnap"
     )
 }
 

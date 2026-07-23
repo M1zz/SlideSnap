@@ -1,5 +1,14 @@
 # SlideSnap TODO
 
+## 1.0.3 (2026-07-23)
+- [x] 앱 버전 1.0.3 (Version.xcconfig)
+- [x] 위젯 익스텐션 타깃을 pbxproj에 복원 — 소스/스킴만 있고 타깃이 없어 위젯이 빌드·임베드되지 않던 문제. 홈/잠금화면 위젯 탭 → slidesnap://camera 딥링크로 바로 촬영
+- [x] slidesnap:// URL scheme 재등록 — 앱 config에 INFOPLIST_FILE=SlideSnap-Info.plist 참조 복원(LeeoKit 이식 때 유실)
+- [x] 피드백 수집을 공용 허브로 이전 — iCloud.com.Ysoup.FeedbackHub + appIdentifier "com.leeo.slidesnap" (entitlements/SlideSnapSpec)
+- [x] 카메라 감지 네모를 느리고 부드럽게 — 애니메이터블 Shape로 네 모서리를 프레임 단위 보간(감지는 뚝뚝 갱신되어도 화면은 트레일링 모션)
+- [x] 자동 촬영 최소 간격 1.2초 → 5초 — 너무 빠른 연속 촬영 방지
+- [x] 여러 발표 병합 — 목록/그리드 선택 모드로 골라 하나로 합치기(장표를 순서대로 이어 붙이고 이미지 재사용)
+
 ## 완료
 - [x] 앱 실행 시 바로 카메라 진입 (2026-07-14)
 - [x] 촬영 완료 시 촬영한 장표 그리드 화면으로 이동 (2026-07-14)
