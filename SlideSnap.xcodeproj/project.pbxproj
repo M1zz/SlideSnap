@@ -42,8 +42,28 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		1A0000000000000000000002 /* SlideSnap */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SlideSnap; sourceTree = "<group>"; };
-		2A00000000000000000000A5 /* SlideSnapWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SlideSnapWidget; sourceTree = "<group>"; };
+		1A0000000000000000000002 /* SlideSnap */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = SlideSnap;
+			sourceTree = "<group>";
+		};
+		2A00000000000000000000A5 /* SlideSnapWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = SlideSnapWidget;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,8 +148,6 @@
 				2A00000000000000000000A5 /* SlideSnapWidget */,
 			);
 			name = SlideSnapWidgetExtension;
-			packageProductDependencies = (
-			);
 			productName = SlideSnapWidgetExtension;
 			productReference = 2A00000000000000000000A4 /* SlideSnapWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -503,7 +521,7 @@
 			repositoryURL = "https://github.com/M1zz/LeeoKit.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.5.0;
+				minimumVersion = 2.6.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
