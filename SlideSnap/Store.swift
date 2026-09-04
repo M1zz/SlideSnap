@@ -67,6 +67,47 @@ final class Store: ObservableObject {
         return presentation
     }
 
+    // MARK: - 초안 발표
+
+    /// 아직 장표가 한 장도 없어 목록에 노출하지 않는 발표.
+    ///
+    /// 카메라·사진 가져오기는 "시작"하는 순간에는 초안만 만들고, 첫 장표가 실제로
+    /// 저장될 때 비로소 목록에 올린다. 시작 시점에 바로 `presentations`에 넣으면
+    /// 촬영을 하기도 전에 "0장" 발표가 목록에 나타났다가, 안 찍고 닫으면 다시
+    /// 사라지는 깜빡임이 생긴다.
+    ///
+    /// 초안은 파일로 저장하지 않으므로 앱이 꺼져도 찌꺼기가 남지 않는다.
+    ///
+    /// 사진 가져오기가 아직 돌고 있는데 카메라를 열 수도 있으므로 여러 개를 동시에 담는다.
+    private var drafts: [UUID: Presentation] = [:]
+
+    /// 목록에 노출하지 않는 초안 발표를 만든다.
+    @discardableResult
+    func beginDraftPresentation(title: String) -> Presentation {
+        let trimmed = title.trimmingCharacters(in: .whitespacesAndNewlines)
+        let presentation = Presentation(
+            id: UUID(),
+            title: trimmed.isEmpty ? Self.defaultTitle() : trimmed,
+            createdAt: Date(),
+            slides: []
+        )
+        drafts[presentation.id] = presentation
+        return presentation
+    }
+
+    /// 초안을 목록 맨 위로 올린다. 해당 id의 초안이 없으면 아무것도 하지 않는다.
+    func promoteDraft(_ id: UUID) {
+        guard let presentation = drafts.removeValue(forKey: id) else { return }
+        presentations.insert(presentation, at: 0)
+        persist()
+    }
+
+    /// 초안을 버린다(목록에 올린 적이 없으므로 목록은 그대로).
+    func discardDraft(_ id: UUID) {
+        guard let presentation = drafts.removeValue(forKey: id) else { return }
+        for slide in presentation.slides { deleteFiles(of: slide) }
+    }
+
     func renamePresentation(_ id: UUID, to title: String) {
         guard let index = presentations.firstIndex(where: { $0.id == id }) else { return }
         let trimmed = title.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -76,6 +117,7 @@ final class Store: ObservableObject {
     }
 
     func deletePresentation(_ id: UUID) {
+        if drafts[id] != nil { discardDraft(id); return }
         guard let index = presentations.firstIndex(where: { $0.id == id }) else { return }
         for slide in presentations[index].slides {
             deleteFiles(of: slide)
@@ -85,7 +127,8 @@ final class Store: ObservableObject {
     }
 
     func presentation(_ id: UUID) -> Presentation? {
-        presentations.first { $0.id == id }
+        if let match = presentations.first(where: { $0.id == id }) { return match }
+        return drafts[id]
     }
 
     /// 여러 발표를 하나로 병합한다.
@@ -112,23 +155,6 @@ final class Store: ObservableObject {
         return target.id
     }
 
-    /// 장표가 한 장도 없는 발표를 지웁니다.
-    /// - Parameters:
-    ///   - keep: 지금 촬영/작업 중이라 비어 있어도 남겨 둘 발표들.
-    ///   - grace: 생성 직후에는 촬영한 장표가 아직 백그라운드 저장 중일 수 있으므로,
-    ///     만들어진 지 이 시간이 지난 발표만 지운다(저장 경합에 의한 유실 방지).
-    func removeEmptyPresentations(except keep: Set<UUID> = [], grace: TimeInterval = 120) {
-        let now = Date()
-        func isRemovable(_ p: Presentation) -> Bool {
-            p.slides.isEmpty
-                && !keep.contains(p.id)
-                && now.timeIntervalSince(p.createdAt) >= grace
-        }
-        guard presentations.contains(where: isRemovable) else { return }
-        presentations.removeAll(where: isRemovable)
-        persist()
-    }
-
     // MARK: - 장표
 
     /// 촬영한 사진을 감지·보정·저장. 무거운 처리는 백그라운드에서 수행됩니다.
@@ -139,8 +165,10 @@ final class Store: ObservableObject {
             SlideFactory.makeSlide(from: image, in: directory, detectedQuad: detectedQuad)
         }.value
 
-        guard let slide,
-              let index = presentations.firstIndex(where: { $0.id == presentationID }) else { return }
+        guard let slide else { return }
+        // 첫 장표가 만들어졌으니 이제 목록에 보여 준다.
+        promoteDraft(presentationID)
+        guard let index = presentations.firstIndex(where: { $0.id == presentationID }) else { return }
         presentations[index].slides.append(slide)
         persist()
     }

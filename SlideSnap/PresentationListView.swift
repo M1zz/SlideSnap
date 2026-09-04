@@ -99,12 +99,7 @@ struct PresentationListView: View {
             .onChange(of: scenePhase) { _, phase in
                 if phase == .active {
                     feedbackPrompt.registerLaunch()
-                    cleanupEmptyPresentations()
                 }
-            }
-            .onChange(of: path) { _, newPath in
-                // 상세/촬영에서 목록으로 돌아오면 빈 발표를 정리한다.
-                if newPath.isEmpty { cleanupEmptyPresentations() }
             }
             .onChange(of: router.cameraLaunchRequest) { _, _ in
                 openCamera()   // 위젯 등 딥링크로 카메라 즉시 실행
@@ -500,7 +495,8 @@ struct PresentationListView: View {
     private func importPhotos(_ providers: [NSItemProvider]) {
         guard !providers.isEmpty else { return }
         LeeoUsageReporter(spec: SlideSnapSpec.self).logEventInBackground("photo_import")
-        let presentation = store.addPresentation(title: Store.defaultTitle())
+        // 한 장이라도 들어와야 목록에 올라가도록 초안으로 시작한다(0장 발표 깜빡임 방지).
+        let presentation = store.beginDraftPresentation(title: Store.defaultTitle())
         Task {
             await store.importImages(providers, to: presentation.id) { done, total in
                 importProgress = (done, total)
@@ -513,16 +509,6 @@ struct PresentationListView: View {
                 path.append(presentation.id)
             }
         }
-    }
-
-    /// 장표가 0장인 발표를 자동으로 정리한다.
-    /// - 목록 루트에서 카메라가 없을 때만 실행한다(상세/촬영 중 보고 있는 발표가 사라지는 것 방지).
-    /// - 촬영 중인 발표는 남겨 두고, 방금 만든 발표는 Store의 유예 시간이 보호한다(저장 경합 방지).
-    private func cleanupEmptyPresentations() {
-        guard path.isEmpty, !showingCamera else { return }
-        var keep: Set<UUID> = []
-        if let cameraPresentationID { keep.insert(cameraPresentationID) }
-        store.removeEmptyPresentations(except: keep)
     }
 
     // MARK: - 바로 촬영
@@ -538,7 +524,8 @@ struct PresentationListView: View {
             cameraPresentationID = recent.id
             cameraCreatedNew = false
         } else {
-            let presentation = store.addPresentation(title: Store.defaultTitle())
+            // 아직 목록에 올리지 않는다. 한 장도 안 찍고 닫으면 목록에 흔적이 남지 않도록.
+            let presentation = store.beginDraftPresentation(title: Store.defaultTitle())
             cameraPresentationID = presentation.id
             cameraCreatedNew = true
         }
@@ -546,16 +533,18 @@ struct PresentationListView: View {
     }
 
     /// 촬영을 마치면 처리한다.
-    /// - 촬영이 있었으면(처리 중이라 아직 슬라이드가 안 보여도) 그 발표 그리드로 이동한다.
-    /// - 새로 만든 발표인데 한 장도 안 찍었으면 빈 발표를 지운다.
+    /// - 촬영이 있었으면(처리 중이라 아직 슬라이드가 안 보여도) 초안을 목록에 올리고 그 발표로 이동한다.
+    ///   목록에 올리는 것과 화면 이동이 같은 갱신에 일어나므로 "0장" 행이 보이지 않는다.
+    /// - 새로 만든 발표인데 한 장도 안 찍었으면 초안을 그냥 버린다(목록에 올린 적이 없다).
     /// - 기존 발표에 이어 찍으려다 안 찍었으면 그냥 목록으로 돌아간다(기존 장표는 보존).
     private func cameraFinished() {
         guard let id = cameraPresentationID else { return }
         cameraPresentationID = nil
         if cameraCaptured {
+            store.promoteDraft(id)
             path.append(id)
         } else if cameraCreatedNew {
-            store.deletePresentation(id)
+            store.discardDraft(id)
         }
     }
 
