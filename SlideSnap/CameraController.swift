@@ -6,7 +6,8 @@ import os
 import QuartzCore
 
 /// AVFoundation 캡처 세션 관리.
-/// 셔터를 누르면 사진을 찍어 UIImage로 전달합니다. 세션은 계속 돌아가므로 연속 촬영이 빠릅니다.
+/// 셔터를 누르면 라이브 비디오 프레임 한 장을 그대로 떠서 UIImage로 전달합니다(무음 촬영).
+/// AVCapturePhotoOutput을 쓰지 않으므로 지역과 상관없이 셔터음이 나지 않아 강의 중에도 조용히 찍을 수 있습니다.
 /// 동시에 라이브 프레임을 분석해 장표 사각형을 실시간 감지합니다.
 final class CameraController: NSObject, ObservableObject {
 
@@ -45,7 +46,6 @@ final class CameraController: NSObject, ObservableObject {
         autoCaptureEnabled = stored
     }
 
-    private let photoOutput = AVCapturePhotoOutput()
     private let videoDataOutput = AVCaptureVideoDataOutput()
     private let sessionQueue = DispatchQueue(label: "com.leeo.slidesnap.camera")
     // 감지가 프리뷰/촬영을 굶기지 않도록 낮은 우선순위로 둡니다.
@@ -54,7 +54,16 @@ final class CameraController: NSObject, ObservableObject {
     private var rotationCoordinator: AVCaptureDevice.RotationCoordinator?
     private var videoDevice: AVCaptureDevice?
     private var previewLayerRef: AVCaptureVideoPreviewLayer?
-    private var pendingHandlers: [(UIImage) -> Void] = []
+    /// 다음 프레임을 받아 갈 촬영 요청들 (videoQueue에서만 접근)
+    private var pendingCaptures: [PendingCapture] = []
+    private struct PendingCapture {
+        /// 프리뷰 방향으로 세워진 프레임에 추가로 적용할 회전(기기를 든 방향 반영)
+        let orientation: UIImage.Orientation
+        let handler: (UIImage) -> Void
+    }
+    /// 촬영 프레임을 이미지로 바꾸는 작업은 감지 큐를 막지 않도록 따로 돌립니다.
+    private let stillQueue = DispatchQueue(label: "com.leeo.slidesnap.still", qos: .userInitiated)
+    private let stillContext = CIContext(options: [.cacheIntermediates: false])
 
     // 시작 지연 진단용 (Console에서 "slidesnap"으로 필터)
     private let log = Logger(subsystem: "com.leeo.slidesnap", category: "camera")
@@ -158,11 +167,8 @@ final class CameraController: NSObject, ObservableObject {
                    let input = try? AVCaptureDeviceInput(device: device),
                    self.session.canAddInput(input) {
                     self.session.addInput(input)
-                    if self.session.canAddOutput(self.photoOutput) {
-                        self.session.addOutput(self.photoOutput)
-                        // 컴퓨테이셔널 포토 처리를 줄여 셔터 지연을 낮춥니다(장표 촬영엔 충분).
-                        self.photoOutput.maxPhotoQualityPrioritization = .speed
-                    }
+                    // 촬영 결과가 곧 비디오 프레임이므로, 가능한 가장 큰 4:3 비디오 포맷을 고릅니다.
+                    Self.selectLargestFourByThreeFormat(for: device)
                     self.videoDataOutput.alwaysDiscardsLateVideoFrames = true
                     self.videoDataOutput.setSampleBufferDelegate(self, queue: self.videoQueue)
                     if self.session.canAddOutput(self.videoDataOutput) {
@@ -191,24 +197,52 @@ final class CameraController: NSObject, ObservableObject {
 
     // MARK: - 촬영
 
+    /// 무음 촬영: 다음 라이브 프레임을 그대로 사진으로 씁니다.
     func capturePhoto(_ handler: @escaping (UIImage) -> Void) {
-        sessionQueue.async { [weak self] in
+        videoQueue.async { [weak self] in
             guard let self, self.isConfigured else { return }
-            self.pendingHandlers.append(handler)
-
-            // 기기를 든 방향에 맞춰 사진 회전 정보 설정
-            if let connection = self.photoOutput.connection(with: .video),
-               let coordinator = self.rotationCoordinator {
-                let angle = coordinator.videoRotationAngleForHorizonLevelCapture
-                if connection.isVideoRotationAngleSupported(angle) {
-                    connection.videoRotationAngle = angle
-                }
+            // 프레임은 프리뷰 방향(세로)으로 세워져 오므로, 기기를 눕혀 들었다면 그만큼 더 돌린다.
+            var orientation: UIImage.Orientation = .up
+            if let coordinator = self.rotationCoordinator {
+                let delta = coordinator.videoRotationAngleForHorizonLevelCapture
+                    - coordinator.videoRotationAngleForHorizonLevelPreview
+                orientation = Self.orientation(forClockwiseDegrees: delta)
             }
-
-            let settings = AVCapturePhotoSettings()
-            settings.photoQualityPrioritization = .speed
             self.shutterAt = CACurrentMediaTime()
-            self.photoOutput.capturePhoto(with: settings, delegate: self)
+            self.pendingCaptures.append(PendingCapture(orientation: orientation, handler: handler))
+        }
+    }
+
+    /// 시계 방향 회전 각도(도)를 UIImage 방향으로 바꿉니다.
+    private static func orientation(forClockwiseDegrees degrees: CGFloat) -> UIImage.Orientation {
+        let normalized = (Int(degrees.rounded()) % 360 + 360) % 360
+        switch normalized {
+        case 90: return .right
+        case 180: return .down
+        case 270: return .left
+        default: return .up
+        }
+    }
+
+    /// 30fps 이상을 지원하는 4:3 포맷 중 해상도가 가장 큰 것을 활성화합니다.
+    /// 실패하면 .photo 프리셋의 기본 포맷을 그대로 씁니다.
+    private static func selectLargestFourByThreeFormat(for device: AVCaptureDevice) {
+        let candidates = device.formats.filter { format in
+            let d = CMVideoFormatDescriptionGetDimensions(format.formatDescription)
+            let supports30 = format.videoSupportedFrameRateRanges.contains { $0.maxFrameRate >= 30 }
+            return Int(d.width) * 3 == Int(d.height) * 4 && supports30
+        }
+        guard let best = candidates.max(by: { a, b in
+            let da = CMVideoFormatDescriptionGetDimensions(a.formatDescription)
+            let db = CMVideoFormatDescriptionGetDimensions(b.formatDescription)
+            return Int(da.width) * Int(da.height) < Int(db.width) * Int(db.height)
+        }) else { return }
+        do {
+            try device.lockForConfiguration()
+            device.activeFormat = best
+            device.unlockForConfiguration()
+        } catch {
+            return
         }
     }
 
@@ -232,32 +266,6 @@ final class CameraController: NSObject, ObservableObject {
     }
 }
 
-// MARK: - 사진 캡처 결과
-
-extension CameraController: AVCapturePhotoCaptureDelegate {
-
-    func photoOutput(_ output: AVCapturePhotoOutput,
-                     didFinishProcessingPhoto photo: AVCapturePhoto,
-                     error: Error?) {
-        // 무거운 인코딩(fileDataRepresentation)은 델리게이트 스레드에서 처리해
-        // 세션 큐가 다음 촬영을 곧바로 받을 수 있게 합니다.
-        let image: UIImage? = {
-            guard error == nil, let data = photo.fileDataRepresentation() else { return nil }
-            return UIImage(data: data)
-        }()
-        log.info("photo ready +\(CACurrentMediaTime() - self.shutterAt, format: .fixed(precision: 2))s")
-
-        sessionQueue.async { [weak self] in
-            guard let self, !self.pendingHandlers.isEmpty else { return }
-            let handler = self.pendingHandlers.removeFirst()
-            guard let image else { return }
-            DispatchQueue.main.async {
-                handler(image)
-            }
-        }
-    }
-}
-
 // MARK: - 라이브 프레임 감지
 
 extension CameraController: AVCaptureVideoDataOutputSampleBufferDelegate {
@@ -277,12 +285,33 @@ extension CameraController: AVCaptureVideoDataOutputSampleBufferDelegate {
             }
         }
 
+        // 촬영 요청이 있으면 이 프레임을 사진으로 넘깁니다.
+        if !pendingCaptures.isEmpty, let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) {
+            let requests = pendingCaptures
+            pendingCaptures.removeAll()
+            deliverStill(pixelBuffer, to: requests)
+        }
+
         // 30fps를 다 처리하면 무거우므로 몇 프레임에 한 번만 감지합니다.
         // 시작 직후 몇 프레임은 건너뛰어 프리뷰가 먼저 부드럽게 뜨도록 합니다.
         frameCounter += 1
         guard frameCounter > warmupFrames, frameCounter % 6 == 0 else { return }
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
         detectRectangle(in: pixelBuffer)
+    }
+
+    /// 프레임을 CGImage로 떠서 촬영 요청들에 전달합니다. 무거운 변환은 stillQueue에서 처리합니다.
+    private func deliverStill(_ pixelBuffer: CVPixelBuffer, to requests: [PendingCapture]) {
+        stillQueue.async { [weak self] in
+            guard let self else { return }
+            let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
+            guard let cgImage = self.stillContext.createCGImage(ciImage, from: ciImage.extent) else { return }
+            self.log.info("photo ready +\(CACurrentMediaTime() - self.shutterAt, format: .fixed(precision: 2))s")
+            for request in requests {
+                let image = UIImage(cgImage: cgImage, scale: 1, orientation: request.orientation)
+                DispatchQueue.main.async { request.handler(image) }
+            }
+        }
     }
 
     /// 긴 변이 detectionMaxEdge를 넘으면 재사용 풀 버퍼로 축소해 반환합니다.
