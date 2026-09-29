@@ -1,0 +1,50 @@
+{
+  "sourceLanguage": "ko",
+  "strings": {
+    "바로 촬영": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quick Capture"
+          }
+        }
+      }
+    },
+    "장표 촬영": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Capture Slide"
+          }
+        }
+      }
+    },
+    "탭하면 장표스냅 카메라가 바로 열려요. 홈 화면과 잠금화면에서 쓸 수 있어요.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap to open the SlideSnap camera right away. Works on the Home Screen and Lock Screen."
+          }
+        }
+      }
+    },
+    "탭해서 바로 촬영": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap to capture"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

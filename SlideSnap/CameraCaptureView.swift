@@ -224,10 +224,12 @@ struct CameraCaptureView: View {
     private var statusLabel: some View {
         if !camera.authorizationDenied, camera.detectedQuad != nil {
             let locked = camera.isLocked
-            let lockedText = camera.autoCaptureEnabled ? "장표를 잘 잡았어요 · 자동으로 담는 중" : "장표를 잘 잡았어요 · 지금 찍으세요"
+            let lockedText = camera.autoCaptureEnabled
+                ? String(localized: "장표를 잘 잡았어요 · 자동으로 담는 중")
+                : String(localized: "장표를 잘 잡았어요 · 지금 찍으세요")
             HStack(spacing: 6) {
                 Image(systemName: locked ? "checkmark.circle.fill" : "viewfinder")
-                Text(locked ? lockedText : "장표를 화면에 맞춰 주세요")
+                Text(locked ? lockedText : String(localized: "장표를 화면에 맞춰 주세요"))
                     .font(.subheadline.weight(.semibold))
             }
             .foregroundStyle(.white)

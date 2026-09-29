@@ -81,7 +81,7 @@ struct SlideDetailView: View {
                         Button {
                             toggleEnhance(slide)
                         } label: {
-                            Label(slide.isEnhanced ? "가독성 보정 끄기" : "가독성 보정",
+                            Label(slide.isEnhanced ? String(localized: "가독성 보정 끄기") : String(localized: "가독성 보정"),
                                   systemImage: slide.isEnhanced ? "wand.and.stars.inverse" : "wand.and.stars")
                         }
                     }
@@ -134,7 +134,7 @@ struct SlideDetailView: View {
         if let index = currentIndex {
             return "\(index + 1) / \(slides.count)"
         }
-        return "장표"
+        return String(localized: "장표")
     }
 
     /// 사진앱처럼 아래쪽에 작은 썸네일을 나열해 장표 사이를 빠르게 오갑니다.

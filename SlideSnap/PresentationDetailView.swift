@@ -169,7 +169,9 @@ struct PresentationDetailView: View {
 
     private var navTitle: String {
         if isSelecting {
-            return selectedIDs.isEmpty ? "장표 선택" : "\(selectedIDs.count)장 선택"
+            return selectedIDs.isEmpty
+                ? String(localized: "장표 선택")
+                : String(localized: "\(selectedIDs.count)장 선택")
         }
         return presentation?.title ?? ""
     }
@@ -224,7 +226,7 @@ struct PresentationDetailView: View {
                         } label: {
                             Label("전체 이미지 공유", systemImage: "photo.on.rectangle")
                         }
-                        pdfMenu(titleSuffix: "")
+                        pdfMenu()
                         Divider()
                         Button {
                             enterSelection()
@@ -252,14 +254,15 @@ struct PresentationDetailView: View {
             } label: {
                 Label("이미지로 공유 (\(selectedIDs.count)장)", systemImage: "photo.on.rectangle")
             }
-            pdfMenu(titleSuffix: " (\(selectedIDs.count)장)")
+            pdfMenu(count: selectedIDs.count)
         } label: {
             if isExporting { ProgressView() } else { label }
         }
     }
 
     /// PDF 레이아웃(한 장/두 장/네 장)을 고르는 하위 메뉴.
-    private func pdfMenu(titleSuffix: String) -> some View {
+    /// - Parameter count: 선택 모드에서 고른 장표 수(메뉴 제목에 붙는다). nil이면 전체.
+    private func pdfMenu(count: Int? = nil) -> some View {
         Menu {
             ForEach([PDFLayout.one, .two, .four]) { layout in
                 Button {
@@ -269,7 +272,11 @@ struct PresentationDetailView: View {
                 }
             }
         } label: {
-            Label("PDF로 내보내기" + titleSuffix, systemImage: "doc.richtext")
+            if let count {
+                Label("PDF로 내보내기 (\(count)장)", systemImage: "doc.richtext")
+            } else {
+                Label("PDF로 내보내기", systemImage: "doc.richtext")
+            }
         }
     }
 

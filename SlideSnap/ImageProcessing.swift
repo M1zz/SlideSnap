@@ -203,7 +203,15 @@ enum SlideFactory {
     ///   보정에 쓰는 모서리는 **촬영된 사진 자체에서** 감지합니다. 그래야 감지와 보정이
     ///   같은 좌표계라 결과 비율이 정확합니다. 실시간 모서리는 프리뷰 프레임 좌표계라
     ///   정지 사진에 그대로 적용하면 비율이 찌그러질 수 있어(예: 1:1), 감지 실패 시에만 씁니다.
-    static func makeSlide(from image: UIImage, in directory: URL, detectedQuad: Quad? = nil) -> Slide? {
+    /// - Parameter createdAt: 장표 시각. 사진 앱에서 가져온 사진은 촬영 시각을 넘긴다(nil이면 지금).
+    /// - Parameter enhance: 가독성 보정본까지 만들어 켜 둘지.
+    static func makeSlide(
+        from image: UIImage,
+        in directory: URL,
+        detectedQuad: Quad? = nil,
+        createdAt: Date? = nil,
+        enhance: Bool = false
+    ) -> Slide? {
         let t0 = CACurrentMediaTime()
         let normalized = image.orientationNormalized()
 
@@ -223,9 +231,9 @@ enum SlideFactory {
         let recognizedText = ImageProcessor.recognizeText(in: corrected)
 
         let id = UUID()
-        let slide = Slide(
+        var slide = Slide(
             id: id,
-            createdAt: Date(),
+            createdAt: createdAt ?? Date(),
             originalFile: "\(id.uuidString)-orig.jpg",
             correctedFile: "\(id.uuidString)-corr.jpg",
             thumbFile: "\(id.uuidString)-thumb.jpg",
@@ -236,9 +244,22 @@ enum SlideFactory {
 
         guard
             write(normalized, quality: 0.85, to: directory.appendingPathComponent(slide.originalFile)),
-            write(corrected, quality: 0.9, to: directory.appendingPathComponent(slide.correctedFile)),
-            write(corrected.downsampled(maxDimension: 600), quality: 0.7, to: directory.appendingPathComponent(slide.thumbFile))
+            write(corrected, quality: 0.9, to: directory.appendingPathComponent(slide.correctedFile))
         else { return nil }
+
+        // 가독성 보정을 요청했으면 보정본을 만들고 썸네일도 보정본 기준으로 쓴다(실패하면 보정 없이).
+        var thumbSource = corrected
+        if enhance, let enhanced = ImageProcessor.enhanceReadability(corrected) {
+            let enhancedName = "\(id.uuidString)-enh.jpg"
+            if write(enhanced, quality: 0.9, to: directory.appendingPathComponent(enhancedName)) {
+                slide.enhanced = true
+                slide.enhancedFile = enhancedName
+                thumbSource = enhanced
+            }
+        }
+        guard write(thumbSource.downsampled(maxDimension: 600), quality: 0.7, to: directory.appendingPathComponent(slide.thumbFile)) else {
+            return nil
+        }
 
         let tEnd = CACurrentMediaTime()
         log.info("makeSlide total \(tEnd - t0, format: .fixed(precision: 2))s (detect \(tDetect - t0, format: .fixed(precision: 2))s live=\(usedLiveQuad), correct \(tCorrect - tDetect, format: .fixed(precision: 2))s, write \(tEnd - tCorrect, format: .fixed(precision: 2))s)")

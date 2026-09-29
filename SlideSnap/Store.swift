@@ -47,10 +47,7 @@ final class Store: ObservableObject {
     // MARK: - 발표
 
     static func defaultTitle() -> String {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ko_KR")
-        formatter.dateFormat = "M월 d일 발표"
-        return formatter.string(from: Date())
+        PresentationNaming.title(for: Date())
     }
 
     @discardableResult
@@ -83,12 +80,12 @@ final class Store: ObservableObject {
 
     /// 목록에 노출하지 않는 초안 발표를 만든다.
     @discardableResult
-    func beginDraftPresentation(title: String) -> Presentation {
+    func beginDraftPresentation(title: String, createdAt: Date? = nil) -> Presentation {
         let trimmed = title.trimmingCharacters(in: .whitespacesAndNewlines)
         let presentation = Presentation(
             id: UUID(),
             title: trimmed.isEmpty ? Self.defaultTitle() : trimmed,
-            createdAt: Date(),
+            createdAt: createdAt ?? Date(),
             slides: []
         )
         drafts[presentation.id] = presentation
@@ -159,10 +156,19 @@ final class Store: ObservableObject {
 
     /// 촬영한 사진을 감지·보정·저장. 무거운 처리는 백그라운드에서 수행됩니다.
     /// - Parameter detectedQuad: 촬영 화면에서 실시간으로 잡아 둔 모서리(있으면 그대로 사용).
-    func addSlide(image: UIImage, to presentationID: UUID, detectedQuad: Quad? = nil) async {
+    func addSlide(
+        image: UIImage,
+        to presentationID: UUID,
+        detectedQuad: Quad? = nil,
+        createdAt: Date? = nil,
+        enhance: Bool = false
+    ) async {
         let directory = imagesDirectoryURL
         let slide = await Task.detached(priority: .userInitiated) {
-            SlideFactory.makeSlide(from: image, in: directory, detectedQuad: detectedQuad)
+            SlideFactory.makeSlide(
+                from: image, in: directory, detectedQuad: detectedQuad,
+                createdAt: createdAt, enhance: enhance
+            )
         }.value
 
         guard let slide else { return }
@@ -188,6 +194,42 @@ final class Store: ObservableObject {
             }
             onProgress(index + 1, total)
         }
+    }
+
+    /// 공유 익스텐션이 수신함에 넣어 둔 사진 묶음을 발표 하나로 만든다.
+    /// 익스텐션에서 정한 순서·제목·보정 여부를 따르고, 발표 날짜는 가장 이른 촬영 시각으로 둔다.
+    /// 끝나면 묶음 폴더를 지운다.
+    /// - Returns: 만든 발표 id. 한 장도 넣지 못했으면 nil.
+    func importSharedBatch(
+        _ manifest: ShareInbox.Manifest,
+        onProgress: @escaping (_ done: Int, _ total: Int) -> Void
+    ) async -> UUID? {
+        defer { ShareInbox.discard(manifest.id) }
+        guard let directory = ShareInbox.batchURL(manifest.id) else { return nil }
+
+        let dates = manifest.capturedAt
+        let title = manifest.title.isEmpty ? ShareInbox.defaultTitle(for: dates) : manifest.title
+        let presentation = beginDraftPresentation(title: title, createdAt: dates.compactMap { $0 }.min())
+
+        let total = manifest.files.count
+        onProgress(0, total)
+        for (index, file) in manifest.files.enumerated() {
+            let url = directory.appendingPathComponent(file)
+            let image = await Task.detached(priority: .userInitiated) {
+                UIImage(contentsOfFile: url.path)
+            }.value
+            if let image {
+                let capturedAt = index < dates.count ? dates[index] : nil
+                await addSlide(image: image, to: presentation.id, createdAt: capturedAt, enhance: manifest.enhance)
+            }
+            onProgress(index + 1, total)
+        }
+
+        if self.presentation(presentation.id)?.slides.isEmpty ?? true {
+            deletePresentation(presentation.id)
+            return nil
+        }
+        return presentation.id
     }
 
     private static func loadUIImage(from provider: NSItemProvider) async -> UIImage? {

@@ -94,7 +94,7 @@ struct ProfileView: View {
                 email = profile.email
             }
             .alert(
-                masterModeEnabled ? "개발자 모드가 켜졌어요" : "개발자 모드가 꺼졌어요",
+                masterModeEnabled ? String(localized: "개발자 모드가 켜졌어요") : String(localized: "개발자 모드가 꺼졌어요"),
                 isPresented: $showMasterModeAlert
             ) {
                 Button("확인", role: .cancel) {}

@@ -17,9 +17,9 @@ enum PDFLayout: Identifiable {
 
     var label: String {
         switch self {
-        case .one: return "한 장씩 (크게 보기)"
-        case .two: return "두 장씩 (복습용)"
-        case .four: return "네 장씩 (요약용)"
+        case .one: return String(localized: "한 장씩 (크게 보기)")
+        case .two: return String(localized: "두 장씩 (복습용)")
+        case .four: return String(localized: "네 장씩 (요약용)")
         }
     }
 }

@@ -30,8 +30,15 @@ struct PresentationListView: View {
 
     @State private var showingPhotoImport = false
     @State private var importProgress: (done: Int, total: Int)?
+    /// 사진 앱 공유로 받은 묶음을 처리 중인지(중복 처리 방지).
+    @State private var isImportingShared = false
 
     @State private var searchText = ""
+
+    #if DEBUG
+    /// 스크린샷 데모 모드에서 띄우는 공유 화면.
+    @State private var demoShareModel: ShareModel?
+    #endif
 
     @State private var path = NavigationPath()
     @State private var showingCamera = false
@@ -46,7 +53,7 @@ struct PresentationListView: View {
     var body: some View {
         NavigationStack(path: $path) {
             content
-            .navigationTitle(isSelecting ? "\(selectedIDs.count)개 선택" : "")
+            .navigationTitle(isSelecting ? String(localized: "\(selectedIDs.count)개 선택") : "")
             .navigationBarTitleDisplayMode(.inline)
             .searchable(text: $searchText, prompt: "장표 텍스트·제목 검색")
             .navigationDestination(for: UUID.self) { id in
@@ -70,6 +77,11 @@ struct PresentationListView: View {
                 .ignoresSafeArea()
             }
             .overlay { importOverlay }
+            #if DEBUG
+            .sheet(item: $demoShareModel) { model in
+                ShareView(model: model)
+            }
+            #endif
             .sheet(isPresented: $showingFeedback) {
                 FeedbackView(initialType: feedbackInitialType)
             }
@@ -94,12 +106,28 @@ struct PresentationListView: View {
             .onAppear {
                 guard !hasAutoLaunchedCamera else { return }
                 hasAutoLaunchedCamera = true
-                openCamera()
+                #if DEBUG
+                if let screen = DemoMode.screen {
+                    showDemo(screen)
+                    return
+                }
+                #endif
+                // 공유로 넘어온 사진이 있어 열린 경우엔 카메라 대신 그 사진부터 정리한다.
+                if ShareInbox.pendingManifests().isEmpty {
+                    openCamera()
+                } else {
+                    importSharedPhotos()
+                }
             }
             .onChange(of: scenePhase) { _, phase in
                 if phase == .active {
                     feedbackPrompt.registerLaunch()
+                    // 공유 후 앱이 자동으로 열리지 못했더라도 사용자가 앱을 열면 가져간다.
+                    importSharedPhotos()
                 }
+            }
+            .onChange(of: router.sharedImportRequest) { _, _ in
+                importSharedPhotos()
             }
             .onChange(of: router.cameraLaunchRequest) { _, _ in
                 openCamera()   // 위젯 등 딥링크로 카메라 즉시 실행
@@ -145,7 +173,7 @@ struct PresentationListView: View {
                 Button {
                     showingMergeConfirm = true
                 } label: {
-                    Text(selectedIDs.count >= 2 ? "합치기 (\(selectedIDs.count))" : "합치기")
+                    Text(selectedIDs.count >= 2 ? "합치기 (\(selectedIDs.count))" : "합치기" as LocalizedStringKey)
                         .fontWeight(.semibold)
                 }
                 .disabled(selectedIDs.count < 2)
@@ -183,7 +211,7 @@ struct PresentationListView: View {
                     } label: {
                         Image(systemName: isGridView ? "list.bullet" : "square.grid.2x2")
                     }
-                    .accessibilityLabel(isGridView ? "목록으로 보기" : "그리드로 보기")
+                    .accessibilityLabel(isGridView ? Text("목록으로 보기") : Text("그리드로 보기"))
                 }
             }
             ToolbarItem(placement: .topBarTrailing) {
@@ -254,7 +282,10 @@ struct PresentationListView: View {
     private var nudgeBinding: Binding<Bool> {
         Binding(
             get: {
-                feedbackPrompt.shouldPrompt
+                #if DEBUG
+                if DemoMode.screen != nil { return false }   // 스크린샷에 팝업이 찍히지 않게
+                #endif
+                return feedbackPrompt.shouldPrompt
                     && !showingCamera && !showingFeedback && !showingProfile
                     && !showingNewAlert && path.isEmpty
             },
@@ -344,22 +375,24 @@ struct PresentationListView: View {
 
     private func presentationCard(_ presentation: Presentation) -> some View {
         VStack(alignment: .leading, spacing: 8) {
-            ZStack {
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(Color(.secondarySystemBackground))
-                if let cover = coverImage(presentation) {
-                    Image(uiImage: cover)
-                        .resizable()
-                        .scaledToFill()
-                } else {
-                    Image(systemName: "rectangle.on.rectangle.angled")
-                        .font(.largeTitle)
-                        .foregroundStyle(.tertiary)
+            // 썸네일은 overlay 로 얹어야 칸 크기를 넘지 않는다(ZStack 에 두면 scaledToFill 한
+            // 그림 폭만큼 카드가 늘어나 옆 칸·화면 밖으로 삐져나간다).
+            RoundedRectangle(cornerRadius: 12)
+                .fill(Color(.secondarySystemBackground))
+                .frame(maxWidth: .infinity)
+                .frame(height: 130)
+                .overlay {
+                    if let cover = coverImage(presentation) {
+                        Image(uiImage: cover)
+                            .resizable()
+                            .scaledToFill()
+                    } else {
+                        Image(systemName: "rectangle.on.rectangle.angled")
+                            .font(.largeTitle)
+                            .foregroundStyle(.tertiary)
+                    }
                 }
-            }
-            .frame(maxWidth: .infinity)
-            .frame(height: 130)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
+                .clipShape(RoundedRectangle(cornerRadius: 12))
             .overlay(alignment: .bottomTrailing) {
                 Text("\(presentation.slides.count)장")
                     .font(.caption2.weight(.semibold))
@@ -463,7 +496,7 @@ struct PresentationListView: View {
                 Text("\(result.presentationTitle) · \(result.slideNumber)번")
                     .font(.subheadline.weight(.semibold))
                     .lineLimit(1)
-                Text(result.snippet.isEmpty ? "(텍스트 없음)" : result.snippet)
+                Text(result.snippet.isEmpty ? String(localized: "(텍스트 없음)") : result.snippet)
                     .font(.caption)
                     .foregroundStyle(.secondary)
                     .lineLimit(2)
@@ -510,6 +543,61 @@ struct PresentationListView: View {
             }
         }
     }
+
+    /// 공유 익스텐션이 수신함에 넣어 둔 사진 묶음들을 발표로 만들고, 마지막 발표로 이동한다.
+    private func importSharedPhotos() {
+        guard !isImportingShared, !ShareInbox.pendingManifests().isEmpty else { return }
+        isImportingShared = true
+        // 공유하러 나갔다 온 사이 열려 있던 카메라는 닫는다(안 찍었으면 초안도 같이 버려진다).
+        showingCamera = false
+        path = NavigationPath()
+        LeeoUsageReporter(spec: SlideSnapSpec.self).logEventInBackground("share_import")
+        Task {
+            var lastID: UUID?
+            // 처리하는 사이 또 공유가 들어올 수 있으니 수신함이 빌 때까지 돈다.
+            while let manifest = ShareInbox.pendingManifests().first {
+                if let id = await store.importSharedBatch(manifest, onProgress: { done, total in
+                    importProgress = (done, total)
+                }) {
+                    lastID = id
+                }
+            }
+            importProgress = nil
+            isImportingShared = false
+            if let lastID {
+                path = NavigationPath()
+                path.append(lastID)
+            }
+        }
+    }
+
+    #if DEBUG
+    /// 스크린샷 데모 모드 — 실행 인자로 정한 화면을 바로 띄운다.
+    private func showDemo(_ screen: DemoMode.Screen) {
+        let first = store.presentations.first
+        switch screen {
+        case .list:
+            isGridView = true
+        case .detail:
+            if let first { path.append(first.id) }
+        case .slide:
+            if let first, first.slides.count > 1 {
+                path.append(first.id)
+                path.append(SlideRoute(presentationID: first.id, slideID: first.slides[1].id))
+            }
+        case .search(let query):
+            searchText = query
+        case .share:
+            isGridView = true
+            let model = ShareModel()
+            model.onCancel = { demoShareModel = nil }
+            model.onFinish = { demoShareModel = nil }
+            demoShareModel = model
+            let providers = DemoMode.shareDemoPhotos.compactMap { NSItemProvider(contentsOf: $0) }
+            Task { await model.load(providers) }
+        }
+    }
+    #endif
 
     // MARK: - 바로 촬영
 
@@ -586,8 +674,7 @@ struct PresentationListView: View {
 
     private static func dateString(_ date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ko_KR")
-        formatter.dateFormat = "yyyy. M. d. (E) HH:mm"
+        formatter.setLocalizedDateFormatFromTemplate("yMdEHHmm")
         return formatter.string(from: date)
     }
 }

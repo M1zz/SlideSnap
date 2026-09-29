@@ -9,13 +9,17 @@ App Store "이 버전의 새로운 기능"에 그대로 올라가는 원본입�
 
 이제 셔터 소리 없이 조용히 촬영합니다.
 강의나 발표 중에도 주변을 방해하지 않고 장표를 담을 수 있습니다.
-자잘한 버그를 고치고 안정성을 높였습니다.
+사진 앱에서 여러 장을 골라 장표스냅으로 바로 공유할 수 있습니다.
+공유한 사진은 촬영 순서대로 반듯하게 펴져 발표 하나로 정리됩니다.
+이제 영어로도 사용할 수 있습니다.
 
 ### App Store (English)
 
 Capture slides silently with no shutter sound.
 Snap slides during lectures and talks without disturbing anyone.
-Various fixes and stability improvements.
+Share several photos from Photos straight to SlideSnap.
+Shared photos are flattened and sorted into one deck.
+SlideSnap is now available in English.
 
 ## 1.0.4
 

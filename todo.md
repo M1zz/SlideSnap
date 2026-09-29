@@ -4,6 +4,14 @@
 - [x] 앱 버전 1.0.5 / 빌드 2 (Version.xcconfig)
 - [x] 무음 카메라 — AVCapturePhotoOutput 제거, 셔터 시 라이브 비디오 프레임을 그대로 사진으로 사용(지역 상관없이 셔터음 없음). 가장 큰 4:3 비디오 포맷 선택, 기기 방향만큼 이미지 회전
 - [ ] 실기기에서 무음 촬영 화질(비디오 프레임 해상도·선명도) 확인
+- [x] 사진 앱 공유 익스텐션(SlideSnapShare) — 여러 장을 골라 공유 → App Group 수신함(group.com.leeo.slidesnap)에 원본 복사 → 제목·순서(촬영 시간순/고른 순서)·글자 보정 선택 → 앱이 모서리 보정·OCR 후 발표 하나로 정리. 발표 날짜는 가장 이른 촬영 시각
+- [ ] 실기기에서 공유 → 앱 자동 열림 확인(안 열리면 앱을 열 때 수신함에서 가져감)
+- [x] 영어 지원 — Localizable/InfoPlist.xcstrings (앱·공유·위젯), 앱 이름 SlideSnap, 날짜·기본 제목 현지화
+- [x] 스토어 문구 APPSTORE.md (ko/en 이름·부제·설명·키워드·프로모션) + deploy.env(LOCALES=ko,en, strict) + predeploy.sh(Release 빌드)
+- [x] 스크린샷 재제작 — scripts/screenshots/ (DEBUG 데모 모드 -SSDemoScreen) → docs/screenshots/marketing/{ko,en}/ 5장씩
+- [x] 목록 그리드 카드가 썸네일 폭만큼 늘어나 화면 밖으로 삐져나가던 버그
+- [ ] App Store Connect ▸ 앱 정보 ▸ 현지화에 English 추가(사람) — 없으면 영어 문구·그림·릴리즈노트가 안 올라감
+- [ ] App Group 등록 확인 — 첫 아카이브 때 자동 서명이 group.com.leeo.slidesnap·com.leeo.slidesnap.share 를 등록하는지
 
 ## 1.0.3 (2026-07-23)
 - [x] 앱 버전 1.0.3 (Version.xcconfig)
