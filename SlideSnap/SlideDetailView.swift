@@ -18,6 +18,12 @@ struct SlideDetailView: View {
     @State private var shareItem: ShareItem?
     @State private var isEnhancing = false
 
+    @StateObject private var playback = AudioPlayback()
+    /// 재생을 따라 장표를 넘기는 중인지(사용자가 넘긴 것과 구분해 되감기 반복을 막는다)
+    @State private var autoAdvancing = false
+    @State private var showTranscript = true
+    @State private var transcriptHeight: CGFloat = 0
+
     init(presentationID: UUID, slideID: UUID) {
         self.presentationID = presentationID
         self.slideID = slideID
@@ -36,6 +42,10 @@ struct SlideDetailView: View {
         slides.first { $0.id == currentSlideID }
     }
 
+    private var presentation: Presentation? {
+        store.presentation(presentationID)
+    }
+
     var body: some View {
         Group {
             if slides.isEmpty {
@@ -49,6 +59,8 @@ struct SlideDetailView: View {
                         }
                     }
                     .tabViewStyle(.page(indexDisplayMode: .never))
+
+                    audioPanel
 
                     filmstrip
 
@@ -72,6 +84,13 @@ struct SlideDetailView: View {
                 }
             }
         }
+        .onChange(of: playback.currentTime) { _, time in
+            followPlayback(time)
+        }
+        .onChange(of: currentSlideID) { _, _ in
+            slideChangedDuringPlayback()
+        }
+        .onDisappear { playback.stop() }
         .navigationTitle(pageTitle)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -128,6 +147,131 @@ struct SlideDetailView: View {
             }
             Button("취소", role: .cancel) {}
         }
+    }
+
+    // MARK: - 녹음 듣기
+
+    /// 이 장표를 찍던 순간부터 들을 수 있는 재생 막대와, 그때 받아쓴 말.
+    @ViewBuilder
+    private var audioPanel: some View {
+        if let presentation, let slide = currentSlide,
+           let (recording, range) = presentation.audioRange(for: slide) {
+            VStack(alignment: .leading, spacing: 8) {
+                HStack(spacing: 16) {
+                    Button {
+                        togglePlay(recording: recording, range: range)
+                    } label: {
+                        Image(systemName: isPlaying(recording) ? "pause.circle.fill" : "play.circle.fill")
+                            .font(.system(size: 34))
+                    }
+                    .accessibilityLabel(isPlaying(recording) ? Text("일시 정지") : Text("이 장표부터 듣기"))
+
+                    Button {
+                        playback.skip(by: -10)
+                    } label: {
+                        Image(systemName: "gobackward.10")
+                    }
+                    .disabled(playback.recordingID != recording.id)
+                    .accessibilityLabel("10초 뒤로")
+
+                    Button {
+                        playback.skip(by: 10)
+                    } label: {
+                        Image(systemName: "goforward.10")
+                    }
+                    .disabled(playback.recordingID != recording.id)
+                    .accessibilityLabel("10초 앞으로")
+
+                    Spacer()
+
+                    Text(playback.recordingID == recording.id
+                         ? "\(playback.currentTime.clockText) / \(recording.duration.clockText)"
+                         : "\(range.lowerBound.clockText) / \(recording.duration.clockText)")
+                        .font(.subheadline.monospacedDigit())
+                        .foregroundStyle(.secondary)
+                }
+                .font(.title3)
+
+                if let spoken = presentation.transcriptText(for: slide) {
+                    Button {
+                        withAnimation(.easeInOut(duration: 0.2)) { showTranscript.toggle() }
+                    } label: {
+                        HStack(spacing: 4) {
+                            Text("이 장표에서 한 말")
+                                .font(.footnote.weight(.semibold))
+                            Image(systemName: showTranscript ? "chevron.up" : "chevron.down")
+                                .font(.caption2.weight(.semibold))
+                        }
+                        .foregroundStyle(.secondary)
+                    }
+                    .buttonStyle(.plain)
+
+                    if showTranscript {
+                        // 짧으면 그 높이만, 길면 110pt 안에서 스크롤한다.
+                        ScrollView {
+                            transcriptText(spoken)
+                                .onGeometryChange(for: CGFloat.self) { $0.size.height } action: { transcriptHeight = $0 }
+                        }
+                        .scrollBounceBehavior(.basedOnSize)
+                        .frame(height: min(max(transcriptHeight, 20), 110))
+                    }
+                }
+            }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 10)
+            .background(Color(.secondarySystemBackground))
+        }
+    }
+
+    private func transcriptText(_ spoken: String) -> some View {
+        Text(spoken)
+            .font(.subheadline)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .textSelection(.enabled)
+    }
+
+    private func isPlaying(_ recording: Recording) -> Bool {
+        playback.isPlaying && playback.recordingID == recording.id
+    }
+
+    private func togglePlay(recording: Recording, range: ClosedRange<TimeInterval>) {
+        if isPlaying(recording) {
+            playback.pause()
+            return
+        }
+        // 멈춰 둔 곳이 이 장표 구간이면 거기서 이어 듣고, 아니면 이 장표를 찍던 순간부터 듣는다.
+        if playback.recordingID == recording.id, range.contains(playback.currentTime) {
+            playback.play()
+        } else {
+            playback.load(recording, url: store.audioURL(recording.file))
+            playback.play(from: range.lowerBound)
+        }
+    }
+
+    /// 재생 위치가 다음 장표 구간으로 넘어가면 화면도 그 장표로 넘긴다.
+    private func followPlayback(_ time: TimeInterval) {
+        guard playback.isPlaying, let presentation, let recordingID = playback.recordingID,
+              let recording = presentation.allRecordings.first(where: { $0.id == recordingID }),
+              let slideID = presentation.slideID(at: time, in: recording),
+              slideID != currentSlideID else { return }
+        autoAdvancing = true
+        withAnimation(.easeInOut(duration: 0.25)) { currentSlideID = slideID }
+    }
+
+    /// 듣는 중에 사용자가 장표를 넘기면 그 장표를 찍던 순간으로 옮겨 듣는다.
+    private func slideChangedDuringPlayback() {
+        if autoAdvancing {
+            autoAdvancing = false
+            return
+        }
+        guard playback.isPlaying else { return }
+        guard let presentation, let slide = currentSlide,
+              let (recording, range) = presentation.audioRange(for: slide) else {
+            playback.pause()
+            return
+        }
+        playback.load(recording, url: store.audioURL(recording.file))
+        playback.play(from: range.lowerBound)
     }
 
     private var pageTitle: String {

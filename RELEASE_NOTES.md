@@ -3,6 +3,24 @@
 App Store "이 버전의 새로운 기능"에 그대로 올라가는 원본입니다.
 `## 버전` 아래 `### ... 앱스토어` 절만 스토어로 나갑니다.
 
+## 1.1.0
+
+### 앱스토어 (한국어)
+
+장표를 찍으며 녹음하고 장표별로 다시 들을 수 있습니다.
+녹음을 글로 받아써 장표마다 한 말을 찾을 수 있습니다.
+AI가 발표의 핵심을 한눈에 정리해 줍니다.
+노션과 파워포인트로 내보낼 수 있습니다.
+iCloud로 다른 기기에서도 이어서 볼 수 있습니다.
+
+### App Store (English)
+
+Record talks and replay each slide.
+Read and search what was said.
+Get an AI summary of the key points.
+Export to Notion or PowerPoint.
+Sync across your devices with iCloud.
+
 ## 1.0.5
 
 ### 앱스토어 (한국어)

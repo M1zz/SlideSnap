@@ -51,10 +51,99 @@ struct Slide: Identifiable, Codable, Equatable {
     var isEnhanced: Bool { enhanced == true && enhancedFile != nil }
 }
 
+/// 받아쓰기 결과 한 토막. 시각은 녹음 시작부터의 초.
+struct TranscriptSegment: Codable, Equatable, Sendable {
+    var start: TimeInterval
+    var end: TimeInterval
+    var text: String
+}
+
+/// 촬영하면서 녹음한 음성 파일 하나.
+/// 장표의 `createdAt`이 `startedAt ..< startedAt + duration` 안에 있으면 그 장표를 찍던 순간의 소리가 여기 들어 있다.
+struct Recording: Identifiable, Codable, Equatable {
+    let id: UUID
+    var startedAt: Date
+    var duration: TimeInterval
+    /// 음성 파일명 (Audio 디렉터리 기준)
+    var file: String
+    /// 받아쓰기 결과. nil = 아직 받아쓰지 않음.
+    var transcript: [TranscriptSegment]?
+    /// 받아쓰기에 쓴 언어 (예: "ko-KR")
+    var transcriptLocale: String?
+
+    var endedAt: Date { startedAt.addingTimeInterval(duration) }
+
+    /// 해당 시각이 이 녹음 구간 안인지. 처리 지연을 감안해 끝을 조금 넉넉히 본다.
+    func covers(_ date: Date) -> Bool {
+        date >= startedAt.addingTimeInterval(-1) && date <= endedAt.addingTimeInterval(1)
+    }
+
+    /// 녹음 안에서의 위치(초)
+    func offset(of date: Date) -> TimeInterval {
+        min(max(0, date.timeIntervalSince(startedAt)), duration)
+    }
+}
+
+/// AI가 만든 발표 요약.
+struct PresentationSummary: Codable, Equatable {
+    var overview: String
+    var keyPoints: [String]
+    var keywords: [String]
+    var generatedAt: Date
+}
+
 /// 발표(세션) 하나 — 장표들이 순서대로 담긴다
 struct Presentation: Identifiable, Codable, Equatable {
     let id: UUID
     var title: String
     var createdAt: Date
     var slides: [Slide]
+    /// 촬영하며 녹음한 음성들 (nil/빈 배열 = 녹음 없음, 기존 데이터 호환)
+    var recordings: [Recording]?
+    /// AI 요약 (nil = 아직 만들지 않음)
+    var summary: PresentationSummary?
+
+    var allRecordings: [Recording] { recordings ?? [] }
+
+    /// 장표를 찍던 순간이 담긴 녹음과 그 안의 위치.
+    func audioPosition(for slide: Slide) -> (recording: Recording, offset: TimeInterval)? {
+        guard let recording = allRecordings.first(where: { $0.covers(slide.createdAt) }) else { return nil }
+        return (recording, recording.offset(of: slide.createdAt))
+    }
+
+    /// 녹음 안에서 이 장표가 차지하는 구간(초).
+    /// 이 장표를 찍은 때부터 같은 녹음 안에서 다음으로 찍은 장표 직전까지. 녹음 속 첫 장표는 녹음 시작부터 잡는다.
+    func audioRange(for slide: Slide) -> (recording: Recording, range: ClosedRange<TimeInterval>)? {
+        guard let (recording, offset) = audioPosition(for: slide) else { return nil }
+        let times = slides
+            .filter { recording.covers($0.createdAt) }
+            .map { recording.offset(of: $0.createdAt) }
+            .sorted()
+        let isFirst = times.first.map { offset <= $0 } ?? true
+        let start = isFirst ? 0 : offset
+        let end = times.first(where: { $0 > offset }) ?? recording.duration
+        return (recording, start...max(start, end))
+    }
+
+    /// 이 장표를 보여 주던 동안 녹음에서 받아쓴 말.
+    func transcriptText(for slide: Slide) -> String? {
+        guard let (recording, range) = audioRange(for: slide),
+              let segments = recording.transcript else { return nil }
+        let text = segments
+            .filter { range.contains(($0.start + $0.end) / 2) }
+            .map(\.text)
+            .joined(separator: " ")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        return text.isEmpty ? nil : text
+    }
+
+    /// 녹음 위치(초)에 해당하는 장표 id. 재생 중 장표를 따라 넘길 때 쓴다.
+    func slideID(at time: TimeInterval, in recording: Recording) -> UUID? {
+        let candidates = slides
+            .filter { recording.covers($0.createdAt) }
+            .map { (id: $0.id, t: recording.offset(of: $0.createdAt)) }
+            .sorted { $0.t < $1.t }
+        guard let first = candidates.first else { return nil }
+        return candidates.last(where: { $0.t <= time })?.id ?? first.id
+    }
 }

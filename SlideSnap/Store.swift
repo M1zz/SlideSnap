@@ -25,9 +25,32 @@ final class Store: ObservableObject {
         return url
     }
 
+    var audioDirectoryURL: URL {
+        let url = documentsURL.appendingPathComponent("Audio", isDirectory: true)
+        if !fileManager.fileExists(atPath: url.path) {
+            try? fileManager.createDirectory(at: url, withIntermediateDirectories: true)
+        }
+        return url
+    }
+
+    /// iCloud 동기화. 켜져 있으면 로컬 변경을 여기에 알린다.
+    weak var sync: CloudSync?
+
     init() {
         load()
         backfillOCR()
+    }
+
+    /// 로컬 변경을 iCloud 동기화 대기열에 올린다.
+    private func track(save: [SyncRecordID] = [], delete: [SyncRecordID] = []) {
+        sync?.track(save: save, delete: delete)
+    }
+
+    /// 발표 하나와 그 안의 장표·녹음 전부를 가리키는 동기화 레코드 id들.
+    private func recordIDs(of presentation: Presentation) -> [SyncRecordID] {
+        [.presentation(presentation.id)]
+            + presentation.slides.map { .slide($0.id) }
+            + presentation.allRecordings.map { .recording($0.id) }
     }
 
     // MARK: - 영속화
@@ -61,6 +84,7 @@ final class Store: ObservableObject {
         )
         presentations.insert(presentation, at: 0)
         persist()
+        track(save: [.presentation(presentation.id)])
         return presentation
     }
 
@@ -97,12 +121,14 @@ final class Store: ObservableObject {
         guard let presentation = drafts.removeValue(forKey: id) else { return }
         presentations.insert(presentation, at: 0)
         persist()
+        track(save: recordIDs(of: presentation))
     }
 
     /// 초안을 버린다(목록에 올린 적이 없으므로 목록은 그대로).
     func discardDraft(_ id: UUID) {
         guard let presentation = drafts.removeValue(forKey: id) else { return }
         for slide in presentation.slides { deleteFiles(of: slide) }
+        for recording in presentation.allRecordings { deleteFiles(of: recording) }
     }
 
     func renamePresentation(_ id: UUID, to title: String) {
@@ -111,6 +137,7 @@ final class Store: ObservableObject {
         guard !trimmed.isEmpty else { return }
         presentations[index].title = trimmed
         persist()
+        track(save: [.presentation(id)])
     }
 
     func deletePresentation(_ id: UUID) {
@@ -119,8 +146,12 @@ final class Store: ObservableObject {
         for slide in presentations[index].slides {
             deleteFiles(of: slide)
         }
-        presentations.remove(at: index)
+        for recording in presentations[index].allRecordings {
+            deleteFiles(of: recording)
+        }
+        let removed = presentations.remove(at: index)
         persist()
+        track(delete: recordIDs(of: removed))
     }
 
     func presentation(_ id: UUID) -> Presentation? {
@@ -144,11 +175,23 @@ final class Store: ObservableObject {
         let sources = selected.dropFirst()
         let appendedSlides = sources.flatMap { $0.slides }
         presentations[tIndex].slides.append(contentsOf: appendedSlides)
+        let appendedRecordings = sources.flatMap { $0.allRecordings }
+        if !appendedRecordings.isEmpty {
+            presentations[tIndex].recordings = presentations[tIndex].allRecordings + appendedRecordings
+        }
+        // 합치면 내용이 바뀌므로 예전 요약은 버린다.
+        presentations[tIndex].summary = nil
 
-        // 소스 발표 제거 — 장표(이미지 파일)는 대상으로 옮겨갔으니 파일은 지우지 않는다.
+        // 소스 발표 제거 — 장표(이미지·음성 파일)는 대상으로 옮겨갔으니 파일은 지우지 않는다.
         let removeIDs = Set(sources.map { $0.id })
         presentations.removeAll { removeIDs.contains($0.id) }
         persist()
+        track(
+            save: [.presentation(target.id)]
+                + appendedSlides.map { .slide($0.id) }
+                + appendedRecordings.map { .recording($0.id) },
+            delete: removeIDs.map { .presentation($0) }
+        )
         return target.id
     }
 
@@ -177,6 +220,7 @@ final class Store: ObservableObject {
         guard let index = presentations.firstIndex(where: { $0.id == presentationID }) else { return }
         presentations[index].slides.append(slide)
         persist()
+        track(save: [.presentation(presentationID), .slide(slide.id)])
     }
 
     /// 사진 앱에서 고른 이미지들을 순서대로 감지·보정해 발표에 넣습니다.
@@ -247,6 +291,7 @@ final class Store: ObservableObject {
         deleteFiles(of: presentations[pIndex].slides[sIndex])
         presentations[pIndex].slides.remove(at: sIndex)
         persist()
+        track(save: [.presentation(presentationID)], delete: [.slide(slideID)])
     }
 
     /// 선택한 장표들을 한 번에 삭제합니다.
@@ -258,6 +303,7 @@ final class Store: ObservableObject {
         }
         presentations[pIndex].slides.removeAll { slideIDs.contains($0.id) }
         persist()
+        track(save: [.presentation(presentationID)], delete: slideIDs.map { .slide($0) })
     }
 
     /// 드래그로 장표 순서를 바꿉니다. `slideID`를 `targetID` 자리로 옮깁니다.
@@ -270,6 +316,7 @@ final class Store: ObservableObject {
             ?? presentations[pIndex].slides.count
         presentations[pIndex].slides.insert(slide, at: insertAt)
         persist()
+        track(save: [.presentation(presentationID)])
     }
 
     /// List의 onMove(오프셋 기반)로 장표 순서를 바꿉니다.
@@ -277,6 +324,7 @@ final class Store: ObservableObject {
         guard let pIndex = presentations.firstIndex(where: { $0.id == presentationID }) else { return }
         presentations[pIndex].slides.move(fromOffsets: source, toOffset: destination)
         persist()
+        track(save: [.presentation(presentationID)])
     }
 
     /// 모서리를 수동으로 바꿔 다시 보정합니다. quad가 nil이면 보정 해제(원본 사용).
@@ -295,6 +343,7 @@ final class Store: ObservableObject {
               let sIdx = presentations[pIdx].slides.firstIndex(where: { $0.id == slideID }) else { return }
         presentations[pIdx].slides[sIdx] = updated
         persist()
+        track(save: [.slide(slideID)])
     }
 
     // MARK: - 가독성 보정
@@ -320,6 +369,72 @@ final class Store: ObservableObject {
               let sIdx = presentations[pIdx].slides.firstIndex(where: { $0.id == slideID }) else { return }
         presentations[pIdx].slides[sIdx] = updated
         persist()
+        track(save: [.slide(slideID)])
+    }
+
+    // MARK: - 녹음
+
+    /// 촬영하며 녹음한 파일을 발표에 붙인다. 아직 초안이면 목록에 올린다(장표 없이 녹음만 한 강의도 남긴다).
+    func addRecording(_ recording: Recording, to presentationID: UUID) {
+        if var draft = drafts[presentationID] {
+            draft.recordings = draft.allRecordings + [recording]
+            drafts[presentationID] = draft
+            promoteDraft(presentationID)
+            return
+        }
+        guard let index = presentations.firstIndex(where: { $0.id == presentationID }) else {
+            deleteFiles(of: recording)
+            return
+        }
+        presentations[index].recordings = presentations[index].allRecordings + [recording]
+        persist()
+        track(save: [.presentation(presentationID), .recording(recording.id)])
+    }
+
+    func deleteRecording(_ recordingID: UUID, from presentationID: UUID) {
+        guard let pIndex = presentations.firstIndex(where: { $0.id == presentationID }),
+              let rIndex = presentations[pIndex].allRecordings.firstIndex(where: { $0.id == recordingID }) else { return }
+        deleteFiles(of: presentations[pIndex].allRecordings[rIndex])
+        presentations[pIndex].recordings?.remove(at: rIndex)
+        persist()
+        track(save: [.presentation(presentationID)], delete: [.recording(recordingID)])
+    }
+
+    func setTranscript(_ segments: [TranscriptSegment], locale: String, recordingID: UUID, presentationID: UUID) {
+        guard let pIndex = presentations.firstIndex(where: { $0.id == presentationID }),
+              let rIndex = presentations[pIndex].allRecordings.firstIndex(where: { $0.id == recordingID }) else { return }
+        presentations[pIndex].recordings?[rIndex].transcript = segments
+        presentations[pIndex].recordings?[rIndex].transcriptLocale = locale
+        persist()
+        track(save: [.recording(recordingID)])
+    }
+
+    // MARK: - AI 요약
+
+    func setSummary(_ summary: PresentationSummary?, presentationID: UUID) {
+        guard let index = presentations.firstIndex(where: { $0.id == presentationID }) else { return }
+        presentations[index].summary = summary
+        persist()
+        track(save: [.presentation(presentationID)])
+    }
+
+    // MARK: - iCloud 동기화 반영
+
+    /// iCloud에서 받은 변경을 반영한다. 동기화 대기열에는 다시 올리지 않는다.
+    func applyFromSync(_ body: (inout [Presentation]) -> Void) {
+        body(&presentations)
+        persist()
+    }
+
+    /// 동기화로 사라진 장표의 이미지 파일을 지운다.
+    func removeLocalFiles(of slide: Slide) { deleteFiles(of: slide) }
+
+    /// 동기화로 사라진 녹음의 음성 파일을 지운다.
+    func removeLocalFiles(of recording: Recording) { deleteFiles(of: recording) }
+
+    /// 동기화를 처음 켰을 때 기존 데이터를 모두 올리기 위한 전체 레코드 id.
+    var allRecordIDs: [SyncRecordID] {
+        presentations.flatMap { recordIDs(of: $0) }
     }
 
     // MARK: - 이미지 파일
@@ -330,6 +445,14 @@ final class Store: ObservableObject {
 
     func loadImage(_ fileName: String) -> UIImage? {
         UIImage(contentsOfFile: imageURL(fileName).path)
+    }
+
+    func audioURL(_ fileName: String) -> URL {
+        audioDirectoryURL.appendingPathComponent(fileName)
+    }
+
+    private func deleteFiles(of recording: Recording) {
+        try? fileManager.removeItem(at: audioURL(recording.file))
     }
 
     private func deleteFiles(of slide: Slide) {
@@ -351,7 +474,10 @@ final class Store: ObservableObject {
         for presentation in presentations {
             let titleMatches = presentation.title.lowercased().contains(query)
             for (index, slide) in presentation.slides.enumerated() {
-                let text = slide.recognizedText ?? ""
+                let ocr = slide.recognizedText ?? ""
+                let spoken = presentation.transcriptText(for: slide) ?? ""
+                // 장표 글자에서 먼저 찾고, 없으면 그 장표를 보여 주던 동안 한 말에서 찾는다.
+                let text = ocr.lowercased().contains(query) || spoken.isEmpty ? ocr : spoken
                 let textMatches = text.lowercased().contains(query)
                 guard titleMatches || textMatches else { continue }
                 results.append(
@@ -410,6 +536,7 @@ final class Store: ObservableObject {
               let sIndex = presentations[pIndex].slides.firstIndex(where: { $0.id == slideID }) else { return }
         presentations[pIndex].slides[sIndex].recognizedText = text
         persist()
+        track(save: [.slide(slideID)])
     }
 }
 

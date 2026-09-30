@@ -144,6 +144,10 @@ struct CameraCaptureView: View {
     var onCapture: (() -> Void)? = nil
 
     @StateObject private var camera = CameraController()
+    @StateObject private var recorder = AudioRecorder()
+    /// 촬영하면서 녹음할지(기억됨)
+    @AppStorage("camera.recordAudio") private var recordAudio = false
+    @State private var showMicDenied = false
     @State private var captureCount = 0
     @State private var processingCount = 0
     @State private var lastThumbnail: UIImage?
@@ -187,8 +191,37 @@ struct CameraCaptureView: View {
             }
         }
         .statusBarHidden()
-        .onAppear { camera.start() }
-        .onDisappear { camera.stop() }
+        .onAppear {
+            camera.start()
+            recorder.onFinish = { [store, presentationID] recording in
+                store.addRecording(recording, to: presentationID)
+            }
+            if recordAudio { recorder.start() }
+        }
+        .onDisappear {
+            camera.stop()
+            recorder.stop()
+        }
+        .onChange(of: recorder.elapsed) { _, elapsed in
+            // 장표 없이 녹음만 해도 발표로 남긴다.
+            if elapsed >= 3 { onCapture?() }
+        }
+        .onChange(of: recorder.permissionDenied) { _, denied in
+            if denied {
+                recordAudio = false
+                showMicDenied = true
+            }
+        }
+        .alert("마이크 접근이 허용되지 않았습니다", isPresented: $showMicDenied) {
+            Button("설정 열기") {
+                if let url = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(url)
+                }
+            }
+            Button("닫기", role: .cancel) {}
+        } message: {
+            Text("발표를 녹음하려면 설정에서 마이크 접근을 허용해 주세요.")
+        }
         .onChange(of: camera.isLocked) { _, locked in
             if locked {
                 UIImpactFeedbackGenerator(style: .medium).impactOccurred()
@@ -314,6 +347,7 @@ struct CameraCaptureView: View {
                     .tint(.white)
                     .padding(.trailing, 8)
             }
+            recordButton
             Button {
                 camera.autoCaptureEnabled.toggle()
             } label: {
@@ -329,6 +363,37 @@ struct CameraCaptureView: View {
             }
         }
         .padding()
+    }
+
+    /// 녹음 켜기/끄기. 녹음 중이면 빨간 점과 경과 시간을 보여 준다.
+    private var recordButton: some View {
+        Button {
+            recordAudio.toggle()
+            if recordAudio {
+                recorder.start()
+            } else {
+                recorder.stop()
+            }
+        } label: {
+            HStack(spacing: 5) {
+                if recorder.isRecording {
+                    Circle()
+                        .fill(.red)
+                        .frame(width: 8, height: 8)
+                    Text(recorder.elapsed.clockText)
+                        .font(.subheadline.weight(.semibold).monospacedDigit())
+                } else {
+                    Image(systemName: recordAudio ? "mic.fill" : "mic.slash")
+                    Text("녹음")
+                        .font(.subheadline.weight(.semibold))
+                }
+            }
+            .foregroundStyle(recorder.isRecording ? Color.white : (recordAudio ? Color.red : .white))
+            .padding(.horizontal, 14)
+            .padding(.vertical, 8)
+            .background(recorder.isRecording ? Color.red.opacity(0.75) : Color.black.opacity(0.4), in: Capsule())
+        }
+        .accessibilityLabel(recorder.isRecording ? Text("녹음 중지") : Text("녹음 시작"))
     }
 
     // MARK: - 하단 바
@@ -432,6 +497,8 @@ struct CameraCaptureView: View {
         if !auto { camera.markCaptured() }
 
         processingCount += 1
+        // 녹음 속 위치를 맞추려고 처리 시각이 아닌 셔터를 누른 순간을 장표 시각으로 쓴다.
+        let shotAt = Date()
         camera.capturePhoto { image in
             Task { @MainActor in
                 // 자동 촬영이면 흐릿한 컷은 버린다(락인 상태라 대부분 선명하지만 전환 순간을 거른다).
@@ -457,7 +524,7 @@ struct CameraCaptureView: View {
                 }
 
                 // 무거운 감지·보정·저장은 뒤에서 진행.
-                await store.addSlide(image: image, to: presentationID, detectedQuad: quadAtCapture)
+                await store.addSlide(image: image, to: presentationID, detectedQuad: quadAtCapture, createdAt: shotAt)
                 processingCount = max(0, processingCount - 1)
             }
         }

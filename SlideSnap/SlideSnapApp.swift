@@ -7,6 +7,8 @@ struct SlideSnapApp: App {
     @StateObject private var profile = UserProfileStore()
     @StateObject private var feedbackPrompt = FeedbackPromptManager()
     @StateObject private var router = AppRouter()
+    @StateObject private var cloudSync = CloudSync()
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {
         WindowGroup {
@@ -15,10 +17,13 @@ struct SlideSnapApp: App {
                 .environmentObject(profile)
                 .environmentObject(feedbackPrompt)
                 .environmentObject(router)
+                .environmentObject(cloudSync)
                 .onOpenURL { url in
                     router.handle(url)
                 }
                 .onAppear {
+                    cloudSync.attach(store)
+                    if cloudSync.isEnabled { UIApplication.shared.registerForRemoteNotifications() }
                     // 마스터 모드(개발자): 새 피드백 로컬 알림이 켜져 있으면 앱을 열 때 즉시
                     // 새 피드백을 확인하고(포그라운드 보완), 다음 백그라운드 새로고침을 예약한다.
                     let feedback = LeeoFeedbackService(spec: SlideSnapSpec.self)
@@ -34,6 +39,10 @@ struct SlideSnapApp: App {
                         "presentations": Double(store.presentations.count),
                         "slides": Double(slideCount)
                     ])
+                }
+                .onChange(of: scenePhase) { _, phase in
+                    // 앱을 다시 열 때 다른 기기에서 바뀐 내용을 가져온다.
+                    if phase == .active { Task { await cloudSync.syncNow() } }
                 }
         }
         // 새 피드백 로컬 알림: iOS가 앱을 백그라운드에서 깨우면 새 피드백을 확인해

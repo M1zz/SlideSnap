@@ -8,6 +8,7 @@
 //    -SSDemoScreen list            발표 목록(그리드)
 //    -SSDemoScreen detail          첫 발표의 장표 그리드
 //    -SSDemoScreen slide           첫 발표의 둘째 장표 크게 보기
+//    -SSDemoScreen notes           첫 발표의 발표 노트(AI 요약·녹음)
 //    -SSDemoScreen search:<검색어>  장표 글자 검색 결과
 //    -SSDemoScreen share           공유 익스텐션 화면 (App Group의 DemoShare/ 사진으로)
 //
@@ -19,7 +20,7 @@ import Foundation
 
 enum DemoMode {
     enum Screen: Equatable {
-        case list, detail, slide, search(String), share
+        case list, detail, slide, notes, search(String), share
     }
 
     static var screen: Screen? {
@@ -28,6 +29,7 @@ enum DemoMode {
         case "list": return .list
         case "detail": return .detail
         case "slide": return .slide
+        case "notes": return .notes
         case "share": return .share
         default:
             if raw.hasPrefix("search:") { return .search(String(raw.dropFirst("search:".count))) }

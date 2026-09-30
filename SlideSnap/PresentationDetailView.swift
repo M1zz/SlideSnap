@@ -39,7 +39,9 @@ struct PresentationDetailView: View {
     let presentationID: UUID
 
     @State private var showingCamera = false
+    @State private var showingNotes = false
     @State private var isExporting = false
+    @State private var exportError: String?
     @State private var shareBundle: ShareBundle?
 
     // 이름 변경
@@ -89,6 +91,14 @@ struct PresentationDetailView: View {
         }
         .sheet(item: $shareBundle) { bundle in
             ShareSheet(items: bundle.items)
+        }
+        .sheet(isPresented: $showingNotes) {
+            PresentationNotesView(presentationID: presentationID)
+        }
+        .alert("내보내지 못했어요", isPresented: Binding(get: { exportError != nil }, set: { if !$0 { exportError = nil } })) {
+            Button("확인", role: .cancel) {}
+        } message: {
+            Text(exportError ?? "")
         }
         .navigationDestination(for: SlideRoute.self) { route in
             SlideDetailView(presentationID: route.presentationID, slideID: route.slideID)
@@ -202,6 +212,14 @@ struct PresentationDetailView: View {
         } else {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
+                    showingNotes = true
+                } label: {
+                    Image(systemName: hasNotes ? "sparkles.rectangle.stack.fill" : "sparkles.rectangle.stack")
+                }
+                .accessibilityLabel("발표 노트")
+            }
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
                     showingCamera = true
                 } label: {
                     Image(systemName: "camera.fill")
@@ -227,6 +245,7 @@ struct PresentationDetailView: View {
                             Label("전체 이미지 공유", systemImage: "photo.on.rectangle")
                         }
                         pdfMenu()
+                        notesExportButtons()
                         Divider()
                         Button {
                             enterSelection()
@@ -255,6 +274,7 @@ struct PresentationDetailView: View {
                 Label("이미지로 공유 (\(selectedIDs.count)장)", systemImage: "photo.on.rectangle")
             }
             pdfMenu(count: selectedIDs.count)
+            notesExportButtons()
         } label: {
             if isExporting { ProgressView() } else { label }
         }
@@ -277,6 +297,27 @@ struct PresentationDetailView: View {
             } else {
                 Label("PDF로 내보내기", systemImage: "doc.richtext")
             }
+        }
+    }
+
+    /// 녹음이나 요약이 있으면 노트 버튼을 채워 보여 준다.
+    private var hasNotes: Bool {
+        guard let presentation else { return false }
+        return presentation.summary != nil || !presentation.allRecordings.isEmpty
+    }
+
+    /// Markdown·PowerPoint 내보내기 버튼
+    @ViewBuilder
+    private func notesExportButtons() -> some View {
+        Button {
+            exportNotes(.markdown)
+        } label: {
+            Label("Markdown으로 내보내기 (Notion·Obsidian)", systemImage: "doc.plaintext")
+        }
+        Button {
+            exportNotes(.pptx)
+        } label: {
+            Label("PowerPoint로 내보내기 (Keynote)", systemImage: "rectangle.on.rectangle")
         }
     }
 
@@ -458,6 +499,38 @@ struct PresentationDetailView: View {
             isExporting = false
             if let pdfURL {
                 shareBundle = ShareBundle(items: [pdfURL])
+            }
+        }
+    }
+}
+
+extension PresentationDetailView {
+    enum NotesFormat { case markdown, pptx }
+
+    fileprivate func exportNotes(_ format: NotesFormat) {
+        guard let presentation else { return }
+        let ids: Set<UUID>? = isSelecting && !selectedIDs.isEmpty ? selectedIDs : nil
+        let slides = NotesExporter.slides(of: presentation, only: ids, store: store)
+        guard !slides.isEmpty else { return }
+        let title = presentation.title
+        let date = presentation.createdAt
+        let summary = ids == nil ? presentation.summary : nil
+        isExporting = true
+        Task {
+            let result = await Task.detached(priority: .userInitiated) { () -> Result<URL, Error> in
+                Result {
+                    switch format {
+                    case .markdown:
+                        return try NotesExporter.makeMarkdownZip(title: title, date: date, summary: summary, slides: slides)
+                    case .pptx:
+                        return try NotesExporter.makePPTX(title: title, slides: slides)
+                    }
+                }
+            }.value
+            isExporting = false
+            switch result {
+            case .success(let url): shareBundle = ShareBundle(items: [url])
+            case .failure(let error): exportError = error.localizedDescription
             }
         }
     }

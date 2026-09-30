@@ -11,6 +11,8 @@ import LeeoKit
 
 struct ProfileView: View {
     @EnvironmentObject private var profile: UserProfileStore
+    @EnvironmentObject private var cloudSync: CloudSync
+    @State private var enablingSync = false
     @Environment(\.dismiss) private var dismiss
 
     @State private var name = ""
@@ -54,6 +56,29 @@ struct ProfileView: View {
                           systemImage: "icloud")
                         .font(.footnote)
                         .foregroundStyle(.secondary)
+                }
+
+                Section {
+                    Toggle(isOn: syncBinding) {
+                        Label("iCloud 동기화", systemImage: "arrow.triangle.2.circlepath.icloud")
+                    }
+                    .disabled(enablingSync)
+                    if cloudSync.isEnabled {
+                        Button {
+                            Task { await cloudSync.syncNow() }
+                        } label: {
+                            HStack {
+                                Text("지금 동기화")
+                                Spacer()
+                                if cloudSync.isSyncing || enablingSync { ProgressView() }
+                            }
+                        }
+                        .disabled(cloudSync.isSyncing)
+                    }
+                } header: {
+                    Text("발표 동기화")
+                } footer: {
+                    syncFooter
                 }
 
                 Section("앱 정보") {
@@ -112,6 +137,35 @@ struct ProfileView: View {
                         .transition(.move(edge: .bottom).combined(with: .opacity))
                 }
             }
+        }
+    }
+
+    private var syncBinding: Binding<Bool> {
+        Binding(
+            get: { cloudSync.isEnabled },
+            set: { on in
+                if on {
+                    enablingSync = true
+                    Task {
+                        await cloudSync.enable()
+                        if cloudSync.isEnabled { UIApplication.shared.registerForRemoteNotifications() }
+                        enablingSync = false
+                    }
+                } else {
+                    cloudSync.disable()
+                }
+            }
+        )
+    }
+
+    @ViewBuilder
+    private var syncFooter: some View {
+        if let error = cloudSync.lastError {
+            Text(error).foregroundStyle(.red)
+        } else if cloudSync.isEnabled, let last = cloudSync.lastSyncedAt {
+            Text("마지막 동기화: \(last.formatted(.relative(presentation: .named)))")
+        } else {
+            Text("같은 Apple ID로 로그인한 iPhone·iPad·Mac에서 발표·장표·녹음을 함께 봐요. 사진과 녹음이 iCloud 저장 공간을 사용해요.")
         }
     }
 

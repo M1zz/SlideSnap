@@ -1,6 +1,17 @@
 {
   "sourceLanguage": "ko",
   "strings": {
+    "(텍스트 없음)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(No text)"
+          }
+        }
+      }
+    },
     "%@ · %lld번": {
       "extractionState": "manual",
       "localizations": {
@@ -31,6 +42,22 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "%@ / %@": {
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ / %2$@"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@"
           }
         }
       }
@@ -94,13 +121,123 @@
         }
       }
     },
-    "(텍스트 없음)": {
+    "10초 뒤로": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back 10 seconds"
+          }
+        }
+      }
+    },
+    "10초 앞으로": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forward 10 seconds"
+          }
+        }
+      }
+    },
+    "AI 요약": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AI Summary"
+          }
+        }
+      }
+    },
+    "AI 요약은 Apple Intelligence를 지원하는 기기(iOS 26 이상)에서 쓸 수 있어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AI Summary is available on devices that support Apple Intelligence (iOS 26 or later)."
+          }
+        }
+      }
+    },
+    "AI로 요약하기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Summarize with AI"
+          }
+        }
+      }
+    },
+    "Apple Intelligence 모델을 준비하는 중이에요. 잠시 후 다시 시도해 주세요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Intelligence is still getting ready. Please try again in a moment."
+          }
+        }
+      }
+    },
+    "iCloud 동기화": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloud Sync"
+          }
+        }
+      }
+    },
+    "iCloud 저장 공간이 부족해요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your iCloud storage is full."
+          }
+        }
+      }
+    },
+    "iCloud에 로그인되어 있지 않아요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You are not signed in to iCloud."
+          }
+        }
+      }
+    },
+    "iCloud에 로그인되어 있지 않아요. 설정에서 iCloud에 로그인한 뒤 다시 켜 주세요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You are not signed in to iCloud. Sign in from Settings, then turn this on again."
+          }
+        }
+      }
+    },
+    "iCloud에 저장돼 다른 기기와 자동으로 동기화돼요.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "(No text)"
+            "value": "Saved to iCloud and synced across your devices."
+          }
+        }
+      }
+    },
+    "Markdown으로 내보내기 (Notion·Obsidian)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export as Markdown (Notion, Obsidian)"
           }
         }
       }
@@ -139,13 +276,12 @@
         }
       }
     },
-    "iCloud에 저장돼 다른 기기와 자동으로 동기화돼요.": {
-      "extractionState": "manual",
+    "PowerPoint로 내보내기 (Keynote)": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Saved to iCloud and synced across your devices."
+            "value": "Export as PowerPoint (Keynote)"
           }
         }
       }
@@ -190,6 +326,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Can't Import"
+          }
+        }
+      }
+    },
+    "같은 Apple ID로 로그인한 iPhone·iPad·Mac에서 발표·장표·녹음을 함께 봐요. 사진과 녹음이 iCloud 저장 공간을 사용해요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "See your decks, slides and recordings on every iPhone, iPad and Mac signed in with the same Apple ID. Photos and recordings use your iCloud storage."
           }
         }
       }
@@ -282,6 +428,16 @@
         }
       }
     },
+    "내보내지 못했어요": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn't Export"
+          }
+        }
+      }
+    },
     "네 장씩 (요약용)": {
       "extractionState": "manual",
       "localizations": {
@@ -293,6 +449,36 @@
         }
       }
     },
+    "녹음": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Record"
+          }
+        }
+      }
+    },
+    "녹음 시작": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start Recording"
+          }
+        }
+      }
+    },
+    "녹음 중지": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop Recording"
+          }
+        }
+      }
+    },
     "다시 묻지 않기": {
       "extractionState": "manual",
       "localizations": {
@@ -300,6 +486,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Don't Ask Again"
+          }
+        }
+      }
+    },
+    "다시 받아쓰기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transcribe Again"
+          }
+        }
+      }
+    },
+    "다시 요약하기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Summarize Again"
           }
         }
       }
@@ -333,6 +539,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Two per page (review)"
+          }
+        }
+      }
+    },
+    "마이크 접근이 허용되지 않았습니다": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Microphone Access Is Off"
+          }
+        }
+      }
+    },
+    "마지막 동기화: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last synced %@"
           }
         }
       }
@@ -377,6 +603,96 @@
           "stringUnit": {
             "state": "translated",
             "value": "List View"
+          }
+        }
+      }
+    },
+    "받아씀": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transcribed"
+          }
+        }
+      }
+    },
+    "받아쓰기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transcribe"
+          }
+        }
+      }
+    },
+    "받아쓰기 언어": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transcription Language"
+          }
+        }
+      }
+    },
+    "받아쓰는 중…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transcribing…"
+          }
+        }
+      }
+    },
+    "받아쓰면 장표마다 그때 한 말을 볼 수 있고, 검색과 AI 요약에도 쓰여요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transcribe to see what was said on each slide. Transcripts are also used for search and AI Summary."
+          }
+        }
+      }
+    },
+    "받아쓴 내용도 함께 삭제됩니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Its transcript will be deleted too."
+          }
+        }
+      }
+    },
+    "발표 내용": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What was said"
+          }
+        }
+      }
+    },
+    "발표 노트": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deck Notes"
+          }
+        }
+      }
+    },
+    "발표 동기화": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sync"
           }
         }
       }
@@ -443,6 +759,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "No Presentations"
+          }
+        }
+      }
+    },
+    "발표를 녹음하려면 설정에서 마이크 접근을 허용해 주세요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To record talks, allow microphone access in Settings."
+          }
+        }
+      }
+    },
+    "발표자: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Speaker: %@"
           }
         }
       }
@@ -735,6 +1071,16 @@
         }
       }
     },
+    "설정 ▸ Apple Intelligence 및 Siri에서 Apple Intelligence를 켜면 AI 요약을 쓸 수 있어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turn on Apple Intelligence in Settings > Apple Intelligence & Siri to use AI Summary."
+          }
+        }
+      }
+    },
     "설정 열기": {
       "extractionState": "manual",
       "localizations": {
@@ -742,6 +1088,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Open Settings"
+          }
+        }
+      }
+    },
+    "설정에서 음성 인식 접근을 허용해 주세요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow speech recognition access in Settings."
           }
         }
       }
@@ -790,6 +1146,16 @@
         }
       }
     },
+    "영어": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "English"
+          }
+        }
+      }
+    },
     "오른쪽 위 + 버튼으로 새 발표를 만들고\n장표를 촬영해 보세요.": {
       "extractionState": "manual",
       "localizations": {
@@ -808,6 +1174,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Done"
+          }
+        }
+      }
+    },
+    "요약": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Summary"
+          }
+        }
+      }
+    },
+    "요약할 내용이 없어요. 장표 글자를 인식하거나 녹음을 받아쓴 뒤 다시 시도해 주세요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "There is nothing to summarize yet. Wait for slide text to be recognized or transcribe a recording, then try again."
           }
         }
       }
@@ -834,6 +1220,26 @@
         }
       }
     },
+    "이 기기에서는 선택한 언어를 받아쓸 수 없어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This device can't transcribe the selected language."
+          }
+        }
+      }
+    },
+    "이 녹음을 삭제할까요?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete this recording?"
+          }
+        }
+      }
+    },
     "이 장표를 삭제할까요?": {
       "extractionState": "manual",
       "localizations": {
@@ -841,6 +1247,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Delete this slide?"
+          }
+        }
+      }
+    },
+    "이 장표부터 듣기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play from this slide"
+          }
+        }
+      }
+    },
+    "이 장표에서 한 말": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Said on this slide"
           }
         }
       }
@@ -934,6 +1360,36 @@
         }
       }
     },
+    "인터넷에 연결되면 다시 동기화할게요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "We'll sync again when you're back online."
+          }
+        }
+      }
+    },
+    "일본어": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Japanese"
+          }
+        }
+      }
+    },
+    "일시 정지": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pause"
+          }
+        }
+      }
+    },
     "자동": {
       "extractionState": "manual",
       "localizations": {
@@ -963,6 +1419,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Slide"
+          }
+        }
+      }
+    },
+    "장표 %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slide %lld"
+          }
+        }
+      }
+    },
+    "장표 글자: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slide text: %@"
+          }
+        }
+      }
+    },
+    "장표 글자와 받아쓴 발표 내용으로 핵심만 정리해요. 기기 안에서 처리되어 밖으로 나가지 않아요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulls out the key points from slide text and transcripts. Everything stays on your device."
           }
         }
       }
@@ -1100,6 +1586,26 @@
         }
       }
     },
+    "장표와 발표 내용을 읽고 요약하는 중…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reading slides and transcripts…"
+          }
+        }
+      }
+    },
+    "재생": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play"
+          }
+        }
+      }
+    },
     "저장": {
       "extractionState": "manual",
       "localizations": {
@@ -1166,6 +1672,46 @@
         }
       }
     },
+    "중국어": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chinese"
+          }
+        }
+      }
+    },
+    "지금 동기화": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sync Now"
+          }
+        }
+      }
+    },
+    "지금은 받아쓰기를 할 수 없어요. 잠시 후 다시 시도해 주세요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transcription isn't available right now. Please try again later."
+          }
+        }
+      }
+    },
+    "촬영 화면 위쪽의 '녹음'을 켜면 장표를 찍는 동안 발표를 함께 녹음해요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turn on Record at the top of the camera to record the talk while you capture slides."
+          }
+        }
+      }
+    },
     "촬영하기": {
       "extractionState": "manual",
       "localizations": {
@@ -1210,6 +1756,16 @@
         }
       }
     },
+    "키워드": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keywords"
+          }
+        }
+      }
+    },
     "피드백 보내기": {
       "extractionState": "manual",
       "localizations": {
@@ -1228,6 +1784,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "One per page (large)"
+          }
+        }
+      }
+    },
+    "한국어": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Korean"
+          }
+        }
+      }
+    },
+    "할 수 없어요": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Can't Do That"
           }
         }
       }

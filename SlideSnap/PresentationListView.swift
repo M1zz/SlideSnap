@@ -38,6 +38,8 @@ struct PresentationListView: View {
     #if DEBUG
     /// 스크린샷 데모 모드에서 띄우는 공유 화면.
     @State private var demoShareModel: ShareModel?
+    /// 스크린샷 데모 모드에서 띄우는 발표 노트.
+    @State private var demoNotesID: UUID?
     #endif
 
     @State private var path = NavigationPath()
@@ -80,6 +82,9 @@ struct PresentationListView: View {
             #if DEBUG
             .sheet(item: $demoShareModel) { model in
                 ShareView(model: model)
+            }
+            .sheet(isPresented: Binding(get: { demoNotesID != nil }, set: { if !$0 { demoNotesID = nil } })) {
+                if let demoNotesID { PresentationNotesView(presentationID: demoNotesID) }
             }
             #endif
             .sheet(isPresented: $showingFeedback) {
@@ -585,6 +590,8 @@ struct PresentationListView: View {
                 path.append(first.id)
                 path.append(SlideRoute(presentationID: first.id, slideID: first.slides[1].id))
             }
+        case .notes:
+            if let first { demoNotesID = first.id }
         case .search(let query):
             searchText = query
         case .share:

@@ -1,5 +1,19 @@
 # SlideSnap TODO
 
+## 1.1.0 — 녹음 · 받아쓰기 · AI 요약 · iCloud 동기화 · 내보내기
+- [x] 촬영하며 녹음(AudioRecorder) — 카메라 위쪽 '녹음' 토글, 끼어들기 시 파일을 끊어 장표 시각과 어긋나지 않게, 백그라운드 오디오
+- [x] 장표별 듣기(SlideDetailView) — 이 장표를 찍던 순간부터 재생, 재생 따라 장표 자동 넘김, "이 장표에서 한 말"
+- [x] 받아쓰기(Transcriber) — iOS 26+ SpeechAnalyzer, 이하 SFSpeechRecognizer 기기 내 인식. 문장 단위 토막으로 저장, 검색에도 반영
+- [x] AI 요약(Summarizer) — Foundation Models(iOS 26+, Apple Intelligence), 긴 발표는 조각 메모 → 최종 요약, 발표 언어로 답함
+- [x] 발표 노트 화면(PresentationNotesView) — 요약·녹음 목록·받아쓰기 언어
+- [x] iCloud 동기화(CloudSync, CKSyncEngine) — 기본 꺼짐, 내 정보 ▸ 발표 동기화에서 켬. 레코드 Presentation/Slide/Recording
+- [x] 내보내기 — Markdown .zip(Notion·Obsidian), PowerPoint .pptx(발표자 노트에 받아쓴 말)
+- [ ] 실기기에서 녹음 → 장표 넘김 → 받아쓰기 → 요약 흐름 확인 (시뮬레이터엔 카메라 없음)
+- [ ] 실기기 두 대로 iCloud 동기화 확인 → CloudKit Dashboard 에서 스키마(Presentation·Slide·Recording)를 Production 에 배포(사람)
+- [ ] iOS 17~25 기기에서 SFSpeechRecognizer 로 긴 녹음(30분 이상) 받아쓰기 확인
+- [x] 버전 1.1.0 (build 1) · RELEASE_NOTES.md
+- [ ] 스토어 설명·스크린샷(APPSTORE.md)에 새 기능 반영
+
 ## 1.0.5 (2026-09-28)
 - [x] 앱 버전 1.0.5 / 빌드 2 (Version.xcconfig)
 - [x] 무음 카메라 — AVCapturePhotoOutput 제거, 셔터 시 라이브 비디오 프레임을 그대로 사진으로 사용(지역 상관없이 셔터음 없음). 가장 큰 4:3 비디오 포맷 선택, 기기 방향만큼 이미지 회전

@@ -1,40 +1,86 @@
 {
-  "sourceLanguage": "ko",
-  "strings": {
-    "CFBundleDisplayName": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "SlideSnap"
+  "sourceLanguage" : "ko",
+  "strings" : {
+    "CFBundleDisplayName" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SlideSnap"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "장표스냅"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "장표스냅"
           }
         }
       }
     },
-    "NSCameraUsageDescription": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "SlideSnap uses the camera to capture presentation slides."
+    "CFBundleName" : {
+      "comment" : "Bundle name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "SlideSnap"
+          }
+        }
+      }
+    },
+    "NSCameraUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SlideSnap uses the camera to capture presentation slides."
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "발표 장표를 촬영하기 위해 카메라 접근이 필요합니다."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "발표 장표를 촬영하기 위해 카메라 접근이 필요합니다."
+          }
+        }
+      }
+    },
+    "NSMicrophoneUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SlideSnap records the talk while you capture slides so you can replay what was said on each slide."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "장표를 찍는 동안 발표 내용을 녹음해 장표별로 다시 들을 수 있게 합니다."
+          }
+        }
+      }
+    },
+    "NSSpeechRecognitionUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SlideSnap transcribes your recordings on device so you can read and search what was said on each slide."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "녹음한 발표를 기기 안에서 글로 받아써 장표별로 보여 주고 검색할 수 있게 합니다."
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }
