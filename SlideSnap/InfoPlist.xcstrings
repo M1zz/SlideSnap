@@ -7,7 +7,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "SlideSnap"
+            "value" : "CatchSlide"
           }
         },
         "ko" : {
@@ -36,7 +36,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "SlideSnap uses the camera to capture presentation slides."
+            "value" : "CatchSlide uses the camera to capture presentation slides."
           }
         },
         "ko" : {
@@ -53,7 +53,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "SlideSnap records the talk while you capture slides so you can replay what was said on each slide."
+            "value" : "CatchSlide records the talk while you capture slides so you can replay what was said on each slide."
           }
         },
         "ko" : {
@@ -70,7 +70,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "SlideSnap transcribes your recordings on device so you can read and search what was said on each slide."
+            "value" : "CatchSlide transcribes your recordings on device so you can read and search what was said on each slide."
           }
         },
         "ko" : {

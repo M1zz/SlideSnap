@@ -209,7 +209,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Organize in SlideSnap"
+            "value": "Organize in CatchSlide"
           }
         }
       }
@@ -223,13 +223,13 @@
               "one": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Open SlideSnap to find %lld photo\norganized in “%@”."
+                  "value": "Open CatchSlide to find %lld photo\norganized in “%@”."
                 }
               },
               "other": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Open SlideSnap to find %lld photos\norganized in “%@”."
+                  "value": "Open CatchSlide to find %lld photos\norganized in “%@”."
                 }
               }
             }

@@ -23,7 +23,7 @@ enum PPTXExporter {
 
         var errorDescription: String? {
             switch self {
-            case .unsupportedImage(let url): return "지원하지 않는 이미지입니다: \(url.lastPathComponent)"
+            case .unsupportedImage(let url): return String(localized: "지원하지 않는 이미지입니다: \(url.lastPathComponent)")
             }
         }
     }

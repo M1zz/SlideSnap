@@ -1558,7 +1558,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Organize in SlideSnap"
+            "value": "Organize in CatchSlide"
           }
         }
       }
@@ -1572,13 +1572,13 @@
               "one": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Open SlideSnap to find %lld photo\norganized in “%@”."
+                  "value": "Open CatchSlide to find %lld photo\norganized in “%@”."
                 }
               },
               "other": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Open SlideSnap to find %lld photos\norganized in “%@”."
+                  "value": "Open CatchSlide to find %lld photos\norganized in “%@”."
                 }
               }
             }
@@ -1848,6 +1848,46 @@
           "stringUnit": {
             "state": "translated",
             "value": "Skipped a blurry shot"
+          }
+        }
+      }
+    },
+    "녹음 목록": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recordings"
+          }
+        }
+      }
+    },
+    "지원하지 않는 이미지입니다: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unsupported image: %@"
+          }
+        }
+      }
+    },
+    "ZIP 파일이 4GB 한도를 넘었습니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The ZIP file is over the 4 GB limit."
+          }
+        }
+      }
+    },
+    "잘못된 ZIP 항목 경로: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invalid ZIP entry path: %@"
           }
         }
       }

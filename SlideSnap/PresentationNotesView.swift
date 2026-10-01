@@ -157,7 +157,7 @@ struct PresentationNotesView: View {
                 }
             }
         } header: {
-            Text("녹음")
+            Text("녹음 목록")
         } footer: {
             if !presentation.allRecordings.isEmpty {
                 Text("받아쓰면 장표마다 그때 한 말을 볼 수 있고, 검색과 AI 요약에도 쓰여요.")

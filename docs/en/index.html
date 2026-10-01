@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CatchSlide — Support</title>
+<meta name="description" content="CatchSlide support — capture lecture slides, record the talk, and review with transcripts and AI summaries.">
+<style>
+  :root {
+    --blue: #2f6bde;
+    --blue-light: #4facfe;
+    --green: #29cc70;
+    --ink: #1a2233;
+    --muted: #5b6577;
+    --bg: #f5f7fb;
+    --card: #ffffff;
+    --border: #e4e9f2;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #e8ecf4;
+      --muted: #9aa4b8;
+      --bg: #0f131b;
+      --card: #1a2130;
+      --border: #2a3346;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .hero {
+    background: linear-gradient(135deg, var(--blue-light) 0%, var(--blue) 100%);
+    color: #fff;
+    padding: 64px 24px 56px;
+    text-align: center;
+  }
+  .hero img {
+    width: 108px; height: 108px;
+    border-radius: 24px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.28);
+  }
+  .hero h1 { margin: 20px 0 6px; font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; }
+  .hero p { margin: 0; font-size: 1.05rem; opacity: 0.95; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 40px 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
+  h2 { font-size: 1.35rem; font-weight: 700; margin: 0 0 18px; letter-spacing: -0.01em; }
+  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 520px) { .features { grid-template-columns: 1fr; } }
+  .feature {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 18px 18px 16px;
+  }
+  .feature .ic { font-size: 1.5rem; }
+  .feature h3 { margin: 8px 0 4px; font-size: 1rem; }
+  .feature p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+  .faq { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 6px 20px; }
+  details { padding: 14px 0; border-bottom: 1px solid var(--border); }
+  details:last-child { border-bottom: none; }
+  summary { cursor: pointer; font-weight: 600; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: "＋"; color: var(--blue); font-weight: 700; margin-right: 10px; }
+  details[open] summary::before { content: "－"; }
+  details p { margin: 12px 0 2px; color: var(--muted); }
+  .contact {
+    text-align: center; background: var(--card);
+    border: 1px solid var(--border); border-radius: 16px; padding: 32px 24px;
+  }
+  .btn {
+    display: inline-block; margin-top: 12px;
+    background: var(--blue); color: #fff; text-decoration: none;
+    padding: 12px 26px; border-radius: 999px; font-weight: 600;
+  }
+  a { color: var(--blue); }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 32px 24px 48px; }
+  .tag { display:inline-block; color: var(--green); font-weight:700; }
+</style>
+</head>
+<body>
+  <div class="hero">
+    <img src="../icon.png" alt="CatchSlide app icon">
+    <h1>CatchSlide</h1>
+    <p>Snap lecture slides. Get them straight, searchable and ready to review.</p>
+  </div>
+
+  <div class="wrap">
+    <section>
+      <h2>Features</h2>
+      <div class="features">
+        <div class="feature"><div class="ic">🟩</div><h3>Live slide detection</h3><p>The camera finds the four corners of a slide as you aim, flattens it as if you were facing it, and can capture it for you automatically.</p></div>
+        <div class="feature"><div class="ic">🤫</div><h3>Silent capture</h3><p>No shutter sound, so you can capture in the middle of a lecture without disturbing anyone.</p></div>
+        <div class="feature"><div class="ic">🎙️</div><h3>Record and replay</h3><p>Record the talk while you capture. Tap any slide to hear what was said at that moment.</p></div>
+        <div class="feature"><div class="ic">💬</div><h3>Transcripts</h3><p>Turn recordings into text on your device and read what was said on every slide.</p></div>
+        <div class="feature"><div class="ic">✨</div><h3>AI Summary</h3><p>Get an overview, key points and keywords for the whole talk, made on your device with Apple Intelligence.</p></div>
+        <div class="feature"><div class="ic">🔍</div><h3>Search everything</h3><p>Find a slide by any word on it or anything the speaker said.</p></div>
+        <div class="feature"><div class="ic">🗂️</div><h3>Organized by session</h3><p>Slides captured in a row become one presentation. Rename, reorder or merge them.</p></div>
+        <div class="feature"><div class="ic">📤</div><h3>PDF, Notion, PowerPoint</h3><p>Export a study PDF, a Markdown note for Notion or Obsidian, or a PowerPoint deck with the transcript in the speaker notes.</p></div>
+        <div class="feature"><div class="ic">☁️</div><h3>iCloud Sync</h3><p>Optionally keep your slides and recordings on all your iPhone, iPad and Mac devices.</p></div>
+        <div class="feature"><div class="ic">🖼️</div><h3>From Photos</h3><p>Share lecture photos from the Photos app and they are straightened and filed as one deck.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>FAQ</h2>
+      <div class="faq">
+        <details open>
+          <summary>How do I capture slides?</summary>
+          <p>Open the app and the camera is ready. Fit the slide on screen until the frame turns <span class="tag">green</span>, then tap the shutter or let auto capture take it. When the slide changes, the next one is captured automatically.</p>
+        </details>
+        <details>
+          <summary>How do I record the talk?</summary>
+          <p>Tap <strong>Record</strong> at the top of the camera. The talk is recorded while you capture. Later, open any slide and tap play to hear it from the moment you took that slide. Playback turns the slides for you.</p>
+        </details>
+        <details>
+          <summary>How do I get a transcript or an AI summary?</summary>
+          <p>Open a presentation and tap the ✨ notes button. Tap <strong>Transcribe</strong> next to a recording, then <strong>Summarize with AI</strong>. AI Summary needs a device that supports Apple Intelligence (iOS 26 or later) with Apple Intelligence turned on.</p>
+        </details>
+        <details>
+          <summary>Why are my slides grouped together?</summary>
+          <p>Slides captured within five minutes of each other are treated as the same session and filed in one presentation. You can rename it, or merge presentations from the list.</p>
+        </details>
+        <details>
+          <summary>How do I export?</summary>
+          <p>In a presentation, open the ⋯ menu and choose PDF (one, two or four slides per page), Markdown for Notion or Obsidian, or PowerPoint, which also opens in Keynote and Google Slides.</p>
+        </details>
+        <details>
+          <summary>How does iCloud Sync work?</summary>
+          <p>Turn it on in <strong>My Info › Sync</strong>. Your presentations, slides and recordings are stored in your own private iCloud and appear on your other devices signed in with the same Apple Account. It is off by default because photos and recordings use your iCloud storage.</p>
+        </details>
+        <details>
+          <summary>Where is my data stored?</summary>
+          <p>On your device. Text recognition, transcription and AI Summary all run on your device. Data only goes to your own iCloud if you turn on sync. See the <a href="privacy.html">Privacy Policy</a>.</p>
+        </details>
+      </div>
+    </section>
+
+    <section>
+      <div class="contact">
+        <h2 style="margin-bottom:6px">Need help?</h2>
+        <p style="color:var(--muted);margin:0">Questions, bug reports and feature ideas are welcome.</p>
+        <a class="btn" href="mailto:leeo@kakao.com?subject=%5BCatchSlide%5D%20Support">Email us</a>
+        <p style="margin:14px 0 0"><a href="privacy.html">Privacy Policy</a> · <a href="../">한국어</a></p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    © 2026 CatchSlide &nbsp;·&nbsp; leeo@kakao.com
+  </footer>
+</body>
+</html>

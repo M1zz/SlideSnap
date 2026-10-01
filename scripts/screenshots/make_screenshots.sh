@@ -10,7 +10,7 @@ set -euo pipefail
 cd "${0:A:h}/../.."
 ROOT=$PWD
 LANGS=(${@:-ko en})
-DEVICE_NAME="iPhone 17 Pro Max"
+DEVICE_NAME="${DEVICE_NAME:-iPhone 17 Pro Max}"   # 다른 작업과 시뮬레이터가 겹치면 DEVICE_NAME 으로 바꿔 찍는다
 BUNDLE=com.leeo.slidesnap
 GROUP=group.com.leeo.slidesnap
 WORK=$(mktemp -d)

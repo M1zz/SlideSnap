@@ -1,4 +1,4 @@
-# 장표스냅 (SlideSnap) — App Store 페이지
+# 장표스냅 (CatchSlide) — App Store 페이지
 
 DeployBar 가 이 파일을 읽어 App Store Connect 의 스토어 페이지를 채운다.
 적지 않은 칸은 건드리지 않는다. 확인은 `DeployBar --storemeta 장표스냅`.
@@ -49,6 +49,10 @@ DeployBar 가 이 파일을 읽어 App Store Connect 의 스토어 페이지를 
 
 PPT,필기,스캔,문서,PDF,세미나,수업,판서,캡처,OCR,복습,대학생,컨퍼런스,노트,무음카메라,원근보정,사진정리,교안,스터디,학회,워크숍,인강,자료정리
 
+### 마케팅 URL
+
+https://m1zz.github.io/SlideSnap/
+
 ### 지원 URL
 
 https://m1zz.github.io/SlideSnap/
@@ -61,7 +65,7 @@ https://m1zz.github.io/SlideSnap/privacy.html
 
 ### 이름
 
-SlideSnap: Lecture Slide Scan
+CatchSlide: Lecture Slide Scan
 
 ### 부제
 
@@ -69,14 +73,14 @@ Capture, straighten & search
 
 ### 프로모션 텍스트
 
-Pick several photos in Photos and share them to SlideSnap. They are straightened, put in the order you took them, and filed as one tidy deck.
+Pick several photos in Photos and share them to CatchSlide. They are straightened, put in the order you took them, and filed as one tidy deck.
 
 ### 설명
 
-Slides photographed from the back row always come out crooked, and they get lost between selfies and receipts. SlideSnap is a camera just for presentation slides: it captures them, straightens them, and keeps them together.
+Slides photographed from the back row always come out crooked, and they get lost between selfies and receipts. CatchSlide is a camera just for presentation slides: it captures them, straightens them, and keeps them together.
 
 Straight, every time
-The camera finds the four corners of the slide as you aim. Shoot from any seat and SlideSnap flattens the slide as if you were facing it head on, cropping away the room. A green frame tells you it is locked, and auto capture can take the shot for you.
+The camera finds the four corners of the slide as you aim. Shoot from any seat and CatchSlide flattens the slide as if you were facing it head on, cropping away the room. A green frame tells you it is locked, and auto capture can take the shot for you.
 
 Silent
 There is no shutter sound, so you can capture slides in the middle of a lecture or talk without disturbing anyone. Blurry shots are skipped automatically.
@@ -85,10 +89,10 @@ Organized by session
 Slides you capture in a row are grouped into one presentation. Give each one a title, reorder slides, or merge presentations together.
 
 Straight from Photos
-Already have lecture photos? Select several in Photos and share them to SlideSnap. They are straightened, sorted by the time you took them, and filed as one presentation.
+Already have lecture photos? Select several in Photos and share them to CatchSlide. They are straightened, sorted by the time you took them, and filed as one presentation.
 
 Search the words on your slides
-SlideSnap recognizes the text on every slide, so a single word you remember brings back the slide from a lecture weeks ago.
+CatchSlide recognizes the text on every slide, so a single word you remember brings back the slide from a lecture weeks ago.
 
 Sharper text, then PDF
 Enhance Readability clears shadows and faded contrast. Export a presentation as a study PDF with one, two, or four slides per page, or share the images.
@@ -102,10 +106,14 @@ Your slides stay on your device. No account or sign-in needed.
 
 ppt,presentation,notes,pdf,class,seminar,conference,ocr,study,document,whiteboard,silent,camera,deck
 
+### 마케팅 URL
+
+https://m1zz.github.io/SlideSnap/en/
+
 ### 지원 URL
 
-https://m1zz.github.io/SlideSnap/
+https://m1zz.github.io/SlideSnap/en/
 
 ### 개인정보 처리방침 URL
 
-https://m1zz.github.io/SlideSnap/privacy.html
+https://m1zz.github.io/SlideSnap/en/privacy.html

@@ -19,8 +19,8 @@ struct ZipWriter {
 
         var errorDescription: String? {
             switch self {
-            case .tooLarge: return "ZIP 파일이 4GB 한도를 넘었습니다."
-            case .invalidPath(let path): return "잘못된 ZIP 항목 경로: \(path)"
+            case .tooLarge: return String(localized: "ZIP 파일이 4GB 한도를 넘었습니다.")
+            case .invalidPath(let path): return String(localized: "잘못된 ZIP 항목 경로: \(path)")
             }
         }
     }
