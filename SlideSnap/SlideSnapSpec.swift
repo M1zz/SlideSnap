@@ -22,6 +22,16 @@ enum SlideSnapSpec: LeeoAppSpec {
         containerIdentifier: "iCloud.com.Ysoup.FeedbackHub",
         appIdentifier: "com.leeo.slidesnap"
     )
+
+    /// 정책 링크 — APPSTORE.md 의 지원 URL · 개인정보 처리방침 URL 과 같은 주소.
+    static let legal = LeeoLegalConfig(
+        privacyURL: URL(string: "https://m1zz.github.io/SlideSnap/privacy.html")!,
+        supportURL: URL(string: "https://m1zz.github.io/SlideSnap/")!,
+        marketingURL: URL(string: "https://m1zz.github.io/SlideSnap/")!
+    )
+
+    /// 인앱 결제 없음.
+    static let monetization = LeeoMonetization.free
 }
 
 /// 앱 전역에서 쓰는 상수 (기존 FeedbackService.swift에서 이동).
