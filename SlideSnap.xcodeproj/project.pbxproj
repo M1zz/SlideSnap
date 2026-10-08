@@ -240,7 +240,7 @@
 			};
 			buildConfigurationList = 1A000000000000000000000E /* Build configuration list for PBXProject "SlideSnap" */;
 			compatibilityVersion = "Xcode 15.0";
-			developmentRegion = ko;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -457,7 +457,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "SlideSnap-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "장표스냅";
+				INFOPLIST_KEY_CFBundleDisplayName = CatchSlide;
 				INFOPLIST_KEY_NSCameraUsageDescription = "발표 장표를 촬영하기 위해 카메라 접근이 필요합니다.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "장표를 찍는 동안 발표 내용을 녹음해 장표별로 다시 들을 수 있게 합니다.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "녹음한 발표를 기기 안에서 글로 받아써 장표별로 보여 주고 검색할 수 있게 합니다.";
@@ -492,7 +492,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "SlideSnap-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "장표스냅";
+				INFOPLIST_KEY_CFBundleDisplayName = CatchSlide;
 				INFOPLIST_KEY_NSCameraUsageDescription = "발표 장표를 촬영하기 위해 카메라 접근이 필요합니다.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "장표를 찍는 동안 발표 내용을 녹음해 장표별로 다시 들을 수 있게 합니다.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "녹음한 발표를 기기 안에서 글로 받아써 장표별로 보여 주고 검색할 수 있게 합니다.";
@@ -525,7 +525,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "SlideSnapWidget-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "장표스냅";
+				INFOPLIST_KEY_CFBundleDisplayName = CatchSlide;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -555,7 +555,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "SlideSnapWidget-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "장표스냅";
+				INFOPLIST_KEY_CFBundleDisplayName = CatchSlide;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -583,7 +583,7 @@
 				DEVELOPMENT_TEAM = QGAQ3AY3R3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "SlideSnapShare-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "장표스냅";
+				INFOPLIST_KEY_CFBundleDisplayName = CatchSlide;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -612,7 +612,7 @@
 				DEVELOPMENT_TEAM = QGAQ3AY3R3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "SlideSnapShare-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "장표스냅";
+				INFOPLIST_KEY_CFBundleDisplayName = CatchSlide;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
