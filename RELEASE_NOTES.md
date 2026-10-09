@@ -3,6 +3,20 @@
 App Store "이 버전의 새로운 기능"에 그대로 올라가는 원본입니다.
 `## 버전` 아래 `### ... 앱스토어` 절만 스토어로 나갑니다.
 
+## 1.0.7
+
+### 앱스토어 (한국어)
+
+의견을 보낼 때 어떤 상황이었는지 차근차근 물어봐요
+버그를 알릴 때 기대한 결과도 함께 남길 수 있어요
+그 밖의 언어로 설정한 기기에는 영어로 보여요
+
+### App Store (English)
+
+Feedback now asks what happened
+Bug reports can include what you expected
+Other languages now fall back to English
+
 ## 1.0.6
 
 ### 앱스토어 (한국어)
