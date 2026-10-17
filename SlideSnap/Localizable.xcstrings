@@ -1891,6 +1891,358 @@
           }
         }
       }
+    },
+    "VoiceOver로 더 편하게": {
+      "comment": "Roadmap item: VoiceOver",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Better VoiceOver Support"
+          }
+        }
+      }
+    },
+    "화면 읽기 기능이 단추와 내용을 빠짐없이, 알맞은 순서로 읽어 줘요.": {
+      "comment": "Roadmap item detail: VoiceOver",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VoiceOver reads every button and detail, in the right order."
+          }
+        }
+      }
+    },
+    "큰 글씨에 맞춘 화면": {
+      "comment": "Roadmap item: larger text layouts",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Layouts for Larger Text"
+          }
+        }
+      }
+    },
+    "글자 크기를 키워도 잘리지 않고 보기 좋게 다시 배치돼요.": {
+      "comment": "Roadmap item detail: larger text layouts",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bigger text sizes fit neatly without getting cut off."
+          }
+        }
+      }
+    },
+    "다크 모드": {
+      "comment": "Roadmap item: dark mode",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dark Mode"
+          }
+        }
+      }
+    },
+    "어두운 화면에서도 글자와 단추가 또렷하게 보여요.": {
+      "comment": "Roadmap item detail: dark mode",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Text and buttons stay crisp on a dark screen."
+          }
+        }
+      }
+    },
+    "보기 편한 색과 대비": {
+      "comment": "Roadmap item: colors and contrast",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Easier-to-Read Colors"
+          }
+        }
+      }
+    },
+    "대비를 높이거나 색을 구별하기 어려워도 내용을 알아볼 수 있어요.": {
+      "comment": "Roadmap item detail: colors and contrast",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Everything stays readable with higher contrast or if colors are hard to tell apart."
+          }
+        }
+      }
+    },
+    "움직임 줄이기": {
+      "comment": "Roadmap item: reduce motion",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reduce Motion"
+          }
+        }
+      }
+    },
+    "움직임 줄이기를 켜면 화면 효과가 차분해져요.": {
+      "comment": "Roadmap item detail: reduce motion",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turn on Reduce Motion for calmer screen effects."
+          }
+        }
+      }
+    },
+    "키보드로 조작하기": {
+      "comment": "Roadmap item: keyboard control",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keyboard Control"
+          }
+        }
+      }
+    },
+    "아이패드에서 키보드만으로 주요 기능을 쓸 수 있어요.": {
+      "comment": "Roadmap item detail: keyboard control",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use the main features on iPad with just a keyboard."
+          }
+        }
+      }
+    },
+    "더 많은 언어": {
+      "comment": "Roadmap item: more languages",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "More Languages"
+          }
+        }
+      }
+    },
+    "더 많은 나라 말로 앱을 쓸 수 있게 해요.": {
+      "comment": "Roadmap item detail: more languages",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use the app in more languages."
+          }
+        }
+      }
+    },
+    "처음 쓰는 분을 위한 안내": {
+      "comment": "Roadmap item: first-run guide",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Getting Started Guide"
+          }
+        }
+      }
+    },
+    "처음 열었을 때 무엇을 할 수 있는지 짧게 보여 줘요.": {
+      "comment": "Roadmap item detail: first-run guide",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A quick look at what you can do the first time you open the app."
+          }
+        }
+      }
+    },
+    "업데이트 소식": {
+      "comment": "Roadmap item: what's new after an update",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What's New"
+          }
+        }
+      }
+    },
+    "업데이트 뒤 처음 열 때 무엇이 새로 생겼는지 알려 줘요.": {
+      "comment": "Roadmap item detail: what's new after an update",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "See what's new the first time you open the app after an update."
+          }
+        }
+      }
+    },
+    "쓰는 요령 알려 주기": {
+      "comment": "Roadmap item: tips",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Handy Tips"
+          }
+        }
+      }
+    },
+    "알아 두면 편한 기능을 알맞은 때에 살짝 알려 줘요.": {
+      "comment": "Roadmap item detail: tips",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Helpful features, suggested at just the right moment."
+          }
+        }
+      }
+    },
+    "Siri와 단축어": {
+      "comment": "Roadmap item: Siri and Shortcuts",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Siri and Shortcuts"
+          }
+        }
+      }
+    },
+    "Siri에게 말하거나 단축어로 바로 장표를 찍어요.": {
+      "comment": "Roadmap item detail: Siri and Shortcuts",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ask Siri or run a shortcut to start capturing slides right away."
+          }
+        }
+      }
+    },
+    "백업과 내보내기": {
+      "comment": "Roadmap item: backup and export",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backup and Export"
+          }
+        }
+      }
+    },
+    "발표를 파일로 저장하고 다시 불러올 수 있어요.": {
+      "comment": "Roadmap item detail: backup and export",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save your presentations to a file and bring them back anytime."
+          }
+        }
+      }
+    },
+    "Face ID 잠금": {
+      "comment": "Roadmap item: Face ID lock",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Face ID Lock"
+          }
+        }
+      }
+    },
+    "Face ID나 Touch ID로 앱을 잠가 내 발표를 지켜요.": {
+      "comment": "Roadmap item detail: Face ID lock",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lock the app with Face ID or Touch ID to keep your presentations private."
+          }
+        }
+      }
+    },
+    "펼치는 아이폰 화면": {
+      "comment": "Roadmap item: foldable iPhone layout",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Foldable iPhone Layout"
+          }
+        }
+      }
+    },
+    "펼치는 아이폰에서 넓은 화면을 두 쪽으로 나눠 써요.": {
+      "comment": "Roadmap item detail: foldable iPhone layout",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use the wide screen of a foldable iPhone as two side-by-side panes."
+          }
+        }
+      }
+    },
+    "내 데이터 한 번에 지우기": {
+      "comment": "Roadmap item: delete all my data",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete All My Data"
+          }
+        }
+      }
+    },
+    "원하면 앱 안에서 내 발표를 모두 지울 수 있어요.": {
+      "comment": "Roadmap item detail: delete all my data",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erase all your presentations from inside the app whenever you want."
+          }
+        }
+      }
+    },
+    "찍던 발표 이어서 하기": {
+      "comment": "Roadmap item: keep slides captured so far",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pick Up Where You Left Off"
+          }
+        }
+      }
+    },
+    "장표를 찍다가 앱이 꺼져도 찍던 내용이 남아 있어요.": {
+      "comment": "Roadmap item detail: keep slides captured so far",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "If the app closes while you're capturing, the slides you took are kept."
+          }
+        }
+      }
     }
   },
   "version": "1.0"
