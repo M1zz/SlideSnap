@@ -47,7 +47,7 @@ DeployBar 가 이 파일을 읽어 App Store Connect 의 스토어 페이지를 
 
 ### 키워드
 
-PPT,필기,스캔,문서,PDF,세미나,수업,판서,캡처,OCR,복습,대학생,컨퍼런스,노트,무음카메라,원근보정,사진정리,교안,스터디,학회,워크숍,인강,자료정리
+슬라이드캡처,원근보정,교안,판서,발표자료,강의자료,화면촬영,칠판,복습,세미나,PPT,인강,OCR,사진정리,학회,필기,문서스캐너,PDF,수업,대학생,스터디,컨퍼런스,학회자료
 
 ### 마케팅 URL
 
@@ -104,7 +104,7 @@ Your slides stay on your device. No account or sign-in needed.
 
 ### 키워드
 
-ppt,presentation,notes,pdf,class,seminar,conference,ocr,study,document,whiteboard,silent,camera,deck
+keystone,perspective,seminar,webinar,deskew,whiteboard,ppt,ocr,pdf,notes,class,conference,handout
 
 ### 마케팅 URL
 
