@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CatchSlide — Destek</title>
+<meta name="description" content="CatchSlide destek sayfası — ders slaytlarını çekin, konuşmayı kaydedin ve dökümler ile yapay zeka özetleriyle tekrar edin.">
+<style>
+  :root {
+    --blue: #2f6bde;
+    --blue-light: #4facfe;
+    --green: #29cc70;
+    --ink: #1a2233;
+    --muted: #5b6577;
+    --bg: #f5f7fb;
+    --card: #ffffff;
+    --border: #e4e9f2;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #e8ecf4;
+      --muted: #9aa4b8;
+      --bg: #0f131b;
+      --card: #1a2130;
+      --border: #2a3346;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .hero {
+    background: linear-gradient(135deg, var(--blue-light) 0%, var(--blue) 100%);
+    color: #fff;
+    padding: 64px 24px 56px;
+    text-align: center;
+  }
+  .hero img {
+    width: 108px; height: 108px;
+    border-radius: 24px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.28);
+  }
+  .hero h1 { margin: 20px 0 6px; font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; }
+  .hero p { margin: 0; font-size: 1.05rem; opacity: 0.95; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 40px 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
+  h2 { font-size: 1.35rem; font-weight: 700; margin: 0 0 18px; letter-spacing: -0.01em; }
+  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 520px) { .features { grid-template-columns: 1fr; } }
+  .feature {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 18px 18px 16px;
+  }
+  .feature .ic { font-size: 1.5rem; }
+  .feature h3 { margin: 8px 0 4px; font-size: 1rem; }
+  .feature p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+  .faq { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 6px 20px; }
+  details { padding: 14px 0; border-bottom: 1px solid var(--border); }
+  details:last-child { border-bottom: none; }
+  summary { cursor: pointer; font-weight: 600; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: "＋"; color: var(--blue); font-weight: 700; margin-right: 10px; }
+  details[open] summary::before { content: "－"; }
+  details p { margin: 12px 0 2px; color: var(--muted); }
+  .contact {
+    text-align: center; background: var(--card);
+    border: 1px solid var(--border); border-radius: 16px; padding: 32px 24px;
+  }
+  .btn {
+    display: inline-block; margin-top: 12px;
+    background: var(--blue); color: #fff; text-decoration: none;
+    padding: 12px 26px; border-radius: 999px; font-weight: 600;
+  }
+  a { color: var(--blue); }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 32px 24px 48px; }
+  .tag { display:inline-block; color: var(--green); font-weight:700; }
+</style>
+<link rel="canonical" href="https://m1zz.github.io/SlideSnap/tr/">
+<link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
+<link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
+<link rel="alternate" hreflang="en-GB" href="https://m1zz.github.io/SlideSnap/en/">
+<link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
+<link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
+<link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
+<link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
+<link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
+<link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
+<link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
+<link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
+<link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
+<link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
+<link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
+<link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
+<link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
+<link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
+<link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
+<link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
+<link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
+<link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
+<link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
+<link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
+<link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
+<link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+</head>
+<body>
+  <div class="hero">
+    <img src="../icon.png" alt="CatchSlide uygulama simgesi">
+    <h1>CatchSlide</h1>
+    <p>Ders slaytlarını çekin. Düz, aranabilir ve tekrara hazır olsun.</p>
+  </div>
+
+  <div class="wrap">
+    <section>
+      <h2>Özellikler</h2>
+      <div class="features">
+        <div class="feature"><div class="ic">🟩</div><h3>Canlı slayt algılama</h3><p>Kamera, siz nişan alırken slaytın dört köşesini bulur, slaytı tam karşıdan bakıyormuşsunuz gibi düzleştirir ve isterseniz fotoğrafı otomatik çeker.</p></div>
+        <div class="feature"><div class="ic">🤫</div><h3>Sessiz çekim</h3><p>Deklanşör sesi yoktur; ders sırasında kimseyi rahatsız etmeden slayt çekebilirsiniz.</p></div>
+        <div class="feature"><div class="ic">🎙️</div><h3>Kaydet ve tekrar dinle</h3><p>Slayt çekerken konuşmayı da kaydedin. Herhangi bir slayta dokunarak o anda söylenenleri dinleyin.</p></div>
+        <div class="feature"><div class="ic">💬</div><h3>Dökümler</h3><p>Kayıtları cihazınızda metne dönüştürün ve her slaytta söylenenleri okuyun.</p></div>
+        <div class="feature"><div class="ic">✨</div><h3>Yapay Zeka Özeti</h3><p>Tüm konuşmanın genel özetini, ana noktalarını ve anahtar kelimelerini Apple Intelligence ile cihazınızda oluşturun.</p></div>
+        <div class="feature"><div class="ic">🔍</div><h3>Her şeyde arama</h3><p>Bir slaytı üzerindeki herhangi bir sözcükle ya da konuşmacının söylediği bir şeyle bulun.</p></div>
+        <div class="feature"><div class="ic">🗂️</div><h3>Oturuma göre düzen</h3><p>Art arda çekilen slaytlar tek bir sunum olur. Sunumları yeniden adlandırın, sıralayın ya da birleştirin.</p></div>
+        <div class="feature"><div class="ic">📤</div><h3>PDF, Notion, PowerPoint</h3><p>Çalışma PDF'i, Notion veya Obsidian için Markdown notu ya da dökümü konuşmacı notlarına eklenmiş bir PowerPoint sunumu dışa aktarın.</p></div>
+        <div class="feature"><div class="ic">☁️</div><h3>iCloud Senkronizasyonu</h3><p>İsterseniz slaytlarınızı ve kayıtlarınızı tüm iPhone, iPad ve Mac cihazlarınızda güncel tutun.</p></div>
+        <div class="feature"><div class="ic">🖼️</div><h3>Fotoğraflar'dan</h3><p>Ders fotoğraflarını Fotoğraflar uygulamasından paylaşın; düzeltilip tek bir sunum olarak kaydedilsinler.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Sık Sorulan Sorular</h2>
+      <div class="faq">
+        <details open>
+          <summary>Slaytları nasıl çekerim?</summary>
+          <p>Uygulamayı açtığınızda kamera hazırdır. Çerçeve <span class="tag">yeşile</span> dönene kadar slaytı ekrana sığdırın, ardından deklanşöre dokunun ya da otomatik çekimin sizin yerinize çekmesine izin verin. Slayt değiştiğinde bir sonraki slayt otomatik olarak çekilir.</p>
+        </details>
+        <details>
+          <summary>Konuşmayı nasıl kaydederim?</summary>
+          <p>Kamera ekranının üstündeki <strong>Kayıt</strong> düğmesine dokunun. Siz slayt çekerken konuşma da kaydedilir. Daha sonra herhangi bir slaytı açıp oynat düğmesine dokunarak o slaytı çektiğiniz andan itibaren kaydı dinleyebilirsiniz. Oynatma sırasında slaytlar sizin yerinize değişir.</p>
+        </details>
+        <details>
+          <summary>Döküm ya da yapay zeka özeti nasıl alırım?</summary>
+          <p>Bir sunumu açın ve ✨ not düğmesine dokunun. Bir kaydın yanındaki <strong>Yazıya Dök</strong> düğmesine, ardından <strong>Yapay Zekayla Özetle</strong> düğmesine dokunun. Yapay Zeka Özeti için Apple Intelligence destekleyen (iOS 26 veya üzeri) ve Apple Intelligence'ın açık olduğu bir cihaz gerekir.</p>
+        </details>
+        <details>
+          <summary>Slaytlarım neden bir arada gruplanıyor?</summary>
+          <p>Birbirinden en fazla beş dakika arayla çekilen slaytlar aynı oturum sayılır ve tek bir sunumda toplanır. Sunumu yeniden adlandırabilir veya listeden sunumları birleştirebilirsiniz.</p>
+        </details>
+        <details>
+          <summary>Nasıl dışa aktarırım?</summary>
+          <p>Bir sunumda ⋯ menüsünü açın ve PDF (sayfada bir, iki ya da dört slayt), Notion veya Obsidian için Markdown ya da Keynote ve Google Slayt'ta da açılan PowerPoint seçeneklerinden birini seçin.</p>
+        </details>
+        <details>
+          <summary>iCloud Senkronizasyonu nasıl çalışır?</summary>
+          <p><strong>Bilgilerim › Senkronize Et</strong> bölümünden açın. Sunumlarınız, slaytlarınız ve kayıtlarınız size ait özel iCloud'da saklanır ve aynı Apple Hesabıyla oturum açtığınız diğer cihazlarınızda görünür. Fotoğraflar ve kayıtlar iCloud depolama alanınızı kullandığından varsayılan olarak kapalıdır.</p>
+        </details>
+        <details>
+          <summary>Verilerim nerede saklanıyor?</summary>
+          <p>Cihazınızda. Metin tanıma, yazıya dökme ve Yapay Zeka Özeti tamamen cihazınızda çalışır. Veriler yalnızca senkronizasyonu açarsanız kendi iCloud'unuza gider. <a href="privacy.html">Gizlilik Politikası</a>'na bakın.</p>
+        </details>
+      </div>
+    </section>
+
+    <section>
+      <div class="contact">
+        <h2 style="margin-bottom:6px">Yardıma mı ihtiyacınız var?</h2>
+        <p style="color:var(--muted);margin:0">Sorularınızı, hata bildirimlerinizi ve özellik önerilerinizi bekleriz.</p>
+        <a class="btn" href="mailto:leeo@kakao.com?subject=%5BCatchSlide%5D%20Support">Bize e-posta gönderin</a>
+        <p style="margin:14px 0 0"><a href="privacy.html">Gizlilik Politikası</a></p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    © 2026 CatchSlide &nbsp;·&nbsp; leeo@kakao.com
+  </footer>
+<nav style="text-align:center;font-size:0.85rem;line-height:2;padding:0 24px 40px"><a href="../" hreflang="ko">한국어</a> · <a href="../en/" hreflang="en">English</a> · <a href="../zh-Hans/" hreflang="zh-Hans">简体中文</a> · <a href="../zh-Hant/" hreflang="zh-Hant">繁體中文</a> · <a href="../ja/" hreflang="ja">日本語</a> · <a href="../ru/" hreflang="ru">Русский</a> · <a href="../es/" hreflang="es">Español</a> · <a href="../de/" hreflang="de">Deutsch</a> · <a href="../fr/" hreflang="fr">Français</a> · <a href="../it/" hreflang="it">Italiano</a> · <a href="../pt-BR/" hreflang="pt-BR">Português (Brasil)</a> · <a href="../th/" hreflang="th">ไทย</a> · <a href="../vi/" hreflang="vi">Tiếng Việt</a> · <a href="../cs/" hreflang="cs">Čeština</a> · <a href="../da/" hreflang="da">Dansk</a> · <a href="../el/" hreflang="el">Ελληνικά</a> · <a href="../fi/" hreflang="fi">Suomi</a> · <a href="../id/" hreflang="id">Indonesia</a> · <a href="../nb/" hreflang="nb">Norsk</a> · <a href="../nl/" hreflang="nl">Nederlands</a> · <a href="../pl/" hreflang="pl">Polski</a> · <a href="../sv/" hreflang="sv">Svenska</a> · <a href="../tr/" hreflang="tr">Türkçe</a></nav>
+</body>
+</html>

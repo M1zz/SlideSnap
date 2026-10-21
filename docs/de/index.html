@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CatchSlide – Support</title>
+<meta name="description" content="CatchSlide-Support: Vorlesungsfolien aufnehmen, den Vortrag mitschneiden und mit Transkripten und KI-Zusammenfassungen nachbereiten.">
+<style>
+  :root {
+    --blue: #2f6bde;
+    --blue-light: #4facfe;
+    --green: #29cc70;
+    --ink: #1a2233;
+    --muted: #5b6577;
+    --bg: #f5f7fb;
+    --card: #ffffff;
+    --border: #e4e9f2;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #e8ecf4;
+      --muted: #9aa4b8;
+      --bg: #0f131b;
+      --card: #1a2130;
+      --border: #2a3346;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .hero {
+    background: linear-gradient(135deg, var(--blue-light) 0%, var(--blue) 100%);
+    color: #fff;
+    padding: 64px 24px 56px;
+    text-align: center;
+  }
+  .hero img {
+    width: 108px; height: 108px;
+    border-radius: 24px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.28);
+  }
+  .hero h1 { margin: 20px 0 6px; font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; }
+  .hero p { margin: 0; font-size: 1.05rem; opacity: 0.95; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 40px 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
+  h2 { font-size: 1.35rem; font-weight: 700; margin: 0 0 18px; letter-spacing: -0.01em; }
+  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 520px) { .features { grid-template-columns: 1fr; } }
+  .feature {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 18px 18px 16px;
+  }
+  .feature .ic { font-size: 1.5rem; }
+  .feature h3 { margin: 8px 0 4px; font-size: 1rem; }
+  .feature p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+  .faq { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 6px 20px; }
+  details { padding: 14px 0; border-bottom: 1px solid var(--border); }
+  details:last-child { border-bottom: none; }
+  summary { cursor: pointer; font-weight: 600; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: "＋"; color: var(--blue); font-weight: 700; margin-right: 10px; }
+  details[open] summary::before { content: "－"; }
+  details p { margin: 12px 0 2px; color: var(--muted); }
+  .contact {
+    text-align: center; background: var(--card);
+    border: 1px solid var(--border); border-radius: 16px; padding: 32px 24px;
+  }
+  .btn {
+    display: inline-block; margin-top: 12px;
+    background: var(--blue); color: #fff; text-decoration: none;
+    padding: 12px 26px; border-radius: 999px; font-weight: 600;
+  }
+  a { color: var(--blue); }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 32px 24px 48px; }
+  .tag { display:inline-block; color: var(--green); font-weight:700; }
+</style>
+<link rel="canonical" href="https://m1zz.github.io/SlideSnap/de/">
+<link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
+<link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
+<link rel="alternate" hreflang="en-GB" href="https://m1zz.github.io/SlideSnap/en/">
+<link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
+<link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
+<link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
+<link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
+<link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
+<link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
+<link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
+<link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
+<link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
+<link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
+<link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
+<link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
+<link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
+<link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
+<link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
+<link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
+<link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
+<link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
+<link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
+<link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
+<link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
+<link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+</head>
+<body>
+  <div class="hero">
+    <img src="../icon.png" alt="CatchSlide App-Symbol">
+    <h1>CatchSlide</h1>
+    <p>Folien fotografieren. Gerade ausgerichtet, durchsuchbar und bereit zum Lernen.</p>
+  </div>
+
+  <div class="wrap">
+    <section>
+      <h2>Funktionen</h2>
+      <div class="features">
+        <div class="feature"><div class="ic">🟩</div><h3>Live-Folienerkennung</h3><p>Die Kamera erkennt beim Zielen die vier Ecken einer Folie, begradigt sie, als stündest du direkt davor, und kann sie automatisch aufnehmen.</p></div>
+        <div class="feature"><div class="ic">🤫</div><h3>Lautlose Aufnahme</h3><p>Kein Auslöseton: Du kannst mitten in einer Vorlesung aufnehmen, ohne jemanden zu stören.</p></div>
+        <div class="feature"><div class="ic">🎙️</div><h3>Aufnehmen und abspielen</h3><p>Schneide den Vortrag mit, während du Folien aufnimmst. Tippe auf eine Folie, um zu hören, was in diesem Moment gesagt wurde.</p></div>
+        <div class="feature"><div class="ic">💬</div><h3>Transkripte</h3><p>Wandle Aufnahmen direkt auf dem Gerät in Text um und lies zu jeder Folie nach, was gesagt wurde.</p></div>
+        <div class="feature"><div class="ic">✨</div><h3>KI-Zusammenfassung</h3><p>Erhalte Überblick, Kernpunkte und Stichwörter zum ganzen Vortrag, erstellt auf deinem Gerät mit Apple Intelligence.</p></div>
+        <div class="feature"><div class="ic">🔍</div><h3>Alles durchsuchen</h3><p>Finde eine Folie über jedes Wort darauf oder über alles, was die Vortragenden gesagt haben.</p></div>
+        <div class="feature"><div class="ic">🗂️</div><h3>Nach Vortrag geordnet</h3><p>Folien, die du hintereinander aufnimmst, werden zu einer Präsentation. Benenne sie um, ordne sie neu oder führe sie zusammen.</p></div>
+        <div class="feature"><div class="ic">📤</div><h3>PDF, Notion, PowerPoint</h3><p>Exportiere ein Lern-PDF, eine Markdown-Notiz für Notion oder Obsidian oder eine PowerPoint-Präsentation mit dem Transkript in den Vortragsnotizen.</p></div>
+        <div class="feature"><div class="ic">☁️</div><h3>iCloud-Sync</h3><p>Auf Wunsch hast du Folien und Aufnahmen auf all deinen iPhone-, iPad- und Mac-Geräten.</p></div>
+        <div class="feature"><div class="ic">🖼️</div><h3>Aus Fotos</h3><p>Teile Vorlesungsfotos aus der Fotos-App – sie werden begradigt und als eine Präsentation abgelegt.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Häufige Fragen</h2>
+      <div class="faq">
+        <details open>
+          <summary>Wie nehme ich Folien auf?</summary>
+          <p>Öffne die App, und die Kamera ist startklar. Richte die Folie im Bild aus, bis der Rahmen <span class="tag">grün</span> wird, und tippe dann auf den Auslöser oder lass die automatische Aufnahme auslösen. Wechselt die Folie, wird die nächste automatisch aufgenommen.</p>
+        </details>
+        <details>
+          <summary>Wie schneide ich den Vortrag mit?</summary>
+          <p>Tippe oben in der Kameraansicht auf <strong>Aufnahme</strong>. Der Vortrag wird mitgeschnitten, während du Folien aufnimmst. Später öffnest du eine beliebige Folie und tippst auf Abspielen, um ab dem Moment zu hören, in dem du sie aufgenommen hast. Bei der Wiedergabe blättern die Folien von selbst weiter.</p>
+        </details>
+        <details>
+          <summary>Wie bekomme ich ein Transkript oder eine KI-Zusammenfassung?</summary>
+          <p>Öffne eine Präsentation und tippe auf die ✨-Notizen-Taste. Tippe neben einer Aufnahme auf <strong>Transkribieren</strong> und danach auf <strong>Mit KI zusammenfassen</strong>. Für die KI-Zusammenfassung brauchst du ein Gerät mit Apple Intelligence (iOS 26 oder neuer), auf dem Apple Intelligence aktiviert ist.</p>
+        </details>
+        <details>
+          <summary>Warum werden meine Folien zusammengefasst?</summary>
+          <p>Folien, die innerhalb von fünf Minuten nacheinander aufgenommen werden, gelten als dieselbe Sitzung und landen in einer Präsentation. Du kannst sie umbenennen oder Präsentationen in der Liste zusammenführen.</p>
+        </details>
+        <details>
+          <summary>Wie exportiere ich?</summary>
+          <p>Öffne in einer Präsentation das Menü ⋯ und wähle PDF (eine, zwei oder vier Folien pro Seite), Markdown für Notion oder Obsidian oder PowerPoint – die Datei lässt sich auch in Keynote und Google Präsentationen öffnen.</p>
+        </details>
+        <details>
+          <summary>Wie funktioniert der iCloud-Sync?</summary>
+          <p>Schalte ihn unter <strong>Meine Angaben › Sync</strong> ein. Deine Präsentationen, Folien und Aufnahmen werden in deiner eigenen, privaten iCloud gespeichert und erscheinen auf deinen anderen Geräten, die mit demselben Apple-Account angemeldet sind. Standardmäßig ist er ausgeschaltet, weil Fotos und Aufnahmen Speicherplatz in iCloud belegen.</p>
+        </details>
+        <details>
+          <summary>Wo werden meine Daten gespeichert?</summary>
+          <p>Auf deinem Gerät. Texterkennung, Transkription und KI-Zusammenfassung laufen vollständig auf deinem Gerät. Nur wenn du den Sync einschaltest, gelangen Daten in deine eigene iCloud. Mehr dazu in der <a href="privacy.html">Datenschutzerklärung</a>.</p>
+        </details>
+      </div>
+    </section>
+
+    <section>
+      <div class="contact">
+        <h2 style="margin-bottom:6px">Brauchst du Hilfe?</h2>
+        <p style="color:var(--muted);margin:0">Fragen, Fehlermeldungen und Ideen für neue Funktionen sind willkommen.</p>
+        <a class="btn" href="mailto:leeo@kakao.com?subject=%5BCatchSlide%5D%20Support">E-Mail schreiben</a>
+        <p style="margin:14px 0 0"><a href="privacy.html">Datenschutzerklärung</a></p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    © 2026 CatchSlide &nbsp;·&nbsp; leeo@kakao.com
+  </footer>
+<nav style="text-align:center;font-size:0.85rem;line-height:2;padding:0 24px 40px"><a href="../" hreflang="ko">한국어</a> · <a href="../en/" hreflang="en">English</a> · <a href="../zh-Hans/" hreflang="zh-Hans">简体中文</a> · <a href="../zh-Hant/" hreflang="zh-Hant">繁體中文</a> · <a href="../ja/" hreflang="ja">日本語</a> · <a href="../ru/" hreflang="ru">Русский</a> · <a href="../es/" hreflang="es">Español</a> · <a href="../de/" hreflang="de">Deutsch</a> · <a href="../fr/" hreflang="fr">Français</a> · <a href="../it/" hreflang="it">Italiano</a> · <a href="../pt-BR/" hreflang="pt-BR">Português (Brasil)</a> · <a href="../th/" hreflang="th">ไทย</a> · <a href="../vi/" hreflang="vi">Tiếng Việt</a> · <a href="../cs/" hreflang="cs">Čeština</a> · <a href="../da/" hreflang="da">Dansk</a> · <a href="../el/" hreflang="el">Ελληνικά</a> · <a href="../fi/" hreflang="fi">Suomi</a> · <a href="../id/" hreflang="id">Indonesia</a> · <a href="../nb/" hreflang="nb">Norsk</a> · <a href="../nl/" hreflang="nl">Nederlands</a> · <a href="../pl/" hreflang="pl">Polski</a> · <a href="../sv/" hreflang="sv">Svenska</a> · <a href="../tr/" hreflang="tr">Türkçe</a></nav>
+</body>
+</html>

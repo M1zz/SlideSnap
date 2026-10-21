@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CatchSlide — Soporte</title>
+<meta name="description" content="Soporte de CatchSlide: captura diapositivas de clase, graba la charla y repasa con transcripciones y resúmenes con IA.">
+<style>
+  :root {
+    --blue: #2f6bde;
+    --blue-light: #4facfe;
+    --green: #29cc70;
+    --ink: #1a2233;
+    --muted: #5b6577;
+    --bg: #f5f7fb;
+    --card: #ffffff;
+    --border: #e4e9f2;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #e8ecf4;
+      --muted: #9aa4b8;
+      --bg: #0f131b;
+      --card: #1a2130;
+      --border: #2a3346;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .hero {
+    background: linear-gradient(135deg, var(--blue-light) 0%, var(--blue) 100%);
+    color: #fff;
+    padding: 64px 24px 56px;
+    text-align: center;
+  }
+  .hero img {
+    width: 108px; height: 108px;
+    border-radius: 24px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.28);
+  }
+  .hero h1 { margin: 20px 0 6px; font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; }
+  .hero p { margin: 0; font-size: 1.05rem; opacity: 0.95; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 40px 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
+  h2 { font-size: 1.35rem; font-weight: 700; margin: 0 0 18px; letter-spacing: -0.01em; }
+  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 520px) { .features { grid-template-columns: 1fr; } }
+  .feature {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 18px 18px 16px;
+  }
+  .feature .ic { font-size: 1.5rem; }
+  .feature h3 { margin: 8px 0 4px; font-size: 1rem; }
+  .feature p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+  .faq { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 6px 20px; }
+  details { padding: 14px 0; border-bottom: 1px solid var(--border); }
+  details:last-child { border-bottom: none; }
+  summary { cursor: pointer; font-weight: 600; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: "＋"; color: var(--blue); font-weight: 700; margin-right: 10px; }
+  details[open] summary::before { content: "－"; }
+  details p { margin: 12px 0 2px; color: var(--muted); }
+  .contact {
+    text-align: center; background: var(--card);
+    border: 1px solid var(--border); border-radius: 16px; padding: 32px 24px;
+  }
+  .btn {
+    display: inline-block; margin-top: 12px;
+    background: var(--blue); color: #fff; text-decoration: none;
+    padding: 12px 26px; border-radius: 999px; font-weight: 600;
+  }
+  a { color: var(--blue); }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 32px 24px 48px; }
+  .tag { display:inline-block; color: var(--green); font-weight:700; }
+</style>
+<link rel="canonical" href="https://m1zz.github.io/SlideSnap/es/">
+<link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
+<link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
+<link rel="alternate" hreflang="en-GB" href="https://m1zz.github.io/SlideSnap/en/">
+<link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
+<link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
+<link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
+<link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
+<link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
+<link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
+<link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
+<link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
+<link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
+<link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
+<link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
+<link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
+<link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
+<link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
+<link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
+<link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
+<link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
+<link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
+<link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
+<link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
+<link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
+<link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+</head>
+<body>
+  <div class="hero">
+    <img src="../icon.png" alt="Icono de la app CatchSlide">
+    <h1>CatchSlide</h1>
+    <p>Fotografía diapositivas de clase. Déjalas derechas, con búsqueda y listas para repasar.</p>
+  </div>
+
+  <div class="wrap">
+    <section>
+      <h2>Funciones</h2>
+      <div class="features">
+        <div class="feature"><div class="ic">🟩</div><h3>Detección de diapositivas en directo</h3><p>La cámara encuentra las cuatro esquinas de la diapositiva mientras apuntas, la endereza como si la vieras de frente y puede capturarla por ti automáticamente.</p></div>
+        <div class="feature"><div class="ic">🤫</div><h3>Captura silenciosa</h3><p>Sin sonido de obturador, para que puedas capturar en plena clase sin molestar a nadie.</p></div>
+        <div class="feature"><div class="ic">🎙️</div><h3>Graba y reproduce</h3><p>Graba la charla mientras capturas. Toca cualquier diapositiva para oír lo que se dijo en ese momento.</p></div>
+        <div class="feature"><div class="ic">💬</div><h3>Transcripciones</h3><p>Convierte las grabaciones en texto en tu dispositivo y lee lo que se dijo en cada diapositiva.</p></div>
+        <div class="feature"><div class="ic">✨</div><h3>Resumen con IA</h3><p>Obtén una visión general, los puntos clave y las palabras clave de toda la charla, generados en tu dispositivo con Apple Intelligence.</p></div>
+        <div class="feature"><div class="ic">🔍</div><h3>Busca en todo</h3><p>Encuentra una diapositiva por cualquier palabra que contenga o por algo que dijo el ponente.</p></div>
+        <div class="feature"><div class="ic">🗂️</div><h3>Organizado por sesión</h3><p>Las diapositivas capturadas seguidas forman una presentación. Cámbiales el nombre, reordénalas o combínalas.</p></div>
+        <div class="feature"><div class="ic">📤</div><h3>PDF, Notion, PowerPoint</h3><p>Exporta un PDF de estudio, una nota en Markdown para Notion u Obsidian, o una presentación de PowerPoint con la transcripción en las notas del orador.</p></div>
+        <div class="feature"><div class="ic">☁️</div><h3>Sincronización con iCloud</h3><p>Si quieres, mantén tus diapositivas y grabaciones en todos tus iPhone, iPad y Mac.</p></div>
+        <div class="feature"><div class="ic">🖼️</div><h3>Desde Fotos</h3><p>Comparte fotos de clase desde la app Fotos y se enderezan y se guardan como una sola presentación.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq">
+        <details open>
+          <summary>¿Cómo capturo diapositivas?</summary>
+          <p>Abre la app y la cámara está lista. Encaja la diapositiva en la pantalla hasta que el marco se ponga <span class="tag">verde</span>, y entonces toca el obturador o deja que la captura automática haga la foto. Cuando cambia la diapositiva, la siguiente se captura sola.</p>
+        </details>
+        <details>
+          <summary>¿Cómo grabo la charla?</summary>
+          <p>Toca <strong>Grabar</strong> en la parte superior de la cámara. La charla se graba mientras capturas. Después, abre cualquier diapositiva y pulsa reproducir para oírla desde el momento en que la hiciste. La reproducción va pasando las diapositivas por ti.</p>
+        </details>
+        <details>
+          <summary>¿Cómo obtengo una transcripción o un resumen con IA?</summary>
+          <p>Abre una presentación y toca el botón de notas ✨. Toca <strong>Transcribir</strong> junto a una grabación y, después, <strong>Resumir con IA</strong>. El resumen con IA requiere un dispositivo compatible con Apple Intelligence (iOS 26 o posterior) con Apple Intelligence activada.</p>
+        </details>
+        <details>
+          <summary>¿Por qué se agrupan mis diapositivas?</summary>
+          <p>Las diapositivas capturadas con menos de cinco minutos de diferencia se consideran de la misma sesión y se guardan en una presentación. Puedes cambiarle el nombre o combinar presentaciones desde la lista.</p>
+        </details>
+        <details>
+          <summary>¿Cómo exporto?</summary>
+          <p>En una presentación, abre el menú ⋯ y elige PDF (una, dos o cuatro diapositivas por página), Markdown para Notion u Obsidian, o PowerPoint, que también se abre en Keynote y Google Slides.</p>
+        </details>
+        <details>
+          <summary>¿Cómo funciona la sincronización con iCloud?</summary>
+          <p>Actívala en <strong>Mis datos › Sincronización</strong>. Tus presentaciones, diapositivas y grabaciones se guardan en tu iCloud privado y aparecen en tus otros dispositivos con la misma cuenta de Apple. Viene desactivada porque las fotos y las grabaciones ocupan espacio de tu iCloud.</p>
+        </details>
+        <details>
+          <summary>¿Dónde se guardan mis datos?</summary>
+          <p>En tu dispositivo. El reconocimiento de texto, la transcripción y el resumen con IA se ejecutan en tu dispositivo. Los datos solo van a tu propio iCloud si activas la sincronización. Consulta la <a href="privacy.html">Política de privacidad</a>.</p>
+        </details>
+      </div>
+    </section>
+
+    <section>
+      <div class="contact">
+        <h2 style="margin-bottom:6px">¿Necesitas ayuda?</h2>
+        <p style="color:var(--muted);margin:0">Las preguntas, los informes de errores y las ideas para nuevas funciones son bienvenidos.</p>
+        <a class="btn" href="mailto:leeo@kakao.com?subject=%5BCatchSlide%5D%20Support">Escríbenos</a>
+        <p style="margin:14px 0 0"><a href="privacy.html">Política de privacidad</a></p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    © 2026 CatchSlide &nbsp;·&nbsp; leeo@kakao.com
+  </footer>
+<nav style="text-align:center;font-size:0.85rem;line-height:2;padding:0 24px 40px"><a href="../" hreflang="ko">한국어</a> · <a href="../en/" hreflang="en">English</a> · <a href="../zh-Hans/" hreflang="zh-Hans">简体中文</a> · <a href="../zh-Hant/" hreflang="zh-Hant">繁體中文</a> · <a href="../ja/" hreflang="ja">日本語</a> · <a href="../ru/" hreflang="ru">Русский</a> · <a href="../es/" hreflang="es">Español</a> · <a href="../de/" hreflang="de">Deutsch</a> · <a href="../fr/" hreflang="fr">Français</a> · <a href="../it/" hreflang="it">Italiano</a> · <a href="../pt-BR/" hreflang="pt-BR">Português (Brasil)</a> · <a href="../th/" hreflang="th">ไทย</a> · <a href="../vi/" hreflang="vi">Tiếng Việt</a> · <a href="../cs/" hreflang="cs">Čeština</a> · <a href="../da/" hreflang="da">Dansk</a> · <a href="../el/" hreflang="el">Ελληνικά</a> · <a href="../fi/" hreflang="fi">Suomi</a> · <a href="../id/" hreflang="id">Indonesia</a> · <a href="../nb/" hreflang="nb">Norsk</a> · <a href="../nl/" hreflang="nl">Nederlands</a> · <a href="../pl/" hreflang="pl">Polski</a> · <a href="../sv/" hreflang="sv">Svenska</a> · <a href="../tr/" hreflang="tr">Türkçe</a></nav>
+</body>
+</html>

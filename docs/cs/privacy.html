@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CatchSlide — Zásady ochrany osobních údajů</title>
+<meta name="description" content="Zásady ochrany osobních údajů CatchSlide: slajdy, nahrávky a přepisy zůstávají v tvém zařízení, pokud nezapneš synchronizaci iCloudu.">
+<style>
+  :root {
+    --blue: #2f6bde; --ink: #1a2233; --muted: #5b6577;
+    --bg: #f5f7fb; --card: #ffffff; --border: #e4e9f2;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink: #e8ecf4; --muted: #9aa4b8; --bg: #0f131b; --card: #1a2130; --border: #2a3346; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    line-height: 1.7; -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 48px 24px 64px; }
+  a { color: var(--blue); }
+  h1 { font-size: 1.7rem; letter-spacing: -0.02em; margin: 0 0 4px; }
+  .updated { color: var(--muted); font-size: 0.9rem; margin: 0 0 28px; }
+  h2 { font-size: 1.2rem; margin: 34px 0 10px; letter-spacing: -0.01em; }
+  p, li { color: var(--ink); }
+  .lead {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 18px 20px; color: var(--muted);
+  }
+  .lead strong { color: var(--ink); }
+  ul { padding-left: 20px; }
+  li { margin: 6px 0; }
+  .back { display: inline-block; margin-bottom: 24px; text-decoration: none; font-weight: 600; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
+  .en { color: var(--muted); }
+  .en h2 { color: var(--ink); }
+  footer { color: var(--muted); font-size: 0.85rem; margin-top: 40px; }
+</style>
+<link rel="canonical" href="https://m1zz.github.io/SlideSnap/cs/privacy.html">
+<link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/privacy.html">
+<link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/privacy.html">
+<link rel="alternate" hreflang="en-GB" href="https://m1zz.github.io/SlideSnap/en/privacy.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/privacy.html">
+<link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/privacy.html">
+<link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/privacy.html">
+<link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/privacy.html">
+<link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/privacy.html">
+<link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/privacy.html">
+<link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/privacy.html">
+<link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/privacy.html">
+<link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/privacy.html">
+<link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/privacy.html">
+<link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/privacy.html">
+<link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/privacy.html">
+<link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/privacy.html">
+<link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/privacy.html">
+<link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/privacy.html">
+<link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/privacy.html">
+<link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/privacy.html">
+<link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/privacy.html">
+<link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/privacy.html">
+<link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/privacy.html">
+<link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/privacy.html">
+<link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/privacy.html">
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="./">← Podpora</a>
+    <h1>Zásady ochrany osobních údajů</h1>
+    <p class="updated">Naposledy aktualizováno: 1. října 2026 · Aplikace: CatchSlide</p>
+
+    <p class="lead"><strong>Stručně:</strong> tvoje slajdy, nahrávky, přepisy a shrnutí zůstávají v tvém zařízení. Opustí ho, jen když zapneš synchronizaci iCloudu (půjdou do <strong>tvého vlastního</strong> soukromého iCloudu, do kterého nevidíme) nebo je sám sdílíš. Sbíráme anonymní statistiky používání bez osobních údajů a zpětnou vazbu dostáváme, jen když ji pošleš. Žádné reklamy, sledování ani účty.</p>
+
+    <h2>1. Data v tvém zařízení</h2>
+    <p>Fotky, které pořídíš nebo naimportuješ, narovnané obrázky, rozpoznaný text slajdů, zvukové nahrávky, přepisy, shrnutí od AI a názvy prezentací se ukládají do úložiště aplikace v tvém zařízení. Smazáním slajdu, nahrávky nebo prezentace se smažou i jejich soubory a odstraněním aplikace zmizí všechno.</p>
+
+    <h2>2. Fotoaparát</h2>
+    <p>Fotoaparát se používá jen k focení slajdů. Obrázky se ukládají do tvého zařízení.</p>
+
+    <h2>3. Fotky</h2>
+    <p>Import využívá systémový výběr fotek v iOS nebo nabídku sdílení, takže aplikace dostane jen fotky, které vybereš. Nikdy nečte celou tvou knihovnu fotek.</p>
+
+    <h2>4. Mikrofon a nahrávky</h2>
+    <p>Pokud zapneš v fotoaparátu Nahrávat, mikrofon nahrává přednášku, zatímco fotíš slajdy, abys mohl později přehrát, co u kterého zaznělo. Nahrává se jen při zapnuté volbě Nahrávat a nahrávka se ukládá do tvého zařízení.</p>
+
+    <h2>5. Rozpoznávání textu, přepis a shrnutí od AI</h2>
+    <p>Text na slajdech se rozpoznává pomocí frameworku Apple Vision. Nahrávky se přepisují pomocí rozpoznávání řeči od Apple přímo v zařízení. Shrnutí od AI využívá model Apple Intelligence běžící v zařízení. To vše probíhá <strong>v tvém zařízení</strong>; obrázky, zvuk ani text se neodesílají nám ani na žádný jiný server. Při prvním přepisu v nějakém jazyce může iOS od Apple stáhnout jazykový model řeči.</p>
+
+    <h2>6. Synchronizace iCloudu (volitelná, ve výchozím stavu vypnutá)</h2>
+    <p>Pokud zapneš synchronizaci iCloudu, tvoje prezentace, obrázky slajdů, nahrávky, přepisy a shrnutí se ukládají prostřednictvím CloudKitu od Apple do soukromé databáze <strong>tvého účtu iCloud</strong>, abys je viděl i na dalších zařízeních. Tato data chrání tvůj účet Apple a my k nim nemáme přístup. Zabírají místo v tvém úložišti iCloudu. Vypnutím synchronizace se přestane synchronizovat; data, která už v iCloudu jsou, v něm zůstanou.</p>
+
+    <h2>7. Moje údaje</h2>
+    <p>Pokud do části Moje údaje zadáš jméno a e-mail, uloží se v úložišti klíč–hodnota v iCloudu kvůli synchronizaci mezi tvými zařízeními. Ke zpětné vazbě se připojí, jen když ji odešleš, abychom ti mohli odpovědět.</p>
+
+    <h2>8. Zpětná vazba</h2>
+    <p>Když odešleš zpětnou vazbu, dostaneme tvou zprávu, verzi aplikace, model zařízení, verzi systému a jazyk a také jméno a e-mail z části Moje údaje, pokud jsi je zadal. Zpětná vazba se ukládá v naší databázi CloudKit a používá se jen k odpovědi a ke zlepšování aplikace.</p>
+
+    <h2>9. Anonymní statistiky používání</h2>
+    <p>Abychom chápali, jak se aplikace používá, odesílá anonymní statistiky do naší databáze CloudKit: náhodné ID instalace nepropojené s tebou, tvým účtem Apple ani zařízením, verzi aplikace, platformu, verzi systému, jazyk, počty spuštění a aktivit, datum instalace, počet prezentací a slajdů a názvy klíčových akcí (například sloučení prezentací). Neobsahují obsah slajdů, nahrávky, texty ani osobní údaje.</p>
+
+    <h2>10. Sdílení a export</h2>
+    <p>Obrázky, soubory PDF, Markdown a PowerPoint se odesílají jen tam, kam sám zvolíš v nabídce sdílení iOS.</p>
+
+    <h2>11. Třetí strany</h2>
+    <p>Nejsou tu žádné reklamy, reklamní sítě, analytické nástroje třetích stran ani sledovací SDK. Data zpracovávají jen služby Apple (CloudKit, iCloud a frameworky v zařízení), jak je popsáno výše. Tvá data neprodáváme ani nesdílíme.</p>
+
+    <h2>12. Děti</h2>
+    <p>Aplikace vědomě neshromažďuje osobní údaje dětí. Anonymní statistiky neobsahují žádné osobní údaje.</p>
+
+    <h2>13. Tvoje volby</h2>
+    <p>Můžeš nezapínat Nahrávat, nechat synchronizaci iCloudu vypnutou, nechat část Moje údaje prázdnou a zpětnou vazbu neposílat. Pokud chceš smazat zpětnou vazbu, kterou jsi poslal, napiš nám e-mail.</p>
+
+    <h2>14. Změny</h2>
+    <p>Pokud se tyto zásady změní, aktualizujeme tuto stránku i datum výše.</p>
+
+    <h2>15. Kontakt</h2>
+    <p><a href="mailto:leeo@kakao.com">leeo@kakao.com</a></p>
+
+    <footer>© 2026 CatchSlide</footer>
+  </div>
+<nav style="text-align:center;font-size:0.85rem;line-height:2;padding:0 24px 40px"><a href="../privacy.html" hreflang="ko">한국어</a> · <a href="../en/privacy.html" hreflang="en">English</a> · <a href="../zh-Hans/privacy.html" hreflang="zh-Hans">简体中文</a> · <a href="../zh-Hant/privacy.html" hreflang="zh-Hant">繁體中文</a> · <a href="../ja/privacy.html" hreflang="ja">日本語</a> · <a href="../ru/privacy.html" hreflang="ru">Русский</a> · <a href="../es/privacy.html" hreflang="es">Español</a> · <a href="../de/privacy.html" hreflang="de">Deutsch</a> · <a href="../fr/privacy.html" hreflang="fr">Français</a> · <a href="../it/privacy.html" hreflang="it">Italiano</a> · <a href="../pt-BR/privacy.html" hreflang="pt-BR">Português (Brasil)</a> · <a href="../th/privacy.html" hreflang="th">ไทย</a> · <a href="../vi/privacy.html" hreflang="vi">Tiếng Việt</a> · <a href="../cs/privacy.html" hreflang="cs">Čeština</a> · <a href="../da/privacy.html" hreflang="da">Dansk</a> · <a href="../el/privacy.html" hreflang="el">Ελληνικά</a> · <a href="../fi/privacy.html" hreflang="fi">Suomi</a> · <a href="../id/privacy.html" hreflang="id">Indonesia</a> · <a href="../nb/privacy.html" hreflang="nb">Norsk</a> · <a href="../nl/privacy.html" hreflang="nl">Nederlands</a> · <a href="../pl/privacy.html" hreflang="pl">Polski</a> · <a href="../sv/privacy.html" hreflang="sv">Svenska</a> · <a href="../tr/privacy.html" hreflang="tr">Türkçe</a></nav>
+</body>
+</html>

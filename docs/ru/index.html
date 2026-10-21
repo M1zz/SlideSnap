@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CatchSlide — Поддержка</title>
+<meta name="description" content="Поддержка CatchSlide: снимайте слайды лекций, записывайте выступления и повторяйте материал по расшифровкам и саммари от ИИ.">
+<style>
+  :root {
+    --blue: #2f6bde;
+    --blue-light: #4facfe;
+    --green: #29cc70;
+    --ink: #1a2233;
+    --muted: #5b6577;
+    --bg: #f5f7fb;
+    --card: #ffffff;
+    --border: #e4e9f2;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #e8ecf4;
+      --muted: #9aa4b8;
+      --bg: #0f131b;
+      --card: #1a2130;
+      --border: #2a3346;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .hero {
+    background: linear-gradient(135deg, var(--blue-light) 0%, var(--blue) 100%);
+    color: #fff;
+    padding: 64px 24px 56px;
+    text-align: center;
+  }
+  .hero img {
+    width: 108px; height: 108px;
+    border-radius: 24px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.28);
+  }
+  .hero h1 { margin: 20px 0 6px; font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; }
+  .hero p { margin: 0; font-size: 1.05rem; opacity: 0.95; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 40px 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
+  h2 { font-size: 1.35rem; font-weight: 700; margin: 0 0 18px; letter-spacing: -0.01em; }
+  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 520px) { .features { grid-template-columns: 1fr; } }
+  .feature {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 18px 18px 16px;
+  }
+  .feature .ic { font-size: 1.5rem; }
+  .feature h3 { margin: 8px 0 4px; font-size: 1rem; }
+  .feature p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+  .faq { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 6px 20px; }
+  details { padding: 14px 0; border-bottom: 1px solid var(--border); }
+  details:last-child { border-bottom: none; }
+  summary { cursor: pointer; font-weight: 600; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: "＋"; color: var(--blue); font-weight: 700; margin-right: 10px; }
+  details[open] summary::before { content: "－"; }
+  details p { margin: 12px 0 2px; color: var(--muted); }
+  .contact {
+    text-align: center; background: var(--card);
+    border: 1px solid var(--border); border-radius: 16px; padding: 32px 24px;
+  }
+  .btn {
+    display: inline-block; margin-top: 12px;
+    background: var(--blue); color: #fff; text-decoration: none;
+    padding: 12px 26px; border-radius: 999px; font-weight: 600;
+  }
+  a { color: var(--blue); }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 32px 24px 48px; }
+  .tag { display:inline-block; color: var(--green); font-weight:700; }
+</style>
+<link rel="canonical" href="https://m1zz.github.io/SlideSnap/ru/">
+<link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
+<link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
+<link rel="alternate" hreflang="en-GB" href="https://m1zz.github.io/SlideSnap/en/">
+<link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
+<link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
+<link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
+<link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
+<link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
+<link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
+<link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
+<link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
+<link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
+<link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
+<link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
+<link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
+<link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
+<link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
+<link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
+<link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
+<link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
+<link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
+<link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
+<link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
+<link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
+<link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+</head>
+<body>
+  <div class="hero">
+    <img src="../icon.png" alt="Значок приложения CatchSlide">
+    <h1>CatchSlide</h1>
+    <p>Снимайте слайды лекций. Они будут ровными, с поиском по тексту и готовыми для повторения.</p>
+  </div>
+
+  <div class="wrap">
+    <section>
+      <h2>Возможности</h2>
+      <div class="features">
+        <div class="feature"><div class="ic">🟩</div><h3>Распознавание слайда в реальном времени</h3><p>Камера находит четыре угла слайда, пока вы наводите её, выпрямляет изображение, будто вы смотрите прямо на слайд, и может снять кадр сама.</p></div>
+        <div class="feature"><div class="ic">🤫</div><h3>Съёмка без звука</h3><p>Затвор не щёлкает, поэтому можно снимать прямо во время лекции, никому не мешая.</p></div>
+        <div class="feature"><div class="ic">🎙️</div><h3>Запись и воспроизведение</h3><p>Записывайте выступление во время съёмки. Нажмите на любой слайд, и вы услышите, что говорили в тот момент.</p></div>
+        <div class="feature"><div class="ic">💬</div><h3>Расшифровка</h3><p>Превращайте записи в текст прямо на устройстве и читайте, что говорили на каждом слайде.</p></div>
+        <div class="feature"><div class="ic">✨</div><h3>Саммари от ИИ</h3><p>Получите обзор, главные мысли и ключевые слова всего выступления. Всё создаётся на устройстве с помощью Apple Intelligence.</p></div>
+        <div class="feature"><div class="ic">🔍</div><h3>Поиск по всему</h3><p>Находите слайд по любому слову на нём или по тому, что сказал докладчик.</p></div>
+        <div class="feature"><div class="ic">🗂️</div><h3>Порядок по выступлениям</h3><p>Слайды, снятые подряд, собираются в одну презентацию. Её можно переименовать, переставить слайды или объединить презентации.</p></div>
+        <div class="feature"><div class="ic">📤</div><h3>PDF, Notion, PowerPoint</h3><p>Экспортируйте PDF для повторения, заметку в Markdown для Notion или Obsidian или презентацию PowerPoint, где расшифровка лежит в заметках докладчика.</p></div>
+        <div class="feature"><div class="ic">☁️</div><h3>Синхронизация iCloud</h3><p>По желанию храните слайды и записи на всех своих iPhone, iPad и Mac.</p></div>
+        <div class="feature"><div class="ic">🖼️</div><h3>Из «Фото»</h3><p>Отправьте фото лекций из приложения «Фото», и они будут выровнены и собраны в одну презентацию.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Вопросы и ответы</h2>
+      <div class="faq">
+        <details open>
+          <summary>Как снимать слайды?</summary>
+          <p>Откройте приложение, и камера уже готова. Наведите её на слайд, пока рамка не станет <span class="tag">зелёной</span>, затем нажмите кнопку затвора или положитесь на автосъёмку. Когда слайд сменится, следующий снимется автоматически.</p>
+        </details>
+        <details>
+          <summary>Как записывать выступление?</summary>
+          <p>Нажмите <strong>«Запись»</strong> вверху экрана камеры. Выступление записывается, пока вы снимаете. Позже откройте любой слайд и нажмите «Воспроизвести», чтобы услышать запись с момента, когда вы его сняли. Слайды при этом переключаются сами.</p>
+        </details>
+        <details>
+          <summary>Как получить расшифровку или саммари от ИИ?</summary>
+          <p>Откройте презентацию и нажмите кнопку заметок ✨. Нажмите <strong>«Расшифровать»</strong> рядом с записью, затем <strong>«Подвести итоги с ИИ»</strong>. Для саммари от ИИ нужно устройство с поддержкой Apple Intelligence (iOS 26 и новее) и включённая функция Apple Intelligence.</p>
+        </details>
+        <details>
+          <summary>Почему слайды собираются вместе?</summary>
+          <p>Слайды, снятые с перерывом не более пяти минут, считаются одним выступлением и попадают в одну презентацию. Её можно переименовать, а презентации в списке можно объединять.</p>
+        </details>
+        <details>
+          <summary>Как экспортировать?</summary>
+          <p>В презентации откройте меню ⋯ и выберите PDF (один, два или четыре слайда на странице), Markdown для Notion или Obsidian либо PowerPoint, который открывается и в Keynote, и в Google Slides.</p>
+        </details>
+        <details>
+          <summary>Как работает синхронизация iCloud?</summary>
+          <p>Включите её в разделе <strong>«Мои данные» › «Синхронизация»</strong>. Презентации, слайды и записи хранятся в вашем личном iCloud и появляются на других устройствах с тем же Apple Account. По умолчанию синхронизация выключена, потому что фото и записи занимают место в хранилище iCloud.</p>
+        </details>
+        <details>
+          <summary>Где хранятся мои данные?</summary>
+          <p>На вашем устройстве. Распознавание текста, расшифровка и саммари от ИИ работают прямо на устройстве. Данные попадают только в ваш личный iCloud, и только если вы включили синхронизацию. Подробнее — в <a href="privacy.html">Политике конфиденциальности</a>.</p>
+        </details>
+      </div>
+    </section>
+
+    <section>
+      <div class="contact">
+        <h2 style="margin-bottom:6px">Нужна помощь?</h2>
+        <p style="color:var(--muted);margin:0">Вопросы, сообщения об ошибках и идеи новых функций приветствуются.</p>
+        <a class="btn" href="mailto:leeo@kakao.com?subject=%5BCatchSlide%5D%20Support">Написать нам</a>
+        <p style="margin:14px 0 0"><a href="privacy.html">Политика конфиденциальности</a></p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    © 2026 CatchSlide &nbsp;·&nbsp; leeo@kakao.com
+  </footer>
+<nav style="text-align:center;font-size:0.85rem;line-height:2;padding:0 24px 40px"><a href="../" hreflang="ko">한국어</a> · <a href="../en/" hreflang="en">English</a> · <a href="../zh-Hans/" hreflang="zh-Hans">简体中文</a> · <a href="../zh-Hant/" hreflang="zh-Hant">繁體中文</a> · <a href="../ja/" hreflang="ja">日本語</a> · <a href="../ru/" hreflang="ru">Русский</a> · <a href="../es/" hreflang="es">Español</a> · <a href="../de/" hreflang="de">Deutsch</a> · <a href="../fr/" hreflang="fr">Français</a> · <a href="../it/" hreflang="it">Italiano</a> · <a href="../pt-BR/" hreflang="pt-BR">Português (Brasil)</a> · <a href="../th/" hreflang="th">ไทย</a> · <a href="../vi/" hreflang="vi">Tiếng Việt</a> · <a href="../cs/" hreflang="cs">Čeština</a> · <a href="../da/" hreflang="da">Dansk</a> · <a href="../el/" hreflang="el">Ελληνικά</a> · <a href="../fi/" hreflang="fi">Suomi</a> · <a href="../id/" hreflang="id">Indonesia</a> · <a href="../nb/" hreflang="nb">Norsk</a> · <a href="../nl/" hreflang="nl">Nederlands</a> · <a href="../pl/" hreflang="pl">Polski</a> · <a href="../sv/" hreflang="sv">Svenska</a> · <a href="../tr/" hreflang="tr">Türkçe</a></nav>
+</body>
+</html>

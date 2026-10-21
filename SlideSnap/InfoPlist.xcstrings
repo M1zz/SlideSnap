@@ -15,6 +15,138 @@
             "state" : "translated",
             "value" : "장표스냅"
           }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide"
+          }
         }
       }
     },
@@ -44,6 +176,138 @@
             "state" : "translated",
             "value" : "발표 장표를 촬영하기 위해 카메라 접근이 필요합니다."
           }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide uses the camera to capture presentation slides."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide 需要使用相机来拍摄演示幻灯片。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide 需要使用相機來拍攝簡報投影片。"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlideは、プレゼンのスライドを撮影するためにカメラを使用します。"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide использует камеру, чтобы снимать слайды презентаций."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide necesita la cámara para capturar diapositivas de presentaciones."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide verwendet die Kamera, um Präsentationsfolien aufzunehmen."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide utilise l’appareil photo pour capturer les diapositives de présentation."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide usa la fotocamera per catturare le diapositive delle presentazioni."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O CatchSlide usa a câmera para capturar slides de apresentações."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide ใช้กล้องเพื่อถ่ายสไลด์งานนำเสนอ"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide dùng camera để chụp slide thuyết trình."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide používá fotoaparát k focení slajdů prezentací."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide bruger kameraet til at tage billeder af præsentationsslides."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Το CatchSlide χρησιμοποιεί την κάμερα για να φωτογραφίζει διαφάνειες παρουσιάσεων."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide käyttää kameraa esityskalvojen kuvaamiseen."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide menggunakan kamera untuk memotret slide presentasi."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide bruker kameraet til å ta bilder av presentasjonslysbilder."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide gebruikt de camera om presentatiedia's vast te leggen."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide korzysta z aparatu, aby fotografować slajdy prezentacji."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide använder kameran för att ta bilder av presentationsslides."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide, sunum slaytlarını çekmek için kamerayı kullanır."
+          }
         }
       }
     },
@@ -61,6 +325,138 @@
             "state" : "translated",
             "value" : "장표를 찍는 동안 발표 내용을 녹음해 장표별로 다시 들을 수 있게 합니다."
           }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide records the talk while you capture slides so you can replay what was said on each slide."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide 会在你拍摄幻灯片时录下讲解，方便你回放每张幻灯片对应的内容。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide 會在你拍攝投影片時錄下講解，方便你重播每張投影片對應的內容。"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "スライドを撮影している間の講演を録音し、各スライドで話された内容を再生できるようにするため、CatchSlideはマイクを使用します。"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide записывает выступление, пока вы снимаете слайды, чтобы потом можно было прослушать, что говорили на каждом из них."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide graba la charla mientras capturas diapositivas para que puedas volver a escuchar lo que se dijo en cada una."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide nimmt den Vortrag auf, während du Folien aufnimmst, damit du später anhören kannst, was zu jeder Folie gesagt wurde."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide enregistre l’exposé pendant que vous capturez des diapositives, afin que vous puissiez réécouter ce qui a été dit sur chacune."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide registra l'intervento mentre catturi le diapositive, così puoi riascoltare cosa è stato detto in ciascuna."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O CatchSlide grava a palestra enquanto você captura slides, para você ouvir de novo o que foi dito em cada um."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide บันทึกเสียงการบรรยายขณะที่คุณถ่ายสไลด์ เพื่อให้เล่นย้อนฟังได้ว่าแต่ละสไลด์พูดถึงอะไร"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide ghi âm bài nói trong lúc bạn chụp slide để bạn nghe lại nội dung đã nói ở từng slide."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide nahrává přednášku, zatímco fotíš slajdy, abys mohl později přehrát, co u kterého slajdu zaznělo."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide optager foredraget, mens du tager billeder af slides, så du kan afspille, hvad der blev sagt på hver slide."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Το CatchSlide ηχογραφεί την ομιλία ενώ φωτογραφίζετε διαφάνειες, ώστε να ακούτε ξανά τι ειπώθηκε σε κάθε μία."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide äänittää puheen kalvoja kuvatessasi, jotta voit kuunnella, mitä kullakin kalvolla sanottiin."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide merekam pembicaraan saat Anda memotret slide, sehingga Anda bisa memutar ulang apa yang disampaikan di setiap slide."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide tar opp foredraget mens du tar bilder av lysbilder, slik at du kan spille av det som ble sagt på hvert lysbilde."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide neemt de lezing op terwijl je dia's vastlegt, zodat je kunt terugluisteren wat er bij elke dia is gezegd."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide nagrywa wystąpienie podczas fotografowania slajdów, abyś mógł później odsłuchać, co padło przy każdym z nich."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide spelar in föredraget medan du fotograferar slides, så att du kan spela upp vad som sades på varje slide."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide, siz slayt çekerken konuşmayı kaydeder; böylece her slaytta söylenenleri tekrar dinleyebilirsiniz."
+          }
         }
       }
     },
@@ -77,6 +473,138 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "녹음한 발표를 기기 안에서 글로 받아써 장표별로 보여 주고 검색할 수 있게 합니다."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide transcribes your recordings on device so you can read and search what was said on each slide."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide 会在设备上将你的录音转写为文字，方便你阅读和搜索每张幻灯片上讲了什么。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide 會在裝置上將你的錄音轉錄為文字，方便你閱讀和搜尋每張投影片上講了什麼。"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "各スライドで話された内容を読んだり検索したりできるよう、CatchSlideは録音をデバイス上で文字起こしします。"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide расшифровывает ваши записи прямо на устройстве, чтобы вы могли читать и искать, что говорили на каждом слайде."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide transcribe tus grabaciones en el dispositivo para que puedas leer y buscar lo que se dijo en cada diapositiva."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide transkribiert deine Aufnahmen direkt auf dem Gerät, damit du nachlesen und durchsuchen kannst, was zu jeder Folie gesagt wurde."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide transcrit vos enregistrements sur l’appareil pour que vous puissiez lire et rechercher ce qui a été dit sur chaque diapositive."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide trascrive le tue registrazioni sul dispositivo, così puoi leggere e cercare cosa è stato detto in ogni diapositiva."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O CatchSlide transcreve suas gravações no dispositivo para você ler e pesquisar o que foi dito em cada slide."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide ถอดเสียงจากการบันทึกบนอุปกรณ์ของคุณ เพื่อให้อ่านและค้นหาได้ว่าแต่ละสไลด์พูดถึงอะไร"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide chép lời bản ghi âm ngay trên thiết bị để bạn đọc và tìm kiếm nội dung đã nói ở từng slide."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide přepisuje tvoje nahrávky přímo v zařízení, takže si můžeš přečíst a vyhledat, co u kterého slajdu zaznělo."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide transskriberer dine optagelser på enheden, så du kan læse og søge i, hvad der blev sagt på hver slide."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Το CatchSlide μεταγράφει τις ηχογραφήσεις σας στη συσκευή, ώστε να διαβάζετε και να αναζητάτε τι ειπώθηκε σε κάθε διαφάνεια."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide litteroi äänitteesi laitteella, jotta voit lukea ja hakea, mitä kullakin kalvolla sanottiin."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide mentranskripsi rekaman Anda di perangkat sehingga Anda bisa membaca dan mencari apa yang disampaikan di setiap slide."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide transkriberer opptakene dine på enheten, slik at du kan lese og søke i det som ble sagt på hvert lysbilde."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide transcribeert je opnamen op je apparaat, zodat je kunt lezen en zoeken wat er bij elke dia is gezegd."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide zamienia nagrania na tekst bezpośrednio na urządzeniu, abyś mógł czytać i wyszukiwać, co powiedziano przy każdym slajdzie."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide transkriberar dina inspelningar på enheten, så att du kan läsa och söka i vad som sades på varje slide."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide, kayıtlarınızı cihazda yazıya döker; böylece her slaytta söylenenleri okuyabilir ve arayabilirsiniz."
           }
         }
       }

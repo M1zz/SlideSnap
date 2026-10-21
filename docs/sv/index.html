@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CatchSlide — Support</title>
+<meta name="description" content="Support för CatchSlide — fota föreläsningsslides, spela in föredraget och repetera med transkriptioner och AI-sammanfattningar.">
+<style>
+  :root {
+    --blue: #2f6bde;
+    --blue-light: #4facfe;
+    --green: #29cc70;
+    --ink: #1a2233;
+    --muted: #5b6577;
+    --bg: #f5f7fb;
+    --card: #ffffff;
+    --border: #e4e9f2;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #e8ecf4;
+      --muted: #9aa4b8;
+      --bg: #0f131b;
+      --card: #1a2130;
+      --border: #2a3346;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .hero {
+    background: linear-gradient(135deg, var(--blue-light) 0%, var(--blue) 100%);
+    color: #fff;
+    padding: 64px 24px 56px;
+    text-align: center;
+  }
+  .hero img {
+    width: 108px; height: 108px;
+    border-radius: 24px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.28);
+  }
+  .hero h1 { margin: 20px 0 6px; font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; }
+  .hero p { margin: 0; font-size: 1.05rem; opacity: 0.95; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 40px 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
+  h2 { font-size: 1.35rem; font-weight: 700; margin: 0 0 18px; letter-spacing: -0.01em; }
+  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 520px) { .features { grid-template-columns: 1fr; } }
+  .feature {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 18px 18px 16px;
+  }
+  .feature .ic { font-size: 1.5rem; }
+  .feature h3 { margin: 8px 0 4px; font-size: 1rem; }
+  .feature p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+  .faq { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 6px 20px; }
+  details { padding: 14px 0; border-bottom: 1px solid var(--border); }
+  details:last-child { border-bottom: none; }
+  summary { cursor: pointer; font-weight: 600; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: "＋"; color: var(--blue); font-weight: 700; margin-right: 10px; }
+  details[open] summary::before { content: "－"; }
+  details p { margin: 12px 0 2px; color: var(--muted); }
+  .contact {
+    text-align: center; background: var(--card);
+    border: 1px solid var(--border); border-radius: 16px; padding: 32px 24px;
+  }
+  .btn {
+    display: inline-block; margin-top: 12px;
+    background: var(--blue); color: #fff; text-decoration: none;
+    padding: 12px 26px; border-radius: 999px; font-weight: 600;
+  }
+  a { color: var(--blue); }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 32px 24px 48px; }
+  .tag { display:inline-block; color: var(--green); font-weight:700; }
+</style>
+<link rel="canonical" href="https://m1zz.github.io/SlideSnap/sv/">
+<link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
+<link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
+<link rel="alternate" hreflang="en-GB" href="https://m1zz.github.io/SlideSnap/en/">
+<link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
+<link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
+<link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
+<link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
+<link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
+<link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
+<link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
+<link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
+<link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
+<link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
+<link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
+<link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
+<link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
+<link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
+<link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
+<link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
+<link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
+<link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
+<link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
+<link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
+<link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
+<link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+</head>
+<body>
+  <div class="hero">
+    <img src="../icon.png" alt="Appikon för CatchSlide">
+    <h1>CatchSlide</h1>
+    <p>Fota föreläsningsslides. Få dem uträtade, sökbara och redo för repetition.</p>
+  </div>
+
+  <div class="wrap">
+    <section>
+      <h2>Funktioner</h2>
+      <div class="features">
+        <div class="feature"><div class="ic">🟩</div><h3>Slideigenkänning i realtid</h3><p>Kameran hittar slidens fyra hörn medan du siktar, rätar upp den som om du stod rakt framför den och kan fota den automatiskt.</p></div>
+        <div class="feature"><div class="ic">🤫</div><h3>Ljudlös fotografering</h3><p>Inget slutarljud, så du kan fota mitt under en föreläsning utan att störa någon.</p></div>
+        <div class="feature"><div class="ic">🎙️</div><h3>Spela in och spela upp</h3><p>Spela in föredraget medan du fotar. Tryck på en slide för att höra vad som sades just då.</p></div>
+        <div class="feature"><div class="ic">💬</div><h3>Transkriptioner</h3><p>Gör om inspelningar till text på din enhet och läs vad som sades på varje slide.</p></div>
+        <div class="feature"><div class="ic">✨</div><h3>AI-sammanfattning</h3><p>Få en överblick, huvudpunkter och nyckelord för hela föredraget, framtagna på din enhet med Apple Intelligence.</p></div>
+        <div class="feature"><div class="ic">🔍</div><h3>Sök i allt</h3><p>Hitta en slide med vilket ord som helst på den eller något som talaren sa.</p></div>
+        <div class="feature"><div class="ic">🗂️</div><h3>Ordnat efter tillfälle</h3><p>Slides som du fotar i följd blir en presentation. Byt namn, ändra ordning eller slå ihop dem.</p></div>
+        <div class="feature"><div class="ic">📤</div><h3>PDF, Notion, PowerPoint</h3><p>Exportera en PDF för pluggande, en Markdown-anteckning för Notion eller Obsidian eller en PowerPoint med transkriptionen i talarmanuset.</p></div>
+        <div class="feature"><div class="ic">☁️</div><h3>iCloud-synkronisering</h3><p>Behåll om du vill dina slides och inspelningar på alla dina iPhone-, iPad- och Mac-enheter.</p></div>
+        <div class="feature"><div class="ic">🖼️</div><h3>Från Bilder</h3><p>Dela föreläsningsfoton från appen Bilder så rätas de upp och samlas i en presentation.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Vanliga frågor</h2>
+      <div class="faq">
+        <details open>
+          <summary>Hur fotar jag slides?</summary>
+          <p>Öppna appen så är kameran redo. Placera slidan på skärmen tills ramen blir <span class="tag">grön</span> och tryck sedan på avtryckaren, eller låt automatisk fotografering sköta det. När slidan byts fotas nästa automatiskt.</p>
+        </details>
+        <details>
+          <summary>Hur spelar jag in föredraget?</summary>
+          <p>Tryck på <strong>Spela in</strong> högst upp i kameran. Föredraget spelas in medan du fotar. Senare kan du öppna en slide och trycka på spela upp för att höra det från det ögonblick då du fotade den. Uppspelningen byter slide åt dig.</p>
+        </details>
+        <details>
+          <summary>Hur får jag en transkription eller en AI-sammanfattning?</summary>
+          <p>Öppna en presentation och tryck på anteckningsknappen ✨. Tryck på <strong>Transkribera</strong> bredvid en inspelning och sedan på <strong>Sammanfatta med AI</strong>. AI-sammanfattning kräver en enhet som stöder Apple Intelligence (iOS 26 eller senare) med Apple Intelligence påslaget.</p>
+        </details>
+        <details>
+          <summary>Varför grupperas mina slides?</summary>
+          <p>Slides som fotas med mindre än fem minuters mellanrum räknas som samma tillfälle och samlas i en presentation. Du kan byta namn på den eller slå ihop presentationer från listan.</p>
+        </details>
+        <details>
+          <summary>Hur exporterar jag?</summary>
+          <p>Öppna menyn ⋯ i en presentation och välj PDF (en, två eller fyra slides per sida), Markdown för Notion eller Obsidian, eller PowerPoint, som även kan öppnas i Keynote och Google Slides.</p>
+        </details>
+        <details>
+          <summary>Hur fungerar iCloud-synkronisering?</summary>
+          <p>Slå på den under <strong>Min info › Synkronisering</strong>. Dina presentationer, slides och inspelningar lagras i din egen privata iCloud och visas på dina andra enheter som är inloggade med samma Apple-konto. Den är avstängd som standard eftersom foton och inspelningar använder ditt iCloud-lagringsutrymme.</p>
+        </details>
+        <details>
+          <summary>Var lagras mina data?</summary>
+          <p>På din enhet. Textigenkänning, transkribering och AI-sammanfattning sker alla på din enhet. Data skickas bara till din egen iCloud om du slår på synkronisering. Läs <a href="privacy.html">integritetspolicyn</a>.</p>
+        </details>
+      </div>
+    </section>
+
+    <section>
+      <div class="contact">
+        <h2 style="margin-bottom:6px">Behöver du hjälp?</h2>
+        <p style="color:var(--muted);margin:0">Frågor, felrapporter och idéer om nya funktioner är välkomna.</p>
+        <a class="btn" href="mailto:leeo@kakao.com?subject=%5BCatchSlide%5D%20Support">Mejla oss</a>
+        <p style="margin:14px 0 0"><a href="privacy.html">Integritetspolicy</a></p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    © 2026 CatchSlide &nbsp;·&nbsp; leeo@kakao.com
+  </footer>
+<nav style="text-align:center;font-size:0.85rem;line-height:2;padding:0 24px 40px"><a href="../" hreflang="ko">한국어</a> · <a href="../en/" hreflang="en">English</a> · <a href="../zh-Hans/" hreflang="zh-Hans">简体中文</a> · <a href="../zh-Hant/" hreflang="zh-Hant">繁體中文</a> · <a href="../ja/" hreflang="ja">日本語</a> · <a href="../ru/" hreflang="ru">Русский</a> · <a href="../es/" hreflang="es">Español</a> · <a href="../de/" hreflang="de">Deutsch</a> · <a href="../fr/" hreflang="fr">Français</a> · <a href="../it/" hreflang="it">Italiano</a> · <a href="../pt-BR/" hreflang="pt-BR">Português (Brasil)</a> · <a href="../th/" hreflang="th">ไทย</a> · <a href="../vi/" hreflang="vi">Tiếng Việt</a> · <a href="../cs/" hreflang="cs">Čeština</a> · <a href="../da/" hreflang="da">Dansk</a> · <a href="../el/" hreflang="el">Ελληνικά</a> · <a href="../fi/" hreflang="fi">Suomi</a> · <a href="../id/" hreflang="id">Indonesia</a> · <a href="../nb/" hreflang="nb">Norsk</a> · <a href="../nl/" hreflang="nl">Nederlands</a> · <a href="../pl/" hreflang="pl">Polski</a> · <a href="../sv/" hreflang="sv">Svenska</a> · <a href="../tr/" hreflang="tr">Türkçe</a></nav>
+</body>
+</html>

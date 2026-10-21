@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CatchSlide — サポート</title>
+<meta name="description" content="CatchSlideサポート — 講義スライドを撮影し、講演を録音して、文字起こしとAI要約で復習できます。">
+<style>
+  :root {
+    --blue: #2f6bde;
+    --blue-light: #4facfe;
+    --green: #29cc70;
+    --ink: #1a2233;
+    --muted: #5b6577;
+    --bg: #f5f7fb;
+    --card: #ffffff;
+    --border: #e4e9f2;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #e8ecf4;
+      --muted: #9aa4b8;
+      --bg: #0f131b;
+      --card: #1a2130;
+      --border: #2a3346;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .hero {
+    background: linear-gradient(135deg, var(--blue-light) 0%, var(--blue) 100%);
+    color: #fff;
+    padding: 64px 24px 56px;
+    text-align: center;
+  }
+  .hero img {
+    width: 108px; height: 108px;
+    border-radius: 24px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.28);
+  }
+  .hero h1 { margin: 20px 0 6px; font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; }
+  .hero p { margin: 0; font-size: 1.05rem; opacity: 0.95; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 40px 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
+  h2 { font-size: 1.35rem; font-weight: 700; margin: 0 0 18px; letter-spacing: -0.01em; }
+  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 520px) { .features { grid-template-columns: 1fr; } }
+  .feature {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 18px 18px 16px;
+  }
+  .feature .ic { font-size: 1.5rem; }
+  .feature h3 { margin: 8px 0 4px; font-size: 1rem; }
+  .feature p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+  .faq { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 6px 20px; }
+  details { padding: 14px 0; border-bottom: 1px solid var(--border); }
+  details:last-child { border-bottom: none; }
+  summary { cursor: pointer; font-weight: 600; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: "＋"; color: var(--blue); font-weight: 700; margin-right: 10px; }
+  details[open] summary::before { content: "－"; }
+  details p { margin: 12px 0 2px; color: var(--muted); }
+  .contact {
+    text-align: center; background: var(--card);
+    border: 1px solid var(--border); border-radius: 16px; padding: 32px 24px;
+  }
+  .btn {
+    display: inline-block; margin-top: 12px;
+    background: var(--blue); color: #fff; text-decoration: none;
+    padding: 12px 26px; border-radius: 999px; font-weight: 600;
+  }
+  a { color: var(--blue); }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 32px 24px 48px; }
+  .tag { display:inline-block; color: var(--green); font-weight:700; }
+</style>
+<link rel="canonical" href="https://m1zz.github.io/SlideSnap/ja/">
+<link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
+<link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
+<link rel="alternate" hreflang="en-GB" href="https://m1zz.github.io/SlideSnap/en/">
+<link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
+<link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
+<link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
+<link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
+<link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
+<link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
+<link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
+<link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
+<link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
+<link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
+<link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
+<link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
+<link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
+<link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
+<link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
+<link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
+<link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
+<link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
+<link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
+<link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
+<link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
+<link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+</head>
+<body>
+  <div class="hero">
+    <img src="../icon.png" alt="CatchSlideのアプリアイコン">
+    <h1>CatchSlide</h1>
+    <p>講義のスライドを撮って、まっすぐに。検索もできて、復習もすぐ。</p>
+  </div>
+
+  <div class="wrap">
+    <section>
+      <h2>主な機能</h2>
+      <div class="features">
+        <div class="feature"><div class="ic">🟩</div><h3>スライドをリアルタイム検出</h3><p>カメラを向けるだけでスライドの四隅を見つけ、正面から見たようにまっすぐ補正。自動で撮影することもできます。</p></div>
+        <div class="feature"><div class="ic">🤫</div><h3>静かな撮影</h3><p>シャッター音が鳴らないので、講義の最中でも周りを気にせず撮影できます。</p></div>
+        <div class="feature"><div class="ic">🎙️</div><h3>録音して再生</h3><p>撮影しながら講演を録音。スライドをタップすると、そのときの話を聞き返せます。</p></div>
+        <div class="feature"><div class="ic">💬</div><h3>文字起こし</h3><p>録音をデバイス上でテキストに変換し、スライドごとの発言を読めます。</p></div>
+        <div class="feature"><div class="ic">✨</div><h3>AI要約</h3><p>Apple Intelligenceを使い、デバイス上で講演全体の概要・要点・キーワードをまとめます。</p></div>
+        <div class="feature"><div class="ic">🔍</div><h3>なんでも検索</h3><p>スライド上の文字や、話者の発言のどんな単語からでも、スライドを探せます。</p></div>
+        <div class="feature"><div class="ic">🗂️</div><h3>撮影ごとに自動整理</h3><p>続けて撮ったスライドはひとつのプレゼンにまとまります。名前の変更、並べ替え、結合もできます。</p></div>
+        <div class="feature"><div class="ic">📤</div><h3>PDF・Notion・PowerPoint</h3><p>復習用PDF、NotionやObsidian向けのMarkdownノート、発表者ノートに文字起こしを入れたPowerPointに書き出せます。</p></div>
+        <div class="feature"><div class="ic">☁️</div><h3>iCloud同期</h3><p>必要に応じて、スライドと録音をお持ちのiPhone・iPad・Macで共有できます。</p></div>
+        <div class="feature"><div class="ic">🖼️</div><h3>写真アプリから</h3><p>写真アプリから講義の写真を共有すると、まっすぐに補正され、ひとつのプレゼンに整理されます。</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>よくある質問</h2>
+      <div class="faq">
+        <details open>
+          <summary>スライドはどう撮影しますか？</summary>
+          <p>アプリを開くとすぐカメラが使えます。枠が<span class="tag">緑色</span>に変わるまでスライドを画面に合わせ、シャッターをタップするか、自動撮影にまかせましょう。スライドが切り替わると、次のスライドも自動で撮影されます。</p>
+        </details>
+        <details>
+          <summary>講演はどう録音しますか？</summary>
+          <p>カメラ画面の上部にある<strong>録音</strong>をタップします。撮影しながら講演が録音されます。あとでスライドを開いて再生をタップすると、そのスライドを撮った時点から聞けます。再生に合わせてスライドも自動でめくられます。</p>
+        </details>
+        <details>
+          <summary>文字起こしやAI要約はどう使いますか？</summary>
+          <p>プレゼンを開き、✨のノートボタンをタップします。録音の横の<strong>文字起こし</strong>をタップし、続けて<strong>AIで要約</strong>をタップしてください。AI要約には、Apple Intelligenceに対応したデバイス（iOS 26以降）で、Apple Intelligenceがオンになっている必要があります。</p>
+        </details>
+        <details>
+          <summary>スライドがまとまっているのはなぜですか？</summary>
+          <p>5分以内に続けて撮影したスライドは同じ撮影として扱われ、ひとつのプレゼンにまとめられます。名前の変更や、一覧からのプレゼンの結合もできます。</p>
+        </details>
+        <details>
+          <summary>書き出すには？</summary>
+          <p>プレゼンの⋯メニューを開き、PDF（1ページに1枚・2枚・4枚）、NotionやObsidian向けのMarkdown、またはPowerPointを選びます。PowerPointファイルはKeynoteやGoogleスライドでも開けます。</p>
+        </details>
+        <details>
+          <summary>iCloud同期のしくみは？</summary>
+          <p><strong>自分の情報 › 同期</strong>でオンにします。プレゼン、スライド、録音はご自身のプライベートなiCloudに保存され、同じApple Accountでサインインしているほかのデバイスにも表示されます。写真と録音がiCloudの容量を使うため、初期設定ではオフです。</p>
+        </details>
+        <details>
+          <summary>データはどこに保存されますか？</summary>
+          <p>デバイス内です。文字認識、文字起こし、AI要約はすべてデバイス上で実行されます。同期をオンにした場合のみ、データはご自身のiCloudに送られます。詳しくは<a href="privacy.html">プライバシーポリシー</a>をご覧ください。</p>
+        </details>
+      </div>
+    </section>
+
+    <section>
+      <div class="contact">
+        <h2 style="margin-bottom:6px">お困りですか？</h2>
+        <p style="color:var(--muted);margin:0">ご質問、不具合のご報告、機能のご要望をお待ちしています。</p>
+        <a class="btn" href="mailto:leeo@kakao.com?subject=%5BCatchSlide%5D%20Support">メールで問い合わせる</a>
+        <p style="margin:14px 0 0"><a href="privacy.html">プライバシーポリシー</a></p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    © 2026 CatchSlide &nbsp;·&nbsp; leeo@kakao.com
+  </footer>
+<nav style="text-align:center;font-size:0.85rem;line-height:2;padding:0 24px 40px"><a href="../" hreflang="ko">한국어</a> · <a href="../en/" hreflang="en">English</a> · <a href="../zh-Hans/" hreflang="zh-Hans">简体中文</a> · <a href="../zh-Hant/" hreflang="zh-Hant">繁體中文</a> · <a href="../ja/" hreflang="ja">日本語</a> · <a href="../ru/" hreflang="ru">Русский</a> · <a href="../es/" hreflang="es">Español</a> · <a href="../de/" hreflang="de">Deutsch</a> · <a href="../fr/" hreflang="fr">Français</a> · <a href="../it/" hreflang="it">Italiano</a> · <a href="../pt-BR/" hreflang="pt-BR">Português (Brasil)</a> · <a href="../th/" hreflang="th">ไทย</a> · <a href="../vi/" hreflang="vi">Tiếng Việt</a> · <a href="../cs/" hreflang="cs">Čeština</a> · <a href="../da/" hreflang="da">Dansk</a> · <a href="../el/" hreflang="el">Ελληνικά</a> · <a href="../fi/" hreflang="fi">Suomi</a> · <a href="../id/" hreflang="id">Indonesia</a> · <a href="../nb/" hreflang="nb">Norsk</a> · <a href="../nl/" hreflang="nl">Nederlands</a> · <a href="../pl/" hreflang="pl">Polski</a> · <a href="../sv/" hreflang="sv">Svenska</a> · <a href="../tr/" hreflang="tr">Türkçe</a></nav>
+</body>
+</html>
