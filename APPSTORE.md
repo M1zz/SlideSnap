@@ -118,7 +118,7 @@ https://m1zz.github.io/SlideSnap/en/
 
 https://m1zz.github.io/SlideSnap/en/privacy.html
 
-## English (UK) (en-GB)
+## 영어(영국) (en-GB)
 
 ### 이름
 CatchSlide: Lecture Slide Scan

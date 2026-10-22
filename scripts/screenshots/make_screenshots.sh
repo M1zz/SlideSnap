@@ -31,13 +31,38 @@ xcodebuild -project SlideSnap.xcodeproj -scheme SlideSnap -configuration Debug \
   -destination "id=$UDID" -derivedDataPath "$WORK/dd" build -quiet
 APP="$WORK/dd/Build/Products/Debug-iphonesimulator/SlideSnap.app"
 
+# 스토어 로케일 → 기기 지역(날짜·숫자 형식). en-GB 는 영국식 날짜(일/월)로 찍힌다.
+locale_for() {
+  case $1 in
+    ko) echo ko_KR;; en) echo en_US;; en-GB) echo en_GB;; zh-Hans) echo zh_CN;; zh-Hant) echo zh_TW;;
+    ja) echo ja_JP;; ru) echo ru_RU;; es) echo es_ES;; de) echo de_DE;; fr) echo fr_FR;; it) echo it_IT;;
+    pt-BR) echo pt_BR;; th) echo th_TH;; vi) echo vi_VN;; cs) echo cs_CZ;; da) echo da_DK;; el) echo el_GR;;
+    fi) echo fi_FI;; id) echo id_ID;; nb) echo nb_NO;; nl) echo nl_NL;; pl) echo pl_PL;; sv) echo sv_SE;; tr) echo tr_TR;;
+    *) echo en_US;;
+  esac
+}
+
 shoot() {  # shoot <lang> <파일이름> <데모 화면> <대기 초>
   local lang=$1 name=$2 screen=$3 wait=$4 locale
-  [[ $lang == ko ]] && locale=ko_KR || locale=en_US
+  locale=$(locale_for $lang)
   xcrun simctl terminate $UDID $BUNDLE 2>/dev/null || true
   xcrun simctl launch $UDID $BUNDLE -AppleLanguages "($lang)" -AppleLocale $locale -SSDemoScreen "$screen" >/dev/null
   sleep $wait
-  xcrun simctl io $UDID screenshot "docs/screenshots/raw/$lang/$name" >/dev/null 2>&1
+  # Mac 이 바쁘면 앱이 그리기 전에 찍혀 빈 화면이 남는다 — 상태 막대 아래가 거의 한 색이면 기다렸다 다시 찍는다.
+  local try
+  for try in 1 2 3 4 5 6; do
+    xcrun simctl io $UDID screenshot "docs/screenshots/raw/$lang/$name" >/dev/null 2>&1
+    python3 - "docs/screenshots/raw/$lang/$name" <<'PY' && break
+import sys
+from PIL import Image, ImageStat
+im = Image.open(sys.argv[1]).convert("L")
+w, h = im.size
+body = im.crop((0, int(h * 0.08), w, int(h * 0.92)))
+sys.exit(0 if ImageStat.Stat(body).stddev[0] > 12 else 1)
+PY
+    echo "  빈 화면 — 다시 찍음 ($try)"
+    sleep $((wait * 2))
+  done
   echo "  찍음 $lang/$name"
 }
 
@@ -52,7 +77,7 @@ for lang in $LANGS; do
   cp -R "$WORK/demo-$lang/ShareInbox" "$WORK/demo-$lang/DemoShare" "$G/"
 
   # 수신함을 앱이 다 가져갈 때까지(발표로 만들어질 때까지) 기다린다.
-  [[ $lang == ko ]] && locale=ko_KR || locale=en_US
+  locale=$(locale_for $lang)
   xcrun simctl launch $UDID $BUNDLE -AppleLanguages "($lang)" -AppleLocale $locale >/dev/null
   for i in {1..120}; do [[ -z "$(ls "$G/ShareInbox" 2>/dev/null)" ]] && break; sleep 2; done
   sleep 3
@@ -61,12 +86,13 @@ for lang in $LANGS; do
   mkdir -p docs/screenshots/raw/$lang
   # 제출본 3번의 '보정 전' 카드 — 맨 위 발표(UX 리서치)의 둘째 장 원본 사진
   cp "$WORK/demo-$lang/ShareInbox/00000000-0000-0000-0000-000000000004/0002.jpg" docs/screenshots/raw/$lang/before.jpg
-  [[ $lang == ko ]] && query="사용자 인터뷰" || query="user interview"
+  query=$(python3 -c "import sys; sys.path.insert(0, 'scripts/screenshots'); from slides import SEARCH; print(SEARCH['$lang'])")
   shoot $lang 01-share.png  share  6
   shoot $lang 02-list.png   list   4
   shoot $lang 03-slide.png  slide  4
   shoot $lang 04-detail.png detail 4
-  shoot $lang 05-search.png "search:$query" 4
+  # 그리스어는 글자 인식(Vision)이 읽지 못해 검색 화면을 찍지 않는다(make_marketing.py NO_SEARCH).
+  [[ $lang == el ]] || shoot $lang 05-search.png "search:$query" 4
 done
 xcrun simctl status_bar $UDID clear
 rm -rf "$WORK"

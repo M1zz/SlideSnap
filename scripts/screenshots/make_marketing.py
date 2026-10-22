@@ -12,7 +12,9 @@ ROOT = pathlib.Path(__file__).resolve().parents[2]
 RAW = ROOT / "docs" / "screenshots" / "raw"
 OUT = ROOT / "docs" / "screenshots" / "marketing"
 WORK = pathlib.Path("/tmp") / "slidesnap-marketing"
-CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+# 다른 작업이 Chrome 을 같이 쓰면 느리거나 멈춘다 — CHROME 환경 변수로 chrome-headless-shell 등을 쓸 수 있다.
+import os
+CHROME = os.environ.get("CHROME", "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
 W, H = 1242, 2688   # App Store 제출 규격 (6.5")
 
 # (파일, 레이아웃, 헤드라인, 서브카피) — 파일 이름 순서가 스토어에 보이는 순서
@@ -32,6 +34,15 @@ SHOTS = {
         ("05-search.png", "dark",        "Search the words<br>on your slides", "One word is all it takes"),
     ],
 }
+
+# 그 밖의 언어: locales/<로케일>.json 의 shots (레이아웃·파일은 위 순서와 같다)
+import json
+for _f in sorted((pathlib.Path(__file__).parent / "locales").glob("*.json")):
+    _shots = json.loads(_f.read_text(encoding="utf-8"))["shots"]
+    SHOTS.setdefault(_f.stem, [(f, l, h, sub) for (f, l, _, _), (h, sub) in zip(SHOTS["en"], _shots)])
+
+# 글자 인식(Vision)이 그 언어를 못 읽어 검색 화면을 보여 줄 수 없는 언어 — 검색 장은 뺀다.
+NO_SEARCH = {"el"}
 
 BASE_CSS = f"""
 * {{ margin:0; padding:0; box-sizing:border-box; }}
@@ -98,9 +109,24 @@ body { background:#131316; }
 BODY_TEXT_FIRST = '<div class="headline">{headline}</div><div class="sub">{sub}</div><div class="wrap"><div class="phone"><img src="{img}"></div></div>'
 BODY_PHONE_FIRST = '<div class="wrap"><div class="phone"><img src="{img}"></div></div><div class="headline">{headline}</div><div class="sub">{sub}</div>'
 
-HTML = """<!doctype html><html><head><meta charset="utf-8"><style>
+# 긴 언어(독일어·핀란드어 등)는 줄이 화면을 넘지 않을 때까지 헤드라인·서브카피를 줄인다.
+FIT = """<script>
+for (const [sel, min] of [['.headline', 56], ['.sub', 30]]) {
+  const el = document.querySelector(sel);
+  el.style.whiteSpace = 'nowrap';
+  let size = parseFloat(getComputedStyle(el).fontSize);
+  while (el.scrollWidth > el.clientWidth && size > min) { size -= 2; el.style.fontSize = size + 'px'; }
+  if (el.scrollWidth > el.clientWidth) document.body.dataset.overflow = '1';
+}
+</script>"""
+
+HTML = """<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><style>
 {base}{layout}
-</style></head><body>{body}</body></html>"""
+:lang(th) .headline {{ line-height:1.4; }}
+:lang(ja) body {{ font-family:"Hiragino Sans", -apple-system, sans-serif; }}
+:lang(zh-Hans) body {{ font-family:"PingFang SC", -apple-system, sans-serif; }}
+:lang(zh-Hant) body {{ font-family:"PingFang TC", -apple-system, sans-serif; }}
+</style></head><body>{body}{fit}</body></html>"""
 
 def main(langs):
     WORK.mkdir(exist_ok=True)
@@ -108,17 +134,21 @@ def main(langs):
         out_dir = OUT / lang
         out_dir.mkdir(parents=True, exist_ok=True)
         for fname, layout, headline, sub in SHOTS[lang]:
+            if lang in NO_SEARCH and fname.endswith("search.png"):
+                (out_dir / fname).unlink(missing_ok=True)
+                continue
             body_tpl = BODY_PHONE_FIRST if layout == "text-bottom" else BODY_TEXT_FIRST
             raw = RAW / lang / fname
             body = body_tpl.format(headline=headline, sub=sub, img=raw.as_uri())
             if layout == "before-after":
                 body += f'<div class="before"><img src="{(RAW / lang / "before.jpg").as_uri()}"></div>'
             html_path = WORK / f"{lang}-{fname.replace('.png', '.html')}"
-            html_path.write_text(HTML.format(base=BASE_CSS, layout=LAYOUTS[layout], body=body), encoding="utf-8")
+            html_path.write_text(HTML.format(lang=lang, base=BASE_CSS, layout=LAYOUTS[layout], body=body, fit=FIT), encoding="utf-8")
             out_png = out_dir / fname
             subprocess.run([CHROME, "--headless=new", f"--screenshot={out_png}",
                             f"--window-size={W},{H}", "--force-device-scale-factor=1",
-                            "--hide-scrollbars", "--disable-gpu", html_path.as_uri()],
+                            "--hide-scrollbars", "--disable-gpu", "--virtual-time-budget=2000",
+                            "--allow-file-access-from-files", html_path.as_uri()],
                            check=True, capture_output=True)
             print(f"rendered {out_png.relative_to(ROOT)}")
 

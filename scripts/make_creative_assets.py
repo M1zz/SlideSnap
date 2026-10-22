@@ -18,7 +18,9 @@ import subprocess, sys, pathlib, tempfile
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 RAW = ROOT / "docs" / "screenshots" / "raw"
 OUT = ROOT / "docs" / "screenshots" / "creative"
-CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+# 다른 작업이 Chrome 을 같이 쓰면 느리거나 멈춘다 — CHROME 환경 변수로 chrome-headless-shell 등을 쓸 수 있다.
+import os
+CHROME = os.environ.get("CHROME", "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
 
 # 앱 언어 코드 → App Store Connect 로케일 (make_marketing_screenshots.py 와 같다)
 STORE = {"en": "en-US"}
@@ -45,6 +47,13 @@ HEADER = {
     "en": ("Lecture slide scanner", "Crooked slide photos,<br>straight and sorted"),
 }
 
+# 그 밖의 언어: scripts/screenshots/locales/<로케일>.json 의 creative_search · creative_header
+import json
+for _f in sorted((ROOT / "scripts" / "screenshots" / "locales").glob("*.json")):
+    _d = json.loads(_f.read_text(encoding="utf-8"))
+    SEARCH.setdefault(_f.stem, tuple(_d["creative_search"]))
+    HEADER.setdefault(_f.stem, tuple(_d["creative_header"]))
+
 # ⚠️ 바탕 · 글자색은 기존 스크린샷(make_marketing_screenshots.py)과 같다. 다르면 페이지에서
 #    헤더만 남의 앱처럼 보인다.
 BASE_CSS = """
@@ -60,6 +69,9 @@ body { background:#f4f4f5; position:relative;
 :lang(th) .headline, :lang(th) .eyebrow, :lang(th) .sub,
 :lang(ja) .headline, :lang(zh) .headline { letter-spacing:0; }
 :lang(th) .headline { line-height:1.3; }
+:lang(ja) body { font-family:-apple-system, "Hiragino Sans", sans-serif; }
+:lang(zh-Hans) body { font-family:-apple-system, "PingFang SC", sans-serif; }
+:lang(zh-Hant) body { font-family:-apple-system, "PingFang TC", sans-serif; }
 /* 한국어는 낱말 중간에서 끊지 않는다("키 / 보드"). */
 :lang(ko) .headline, :lang(ko) .sub, :lang(ko) .eyebrow { word-break:keep-all; }
 .phone { position:absolute; background:#17171a; border:6px solid #3a3a3e; padding:40px; border-radius:190px;

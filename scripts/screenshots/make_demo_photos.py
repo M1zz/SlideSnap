@@ -16,16 +16,23 @@ import numpy as np
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 from slides import DECKS
 
-CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+# 다른 작업이 Chrome 을 같이 쓰면 느리거나 멈춘다 — CHROME 환경 변수로 chrome-headless-shell 등을 쓸 수 있다.
+import os
+CHROME = os.environ.get("CHROME", "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
 SW, SH = 1600, 900          # 장표 해상도
 PW, PH = 2400, 1800         # 사진 해상도 (4:3 가로)
+
+
+# 한중일 글자는 그 언어 글꼴을 먼저(일본어 가나가 한국어 글꼴로 그려지지 않게).
+FONTS = {"ja": '"Hiragino Sans",', "zh-Hans": '"PingFang SC",', "zh-Hant": '"PingFang TC",'}
+LANG = "ko"
 
 
 def slide_html(s, accent):
     esc = html.escape
     css = f"""
     *{{margin:0;padding:0;box-sizing:border-box}}
-    body{{width:{SW}px;height:{SH}px;background:#fff;font-family:-apple-system,"Apple SD Gothic Neo",sans-serif;color:#1b1b1f;position:relative;overflow:hidden}}
+    body{{width:{SW}px;height:{SH}px;background:#fff;font-family:{FONTS.get(LANG, "")}-apple-system,"Apple SD Gothic Neo",sans-serif;color:#1b1b1f;position:relative;overflow:hidden}}
     .bar{{position:absolute;left:0;top:0;width:24px;height:100%;background:{accent}}}
     .pad{{padding:90px 110px 0 130px}}
     h1{{font-size:68px;font-weight:800;letter-spacing:-1px}}
@@ -66,7 +73,7 @@ def slide_html(s, accent):
         <div style="font-size:200px;color:{accent};line-height:.6;font-weight:800">“</div>
         <div style="font-size:70px;font-weight:700;line-height:1.35;margin-top:30px">{q}</div>
         <div style="font-size:40px;color:#77777d;margin-top:50px">— {esc(s['by'])}</div></div>"""
-    return f"<!doctype html><html><head><meta charset='utf-8'><style>{css}</style></head><body>{body}</body></html>"
+    return f"<!doctype html><html lang='{LANG}'><head><meta charset='utf-8'><style>{css}</style></head><body>{body}</body></html>"
 
 
 def render_slide(s, accent, out_png, work):
@@ -136,6 +143,8 @@ def save_jpeg(img, path, date):
 
 
 def main(lang, out):
+    global LANG
+    LANG = lang
     out = pathlib.Path(out)
     out.mkdir(parents=True, exist_ok=True)
     rng = random.Random(7)

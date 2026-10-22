@@ -1,0 +1,268 @@
+{
+ "decks": [
+  {
+   "title": "Metody UX výzkumu",
+   "date": "2026:09:24 14:0{i}:00",
+   "accent": "#3b6cf6",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Metody UX výzkumu",
+     "sub": "Pět cest, jak pochopit uživatele"
+    },
+    {
+     "kind": "bullets",
+     "title": "Příprava rozhovoru s uživateli",
+     "items": [
+      "Shrňte cíl do jedné věty",
+      "Začněte otevřenými otázkami",
+      "Nejdřív chování, potom názory",
+      "Předem si vyžádejte souhlas s nahráváním"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Průběh výzkumu",
+     "items": [
+      "Plán",
+      "Nábor",
+      "Rozhovory",
+      "Syntéza"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Jak často týmy metody používají",
+     "items": [
+      [
+       "Rozhovory",
+       82
+      ],
+      [
+       "Dotazník",
+       64
+      ],
+      [
+       "Test použitelnosti",
+       57
+      ],
+      [
+       "Deníková studie",
+       23
+      ]
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Sledujte, co uživatelé dělají,\nne co říkají.",
+     "by": "Jakob Nielsen"
+    },
+    {
+     "kind": "bullets",
+     "title": "Syntéza poznatků",
+     "items": [
+      "Seskupte poznámky v afinitní mapě",
+      "Upřednostněte opakující se problémy",
+      "Citace z rozhovorů držte jako důkazy"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Seminář marketingové strategie",
+   "date": "2026:09:18 10:1{i}:00",
+   "accent": "#e8573f",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Marketingová strategie 2026",
+     "sub": "Nový pohled na růstové kanály"
+    },
+    {
+     "kind": "bars",
+     "title": "Konverzní poměr podle kanálu",
+     "items": [
+      [
+       "Vyhledávací reklama",
+       4.8
+      ],
+      [
+       "Sociální sítě",
+       3.1
+      ],
+      [
+       "E-mail",
+       6.2
+      ],
+      [
+       "Partneři",
+       2.4
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Zákaznická cesta",
+     "items": [
+      "Povědomí",
+      "Zájem",
+      "Nákup",
+      "Věrnost"
+     ]
+    },
+    {
+     "kind": "bullets",
+     "title": "Priority na 2. pololetí",
+     "items": [
+      "Obnovit retenční kampaně",
+      "Otestovat sdělení podle rozhovorů s uživateli",
+      "Rozšířit partnerské kanály"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Úvod do analýzy dat",
+   "date": "2026:09:11 19:3{i}:00",
+   "accent": "#16a37a",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Úvod do analýzy dat",
+     "sub": "3. týden · Vizualizace dat"
+    },
+    {
+     "kind": "bullets",
+     "title": "Co dělá graf dobrým",
+     "items": [
+      "Jeden graf, jedno sdělení",
+      "Jasné osy a jednotky",
+      "Barvu jen pro zvýraznění"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Návštěvníci za měsíc (tis.)",
+     "items": [
+      [
+       "červen",
+       42
+      ],
+      [
+       "červenec",
+       55
+      ],
+      [
+       "srpen",
+       61
+      ],
+      [
+       "září",
+       78
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Postup analýzy",
+     "items": [
+      "Sběr",
+      "Čištění",
+      "Průzkum",
+      "Vizualizace"
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Data jsou nová ropa.",
+     "by": "Clive Humby"
+    }
+   ]
+  },
+  {
+   "title": "Základy managementu · 3. týden",
+   "date": "2026:09:04 13:0{i}:00",
+   "accent": "#8a4fd8",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Základy managementu",
+     "sub": "3. týden · Organizace a vedení lidí"
+    },
+    {
+     "kind": "bullets",
+     "title": "Tři styly vedení",
+     "items": [
+      "Direktivní vedení",
+      "Koučovací vedení",
+      "Delegující vedení"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Rozhodovací proces",
+     "items": [
+      "Definice",
+      "Varianty",
+      "Hodnocení",
+      "Realizace"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Co ovlivňuje spokojenost v práci",
+     "items": [
+      [
+       "Profesní růst",
+       71
+      ],
+      [
+       "Mzda",
+       66
+      ],
+      [
+       "Kolegové",
+       58
+      ],
+      [
+       "Autonomie",
+       52
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "search": "rozhovor",
+ "shots": [
+  [
+   "Z Fotek<br>rovnou prezentace",
+   "Sdílej fotky a máš jednu prezentaci"
+  ],
+  [
+   "Každá přednáška<br>úhledně zvlášť",
+   "Slajdy se třídí podle přednášek"
+  ],
+  [
+   "Foceno šikmo?<br>Narovnáme to.",
+   "Okraje najdeme a srovnáme za tebe"
+  ],
+  [
+   "Foť místo<br>psaní poznámek",
+   "Slajdy exportuj jako PDF k učení"
+  ],
+  [
+   "Hledej slova<br>přímo ve slajdech",
+   "Stačí si vzpomenout na jedno slovo"
+  ]
+ ],
+ "creative_search": [
+  "skener slajdů",
+  "Z Fotek<br>rovnou prezentace",
+  "Sdílej fotky<br>a máš jednu prezentaci"
+ ],
+ "creative_header": [
+  "Slajdy z přednášek",
+  "Křivě vyfocené slajdy<br>rovné a podle přednášek"
+ ]
+}

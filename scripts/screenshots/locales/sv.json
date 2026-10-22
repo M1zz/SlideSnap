@@ -1,0 +1,268 @@
+{
+ "decks": [
+  {
+   "title": "UX-forskningsmetoder",
+   "date": "2026:09:24 14:0{i}:00",
+   "accent": "#3b6cf6",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "UX-forskningsmetoder",
+     "sub": "Fem sätt att förstå dina användare"
+    },
+    {
+     "kind": "bullets",
+     "title": "Förbereda en användarintervju",
+     "items": [
+      "Skriv målet i en mening",
+      "Börja med öppna frågor",
+      "Fråga om beteenden före åsikter",
+      "Be om samtycke till inspelning först"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Forskningsprocessen",
+     "items": [
+      "Planera",
+      "Rekrytera",
+      "Intervju",
+      "Syntes"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Hur ofta team använder metoderna",
+     "items": [
+      [
+       "Intervjuer",
+       82
+      ],
+      [
+       "Enkät",
+       64
+      ],
+      [
+       "Användartest",
+       57
+      ],
+      [
+       "Dagboksstudie",
+       23
+      ]
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Titta på vad användarna gör,\ninte på vad de säger.",
+     "by": "Jakob Nielsen"
+    },
+    {
+     "kind": "bullets",
+     "title": "Sammanställa insikter",
+     "items": [
+      "Gruppera anteckningar i en affinitetskarta",
+      "Prioritera återkommande problem",
+      "Spara citat från intervjuer som belägg"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Seminarium i marknadsstrategi",
+   "date": "2026:09:18 10:1{i}:00",
+   "accent": "#e8573f",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Marknadsstrategi 2026",
+     "sub": "Vi tänker om kring våra tillväxtkanaler"
+    },
+    {
+     "kind": "bars",
+     "title": "Konvertering per kanal",
+     "items": [
+      [
+       "Sökannonser",
+       4.8
+      ],
+      [
+       "Sociala medier",
+       3.1
+      ],
+      [
+       "E-post",
+       6.2
+      ],
+      [
+       "Partner",
+       2.4
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Kundresan",
+     "items": [
+      "Kännedom",
+      "Intresse",
+      "Köp",
+      "Lojalitet"
+     ]
+    },
+    {
+     "kind": "bullets",
+     "title": "Prioriteringar andra halvåret",
+     "items": [
+      "Förnya lojalitetskampanjerna",
+      "Testa budskap från användarintervjuer",
+      "Bygga ut partnerkanalerna"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Introduktion till dataanalys",
+   "date": "2026:09:11 19:3{i}:00",
+   "accent": "#16a37a",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Introduktion till dataanalys",
+     "sub": "Vecka 3 · Datavisualisering"
+    },
+    {
+     "kind": "bullets",
+     "title": "Vad kännetecknar ett bra diagram",
+     "items": [
+      "Ett budskap per diagram",
+      "Tydliga axlar och enheter",
+      "Använd färg bara för betoning"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Besökare per månad (tusental)",
+     "items": [
+      [
+       "jun",
+       42
+      ],
+      [
+       "jul",
+       55
+      ],
+      [
+       "aug",
+       61
+      ],
+      [
+       "sep",
+       78
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Analysflödet",
+     "items": [
+      "Samla in",
+      "Rensa",
+      "Utforska",
+      "Visualisera"
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Data är den nya oljan.",
+     "by": "Clive Humby"
+    }
+   ]
+  },
+  {
+   "title": "Ledarskapets grunder · Vecka 3",
+   "date": "2026:09:04 13:0{i}:00",
+   "accent": "#8a4fd8",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Ledarskapets grunder",
+     "sub": "Vecka 3 · Organisation och ledarskap"
+    },
+    {
+     "kind": "bullets",
+     "title": "Tre ledarstilar",
+     "items": [
+      "Instruerande ledarskap",
+      "Coachande ledarskap",
+      "Delegerande ledarskap"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Beslutsprocessen",
+     "items": [
+      "Definiera",
+      "Utforska",
+      "Utvärdera",
+      "Agera"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Vad driver arbetsglädje",
+     "items": [
+      [
+       "Utveckling",
+       71
+      ],
+      [
+       "Lön",
+       66
+      ],
+      [
+       "Kollegor",
+       58
+      ],
+      [
+       "Självständighet",
+       52
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "search": "intervju",
+ "shots": [
+  [
+   "Från Bilder<br>till presentation",
+   "Dela flera foton, få en presentation"
+  ],
+  [
+   "Varje föreläsning<br>prydligt sorterad",
+   "Slides grupperas per föreläsning"
+  ],
+  [
+   "Sned bild?<br>Rätas upp.",
+   "Kanterna hittas och rättas till åt dig"
+  ],
+  [
+   "Fota i stället<br>för att anteckna",
+   "Exportera slides som PDF för plugget"
+  ],
+  [
+   "Sök bland orden<br>på dina slides",
+   "Det räcker med ett enda ord"
+  ]
+ ],
+ "creative_search": [
+  "skanna slides",
+  "Från Bilder<br>till presentation",
+  "Dela flera foton,<br>få en presentation"
+ ],
+ "creative_header": [
+  "Slides från föreläsningar",
+  "Sneda slides blir raka,<br>sorterade per föreläsning"
+ ]
+}

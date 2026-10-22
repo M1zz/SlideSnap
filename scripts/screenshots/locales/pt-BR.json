@@ -1,0 +1,268 @@
+{
+ "decks": [
+  {
+   "title": "Métodos de pesquisa UX",
+   "date": "2026:09:24 14:0{i}:00",
+   "accent": "#3b6cf6",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Métodos de pesquisa UX",
+     "sub": "Cinco formas de entender o usuário"
+    },
+    {
+     "kind": "bullets",
+     "title": "Preparando a entrevista",
+     "items": [
+      "Defina o objetivo em uma frase",
+      "Comece com perguntas abertas",
+      "Comportamento antes de opinião",
+      "Peça autorização para gravar"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Etapas da pesquisa",
+     "items": [
+      "Planejar",
+      "Recrutar",
+      "Entrevistas",
+      "Síntese"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Métodos mais usados pelos times",
+     "items": [
+      [
+       "Entrevistas",
+       82
+      ],
+      [
+       "Questionário",
+       64
+      ],
+      [
+       "Teste de usabilidade",
+       57
+      ],
+      [
+       "Estudo de diário",
+       23
+      ]
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Observe o que os usuários fazem,\nnão o que eles dizem.",
+     "by": "Jakob Nielsen"
+    },
+    {
+     "kind": "bullets",
+     "title": "Sintetizando os achados",
+     "items": [
+      "Agrupe notas em um mapa de afinidade",
+      "Priorize as dores recorrentes",
+      "Guarde falas das entrevistas"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Seminário de marketing",
+   "date": "2026:09:18 10:1{i}:00",
+   "accent": "#e8573f",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Estratégia de marketing 2026",
+     "sub": "Repensando os canais de crescimento"
+    },
+    {
+     "kind": "bars",
+     "title": "Taxa de conversão por canal",
+     "items": [
+      [
+       "Links patrocinados",
+       4.8
+      ],
+      [
+       "Redes sociais",
+       3.1
+      ],
+      [
+       "E-mail",
+       6.2
+      ],
+      [
+       "Parcerias",
+       2.4
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Jornada do cliente",
+     "items": [
+      "Descoberta",
+      "Interesse",
+      "Compra",
+      "Fidelização"
+     ]
+    },
+    {
+     "kind": "bullets",
+     "title": "Prioridades do 2º semestre",
+     "items": [
+      "Reformular campanhas de retenção",
+      "Testar mensagens das entrevistas",
+      "Ampliar canais de parceria"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Introdução à análise de dados",
+   "date": "2026:09:11 19:3{i}:00",
+   "accent": "#16a37a",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Introdução à análise de dados",
+     "sub": "Semana 3 · Visualização de dados"
+    },
+    {
+     "kind": "bullets",
+     "title": "O que faz um bom gráfico",
+     "items": [
+      "Uma mensagem por gráfico",
+      "Eixos e unidades claros",
+      "Cor só para destacar"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Visitantes por mês (mil)",
+     "items": [
+      [
+       "Jun",
+       42
+      ],
+      [
+       "Jul",
+       55
+      ],
+      [
+       "Ago",
+       61
+      ],
+      [
+       "Set",
+       78
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Fluxo de análise",
+     "items": [
+      "Coletar",
+      "Limpar",
+      "Explorar",
+      "Visualizar"
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Dados são o novo petróleo.",
+     "by": "Clive Humby"
+    }
+   ]
+  },
+  {
+   "title": "Administração · Semana 3",
+   "date": "2026:09:04 13:0{i}:00",
+   "accent": "#8a4fd8",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Fundamentos de Administração",
+     "sub": "Semana 3 · Organização e liderança"
+    },
+    {
+     "kind": "bullets",
+     "title": "Três estilos de liderança",
+     "items": [
+      "Liderança diretiva",
+      "Liderança coach",
+      "Liderança delegativa"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Processo decisório",
+     "items": [
+      "Definir",
+      "Explorar",
+      "Avaliar",
+      "Agir"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Fatores de satisfação no trabalho",
+     "items": [
+      [
+       "Crescimento",
+       71
+      ],
+      [
+       "Salário",
+       66
+      ],
+      [
+       "Colegas",
+       58
+      ],
+      [
+       "Autonomia",
+       52
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "search": "entrevista",
+ "shots": [
+  [
+   "Das Fotos para<br>uma apresentação",
+   "Compartilhe várias fotos, vira uma só"
+  ],
+  [
+   "Cada aula<br>no seu lugar",
+   "Slides agrupados por aula"
+  ],
+  [
+   "Foto torta?<br>A gente endireita.",
+   "Bordas detectadas e corrigidas"
+  ],
+  [
+   "Fotografe em<br>vez de anotar",
+   "Exporte os slides em PDF para estudar"
+  ],
+  [
+   "Busque o texto<br>dos seus slides",
+   "Uma palavra já basta"
+  ]
+ ],
+ "creative_search": [
+  "Scanner de slides",
+  "Das Fotos para<br>uma apresentação",
+  "Compartilhe várias fotos<br>e tenha uma só apresentação"
+ ],
+ "creative_header": [
+  "Scanner de slides",
+  "Fotos tortas,<br>slides retos por aula"
+ ]
+}

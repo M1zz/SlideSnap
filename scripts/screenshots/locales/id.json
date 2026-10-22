@@ -1,0 +1,268 @@
+{
+ "decks": [
+  {
+   "title": "Metode Riset UX",
+   "date": "2026:09:24 14:0{i}:00",
+   "accent": "#3b6cf6",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Metode Riset UX",
+     "sub": "Lima cara memahami pengguna"
+    },
+    {
+     "kind": "bullets",
+     "title": "Persiapan Wawancara Pengguna",
+     "items": [
+      "Tulis tujuan dalam satu kalimat",
+      "Mulai dengan pertanyaan terbuka",
+      "Tanya perilaku, baru pendapat",
+      "Minta izin merekam lebih dulu"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Proses Riset",
+     "items": [
+      "Rencana",
+      "Rekrut",
+      "Wawancara pengguna",
+      "Sintesis"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Frekuensi Penggunaan Metode",
+     "items": [
+      [
+       "Wawancara pengguna",
+       82
+      ],
+      [
+       "Survei",
+       64
+      ],
+      [
+       "Uji usabilitas",
+       57
+      ],
+      [
+       "Studi diari",
+       23
+      ]
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Perhatikan apa yang dilakukan pengguna,\nbukan apa yang mereka katakan.",
+     "by": "Jakob Nielsen"
+    },
+    {
+     "kind": "bullets",
+     "title": "Menyintesis Temuan",
+     "items": [
+      "Kelompokkan catatan dengan peta afinitas",
+      "Prioritaskan masalah yang berulang",
+      "Simpan kutipan wawancara pengguna sebagai bukti"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Seminar Strategi Pemasaran",
+   "date": "2026:09:18 10:1{i}:00",
+   "accent": "#e8573f",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Strategi Pemasaran 2026",
+     "sub": "Meninjau ulang kanal pertumbuhan"
+    },
+    {
+     "kind": "bars",
+     "title": "Tingkat Konversi per Kanal",
+     "items": [
+      [
+       "Iklan pencarian",
+       4.8
+      ],
+      [
+       "Media sosial",
+       3.1
+      ],
+      [
+       "Email",
+       6.2
+      ],
+      [
+       "Mitra",
+       2.4
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Perjalanan Pelanggan",
+     "items": [
+      "Kesadaran",
+      "Minat",
+      "Pembelian",
+      "Loyalitas"
+     ]
+    },
+    {
+     "kind": "bullets",
+     "title": "Prioritas Semester 2",
+     "items": [
+      "Perbarui kampanye retensi",
+      "Uji pesan dari hasil wawancara pengguna",
+      "Perluas kanal mitra"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Pengantar Analisis Data",
+   "date": "2026:09:11 19:3{i}:00",
+   "accent": "#16a37a",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Pengantar Analisis Data",
+     "sub": "Minggu 3 · Visualisasi Data"
+    },
+    {
+     "kind": "bullets",
+     "title": "Ciri Grafik yang Baik",
+     "items": [
+      "Satu grafik, satu pesan",
+      "Sumbu dan satuan yang jelas",
+      "Warna hanya untuk penekanan"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Pengunjung Bulanan (ribu)",
+     "items": [
+      [
+       "Jun",
+       42
+      ],
+      [
+       "Jul",
+       55
+      ],
+      [
+       "Agu",
+       61
+      ],
+      [
+       "Sep",
+       78
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Alur Analisis",
+     "items": [
+      "Kumpulkan",
+      "Bersihkan",
+      "Eksplorasi",
+      "Visualisasi"
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Data adalah minyak baru.",
+     "by": "Clive Humby"
+    }
+   ]
+  },
+  {
+   "title": "Pengantar Manajemen · Minggu 3",
+   "date": "2026:09:04 13:0{i}:00",
+   "accent": "#8a4fd8",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Pengantar Manajemen",
+     "sub": "Minggu 3 · Organisasi & Kepemimpinan"
+    },
+    {
+     "kind": "bullets",
+     "title": "Tiga Gaya Kepemimpinan",
+     "items": [
+      "Gaya mengarahkan",
+      "Gaya melatih",
+      "Gaya mendelegasikan"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Proses Pengambilan Keputusan",
+     "items": [
+      "Definisikan",
+      "Cari opsi",
+      "Evaluasi",
+      "Eksekusi"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Faktor Kepuasan Kerja",
+     "items": [
+      [
+       "Pengembangan",
+       71
+      ],
+      [
+       "Gaji",
+       66
+      ],
+      [
+       "Rekan kerja",
+       58
+      ],
+      [
+       "Otonomi",
+       52
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "search": "wawancara pengguna",
+ "shots": [
+  [
+   "Dari Foto,<br>jadi presentasi",
+   "Bagikan banyak foto, langsung tertata"
+  ],
+  [
+   "Tiap kuliah,<br>tersusun rapi",
+   "Slide dikelompokkan per sesi"
+  ],
+  [
+   "Difoto miring?<br>Jadi lurus.",
+   "Tepi slide dicari dan diluruskan"
+  ],
+  [
+   "Cukup foto,<br>tak perlu mencatat",
+   "Ekspor slide jadi PDF untuk belajar"
+  ],
+  [
+   "Cari kata<br>di dalam slide",
+   "Cukup ingat satu kata"
+  ]
+ ],
+ "creative_search": [
+  "scan slide kuliah",
+  "Dari Foto,<br>jadi presentasi",
+  "Bagikan banyak foto,<br>langsung tertata"
+ ],
+ "creative_header": [
+  "Kamera slide kuliah",
+  "Slide miring? Lurus<br>dan rapi per kuliah"
+ ]
+}

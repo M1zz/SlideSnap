@@ -1,0 +1,268 @@
+{
+ "decks": [
+  {
+   "title": "UX Research Methods",
+   "date": "2026:09:24 14:0{i}:00",
+   "accent": "#3b6cf6",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "UX Research Methods",
+     "sub": "Five ways to understand your users"
+    },
+    {
+     "kind": "bullets",
+     "title": "Preparing a User Interview",
+     "items": [
+      "Write the goal in one sentence",
+      "Start with open questions",
+      "Ask about behaviour, then opinions",
+      "Get consent to record first"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Research Process",
+     "items": [
+      "Plan",
+      "Recruit",
+      "User Interview",
+      "Synthesise"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "How Often Teams Use Each Method",
+     "items": [
+      [
+       "User interview",
+       82
+      ],
+      [
+       "Survey",
+       64
+      ],
+      [
+       "Usability test",
+       57
+      ],
+      [
+       "Diary study",
+       23
+      ]
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Pay attention to what users do,\nnot what they say.",
+     "by": "Jakob Nielsen"
+    },
+    {
+     "kind": "bullets",
+     "title": "Synthesising Insights",
+     "items": [
+      "Group notes with an affinity map",
+      "Prioritise recurring pain points",
+      "Keep user interview quotes as evidence"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Marketing Strategy Seminar",
+   "date": "2026:09:18 10:1{i}:00",
+   "accent": "#e8573f",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "2026 Marketing Strategy",
+     "sub": "Rethinking our growth channels"
+    },
+    {
+     "kind": "bars",
+     "title": "Conversion Rate by Channel",
+     "items": [
+      [
+       "Search ads",
+       4.8
+      ],
+      [
+       "Social",
+       3.1
+      ],
+      [
+       "Email",
+       6.2
+      ],
+      [
+       "Partners",
+       2.4
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Customer Journey",
+     "items": [
+      "Awareness",
+      "Interest",
+      "Purchase",
+      "Loyalty"
+     ]
+    },
+    {
+     "kind": "bullets",
+     "title": "H2 Priorities",
+     "items": [
+      "Revamp retention campaigns",
+      "Test messaging from user interview findings",
+      "Expand partner channels"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Intro to Data Analysis",
+   "date": "2026:09:11 19:3{i}:00",
+   "accent": "#16a37a",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Intro to Data Analysis",
+     "sub": "Week 3 · Data Visualisation"
+    },
+    {
+     "kind": "bullets",
+     "title": "What Makes a Good Chart",
+     "items": [
+      "One message per chart",
+      "Clear axes and units",
+      "Use color only for emphasis"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Monthly Visitors (thousands)",
+     "items": [
+      [
+       "Jun",
+       42
+      ],
+      [
+       "Jul",
+       55
+      ],
+      [
+       "Aug",
+       61
+      ],
+      [
+       "Sep",
+       78
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Analysis Workflow",
+     "items": [
+      "Collect",
+      "Clean",
+      "Explore",
+      "Visualise"
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Data is the new oil.",
+     "by": "Clive Humby"
+    }
+   ]
+  },
+  {
+   "title": "Management Studies · Week 3",
+   "date": "2026:09:04 13:0{i}:00",
+   "accent": "#8a4fd8",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Principles of Management",
+     "sub": "Week 3 · Organisations & Leadership"
+    },
+    {
+     "kind": "bullets",
+     "title": "Three Leadership Styles",
+     "items": [
+      "Directive leadership",
+      "Coaching leadership",
+      "Delegating leadership"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Decision-Making Process",
+     "items": [
+      "Define",
+      "Explore",
+      "Evaluate",
+      "Act"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Drivers of Job Satisfaction",
+     "items": [
+      [
+       "Growth",
+       71
+      ],
+      [
+       "Pay",
+       66
+      ],
+      [
+       "Peers",
+       58
+      ],
+      [
+       "Autonomy",
+       52
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "search": "user interview",
+ "shots": [
+  [
+   "From Photos<br>to a deck",
+   "Share several photos, get one tidy deck"
+  ],
+  [
+   "Every lecture,<br>neatly filed",
+   "Slides are grouped by session"
+  ],
+  [
+   "Shot at an angle?<br>Straightened.",
+   "Edges found and corrected for you"
+  ],
+  [
+   "Snap instead<br>of scribbling",
+   "Export your slides as a revision PDF"
+  ],
+  [
+   "Search the words<br>on your slides",
+   "One word is all it takes"
+  ]
+ ],
+ "creative_search": [
+  "Lecture slide scanner",
+  "From Photos<br>to a deck",
+  "Share several photos,<br>get one tidy deck"
+ ],
+ "creative_header": [
+  "Lecture slide scanner",
+  "Crooked slide photos,<br>straight and sorted"
+ ]
+}

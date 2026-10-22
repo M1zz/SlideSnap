@@ -1,0 +1,268 @@
+{
+ "decks": [
+  {
+   "title": "Phương pháp nghiên cứu UX",
+   "date": "2026:09:24 14:0{i}:00",
+   "accent": "#3b6cf6",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Phương pháp nghiên cứu UX",
+     "sub": "5 cách thấu hiểu người dùng"
+    },
+    {
+     "kind": "bullets",
+     "title": "Chuẩn bị phỏng vấn người dùng",
+     "items": [
+      "Viết mục tiêu trong một câu",
+      "Bắt đầu bằng câu hỏi mở",
+      "Hỏi hành vi trước, ý kiến sau",
+      "Xin phép ghi âm trước"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Quy trình nghiên cứu",
+     "items": [
+      "Lập kế hoạch",
+      "Tuyển người",
+      "Phỏng vấn người dùng",
+      "Tổng hợp"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Mức độ dùng từng phương pháp",
+     "items": [
+      [
+       "Phỏng vấn người dùng",
+       82
+      ],
+      [
+       "Khảo sát",
+       64
+      ],
+      [
+       "Kiểm thử khả dụng",
+       57
+      ],
+      [
+       "Nhật ký",
+       23
+      ]
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Hãy để ý điều người dùng làm,\nchứ không phải điều họ nói.",
+     "by": "Jakob Nielsen"
+    },
+    {
+     "kind": "bullets",
+     "title": "Tổng hợp phát hiện",
+     "items": [
+      "Gom ghi chú bằng sơ đồ tương đồng",
+      "Ưu tiên vấn đề lặp lại",
+      "Lưu lời phỏng vấn người dùng làm bằng chứng"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Hội thảo chiến lược marketing",
+   "date": "2026:09:18 10:1{i}:00",
+   "accent": "#e8573f",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Chiến lược marketing 2026",
+     "sub": "Nhìn lại các kênh tăng trưởng"
+    },
+    {
+     "kind": "bars",
+     "title": "Tỷ lệ chuyển đổi theo kênh",
+     "items": [
+      [
+       "Quảng cáo tìm kiếm",
+       4.8
+      ],
+      [
+       "Mạng xã hội",
+       3.1
+      ],
+      [
+       "Email",
+       6.2
+      ],
+      [
+       "Đối tác",
+       2.4
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Hành trình khách hàng",
+     "items": [
+      "Nhận biết",
+      "Quan tâm",
+      "Mua hàng",
+      "Trung thành"
+     ]
+    },
+    {
+     "kind": "bullets",
+     "title": "Ưu tiên 6 tháng cuối năm",
+     "items": [
+      "Đổi mới chiến dịch giữ chân",
+      "Thử thông điệp từ phỏng vấn người dùng",
+      "Mở rộng kênh đối tác"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Nhập môn phân tích dữ liệu",
+   "date": "2026:09:11 19:3{i}:00",
+   "accent": "#16a37a",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Nhập môn phân tích dữ liệu",
+     "sub": "Tuần 3 · Trực quan hóa dữ liệu"
+    },
+    {
+     "kind": "bullets",
+     "title": "Thế nào là biểu đồ tốt",
+     "items": [
+      "Mỗi biểu đồ một thông điệp",
+      "Trục và đơn vị rõ ràng",
+      "Chỉ dùng màu để nhấn mạnh"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Lượt truy cập theo tháng (nghìn)",
+     "items": [
+      [
+       "Th6",
+       42
+      ],
+      [
+       "Th7",
+       55
+      ],
+      [
+       "Th8",
+       61
+      ],
+      [
+       "Th9",
+       78
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Quy trình phân tích",
+     "items": [
+      "Thu thập",
+      "Làm sạch",
+      "Khám phá",
+      "Trực quan hóa"
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Dữ liệu là dầu mỏ mới.",
+     "by": "Clive Humby"
+    }
+   ]
+  },
+  {
+   "title": "Quản trị học · Tuần 3",
+   "date": "2026:09:04 13:0{i}:00",
+   "accent": "#8a4fd8",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Quản trị học đại cương",
+     "sub": "Tuần 3 · Tổ chức và lãnh đạo"
+    },
+    {
+     "kind": "bullets",
+     "title": "Ba phong cách lãnh đạo",
+     "items": [
+      "Lãnh đạo chỉ thị",
+      "Lãnh đạo huấn luyện",
+      "Lãnh đạo ủy quyền"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Quy trình ra quyết định",
+     "items": [
+      "Xác định",
+      "Tìm phương án",
+      "Đánh giá",
+      "Thực hiện"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Yếu tố tạo sự hài lòng",
+     "items": [
+      [
+       "Phát triển",
+       71
+      ],
+      [
+       "Thu nhập",
+       66
+      ],
+      [
+       "Đồng nghiệp",
+       58
+      ],
+      [
+       "Tự chủ",
+       52
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "search": "phỏng vấn người dùng",
+ "shots": [
+  [
+   "Chọn từ Ảnh,<br>gom thành một bài",
+   "Chia sẻ nhiều ảnh, gọn thành một bài"
+  ],
+  [
+   "Mỗi buổi học<br>một ngăn riêng",
+   "Slide tự gom theo từng buổi"
+  ],
+  [
+   "Chụp nghiêng?<br>Tự nắn thẳng.",
+   "Tự tìm cạnh slide và chỉnh lại"
+  ],
+  [
+   "Chụp lại<br>thay vì chép bài",
+   "Xuất slide thành PDF để ôn tập"
+  ],
+  [
+   "Tìm cả chữ<br>trong slide",
+   "Chỉ cần nhớ một từ là đủ"
+  ]
+ ],
+ "creative_search": [
+  "quét slide bài giảng",
+  "Chọn từ Ảnh,<br>gom thành một bài",
+  "Chia sẻ nhiều ảnh,<br>gọn thành một bài"
+ ],
+ "creative_header": [
+  "Camera chụp slide",
+  "Slide chụp nghiêng,<br>thẳng và theo buổi"
+ ]
+}

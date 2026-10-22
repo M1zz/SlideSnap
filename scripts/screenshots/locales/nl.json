@@ -1,0 +1,268 @@
+{
+ "decks": [
+  {
+   "title": "UX-onderzoeksmethoden",
+   "date": "2026:09:24 14:0{i}:00",
+   "accent": "#3b6cf6",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "UX-onderzoeksmethoden",
+     "sub": "Vijf manieren om je gebruikers te begrijpen"
+    },
+    {
+     "kind": "bullets",
+     "title": "Een gebruikersinterview voorbereiden",
+     "items": [
+      "Formuleer het doel in één zin",
+      "Begin met open vragen",
+      "Vraag eerst naar gedrag, dan naar meningen",
+      "Vraag vooraf toestemming voor opname"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Onderzoeksproces",
+     "items": [
+      "Plannen",
+      "Werven",
+      "Interview",
+      "Analyseren"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Hoe vaak teams elke methode inzetten",
+     "items": [
+      [
+       "Interviews",
+       82
+      ],
+      [
+       "Enquête",
+       64
+      ],
+      [
+       "Usabilitytest",
+       57
+      ],
+      [
+       "Dagboekstudie",
+       23
+      ]
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Let op wat gebruikers doen,\nniet op wat ze zeggen.",
+     "by": "Jakob Nielsen"
+    },
+    {
+     "kind": "bullets",
+     "title": "Inzichten bundelen",
+     "items": [
+      "Groepeer notities in een affiniteitsdiagram",
+      "Geef terugkerende knelpunten voorrang",
+      "Bewaar citaten uit interviews als bewijs"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Werkcollege marketingstrategie",
+   "date": "2026:09:18 10:1{i}:00",
+   "accent": "#e8573f",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Marketingstrategie 2026",
+     "sub": "Onze groeikanalen opnieuw bekeken"
+    },
+    {
+     "kind": "bars",
+     "title": "Conversieratio per kanaal",
+     "items": [
+      [
+       "Zoekadverteren",
+       4.8
+      ],
+      [
+       "Social media",
+       3.1
+      ],
+      [
+       "E-mail",
+       6.2
+      ],
+      [
+       "Partners",
+       2.4
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Klantreis",
+     "items": [
+      "Bekendheid",
+      "Interesse",
+      "Aankoop",
+      "Loyaliteit"
+     ]
+    },
+    {
+     "kind": "bullets",
+     "title": "Prioriteiten tweede helft",
+     "items": [
+      "Retentiecampagnes vernieuwen",
+      "Boodschappen testen uit gebruikersinterviews",
+      "Partnerkanalen uitbreiden"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Inleiding data-analyse",
+   "date": "2026:09:11 19:3{i}:00",
+   "accent": "#16a37a",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Inleiding data-analyse",
+     "sub": "Week 3 · Datavisualisatie"
+    },
+    {
+     "kind": "bullets",
+     "title": "Wat maakt een goede grafiek",
+     "items": [
+      "Eén boodschap per grafiek",
+      "Duidelijke assen en eenheden",
+      "Gebruik kleur alleen om te benadrukken"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Bezoekers per maand (×1.000)",
+     "items": [
+      [
+       "jun",
+       42
+      ],
+      [
+       "jul",
+       55
+      ],
+      [
+       "aug",
+       61
+      ],
+      [
+       "sep",
+       78
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Analyseproces",
+     "items": [
+      "Verzamelen",
+      "Opschonen",
+      "Verkennen",
+      "Visualiseren"
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Data is de nieuwe olie.",
+     "by": "Clive Humby"
+    }
+   ]
+  },
+  {
+   "title": "Inleiding management · Week 3",
+   "date": "2026:09:04 13:0{i}:00",
+   "accent": "#8a4fd8",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Principes van management",
+     "sub": "Week 3 · Organisatie en leiderschap"
+    },
+    {
+     "kind": "bullets",
+     "title": "Drie leiderschapsstijlen",
+     "items": [
+      "Sturend leiderschap",
+      "Coachend leiderschap",
+      "Delegerend leiderschap"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Besluitvormingsproces",
+     "items": [
+      "Definiëren",
+      "Verkennen",
+      "Afwegen",
+      "Uitvoeren"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Wat bepaalt werkplezier",
+     "items": [
+      [
+       "Groei",
+       71
+      ],
+      [
+       "Salaris",
+       66
+      ],
+      [
+       "Collega's",
+       58
+      ],
+      [
+       "Autonomie",
+       52
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "search": "interview",
+ "shots": [
+  [
+   "Van Foto's<br>naar presentatie",
+   "Deel foto's, krijg één presentatie"
+  ],
+  [
+   "Elk college<br>netjes geordend",
+   "Dia's worden per college gebundeld"
+  ],
+  [
+   "Scheve foto?<br>Rechtgezet.",
+   "Randen worden gevonden en rechtgezet"
+  ],
+  [
+   "Foto in plaats<br>van aantekeningen",
+   "Exporteer je dia's als pdf om te leren"
+  ],
+  [
+   "Zoek op woorden<br>in je dia's",
+   "Eén woord is alles wat je nodig hebt"
+  ]
+ ],
+ "creative_search": [
+  "dia's scannen",
+  "Van Foto's<br>naar presentatie",
+  "Deel foto's,<br>krijg één presentatie"
+ ],
+ "creative_header": [
+  "Dia's van colleges",
+  "Scheve diafoto's<br>recht en per college"
+ ]
+}

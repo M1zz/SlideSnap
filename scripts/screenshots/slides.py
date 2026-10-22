@@ -71,3 +71,11 @@ DECKS = {
 
 # 스크린샷 문구 · 검색어 (언어별)
 SEARCH = {"ko": "사용자 인터뷰", "en": "user interview"}
+
+# 그 밖의 언어는 locales/<로케일>.json 에 둔다(decks · search · shots · creative_*).
+import json as _json, pathlib as _pathlib
+LOCALE_DIR = _pathlib.Path(__file__).parent / "locales"
+for _f in sorted(LOCALE_DIR.glob("*.json")):
+    _d = _json.loads(_f.read_text(encoding="utf-8"))
+    DECKS.setdefault(_f.stem, _d["decks"])
+    SEARCH.setdefault(_f.stem, _d["search"])

@@ -1,0 +1,268 @@
+{
+ "decks": [
+  {
+   "title": "Méthodes de recherche UX",
+   "date": "2026:09:24 14:0{i}:00",
+   "accent": "#3b6cf6",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Méthodes de recherche UX",
+     "sub": "Cinq façons de comprendre l’utilisateur"
+    },
+    {
+     "kind": "bullets",
+     "title": "Préparer un entretien",
+     "items": [
+      "Formuler l’objectif en une phrase",
+      "Commencer par des questions ouvertes",
+      "Les actes d’abord, les avis ensuite",
+      "Obtenir l’accord pour enregistrer"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Démarche de recherche",
+     "items": [
+      "Planifier",
+      "Recruter",
+      "Entretien",
+      "Synthèse"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Méthodes les plus utilisées",
+     "items": [
+      [
+       "Entretien utilisateur",
+       82
+      ],
+      [
+       "Questionnaire",
+       64
+      ],
+      [
+       "Test d’utilisabilité",
+       57
+      ],
+      [
+       "Journal de bord",
+       23
+      ]
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Observez ce que font les utilisateurs,\npas ce qu’ils disent.",
+     "by": "Jakob Nielsen"
+    },
+    {
+     "kind": "bullets",
+     "title": "Synthétiser les résultats",
+     "items": [
+      "Regrouper les notes par affinités",
+      "Prioriser les irritants récurrents",
+      "Garder les verbatims d’entretien"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Séminaire stratégie marketing",
+   "date": "2026:09:18 10:1{i}:00",
+   "accent": "#e8573f",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Stratégie marketing 2026",
+     "sub": "Repenser nos leviers de croissance"
+    },
+    {
+     "kind": "bars",
+     "title": "Taux de conversion par canal",
+     "items": [
+      [
+       "Liens sponsorisés",
+       4.8
+      ],
+      [
+       "Réseaux sociaux",
+       3.1
+      ],
+      [
+       "E-mailing",
+       6.2
+      ],
+      [
+       "Partenaires",
+       2.4
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Parcours client",
+     "items": [
+      "Notoriété",
+      "Intérêt",
+      "Achat",
+      "Fidélisation"
+     ]
+    },
+    {
+     "kind": "bullets",
+     "title": "Priorités du second semestre",
+     "items": [
+      "Refondre les campagnes de fidélisation",
+      "Tester les messages issus des entretiens",
+      "Développer les partenariats"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Introduction à l’analyse de données",
+   "date": "2026:09:11 19:3{i}:00",
+   "accent": "#16a37a",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Initiation à l’analyse de données",
+     "sub": "Semaine 3 · Visualisation des données"
+    },
+    {
+     "kind": "bullets",
+     "title": "Les règles d’un bon graphique",
+     "items": [
+      "Un message par graphique",
+      "Des axes et unités clairs",
+      "La couleur pour souligner"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Visiteurs par mois (milliers)",
+     "items": [
+      [
+       "Juin",
+       42
+      ],
+      [
+       "Juil.",
+       55
+      ],
+      [
+       "Août",
+       61
+      ],
+      [
+       "Sept.",
+       78
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Démarche d’analyse",
+     "items": [
+      "Collecter",
+      "Nettoyer",
+      "Explorer",
+      "Visualiser"
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "La donnée est le nouveau pétrole.",
+     "by": "Clive Humby"
+    }
+   ]
+  },
+  {
+   "title": "Management · Semaine 3",
+   "date": "2026:09:04 13:0{i}:00",
+   "accent": "#8a4fd8",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Principes de management",
+     "sub": "Semaine 3 · Organisation et leadership"
+    },
+    {
+     "kind": "bullets",
+     "title": "Trois styles de leadership",
+     "items": [
+      "Leadership directif",
+      "Leadership coach",
+      "Leadership délégatif"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Processus de décision",
+     "items": [
+      "Définir",
+      "Explorer",
+      "Évaluer",
+      "Agir"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Facteurs de satisfaction au travail",
+     "items": [
+      [
+       "Évolution",
+       71
+      ],
+      [
+       "Salaire",
+       66
+      ],
+      [
+       "Collègues",
+       58
+      ],
+      [
+       "Autonomie",
+       52
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "search": "entretien",
+ "shots": [
+  [
+   "De Photos à<br>une présentation",
+   "Partagez vos photos, tout est réuni"
+  ],
+  [
+   "Chaque cours<br>bien rangé",
+   "Diapositives regroupées par séance"
+  ],
+  [
+   "Photo de travers ?<br>Redressée.",
+   "Bords détectés et corrigés pour vous"
+  ],
+  [
+   "Photographiez<br>au lieu de noter",
+   "Exportez vos diapositives en PDF"
+  ],
+  [
+   "Cherchez dans<br>vos diapositives",
+   "Un seul mot suffit"
+  ]
+ ],
+ "creative_search": [
+  "Scanner de cours",
+  "De Photos à<br>une présentation",
+  "Partagez vos photos,<br>tout est réuni"
+ ],
+ "creative_header": [
+  "Scanner de cours",
+  "Photos de travers,<br>droites et classées"
+ ]
+}

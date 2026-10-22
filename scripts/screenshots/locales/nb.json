@@ -1,0 +1,268 @@
+{
+ "decks": [
+  {
+   "title": "UX-forskningsmetoder",
+   "date": "2026:09:24 14:0{i}:00",
+   "accent": "#3b6cf6",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "UX-forskningsmetoder",
+     "sub": "Fem måter å forstå brukerne på"
+    },
+    {
+     "kind": "bullets",
+     "title": "Forberede et brukerintervju",
+     "items": [
+      "Skriv målet i én setning",
+      "Start med åpne spørsmål",
+      "Spør om atferd før meninger",
+      "Få samtykke til opptak først"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Forskningsprosessen",
+     "items": [
+      "Planlegge",
+      "Rekruttere",
+      "Intervju",
+      "Syntese"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Hvor ofte team bruker metodene",
+     "items": [
+      [
+       "Brukerintervju",
+       82
+      ],
+      [
+       "Spørreskjema",
+       64
+      ],
+      [
+       "Brukertest",
+       57
+      ],
+      [
+       "Dagbokstudie",
+       23
+      ]
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Se på hva brukerne gjør,\nikke hva de sier.",
+     "by": "Jakob Nielsen"
+    },
+    {
+     "kind": "bullets",
+     "title": "Sammenstille innsikt",
+     "items": [
+      "Grupper notater i et affinitetskart",
+      "Prioriter problemer som går igjen",
+      "Ta vare på sitater fra intervjuer som belegg"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Seminar i markedsstrategi",
+   "date": "2026:09:18 10:1{i}:00",
+   "accent": "#e8573f",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Markedsstrategi 2026",
+     "sub": "Vi tenker nytt om vekstkanalene"
+    },
+    {
+     "kind": "bars",
+     "title": "Konverteringsrate per kanal",
+     "items": [
+      [
+       "Søkeannonser",
+       4.8
+      ],
+      [
+       "Sosiale medier",
+       3.1
+      ],
+      [
+       "E-post",
+       6.2
+      ],
+      [
+       "Partnere",
+       2.4
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Kundereisen",
+     "items": [
+      "Kjennskap",
+      "Interesse",
+      "Kjøp",
+      "Lojalitet"
+     ]
+    },
+    {
+     "kind": "bullets",
+     "title": "Prioriteringer andre halvår",
+     "items": [
+      "Fornye lojalitetskampanjene",
+      "Teste budskap fra brukerintervjuer",
+      "Utvide partnerkanalene"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Innføring i dataanalyse",
+   "date": "2026:09:11 19:3{i}:00",
+   "accent": "#16a37a",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Innføring i dataanalyse",
+     "sub": "Uke 3 · Datavisualisering"
+    },
+    {
+     "kind": "bullets",
+     "title": "Hva kjennetegner en god graf",
+     "items": [
+      "Ett budskap per graf",
+      "Tydelige akser og enheter",
+      "Bruk farge bare til utheving"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Besøkende per måned (tusen)",
+     "items": [
+      [
+       "jun",
+       42
+      ],
+      [
+       "jul",
+       55
+      ],
+      [
+       "aug",
+       61
+      ],
+      [
+       "sep",
+       78
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Analyseprosessen",
+     "items": [
+      "Samle inn",
+      "Rydde",
+      "Utforske",
+      "Visualisere"
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Data er den nye oljen.",
+     "by": "Clive Humby"
+    }
+   ]
+  },
+  {
+   "title": "Grunnleggende ledelse · Uke 3",
+   "date": "2026:09:04 13:0{i}:00",
+   "accent": "#8a4fd8",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Grunnleggende ledelse",
+     "sub": "Uke 3 · Organisasjon og ledelse"
+    },
+    {
+     "kind": "bullets",
+     "title": "Tre lederstiler",
+     "items": [
+      "Instruerende ledelse",
+      "Coachende ledelse",
+      "Delegerende ledelse"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Beslutningsprosessen",
+     "items": [
+      "Definere",
+      "Utforske",
+      "Vurdere",
+      "Handle"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Hva driver jobbtrivsel",
+     "items": [
+      [
+       "Utvikling",
+       71
+      ],
+      [
+       "Lønn",
+       66
+      ],
+      [
+       "Kolleger",
+       58
+      ],
+      [
+       "Selvstendighet",
+       52
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "search": "intervju",
+ "shots": [
+  [
+   "Fra Bilder<br>til presentasjon",
+   "Del flere bilder, få én presentasjon"
+  ],
+  [
+   "Hver forelesning<br>pent sortert",
+   "Lysbildene samles per forelesning"
+  ],
+  [
+   "Tatt på skrå?<br>Rettet opp.",
+   "Kantene finnes og rettes for deg"
+  ],
+  [
+   "Ta bilde i stedet<br>for å notere",
+   "Lag PDF av lysbildene til eksamen"
+  ],
+  [
+   "Søk i teksten<br>på lysbildene",
+   "Ett ord er alt du trenger"
+  ]
+ ],
+ "creative_search": [
+  "skann lysbilder",
+  "Fra Bilder<br>til presentasjon",
+  "Del flere bilder,<br>få én presentasjon"
+ ],
+ "creative_header": [
+  "Lysbilder fra forelesning",
+  "Skjeve lysbilder,<br>rette og per forelesning"
+ ]
+}

@@ -1,0 +1,268 @@
+{
+ "decks": [
+  {
+   "title": "UX-tutkimuksen menetelmät",
+   "date": "2026:09:24 14:0{i}:00",
+   "accent": "#3b6cf6",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "UX-tutkimuksen menetelmät",
+     "sub": "Viisi tapaa ymmärtää käyttäjiä"
+    },
+    {
+     "kind": "bullets",
+     "title": "Käyttäjähaastattelun valmistelu",
+     "items": [
+      "Kiteytä tavoite yhteen lauseeseen",
+      "Aloita avoimilla kysymyksillä",
+      "Kysy ensin toiminnasta, sitten mielipiteistä",
+      "Pyydä lupa nauhoitukseen etukäteen"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Tutkimusprosessi",
+     "items": [
+      "Suunnittelu",
+      "Rekrytointi",
+      "Haastattelu",
+      "Synteesi"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Menetelmien käyttö tiimeissä",
+     "items": [
+      [
+       "Haastattelut",
+       82
+      ],
+      [
+       "Kysely",
+       64
+      ],
+      [
+       "Käyttäjätestaus",
+       57
+      ],
+      [
+       "Päiväkirjat",
+       23
+      ]
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Katso, mitä käyttäjät tekevät,\nälä sitä, mitä he sanovat.",
+     "by": "Jakob Nielsen"
+    },
+    {
+     "kind": "bullets",
+     "title": "Havaintojen yhteenveto",
+     "items": [
+      "Ryhmittele muistiinpanot affiniteettikartalla",
+      "Priorisoi toistuvat ongelmat",
+      "Säilytä haastattelusitaatit todisteina"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Markkinointistrategian seminaari",
+   "date": "2026:09:18 10:1{i}:00",
+   "accent": "#e8573f",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Markkinointistrategia 2026",
+     "sub": "Kasvukanavat uudelleen arvioituna"
+    },
+    {
+     "kind": "bars",
+     "title": "Konversioaste kanavittain",
+     "items": [
+      [
+       "Hakumainonta",
+       4.8
+      ],
+      [
+       "Some",
+       3.1
+      ],
+      [
+       "Sähköposti",
+       6.2
+      ],
+      [
+       "Kumppanit",
+       2.4
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Asiakaspolku",
+     "items": [
+      "Tietoisuus",
+      "Kiinnostus",
+      "Osto",
+      "Uskollisuus"
+     ]
+    },
+    {
+     "kind": "bullets",
+     "title": "Painopisteet loppuvuodelle",
+     "items": [
+      "Uudistetaan asiakaspitokampanjat",
+      "Testataan viestejä haastattelujen pohjalta",
+      "Laajennetaan kumppanikanavia"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Johdatus data-analyysiin",
+   "date": "2026:09:11 19:3{i}:00",
+   "accent": "#16a37a",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Johdatus data-analyysiin",
+     "sub": "Viikko 3 · Datan visualisointi"
+    },
+    {
+     "kind": "bullets",
+     "title": "Hyvän kaavion tunnusmerkit",
+     "items": [
+      "Yksi viesti yhdessä kaaviossa",
+      "Selkeät akselit ja yksiköt",
+      "Väriä vain korostukseen"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Kävijät kuukausittain (tuhatta)",
+     "items": [
+      [
+       "kesäk.",
+       42
+      ],
+      [
+       "heinäk.",
+       55
+      ],
+      [
+       "elok.",
+       61
+      ],
+      [
+       "syysk.",
+       78
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Analyysin vaiheet",
+     "items": [
+      "Keruu",
+      "Puhdistus",
+      "Tutkiminen",
+      "Visualisointi"
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Data on uusi öljy.",
+     "by": "Clive Humby"
+    }
+   ]
+  },
+  {
+   "title": "Johtamisen perusteet · Viikko 3",
+   "date": "2026:09:04 13:0{i}:00",
+   "accent": "#8a4fd8",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Johtamisen perusteet",
+     "sub": "Viikko 3 · Organisaatiot ja johtajuus"
+    },
+    {
+     "kind": "bullets",
+     "title": "Kolme johtamistyyliä",
+     "items": [
+      "Ohjaava johtaminen",
+      "Valmentava johtaminen",
+      "Delegoiva johtaminen"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Päätöksentekoprosessi",
+     "items": [
+      "Määrittely",
+      "Vaihtoehdot",
+      "Arviointi",
+      "Toteutus"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Työtyytyväisyyden tekijät",
+     "items": [
+      [
+       "Kehittyminen",
+       71
+      ],
+      [
+       "Palkka",
+       66
+      ],
+      [
+       "Työkaverit",
+       58
+      ],
+      [
+       "Autonomia",
+       52
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "search": "haastattelu",
+ "shots": [
+  [
+   "Kuvista suoraan<br>esitykseksi",
+   "Jaa monta kuvaa, saat yhden esityksen"
+  ],
+  [
+   "Jokainen luento<br>omassa kansiossaan",
+   "Kalvot ryhmitellään luennoittain"
+  ],
+  [
+   "Vino kuva?<br>Nyt suorana.",
+   "Reunat löydetään ja suoristetaan"
+  ],
+  [
+   "Kuvaa, älä<br>kopioi kalvoja",
+   "Vie kalvot PDF:ksi kertausta varten"
+  ],
+  [
+   "Hae sanoja<br>kalvojen tekstistä",
+   "Yksi muistamasi sana riittää"
+  ]
+ ],
+ "creative_search": [
+  "luentokalvot",
+  "Kuvista suoraan<br>esitykseksi",
+  "Jaa monta kuvaa,<br>saat yhden esityksen"
+ ],
+ "creative_header": [
+  "Luentokalvot talteen",
+  "Vinot kalvokuvat<br>suoriksi luennoittain"
+ ]
+}

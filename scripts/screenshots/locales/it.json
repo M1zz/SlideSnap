@@ -1,0 +1,268 @@
+{
+ "decks": [
+  {
+   "title": "Metodi di ricerca UX",
+   "date": "2026:09:24 14:0{i}:00",
+   "accent": "#3b6cf6",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Metodi di ricerca UX",
+     "sub": "Cinque modi per capire gli utenti"
+    },
+    {
+     "kind": "bullets",
+     "title": "Preparare un’intervista",
+     "items": [
+      "Scrivi l’obiettivo in una frase",
+      "Parti da domande aperte",
+      "Prima i comportamenti, poi le opinioni",
+      "Chiedi il consenso a registrare"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Processo di ricerca",
+     "items": [
+      "Pianificare",
+      "Reclutare",
+      "Intervista",
+      "Sintesi"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Metodi più usati dai team",
+     "items": [
+      [
+       "Intervista utente",
+       82
+      ],
+      [
+       "Questionario",
+       64
+      ],
+      [
+       "Test di usabilità",
+       57
+      ],
+      [
+       "Diario d’uso",
+       23
+      ]
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Guarda cosa fanno gli utenti,\nnon cosa dicono.",
+     "by": "Jakob Nielsen"
+    },
+    {
+     "kind": "bullets",
+     "title": "Sintetizzare gli insight",
+     "items": [
+      "Raggruppa le note per affinità",
+      "Dai priorità ai problemi ricorrenti",
+      "Conserva le citazioni dall’intervista"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Seminario di marketing",
+   "date": "2026:09:18 10:1{i}:00",
+   "accent": "#e8573f",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Strategia di marketing 2026",
+     "sub": "Ripensare i canali di crescita"
+    },
+    {
+     "kind": "bars",
+     "title": "Tasso di conversione per canale",
+     "items": [
+      [
+       "Annunci di ricerca",
+       4.8
+      ],
+      [
+       "Social",
+       3.1
+      ],
+      [
+       "Email",
+       6.2
+      ],
+      [
+       "Partner",
+       2.4
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Percorso del cliente",
+     "items": [
+      "Consapevolezza",
+      "Interesse",
+      "Acquisto",
+      "Fedeltà"
+     ]
+    },
+    {
+     "kind": "bullets",
+     "title": "Priorità del secondo semestre",
+     "items": [
+      "Rinnovare le campagne di retention",
+      "Testare i messaggi emersi in intervista",
+      "Ampliare i canali partner"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Introduzione all’analisi dei dati",
+   "date": "2026:09:11 19:3{i}:00",
+   "accent": "#16a37a",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Introduzione all’analisi dei dati",
+     "sub": "Settimana 3 · Visualizzazione dei dati"
+    },
+    {
+     "kind": "bullets",
+     "title": "Le regole di un buon grafico",
+     "items": [
+      "Un messaggio per grafico",
+      "Assi e unità chiari",
+      "Colore solo per evidenziare"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Visitatori mensili (migliaia)",
+     "items": [
+      [
+       "Giu",
+       42
+      ],
+      [
+       "Lug",
+       55
+      ],
+      [
+       "Ago",
+       61
+      ],
+      [
+       "Set",
+       78
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Flusso di analisi",
+     "items": [
+      "Raccolta",
+      "Pulizia",
+      "Esplorazione",
+      "Visualizzazione"
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "I dati sono il nuovo petrolio.",
+     "by": "Clive Humby"
+    }
+   ]
+  },
+  {
+   "title": "Management · Settimana 3",
+   "date": "2026:09:04 13:0{i}:00",
+   "accent": "#8a4fd8",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Principi di management",
+     "sub": "Settimana 3 · Organizzazione e leadership"
+    },
+    {
+     "kind": "bullets",
+     "title": "Tre stili di leadership",
+     "items": [
+      "Leadership direttiva",
+      "Leadership coaching",
+      "Leadership delegante"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Processo decisionale",
+     "items": [
+      "Definire",
+      "Esplorare",
+      "Valutare",
+      "Agire"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Fattori di soddisfazione",
+     "items": [
+      [
+       "Crescita",
+       71
+      ],
+      [
+       "Retribuzione",
+       66
+      ],
+      [
+       "Colleghi",
+       58
+      ],
+      [
+       "Autonomia",
+       52
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "search": "intervista",
+ "shots": [
+  [
+   "Da Foto a<br>una presentazione",
+   "Condividi più foto, ne nasce una sola"
+  ],
+  [
+   "Ogni lezione<br>al suo posto",
+   "Diapositive raggruppate per sessione"
+  ],
+  [
+   "Foto storta?<br>Raddrizzata.",
+   "Bordi trovati e corretti per te"
+  ],
+  [
+   "Una foto al posto<br>degli appunti",
+   "Esporta le diapositive in PDF"
+  ],
+  [
+   "Cerca le parole<br>nelle diapositive",
+   "Basta una sola parola"
+  ]
+ ],
+ "creative_search": [
+  "Scanner di slide",
+  "Da Foto a<br>una presentazione",
+  "Condividi più foto,<br>ottieni una presentazione"
+ ],
+ "creative_header": [
+  "Scanner di slide",
+  "Foto storte,<br>dritte e per lezione"
+ ]
+}

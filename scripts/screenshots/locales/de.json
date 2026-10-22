@@ -1,0 +1,268 @@
+{
+ "decks": [
+  {
+   "title": "UX-Research-Methoden",
+   "date": "2026:09:24 14:0{i}:00",
+   "accent": "#3b6cf6",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "UX-Research-Methoden",
+     "sub": "Fünf Wege, Nutzer zu verstehen"
+    },
+    {
+     "kind": "bullets",
+     "title": "Nutzerinterviews vorbereiten",
+     "items": [
+      "Ziel in einem Satz formulieren",
+      "Mit offenen Fragen beginnen",
+      "Erst Verhalten, dann Meinungen",
+      "Vorab Einwilligung zur Aufnahme"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Ablauf der Studie",
+     "items": [
+      "Planen",
+      "Rekrutieren",
+      "Nutzerinterview",
+      "Auswerten"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Welche Methoden Teams nutzen",
+     "items": [
+      [
+       "Nutzerinterview",
+       82
+      ],
+      [
+       "Umfrage",
+       64
+      ],
+      [
+       "Usability-Test",
+       57
+      ],
+      [
+       "Tagebuchstudie",
+       23
+      ]
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Achte darauf, was Nutzer tun,\nnicht darauf, was sie sagen.",
+     "by": "Jakob Nielsen"
+    },
+    {
+     "kind": "bullets",
+     "title": "Erkenntnisse verdichten",
+     "items": [
+      "Notizen per Affinity Map clustern",
+      "Wiederkehrende Probleme priorisieren",
+      "Zitate aus Nutzerinterviews als Beleg"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Seminar Marketingstrategie",
+   "date": "2026:09:18 10:1{i}:00",
+   "accent": "#e8573f",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Marketingstrategie 2026",
+     "sub": "Wachstumskanäle neu denken"
+    },
+    {
+     "kind": "bars",
+     "title": "Conversion-Rate nach Kanal",
+     "items": [
+      [
+       "Suchanzeigen",
+       4.8
+      ],
+      [
+       "Social Media",
+       3.1
+      ],
+      [
+       "E-Mail",
+       6.2
+      ],
+      [
+       "Partner",
+       2.4
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Customer Journey",
+     "items": [
+      "Aufmerksamkeit",
+      "Interesse",
+      "Kauf",
+      "Bindung"
+     ]
+    },
+    {
+     "kind": "bullets",
+     "title": "Prioritäten im 2. Halbjahr",
+     "items": [
+      "Retention-Kampagnen überarbeiten",
+      "Botschaften aus Nutzerinterviews testen",
+      "Partnerkanäle ausbauen"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Einführung in die Datenanalyse",
+   "date": "2026:09:11 19:3{i}:00",
+   "accent": "#16a37a",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Einführung in die Datenanalyse",
+     "sub": "Woche 3 · Datenvisualisierung"
+    },
+    {
+     "kind": "bullets",
+     "title": "Was ein gutes Diagramm ausmacht",
+     "items": [
+      "Eine Aussage pro Diagramm",
+      "Klare Achsen und Einheiten",
+      "Farbe nur zur Betonung"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Besucher pro Monat (Tsd.)",
+     "items": [
+      [
+       "Jun",
+       42
+      ],
+      [
+       "Jul",
+       55
+      ],
+      [
+       "Aug",
+       61
+      ],
+      [
+       "Sep",
+       78
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Ablauf der Analyse",
+     "items": [
+      "Erheben",
+      "Bereinigen",
+      "Erkunden",
+      "Visualisieren"
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Daten sind das neue Öl.",
+     "by": "Clive Humby"
+    }
+   ]
+  },
+  {
+   "title": "Grundlagen Management · Woche 3",
+   "date": "2026:09:04 13:0{i}:00",
+   "accent": "#8a4fd8",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Grundlagen des Managements",
+     "sub": "Woche 3 · Organisation und Führung"
+    },
+    {
+     "kind": "bullets",
+     "title": "Drei Führungsstile",
+     "items": [
+      "Direktive Führung",
+      "Coachende Führung",
+      "Delegierende Führung"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Entscheidungsprozess",
+     "items": [
+      "Definieren",
+      "Erkunden",
+      "Bewerten",
+      "Umsetzen"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Treiber der Arbeitszufriedenheit",
+     "items": [
+      [
+       "Entwicklung",
+       71
+      ],
+      [
+       "Gehalt",
+       66
+      ],
+      [
+       "Kollegen",
+       58
+      ],
+      [
+       "Autonomie",
+       52
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "search": "Nutzerinterview",
+ "shots": [
+  [
+   "Aus Fotos wird<br>eine Präsentation",
+   "Fotos teilen, sauber zusammengeführt"
+  ],
+  [
+   "Jede Vorlesung<br>sauber abgelegt",
+   "Folien werden nach Termin gruppiert"
+  ],
+  [
+   "Schräg erwischt?<br>Wird begradigt.",
+   "Kanten werden erkannt und korrigiert"
+  ],
+  [
+   "Foto statt<br>Mitschrift",
+   "Exportiere deine Folien als Lern-PDF"
+  ],
+  [
+   "Finde jedes Wort<br>auf deinen Folien",
+   "Ein einziges Wort genügt"
+  ]
+ ],
+ "creative_search": [
+  "Folien scannen",
+  "Aus Fotos wird<br>eine Präsentation",
+  "Mehrere Fotos teilen,<br>sauber zusammengeführt"
+ ],
+ "creative_header": [
+  "Vorlesungsfolien scannen",
+  "Schräg fotografiert,<br>gerade einsortiert"
+ ]
+}

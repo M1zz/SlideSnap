@@ -1,0 +1,268 @@
+{
+ "decks": [
+  {
+   "title": "Metody badań UX",
+   "date": "2026:09:24 14:0{i}:00",
+   "accent": "#3b6cf6",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Metody badań UX",
+     "sub": "Pięć sposobów, by zrozumieć użytkowników"
+    },
+    {
+     "kind": "bullets",
+     "title": "Przygotowanie wywiadu z użytkownikiem",
+     "items": [
+      "Zapisz cel w jednym zdaniu",
+      "Zacznij od pytań otwartych",
+      "Pytaj o zachowania, potem o opinie",
+      "Najpierw poproś o zgodę na nagrywanie"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Proces badawczy",
+     "items": [
+      "Plan",
+      "Rekrutacja",
+      "Wywiady",
+      "Synteza"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Jak często zespoły stosują metody",
+     "items": [
+      [
+       "Wywiady",
+       82
+      ],
+      [
+       "Ankieta",
+       64
+      ],
+      [
+       "Testy użyteczności",
+       57
+      ],
+      [
+       "Dzienniczki",
+       23
+      ]
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Patrz, co użytkownicy robią,\na nie, co mówią.",
+     "by": "Jakob Nielsen"
+    },
+    {
+     "kind": "bullets",
+     "title": "Synteza wniosków",
+     "items": [
+      "Grupuj notatki w diagram pokrewieństwa",
+      "Nadaj priorytet powtarzającym się problemom",
+      "Cytaty z wywiadów zachowaj jako dowody"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Seminarium: strategia marketingowa",
+   "date": "2026:09:18 10:1{i}:00",
+   "accent": "#e8573f",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Strategia marketingowa 2026",
+     "sub": "Nowe spojrzenie na kanały wzrostu"
+    },
+    {
+     "kind": "bars",
+     "title": "Współczynnik konwersji wg kanału",
+     "items": [
+      [
+       "Reklamy w wyszukiwarce",
+       4.8
+      ],
+      [
+       "Social media",
+       3.1
+      ],
+      [
+       "E-mail",
+       6.2
+      ],
+      [
+       "Partnerzy",
+       2.4
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Ścieżka klienta",
+     "items": [
+      "Świadomość",
+      "Rozważanie",
+      "Zakup",
+      "Lojalność"
+     ]
+    },
+    {
+     "kind": "bullets",
+     "title": "Priorytety na II półrocze",
+     "items": [
+      "Odświeżyć kampanie retencyjne",
+      "Testować komunikaty z wywiadów z użytkownikami",
+      "Rozwinąć kanały partnerskie"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Wstęp do analizy danych",
+   "date": "2026:09:11 19:3{i}:00",
+   "accent": "#16a37a",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Wstęp do analizy danych",
+     "sub": "Tydzień 3 · Wizualizacja danych"
+    },
+    {
+     "kind": "bullets",
+     "title": "Cechy dobrego wykresu",
+     "items": [
+      "Jeden wykres, jeden przekaz",
+      "Czytelne osie i jednostki",
+      "Kolor tylko do wyróżnień"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Odwiedzający miesięcznie (tys.)",
+     "items": [
+      [
+       "cze",
+       42
+      ],
+      [
+       "lip",
+       55
+      ],
+      [
+       "sie",
+       61
+      ],
+      [
+       "wrz",
+       78
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Etapy analizy",
+     "items": [
+      "Zbieranie",
+      "Czyszczenie",
+      "Eksploracja",
+      "Wizualizacja"
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Dane to nowa ropa.",
+     "by": "Clive Humby"
+    }
+   ]
+  },
+  {
+   "title": "Podstawy zarządzania · tydz. 3",
+   "date": "2026:09:04 13:0{i}:00",
+   "accent": "#8a4fd8",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Podstawy zarządzania",
+     "sub": "Tydzień 3 · Organizacja i przywództwo"
+    },
+    {
+     "kind": "bullets",
+     "title": "Trzy style przywództwa",
+     "items": [
+      "Przywództwo dyrektywne",
+      "Przywództwo coachingowe",
+      "Przywództwo delegujące"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Proces decyzyjny",
+     "items": [
+      "Definicja",
+      "Opcje",
+      "Ocena",
+      "Działanie"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Czynniki satysfakcji z pracy",
+     "items": [
+      [
+       "Rozwój",
+       71
+      ],
+      [
+       "Wynagrodzenie",
+       66
+      ],
+      [
+       "Zespół",
+       58
+      ],
+      [
+       "Autonomia",
+       52
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "search": "wywiad",
+ "shots": [
+  [
+   "Ze Zdjęć<br>do prezentacji",
+   "Kilka zdjęć, jedna prezentacja"
+  ],
+  [
+   "Każdy wykład<br>na swoim miejscu",
+   "Slajdy grupują się według wykładów"
+  ],
+  [
+   "Krzywe zdjęcie?<br>Już proste.",
+   "Wykrywamy krawędzie i prostujemy"
+  ],
+  [
+   "Zrób zdjęcie<br>zamiast notatek",
+   "Eksportuj slajdy do PDF do nauki"
+  ],
+  [
+   "Szukaj słów<br>na slajdach",
+   "Wystarczy jedno zapamiętane słowo"
+  ]
+ ],
+ "creative_search": [
+  "skaner slajdów",
+  "Ze Zdjęć<br>do prezentacji",
+  "Kilka zdjęć,<br>jedna prezentacja"
+ ],
+ "creative_header": [
+  "Slajdy z wykładów",
+  "Krzywe slajdy prosto,<br>wykład po wykładzie"
+ ]
+}

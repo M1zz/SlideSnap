@@ -1,0 +1,268 @@
+{
+ "decks": [
+  {
+   "title": "Métodos de investigación UX",
+   "date": "2026:09:24 14:0{i}:00",
+   "accent": "#3b6cf6",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Métodos de investigación UX",
+     "sub": "Cinco formas de entender al usuario"
+    },
+    {
+     "kind": "bullets",
+     "title": "Preparar una entrevista",
+     "items": [
+      "Define el objetivo en una frase",
+      "Empieza con preguntas abiertas",
+      "Primero conductas, luego opiniones",
+      "Pide permiso antes de grabar"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Proceso de investigación",
+     "items": [
+      "Planificar",
+      "Reclutar",
+      "Entrevistas",
+      "Síntesis"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Métodos más usados por los equipos",
+     "items": [
+      [
+       "Entrevistas",
+       82
+      ],
+      [
+       "Encuestas",
+       64
+      ],
+      [
+       "Test de usabilidad",
+       57
+      ],
+      [
+       "Estudio de diario",
+       23
+      ]
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Fíjate en lo que hacen los usuarios,\nno en lo que dicen.",
+     "by": "Jakob Nielsen"
+    },
+    {
+     "kind": "bullets",
+     "title": "Sintetizar hallazgos",
+     "items": [
+      "Agrupa notas en un mapa de afinidad",
+      "Prioriza los problemas recurrentes",
+      "Guarda citas de las entrevistas"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Seminario de marketing",
+   "date": "2026:09:18 10:1{i}:00",
+   "accent": "#e8573f",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Estrategia de marketing 2026",
+     "sub": "Repensar los canales de crecimiento"
+    },
+    {
+     "kind": "bars",
+     "title": "Tasa de conversión por canal",
+     "items": [
+      [
+       "Búsqueda pagada",
+       4.8
+      ],
+      [
+       "Redes sociales",
+       3.1
+      ],
+      [
+       "Email",
+       6.2
+      ],
+      [
+       "Socios",
+       2.4
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Recorrido del cliente",
+     "items": [
+      "Descubrimiento",
+      "Interés",
+      "Compra",
+      "Fidelización"
+     ]
+    },
+    {
+     "kind": "bullets",
+     "title": "Prioridades del 2.º semestre",
+     "items": [
+      "Renovar campañas de retención",
+      "Probar mensajes según las entrevistas",
+      "Ampliar canales con socios"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Introducción al análisis de datos",
+   "date": "2026:09:11 19:3{i}:00",
+   "accent": "#16a37a",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Introducción al análisis de datos",
+     "sub": "Semana 3 · Visualización de datos"
+    },
+    {
+     "kind": "bullets",
+     "title": "Claves de un buen gráfico",
+     "items": [
+      "Un mensaje por gráfico",
+      "Ejes y unidades claros",
+      "Color solo para destacar"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Visitantes al mes (miles)",
+     "items": [
+      [
+       "Jun",
+       42
+      ],
+      [
+       "Jul",
+       55
+      ],
+      [
+       "Ago",
+       61
+      ],
+      [
+       "Sep",
+       78
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Flujo de análisis",
+     "items": [
+      "Recoger",
+      "Limpiar",
+      "Explorar",
+      "Visualizar"
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Los datos son el nuevo petróleo.",
+     "by": "Clive Humby"
+    }
+   ]
+  },
+  {
+   "title": "Fundamentos de gestión · Semana 3",
+   "date": "2026:09:04 13:0{i}:00",
+   "accent": "#8a4fd8",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Fundamentos de gestión",
+     "sub": "Semana 3 · Organización y liderazgo"
+    },
+    {
+     "kind": "bullets",
+     "title": "Tres estilos de liderazgo",
+     "items": [
+      "Liderazgo directivo",
+      "Liderazgo coach",
+      "Liderazgo delegativo"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Toma de decisiones",
+     "items": [
+      "Definir",
+      "Explorar",
+      "Evaluar",
+      "Actuar"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Factores de satisfacción laboral",
+     "items": [
+      [
+       "Desarrollo",
+       71
+      ],
+      [
+       "Salario",
+       66
+      ],
+      [
+       "Compañeros",
+       58
+      ],
+      [
+       "Autonomía",
+       52
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "search": "entrevista",
+ "shots": [
+  [
+   "De Fotos a<br>una presentación",
+   "Comparte fotos y se unen en una sola"
+  ],
+  [
+   "Cada clase,<br>bien ordenada",
+   "Tus diapositivas, agrupadas por sesión"
+  ],
+  [
+   "¿Foto torcida?<br>Enderezada.",
+   "Detecta los bordes y la corrige sola"
+  ],
+  [
+   "Haz una foto<br>en vez de apuntar",
+   "Exporta tus diapositivas en PDF"
+  ],
+  [
+   "Busca dentro de<br>tus diapositivas",
+   "Con una sola palabra basta"
+  ]
+ ],
+ "creative_search": [
+  "Escáner de diapositivas",
+  "De Fotos a<br>una presentación",
+  "Comparte varias fotos<br>y se unen en una sola"
+ ],
+ "creative_header": [
+  "Escáner de diapositivas",
+  "Fotos torcidas,<br>rectas y por clase"
+ ]
+}

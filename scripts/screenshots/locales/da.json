@@ -1,0 +1,268 @@
+{
+ "decks": [
+  {
+   "title": "UX-researchmetoder",
+   "date": "2026:09:24 14:0{i}:00",
+   "accent": "#3b6cf6",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "UX-researchmetoder",
+     "sub": "Fem veje til at forstå dine brugere"
+    },
+    {
+     "kind": "bullets",
+     "title": "Forberedelse af brugerinterviews",
+     "items": [
+      "Skriv målet i én sætning",
+      "Start med åbne spørgsmål",
+      "Spørg til adfærd før holdninger",
+      "Få samtykke til optagelse først"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Researchprocessen",
+     "items": [
+      "Planlæg",
+      "Rekruttér",
+      "Interview",
+      "Syntese"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Hvor ofte teams bruger metoderne",
+     "items": [
+      [
+       "Brugerinterview",
+       82
+      ],
+      [
+       "Spørgeskema",
+       64
+      ],
+      [
+       "Brugertest",
+       57
+      ],
+      [
+       "Dagbogsstudie",
+       23
+      ]
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Se på, hvad brugerne gør,\nikke på, hvad de siger.",
+     "by": "Jakob Nielsen"
+    },
+    {
+     "kind": "bullets",
+     "title": "Syntese af indsigter",
+     "items": [
+      "Gruppér noter i et affinitetsdiagram",
+      "Prioritér tilbagevendende problemer",
+      "Gem citater fra interviews som evidens"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Seminar i markedsføringsstrategi",
+   "date": "2026:09:18 10:1{i}:00",
+   "accent": "#e8573f",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Marketingstrategi 2026",
+     "sub": "Vi gentænker vores vækstkanaler"
+    },
+    {
+     "kind": "bars",
+     "title": "Konverteringsrate pr. kanal",
+     "items": [
+      [
+       "Søgeannoncer",
+       4.8
+      ],
+      [
+       "Sociale medier",
+       3.1
+      ],
+      [
+       "E-mail",
+       6.2
+      ],
+      [
+       "Partnere",
+       2.4
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Kunderejsen",
+     "items": [
+      "Kendskab",
+      "Interesse",
+      "Køb",
+      "Loyalitet"
+     ]
+    },
+    {
+     "kind": "bullets",
+     "title": "Prioriteter for 2. halvår",
+     "items": [
+      "Forny fastholdelseskampagner",
+      "Test budskaber fra brugerinterviews",
+      "Udvid partnerkanalerne"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Introduktion til dataanalyse",
+   "date": "2026:09:11 19:3{i}:00",
+   "accent": "#16a37a",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Introduktion til dataanalyse",
+     "sub": "Uge 3 · Datavisualisering"
+    },
+    {
+     "kind": "bullets",
+     "title": "Hvad kendetegner en god graf",
+     "items": [
+      "Ét budskab pr. graf",
+      "Tydelige akser og enheder",
+      "Brug kun farver til at fremhæve"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Besøgende pr. måned (tusinder)",
+     "items": [
+      [
+       "jun",
+       42
+      ],
+      [
+       "jul",
+       55
+      ],
+      [
+       "aug",
+       61
+      ],
+      [
+       "sep",
+       78
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Analyseforløbet",
+     "items": [
+      "Indsaml",
+      "Rens",
+      "Udforsk",
+      "Visualisér"
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Data er den nye olie.",
+     "by": "Clive Humby"
+    }
+   ]
+  },
+  {
+   "title": "Grundlæggende ledelse · Uge 3",
+   "date": "2026:09:04 13:0{i}:00",
+   "accent": "#8a4fd8",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Grundlæggende ledelse",
+     "sub": "Uge 3 · Organisation og ledelse"
+    },
+    {
+     "kind": "bullets",
+     "title": "Tre ledelsesstile",
+     "items": [
+      "Instruerende ledelse",
+      "Coachende ledelse",
+      "Delegerende ledelse"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Beslutningsprocessen",
+     "items": [
+      "Definér",
+      "Undersøg",
+      "Vurdér",
+      "Handl"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Hvad driver arbejdsglæde",
+     "items": [
+      [
+       "Udvikling",
+       71
+      ],
+      [
+       "Løn",
+       66
+      ],
+      [
+       "Kolleger",
+       58
+      ],
+      [
+       "Selvstændighed",
+       52
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "search": "interview",
+ "shots": [
+  [
+   "Fra Fotos<br>til præsentation",
+   "Del flere fotos, få én præsentation"
+  ],
+  [
+   "Hver forelæsning<br>pænt sorteret",
+   "Dine slides samles pr. forelæsning"
+  ],
+  [
+   "Taget skævt?<br>Rettet op.",
+   "Kanterne findes og rettes for dig"
+  ],
+  [
+   "Tag billeder<br>i stedet for noter",
+   "Eksportér slides som PDF til læsning"
+  ],
+  [
+   "Søg i teksten<br>på dine slides",
+   "Ét enkelt ord er alt, du behøver"
+  ]
+ ],
+ "creative_search": [
+  "scan slides",
+  "Fra Fotos<br>til præsentation",
+  "Del flere fotos,<br>få én præsentation"
+ ],
+ "creative_header": [
+  "Slides fra forelæsninger",
+  "Skæve slidefotos,<br>lige og pr. forelæsning"
+ ]
+}

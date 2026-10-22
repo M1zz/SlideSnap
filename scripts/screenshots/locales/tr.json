@@ -1,0 +1,268 @@
+{
+ "decks": [
+  {
+   "title": "UX Araştırma Yöntemleri",
+   "date": "2026:09:24 14:0{i}:00",
+   "accent": "#3b6cf6",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "UX Araştırma Yöntemleri",
+     "sub": "Kullanıcıyı anlamanın beş yolu"
+    },
+    {
+     "kind": "bullets",
+     "title": "Kullanıcı Görüşmesine Hazırlık",
+     "items": [
+      "Amacı tek cümleyle yaz",
+      "Açık uçlu sorularla başla",
+      "Önce davranışı, sonra görüşü sor",
+      "Kayıt için önce izin al"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Araştırma Süreci",
+     "items": [
+      "Planlama",
+      "Katılımcı bulma",
+      "Kullanıcı görüşmesi",
+      "Sentez"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Yöntemlerin Kullanım Sıklığı",
+     "items": [
+      [
+       "Kullanıcı görüşmesi",
+       82
+      ],
+      [
+       "Anket",
+       64
+      ],
+      [
+       "Kullanılabilirlik testi",
+       57
+      ],
+      [
+       "Günlük çalışması",
+       23
+      ]
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Kullanıcıların ne söylediğine değil,\nne yaptığına bakın.",
+     "by": "Jakob Nielsen"
+    },
+    {
+     "kind": "bullets",
+     "title": "Bulguları Sentezleme",
+     "items": [
+      "Notları benzerlik haritasıyla grupla",
+      "Tekrarlayan sorunlara öncelik ver",
+      "Kullanıcı görüşmesi alıntılarını sakla"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Pazarlama Stratejisi Semineri",
+   "date": "2026:09:18 10:1{i}:00",
+   "accent": "#e8573f",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "2026 Pazarlama Stratejisi",
+     "sub": "Büyüme kanallarını yeniden düşünmek"
+    },
+    {
+     "kind": "bars",
+     "title": "Kanala Göre Dönüşüm Oranı",
+     "items": [
+      [
+       "Arama reklamları",
+       4.8
+      ],
+      [
+       "Sosyal medya",
+       3.1
+      ],
+      [
+       "E-posta",
+       6.2
+      ],
+      [
+       "İş ortakları",
+       2.4
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Müşteri Yolculuğu",
+     "items": [
+      "Farkındalık",
+      "İlgi",
+      "Satın alma",
+      "Sadakat"
+     ]
+    },
+    {
+     "kind": "bullets",
+     "title": "İkinci Yarı Öncelikleri",
+     "items": [
+      "Elde tutma kampanyalarını yenile",
+      "Kullanıcı görüşmesi bulgularıyla mesaj testi",
+      "İş ortağı kanallarını genişlet"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Veri Analizine Giriş",
+   "date": "2026:09:11 19:3{i}:00",
+   "accent": "#16a37a",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Veri Analizine Giriş",
+     "sub": "3. Hafta · Veri Görselleştirme"
+    },
+    {
+     "kind": "bullets",
+     "title": "İyi Bir Grafiğin Özellikleri",
+     "items": [
+      "Her grafikte tek mesaj",
+      "Net eksenler ve birimler",
+      "Rengi yalnızca vurgu için kullan"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "Aylık Ziyaretçi (bin)",
+     "items": [
+      [
+       "Haz",
+       42
+      ],
+      [
+       "Tem",
+       55
+      ],
+      [
+       "Ağu",
+       61
+      ],
+      [
+       "Eyl",
+       78
+      ]
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Analiz Akışı",
+     "items": [
+      "Topla",
+      "Temizle",
+      "Keşfet",
+      "Görselleştir"
+     ]
+    },
+    {
+     "kind": "quote",
+     "quote": "Veri yeni petroldür.",
+     "by": "Clive Humby"
+    }
+   ]
+  },
+  {
+   "title": "İşletme Yönetimi · 3. Hafta",
+   "date": "2026:09:04 13:0{i}:00",
+   "accent": "#8a4fd8",
+   "slides": [
+    {
+     "kind": "title",
+     "title": "Yönetimin İlkeleri",
+     "sub": "3. Hafta · Örgüt ve Liderlik"
+    },
+    {
+     "kind": "bullets",
+     "title": "Üç Liderlik Tarzı",
+     "items": [
+      "Yönlendirici liderlik",
+      "Koçluk liderliği",
+      "Yetki devreden liderlik"
+     ]
+    },
+    {
+     "kind": "steps",
+     "title": "Karar Verme Süreci",
+     "items": [
+      "Tanımla",
+      "Seçenek ara",
+      "Değerlendir",
+      "Uygula"
+     ]
+    },
+    {
+     "kind": "bars",
+     "title": "İş Tatmininin Etkenleri",
+     "items": [
+      [
+       "Gelişim",
+       71
+      ],
+      [
+       "Ücret",
+       66
+      ],
+      [
+       "İş arkadaşları",
+       58
+      ],
+      [
+       "Özerklik",
+       52
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "search": "kullanıcı görüşmesi",
+ "shots": [
+  [
+   "Fotoğraflar'dan<br>tek bir sunuma",
+   "Birkaç fotoğrafı paylaşın, düzenlensin"
+  ],
+  [
+   "Her ders<br>kendi yerinde",
+   "Slaytlar oturuma göre gruplanır"
+  ],
+  [
+   "Eğri mi çektiniz?<br>Düzeltildi.",
+   "Kenarlar bulunur, slayt düzeltilir"
+  ],
+  [
+   "Not almak yerine<br>fotoğraf çekin",
+   "Slaytları çalışma PDF'i olarak aktarın"
+  ],
+  [
+   "Slaytlardaki<br>yazılarda arayın",
+   "Tek bir kelime yeterli"
+  ]
+ ],
+ "creative_search": [
+  "ders slaytı tarayıcı",
+  "Fotoğraflar'dan<br>tek bir sunuma",
+  "Birkaç fotoğrafı paylaşın,<br>tek sunum olsun"
+ ],
+ "creative_header": [
+  "Ders slaytı kamerası",
+  "Eğri slaytlar düz,<br>derse göre düzenli"
+ ]
+}
