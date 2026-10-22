@@ -467,18 +467,22 @@ final class Store: ObservableObject {
 
     /// 모든 발표의 장표를 대상으로 제목/인식 텍스트에서 검색합니다.
     func searchSlides(_ rawQuery: String) -> [SlideSearchResult] {
-        let query = rawQuery.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        let query = rawQuery.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !query.isEmpty else { return [] }
+        // 대소문자·악센트를 가리지 않는다(“etude” 로 “Étude” 를, “uber” 로 “Über” 를 찾는다).
+        func matches(_ s: String) -> Bool {
+            s.range(of: query, options: [.caseInsensitive, .diacriticInsensitive]) != nil
+        }
 
         var results: [SlideSearchResult] = []
         for presentation in presentations {
-            let titleMatches = presentation.title.lowercased().contains(query)
+            let titleMatches = matches(presentation.title)
             for (index, slide) in presentation.slides.enumerated() {
                 let ocr = slide.recognizedText ?? ""
                 let spoken = presentation.transcriptText(for: slide) ?? ""
                 // 장표 글자에서 먼저 찾고, 없으면 그 장표를 보여 주던 동안 한 말에서 찾는다.
-                let text = ocr.lowercased().contains(query) || spoken.isEmpty ? ocr : spoken
-                let textMatches = text.lowercased().contains(query)
+                let text = matches(ocr) || spoken.isEmpty ? ocr : spoken
+                let textMatches = matches(text)
                 guard titleMatches || textMatches else { continue }
                 results.append(
                     SlideSearchResult(
@@ -498,7 +502,7 @@ final class Store: ObservableObject {
     /// 인식 텍스트에서 검색어 주변을 잘라 미리보기 문구를 만듭니다.
     private static func snippet(from text: String, matching query: String) -> String {
         let flat = text.replacingOccurrences(of: "\n", with: " ")
-        guard let range = flat.range(of: query, options: .caseInsensitive) else {
+        guard let range = flat.range(of: query, options: [.caseInsensitive, .diacriticInsensitive]) else {
             return String(flat.prefix(60))
         }
         let start = flat.index(range.lowerBound, offsetBy: -25, limitedBy: flat.startIndex) ?? flat.startIndex

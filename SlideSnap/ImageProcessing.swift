@@ -51,7 +51,37 @@ enum ImageProcessor {
         )
     }
 
-    /// 장표 이미지에서 텍스트를 인식합니다(온디바이스 Vision, 한국어+영어).
+    /// 글자 인식에 쓸 언어 — 기기에 설정한 언어(우선순위 순)를 먼저, 그다음 영어·한국어.
+    /// 한국어·영어만 두면 일본어·중국어·러시아어·태국어 장표는 글자를 못 읽어 검색이 안 된다.
+    /// Vision 이 지원하지 않는 언어(예: 그리스어)는 건너뛴다.
+    static let ocrLanguages: [String] = {
+        let probe = VNRecognizeTextRequest()
+        probe.recognitionLevel = .accurate
+        let supported = (try? probe.supportedRecognitionLanguages()) ?? ["en-US", "ko-KR"]
+        var result: [String] = []
+        func add(_ code: String) {
+            let lower = code.lowercased()
+            let base = String(lower.split(separator: "-").first ?? "")
+            let match: String?
+            if base == "zh" {
+                // 번체: zh-Hant · zh-TW · zh-HK · zh-MO, 그 밖은 간체
+                let hant = lower.contains("hant") || lower.hasSuffix("-tw") || lower.hasSuffix("-hk") || lower.hasSuffix("-mo")
+                match = supported.first { $0 == (hant ? "zh-Hant" : "zh-Hans") }
+            } else if base == "no" || base == "nb" {
+                match = supported.first { $0.lowercased().hasPrefix("nb") } ?? supported.first { $0.lowercased().hasPrefix("no") }
+            } else {
+                match = supported.first { $0.lowercased() == lower }
+                    ?? supported.first { $0.lowercased().split(separator: "-").first.map(String.init) == base }
+            }
+            if let match, !result.contains(match) { result.append(match) }
+        }
+        Locale.preferredLanguages.forEach(add)
+        add("en-US")
+        add("ko-KR")
+        return result
+    }()
+
+    /// 장표 이미지에서 텍스트를 인식합니다(온디바이스 Vision, 기기 언어 + 영어·한국어).
     /// 인식된 줄들을 개행으로 이어 반환하며, 글자가 없으면 빈 문자열을 반환합니다.
     static func recognizeText(in image: UIImage) -> String {
         // 정확도를 위해 너무 작지 않게, 대신 과도한 해상도는 줄여서 인식합니다.
@@ -60,7 +90,7 @@ enum ImageProcessor {
         let request = VNRecognizeTextRequest()
         request.recognitionLevel = .accurate
         request.usesLanguageCorrection = true
-        request.recognitionLanguages = ["ko-KR", "en-US"]
+        request.recognitionLanguages = ocrLanguages
 
         let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
         do {
