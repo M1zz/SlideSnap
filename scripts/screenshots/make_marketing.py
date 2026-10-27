@@ -5,6 +5,8 @@ HTML 템플릿 → 헤드리스 Chrome 렌더링. 결과는 docs/screenshots/mar
 DeployBar 가 배포할 때 이 폴더를 언어별로 App Store Connect 에 올린다.
 
 사용법: scripts/screenshots/make_marketing.py [ko|en ...]   (원본은 make_screenshots.sh 로 먼저 찍는다)
+       KIND=duo scripts/screenshots/make_marketing.py ...  아이폰 듀오 바깥 화면: raw/duo/<언어>/ → marketing/<언어>/duo-….png (1398×2034)
+       같은 언어 폴더에 아이폰과 같이 둔다. DeployBar 가 픽셀 크기로 듀오 칸을 가른다.
 """
 import subprocess, sys, pathlib
 
@@ -15,7 +17,11 @@ WORK = pathlib.Path("/tmp") / "slidesnap-marketing"
 # 다른 작업이 Chrome 을 같이 쓰면 느리거나 멈춘다 — CHROME 환경 변수로 chrome-headless-shell 등을 쓸 수 있다.
 import os
 CHROME = os.environ.get("CHROME", "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
-W, H = 1242, 2688   # App Store 제출 규격 (6.5")
+DUO = os.environ.get("KIND") == "duo"
+if DUO:
+    RAW = RAW / "duo"
+W, H = (1398, 2034) if DUO else (1242, 2688)   # 아이폰 듀오 바깥 화면 / App Store 제출 규격 (6.5")
+PREFIX = "duo-" if DUO else ""
 
 # (파일, 레이아웃, 헤드라인, 서브카피) — 파일 이름 순서가 스토어에 보이는 순서
 SHOTS = {
@@ -117,6 +123,59 @@ body { background:#131316; }
 """,
 }
 
+# 아이폰 듀오(바깥 화면)는 아이폰보다 넓고 낮다 — 글은 위로 당기고, 기기는 넓게 아래로 걸친다.
+# 장마다 배치를 다르게 두는 것은 아이폰과 같다.
+DUO_LAYOUTS = {
+    "hero-bleed": """
+.headline { text-align:center; margin-top:170px; padding:0 80px; }
+.sub { text-align:center; margin-top:44px; }
+.wrap { display:flex; justify-content:center; margin-top:110px; }
+.phone { width:1080px; }
+""",
+    "left-text": """
+.headline { text-align:left; margin:170px 0 0 110px; }
+.sub { text-align:left; margin:44px 0 0 114px; }
+.wrap { perspective:2600px; perspective-origin:30% 30%; position:absolute; left:330px; top:700px; }
+.phone { width:1000px; transform:rotateY(16deg) rotateX(2deg); }
+""",
+    "text-bottom": """
+.wrap { perspective:2800px; perspective-origin:50% 40%; display:flex; justify-content:center; margin-top:-300px; }
+.phone { width:1040px; transform:rotateY(-10deg) rotateX(2deg); }
+.headline { text-align:center; margin-top:90px; padding:0 80px; }
+.sub { text-align:center; margin-top:40px; }
+""",
+    "before-after": """
+.headline { text-align:center; margin-top:170px; padding:0 80px; }
+.sub { text-align:center; margin-top:44px; }
+.wrap { display:flex; justify-content:center; margin-top:110px; }
+.phone { width:1040px; }
+.before { position:absolute; left:60px; top:800px; width:700px; transform:rotate(-7deg);
+  background:#fff; padding:18px; border-radius:22px; box-shadow:30px 50px 90px rgba(0,0,0,.35); }
+.before img { width:100%; display:block; border-radius:10px; }
+""",
+    "duo": """
+.headline { text-align:center; margin-top:170px; padding:0 80px; }
+.sub { text-align:center; margin-top:44px; }
+.duo { position:absolute; width:660px; }
+.duo.back { left:40px; top:690px; transform:rotate(-4deg); }
+.duo.front { left:650px; top:800px; transform:rotate(3deg); }
+.duo .phone { border-radius:64px; padding:16px; }
+.duo .phone img { border-radius:46px; }
+""",
+    "dark": """
+body { background:#131316; }
+.headline { color:#f5f5f7; text-align:center; margin-top:170px; padding:0 80px; }
+.sub { color:#77777d; text-align:center; margin-top:44px; }
+.wrap { display:flex; justify-content:center; margin-top:110px; }
+.phone { width:1040px; border-color:#48484e;
+  box-shadow: 0 0 160px rgba(80,140,255,.22), 40px 70px 110px rgba(0,0,0,.55); }
+""",
+}
+# 듀오 바깥 화면은 모서리가 덜 둥글다.
+DUO_CSS = ".phone { border-radius:80px; padding:22px; } .phone img { border-radius:58px; }"
+if DUO:
+    LAYOUTS = {k: DUO_CSS + v for k, v in DUO_LAYOUTS.items()}
+
 # text-bottom 은 폰이 먼저 오는 DOM 순서
 BODY_TEXT_FIRST = '<div class="headline">{headline}</div><div class="sub">{sub}</div><div class="wrap"><div class="phone"><img src="{img}"></div></div>'
 BODY_PHONE_FIRST = '<div class="wrap"><div class="phone"><img src="{img}"></div></div><div class="headline">{headline}</div><div class="sub">{sub}</div>'
@@ -170,7 +229,7 @@ def main(langs):
         out_dir.mkdir(parents=True, exist_ok=True)
         for fname, layout, headline, sub in SHOTS[lang]:
             if lang in NO_SEARCH and fname.endswith("search.png"):
-                (out_dir / fname).unlink(missing_ok=True)
+                (out_dir / (PREFIX + fname)).unlink(missing_ok=True)
                 continue
             body_tpl = BODY_PHONE_FIRST if layout == "text-bottom" else BODY_TEXT_FIRST
             raw = RAW / lang / fname
@@ -183,9 +242,9 @@ def main(langs):
                 body = body_tpl.format(headline=headline, sub=sub, img=raw.as_uri())
             if layout == "before-after":
                 body += f'<div class="before"><img src="{(RAW / lang / "before.jpg").as_uri()}"></div>'
-            html_path = WORK / f"{lang}-{fname.replace('.png', '.html')}"
+            html_path = WORK / f"{lang}-{PREFIX}{fname.replace('.png', '.html')}"
             html_path.write_text(HTML.format(lang=lang, base=BASE_CSS, layout=LAYOUTS[layout], body=body, fit=FIT), encoding="utf-8")
-            jobs.append((html_path, out_dir / fname))
+            jobs.append((html_path, out_dir / (PREFIX + fname)))
     from concurrent.futures import ThreadPoolExecutor
     with ThreadPoolExecutor(max_workers=8) as pool:
         list(pool.map(lambda job: render(*job), jobs))
