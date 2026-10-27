@@ -143,16 +143,20 @@ HTML = """<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><style>
 def render(html_path, out_png):
     # Chrome 은 그림을 저장하고도 종료 감시에 걸려 0이 아닌 코드로 끝나거나 한참 걸린다 — 끝 코드 대신 파일로 판단한다.
     # 나란히 돌리므로 Chrome 마다 따로 프로필을 쓴다(같은 프로필을 쓰면 서로 잠가 멈춘다).
-    out_png.unlink(missing_ok=True)
-    try:
-        subprocess.run([CHROME, "--headless=new", f"--user-data-dir={html_path.with_suffix('.profile')}",
-                        f"--screenshot={out_png}",
-                        f"--window-size={W},{H}", "--force-device-scale-factor=1",
-                        "--hide-scrollbars", "--disable-gpu", "--virtual-time-budget=2000",
-                        "--allow-file-access-from-files", html_path.as_uri()],
-                       capture_output=True, timeout=180)
-    except subprocess.TimeoutExpired:
-        pass
+    # 컴퓨터가 바쁘면 아무것도 안 그리고 끝날 때가 있어 세 번까지 한다.
+    for attempt in range(3):
+        out_png.unlink(missing_ok=True)
+        try:
+            subprocess.run([CHROME, "--headless=new", f"--user-data-dir={html_path.with_suffix(f'.profile{attempt}')}",
+                            f"--screenshot={out_png}",
+                            f"--window-size={W},{H}", "--force-device-scale-factor=1",
+                            "--hide-scrollbars", "--disable-gpu", "--virtual-time-budget=2000",
+                            "--allow-file-access-from-files", html_path.as_uri()],
+                           capture_output=True, timeout=180)
+        except subprocess.TimeoutExpired:
+            pass
+        if out_png.exists():
+            break
     if not out_png.exists():
         raise SystemExit(f"Chrome 이 그리지 못했다: {out_png}")
     print(f"rendered {out_png.relative_to(ROOT)}")
@@ -183,7 +187,7 @@ def main(langs):
             html_path.write_text(HTML.format(lang=lang, base=BASE_CSS, layout=LAYOUTS[layout], body=body, fit=FIT), encoding="utf-8")
             jobs.append((html_path, out_dir / fname))
     from concurrent.futures import ThreadPoolExecutor
-    with ThreadPoolExecutor(max_workers=12) as pool:
+    with ThreadPoolExecutor(max_workers=8) as pool:
         list(pool.map(lambda job: render(*job), jobs))
 
 if __name__ == "__main__":

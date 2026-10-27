@@ -580,8 +580,8 @@ struct CameraCaptureView: View {
             withAnimation(.easeOut(duration: 0.35)) { flashOpacity = 0 }
         }
 
-        // 셔터를 누른 순간 화면에서 잡혀 있던 모서리를 그대로 사용해 폅니다.
-        let quadAtCapture = camera.detectedQuad
+        // 셔터를 누른 순간 잡혀 있던 모서리로 폅니다(화면 테두리는 늦게 따라오므로 감지값 그대로).
+        let quadAtCapture = camera.latestQuad
         // 수동 촬영은 방금 담은 화면을 자동 촬영의 기준으로 삼아 같은 장표 중복을 막는다.
         if !auto { camera.markCaptured() }
 

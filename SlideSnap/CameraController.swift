@@ -17,6 +17,8 @@ final class CameraController: NSObject, ObservableObject {
 
     /// 실시간으로 감지된 장표 모서리 (0...1 정규화, 왼쪽 위 원점, 프리뷰와 같은 방향)
     @Published var detectedQuad: Quad?
+    /// 마지막으로 감지된 모서리 그대로(화면용 보간 없이). 화면 테두리는 일부러 늦게 따라오므로 자르기엔 이 값을 쓴다.
+    private(set) var latestQuad: Quad?
     /// 감지가 여러 프레임 동안 안정적으로 유지되어 "잘 잡힌" 상태인지
     @Published var isLocked = false
     /// 감지에 사용된 프레임의 가로/세로 비율 (프리뷰 오버레이 좌표 변환용)
@@ -457,6 +459,7 @@ extension CameraController: AVCaptureVideoDataOutputSampleBufferDelegate {
             stableFrames = 0
             DispatchQueue.main.async {
                 self.detectedQuad = nil
+                self.latestQuad = nil
                 self.isLocked = false
             }
             return
@@ -482,6 +485,7 @@ extension CameraController: AVCaptureVideoDataOutputSampleBufferDelegate {
         DispatchQueue.main.async {
             self.sourceAspect = aspect
             self.detectedQuad = smoothed
+            self.latestQuad = quad
             self.isLocked = locked
         }
 

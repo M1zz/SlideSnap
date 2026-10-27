@@ -51,7 +51,8 @@ shoot() {  # shoot <lang> <파일이름> <데모 화면> <대기 초>
   # Mac 이 바쁘면 앱이 그리기 전에 찍혀 빈 화면이 남는다 — 상태 막대 아래가 거의 한 색이면 기다렸다 다시 찍는다.
   local try
   for try in 1 2 3 4 5 6; do
-    xcrun simctl io $UDID screenshot "docs/screenshots/raw/$lang/$name" >/dev/null 2>&1
+    # 다른 작업이 시뮬레이터를 같이 쓰면 찍기가 멈출 때가 있다 — 60초 안에 안 끝나면 끊고 다시 찍는다.
+    perl -e 'alarm shift; exec @ARGV' 60 xcrun simctl io $UDID screenshot "docs/screenshots/raw/$lang/$name" >/dev/null 2>&1 || true
     python3 - "docs/screenshots/raw/$lang/$name" <<'PY' && break
 import sys
 from PIL import Image, ImageStat
