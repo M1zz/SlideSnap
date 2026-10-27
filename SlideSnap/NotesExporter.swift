@@ -12,6 +12,14 @@ enum NotesExporter {
         let text: String?
         /// 그 장표를 보여 주던 동안 받아쓴 말
         let spoken: String?
+        /// 사용자가 남긴 메모
+        let memo: String?
+
+        /// 발표자 노트: 메모 다음에 그때 한 말
+        var notes: String? {
+            let parts = [memo, spoken].compactMap { $0 }.filter { !$0.isEmpty }
+            return parts.isEmpty ? nil : parts.joined(separator: "\n\n")
+        }
     }
 
     @MainActor
@@ -22,7 +30,8 @@ enum NotesExporter {
                 number: index + 1,
                 imageURL: store.imageURL(store.displayFile(for: slide)),
                 text: slide.recognizedText?.trimmingCharacters(in: .whitespacesAndNewlines),
-                spoken: presentation.transcriptText(for: slide)
+                spoken: presentation.transcriptText(for: slide),
+                memo: slide.memo
             )
         }
     }
@@ -58,6 +67,9 @@ enum NotesExporter {
             }
             md += "### \(slide.number)\n\n"
             md += "![\(String(localized: "장표 \(slide.number)"))](\(imagePath))\n\n"
+            if let memo = slide.memo, !memo.isEmpty {
+                md += "**" + String(localized: "메모") + "**\n\n" + memo + "\n\n"
+            }
             if let spoken = slide.spoken, !spoken.isEmpty {
                 md += "**" + String(localized: "발표 내용") + "**\n\n" + spoken + "\n\n"
             }
@@ -83,7 +95,7 @@ enum NotesExporter {
         try? FileManager.default.removeItem(at: url)
         try PPTXExporter.makePPTX(
             title: title,
-            slides: slides.map { PPTXExporter.SlideInput(imageURL: $0.imageURL, notes: $0.spoken) },
+            slides: slides.map { PPTXExporter.SlideInput(imageURL: $0.imageURL, notes: $0.notes) },
             outputURL: url
         )
         return url

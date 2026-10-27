@@ -199,13 +199,15 @@ final class Store: ObservableObject {
 
     /// 촬영한 사진을 감지·보정·저장. 무거운 처리는 백그라운드에서 수행됩니다.
     /// - Parameter detectedQuad: 촬영 화면에서 실시간으로 잡아 둔 모서리(있으면 그대로 사용).
+    /// - Returns: 담은 장표의 id. 처리에 실패하면 nil.
+    @discardableResult
     func addSlide(
         image: UIImage,
         to presentationID: UUID,
         detectedQuad: Quad? = nil,
         createdAt: Date? = nil,
         enhance: Bool = false
-    ) async {
+    ) async -> UUID? {
         let directory = imagesDirectoryURL
         let slide = await Task.detached(priority: .userInitiated) {
             SlideFactory.makeSlide(
@@ -214,13 +216,14 @@ final class Store: ObservableObject {
             )
         }.value
 
-        guard let slide else { return }
+        guard let slide else { return nil }
         // 첫 장표가 만들어졌으니 이제 목록에 보여 준다.
         promoteDraft(presentationID)
-        guard let index = presentations.firstIndex(where: { $0.id == presentationID }) else { return }
+        guard let index = presentations.firstIndex(where: { $0.id == presentationID }) else { return nil }
         presentations[index].slides.append(slide)
         persist()
         track(save: [.presentation(presentationID), .slide(slide.id)])
+        return slide.id
     }
 
     /// 사진 앱에서 고른 이미지들을 순서대로 감지·보정해 발표에 넣습니다.
@@ -375,6 +378,18 @@ final class Store: ObservableObject {
     // MARK: - 녹음
 
     /// 촬영하며 녹음한 파일을 발표에 붙인다. 아직 초안이면 목록에 올린다(장표 없이 녹음만 한 강의도 남긴다).
+    /// 장표 메모를 바꾼다. 앞뒤 공백만 남으면 메모를 지운다.
+    func setMemo(_ memo: String, slideID: UUID, presentationID: UUID) {
+        guard let pIndex = presentations.firstIndex(where: { $0.id == presentationID }),
+              let sIndex = presentations[pIndex].slides.firstIndex(where: { $0.id == slideID }) else { return }
+        let trimmed = memo.trimmingCharacters(in: .whitespacesAndNewlines)
+        let newValue = trimmed.isEmpty ? nil : trimmed
+        guard presentations[pIndex].slides[sIndex].memo != newValue else { return }
+        presentations[pIndex].slides[sIndex].memo = newValue
+        persist()
+        track(save: [.slide(slideID)])
+    }
+
     func addRecording(_ recording: Recording, to presentationID: UUID) {
         if var draft = drafts[presentationID] {
             draft.recordings = draft.allRecordings + [recording]
@@ -465,7 +480,7 @@ final class Store: ObservableObject {
 
     // MARK: - OCR 텍스트 검색
 
-    /// 모든 발표의 장표를 대상으로 제목/인식 텍스트에서 검색합니다.
+    /// 모든 발표의 장표를 대상으로 제목/메모/인식 텍스트/받아쓴 말에서 검색합니다.
     func searchSlides(_ rawQuery: String) -> [SlideSearchResult] {
         let query = rawQuery.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !query.isEmpty else { return [] }
@@ -480,8 +495,8 @@ final class Store: ObservableObject {
             for (index, slide) in presentation.slides.enumerated() {
                 let ocr = slide.recognizedText ?? ""
                 let spoken = presentation.transcriptText(for: slide) ?? ""
-                // 장표 글자에서 먼저 찾고, 없으면 그 장표를 보여 주던 동안 한 말에서 찾는다.
-                let text = matches(ocr) || spoken.isEmpty ? ocr : spoken
+                // 내 메모 → 장표 글자 → 그 장표를 보여 주던 동안 한 말 순서로 찾는다.
+                let text = [slide.memo ?? "", ocr, spoken].first(where: matches) ?? (spoken.isEmpty ? ocr : spoken)
                 let textMatches = matches(text)
                 guard titleMatches || textMatches else { continue }
                 results.append(

@@ -405,6 +405,12 @@ struct PresentationDetailView: View {
                 .background(.black.opacity(0.6), in: Capsule())
                 .padding(5)
 
+            if slide.memo != nil {
+                MemoBadge()
+                    .padding(2)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
+            }
+
             // 모서리 탐지 실패 → 보정 없이 원본 그대로인 장표 표시
             if slide.corners == nil && !isSelecting {
                 Image(systemName: "exclamationmark.triangle.fill")
@@ -488,12 +494,12 @@ struct PresentationDetailView: View {
         let slides = targetSlides()
         guard !slides.isEmpty, let presentation else { return }
         let title = presentation.title
-        let urls = slides.map { store.imageURL(store.displayFile(for: $0)) }
+        let pages = slides.map { PDFExporter.Page(imageURL: store.imageURL(store.displayFile(for: $0)), memo: $0.memo) }
         isExporting = true
 
         Task {
             let pdfURL = await Task.detached(priority: .userInitiated) {
-                PDFExporter.makePDF(title: title, imageURLs: urls, layout: layout)
+                PDFExporter.makePDF(title: title, pages: pages, layout: layout)
             }.value
 
             isExporting = false

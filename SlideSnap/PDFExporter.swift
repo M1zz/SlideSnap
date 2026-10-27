@@ -26,7 +26,13 @@ enum PDFLayout: Identifiable {
 
 /// 발표의 보정된 장표들을 순서대로 묶어 복습용 PDF로 만듭니다.
 /// 각 장표에는 번호가 붙고, 여러 장 레이아웃은 A4 세로 페이지에 격자로 배치됩니다.
+/// 메모가 있는 장표는 그 아래에 메모를 함께 적습니다.
 enum PDFExporter {
+
+    struct Page: Sendable {
+        let imageURL: URL
+        let memo: String?
+    }
 
     /// 페이지 폭 기준 (A4 가로 폭 포인트) — 한 장씩 레이아웃에서 사용
     private static let pageWidth: CGFloat = 842
@@ -35,8 +41,8 @@ enum PDFExporter {
     /// PDF에 넣기 전 이미지 축소 상한 (픽셀)
     private static let maxImageDimension: CGFloat = 2200
 
-    static func makePDF(title: String, imageURLs: [URL], layout: PDFLayout = .one) -> URL? {
-        guard !imageURLs.isEmpty else { return nil }
+    static func makePDF(title: String, pages: [Page], layout: PDFLayout = .one) -> URL? {
+        guard !pages.isEmpty else { return nil }
 
         let fileName = sanitizeFileName(title) + ".pdf"
         let outputURL = FileManager.default.temporaryDirectory.appendingPathComponent(fileName)
@@ -51,9 +57,9 @@ enum PDFExporter {
         do {
             try renderer.writePDF(to: outputURL) { context in
                 if layout == .one {
-                    drawOnePerPage(context: context, title: title, imageURLs: imageURLs)
+                    drawOnePerPage(context: context, title: title, pages: pages)
                 } else {
-                    drawGrid(context: context, title: title, imageURLs: imageURLs, perPage: layout.perPage)
+                    drawGrid(context: context, title: title, pages: pages, perPage: layout.perPage)
                 }
             }
             return outputURL
@@ -64,16 +70,26 @@ enum PDFExporter {
 
     // MARK: - 한 장씩 (원본 비율, 크게)
 
-    private static func drawOnePerPage(context: UIGraphicsPDFRendererContext, title: String, imageURLs: [URL]) {
+    private static func drawOnePerPage(context: UIGraphicsPDFRendererContext, title: String, pages: [Page]) {
         var wroteAnyPage = false
-        for (index, url) in imageURLs.enumerated() {
+        for (index, page) in pages.enumerated() {
             autoreleasepool {
-                guard let loaded = UIImage(contentsOfFile: url.path) else { return }
+                guard let loaded = UIImage(contentsOfFile: page.imageURL.path) else { return }
                 let image = loaded.downsampled(maxDimension: maxImageDimension)
-                let pageSize = onePageSize(for: image)
-                context.beginPage(withBounds: CGRect(origin: .zero, size: pageSize), pageInfo: [:])
-                image.draw(in: CGRect(origin: .zero, size: pageSize))
-                drawBadge("\(index + 1)", in: CGRect(origin: .zero, size: pageSize))
+                let imageSize = onePageSize(for: image)
+                let imageRect = CGRect(origin: .zero, size: imageSize)
+                // 메모가 있으면 장표 아래로 페이지를 늘려 적는다.
+                let memoPadding: CGFloat = 24
+                let memoWidth = imageSize.width - memoPadding * 2
+                let memoHeight = page.memo.map { ceil(memoTextHeight($0, width: memoWidth, fontSize: 14)) + memoPadding * 2 } ?? 0
+                let pageRect = CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height + memoHeight)
+                context.beginPage(withBounds: pageRect, pageInfo: [:])
+                image.draw(in: imageRect)
+                drawBadge("\(index + 1)", in: imageRect)
+                if let memo = page.memo {
+                    drawMemo(memo, in: CGRect(x: memoPadding, y: imageSize.height + memoPadding,
+                                              width: memoWidth, height: memoHeight - memoPadding * 2), fontSize: 14)
+                }
                 wroteAnyPage = true
             }
         }
@@ -88,12 +104,15 @@ enum PDFExporter {
 
     // MARK: - 여러 장 격자 (복습/요약용)
 
-    private static func drawGrid(context: UIGraphicsPDFRendererContext, title: String, imageURLs: [URL], perPage: Int) {
+    private static func drawGrid(context: UIGraphicsPDFRendererContext, title: String, pages: [Page], perPage: Int) {
         let page = a4Portrait
         let margin: CGFloat = 28
         let headerHeight: CGFloat = 30
         let gutter: CGFloat = 16
         let numberHeight: CGFloat = 14
+        // 메모가 하나라도 있으면 모든 칸에 같은 높이의 메모 자리를 두어 격자를 고르게 한다.
+        let memoFontSize: CGFloat = 9
+        let memoHeight: CGFloat = pages.contains { $0.memo != nil } ? 40 : 0
 
         // 열/행 구성: 2장 → 1열 2행, 4장 → 2열 2행
         let columns = perPage == 2 ? 1 : 2
@@ -105,7 +124,7 @@ enum PDFExporter {
         let cellWidth = (contentWidth - gutter * CGFloat(columns - 1)) / CGFloat(columns)
         let cellHeight = (contentHeight - gutter * CGFloat(rows - 1)) / CGFloat(rows)
 
-        let totalPages = Int(ceil(Double(imageURLs.count) / Double(perPage)))
+        let totalPages = Int(ceil(Double(pages.count) / Double(perPage)))
 
         for pageIndex in 0..<max(totalPages, 1) {
             context.beginPage(withBounds: CGRect(origin: .zero, size: page), pageInfo: [:])
@@ -113,16 +132,16 @@ enum PDFExporter {
 
             for slot in 0..<perPage {
                 let slideIndex = pageIndex * perPage + slot
-                guard slideIndex < imageURLs.count else { break }
+                guard slideIndex < pages.count else { break }
 
                 let col = slot % columns
                 let row = slot / columns
                 let cellX = margin + CGFloat(col) * (cellWidth + gutter)
                 let cellY = contentTop + CGFloat(row) * (cellHeight + gutter)
-                let imageArea = CGRect(x: cellX, y: cellY, width: cellWidth, height: cellHeight - numberHeight)
+                let imageArea = CGRect(x: cellX, y: cellY, width: cellWidth, height: cellHeight - numberHeight - memoHeight)
 
                 autoreleasepool {
-                    guard let loaded = UIImage(contentsOfFile: imageURLs[slideIndex].path) else { return }
+                    guard let loaded = UIImage(contentsOfFile: pages[slideIndex].imageURL.path) else { return }
                     let image = loaded.downsampled(maxDimension: maxImageDimension)
                     let rect = aspectFitRect(imageSize: image.size, in: imageArea)
                     image.draw(in: rect)
@@ -133,6 +152,10 @@ enum PDFExporter {
                         y: imageArea.maxY + 1,
                         width: cellWidth
                     )
+                    if let memo = pages[slideIndex].memo {
+                        drawMemo(memo, in: CGRect(x: cellX, y: imageArea.maxY + numberHeight + 2,
+                                                  width: cellWidth, height: memoHeight - 2), fontSize: memoFontSize)
+                    }
                 }
             }
         }
@@ -171,6 +194,29 @@ enum PDFExporter {
         let string = text as NSString
         let size = string.size(withAttributes: attrs)
         string.draw(at: CGPoint(x: centerX - size.width / 2, y: y), withAttributes: attrs)
+    }
+
+    private static func memoAttributes(fontSize: CGFloat) -> [NSAttributedString.Key: Any] {
+        [.font: UIFont.systemFont(ofSize: fontSize), .foregroundColor: UIColor.darkGray]
+    }
+
+    private static func memoTextHeight(_ memo: String, width: CGFloat, fontSize: CGFloat) -> CGFloat {
+        (memo as NSString).boundingRect(
+            with: CGSize(width: width, height: .greatestFiniteMagnitude),
+            options: .usesLineFragmentOrigin,
+            attributes: memoAttributes(fontSize: fontSize),
+            context: nil
+        ).height
+    }
+
+    /// 메모를 영역 안에 적는다. 넘치면 마지막 줄을 말줄임으로 자른다.
+    private static func drawMemo(_ memo: String, in rect: CGRect, fontSize: CGFloat) {
+        (memo as NSString).draw(
+            with: rect,
+            options: [.usesLineFragmentOrigin, .truncatesLastVisibleLine],
+            attributes: memoAttributes(fontSize: fontSize),
+            context: nil
+        )
     }
 
     /// 한 장씩 레이아웃에서 페이지 모서리에 붙는 번호 배지.

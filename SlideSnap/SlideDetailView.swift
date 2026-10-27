@@ -7,6 +7,7 @@ struct SlideDetailView: View {
 
     @EnvironmentObject private var store: Store
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.scenePhase) private var scenePhase
 
     let presentationID: UUID
     let slideID: UUID
@@ -23,6 +24,9 @@ struct SlideDetailView: View {
     @State private var autoAdvancing = false
     @State private var showTranscript = true
     @State private var transcriptHeight: CGFloat = 0
+    /// 지금 장표의 메모 입력. 입력을 마치거나 장표를 넘길 때 저장한다.
+    @State private var memoDraft = ""
+    @FocusState private var memoFocused: Bool
 
     init(presentationID: UUID, slideID: UUID) {
         self.presentationID = presentationID
@@ -62,6 +66,8 @@ struct SlideDetailView: View {
 
                     audioPanel
 
+                    memoField
+
                     filmstrip
 
                     Picker("보기", selection: $showOriginal) {
@@ -87,10 +93,23 @@ struct SlideDetailView: View {
         .onChange(of: playback.currentTime) { _, time in
             followPlayback(time)
         }
-        .onChange(of: currentSlideID) { _, _ in
+        .onChange(of: currentSlideID) { oldID, _ in
+            saveMemo(for: oldID)
+            loadMemo()
             slideChangedDuringPlayback()
         }
-        .onDisappear { playback.stop() }
+        .onChange(of: memoFocused) { _, focused in
+            if !focused { saveMemo(for: currentSlideID) }
+        }
+        // 쓰는 도중 앱을 벗어나도 메모가 남도록 한다.
+        .onChange(of: scenePhase) { _, phase in
+            if phase != .active { saveMemo(for: currentSlideID) }
+        }
+        .onAppear { loadMemo() }
+        .onDisappear {
+            saveMemo(for: currentSlideID)
+            playback.stop()
+        }
         .navigationTitle(pageTitle)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -147,6 +166,36 @@ struct SlideDetailView: View {
             }
             Button("취소", role: .cancel) {}
         }
+    }
+
+    // MARK: - 메모
+
+    private var memoField: some View {
+        HStack(alignment: .firstTextBaseline, spacing: 8) {
+            Image(systemName: "note.text")
+                .foregroundStyle(.secondary)
+            TextField("이 장표에 메모 남기기", text: $memoDraft, axis: .vertical)
+                .lineLimit(1...4)
+                .focused($memoFocused)
+        }
+        .font(.subheadline)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 10)
+        .background(Color(.secondarySystemBackground))
+        .toolbar {
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button("완료") { memoFocused = false }
+            }
+        }
+    }
+
+    private func loadMemo() {
+        memoDraft = currentSlide?.memo ?? ""
+    }
+
+    private func saveMemo(for slideID: UUID) {
+        store.setMemo(memoDraft, slideID: slideID, presentationID: presentationID)
     }
 
     // MARK: - 녹음 듣기
@@ -329,6 +378,9 @@ struct SlideDetailView: View {
             RoundedRectangle(cornerRadius: 6)
                 .stroke(selected ? Color.accentColor : Color.clear, lineWidth: 2.5)
         )
+        .overlay(alignment: .bottomTrailing) {
+            if slide.memo != nil { MemoBadge(size: 9) }
+        }
         .opacity(selected ? 1 : 0.6)
     }
 
@@ -365,6 +417,21 @@ struct SlideDetailView: View {
         }
         let newIndex = min(index, remaining.count - 1)
         currentSlideID = remaining[newIndex].id
+    }
+}
+
+/// 메모가 있는 장표 썸네일 구석에 붙는 작은 표시.
+struct MemoBadge: View {
+    var size: CGFloat = 11
+
+    var body: some View {
+        Image(systemName: "note.text")
+            .font(.system(size: size, weight: .semibold))
+            .foregroundStyle(.white)
+            .padding(size * 0.4)
+            .background(.black.opacity(0.55), in: Circle())
+            .padding(3)
+            .accessibilityLabel("메모 있음")
     }
 }
 

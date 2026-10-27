@@ -46,6 +46,8 @@ struct Slide: Identifiable, Codable, Equatable {
     var enhanced: Bool?
     /// 가독성 보정본 파일명. 보정을 켰을 때 생성됩니다.
     var enhancedFile: String?
+    /// 사용자가 이 장표에 남긴 메모. nil = 메모 없음.
+    var memo: String?
 
     /// 가독성 보정이 켜져 있는지.
     var isEnhanced: Bool { enhanced == true && enhancedFile != nil }

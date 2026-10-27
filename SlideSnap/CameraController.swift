@@ -75,6 +75,16 @@ final class CameraController: NSObject, ObservableObject {
     private var frameCounter = 0
     private var smoothedQuad: Quad?
     private var stableFrames = 0
+    /// 연달아 장표를 놓친 감지 횟수. 잠깐 놓친 것으로는 테두리를 지우지 않는다.
+    private var missedDetections = 0
+    /// 감지 프레임이 센서 방향에서 시계 방향으로 돌아간 각도(초점 위치 변환용)
+    private var frameRotationAngle: CGFloat = 90
+    /// 감지 주기: 30fps에서 3프레임마다 = 초당 10번. 잠긴 동안은 6프레임마다로 늦춰 배터리·발열을 아낀다.
+    private var detectionInterval: Int { stableFrames >= lockFrames ? 6 : 3 }
+    /// 이만큼 연달아 안정되면 잠금(약 0.5초)
+    private let lockFrames = 5
+    /// 이만큼 연달아 놓쳐야 테두리를 지운다(약 0.3초)
+    private let missTolerance = 3
     /// 시작 직후 이 프레임 수만큼은 감지를 건너뛴다(프리뷰가 먼저 뜨도록 워밍업).
     private let warmupFrames = 20
 
@@ -174,6 +184,7 @@ final class CameraController: NSObject, ObservableObject {
                     if self.session.canAddOutput(self.videoDataOutput) {
                         self.session.addOutput(self.videoDataOutput)
                     }
+                    Self.configureFocus(for: device)
                     self.videoDevice = device
                     self.isConfigured = true
                     // 손떨림·과확대를 막기 위해 8배로 상한을 둡니다.
@@ -246,9 +257,55 @@ final class CameraController: NSObject, ObservableObject {
         }
     }
 
+    // MARK: - 초점
+
+    /// 연속 자동 초점·노출을 켜고, 초점이 오갈 때 울렁이지 않게 천천히 맞추도록 한다.
+    private static func configureFocus(for device: AVCaptureDevice) {
+        do {
+            try device.lockForConfiguration()
+            if device.isFocusModeSupported(.continuousAutoFocus) { device.focusMode = .continuousAutoFocus }
+            if device.isSmoothAutoFocusSupported { device.isSmoothAutoFocusEnabled = true }
+            if device.isExposureModeSupported(.continuousAutoExposure) { device.exposureMode = .continuousAutoExposure }
+            device.unlockForConfiguration()
+        } catch {
+            return
+        }
+    }
+
+    /// 잡은 장표의 가운데로 초점과 노출을 옮긴다. 어두운 강의실에서도 화면 밝기에 맞춰진다.
+    /// - Parameter point: 감지 프레임 기준 정규화 좌표(왼쪽 위 원점)
+    private func focus(at point: CGPoint) {
+        // 감지 프레임은 센서에서 시계 방향으로 돌아가 있으므로, 거꾸로 돌려 센서 좌표로 바꾼다.
+        let devicePoint: CGPoint
+        switch (Int(frameRotationAngle.rounded()) % 360 + 360) % 360 {
+        case 90: devicePoint = CGPoint(x: point.y, y: 1 - point.x)
+        case 180: devicePoint = CGPoint(x: 1 - point.x, y: 1 - point.y)
+        case 270: devicePoint = CGPoint(x: 1 - point.y, y: point.x)
+        default: devicePoint = point
+        }
+        sessionQueue.async { [weak self] in
+            guard let device = self?.videoDevice else { return }
+            do {
+                try device.lockForConfiguration()
+                if device.isFocusPointOfInterestSupported {
+                    device.focusPointOfInterest = devicePoint
+                    device.focusMode = .continuousAutoFocus
+                }
+                if device.isExposurePointOfInterestSupported {
+                    device.exposurePointOfInterest = devicePoint
+                    device.exposureMode = .continuousAutoExposure
+                }
+                device.unlockForConfiguration()
+            } catch {
+                return
+            }
+        }
+    }
+
     // MARK: - 줌
 
     /// 줌 배율을 설정합니다. 기기가 허용하는 범위(및 8배 상한)로 자동 보정됩니다.
+    /// 제스처 이벤트 사이를 메우도록 목표 배율까지 빠르게 미끄러지듯 따라간다.
     func setZoom(_ factor: CGFloat) {
         sessionQueue.async { [weak self] in
             guard let self, let device = self.videoDevice else { return }
@@ -256,7 +313,7 @@ final class CameraController: NSObject, ObservableObject {
             let clamped = max(device.minAvailableVideoZoomFactor, min(factor, upperBound))
             do {
                 try device.lockForConfiguration()
-                device.videoZoomFactor = clamped
+                device.ramp(toVideoZoomFactor: clamped, withRate: 16)
                 device.unlockForConfiguration()
             } catch {
                 return
@@ -284,6 +341,7 @@ extension CameraController: AVCaptureVideoDataOutputSampleBufferDelegate {
                 connection.videoRotationAngle = angle
             }
         }
+        frameRotationAngle = connection.videoRotationAngle
 
         // 촬영 요청이 있으면 이 프레임을 사진으로 넘깁니다.
         if !pendingCaptures.isEmpty, let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) {
@@ -295,7 +353,7 @@ extension CameraController: AVCaptureVideoDataOutputSampleBufferDelegate {
         // 30fps를 다 처리하면 무거우므로 몇 프레임에 한 번만 감지합니다.
         // 시작 직후 몇 프레임은 건너뛰어 프리뷰가 먼저 부드럽게 뜨도록 합니다.
         frameCounter += 1
-        guard frameCounter > warmupFrames, frameCounter % 6 == 0 else { return }
+        guard frameCounter > warmupFrames, frameCounter % detectionInterval == 0 else { return }
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
         detectRectangle(in: pixelBuffer)
     }
@@ -387,10 +445,14 @@ extension CameraController: AVCaptureVideoDataOutputSampleBufferDelegate {
     }
 
     /// 지터를 줄이도록 부드럽게 이어 붙이고, 여러 프레임 안정되면 잠금(lock) 상태로 표시합니다.
+    /// - 한두 번 놓친 감지로는 테두리를 지우지 않는다(깜빡임 방지).
+    /// - 한 번 잠기면 조금 더 큰 흔들림까지 봐준다(잠금이 켜졌다 꺼졌다 하지 않게).
     /// 잠금이 유지되는 동안 매 감지 주기에 자동 촬영 여부를 판단합니다(실제 촬영은
     /// 내용이 직전에 담은 장표와 충분히 다를 때만 — `maybeAutoCapture` 참고).
     private func publish(_ quad: Quad?, aspect: CGFloat) {
         guard let quad else {
+            missedDetections += 1
+            guard missedDetections >= missTolerance, smoothedQuad != nil else { return }
             smoothedQuad = nil
             stableFrames = 0
             DispatchQueue.main.async {
@@ -399,17 +461,23 @@ extension CameraController: AVCaptureVideoDataOutputSampleBufferDelegate {
             }
             return
         }
+        missedDetections = 0
 
+        let wasLocked = stableFrames >= lockFrames
         let smoothed: Quad
         if let prev = smoothedQuad {
             smoothed = Self.lerp(prev, quad, 0.45)
-            stableFrames = Self.maxCornerDelta(prev, quad) < 0.045 ? stableFrames + 1 : 0
+            let tolerance: CGFloat = wasLocked ? 0.08 : 0.045
+            stableFrames = Self.maxCornerDelta(prev, quad) < tolerance ? stableFrames + 1 : 0
         } else {
             smoothed = quad
             stableFrames = 0
         }
         smoothedQuad = smoothed
-        let locked = stableFrames >= 3
+        let locked = stableFrames >= lockFrames
+        if locked, !wasLocked {
+            focus(at: Self.center(of: smoothed))
+        }
 
         DispatchQueue.main.async {
             self.sourceAspect = aspect
@@ -537,6 +605,11 @@ extension CameraController: AVCaptureVideoDataOutputSampleBufferDelegate {
             bottomRight: mix(a.bottomRight, b.bottomRight),
             bottomLeft: mix(a.bottomLeft, b.bottomLeft)
         )
+    }
+
+    private static func center(of q: Quad) -> CGPoint {
+        CGPoint(x: (q.topLeft.x + q.topRight.x + q.bottomRight.x + q.bottomLeft.x) / 4,
+                y: (q.topLeft.y + q.topRight.y + q.bottomRight.y + q.bottomLeft.y) / 4)
     }
 
     private static func maxCornerDelta(_ a: Quad, _ b: Quad) -> CGFloat {

@@ -27,7 +27,8 @@ struct CameraPreview: UIViewRepresentable {
 /// 잘 잡히면(locked) 초록색으로 "락인"된 느낌을 줍니다.
 ///
 /// 실제 감지는 몇 프레임에 한 번씩 뚝뚝 갱신되지만, 사용자에게는 모서리가
-/// 느리고 부드럽게 따라가도록 SwiftUI가 네 모서리 좌표를 프레임 단위로 보간한다.
+/// 부드럽게 따라가도록 SwiftUI가 네 모서리 좌표를 프레임 단위로 보간한다.
+/// 스프링은 새 목표가 와도 움직이던 속도를 이어 가므로, 갱신 사이에 멈칫하지 않는다.
 struct DetectionOverlay: View {
 
     let quad: Quad
@@ -50,9 +51,8 @@ struct DetectionOverlay: View {
                 .stroke(color, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
                 .shadow(color: .black.opacity(0.35), radius: 2)
         }
-        // 감지 값이 바뀔 때마다 모서리를 부드럽게 보간(느린 트레일링 모션).
-        .animation(.easeOut(duration: 0.35), value: quad)
-        .animation(.easeOut(duration: 0.2), value: locked)
+        .animation(.smooth(duration: 0.35), value: quad)
+        .animation(.easeInOut(duration: 0.3), value: locked)
     }
 }
 
@@ -154,6 +154,16 @@ struct CameraCaptureView: View {
     @State private var flashOpacity: Double = 0
     @State private var showBlurHint = false
 
+    /// 방금 담은 장표가 화면에서 썸네일 자리로 줄어들며 날아가는 연출
+    @State private var flyingShot: UIImage?
+    @State private var flyLanded = false
+    @State private var thumbnailFrame: CGRect = .zero
+
+    /// 가장 최근에 담은 장표(촬영 중 메모를 붙일 대상)
+    @State private var lastSlideID: UUID?
+    @State private var memoTargetID: UUID?
+    @State private var memoDraft = ""
+
     // 줌 제스처가 시작될 때의 기준 배율
     @State private var zoomBaseline: CGFloat = 1.0
 
@@ -167,11 +177,15 @@ struct CameraCaptureView: View {
                 CameraPreview(camera: camera)
                     .ignoresSafeArea()
 
-                if let quad = camera.detectedQuad {
-                    DetectionOverlay(quad: quad, aspect: camera.sourceAspect, locked: camera.isLocked)
-                        .ignoresSafeArea()
-                        .allowsHitTesting(false)
+                ZStack {
+                    if let quad = camera.detectedQuad {
+                        DetectionOverlay(quad: quad, aspect: camera.sourceAspect, locked: camera.isLocked)
+                            .transition(.opacity)
+                    }
                 }
+                .ignoresSafeArea()
+                .allowsHitTesting(false)
+                .animation(.easeInOut(duration: 0.25), value: camera.detectedQuad == nil)
 
                 // 줌 제스처를 받는 투명 레이어 (버튼들보다 아래에 두어 조작을 방해하지 않음)
                 zoomGestureLayer
@@ -185,11 +199,18 @@ struct CameraCaptureView: View {
             VStack {
                 topBar
                 statusLabel
+                    .animation(.easeInOut(duration: 0.25), value: camera.detectedQuad == nil)
                 Spacer()
                 zoomIndicator
                 bottomBar
             }
+
+            GeometryReader { proxy in
+                flyingShotView(in: proxy.size)
+            }
+            .allowsHitTesting(false)
         }
+        .coordinateSpace(.named(Self.space))
         .statusBarHidden()
         .onAppear {
             camera.start()
@@ -212,6 +233,15 @@ struct CameraCaptureView: View {
                 showMicDenied = true
             }
         }
+        .alert("방금 찍은 장표에 메모", isPresented: memoAlertShown) {
+            TextField("이 장표에 메모 남기기", text: $memoDraft)
+            Button("저장") {
+                if let memoTargetID {
+                    store.setMemo(memoDraft, slideID: memoTargetID, presentationID: presentationID)
+                }
+            }
+            Button("취소", role: .cancel) {}
+        }
         .alert("마이크 접근이 허용되지 않았습니다", isPresented: $showMicDenied) {
             Button("설정 열기") {
                 if let url = URL(string: UIApplication.openSettingsURLString) {
@@ -224,7 +254,7 @@ struct CameraCaptureView: View {
         }
         .onChange(of: camera.isLocked) { _, locked in
             if locked {
-                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                UIImpactFeedbackGenerator(style: .soft).impactOccurred()
             }
         }
         .onChange(of: camera.autoCaptureTick) { _, _ in
@@ -271,7 +301,7 @@ struct CameraCaptureView: View {
             .background((locked ? Color.green : Color.black.opacity(0.5)), in: Capsule())
             .padding(.top, 4)
             .transition(.opacity)
-            .animation(.easeOut(duration: 0.2), value: locked)
+            .animation(.easeInOut(duration: 0.3), value: locked)
         }
     }
 
@@ -405,6 +435,7 @@ struct CameraCaptureView: View {
             } label: {
                 thumbnailView
                     .frame(width: 64, height: 64)
+                    .onGeometryChange(for: CGRect.self) { $0.frame(in: .named(Self.space)) } action: { thumbnailFrame = $0 }
             }
             .disabled(captureCount == 0)
 
@@ -427,11 +458,68 @@ struct CameraCaptureView: View {
 
             Spacer()
 
-            Color.clear
+            memoButton
                 .frame(width: 64, height: 64)
         }
         .padding(.horizontal, 28)
         .padding(.bottom, 28)
+    }
+
+    /// 방금 담은 장표에 바로 메모를 붙인다(촬영을 멈추지 않고).
+    private var memoButton: some View {
+        Button {
+            guard let lastSlideID else { return }
+            memoTargetID = lastSlideID
+            memoDraft = store.presentation(presentationID)?.slides.first { $0.id == lastSlideID }?.memo ?? ""
+        } label: {
+            Image(systemName: "note.text.badge.plus")
+                .font(.title2)
+                .foregroundStyle(.white)
+                .frame(width: 52, height: 52)
+                .background(.black.opacity(0.4), in: Circle())
+        }
+        .opacity(lastSlideID == nil ? 0 : 1)
+        .disabled(lastSlideID == nil)
+        .animation(.easeOut(duration: 0.25), value: lastSlideID == nil)
+        .accessibilityLabel("방금 찍은 장표에 메모")
+    }
+
+    private var memoAlertShown: Binding<Bool> {
+        Binding(get: { memoTargetID != nil }, set: { if !$0 { memoTargetID = nil } })
+    }
+
+    private static let space = "capture"
+
+    /// 담은 사진이 화면 가운데에서 썸네일 자리로 줄어들며 들어간다.
+    @ViewBuilder
+    private func flyingShotView(in size: CGSize) -> some View {
+        if let shot = flyingShot, shot.size.width > 0 {
+            let width = size.width - 48
+            let height = min(width * shot.size.height / shot.size.width, size.height * 0.7)
+            let start = CGRect(x: (size.width - width) / 2, y: (size.height - height) / 2, width: width, height: height)
+            let rect = flyLanded ? thumbnailFrame : start
+            Image(uiImage: shot)
+                .resizable()
+                .scaledToFill()
+                .frame(width: rect.width, height: rect.height)
+                .clipShape(RoundedRectangle(cornerRadius: flyLanded ? 10 : 18))
+                .shadow(color: .black.opacity(0.35), radius: flyLanded ? 2 : 16)
+                .position(x: rect.midX, y: rect.midY)
+        }
+    }
+
+    private func fly(_ shot: UIImage) {
+        flyLanded = false
+        flyingShot = shot
+        // 시작 위치에 한 번 그린 다음 날려 보낸다.
+        DispatchQueue.main.async {
+            withAnimation(.smooth(duration: 0.5)) {
+                flyLanded = true
+            } completion: {
+                lastThumbnail = shot
+                if flyingShot === shot { flyingShot = nil }
+            }
+        }
     }
 
     private var thumbnailView: some View {
@@ -486,9 +574,10 @@ struct CameraCaptureView: View {
     /// - Parameter auto: 자동 촬영이면 흔들린(흐릿한) 컷을 걸러내고, 결과를 카메라에 알린다.
     ///   수동 촬영은 사용자의 의도이므로 걸러내지 않고 그대로 담는다.
     private func capture(auto: Bool = false) {
-        withAnimation(.easeIn(duration: 0.05)) { flashOpacity = 0.7 }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            withAnimation(.easeOut(duration: 0.2)) { flashOpacity = 0 }
+        // 눈부시지 않게 살짝 밝아졌다가 천천히 돌아온다.
+        withAnimation(.easeOut(duration: 0.08)) { flashOpacity = 0.35 }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.08) {
+            withAnimation(.easeOut(duration: 0.35)) { flashOpacity = 0 }
         }
 
         // 셔터를 누른 순간 화면에서 잡혀 있던 모서리를 그대로 사용해 폅니다.
@@ -519,12 +608,14 @@ struct CameraCaptureView: View {
                 // 촬영은 핵심 행동 — 로컬 카운트만 올린다(사용 통계 스냅샷의 eventCount에 반영).
                 LeeoEngagement.shared.registerSignificantEvent()
                 Task.detached(priority: .userInitiated) {
-                    let quick = image.downsampled(maxDimension: 160)
-                    await MainActor.run { lastThumbnail = quick }
+                    let quick = image.downsampled(maxDimension: 600)
+                    await MainActor.run { fly(quick) }
                 }
 
                 // 무거운 감지·보정·저장은 뒤에서 진행.
-                await store.addSlide(image: image, to: presentationID, detectedQuad: quadAtCapture, createdAt: shotAt)
+                if let slideID = await store.addSlide(image: image, to: presentationID, detectedQuad: quadAtCapture, createdAt: shotAt) {
+                    lastSlideID = slideID
+                }
                 processingCount = max(0, processingCount - 1)
             }
         }
