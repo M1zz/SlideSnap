@@ -254,6 +254,10 @@
   [
    "Hae sanoja<br>kalvojen tekstistä",
    "Yksi muistamasi sana riittää"
+  ],
+  [
+   "Muistiinpano<br>jokaiseen kalvoon",
+   "Löydä kalvot myös muistiinpanoista"
   ]
  ],
  "creative_search": [
@@ -264,5 +268,10 @@
  "creative_header": [
   "Luentokalvot talteen",
   "Vinot kalvokuvat<br>suoriksi luennoittain"
- ]
+ ],
+ "memos": {
+  "1": "Opettaja: tämä tulee tenttiin",
+  "3": "Haastattelut kärjessä – luettava tenttiin"
+ },
+ "memo_search": "tenttiin"
 }

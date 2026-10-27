@@ -46,7 +46,7 @@ shoot() {  # shoot <lang> <파일이름> <데모 화면> <대기 초>
   local lang=$1 name=$2 screen=$3 wait=$4 locale
   locale=$(locale_for $lang)
   xcrun simctl terminate $UDID $BUNDLE 2>/dev/null || true
-  xcrun simctl launch $UDID $BUNDLE -AppleLanguages "($lang)" -AppleLocale $locale -SSDemoScreen "$screen" >/dev/null
+  xcrun simctl launch $UDID $BUNDLE -AppleLanguages "($lang)" -AppleLocale $locale -SSDemoScreen "$screen" "${MEMO_ARGS[@]}" >/dev/null
   sleep $wait
   # Mac 이 바쁘면 앱이 그리기 전에 찍혀 빈 화면이 남는다 — 상태 막대 아래가 거의 한 색이면 기다렸다 다시 찍는다.
   local try
@@ -87,12 +87,20 @@ for lang in $LANGS; do
   # 제출본 3번의 '보정 전' 카드 — 맨 위 발표(UX 리서치)의 둘째 장 원본 사진
   cp "$WORK/demo-$lang/ShareInbox/00000000-0000-0000-0000-000000000004/0002.jpg" docs/screenshots/raw/$lang/before.jpg
   query=$(python3 -c "import sys; sys.path.insert(0, 'scripts/screenshots'); from slides import SEARCH; print(SEARCH['$lang'])")
+  memo_query=$(python3 -c "import sys; sys.path.insert(0, 'scripts/screenshots'); from slides import MEMO_SEARCH; print(MEMO_SEARCH['$lang'])")
+  # 첫 발표의 장표들에 데모 메모를 단다(모든 화면에 같이 넘겨 그리드에도 메모 표시가 보이게).
+  MEMO_ARGS=("${(@f)$(python3 -c "
+import sys; sys.path.insert(0, 'scripts/screenshots'); from slides import MEMOS
+for i, m in MEMOS['$lang'].items(): print(f'-SSDemoMemo{i}'); print(m)")}")
   shoot $lang 01-share.png  share  6
   shoot $lang 02-list.png   list   4
   shoot $lang 03-slide.png  slide  4
   shoot $lang 04-detail.png detail 4
   # 그리스어는 글자 인식(Vision)이 읽지 못해 검색 화면을 찍지 않는다(make_marketing.py NO_SEARCH).
   [[ $lang == el ]] || shoot $lang 05-search.png "search:$query" 4
+  # 06 메모 소개(아이폰 두 대): 메모를 단 장표 + 메모 단어로 찾은 결과. 메모 검색은 글자 인식과 상관없어 그리스어도 찍는다.
+  shoot $lang 06-memo.png        "slide:3"              4
+  shoot $lang 06-memo-search.png "search:$memo_query"   4
 done
 xcrun simctl status_bar $UDID clear
 rm -rf "$WORK"

@@ -254,6 +254,10 @@
   [
    "Szukaj słów<br>na slajdach",
    "Wystarczy jedno zapamiętane słowo"
+  ],
+  [
+   "Notatka<br>do każdego slajdu",
+   "Znajdź slajdy po swoich notatkach"
   ]
  ],
  "creative_search": [
@@ -264,5 +268,10 @@
  "creative_header": [
   "Slajdy z wykładów",
   "Krzywe slajdy prosto,<br>wykład po wykładzie"
- ]
+ ],
+ "memos": {
+  "1": "Prowadzący: będzie na egzaminie",
+  "3": "Wywiady na 1. miejscu – powtórzyć przed egzaminem"
+ },
+ "memo_search": "egzamin"
 }

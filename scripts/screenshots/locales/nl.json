@@ -254,6 +254,10 @@
   [
    "Zoek op woorden<br>in je dia's",
    "Eén woord is alles wat je nodig hebt"
+  ],
+  [
+   "Een notitie<br>bij elke dia",
+   "Vind dia's terug via je notities"
   ]
  ],
  "creative_search": [
@@ -264,5 +268,10 @@
  "creative_header": [
   "Dia's van colleges",
   "Scheve diafoto's<br>recht en per college"
- ]
+ ],
+ "memos": {
+  "1": "Docent: komt op het tentamen",
+  "3": "Interviews op 1 – leren voor het tentamen"
+ },
+ "memo_search": "tentamen"
 }

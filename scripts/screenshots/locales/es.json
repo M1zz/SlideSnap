@@ -254,6 +254,10 @@
   [
    "Busca dentro de<br>tus diapositivas",
    "Con una sola palabra basta"
+  ],
+  [
+   "Una nota rápida<br>en cada diapositiva",
+   "Encuéntralas también por tus notas"
   ]
  ],
  "creative_search": [
@@ -264,5 +268,10 @@
  "creative_header": [
   "Escáner de diapositivas",
   "Fotos torcidas,<br>rectas y por clase"
- ]
+ ],
+ "memos": {
+  "1": "El profe: entra en el examen final",
+  "3": "Las entrevistas, lo primero: examen final"
+ },
+ "memo_search": "examen final"
 }

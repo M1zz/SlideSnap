@@ -254,6 +254,10 @@
   [
    "Sök bland orden<br>på dina slides",
    "Det räcker med ett enda ord"
+  ],
+  [
+   "En anteckning<br>till varje slide",
+   "Hitta slides via dina anteckningar"
   ]
  ],
  "creative_search": [
@@ -264,5 +268,10 @@
  "creative_header": [
   "Slides från föreläsningar",
   "Sneda slides blir raka,<br>sorterade per föreläsning"
- ]
+ ],
+ "memos": {
+  "1": "Läraren: kommer på tentan",
+  "3": "Intervjuer i topp – plugga till tentan"
+ },
+ "memo_search": "tentan"
 }

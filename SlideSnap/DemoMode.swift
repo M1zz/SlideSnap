@@ -8,9 +8,11 @@
 //    -SSDemoScreen list            발표 목록(그리드)
 //    -SSDemoScreen detail          첫 발표의 장표 그리드
 //    -SSDemoScreen slide           첫 발표의 둘째 장표 크게 보기
+//    -SSDemoScreen slide:<n>       첫 발표의 n번째(0부터) 장표 크게 보기
 //    -SSDemoScreen notes           첫 발표의 발표 노트(AI 요약·녹음)
 //    -SSDemoScreen search:<검색어>  장표 글자 검색 결과
 //    -SSDemoScreen share           공유 익스텐션 화면 (App Group의 DemoShare/ 사진으로)
+//    -SSDemoMemo<n> <메모>         첫 발표의 n번째(0부터) 장표에 메모를 단다 (어느 화면과도 함께)
 //
 //  scripts/make_screenshots.sh 가 이 인자로 화면을 하나씩 띄워 찍는다.
 //
@@ -20,7 +22,7 @@ import Foundation
 
 enum DemoMode {
     enum Screen: Equatable {
-        case list, detail, slide, notes, search(String), share
+        case list, detail, slide(Int), notes, search(String), share
     }
 
     static var screen: Screen? {
@@ -28,13 +30,23 @@ enum DemoMode {
         switch raw {
         case "list": return .list
         case "detail": return .detail
-        case "slide": return .slide
+        case "slide": return .slide(1)
         case "notes": return .notes
         case "share": return .share
         default:
             if raw.hasPrefix("search:") { return .search(String(raw.dropFirst("search:".count))) }
+            if raw.hasPrefix("slide:"), let index = Int(raw.dropFirst("slide:".count)) { return .slide(index) }
             return nil
         }
+    }
+
+    /// 첫 발표의 장표 번호(0부터) → 데모 메모.
+    static var memos: [Int: String] {
+        var result: [Int: String] = [:]
+        for index in 0..<20 {
+            if let memo = UserDefaults.standard.string(forKey: "SSDemoMemo\(index)") { result[index] = memo }
+        }
+        return result
     }
 
     /// 공유 화면 데모에 쓸 사진들(이름순).

@@ -254,6 +254,10 @@
   [
    "Finde jedes Wort<br>auf deinen Folien",
    "Ein einziges Wort genügt"
+  ],
+  [
+   "Eine Notiz<br>zu jeder Folie",
+   "Finde Folien auch über deine Notizen"
   ]
  ],
  "creative_search": [
@@ -264,5 +268,10 @@
  "creative_header": [
   "Vorlesungsfolien scannen",
   "Schräg fotografiert,<br>gerade einsortiert"
- ]
+ ],
+ "memos": {
+  "1": "Prof: kommt in der Klausur dran",
+  "3": "Interviews auf Platz 1 – klausurrelevant"
+ },
+ "memo_search": "Klausur"
 }

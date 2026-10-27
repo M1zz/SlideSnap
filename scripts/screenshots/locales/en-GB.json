@@ -254,6 +254,10 @@
   [
    "Search the words<br>on your slides",
    "One word is all it takes"
+  ],
+  [
+   "A quick note<br>on every slide",
+   "Find slides by what you noted"
   ]
  ],
  "creative_search": [
@@ -264,5 +268,10 @@
  "creative_header": [
   "Lecture slide scanner",
   "Crooked slide photos,<br>straight and sorted"
- ]
+ ],
+ "memos": {
+  "1": "Lecturer says this is on the final exam",
+  "3": "Interviews come top — final exam topic"
+ },
+ "memo_search": "final exam"
 }

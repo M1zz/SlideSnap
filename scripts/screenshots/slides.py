@@ -72,6 +72,13 @@ DECKS = {
 # 스크린샷 문구 · 검색어 (언어별)
 SEARCH = {"ko": "사용자 인터뷰", "en": "user interview"}
 
+# 첫 발표에 다는 데모 메모(장표 번호 0부터)와, 그 메모로 찾는 검색어 — 메모 소개(06) 장에 쓴다.
+MEMOS = {
+    "ko": {"1": "교수님: 기말고사에 꼭 나옴", "3": "인터뷰가 1위! 기말고사 범위"},
+    "en": {"1": "Prof says this is on the final exam", "3": "Interviews rank #1 — final exam topic"},
+}
+MEMO_SEARCH = {"ko": "기말고사", "en": "final exam"}
+
 # 그 밖의 언어는 locales/<로케일>.json 에 둔다(decks · search · shots · creative_*).
 import json as _json, pathlib as _pathlib
 LOCALE_DIR = _pathlib.Path(__file__).parent / "locales"
@@ -79,3 +86,5 @@ for _f in sorted(LOCALE_DIR.glob("*.json")):
     _d = _json.loads(_f.read_text(encoding="utf-8"))
     DECKS.setdefault(_f.stem, _d["decks"])
     SEARCH.setdefault(_f.stem, _d["search"])
+    MEMOS.setdefault(_f.stem, _d["memos"])
+    MEMO_SEARCH.setdefault(_f.stem, _d["memo_search"])

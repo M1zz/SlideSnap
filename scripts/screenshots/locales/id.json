@@ -254,6 +254,10 @@
   [
    "Cari kata<br>di dalam slide",
    "Cukup ingat satu kata"
+  ],
+  [
+   "Catatan singkat<br>di setiap slide",
+   "Temukan slide lewat catatanmu"
   ]
  ],
  "creative_search": [
@@ -264,5 +268,10 @@
  "creative_header": [
   "Kamera slide kuliah",
   "Slide miring? Lurus<br>dan rapi per kuliah"
- ]
+ ],
+ "memos": {
+  "1": "Dosen: pasti keluar di ujian akhir",
+  "3": "Wawancara nomor satu, pelajari untuk ujian akhir"
+ },
+ "memo_search": "ujian akhir"
 }

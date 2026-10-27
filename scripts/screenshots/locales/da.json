@@ -254,6 +254,10 @@
   [
    "Søg i teksten<br>på dine slides",
    "Ét enkelt ord er alt, du behøver"
+  ],
+  [
+   "En note<br>til hver slide",
+   "Find slides ud fra dine noter"
   ]
  ],
  "creative_search": [
@@ -264,5 +268,10 @@
  "creative_header": [
   "Slides fra forelæsninger",
   "Skæve slidefotos,<br>lige og pr. forelæsning"
- ]
+ ],
+ "memos": {
+  "1": "Underviseren: kommer til eksamen",
+  "3": "Interviews er nr. 1 – læs op til eksamen"
+ },
+ "memo_search": "eksamen"
 }

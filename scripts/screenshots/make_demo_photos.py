@@ -79,9 +79,18 @@ def slide_html(s, accent):
 def render_slide(s, accent, out_png, work):
     page = work / (out_png.stem + ".html")
     page.write_text(slide_html(s, accent), encoding="utf-8")
-    subprocess.run([CHROME, "--headless=new", f"--screenshot={out_png}", f"--window-size={SW},{SH}",
-                    "--force-device-scale-factor=1", "--hide-scrollbars", "--disable-gpu", page.as_uri()],
-                   check=True, capture_output=True)
+    # Chrome 은 그림을 저장하고도 종료 감시에 걸려 0이 아닌 코드로 끝날 때가 있다 — 끝 코드 대신 파일로 판단한다.
+    # 나란히 돌리므로 Chrome 마다 따로 프로필을 쓴다(같은 프로필을 쓰면 서로 잠가 멈춘다).
+    pathlib.Path(out_png).unlink(missing_ok=True)
+    try:
+        subprocess.run([CHROME, "--headless=new", f"--user-data-dir={work / (out_png.stem + '-profile')}",
+                        f"--screenshot={out_png}", f"--window-size={SW},{SH}",
+                        "--force-device-scale-factor=1", "--hide-scrollbars", "--disable-gpu", page.as_uri()],
+                       capture_output=True, timeout=120)
+    except subprocess.TimeoutExpired:
+        pass
+    if not pathlib.Path(out_png).exists():
+        raise SystemExit(f"Chrome 이 그리지 못했다: {out_png}")
 
 
 def perspective_coeffs(dst, src):
@@ -149,6 +158,12 @@ def main(lang, out):
     out.mkdir(parents=True, exist_ok=True)
     rng = random.Random(7)
     work = pathlib.Path(tempfile.mkdtemp())
+    # Chrome 한 번이 끝나기까지 오래 걸려(종료 대기) 장표 그림은 한꺼번에 나란히 그려 둔다.
+    from concurrent.futures import ThreadPoolExecutor
+    jobs = [(s, deck["accent"], work / f"{order}-{i}.png", work)
+            for order, deck in enumerate(reversed(DECKS[lang])) for i, s in enumerate(deck["slides"])]
+    with ThreadPoolExecutor(max_workers=20) as pool:
+        list(pool.map(lambda job: render_slide(*job), jobs))
     # 목록 맨 위에 올 발표가 마지막에 처리되도록 역순으로 묶음을 만든다.
     for order, deck in enumerate(reversed(DECKS[lang])):
         batch_id = str(uuid.UUID(int=order + 1))
@@ -157,7 +172,6 @@ def main(lang, out):
         files, dates = [], []
         for i, s in enumerate(deck["slides"]):
             png = work / f"{order}-{i}.png"
-            render_slide(s, deck["accent"], png, work)
             name = f"{i + 1:04d}.jpg"
             date = deck["date"].format(i=i)
             save_jpeg(photo(png, rng), bdir / name, date)

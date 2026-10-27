@@ -254,6 +254,10 @@
   [
    "Hledej slova<br>přímo ve slajdech",
    "Stačí si vzpomenout na jedno slovo"
+  ],
+  [
+   "Poznámka<br>ke každému slajdu",
+   "Najdeš je i podle poznámek"
   ]
  ],
  "creative_search": [
@@ -264,5 +268,10 @@
  "creative_header": [
   "Slajdy z přednášek",
   "Křivě vyfocené slajdy<br>rovné a podle přednášek"
- ]
+ ],
+ "memos": {
+  "1": "Vyučující: bude to u zkoušky",
+  "3": "Rozhovory na 1. místě – naučit do zkoušky"
+ },
+ "memo_search": "zkoušky"
 }

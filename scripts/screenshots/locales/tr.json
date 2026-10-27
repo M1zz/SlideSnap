@@ -254,6 +254,10 @@
   [
    "Slaytlardaki<br>yazılarda arayın",
    "Tek bir kelime yeterli"
+  ],
+  [
+   "Her slayta<br>kısa bir not",
+   "Notlarınızdaki kelimeyle bulun"
   ]
  ],
  "creative_search": [
@@ -264,5 +268,10 @@
  "creative_header": [
   "Ders slaytı kamerası",
   "Eğri slaytlar düz,<br>derse göre düzenli"
- ]
+ ],
+ "memos": {
+  "1": "Hoca: finalde kesin çıkacak",
+  "3": "Görüşme birinci sırada, final için çalışın"
+ },
+ "memo_search": "final"
 }

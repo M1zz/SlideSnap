@@ -254,6 +254,10 @@
   [
    "Cerca le parole<br>nelle diapositive",
    "Basta una sola parola"
+  ],
+  [
+   "Una nota<br>per ogni diapositiva",
+   "Ritrovale anche dalle tue note"
   ]
  ],
  "creative_search": [
@@ -264,5 +268,10 @@
  "creative_header": [
   "Scanner di slide",
   "Foto storte,<br>dritte e per lezione"
- ]
+ ],
+ "memos": {
+  "1": "Il prof: sarà all'esame",
+  "3": "Interviste al primo posto: da ripassare per l'esame"
+ },
+ "memo_search": "esame"
 }

@@ -580,15 +580,20 @@ struct PresentationListView: View {
     /// 스크린샷 데모 모드 — 실행 인자로 정한 화면을 바로 띄운다.
     private func showDemo(_ screen: DemoMode.Screen) {
         let first = store.presentations.first
+        if let first {
+            for (index, memo) in DemoMode.memos where index < first.slides.count {
+                store.setMemo(memo, slideID: first.slides[index].id, presentationID: first.id)
+            }
+        }
         switch screen {
         case .list:
             isGridView = true
         case .detail:
             if let first { path.append(first.id) }
-        case .slide:
-            if let first, first.slides.count > 1 {
+        case .slide(let index):
+            if let first, index < first.slides.count {
                 path.append(first.id)
-                path.append(SlideRoute(presentationID: first.id, slideID: first.slides[1].id))
+                path.append(SlideRoute(presentationID: first.id, slideID: first.slides[index].id))
             }
         case .notes:
             if let first { demoNotesID = first.id }

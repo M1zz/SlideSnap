@@ -3,6 +3,176 @@
 App Store "이 버전의 새로운 기능"에 그대로 올라가는 원본입니다.
 `## 버전` 아래 `### ... 앱스토어` 절만 스토어로 나갑니다.
 
+## 1.0.9
+
+### 앱스토어 (한국어)
+
+장표마다 메모를 남길 수 있습니다
+찍는 중에도 방금 담은 장표에 바로 메모합니다
+메모한 단어로도 장표를 찾을 수 있습니다
+장표를 잡는 화면이 더 부드럽고 또렷해졌습니다
+
+### App Store (English)
+
+Add a quick note to any slide
+Jot a note on a slide as you shoot
+Find slides by the words in your notes
+Smoother framing and sharper shots
+
+### App Store (en-GB)
+
+Add a quick note to any slide
+Jot a note on a slide as you shoot
+Find slides by the words in your notes
+Smoother framing and sharper shots
+
+### App Store (zh-Hans)
+
+现在可以为每页幻灯片添加备注
+拍摄时也能马上给刚拍的一页写备注
+用备注里的词也能找到幻灯片
+取景框更流畅，拍出的幻灯片更清晰
+
+### App Store (zh-Hant)
+
+現在可以為每張投影片加上備註
+拍攝時也能馬上替剛拍的那張寫備註
+用備註裡的詞也能找到投影片
+取景框更流暢，拍出的投影片更清晰
+
+### 앱스토어 (일본어)
+
+スライドごとにメモを残せるようになりました
+撮影中でも今撮ったスライドにすぐメモできます
+メモした言葉でもスライドを探せます
+撮影画面がなめらかになり、写りも鮮明に
+
+### 앱스토어 (러시아어)
+
+Заметки к каждому слайду
+Заметка к новому слайду прямо на лекции
+Поиск слайдов по словам из заметок
+Плавнее рамка, чётче снимки
+
+### 앱스토어 (스페인어)
+
+Añade una nota a cada diapositiva
+Anota la última foto sin dejar la clase
+Busca diapositivas por tus notas
+Encuadre más fluido y fotos más nítidas
+
+### 앱스토어 (독일어)
+
+Füge jeder Folie eine Notiz hinzu
+Notiz zur letzten Folie direkt beim Foto
+Finde Folien über deine Notizen
+Flüssigerer Rahmen, schärfere Fotos
+
+### 앱스토어 (프랑스어)
+
+Ajoutez une note à chaque diapositive
+Annotez la dernière photo en plein cours
+Retrouvez vos diapos grâce aux notes
+Cadrage plus fluide, photos plus nettes
+
+### 앱스토어 (이탈리아어)
+
+Aggiungi una nota a ogni diapositiva
+Annota l'ultima foto durante la lezione
+Ritrova le diapositive dalle note
+Inquadratura fluida e foto più nitide
+
+### App Store (pt-BR)
+
+Adicione uma nota a cada slide
+Anote o último slide durante a aula
+Encontre slides pelas suas notas
+Enquadramento suave e fotos mais nítidas
+
+### 앱스토어 (태국어)
+
+จดโน้ตให้แต่ละสไลด์ได้แล้ว
+จดโน้ตสไลด์ที่เพิ่งถ่ายได้ทันที
+ค้นหาสไลด์จากคำที่จดไว้ได้
+กรอบจับสไลด์ลื่นขึ้น ภาพคมชัดขึ้น
+
+### 앱스토어 (베트남어)
+
+Ghi chú cho từng slide
+Ghi chú ngay cho slide vừa chụp
+Tìm slide bằng chữ trong ghi chú
+Khung bắt slide mượt hơn, ảnh rõ hơn
+
+### 앱스토어 (체코어)
+
+Poznámka ke každému slajdu
+Poznámka k novému slajdu hned při focení
+Hledej slajdy podle poznámek
+Plynulejší rámeček a ostřejší fotky
+
+### 앱스토어 (덴마크어)
+
+Tilføj en note til hver slide
+Skriv en note til den slide, du lige tog
+Find slides via dine noter
+Mere glidende ramme og skarpere billeder
+
+### 앱스토어 (그리스어)
+
+Σημείωση σε κάθε διαφάνεια
+Σημείωση στη νέα λήψη, εν ώρα μαθήματος
+Βρείτε διαφάνειες από τις σημειώσεις
+Πιο ομαλό κάδρο, πιο καθαρές λήψεις
+
+### 앱스토어 (핀란드어)
+
+Muistiinpano jokaiseen kalvoon
+Kirjaa muistiin heti kuvaamisen lomassa
+Löydä kalvot muistiinpanojen avulla
+Sulavampi rajaus ja terävämmät kuvat
+
+### 앱스토어 (인도네시아어)
+
+Tambahkan catatan di setiap slide
+Catat slide baru langsung saat memotret
+Temukan slide lewat catatanmu
+Bingkai lebih mulus, foto lebih tajam
+
+### 앱스토어 (노르웨이어(보크말))
+
+Legg til et notat på hvert lysbilde
+Skriv notat mens du fotograferer
+Finn lysbilder via notatene dine
+Jevnere ramme og skarpere bilder
+
+### 앱스토어 (네덜란드어)
+
+Voeg een notitie toe aan elke dia
+Maak meteen een notitie tijdens de les
+Vind dia's terug via je notities
+Vloeiender kader en scherpere foto's
+
+### 앱스토어 (폴란드어)
+
+Notatka do każdego slajdu
+Notuj ostatni slajd w trakcie wykładu
+Znajdź slajdy po notatkach
+Płynniejszy kadr i ostrzejsze zdjęcia
+
+### 앱스토어 (스웨덴어)
+
+Lägg till en anteckning på varje slide
+Anteckna direkt medan du fotar
+Hitta slides via dina anteckningar
+Smidigare ram och skarpare bilder
+
+### 앱스토어 (튀르키예어)
+
+Her slayta not ekleyebilirsiniz
+Az önce çektiğiniz slayta hemen not alın
+Slaytları notlarınızla bulun
+Daha akıcı çerçeve, daha net fotoğraf
+
 ## 1.0.8
 
 ### 앱스토어 (한국어)

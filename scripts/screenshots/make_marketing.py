@@ -25,6 +25,7 @@ SHOTS = {
         ("03-slide.png",  "before-after", "비스듬히 찍어도<br>반듯하게", "모서리를 찾아 자동으로 펴 드려요"),
         ("04-detail.png", "text-bottom", "필기 대신 찍고<br>PDF로 정리", "모은 장표를 복습용 PDF로 내보내요"),
         ("05-search.png", "dark",        "장표 속 글자까지<br>검색", "기억나는 단어 하나면 충분해요"),
+        ("06-memo.png",   "duo",         "장표마다<br>한 줄 메모", "메모한 단어로도 다시 찾아요"),
     ],
     "en": [
         ("01-share.png",  "hero-bleed",  "From Photos<br>to a deck", "Share several photos, get one tidy deck"),
@@ -32,6 +33,7 @@ SHOTS = {
         ("03-slide.png",  "before-after", "Shot at an angle?<br>Straightened.", "Edges found and corrected for you"),
         ("04-detail.png", "text-bottom", "Snap instead<br>of scribbling", "Export your slides as a study PDF"),
         ("05-search.png", "dark",        "Search the words<br>on your slides", "One word is all it takes"),
+        ("06-memo.png",   "duo",         "A quick note<br>on every slide", "Find slides by what you noted"),
     ],
 }
 
@@ -94,6 +96,16 @@ LAYOUTS = {
   background:#fff; padding:18px; border-radius:22px; box-shadow:30px 50px 90px rgba(0,0,0,.35); }
 .before img { width:100%; display:block; border-radius:10px; }
 """,
+    # 7) 아이폰 두 대: 왼쪽(뒤) 원본 파일, 오른쪽(앞·조금 아래) 짝 파일(<이름>-search.png)
+    "duo": """
+.headline { text-align:center; margin-top:290px; padding:0 70px; }
+.sub { text-align:center; margin-top:52px; }
+.duo { position:absolute; width:620px; }
+.duo.back { left:36px; top:930px; transform:rotate(-4deg); }
+.duo.front { left:586px; top:1080px; transform:rotate(3deg); }
+.duo .phone { border-radius:74px; padding:16px; }
+.duo .phone img { border-radius:58px; }
+""",
     # 5) 다크 배경 반전 + 정면
     "dark": """
 body { background:#131316; }
@@ -128,8 +140,27 @@ HTML = """<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><style>
 :lang(zh-Hant) body {{ font-family:"PingFang TC", -apple-system, sans-serif; }}
 </style></head><body>{body}{fit}</body></html>"""
 
+def render(html_path, out_png):
+    # Chrome 은 그림을 저장하고도 종료 감시에 걸려 0이 아닌 코드로 끝나거나 한참 걸린다 — 끝 코드 대신 파일로 판단한다.
+    # 나란히 돌리므로 Chrome 마다 따로 프로필을 쓴다(같은 프로필을 쓰면 서로 잠가 멈춘다).
+    out_png.unlink(missing_ok=True)
+    try:
+        subprocess.run([CHROME, "--headless=new", f"--user-data-dir={html_path.with_suffix('.profile')}",
+                        f"--screenshot={out_png}",
+                        f"--window-size={W},{H}", "--force-device-scale-factor=1",
+                        "--hide-scrollbars", "--disable-gpu", "--virtual-time-budget=2000",
+                        "--allow-file-access-from-files", html_path.as_uri()],
+                       capture_output=True, timeout=180)
+    except subprocess.TimeoutExpired:
+        pass
+    if not out_png.exists():
+        raise SystemExit(f"Chrome 이 그리지 못했다: {out_png}")
+    print(f"rendered {out_png.relative_to(ROOT)}")
+
+
 def main(langs):
     WORK.mkdir(exist_ok=True)
+    jobs = []
     for lang in langs:
         out_dir = OUT / lang
         out_dir.mkdir(parents=True, exist_ok=True)
@@ -139,19 +170,21 @@ def main(langs):
                 continue
             body_tpl = BODY_PHONE_FIRST if layout == "text-bottom" else BODY_TEXT_FIRST
             raw = RAW / lang / fname
-            body = body_tpl.format(headline=headline, sub=sub, img=raw.as_uri())
+            if layout == "duo":
+                pair = RAW / lang / fname.replace(".png", "-search.png")
+                body = (f'<div class="headline">{headline}</div><div class="sub">{sub}</div>'
+                        f'<div class="duo back"><div class="phone"><img src="{raw.as_uri()}"></div></div>'
+                        f'<div class="duo front"><div class="phone"><img src="{pair.as_uri()}"></div></div>')
+            else:
+                body = body_tpl.format(headline=headline, sub=sub, img=raw.as_uri())
             if layout == "before-after":
                 body += f'<div class="before"><img src="{(RAW / lang / "before.jpg").as_uri()}"></div>'
             html_path = WORK / f"{lang}-{fname.replace('.png', '.html')}"
             html_path.write_text(HTML.format(lang=lang, base=BASE_CSS, layout=LAYOUTS[layout], body=body, fit=FIT), encoding="utf-8")
-            out_png = out_dir / fname
-            subprocess.run([CHROME, "--headless=new", f"--screenshot={out_png}",
-                            f"--window-size={W},{H}", "--force-device-scale-factor=1",
-                            "--hide-scrollbars", "--disable-gpu", "--virtual-time-budget=2000",
-                            "--allow-file-access-from-files", html_path.as_uri()],
-                           check=True, capture_output=True)
-            print(f"rendered {out_png.relative_to(ROOT)}")
-
+            jobs.append((html_path, out_dir / fname))
+    from concurrent.futures import ThreadPoolExecutor
+    with ThreadPoolExecutor(max_workers=12) as pool:
+        list(pool.map(lambda job: render(*job), jobs))
 
 if __name__ == "__main__":
     main(sys.argv[1:] or list(SHOTS))

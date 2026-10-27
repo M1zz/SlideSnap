@@ -254,6 +254,10 @@
   [
    "Tìm cả chữ<br>trong slide",
    "Chỉ cần nhớ một từ là đủ"
+  ],
+  [
+   "Ghi chú nhanh<br>cho từng slide",
+   "Tìm lại slide bằng chữ đã ghi"
   ]
  ],
  "creative_search": [
@@ -264,5 +268,10 @@
  "creative_header": [
   "Camera chụp slide",
   "Slide chụp nghiêng,<br>thẳng và theo buổi"
- ]
+ ],
+ "memos": {
+  "1": "Thầy dặn: phần này có trong bài thi cuối kỳ",
+  "3": "Phỏng vấn đứng đầu, ôn cho thi cuối kỳ"
+ },
+ "memo_search": "thi cuối kỳ"
 }

@@ -254,6 +254,10 @@
   [
    "Søk i teksten<br>på lysbildene",
    "Ett ord er alt du trenger"
+  ],
+  [
+   "Et notat<br>til hvert lysbilde",
+   "Finn lysbilder via notatene dine"
   ]
  ],
  "creative_search": [
@@ -264,5 +268,10 @@
  "creative_header": [
   "Lysbilder fra forelesning",
   "Skjeve lysbilder,<br>rette og per forelesning"
- ]
+ ],
+ "memos": {
+  "1": "Foreleser: kommer på eksamen",
+  "3": "Intervju er mest brukt – les til eksamen"
+ },
+ "memo_search": "eksamen"
 }

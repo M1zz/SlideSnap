@@ -254,6 +254,10 @@
   [
    "Cherchez dans<br>vos diapositives",
    "Un seul mot suffit"
+  ],
+  [
+   "Une note pour<br>chaque diapositive",
+   "Retrouvez-les aussi par vos notes"
   ]
  ],
  "creative_search": [
@@ -264,5 +268,10 @@
  "creative_header": [
   "Scanner de cours",
   "Photos de travers,<br>droites et classées"
- ]
+ ],
+ "memos": {
+  "1": "Le prof : ça tombe à l'examen",
+  "3": "Entretiens en tête : à réviser pour l'examen"
+ },
+ "memo_search": "examen"
 }

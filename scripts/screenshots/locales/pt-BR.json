@@ -254,6 +254,10 @@
   [
    "Busque o texto<br>dos seus slides",
    "Uma palavra já basta"
+  ],
+  [
+   "Uma nota rápida<br>em cada slide",
+   "Encontre slides pelas suas notas"
   ]
  ],
  "creative_search": [
@@ -264,5 +268,10 @@
  "creative_header": [
   "Scanner de slides",
   "Fotos tortas,<br>slides retos por aula"
- ]
+ ],
+ "memos": {
+  "1": "Professor: vai cair na prova",
+  "3": "Entrevistas em 1º lugar: estudar para a prova"
+ },
+ "memo_search": "prova"
 }
