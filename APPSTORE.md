@@ -475,7 +475,7 @@ https://m1zz.github.io/SlideSnap/de/privacy.html
 ## Français (fr)
 
 ### 이름
-CatchSlide : Scanner de cours
+CatchSlide : Scanner de cours
 ### 부제
 Capturez, redressez, cherchez
 ### 프로모션 텍스트
