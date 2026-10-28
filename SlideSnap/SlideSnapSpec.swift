@@ -32,6 +32,9 @@ enum SlideSnapSpec: LeeoAppSpec {
 
     /// 인앱 결제 없음.
     static let monetization = LeeoMonetization.free
+
+    /// App Store 앱 ID — 리뷰 링크 · 친구에게 소개하기에 쓴다.
+    static var appStoreID: String? { "6790835318" }
 }
 
 /// 앱 전역에서 쓰는 상수 (기존 FeedbackService.swift에서 이동).

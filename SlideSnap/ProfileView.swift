@@ -84,6 +84,7 @@ struct ProfileView: View {
                 Section("앱 정보") {
                     // 앞으로 만들 기능 — 원본은 SlideSnapRoadmap.swift
                     NavigationLink(LeeoRoadmapText.entry) { RoadmapScreen() }
+                    LeeoShareAppLink<SlideSnapSpec>()
                     LabeledContent("버전", value: AppInfo.appVersion)
                         .contentShape(Rectangle())
                         .onTapGesture { handleVersionTap() }
