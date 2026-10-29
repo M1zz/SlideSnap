@@ -1,0 +1,114 @@
+{
+  "title": "CatchSlide: diapositivas de clase rectas aunque las fotografíes de lado",
+  "description": "Desde cualquier asiento, CatchSlide encuentra las esquinas de la diapositiva, la endereza, la ordena por presentación y te deja buscar en su texto.",
+  "hero": {
+    "headline": "La fotografías de lado.\nLa guardas de frente.",
+    "lead": "La cámara encuentra las cuatro esquinas de la diapositiva, la endereza y recorta todo lo que la rodea. Las que haces seguidas quedan juntas en una misma presentación.",
+    "cta": "Descargar en el App Store",
+    "note": "Un solo pago y todas las funciones. Sin suscripción y sin cuenta."
+  },
+  "demo": {
+    "title": "Enderézala tú",
+    "lead": "Esta foto se hizo en diagonal desde un asiento lateral del aula. El contorno verde marca las esquinas encontradas.",
+    "straighten": "Enderezar",
+    "reset": "Volver a la foto",
+    "photo": "Foto hecha en diagonal",
+    "result": "La diapositiva enderezada por CatchSlide",
+    "waiting": "Pulsa Enderezar y verás el resultado aquí",
+    "hint": "También puedes arrastrar los puntos de las esquinas para ajustarlos, o seleccionar uno y moverlo con las flechas del teclado.",
+    "corners": ["Esquina superior izquierda", "Esquina superior derecha", "Esquina inferior derecha", "Esquina inferior izquierda"],
+    "note": "Esta demo usa una sola foto hecha de antemano. La app encuentra las esquinas en directo en la cámara y reconoce el texto en tu propio dispositivo."
+  },
+  "problem": {
+    "title": "¿Te ha pasado abrir el carrete para repasar y no encontrar la diapositiva?",
+    "text": "Las fotos desde las últimas filas salen torcidas y acaban perdidas entre selfis y tickets. En un aula en silencio, el sonido del obturador ya te frena. CatchSlide fotografía sin ruido, endereza cada diapositiva y las guarda juntas por presentación."
+  },
+  "features": [
+    {
+      "title": "Recta desde el primer disparo",
+      "text": "La cámara sigue en directo las cuatro esquinas de la diapositiva y se pone verde cuando las tiene. Aunque la hagas en diagonal, queda como vista de frente y sin el fondo.\nNo hace ruido al disparar. Activa `Captura automática` y tomará cada diapositiva nueva en cuanto cambie, saltándose las fotos movidas.",
+      "shot": "03-slide"
+    },
+    {
+      "title": "Las fotos que ya tienes, de una vez",
+      "text": "Elige varias fotos de clase en la app Fotos y compártelas con CatchSlide. Se enderezan y se guardan como una sola presentación, en el orden en que las hiciste.\nCon `Texto más nítido` desaparecen las sombras y el contraste apagado.",
+      "shot": "01-share"
+    },
+    {
+      "title": "Encuéntrala con la palabra que recuerdes",
+      "text": "CatchSlide lee el texto de cada diapositiva en tu dispositivo. Semanas después, una sola palabra te lleva a esa diapositiva.\nLas notas que añadas también se pueden buscar. Escribe `examen` en algunas y tendrás todo el temario a una búsqueda.",
+      "shot": "06-memo-search"
+    }
+  ],
+  "steps": {
+    "title": "Empieza en tres pasos",
+    "items": [
+      {"title": "Abre la cámara", "text": "Desde el botón de la lista, el widget de la pantalla de inicio o la pantalla bloqueada."},
+      {"title": "Encuadra la diapositiva", "text": "Cuando las esquinas se pongan verdes, dispara o deja que lo haga la captura automática."},
+      {"title": "Repasa por presentación", "text": "Busca, añade notas y exporta un PDF para estudiar."}
+    ]
+  },
+  "reference": {
+    "title": "Qué puedes hacer con una presentación",
+    "rows": [
+      ["Grabación", "Graba mientras fotografías y escucha cada diapositiva desde el momento en que la tomaste"],
+      ["Transcripción", "Pasa la grabación a texto, muestra lo que se dijo en cada diapositiva y entra en la búsqueda"],
+      ["Resumen con IA", "Resume la presentación a partir del texto de las diapositivas y la transcripción (iOS 26 o posterior en dispositivos compatibles con Apple Intelligence)"],
+      ["PDF", "Apuntes para repasar con una, dos o cuatro diapositivas por página"],
+      ["Markdown", "Un .zip listo para Notion u Obsidian"],
+      ["PowerPoint", "Exporta un .pptx con la transcripción en las notas del orador"],
+      ["Combinar", "Elige varias presentaciones y únelas en una"],
+      ["Sincronización con iCloud", "Actívala para ver tus presentaciones en tus otros dispositivos con el mismo Apple ID. Viene desactivada"],
+      ["Widgets", "Abren la cámara directamente desde la pantalla de inicio o la pantalla bloqueada"]
+    ],
+    "note": "El reconocimiento de texto, la transcripción y los resúmenes con IA se hacen en tu dispositivo."
+  },
+  "pricing": {
+    "title": "Pagas una vez y lo tienes todo",
+    "free": {
+      "name": "CatchSlide",
+      "items": [
+        "Fotos sin ruido, captura automática y enderezado",
+        "Importación de varias fotos desde Fotos",
+        "Diapositivas por presentación, búsqueda en texto y notas",
+        "Grabación, transcripción y resumen con IA",
+        "Exportación a PDF, Markdown y PowerPoint",
+        "Sincronización con iCloud y widgets"
+      ]
+    },
+    "pro": {
+      "name": "Propinas (opcional)",
+      "items": [
+        "Si la app te resulta útil, puedes dejarle una pequeña propina al desarrollador",
+        "La propina no desbloquea nada. Todas las funciones van igual sin ella"
+      ],
+      "note": "Está en la pantalla Mis datos."
+    },
+    "note": "Sin suscripción ni compras para desbloquear funciones. Consulta el precio de tu país en el App Store."
+  },
+  "faq": {
+    "title": "Preguntas frecuentes",
+    "items": [
+      {"q": "¿Cómo fotografío una diapositiva?", "a": "Abre la cámara y encuadra la diapositiva. Cuando las esquinas se pongan verdes, pulsa el obturador. Con la captura automática activada, tomará la siguiente cada vez que cambie la diapositiva."},
+      {"q": "¿Suena el obturador?", "a": "No. Guarda el fotograma directamente desde la cámara, así que es silenciosa en cualquier país."},
+      {"q": "¿Por qué se agrupan mis fotos en una sola presentación?", "a": "Si haces la siguiente foto antes de que pasen 5 minutos desde la anterior, se considera la misma presentación. Toca el título en la lista para cambiarle el nombre y usa `Combinar presentaciones` para unir las que se hayan separado."},
+      {"q": "¿Puedo añadir fotos que ya hice?", "a": "Sí. Selecciónalas en la app Fotos y compártelas con CatchSlide, o toca ＋ en la lista y elige `Importar desde Fotos`. Se enderezan y se guardan como una presentación en el orden en que las hiciste."},
+      {"q": "Las esquinas no se detectaron bien.", "a": "Abre la diapositiva, elige `Ajustar esquinas` en el menú ⋯ y arrastra las cuatro esquinas a su sitio. `Detección automática` las busca de nuevo e `Imagen completa` usa la foto entera. El original siempre se guarda, así que puedes rehacerlo cuando quieras."},
+      {"q": "¿Puedo buscar el texto de las diapositivas?", "a": "Escribe una palabra en el campo de búsqueda de la parte superior de la lista. Busca en el texto de las diapositivas, los títulos, las notas y las transcripciones, y te lleva directo a la diapositiva. El reconocimiento de texto se hace en tu dispositivo."},
+      {"q": "¿Cómo exporto un PDF?", "a": "Dentro de una presentación, abre el menú de compartir, elige `Exportar como PDF` y decide si quieres una, dos o cuatro diapositivas por página. Desde la hoja de compartir puedes guardarlo en Archivos o enviarlo a otra app."},
+      {"q": "¿Cómo cambio el orden o borro diapositivas?", "a": "Dentro de una presentación, mantén pulsada una diapositiva y arrástrala. En ese mismo menú puedes borrarla o compartirla, y con `Seleccionar` borras varias a la vez."},
+      {"q": "¿Cómo funcionan la grabación y el resumen con IA?", "a": "Activa `Grabar` arriba en la cámara y cada diapositiva guardará el audio de ese momento. En `Notas de la presentación`, `Resumir con IA` crea un resumen con el texto de las diapositivas y la transcripción. El resumen con IA requiere iOS 26 o posterior en un dispositivo compatible con Apple Intelligence."},
+      {"q": "¿Dónde se guardan mis diapositivas y grabaciones?", "a": "En tu dispositivo. Solo se suben a tu propio iCloud si activas `Sincronización` en Mis datos, y no necesitas ninguna cuenta. Más detalles en la Política de privacidad."}
+    ]
+  },
+  "closing": {
+    "headline": "Desde la próxima clase,\ndiapositivas rectas",
+    "cta": "Descargar en el App Store"
+  },
+  "ui": {
+    "skip": "Saltar al contenido",
+    "languages": "Idioma",
+    "privacy": "Política de privacidad",
+    "contact": "¿Dudas, errores o ideas? Escribe a {email}."
+  }
+}

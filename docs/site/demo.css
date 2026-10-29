@@ -1,0 +1,46 @@
+/* 장표스냅 웹 체험. 초록 모서리는 앱의 카메라 화면과 같은 색이다. */
+.demo-card { display: grid; grid-template-columns: 1.15fr 1fr; gap: var(--s5); align-items: start; }
+.ds-photo, .ds-result { margin: 0; }
+.ds-photo figcaption, .ds-result figcaption { margin-top: var(--s2); }
+
+.ds-frame { position: relative; border-radius: var(--r-inner); overflow: hidden; touch-action: none;
+            background: #0b0b0e; }
+.ds-frame img { display: block; width: 100%; height: auto; user-select: none; -webkit-user-select: none; }
+.ds-frame svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.ds-quad { fill: rgb(52 199 89 / .06); stroke: #34C759; stroke-width: 10; stroke-linejoin: round;
+           stroke-dasharray: 6000; stroke-dashoffset: 0; animation: ds-find 1.2s var(--ease) both; }
+@keyframes ds-find { from { stroke-dashoffset: 6000; fill-opacity: 0; } }
+
+/* 손가락으로 잡기 쉽게: 보이는 점은 작고, 누르는 자리는 44px */
+.ds-dot { position: absolute; width: 44px; height: 44px; margin: -22px 0 0 -22px; padding: 0;
+          border: 0; background: transparent; cursor: grab; touch-action: none; border-radius: 50%; }
+.ds-dot::after { content: ""; position: absolute; inset: 12px; border-radius: 50%; background: #34C759;
+                 box-shadow: 0 0 0 3px #fff, 0 2px 8px rgb(0 0 0 / .4); transition: transform .15s var(--ease); }
+.ds-dot:hover::after, .ds-dot.drag::after { transform: scale(1.25); }
+.ds-dot.drag { cursor: grabbing; }
+.ds-dot:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.ds-out { position: relative; display: grid; place-items: center; aspect-ratio: 16 / 9;
+          background: var(--bg); border-radius: var(--r-inner); overflow: hidden; }
+.ds-out canvas { width: 100%; height: 100%; object-fit: contain; display: none; }
+.ds-out p { margin: 0; padding: var(--s4); text-align: center; }
+.ds-out.done canvas { display: block; animation: ds-flat .6s var(--ease); }
+.ds-out.done p { display: none; }
+@keyframes ds-flat { from { opacity: 0; transform: perspective(900px) rotateY(-14deg) scale(.94); } }
+
+.ds-actions { display: flex; flex-wrap: wrap; gap: var(--s2); margin: var(--s4) 0; }
+.ds-actions button { font: inherit; font-weight: 600; min-height: 48px; padding: 0 var(--s5);
+                     border-radius: 999px; cursor: pointer; border: 0;
+                     transition: transform .15s var(--ease), background .15s var(--ease); }
+.ds-actions button:active { transform: scale(.96); }
+.ds-go { background: var(--accent); color: var(--on-accent); }
+.ds-reset { background: var(--bg); color: var(--text); }
+.ds-reset:hover { background: color-mix(in srgb, var(--accent) 14%, var(--bg)); }
+.demo-card:not([data-used]) .ds-go { animation: ds-hint 1.6s var(--ease) infinite; }
+@keyframes ds-hint { 50% { box-shadow: 0 0 0 8px color-mix(in srgb, var(--accent) 22%, transparent); } }
+.ds-side > p { margin-bottom: var(--s2); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-quad, .ds-out.done canvas, .demo-card .ds-go { animation: none; }
+}
+@media (max-width: 760px) { .demo-card { grid-template-columns: 1fr; } }

@@ -1,0 +1,114 @@
+{
+  "title": "CatchSlide : vos diapos de cours bien droites, même prises de biais",
+  "description": "Où que vous soyez, CatchSlide repère les coins de la diapo, la redresse comme vue de face, la range par présentation et rend son texte cherchable.",
+  "hero": {
+    "headline": "Prise de côté.\nEnregistrée de face.",
+    "lead": "L’appareil photo repère les quatre coins de la diapo, la redresse et coupe tout ce qui l’entoure. Les diapos prises à la suite se retrouvent dans la même présentation.",
+    "cta": "Télécharger dans l’App Store",
+    "note": "Un seul achat, toutes les fonctions. Ni abonnement, ni compte."
+  },
+  "demo": {
+    "title": "Redressez-la vous-même",
+    "lead": "Cette photo a été prise de biais depuis une place sur le côté de l’amphi. Le contour vert indique les coins repérés.",
+    "straighten": "Redresser",
+    "reset": "Revenir à la photo",
+    "photo": "Photo prise de biais",
+    "result": "La diapo redressée par CatchSlide",
+    "waiting": "Touchez Redresser pour voir le résultat ici",
+    "hint": "Vous pouvez aussi faire glisser les points des coins, ou en sélectionner un et le déplacer avec les flèches du clavier.",
+    "corners": ["Coin supérieur gauche", "Coin supérieur droit", "Coin inférieur droit", "Coin inférieur gauche"],
+    "note": "Cette démo utilise une seule photo prise à l’avance. Dans l’app, les coins sont repérés en direct dans l’appareil photo et le texte est reconnu sur votre appareil."
+  },
+  "problem": {
+    "title": "Vous avez déjà ouvert votre pellicule pour réviser sans retrouver la diapo ?",
+    "text": "Prises du fond de la salle, les diapos sont toujours de travers et se perdent entre les selfies et les tickets de caisse. Dans un amphi silencieux, le bruit du déclencheur suffit à vous faire hésiter. CatchSlide photographie sans bruit, redresse chaque diapo et les range par présentation."
+  },
+  "features": [
+    {
+      "title": "Droite dès la prise",
+      "text": "L’appareil photo suit en direct les quatre coins de la diapo et passe au vert quand il les tient. Même prise de biais, la diapo est redressée comme vue de face, sans le décor autour.\nAucun bruit de déclencheur. Activez `Capture automatique` et chaque nouvelle diapo est prise d’elle-même, les photos floues sont ignorées.",
+      "shot": "03-slide"
+    },
+    {
+      "title": "Vos photos existantes, d’un coup",
+      "text": "Choisissez plusieurs photos de cours dans l’app Photos et partagez-les avec CatchSlide. Elles sont redressées et rangées en une seule présentation, dans l’ordre de prise de vue.\n`Accentuer le texte` efface les ombres et le contraste terne.",
+      "shot": "01-share"
+    },
+    {
+      "title": "Un seul mot suffit pour la retrouver",
+      "text": "CatchSlide lit le texte de chaque diapo directement sur votre appareil. Des semaines plus tard, un seul mot vous ramène à la bonne diapo.\nLes notes ajoutées aux diapos sont aussi cherchables. Notez `partiel` sur quelques-unes et tout le programme de l’examen tient en une recherche.",
+      "shot": "06-memo-search"
+    }
+  ],
+  "steps": {
+    "title": "Trois étapes pour commencer",
+    "items": [
+      {"title": "Ouvrez l’appareil photo", "text": "Depuis le bouton de la liste, le widget de l’écran d’accueil ou l’écran verrouillé."},
+      {"title": "Cadrez la diapo", "text": "Quand les coins passent au vert, déclenchez ou laissez faire la capture automatique."},
+      {"title": "Révisez par présentation", "text": "Cherchez, ajoutez des notes et exportez un PDF de révision."}
+    ]
+  },
+  "reference": {
+    "title": "Ce que vous pouvez faire d’une présentation",
+    "rows": [
+      ["Enregistrement", "Enregistrez le son pendant la prise de vue, puis écoutez chaque diapo à partir du moment où vous l’avez prise"],
+      ["Transcription", "Transforme l’enregistrement en texte, affiche ce qui a été dit sur chaque diapo et sert à la recherche"],
+      ["Résumé par IA", "Résume la présentation à partir du texte des diapos et de la transcription (iOS 26 ou ultérieur sur les appareils compatibles avec Apple Intelligence)"],
+      ["PDF", "Des supports de révision avec une, deux ou quatre diapos par page"],
+      ["Markdown", "Un .zip prêt pour Notion ou Obsidian"],
+      ["PowerPoint", "Export en .pptx, la transcription dans les notes de l’intervenant"],
+      ["Fusion", "Sélectionnez plusieurs présentations et réunissez-les en une"],
+      ["Synchronisation iCloud", "Activez-la pour retrouver vos présentations sur vos autres appareils avec le même identifiant Apple. Désactivée par défaut"],
+      ["Widgets", "Ouvrent l’appareil photo directement depuis l’écran d’accueil ou l’écran verrouillé"]
+    ],
+    "note": "La reconnaissance de texte, la transcription et les résumés par IA se font sur votre appareil."
+  },
+  "pricing": {
+    "title": "Un achat, tout est inclus",
+    "free": {
+      "name": "CatchSlide",
+      "items": [
+        "Prise de vue silencieuse, capture automatique et redressement",
+        "Import de plusieurs photos depuis Photos",
+        "Diapos rangées par présentation, recherche dans le texte et les notes",
+        "Enregistrement, transcription et résumé par IA",
+        "Export PDF, Markdown et PowerPoint",
+        "Synchronisation iCloud et widgets"
+      ]
+    },
+    "pro": {
+      "name": "Pourboire (facultatif)",
+      "items": [
+        "Si l’app vous rend service, vous pouvez laisser un petit pourboire au développeur",
+        "Le pourboire ne débloque rien. Toutes les fonctions marchent sans"
+      ],
+      "note": "Rendez-vous dans Mes informations."
+    },
+    "note": "Pas d’abonnement ni d’achat pour débloquer des fonctions. Le prix pour votre pays est indiqué dans l’App Store."
+  },
+  "faq": {
+    "title": "Questions fréquentes",
+    "items": [
+      {"q": "Comment photographier une diapo ?", "a": "Ouvrez l’appareil photo et cadrez la diapo. Quand les coins passent au vert, déclenchez. Avec la capture automatique activée, la diapo suivante est prise d’elle-même à chaque changement."},
+      {"q": "Y a-t-il un bruit de déclencheur ?", "a": "Non. L’image est enregistrée directement depuis l’appareil photo, c’est donc silencieux dans tous les pays."},
+      {"q": "Pourquoi mes photos sont-elles regroupées en une présentation ?", "a": "Si vous prenez la photo suivante moins de 5 minutes après la précédente, elle rejoint la même présentation. Touchez le titre dans la liste pour la renommer, et utilisez `Fusionner des présentations` pour réunir celles qui ont été séparées."},
+      {"q": "Puis-je ajouter des photos déjà prises ?", "a": "Oui. Sélectionnez-les dans l’app Photos et partagez-les avec CatchSlide, ou touchez ＋ dans la liste puis `Importer depuis Photos`. Elles sont redressées et rangées en une présentation, dans l’ordre de prise de vue."},
+      {"q": "Les coins ont été mal repérés.", "a": "Ouvrez la diapo, choisissez `Ajuster les coins` dans le menu ⋯ et faites glisser les quatre coins au bon endroit. `Détection automatique` les cherche à nouveau et `Image entière` garde toute la photo. L’original est toujours conservé, vous pouvez donc recommencer quand vous voulez."},
+      {"q": "Puis-je chercher dans le texte des diapos ?", "a": "Tapez un mot dans le champ de recherche en haut de la liste. La recherche porte sur le texte des diapos, les titres, les notes et les transcriptions, et vous mène directement à la diapo. La reconnaissance de texte se fait sur votre appareil."},
+      {"q": "Comment exporter un PDF ?", "a": "Dans une présentation, ouvrez le menu de partage, choisissez `Exporter en PDF` puis une, deux ou quatre diapos par page. Depuis la feuille de partage, enregistrez-le dans Fichiers ou envoyez-le vers une autre app."},
+      {"q": "Comment réordonner ou supprimer des diapos ?", "a": "Dans une présentation, maintenez une diapo puis faites-la glisser. Le même menu permet de supprimer ou partager une diapo, et `Sélectionner` en supprime plusieurs d’un coup."},
+      {"q": "Comment marchent l’enregistrement et le résumé par IA ?", "a": "Activez `Enregistrement` en haut de l’appareil photo et chaque diapo garde le son de ce moment-là. Dans `Notes de la présentation`, `Résumer avec l’IA` rédige un résumé à partir du texte des diapos et de la transcription. Il faut iOS 26 ou ultérieur sur un appareil compatible avec Apple Intelligence."},
+      {"q": "Où sont stockés mes diapos et enregistrements ?", "a": "Sur votre appareil. Ils ne partent sur votre propre iCloud que si vous activez `Synchroniser` dans Mes informations, et aucun compte n’est nécessaire. Plus de détails dans la Politique de confidentialité."}
+    ]
+  },
+  "closing": {
+    "headline": "Dès le prochain cours,\ndes diapos bien droites",
+    "cta": "Télécharger dans l’App Store"
+  },
+  "ui": {
+    "skip": "Aller au contenu",
+    "languages": "Langue",
+    "privacy": "Politique de confidentialité",
+    "contact": "Une question, un bug, une idée ? Écrivez à {email}."
+  }
+}

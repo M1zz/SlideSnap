@@ -1,0 +1,114 @@
+{
+  "title": "CatchSlide: snímky z přednášek rovně, i když fotíte z boku",
+  "description": "Z jakéhokoli místa v posluchárně najde CatchSlide rohy snímku, narovná ho jako zepředu, roztřídí podle prezentací a umožní hledat v jeho textu.",
+  "hero": {
+    "headline": "Vyfoceno z boku.\nUloženo zepředu.",
+    "lead": "Fotoaparát najde všechny čtyři rohy snímku, narovná ho a ořízne okolí. Snímky vyfocené za sebou skončí ve stejné prezentaci.",
+    "cta": "Stáhnout v App Storu",
+    "note": "Jeden nákup, všechny funkce. Žádné předplatné, žádný účet."
+  },
+  "demo": {
+    "title": "Narovnejte si ho sami",
+    "lead": "Tahle fotka vznikla šikmo z místa na kraji posluchárny. Zelený obrys ukazuje nalezené rohy snímku.",
+    "straighten": "Narovnat",
+    "reset": "Zpět na fotku",
+    "photo": "Fotka pořízená šikmo",
+    "result": "Snímek narovnaný aplikací CatchSlide",
+    "waiting": "Klepněte na Narovnat a výsledek se zobrazí tady",
+    "hint": "Rohové body můžete i přetáhnout, nebo jeden vybrat a posouvat ho šipkami na klávesnici.",
+    "corners": ["Levý horní roh", "Pravý horní roh", "Pravý dolní roh", "Levý dolní roh"],
+    "note": "Ukázka používá jednu předem pořízenou fotku. Aplikace hledá rohy živě v náhledu fotoaparátu a text rozpoznává přímo v zařízení."
+  },
+  "problem": {
+    "title": "Otevřeli jste před zkouškou fotky a snímek ne a ne najít?",
+    "text": "Snímky ze zadních řad jsou vždycky nakřivo a ztrácejí se mezi selfie a účtenkami. V tiché posluchárně vás od focení odradí už samotný zvuk závěrky. CatchSlide fotí potichu, každý snímek narovná a drží je pohromadě podle prezentací."
+  },
+  "features": [
+    {
+      "title": "Rovně hned při focení",
+      "text": "Fotoaparát živě sleduje čtyři rohy snímku a jakmile je zachytí, zezelená. I šikmo pořízený snímek vypadá jako focený zepředu, bez pozadí.\nŽádný zvuk závěrky. Zapněte `Automatické focení` a každý nový snímek se vyfotí sám, rozmazané záběry se přeskočí.",
+      "shot": "03-slide"
+    },
+    {
+      "title": "Starší fotky najednou",
+      "text": "V aplikaci Fotky vyberte několik fotek z přednášky a sdílejte je do CatchSlide. Narovnají se a uloží jako jedna prezentace v pořadí, v jakém jste je fotili.\n`Zostřit text` odstraní stíny a vybledlý kontrast.",
+      "shot": "01-share"
+    },
+    {
+      "title": "Stačí jedno slovo",
+      "text": "CatchSlide přečte text každého snímku přímo v zařízení. I po několika týdnech vás jediné slovo dovede ke správnému snímku.\nPoznámky ke snímkům se dají prohledávat také. Označte pár z nich slovem `zkouška` a celé učivo najdete jedním hledáním.",
+      "shot": "06-memo-search"
+    }
+  ],
+  "steps": {
+    "title": "Začněte ve třech krocích",
+    "items": [
+      {"title": "Otevřete fotoaparát", "text": "Tlačítkem v seznamu, widgetem na ploše nebo ze zamčené obrazovky."},
+      {"title": "Zaměřte snímek", "text": "Až rohy zezelenají, vyfoťte, nebo to nechte na automatickém focení."},
+      {"title": "Vracejte se k prezentacím", "text": "Hledejte, přidávejte poznámky a exportujte PDF na opakování."}
+    ]
+  },
+  "reference": {
+    "title": "Co všechno jde s prezentací udělat",
+    "rows": [
+      ["Nahrávání", "Nahrávejte zvuk při focení a pak si každý snímek pusťte od chvíle, kdy jste ho vyfotili"],
+      ["Přepis", "Převede nahrávku na text, ukáže, co zaznělo u každého snímku, a zapojí ho do hledání"],
+      ["Shrnutí pomocí AI", "Shrne prezentaci z textu snímků a přepisu (iOS 26 nebo novější na zařízeních s podporou Apple Intelligence)"],
+      ["PDF", "Podklady na opakování s jedním, dvěma nebo čtyřmi snímky na stránku"],
+      ["Markdown", "Soubor .zip připravený pro Notion nebo Obsidian"],
+      ["PowerPoint", "Export do .pptx s přepisem v poznámkách řečníka"],
+      ["Sloučení", "Vyberte několik prezentací a spojte je do jedné"],
+      ["Synchronizace s iCloudem", "Po zapnutí uvidíte prezentace i na dalších zařízeních se stejným Apple ID. Ve výchozím stavu vypnutá"],
+      ["Widgety", "Otevřou fotoaparát přímo z plochy nebo zamčené obrazovky"]
+    ],
+    "note": "Rozpoznávání textu, přepis i shrnutí pomocí AI běží přímo v zařízení."
+  },
+  "pricing": {
+    "title": "Koupíte jednou, máte všechno",
+    "free": {
+      "name": "CatchSlide",
+      "items": [
+        "Tiché focení, automatické focení a narovnání",
+        "Import více fotek najednou z aplikace Fotky",
+        "Snímky podle prezentací, hledání v textu i poznámkách",
+        "Nahrávání, přepis a shrnutí pomocí AI",
+        "Export do PDF, Markdownu a PowerPointu",
+        "Synchronizace s iCloudem a widgety"
+      ]
+    },
+    "pro": {
+      "name": "Spropitné (dobrovolné)",
+      "items": [
+        "Pokud vám aplikace pomáhá, můžete vývojáři poslat malé spropitné",
+        "Spropitné nic neodemyká. Všechny funkce fungují i bez něj"
+      ],
+      "note": "Najdete ho na obrazovce Moje údaje."
+    },
+    "note": "Žádné předplatné ani placené odemykání funkcí. Cenu pro vaši zemi najdete v App Storu."
+  },
+  "faq": {
+    "title": "Časté dotazy",
+    "items": [
+      {"q": "Jak vyfotím snímek?", "a": "Otevřete fotoaparát a zaměřte snímek. Jakmile rohy zezelenají, vyfoťte. Se zapnutým automatickým focením se další snímek vyfotí sám pokaždé, když se změní."},
+      {"q": "Je slyšet závěrka?", "a": "Ne. Záběr se ukládá přímo z náhledu fotoaparátu, takže je focení tiché v každé zemi."},
+      {"q": "Proč se fotky seskupily do jedné prezentace?", "a": "Když další fotku pořídíte do 5 minut od předchozí, patří do stejné prezentace. Klepnutím na název v seznamu ji přejmenujete a rozdělené prezentace spojíte přes `Sloučit prezentace`."},
+      {"q": "Můžu přidat fotky, které už mám?", "a": "Ano. Vyberte je v aplikaci Fotky a sdílejte do CatchSlide, nebo v seznamu klepněte na ＋ a zvolte `Importovat z Fotek`. Narovnají se a uloží jako jedna prezentace v pořadí focení."},
+      {"q": "Rohy se rozpoznaly špatně.", "a": "Otevřete snímek, v nabídce ⋯ zvolte `Upravit rohy` a přetáhněte čtyři rohy na správné místo. `Rozpoznat automaticky` je najde znovu, `Celý obrázek` použije celou fotku. Originál se vždy uchovává, takže to můžete kdykoli zopakovat."},
+      {"q": "Dá se hledat v textu snímků?", "a": "Napište slovo do vyhledávacího pole nad seznamem. Hledá se v textu snímků, názvech prezentací, poznámkách i přepisech a rovnou se otevře příslušný snímek. Rozpoznávání textu probíhá v zařízení."},
+      {"q": "Jak vyexportuju PDF?", "a": "V prezentaci otevřete nabídku sdílení, zvolte `Exportovat jako PDF` a vyberte jeden, dva nebo čtyři snímky na stránku. Z nabídky sdílení ho uložíte do Souborů nebo pošlete do jiné aplikace."},
+      {"q": "Jak změním pořadí nebo smažu snímky?", "a": "V prezentaci podržte snímek a přetáhněte ho. Ve stejné nabídce ho můžete smazat nebo sdílet a pomocí `Vybrat` smažete několik naráz."},
+      {"q": "Jak funguje nahrávání a shrnutí pomocí AI?", "a": "Nahoře ve fotoaparátu zapněte `Nahrávat` a ke každému snímku se uloží zvuk z té chvíle. V `Poznámky k prezentaci` vytvoří `Shrnout pomocí AI` shrnutí z textu snímků a přepisu. Shrnutí vyžaduje iOS 26 nebo novější na zařízení s podporou Apple Intelligence."},
+      {"q": "Kde se ukládají moje snímky a nahrávky?", "a": "Ve vašem zařízení. Do vašeho vlastního iCloudu se dostanou, jen když v Moje údaje zapnete `Synchronizace`, a žádný účet nepotřebujete. Podrobnosti najdete v zásadách ochrany soukromí."}
+    ]
+  },
+  "closing": {
+    "headline": "Od příští přednášky\nrovné snímky",
+    "cta": "Stáhnout v App Storu"
+  },
+  "ui": {
+    "skip": "Přejít na obsah",
+    "languages": "Jazyk",
+    "privacy": "Zásady ochrany soukromí",
+    "contact": "Dotazy, chyby nebo nápady posílejte na {email}."
+  }
+}

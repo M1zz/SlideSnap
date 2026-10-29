@@ -1,184 +1,192 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hans">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CatchSlide — 技术支持</title>
-<meta name="description" content="CatchSlide 技术支持 — 拍摄课堂幻灯片、录下讲解，并通过转写文稿和 AI 摘要复习。">
-<style>
-  :root {
-    --blue: #2f6bde;
-    --blue-light: #4facfe;
-    --green: #29cc70;
-    --ink: #1a2233;
-    --muted: #5b6577;
-    --bg: #f5f7fb;
-    --card: #ffffff;
-    --border: #e4e9f2;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --ink: #e8ecf4;
-      --muted: #9aa4b8;
-      --bg: #0f131b;
-      --card: #1a2130;
-      --border: #2a3346;
-    }
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-    color: var(--ink);
-    background: var(--bg);
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-  }
-  .hero {
-    background: linear-gradient(135deg, var(--blue-light) 0%, var(--blue) 100%);
-    color: #fff;
-    padding: 64px 24px 56px;
-    text-align: center;
-  }
-  .hero img {
-    width: 108px; height: 108px;
-    border-radius: 24px;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.28);
-  }
-  .hero h1 { margin: 20px 0 6px; font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; }
-  .hero p { margin: 0; font-size: 1.05rem; opacity: 0.95; }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-  section { padding: 40px 0; border-bottom: 1px solid var(--border); }
-  section:last-of-type { border-bottom: none; }
-  h2 { font-size: 1.35rem; font-weight: 700; margin: 0 0 18px; letter-spacing: -0.01em; }
-  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 520px) { .features { grid-template-columns: 1fr; } }
-  .feature {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 14px; padding: 18px 18px 16px;
-  }
-  .feature .ic { font-size: 1.5rem; }
-  .feature h3 { margin: 8px 0 4px; font-size: 1rem; }
-  .feature p { margin: 0; color: var(--muted); font-size: 0.92rem; }
-  .faq { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 6px 20px; }
-  details { padding: 14px 0; border-bottom: 1px solid var(--border); }
-  details:last-child { border-bottom: none; }
-  summary { cursor: pointer; font-weight: 600; list-style: none; }
-  summary::-webkit-details-marker { display: none; }
-  summary::before { content: "＋"; color: var(--blue); font-weight: 700; margin-right: 10px; }
-  details[open] summary::before { content: "－"; }
-  details p { margin: 12px 0 2px; color: var(--muted); }
-  .contact {
-    text-align: center; background: var(--card);
-    border: 1px solid var(--border); border-radius: 16px; padding: 32px 24px;
-  }
-  .btn {
-    display: inline-block; margin-top: 12px;
-    background: var(--blue); color: #fff; text-decoration: none;
-    padding: 12px 26px; border-radius: 999px; font-weight: 600;
-  }
-  a { color: var(--blue); }
-  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 32px 24px 48px; }
-  .tag { display:inline-block; color: var(--green); font-weight:700; }
-</style>
-<link rel="canonical" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
-<link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
-<link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
-<link rel="alternate" hreflang="en-GB" href="https://m1zz.github.io/SlideSnap/en/">
-<link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
-<link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
-<link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
-<link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
-<link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
-<link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
-<link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
-<link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
-<link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
-<link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
-<link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
-<link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
-<link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
-<link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
-<link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
-<link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
-<link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
-<link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
-<link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
-<link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
-<link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
-<link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CatchSlide：斜着拍的课堂幻灯片，一拍就正</title>
+  <meta name="description" content="坐在哪儿拍都行，CatchSlide 会找到幻灯片的四个角，校正成正对着拍的样子，按演示归档，连文字都能搜索。拍照无快门声，还能导出复习用 PDF。">
+  <meta name="theme-color" content="#3478E7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f131b" media="(prefers-color-scheme: dark)">
+  <meta name="apple-itunes-app" content="app-id=6790835318">
+  <link rel="canonical" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
+  <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
+  <link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
+  <link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
+  <link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
+  <link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
+  <link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
+  <link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
+  <link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
+  <link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
+  <link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
+  <link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
+  <link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
+  <link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
+  <link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
+  <link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
+  <link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
+  <link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
+  <link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
+  <link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
+  <link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
+  <link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
+  <link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CatchSlide：斜着拍的课堂幻灯片，一拍就正">
+  <meta property="og:description" content="坐在哪儿拍都行，CatchSlide 会找到幻灯片的四个角，校正成正对着拍的样子，按演示归档，连文字都能搜索。拍照无快门声，还能导出复习用 PDF。">
+  <meta property="og:url" content="https://m1zz.github.io/SlideSnap/zh-Hans/">
+  <meta property="og:image" content="https://m1zz.github.io/SlideSnap/img/zh-Hans/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../icon.png">
+  <link rel="apple-touch-icon" href="../icon.png">
+  <link rel="stylesheet" href="../site.css">
+  <link rel="stylesheet" href="../demo.css">
+  <style>:root{--accent:#3478E7}@media (prefers-color-scheme:dark){:root{--accent:#5EA2FF}}</style>
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
-  <div class="hero">
-    <img src="../icon.png" alt="CatchSlide App 图标">
-    <h1>CatchSlide</h1>
-    <p>拍下课堂幻灯片，端正、可搜索，随时复习。</p>
-  </div>
+  <a class="skip" href="#main">跳到正文</a>
+  <header class="bar">
+    <a class="brand" href="../zh-Hans/"><img src="../icon.png" alt="" width="32" height="32">CatchSlide</a>
+    <a class="lang-link" href="#languages">语言</a>
+  </header>
 
-  <div class="wrap">
-    <section>
-      <h2>功能</h2>
-      <div class="features">
-        <div class="feature"><div class="ic">🟩</div><h3>实时识别幻灯片</h3><p>镜头对准时自动找到幻灯片四角，矫正成正面视角，还能自动拍摄。</p></div>
-        <div class="feature"><div class="ic">🤫</div><h3>静音拍摄</h3><p>没有快门声，上课时拍摄也不会打扰到别人。</p></div>
-        <div class="feature"><div class="ic">🎙️</div><h3>录音与回放</h3><p>拍摄时同步录下讲解，点按任意一张幻灯片，就能听到当时讲了什么。</p></div>
-        <div class="feature"><div class="ic">💬</div><h3>转写文稿</h3><p>在设备上把录音转成文字，逐张幻灯片阅读讲解内容。</p></div>
-        <div class="feature"><div class="ic">✨</div><h3>AI 摘要</h3><p>借助 Apple 智能，在设备上生成整场讲解的概述、要点和关键词。</p></div>
-        <div class="feature"><div class="ic">🔍</div><h3>全文搜索</h3><p>用幻灯片上的任意文字，或演讲者说过的任意内容，都能找到那一张。</p></div>
-        <div class="feature"><div class="ic">🗂️</div><h3>按场次自动整理</h3><p>连续拍摄的幻灯片会归为一份演示，可重命名、调整顺序或合并。</p></div>
-        <div class="feature"><div class="ic">📤</div><h3>PDF、Notion、PowerPoint</h3><p>可导出复习用 PDF、适用于 Notion 或 Obsidian 的 Markdown 笔记，或把转写文稿放进演讲者备注的 PowerPoint 演示文稿。</p></div>
-        <div class="feature"><div class="ic">☁️</div><h3>iCloud 同步</h3><p>可选开启，让幻灯片和录音出现在你所有的 iPhone、iPad 和 Mac 上。</p></div>
-        <div class="feature"><div class="ic">🖼️</div><h3>从“照片”导入</h3><p>在“照片”App 中共享课堂照片，即可自动矫正并整理为一份演示。</p></div>
+  <main id="main">
+    <section class="hero">
+      <div class="copy">
+        <h1>坐在侧边拍，<br>存下来却是正面</h1>
+        <p class="lead">相机会找到幻灯片的四个角，把画面拉正，并裁掉周围的背景。连续拍下的幻灯片会自动归到同一个演示里。</p>
+        <div class="actions"><a class="cta" href="https://apps.apple.com/app/id6790835318">前往 App Store 下载</a><a class="try" href="#try">亲手拉正一张 ↓</a></div>
+        <p class="muted small">一次购买，全部功能。没有订阅，也不用注册账号。</p>
       </div>
+      <div class="phone"><img src="../img/zh-Hans/02-list.jpg" alt="坐在侧边拍， 存下来却是正面" width="720" height="1564" decoding="async"></div>
     </section>
 
-    <section>
+
+    <section class="reveal" id="try">
+      <h2>亲手拉正一张</h2>
+      <p class="muted">这是在教室侧边座位斜着拍的照片。绿色线框就是找到的幻灯片四个角。</p>
+      <div id="demo" class="card demo-card" data-text="{&quot;title&quot;: &quot;亲手拉正一张&quot;, &quot;lead&quot;: &quot;这是在教室侧边座位斜着拍的照片。绿色线框就是找到的幻灯片四个角。&quot;, &quot;straighten&quot;: &quot;拉正&quot;, &quot;reset&quot;: &quot;回到原图&quot;, &quot;photo&quot;: &quot;斜着拍的照片&quot;, &quot;result&quot;: &quot;CatchSlide 拉正后的幻灯片&quot;, &quot;waiting&quot;: &quot;点“拉正”后，结果会显示在这里&quot;, &quot;hint&quot;: &quot;也可以拖动角上的圆点自己调整，或选中圆点后用方向键微调。&quot;, &quot;corners&quot;: [&quot;左上角&quot;, &quot;右上角&quot;, &quot;右下角&quot;, &quot;左下角&quot;], &quot;note&quot;: &quot;这里用的是一张事先拍好的照片。在 App 里，相机画面会实时找到四个角，文字识别也全部在设备上完成。&quot;}"></div>
+    </section>
+
+    <section class="problem reveal">
+      <h2>想复习时翻遍相册，却找不到那页幻灯片？</h2>
+      <p>后排拍的幻灯片总是歪的，还混在自拍和小票中间。教室里一安静，连快门声都让人不好意思按。CatchSlide 静音拍摄、自动拉正，再按演示帮你收好。</p>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>拍下的那一刻就是正的</h2>
+        <p>相机实时追踪幻灯片的四个角，对准后会变成绿色。即使斜着拍，也能校正成正面视角，并裁掉背景。<br>拍照没有快门声。打开<code>自动拍摄</code>后，每换一页就自动拍下，拍糊的会自动跳过。</p>
+      </div>
+      <div class="phone"><img src="../img/zh-Hans/03-slide.jpg" alt="拍下的那一刻就是正的" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>以前拍的照片，也能一次导入</h2>
+        <p>在“照片”App 里选几张课堂照片，共享到 CatchSlide，就会按拍摄顺序拉正，整理成一个演示。<br>打开<code>让文字更清晰</code>，还能去掉阴影，让发灰的画面变得清楚。</p>
+      </div>
+      <div class="phone"><img src="../img/zh-Hans/01-share.jpg" alt="以前拍的照片，也能一次导入" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>记得一个词，就能找到</h2>
+        <p>CatchSlide 会在设备上识别每页幻灯片里的文字。过了好几周，凭一个词也能找回那一页。<br>每页留下的笔记也能搜到。写上<code>期末考试</code>，考试范围一搜就全出来了。</p>
+      </div>
+      <div class="phone"><img src="../img/zh-Hans/06-memo-search.jpg" alt="记得一个词，就能找到" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="reveal">
+      <h2>三步就能上手</h2>
+      <ol class="steps"><li class="card"><span class="n">1</span><h3>打开相机</h3><p>从列表里的相机按钮、主屏幕小组件或锁定屏幕都能打开。</p></li>
+<li class="card"><span class="n">2</span><h3>把幻灯片框进画面</h3><p>四个角变绿后按快门，或者交给自动拍摄。</p></li>
+<li class="card"><span class="n">3</span><h3>按演示回看</h3><p>搜索、写笔记，再导出复习用 PDF。</p></li></ol>
+    </section>
+
+    <section class="reveal" id="commands">
+      <h2>一个演示能做的事</h2>
+      <div class="card table">
+        <dl><div><dt>录音</dt><dd>边拍边录，打开某页幻灯片时，就从拍下这页的那一刻开始播放</dd></div><div><dt>转写</dt><dd>把录音转成文字，按页显示当时讲了什么，也能用来搜索</dd></div><div><dt>AI 摘要</dt><dd>根据幻灯片文字和转写内容总结整个演示（需支持 Apple Intelligence 且运行 iOS 26 或更高版本的设备）</dd></div><div><dt>PDF</dt><dd>每页放 1 张、2 张或 4 张幻灯片的复习用 PDF</dd></div><div><dt>Markdown</dt><dd>可直接导入 Notion 或 Obsidian 的 .zip</dd></div><div><dt>PowerPoint</dt><dd>导出为 .pptx，转写内容放进演讲者备注</dd></div><div><dt>合并演示</dt><dd>选几个演示，合成一个</dd></div><div><dt>iCloud 同步</dt><dd>打开后，同一 Apple ID 的其他设备也能看到你的演示。默认关闭</dd></div><div><dt>小组件</dt><dd>在主屏幕和锁定屏幕上直接打开相机</dd></div></dl>
+      </div>
+      <p class="muted">文字识别、转写和 AI 摘要都在设备上完成。</p>
+    </section>
+
+
+    <section class="reveal" id="pricing">
+      <h2>买一次，功能全都有</h2>
+      <div class="plans">
+        <div class="card plan free">
+          <h3>CatchSlide</h3>
+          <ul><li>静音拍摄、自动拍摄、自动拉正</li><li>从“照片”App 批量导入</li><li>按演示整理，搜索文字和笔记</li><li>录音、转写、AI 摘要</li><li>导出 PDF、Markdown、PowerPoint</li><li>iCloud 同步和小组件</li></ul>
+          
+        </div>
+        <div class="card plan pro">
+          <h3>打赏（自愿）</h3>
+          <ul><li>如果这个 App 帮到了你，可以给开发者一点小小的打赏</li><li>打赏不会解锁任何功能，不打赏也能用全部功能</li></ul>
+          <p class="muted">可在“我的信息”页面打赏。</p>
+        </div>
+      </div>
+      <p class="muted">没有订阅，也没有需要另外付费才能解锁的功能。价格请以 App Store 显示为准。</p>
+    </section>
+
+    <section class="reveal" id="faq">
       <h2>常见问题</h2>
-      <div class="faq">
-        <details open>
-          <summary>如何拍摄幻灯片？</summary>
-          <p>打开 App 即可使用相机。把幻灯片对准画面，直到取景框变为<span class="tag">绿色</span>，然后点按快门，或交给自动拍摄。幻灯片翻页后，下一张也会自动拍下。</p>
-        </details>
-        <details>
-          <summary>如何录下讲解？</summary>
-          <p>点按相机界面顶部的<strong>录音</strong>，拍摄的同时就会录下讲解。之后打开任意一张幻灯片并点按播放，即可从你拍下它的那一刻开始收听，播放时幻灯片也会自动翻页。</p>
-        </details>
-        <details>
-          <summary>如何获取转写文稿或 AI 摘要？</summary>
-          <p>打开一份演示，点按 ✨ 笔记按钮。点按录音旁的<strong>转写</strong>，再点按<strong>用 AI 生成摘要</strong>。AI 摘要需要支持 Apple 智能的设备（iOS 26 或更高版本），并已开启 Apple 智能。</p>
-        </details>
-        <details>
-          <summary>为什么我的幻灯片被归到了一起？</summary>
-          <p>间隔不超过五分钟拍下的幻灯片会视为同一场，归入同一份演示。你可以重命名，也可以在列表中合并多份演示。</p>
-        </details>
-        <details>
-          <summary>如何导出？</summary>
-          <p>在演示中打开 ⋯ 菜单，选择 PDF（每页一张、两张或四张）、适用于 Notion 或 Obsidian 的 Markdown，或 PowerPoint；PowerPoint 文件也可以用 Keynote 和 Google 幻灯片打开。</p>
-        </details>
-        <details>
-          <summary>iCloud 同步如何运作？</summary>
-          <p>在<strong>我的信息 › 同步</strong>中开启。你的演示、幻灯片和录音会存储在你自己的私有 iCloud 中，并显示在登录同一 Apple 账户的其他设备上。由于照片和录音会占用 iCloud 存储空间，此功能默认关闭。</p>
-        </details>
-        <details>
-          <summary>我的数据存储在哪里？</summary>
-          <p>存储在你的设备上。文字识别、转写和 AI 摘要都在设备上运行。只有开启同步后，数据才会进入你自己的 iCloud。详见<a href="privacy.html">隐私政策</a>。</p>
-        </details>
-      </div>
+      <div class="faq"><details><summary>怎么拍幻灯片？</summary><p>打开相机，把幻灯片对进画面，四个角会变成绿色，这时按快门即可。打开自动拍摄后，每换一页都会自动拍下一张。</p></details>
+<details><summary>拍照有快门声吗？</summary><p>没有。它直接保存相机画面，所以在任何国家使用都是静音的。</p></details>
+<details><summary>为什么好几张会归到同一个演示里？</summary><p>如果距离上一张不到 5 分钟就接着拍，会被当作同一个演示。在列表里点标题可以改名，被拆开的演示可以用<code>合并演示</code>合成一个。</p></details>
+<details><summary>能导入以前拍的照片吗？</summary><p>可以。在“照片”App 里选几张，用共享按钮选择 CatchSlide；或者点列表里的 ＋，选<code>从照片导入</code>。照片会按拍摄顺序拉正，整理成一个演示。</p></details>
+<details><summary>四个角找得不对怎么办？</summary><p>打开那页幻灯片，在 ⋯ 菜单里选<code>调整边角</code>，拖动四个角重新对齐。也可以用<code>自动检测</code>重新查找，或用<code>整张图</code>保留整张照片。原图会一直保留，随时可以重新校正。</p></details>
+<details><summary>能搜索幻灯片里的文字吗？</summary><p>在列表顶部的搜索栏输入关键词，就会在幻灯片文字、演示标题、笔记和转写内容里查找，并直接跳到那一页。文字识别在设备上完成。</p></details>
+<details><summary>怎么导出 PDF？</summary><p>在演示里打开共享菜单，选<code>导出为 PDF</code>，再选每页 1 张、2 张或 4 张的版式。之后可以在共享面板里存到“文件”，或发送到其他 App。</p></details>
+<details><summary>怎么调整顺序或删除幻灯片？</summary><p>在演示里长按一页幻灯片并拖动，就能调整顺序。长按弹出的菜单可以删除或共享单页，用<code>选择</code>可以一次删除多页。</p></details>
+<details><summary>录音和 AI 摘要怎么用？</summary><p>打开相机画面上方的<code>录音</code>再拍，每页幻灯片都会带上当时的声音。在<code>演示笔记</code>里点<code>用 AI 生成摘要</code>，会根据幻灯片文字和转写内容总结演示。AI 摘要仅适用于支持 Apple Intelligence 且运行 iOS 26 或更高版本的设备。</p></details>
+<details><summary>我的幻灯片和录音存在哪里？</summary><p>都保存在你的设备上。只有在“我的信息”里打开<code>同步</code>后，才会上传到你自己的 iCloud，而且不需要注册账号。详情请参阅隐私政策。</p></details></div>
+      <p class="contact">如有问题、错误反馈或功能建议，请发邮件至 <a href="mailto:leeo@kakao.com">leeo@kakao.com</a>。</p>
     </section>
 
-    <section>
-      <div class="contact">
-        <h2 style="margin-bottom:6px">需要帮助？</h2>
-        <p style="color:var(--muted);margin:0">欢迎提问、反馈问题或提出功能建议。</p>
-        <a class="btn" href="mailto:leeo@kakao.com?subject=%5BCatchSlide%5D%20Support">发送邮件</a>
-        <p style="margin:14px 0 0"><a href="privacy.html">隐私政策</a></p>
-      </div>
+    <section class="closing reveal">
+      <h2>从下一节课开始，<br>幻灯片都是正的</h2>
+      <a class="cta" href="https://apps.apple.com/app/id6790835318">前往 App Store 下载</a>
     </section>
-  </div>
+  </main>
 
   <footer>
-    © 2026 CatchSlide &nbsp;·&nbsp; leeo@kakao.com
+    <nav id="languages" class="langs" aria-label="语言"><a href="../" hreflang="ko" lang="ko">한국어</a>
+<a href="../en/" hreflang="en" lang="en">English</a>
+<a href="../zh-Hans/" hreflang="zh-Hans" lang="zh-Hans" aria-current="page">简体中文</a>
+<a href="../zh-Hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
+<a href="../ja/" hreflang="ja" lang="ja">日本語</a>
+<a href="../ru/" hreflang="ru" lang="ru">Русский</a>
+<a href="../es/" hreflang="es" lang="es">Español</a>
+<a href="../de/" hreflang="de" lang="de">Deutsch</a>
+<a href="../fr/" hreflang="fr" lang="fr">Français</a>
+<a href="../it/" hreflang="it" lang="it">Italiano</a>
+<a href="../pt-BR/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a>
+<a href="../th/" hreflang="th" lang="th">ไทย</a>
+<a href="../vi/" hreflang="vi" lang="vi">Tiếng Việt</a>
+<a href="../cs/" hreflang="cs" lang="cs">Čeština</a>
+<a href="../da/" hreflang="da" lang="da">Dansk</a>
+<a href="../el/" hreflang="el" lang="el">Ελληνικά</a>
+<a href="../fi/" hreflang="fi" lang="fi">Suomi</a>
+<a href="../id/" hreflang="id" lang="id">Indonesia</a>
+<a href="../nb/" hreflang="nb" lang="nb">Norsk</a>
+<a href="../nl/" hreflang="nl" lang="nl">Nederlands</a>
+<a href="../pl/" hreflang="pl" lang="pl">Polski</a>
+<a href="../sv/" hreflang="sv" lang="sv">Svenska</a>
+<a href="../tr/" hreflang="tr" lang="tr">Türkçe</a></nav>
+    <p><a href="privacy.html">隐私政策</a> · <a href="mailto:leeo@kakao.com">leeo@kakao.com</a> · © 2026 CatchSlide</p>
   </footer>
-<nav style="text-align:center;font-size:0.85rem;line-height:2;padding:0 24px 40px"><a href="../" hreflang="ko">한국어</a> · <a href="../en/" hreflang="en">English</a> · <a href="../zh-Hans/" hreflang="zh-Hans">简体中文</a> · <a href="../zh-Hant/" hreflang="zh-Hant">繁體中文</a> · <a href="../ja/" hreflang="ja">日本語</a> · <a href="../ru/" hreflang="ru">Русский</a> · <a href="../es/" hreflang="es">Español</a> · <a href="../de/" hreflang="de">Deutsch</a> · <a href="../fr/" hreflang="fr">Français</a> · <a href="../it/" hreflang="it">Italiano</a> · <a href="../pt-BR/" hreflang="pt-BR">Português (Brasil)</a> · <a href="../th/" hreflang="th">ไทย</a> · <a href="../vi/" hreflang="vi">Tiếng Việt</a> · <a href="../cs/" hreflang="cs">Čeština</a> · <a href="../da/" hreflang="da">Dansk</a> · <a href="../el/" hreflang="el">Ελληνικά</a> · <a href="../fi/" hreflang="fi">Suomi</a> · <a href="../id/" hreflang="id">Indonesia</a> · <a href="../nb/" hreflang="nb">Norsk</a> · <a href="../nl/" hreflang="nl">Nederlands</a> · <a href="../pl/" hreflang="pl">Polski</a> · <a href="../sv/" hreflang="sv">Svenska</a> · <a href="../tr/" hreflang="tr">Türkçe</a></nav>
+
+  <script>
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target) }
+    }), { rootMargin: "0px 0px -10% 0px" });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  </script>
+  <script src="../demo.js"></script>
 </body>
 </html>

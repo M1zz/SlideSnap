@@ -1,184 +1,192 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CatchSlide — Assistance</title>
-<meta name="description" content="Assistance CatchSlide : capturez les diapositives de vos cours, enregistrez l’exposé et révisez avec les transcriptions et les résumés IA.">
-<style>
-  :root {
-    --blue: #2f6bde;
-    --blue-light: #4facfe;
-    --green: #29cc70;
-    --ink: #1a2233;
-    --muted: #5b6577;
-    --bg: #f5f7fb;
-    --card: #ffffff;
-    --border: #e4e9f2;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --ink: #e8ecf4;
-      --muted: #9aa4b8;
-      --bg: #0f131b;
-      --card: #1a2130;
-      --border: #2a3346;
-    }
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-    color: var(--ink);
-    background: var(--bg);
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-  }
-  .hero {
-    background: linear-gradient(135deg, var(--blue-light) 0%, var(--blue) 100%);
-    color: #fff;
-    padding: 64px 24px 56px;
-    text-align: center;
-  }
-  .hero img {
-    width: 108px; height: 108px;
-    border-radius: 24px;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.28);
-  }
-  .hero h1 { margin: 20px 0 6px; font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; }
-  .hero p { margin: 0; font-size: 1.05rem; opacity: 0.95; }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-  section { padding: 40px 0; border-bottom: 1px solid var(--border); }
-  section:last-of-type { border-bottom: none; }
-  h2 { font-size: 1.35rem; font-weight: 700; margin: 0 0 18px; letter-spacing: -0.01em; }
-  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 520px) { .features { grid-template-columns: 1fr; } }
-  .feature {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 14px; padding: 18px 18px 16px;
-  }
-  .feature .ic { font-size: 1.5rem; }
-  .feature h3 { margin: 8px 0 4px; font-size: 1rem; }
-  .feature p { margin: 0; color: var(--muted); font-size: 0.92rem; }
-  .faq { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 6px 20px; }
-  details { padding: 14px 0; border-bottom: 1px solid var(--border); }
-  details:last-child { border-bottom: none; }
-  summary { cursor: pointer; font-weight: 600; list-style: none; }
-  summary::-webkit-details-marker { display: none; }
-  summary::before { content: "＋"; color: var(--blue); font-weight: 700; margin-right: 10px; }
-  details[open] summary::before { content: "－"; }
-  details p { margin: 12px 0 2px; color: var(--muted); }
-  .contact {
-    text-align: center; background: var(--card);
-    border: 1px solid var(--border); border-radius: 16px; padding: 32px 24px;
-  }
-  .btn {
-    display: inline-block; margin-top: 12px;
-    background: var(--blue); color: #fff; text-decoration: none;
-    padding: 12px 26px; border-radius: 999px; font-weight: 600;
-  }
-  a { color: var(--blue); }
-  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 32px 24px 48px; }
-  .tag { display:inline-block; color: var(--green); font-weight:700; }
-</style>
-<link rel="canonical" href="https://m1zz.github.io/SlideSnap/fr/">
-<link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
-<link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
-<link rel="alternate" hreflang="en-GB" href="https://m1zz.github.io/SlideSnap/en/">
-<link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
-<link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
-<link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
-<link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
-<link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
-<link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
-<link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
-<link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
-<link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
-<link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
-<link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
-<link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
-<link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
-<link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
-<link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
-<link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
-<link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
-<link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
-<link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
-<link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
-<link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
-<link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CatchSlide : vos diapos de cours bien droites, même prises de biais</title>
+  <meta name="description" content="Où que vous soyez, CatchSlide repère les coins de la diapo, la redresse comme vue de face, la range par présentation et rend son texte cherchable.">
+  <meta name="theme-color" content="#3478E7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f131b" media="(prefers-color-scheme: dark)">
+  <meta name="apple-itunes-app" content="app-id=6790835318">
+  <link rel="canonical" href="https://m1zz.github.io/SlideSnap/fr/">
+  <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
+  <link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
+  <link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
+  <link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
+  <link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
+  <link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
+  <link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
+  <link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
+  <link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
+  <link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
+  <link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
+  <link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
+  <link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
+  <link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
+  <link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
+  <link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
+  <link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
+  <link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
+  <link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
+  <link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
+  <link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
+  <link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CatchSlide : vos diapos de cours bien droites, même prises de biais">
+  <meta property="og:description" content="Où que vous soyez, CatchSlide repère les coins de la diapo, la redresse comme vue de face, la range par présentation et rend son texte cherchable.">
+  <meta property="og:url" content="https://m1zz.github.io/SlideSnap/fr/">
+  <meta property="og:image" content="https://m1zz.github.io/SlideSnap/img/fr/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../icon.png">
+  <link rel="apple-touch-icon" href="../icon.png">
+  <link rel="stylesheet" href="../site.css">
+  <link rel="stylesheet" href="../demo.css">
+  <style>:root{--accent:#3478E7}@media (prefers-color-scheme:dark){:root{--accent:#5EA2FF}}</style>
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
-  <div class="hero">
-    <img src="../icon.png" alt="Icône de l’app CatchSlide">
-    <h1>CatchSlide</h1>
-    <p>Photographiez les diapositives de vos cours. Redressées, consultables et prêtes à réviser.</p>
-  </div>
+  <a class="skip" href="#main">Aller au contenu</a>
+  <header class="bar">
+    <a class="brand" href="../fr/"><img src="../icon.png" alt="" width="32" height="32">CatchSlide</a>
+    <a class="lang-link" href="#languages">Langue</a>
+  </header>
 
-  <div class="wrap">
-    <section>
-      <h2>Fonctionnalités</h2>
-      <div class="features">
-        <div class="feature"><div class="ic">🟩</div><h3>Détection en direct</h3><p>L’appareil photo repère les quatre coins de la diapositive pendant que vous visez, la redresse comme si vous étiez en face et peut la capturer automatiquement.</p></div>
-        <div class="feature"><div class="ic">🤫</div><h3>Capture silencieuse</h3><p>Aucun bruit d’obturateur : vous pouvez capturer en plein cours sans déranger personne.</p></div>
-        <div class="feature"><div class="ic">🎙️</div><h3>Enregistrer et réécouter</h3><p>Enregistrez l’exposé pendant que vous capturez. Touchez une diapositive pour entendre ce qui s’est dit à ce moment-là.</p></div>
-        <div class="feature"><div class="ic">💬</div><h3>Transcriptions</h3><p>Transformez vos enregistrements en texte sur votre appareil et relisez ce qui a été dit sur chaque diapositive.</p></div>
-        <div class="feature"><div class="ic">✨</div><h3>Résumé IA</h3><p>Obtenez une vue d’ensemble, les points clés et les mots-clés de tout l’exposé, générés sur votre appareil avec Apple Intelligence.</p></div>
-        <div class="feature"><div class="ic">🔍</div><h3>Recherche globale</h3><p>Retrouvez une diapositive grâce à un mot qu’elle contient ou à une parole de l’intervenant.</p></div>
-        <div class="feature"><div class="ic">🗂️</div><h3>Classement par séance</h3><p>Les diapositives capturées à la suite forment une présentation. Renommez-les, réorganisez-les ou fusionnez-les.</p></div>
-        <div class="feature"><div class="ic">📤</div><h3>PDF, Notion, PowerPoint</h3><p>Exportez un PDF de révision, une note Markdown pour Notion ou Obsidian, ou une présentation PowerPoint avec la transcription dans les notes de l’orateur.</p></div>
-        <div class="feature"><div class="ic">☁️</div><h3>Synchronisation iCloud</h3><p>En option, retrouvez vos diapositives et enregistrements sur tous vos iPhone, iPad et Mac.</p></div>
-        <div class="feature"><div class="ic">🖼️</div><h3>Depuis Photos</h3><p>Partagez vos photos de cours depuis l’app Photos : elles sont redressées et réunies en une présentation.</p></div>
+  <main id="main">
+    <section class="hero">
+      <div class="copy">
+        <h1>Prise de côté.<br>Enregistrée de face.</h1>
+        <p class="lead">L’appareil photo repère les quatre coins de la diapo, la redresse et coupe tout ce qui l’entoure. Les diapos prises à la suite se retrouvent dans la même présentation.</p>
+        <div class="actions"><a class="cta" href="https://apps.apple.com/app/id6790835318">Télécharger dans l’App Store</a><a class="try" href="#try">Redressez-la vous-même ↓</a></div>
+        <p class="muted small">Un seul achat, toutes les fonctions. Ni abonnement, ni compte.</p>
       </div>
+      <div class="phone"><img src="../img/fr/02-list.jpg" alt="Prise de côté. Enregistrée de face." width="720" height="1564" decoding="async"></div>
     </section>
 
-    <section>
+
+    <section class="reveal" id="try">
+      <h2>Redressez-la vous-même</h2>
+      <p class="muted">Cette photo a été prise de biais depuis une place sur le côté de l’amphi. Le contour vert indique les coins repérés.</p>
+      <div id="demo" class="card demo-card" data-text="{&quot;title&quot;: &quot;Redressez-la vous-même&quot;, &quot;lead&quot;: &quot;Cette photo a été prise de biais depuis une place sur le côté de l’amphi. Le contour vert indique les coins repérés.&quot;, &quot;straighten&quot;: &quot;Redresser&quot;, &quot;reset&quot;: &quot;Revenir à la photo&quot;, &quot;photo&quot;: &quot;Photo prise de biais&quot;, &quot;result&quot;: &quot;La diapo redressée par CatchSlide&quot;, &quot;waiting&quot;: &quot;Touchez Redresser pour voir le résultat ici&quot;, &quot;hint&quot;: &quot;Vous pouvez aussi faire glisser les points des coins, ou en sélectionner un et le déplacer avec les flèches du clavier.&quot;, &quot;corners&quot;: [&quot;Coin supérieur gauche&quot;, &quot;Coin supérieur droit&quot;, &quot;Coin inférieur droit&quot;, &quot;Coin inférieur gauche&quot;], &quot;note&quot;: &quot;Cette démo utilise une seule photo prise à l’avance. Dans l’app, les coins sont repérés en direct dans l’appareil photo et le texte est reconnu sur votre appareil.&quot;}"></div>
+    </section>
+
+    <section class="problem reveal">
+      <h2>Vous avez déjà ouvert votre pellicule pour réviser sans retrouver la diapo ?</h2>
+      <p>Prises du fond de la salle, les diapos sont toujours de travers et se perdent entre les selfies et les tickets de caisse. Dans un amphi silencieux, le bruit du déclencheur suffit à vous faire hésiter. CatchSlide photographie sans bruit, redresse chaque diapo et les range par présentation.</p>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Droite dès la prise</h2>
+        <p>L’appareil photo suit en direct les quatre coins de la diapo et passe au vert quand il les tient. Même prise de biais, la diapo est redressée comme vue de face, sans le décor autour.<br>Aucun bruit de déclencheur. Activez <code>Capture automatique</code> et chaque nouvelle diapo est prise d’elle-même, les photos floues sont ignorées.</p>
+      </div>
+      <div class="phone"><img src="../img/fr/03-slide.jpg" alt="Droite dès la prise" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Vos photos existantes, d’un coup</h2>
+        <p>Choisissez plusieurs photos de cours dans l’app Photos et partagez-les avec CatchSlide. Elles sont redressées et rangées en une seule présentation, dans l’ordre de prise de vue.<br><code>Accentuer le texte</code> efface les ombres et le contraste terne.</p>
+      </div>
+      <div class="phone"><img src="../img/fr/01-share.jpg" alt="Vos photos existantes, d’un coup" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Un seul mot suffit pour la retrouver</h2>
+        <p>CatchSlide lit le texte de chaque diapo directement sur votre appareil. Des semaines plus tard, un seul mot vous ramène à la bonne diapo.<br>Les notes ajoutées aux diapos sont aussi cherchables. Notez <code>partiel</code> sur quelques-unes et tout le programme de l’examen tient en une recherche.</p>
+      </div>
+      <div class="phone"><img src="../img/fr/06-memo-search.jpg" alt="Un seul mot suffit pour la retrouver" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="reveal">
+      <h2>Trois étapes pour commencer</h2>
+      <ol class="steps"><li class="card"><span class="n">1</span><h3>Ouvrez l’appareil photo</h3><p>Depuis le bouton de la liste, le widget de l’écran d’accueil ou l’écran verrouillé.</p></li>
+<li class="card"><span class="n">2</span><h3>Cadrez la diapo</h3><p>Quand les coins passent au vert, déclenchez ou laissez faire la capture automatique.</p></li>
+<li class="card"><span class="n">3</span><h3>Révisez par présentation</h3><p>Cherchez, ajoutez des notes et exportez un PDF de révision.</p></li></ol>
+    </section>
+
+    <section class="reveal" id="commands">
+      <h2>Ce que vous pouvez faire d’une présentation</h2>
+      <div class="card table">
+        <dl><div><dt>Enregistrement</dt><dd>Enregistrez le son pendant la prise de vue, puis écoutez chaque diapo à partir du moment où vous l’avez prise</dd></div><div><dt>Transcription</dt><dd>Transforme l’enregistrement en texte, affiche ce qui a été dit sur chaque diapo et sert à la recherche</dd></div><div><dt>Résumé par IA</dt><dd>Résume la présentation à partir du texte des diapos et de la transcription (iOS 26 ou ultérieur sur les appareils compatibles avec Apple Intelligence)</dd></div><div><dt>PDF</dt><dd>Des supports de révision avec une, deux ou quatre diapos par page</dd></div><div><dt>Markdown</dt><dd>Un .zip prêt pour Notion ou Obsidian</dd></div><div><dt>PowerPoint</dt><dd>Export en .pptx, la transcription dans les notes de l’intervenant</dd></div><div><dt>Fusion</dt><dd>Sélectionnez plusieurs présentations et réunissez-les en une</dd></div><div><dt>Synchronisation iCloud</dt><dd>Activez-la pour retrouver vos présentations sur vos autres appareils avec le même identifiant Apple. Désactivée par défaut</dd></div><div><dt>Widgets</dt><dd>Ouvrent l’appareil photo directement depuis l’écran d’accueil ou l’écran verrouillé</dd></div></dl>
+      </div>
+      <p class="muted">La reconnaissance de texte, la transcription et les résumés par IA se font sur votre appareil.</p>
+    </section>
+
+
+    <section class="reveal" id="pricing">
+      <h2>Un achat, tout est inclus</h2>
+      <div class="plans">
+        <div class="card plan free">
+          <h3>CatchSlide</h3>
+          <ul><li>Prise de vue silencieuse, capture automatique et redressement</li><li>Import de plusieurs photos depuis Photos</li><li>Diapos rangées par présentation, recherche dans le texte et les notes</li><li>Enregistrement, transcription et résumé par IA</li><li>Export PDF, Markdown et PowerPoint</li><li>Synchronisation iCloud et widgets</li></ul>
+          
+        </div>
+        <div class="card plan pro">
+          <h3>Pourboire (facultatif)</h3>
+          <ul><li>Si l’app vous rend service, vous pouvez laisser un petit pourboire au développeur</li><li>Le pourboire ne débloque rien. Toutes les fonctions marchent sans</li></ul>
+          <p class="muted">Rendez-vous dans Mes informations.</p>
+        </div>
+      </div>
+      <p class="muted">Pas d’abonnement ni d’achat pour débloquer des fonctions. Le prix pour votre pays est indiqué dans l’App Store.</p>
+    </section>
+
+    <section class="reveal" id="faq">
       <h2>Questions fréquentes</h2>
-      <div class="faq">
-        <details open>
-          <summary>Comment capturer des diapositives ?</summary>
-          <p>Ouvrez l’app : l’appareil photo est prêt. Cadrez la diapositive jusqu’à ce que le repère devienne <span class="tag">vert</span>, puis touchez le déclencheur ou laissez la capture automatique s’en charger. Quand la diapositive change, la suivante est capturée automatiquement.</p>
-        </details>
-        <details>
-          <summary>Comment enregistrer l’exposé ?</summary>
-          <p>Touchez <strong>Enregistrement</strong> en haut de l’écran de l’appareil photo. L’exposé est enregistré pendant que vous capturez. Plus tard, ouvrez une diapositive et touchez lecture pour l’écouter à partir du moment où vous l’avez prise. Pendant la lecture, les diapositives défilent d’elles-mêmes.</p>
-        </details>
-        <details>
-          <summary>Comment obtenir une transcription ou un résumé IA ?</summary>
-          <p>Ouvrez une présentation et touchez le bouton de notes ✨. Touchez <strong>Transcrire</strong> à côté d’un enregistrement, puis <strong>Résumer avec l’IA</strong>. Le résumé IA nécessite un appareil compatible avec Apple Intelligence (iOS 26 ou ultérieur), avec Apple Intelligence activé.</p>
-        </details>
-        <details>
-          <summary>Pourquoi mes diapositives sont-elles regroupées ?</summary>
-          <p>Les diapositives capturées à moins de cinq minutes d’intervalle sont considérées comme une même séance et réunies dans une présentation. Vous pouvez la renommer ou fusionner des présentations depuis la liste.</p>
-        </details>
-        <details>
-          <summary>Comment exporter ?</summary>
-          <p>Dans une présentation, ouvrez le menu ⋯ et choisissez PDF (une, deux ou quatre diapositives par page), Markdown pour Notion ou Obsidian, ou PowerPoint, un format qui s’ouvre aussi dans Keynote et Google Slides.</p>
-        </details>
-        <details>
-          <summary>Comment fonctionne la synchronisation iCloud ?</summary>
-          <p>Activez-la dans <strong>Mes informations › Synchroniser</strong>. Vos présentations, diapositives et enregistrements sont stockés dans votre iCloud privé et apparaissent sur vos autres appareils connectés au même compte Apple. Elle est désactivée par défaut, car les photos et les enregistrements occupent de l’espace iCloud.</p>
-        </details>
-        <details>
-          <summary>Où sont stockées mes données ?</summary>
-          <p>Sur votre appareil. La reconnaissance du texte, la transcription et le résumé IA s’exécutent tous sur votre appareil. Les données ne vont dans votre propre iCloud que si vous activez la synchronisation. Consultez la <a href="privacy.html">politique de confidentialité</a>.</p>
-        </details>
-      </div>
+      <div class="faq"><details><summary>Comment photographier une diapo ?</summary><p>Ouvrez l’appareil photo et cadrez la diapo. Quand les coins passent au vert, déclenchez. Avec la capture automatique activée, la diapo suivante est prise d’elle-même à chaque changement.</p></details>
+<details><summary>Y a-t-il un bruit de déclencheur ?</summary><p>Non. L’image est enregistrée directement depuis l’appareil photo, c’est donc silencieux dans tous les pays.</p></details>
+<details><summary>Pourquoi mes photos sont-elles regroupées en une présentation ?</summary><p>Si vous prenez la photo suivante moins de 5 minutes après la précédente, elle rejoint la même présentation. Touchez le titre dans la liste pour la renommer, et utilisez <code>Fusionner des présentations</code> pour réunir celles qui ont été séparées.</p></details>
+<details><summary>Puis-je ajouter des photos déjà prises ?</summary><p>Oui. Sélectionnez-les dans l’app Photos et partagez-les avec CatchSlide, ou touchez ＋ dans la liste puis <code>Importer depuis Photos</code>. Elles sont redressées et rangées en une présentation, dans l’ordre de prise de vue.</p></details>
+<details><summary>Les coins ont été mal repérés.</summary><p>Ouvrez la diapo, choisissez <code>Ajuster les coins</code> dans le menu ⋯ et faites glisser les quatre coins au bon endroit. <code>Détection automatique</code> les cherche à nouveau et <code>Image entière</code> garde toute la photo. L’original est toujours conservé, vous pouvez donc recommencer quand vous voulez.</p></details>
+<details><summary>Puis-je chercher dans le texte des diapos ?</summary><p>Tapez un mot dans le champ de recherche en haut de la liste. La recherche porte sur le texte des diapos, les titres, les notes et les transcriptions, et vous mène directement à la diapo. La reconnaissance de texte se fait sur votre appareil.</p></details>
+<details><summary>Comment exporter un PDF ?</summary><p>Dans une présentation, ouvrez le menu de partage, choisissez <code>Exporter en PDF</code> puis une, deux ou quatre diapos par page. Depuis la feuille de partage, enregistrez-le dans Fichiers ou envoyez-le vers une autre app.</p></details>
+<details><summary>Comment réordonner ou supprimer des diapos ?</summary><p>Dans une présentation, maintenez une diapo puis faites-la glisser. Le même menu permet de supprimer ou partager une diapo, et <code>Sélectionner</code> en supprime plusieurs d’un coup.</p></details>
+<details><summary>Comment marchent l’enregistrement et le résumé par IA ?</summary><p>Activez <code>Enregistrement</code> en haut de l’appareil photo et chaque diapo garde le son de ce moment-là. Dans <code>Notes de la présentation</code>, <code>Résumer avec l’IA</code> rédige un résumé à partir du texte des diapos et de la transcription. Il faut iOS 26 ou ultérieur sur un appareil compatible avec Apple Intelligence.</p></details>
+<details><summary>Où sont stockés mes diapos et enregistrements ?</summary><p>Sur votre appareil. Ils ne partent sur votre propre iCloud que si vous activez <code>Synchroniser</code> dans Mes informations, et aucun compte n’est nécessaire. Plus de détails dans la Politique de confidentialité.</p></details></div>
+      <p class="contact">Une question, un bug, une idée ? Écrivez à <a href="mailto:leeo@kakao.com">leeo@kakao.com</a>.</p>
     </section>
 
-    <section>
-      <div class="contact">
-        <h2 style="margin-bottom:6px">Besoin d’aide ?</h2>
-        <p style="color:var(--muted);margin:0">Questions, signalements de bugs et idées de fonctionnalités sont les bienvenus.</p>
-        <a class="btn" href="mailto:leeo@kakao.com?subject=%5BCatchSlide%5D%20Support">Nous écrire</a>
-        <p style="margin:14px 0 0"><a href="privacy.html">Politique de confidentialité</a></p>
-      </div>
+    <section class="closing reveal">
+      <h2>Dès le prochain cours,<br>des diapos bien droites</h2>
+      <a class="cta" href="https://apps.apple.com/app/id6790835318">Télécharger dans l’App Store</a>
     </section>
-  </div>
+  </main>
 
   <footer>
-    © 2026 CatchSlide &nbsp;·&nbsp; leeo@kakao.com
+    <nav id="languages" class="langs" aria-label="Langue"><a href="../" hreflang="ko" lang="ko">한국어</a>
+<a href="../en/" hreflang="en" lang="en">English</a>
+<a href="../zh-Hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
+<a href="../zh-Hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
+<a href="../ja/" hreflang="ja" lang="ja">日本語</a>
+<a href="../ru/" hreflang="ru" lang="ru">Русский</a>
+<a href="../es/" hreflang="es" lang="es">Español</a>
+<a href="../de/" hreflang="de" lang="de">Deutsch</a>
+<a href="../fr/" hreflang="fr" lang="fr" aria-current="page">Français</a>
+<a href="../it/" hreflang="it" lang="it">Italiano</a>
+<a href="../pt-BR/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a>
+<a href="../th/" hreflang="th" lang="th">ไทย</a>
+<a href="../vi/" hreflang="vi" lang="vi">Tiếng Việt</a>
+<a href="../cs/" hreflang="cs" lang="cs">Čeština</a>
+<a href="../da/" hreflang="da" lang="da">Dansk</a>
+<a href="../el/" hreflang="el" lang="el">Ελληνικά</a>
+<a href="../fi/" hreflang="fi" lang="fi">Suomi</a>
+<a href="../id/" hreflang="id" lang="id">Indonesia</a>
+<a href="../nb/" hreflang="nb" lang="nb">Norsk</a>
+<a href="../nl/" hreflang="nl" lang="nl">Nederlands</a>
+<a href="../pl/" hreflang="pl" lang="pl">Polski</a>
+<a href="../sv/" hreflang="sv" lang="sv">Svenska</a>
+<a href="../tr/" hreflang="tr" lang="tr">Türkçe</a></nav>
+    <p><a href="privacy.html">Politique de confidentialité</a> · <a href="mailto:leeo@kakao.com">leeo@kakao.com</a> · © 2026 CatchSlide</p>
   </footer>
-<nav style="text-align:center;font-size:0.85rem;line-height:2;padding:0 24px 40px"><a href="../" hreflang="ko">한국어</a> · <a href="../en/" hreflang="en">English</a> · <a href="../zh-Hans/" hreflang="zh-Hans">简体中文</a> · <a href="../zh-Hant/" hreflang="zh-Hant">繁體中文</a> · <a href="../ja/" hreflang="ja">日本語</a> · <a href="../ru/" hreflang="ru">Русский</a> · <a href="../es/" hreflang="es">Español</a> · <a href="../de/" hreflang="de">Deutsch</a> · <a href="../fr/" hreflang="fr">Français</a> · <a href="../it/" hreflang="it">Italiano</a> · <a href="../pt-BR/" hreflang="pt-BR">Português (Brasil)</a> · <a href="../th/" hreflang="th">ไทย</a> · <a href="../vi/" hreflang="vi">Tiếng Việt</a> · <a href="../cs/" hreflang="cs">Čeština</a> · <a href="../da/" hreflang="da">Dansk</a> · <a href="../el/" hreflang="el">Ελληνικά</a> · <a href="../fi/" hreflang="fi">Suomi</a> · <a href="../id/" hreflang="id">Indonesia</a> · <a href="../nb/" hreflang="nb">Norsk</a> · <a href="../nl/" hreflang="nl">Nederlands</a> · <a href="../pl/" hreflang="pl">Polski</a> · <a href="../sv/" hreflang="sv">Svenska</a> · <a href="../tr/" hreflang="tr">Türkçe</a></nav>
+
+  <script>
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target) }
+    }), { rootMargin: "0px 0px -10% 0px" });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  </script>
+  <script src="../demo.js"></script>
 </body>
 </html>

@@ -1,184 +1,192 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CatchSlide – Support</title>
-<meta name="description" content="CatchSlide-Support: Vorlesungsfolien aufnehmen, den Vortrag mitschneiden und mit Transkripten und KI-Zusammenfassungen nachbereiten.">
-<style>
-  :root {
-    --blue: #2f6bde;
-    --blue-light: #4facfe;
-    --green: #29cc70;
-    --ink: #1a2233;
-    --muted: #5b6577;
-    --bg: #f5f7fb;
-    --card: #ffffff;
-    --border: #e4e9f2;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --ink: #e8ecf4;
-      --muted: #9aa4b8;
-      --bg: #0f131b;
-      --card: #1a2130;
-      --border: #2a3346;
-    }
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-    color: var(--ink);
-    background: var(--bg);
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-  }
-  .hero {
-    background: linear-gradient(135deg, var(--blue-light) 0%, var(--blue) 100%);
-    color: #fff;
-    padding: 64px 24px 56px;
-    text-align: center;
-  }
-  .hero img {
-    width: 108px; height: 108px;
-    border-radius: 24px;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.28);
-  }
-  .hero h1 { margin: 20px 0 6px; font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; }
-  .hero p { margin: 0; font-size: 1.05rem; opacity: 0.95; }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-  section { padding: 40px 0; border-bottom: 1px solid var(--border); }
-  section:last-of-type { border-bottom: none; }
-  h2 { font-size: 1.35rem; font-weight: 700; margin: 0 0 18px; letter-spacing: -0.01em; }
-  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 520px) { .features { grid-template-columns: 1fr; } }
-  .feature {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 14px; padding: 18px 18px 16px;
-  }
-  .feature .ic { font-size: 1.5rem; }
-  .feature h3 { margin: 8px 0 4px; font-size: 1rem; }
-  .feature p { margin: 0; color: var(--muted); font-size: 0.92rem; }
-  .faq { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 6px 20px; }
-  details { padding: 14px 0; border-bottom: 1px solid var(--border); }
-  details:last-child { border-bottom: none; }
-  summary { cursor: pointer; font-weight: 600; list-style: none; }
-  summary::-webkit-details-marker { display: none; }
-  summary::before { content: "＋"; color: var(--blue); font-weight: 700; margin-right: 10px; }
-  details[open] summary::before { content: "－"; }
-  details p { margin: 12px 0 2px; color: var(--muted); }
-  .contact {
-    text-align: center; background: var(--card);
-    border: 1px solid var(--border); border-radius: 16px; padding: 32px 24px;
-  }
-  .btn {
-    display: inline-block; margin-top: 12px;
-    background: var(--blue); color: #fff; text-decoration: none;
-    padding: 12px 26px; border-radius: 999px; font-weight: 600;
-  }
-  a { color: var(--blue); }
-  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 32px 24px 48px; }
-  .tag { display:inline-block; color: var(--green); font-weight:700; }
-</style>
-<link rel="canonical" href="https://m1zz.github.io/SlideSnap/de/">
-<link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
-<link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
-<link rel="alternate" hreflang="en-GB" href="https://m1zz.github.io/SlideSnap/en/">
-<link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
-<link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
-<link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
-<link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
-<link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
-<link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
-<link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
-<link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
-<link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
-<link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
-<link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
-<link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
-<link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
-<link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
-<link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
-<link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
-<link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
-<link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
-<link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
-<link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
-<link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
-<link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CatchSlide: Vorlesungsfolien gerade, auch schräg fotografiert</title>
+  <meta name="description" content="Von jedem Platz aus findet CatchSlide die Ecken der Folie, entzerrt sie wie von vorn, ordnet sie nach Präsentation und macht den Text durchsuchbar.">
+  <meta name="theme-color" content="#3478E7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f131b" media="(prefers-color-scheme: dark)">
+  <meta name="apple-itunes-app" content="app-id=6790835318">
+  <link rel="canonical" href="https://m1zz.github.io/SlideSnap/de/">
+  <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
+  <link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
+  <link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
+  <link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
+  <link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
+  <link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
+  <link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
+  <link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
+  <link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
+  <link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
+  <link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
+  <link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
+  <link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
+  <link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
+  <link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
+  <link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
+  <link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
+  <link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
+  <link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
+  <link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
+  <link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
+  <link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CatchSlide: Vorlesungsfolien gerade, auch schräg fotografiert">
+  <meta property="og:description" content="Von jedem Platz aus findet CatchSlide die Ecken der Folie, entzerrt sie wie von vorn, ordnet sie nach Präsentation und macht den Text durchsuchbar.">
+  <meta property="og:url" content="https://m1zz.github.io/SlideSnap/de/">
+  <meta property="og:image" content="https://m1zz.github.io/SlideSnap/img/de/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../icon.png">
+  <link rel="apple-touch-icon" href="../icon.png">
+  <link rel="stylesheet" href="../site.css">
+  <link rel="stylesheet" href="../demo.css">
+  <style>:root{--accent:#3478E7}@media (prefers-color-scheme:dark){:root{--accent:#5EA2FF}}</style>
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
-  <div class="hero">
-    <img src="../icon.png" alt="CatchSlide App-Symbol">
-    <h1>CatchSlide</h1>
-    <p>Folien fotografieren. Gerade ausgerichtet, durchsuchbar und bereit zum Lernen.</p>
-  </div>
+  <a class="skip" href="#main">Zum Inhalt springen</a>
+  <header class="bar">
+    <a class="brand" href="../de/"><img src="../icon.png" alt="" width="32" height="32">CatchSlide</a>
+    <a class="lang-link" href="#languages">Sprache</a>
+  </header>
 
-  <div class="wrap">
-    <section>
-      <h2>Funktionen</h2>
-      <div class="features">
-        <div class="feature"><div class="ic">🟩</div><h3>Live-Folienerkennung</h3><p>Die Kamera erkennt beim Zielen die vier Ecken einer Folie, begradigt sie, als stündest du direkt davor, und kann sie automatisch aufnehmen.</p></div>
-        <div class="feature"><div class="ic">🤫</div><h3>Lautlose Aufnahme</h3><p>Kein Auslöseton: Du kannst mitten in einer Vorlesung aufnehmen, ohne jemanden zu stören.</p></div>
-        <div class="feature"><div class="ic">🎙️</div><h3>Aufnehmen und abspielen</h3><p>Schneide den Vortrag mit, während du Folien aufnimmst. Tippe auf eine Folie, um zu hören, was in diesem Moment gesagt wurde.</p></div>
-        <div class="feature"><div class="ic">💬</div><h3>Transkripte</h3><p>Wandle Aufnahmen direkt auf dem Gerät in Text um und lies zu jeder Folie nach, was gesagt wurde.</p></div>
-        <div class="feature"><div class="ic">✨</div><h3>KI-Zusammenfassung</h3><p>Erhalte Überblick, Kernpunkte und Stichwörter zum ganzen Vortrag, erstellt auf deinem Gerät mit Apple Intelligence.</p></div>
-        <div class="feature"><div class="ic">🔍</div><h3>Alles durchsuchen</h3><p>Finde eine Folie über jedes Wort darauf oder über alles, was die Vortragenden gesagt haben.</p></div>
-        <div class="feature"><div class="ic">🗂️</div><h3>Nach Vortrag geordnet</h3><p>Folien, die du hintereinander aufnimmst, werden zu einer Präsentation. Benenne sie um, ordne sie neu oder führe sie zusammen.</p></div>
-        <div class="feature"><div class="ic">📤</div><h3>PDF, Notion, PowerPoint</h3><p>Exportiere ein Lern-PDF, eine Markdown-Notiz für Notion oder Obsidian oder eine PowerPoint-Präsentation mit dem Transkript in den Vortragsnotizen.</p></div>
-        <div class="feature"><div class="ic">☁️</div><h3>iCloud-Sync</h3><p>Auf Wunsch hast du Folien und Aufnahmen auf all deinen iPhone-, iPad- und Mac-Geräten.</p></div>
-        <div class="feature"><div class="ic">🖼️</div><h3>Aus Fotos</h3><p>Teile Vorlesungsfotos aus der Fotos-App – sie werden begradigt und als eine Präsentation abgelegt.</p></div>
+  <main id="main">
+    <section class="hero">
+      <div class="copy">
+        <h1>Schräg fotografiert.<br>Gerade gespeichert.</h1>
+        <p class="lead">Die Kamera findet alle vier Ecken der Folie, richtet sie gerade aus und schneidet den Raum drumherum weg. Folien, die du nacheinander aufnimmst, landen in derselben Präsentation.</p>
+        <div class="actions"><a class="cta" href="https://apps.apple.com/app/id6790835318">Im App Store laden</a><a class="try" href="#try">Selbst entzerren ↓</a></div>
+        <p class="muted small">Einmal kaufen, alles nutzen. Kein Abo, kein Konto.</p>
       </div>
+      <div class="phone"><img src="../img/de/02-list.jpg" alt="Schräg fotografiert. Gerade gespeichert." width="720" height="1564" decoding="async"></div>
     </section>
 
-    <section>
+
+    <section class="reveal" id="try">
+      <h2>Selbst entzerren</h2>
+      <p class="muted">Dieses Foto wurde schräg von einem Seitenplatz im Hörsaal aufgenommen. Die grüne Linie zeigt, wo die Ecken der Folie gefunden wurden.</p>
+      <div id="demo" class="card demo-card" data-text="{&quot;title&quot;: &quot;Selbst entzerren&quot;, &quot;lead&quot;: &quot;Dieses Foto wurde schräg von einem Seitenplatz im Hörsaal aufgenommen. Die grüne Linie zeigt, wo die Ecken der Folie gefunden wurden.&quot;, &quot;straighten&quot;: &quot;Entzerren&quot;, &quot;reset&quot;: &quot;Zurück zum Foto&quot;, &quot;photo&quot;: &quot;Schräg aufgenommenes Foto&quot;, &quot;result&quot;: &quot;Die von CatchSlide entzerrte Folie&quot;, &quot;waiting&quot;: &quot;Tippe auf Entzerren, dann erscheint das Ergebnis hier&quot;, &quot;hint&quot;: &quot;Du kannst die Eckpunkte auch selbst verschieben oder einen auswählen und mit den Pfeiltasten bewegen.&quot;, &quot;corners&quot;: [&quot;Ecke oben links&quot;, &quot;Ecke oben rechts&quot;, &quot;Ecke unten rechts&quot;, &quot;Ecke unten links&quot;], &quot;note&quot;: &quot;Die Demo nutzt ein vorab aufgenommenes Foto. In der App werden die Ecken live im Kamerabild gefunden, und die Texterkennung läuft direkt auf deinem Gerät.&quot;}"></div>
+    </section>
+
+    <section class="problem reveal">
+      <h2>Zum Lernen die Fotos geöffnet und die Folie nicht gefunden?</h2>
+      <p>Folien aus der letzten Reihe sind immer schief und gehen zwischen Selfies und Kassenzetteln unter. Im stillen Hörsaal hält dich schon das Auslösegeräusch zurück. CatchSlide fotografiert lautlos, entzerrt jede Folie und hält sie nach Präsentation zusammen.</p>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Gerade, sobald du auslöst</h2>
+        <p>Die Kamera verfolgt die vier Ecken der Folie live und wird grün, sobald sie sitzen. Selbst schräg aufgenommen wirkt die Folie wie von vorn fotografiert, der Hintergrund ist weg.<br>Kein Auslösegeräusch. Mit <code>Automatische Aufnahme</code> wird jede neue Folie von selbst erfasst, verwackelte Bilder werden übersprungen.</p>
+      </div>
+      <div class="phone"><img src="../img/de/03-slide.jpg" alt="Gerade, sobald du auslöst" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Vorhandene Fotos in einem Rutsch</h2>
+        <p>Wähle in der Fotos-App mehrere Bilder aus der Vorlesung und teile sie mit CatchSlide. Sie werden entzerrt und in Aufnahmereihenfolge als eine Präsentation abgelegt.<br><code>Text schärfen</code> entfernt Schatten und flauen Kontrast.</p>
+      </div>
+      <div class="phone"><img src="../img/de/01-share.jpg" alt="Vorhandene Fotos in einem Rutsch" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Ein Wort genügt</h2>
+        <p>CatchSlide liest den Text jeder Folie direkt auf deinem Gerät. Auch Wochen später bringt dich ein einziges Wort zur richtigen Folie.<br>Notizen zu Folien sind ebenfalls durchsuchbar. Markiere ein paar mit <code>Klausur</code>, und der ganze Prüfungsstoff ist eine Suche entfernt.</p>
+      </div>
+      <div class="phone"><img src="../img/de/06-memo-search.jpg" alt="Ein Wort genügt" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="reveal">
+      <h2>In drei Schritten startklar</h2>
+      <ol class="steps"><li class="card"><span class="n">1</span><h3>Kamera öffnen</h3><p>Über die Kamerataste in der Liste, das Widget auf dem Home-Bildschirm oder den Sperrbildschirm.</p></li>
+<li class="card"><span class="n">2</span><h3>Folie ins Bild nehmen</h3><p>Werden die Ecken grün, auslösen oder die automatische Aufnahme machen lassen.</p></li>
+<li class="card"><span class="n">3</span><h3>Nach Präsentation nachschlagen</h3><p>Suchen, Notizen ergänzen und ein PDF zum Lernen exportieren.</p></li></ol>
+    </section>
+
+    <section class="reveal" id="commands">
+      <h2>Was du mit einer Präsentation machen kannst</h2>
+      <div class="card table">
+        <dl><div><dt>Aufnahme</dt><dd>Nimm beim Fotografieren Ton auf und hör dir jede Folie ab dem Moment an, in dem du sie fotografiert hast</dd></div><div><dt>Transkription</dt><dd>Macht aus der Aufnahme Text, zeigt, was zu jeder Folie gesagt wurde, und fließt in die Suche ein</dd></div><div><dt>KI-Zusammenfassung</dt><dd>Fasst die Präsentation aus Folientext und Transkript zusammen (iOS 26 oder neuer auf Geräten mit Apple Intelligence)</dd></div><div><dt>PDF</dt><dd>Lernunterlagen mit einer, zwei oder vier Folien pro Seite</dd></div><div><dt>Markdown</dt><dd>Ein .zip für Notion oder Obsidian</dd></div><div><dt>PowerPoint</dt><dd>Export als .pptx, das Transkript steht in den Sprechernotizen</dd></div><div><dt>Zusammenführen</dt><dd>Mehrere Präsentationen auswählen und zu einer verbinden</dd></div><div><dt>iCloud-Abgleich</dt><dd>Einschalten, um deine Präsentationen auf anderen Geräten mit derselben Apple ID zu sehen. Standardmäßig aus</dd></div><div><dt>Widgets</dt><dd>Öffnen die Kamera direkt vom Home- oder Sperrbildschirm</dd></div></dl>
+      </div>
+      <p class="muted">Texterkennung, Transkription und KI-Zusammenfassungen laufen auf deinem Gerät.</p>
+    </section>
+
+
+    <section class="reveal" id="pricing">
+      <h2>Einmal kaufen, alles drin</h2>
+      <div class="plans">
+        <div class="card plan free">
+          <h3>CatchSlide</h3>
+          <ul><li>Lautlose Aufnahme, automatische Aufnahme und Entzerren</li><li>Mehrere Fotos auf einmal aus der Fotos-App importieren</li><li>Folien nach Präsentation, Suche in Text und Notizen</li><li>Aufnahme, Transkription und KI-Zusammenfassung</li><li>Export als PDF, Markdown und PowerPoint</li><li>iCloud-Abgleich und Widgets</li></ul>
+          
+        </div>
+        <div class="card plan pro">
+          <h3>Trinkgeld (freiwillig)</h3>
+          <ul><li>Wenn dir die App hilft, kannst du dem Entwickler ein kleines Trinkgeld geben</li><li>Trinkgeld schaltet nichts frei. Alle Funktionen gibt es auch ohne</li></ul>
+          <p class="muted">Zu finden unter Meine Angaben.</p>
+        </div>
+      </div>
+      <p class="muted">Kein Abo und keine kostenpflichtigen Zusatzfunktionen. Den Preis für dein Land findest du im App Store.</p>
+    </section>
+
+    <section class="reveal" id="faq">
       <h2>Häufige Fragen</h2>
-      <div class="faq">
-        <details open>
-          <summary>Wie nehme ich Folien auf?</summary>
-          <p>Öffne die App, und die Kamera ist startklar. Richte die Folie im Bild aus, bis der Rahmen <span class="tag">grün</span> wird, und tippe dann auf den Auslöser oder lass die automatische Aufnahme auslösen. Wechselt die Folie, wird die nächste automatisch aufgenommen.</p>
-        </details>
-        <details>
-          <summary>Wie schneide ich den Vortrag mit?</summary>
-          <p>Tippe oben in der Kameraansicht auf <strong>Aufnahme</strong>. Der Vortrag wird mitgeschnitten, während du Folien aufnimmst. Später öffnest du eine beliebige Folie und tippst auf Abspielen, um ab dem Moment zu hören, in dem du sie aufgenommen hast. Bei der Wiedergabe blättern die Folien von selbst weiter.</p>
-        </details>
-        <details>
-          <summary>Wie bekomme ich ein Transkript oder eine KI-Zusammenfassung?</summary>
-          <p>Öffne eine Präsentation und tippe auf die ✨-Notizen-Taste. Tippe neben einer Aufnahme auf <strong>Transkribieren</strong> und danach auf <strong>Mit KI zusammenfassen</strong>. Für die KI-Zusammenfassung brauchst du ein Gerät mit Apple Intelligence (iOS 26 oder neuer), auf dem Apple Intelligence aktiviert ist.</p>
-        </details>
-        <details>
-          <summary>Warum werden meine Folien zusammengefasst?</summary>
-          <p>Folien, die innerhalb von fünf Minuten nacheinander aufgenommen werden, gelten als dieselbe Sitzung und landen in einer Präsentation. Du kannst sie umbenennen oder Präsentationen in der Liste zusammenführen.</p>
-        </details>
-        <details>
-          <summary>Wie exportiere ich?</summary>
-          <p>Öffne in einer Präsentation das Menü ⋯ und wähle PDF (eine, zwei oder vier Folien pro Seite), Markdown für Notion oder Obsidian oder PowerPoint – die Datei lässt sich auch in Keynote und Google Präsentationen öffnen.</p>
-        </details>
-        <details>
-          <summary>Wie funktioniert der iCloud-Sync?</summary>
-          <p>Schalte ihn unter <strong>Meine Angaben › Sync</strong> ein. Deine Präsentationen, Folien und Aufnahmen werden in deiner eigenen, privaten iCloud gespeichert und erscheinen auf deinen anderen Geräten, die mit demselben Apple-Account angemeldet sind. Standardmäßig ist er ausgeschaltet, weil Fotos und Aufnahmen Speicherplatz in iCloud belegen.</p>
-        </details>
-        <details>
-          <summary>Wo werden meine Daten gespeichert?</summary>
-          <p>Auf deinem Gerät. Texterkennung, Transkription und KI-Zusammenfassung laufen vollständig auf deinem Gerät. Nur wenn du den Sync einschaltest, gelangen Daten in deine eigene iCloud. Mehr dazu in der <a href="privacy.html">Datenschutzerklärung</a>.</p>
-        </details>
-      </div>
+      <div class="faq"><details><summary>Wie fotografiere ich eine Folie?</summary><p>Öffne die Kamera und richte sie auf die Folie. Sobald die Ecken grün werden, löst du aus. Mit eingeschalteter automatischer Aufnahme wird jede neue Folie von selbst erfasst, sobald sie wechselt.</p></details>
+<details><summary>Gibt es ein Auslösegeräusch?</summary><p>Nein. Das Bild wird direkt aus dem Kamerabild gespeichert, deshalb bleibt es in jedem Land lautlos.</p></details>
+<details><summary>Warum landen meine Fotos in einer Präsentation?</summary><p>Machst du das nächste Foto innerhalb von 5 Minuten nach dem letzten, gilt es als Teil derselben Präsentation. Tippe in der Liste auf den Titel, um sie umzubenennen, und verbinde getrennte Präsentationen mit <code>Präsentationen zusammenführen</code>.</p></details>
+<details><summary>Kann ich Fotos hinzufügen, die ich schon gemacht habe?</summary><p>Ja. Wähle sie in der Fotos-App aus und teile sie mit CatchSlide, oder tippe in der Liste auf ＋ und wähle <code>Aus Fotos importieren</code>. Sie werden entzerrt und in Aufnahmereihenfolge als eine Präsentation abgelegt.</p></details>
+<details><summary>Die Ecken wurden falsch erkannt.</summary><p>Öffne die Folie, wähle im Menü ⋯ <code>Ecken anpassen</code> und zieh die vier Ecken an die richtige Stelle. <code>Automatisch erkennen</code> sucht sie neu, <code>Ganzes Bild</code> nimmt das komplette Foto. Das Original bleibt immer erhalten, du kannst es also jederzeit neu entzerren.</p></details>
+<details><summary>Kann ich den Text auf meinen Folien durchsuchen?</summary><p>Gib oben in der Liste ein Wort ins Suchfeld ein. Durchsucht werden Folientext, Präsentationstitel, Notizen und Transkripte, und du springst direkt zur Folie. Die Texterkennung läuft auf deinem Gerät.</p></details>
+<details><summary>Wie exportiere ich ein PDF?</summary><p>Öffne in einer Präsentation das Teilen-Menü, wähle <code>Als PDF exportieren</code> und entscheide dich für eine, zwei oder vier Folien pro Seite. Über das Teilen-Menü sicherst du es in Dateien oder schickst es an eine andere App.</p></details>
+<details><summary>Wie ändere ich die Reihenfolge oder lösche Folien?</summary><p>Halte in einer Präsentation eine Folie gedrückt und zieh sie an ihren neuen Platz. Im selben Menü kannst du eine Folie löschen oder teilen, mit <code>Auswählen</code> löschst du mehrere auf einmal.</p></details>
+<details><summary>Wie funktionieren Aufnahme und KI-Zusammenfassung?</summary><p>Schalte oben in der Kamera <code>Aufnahme</code> ein, dann behält jede Folie den Ton aus diesem Moment. In <code>Notizen zur Präsentation</code> erstellt <code>Mit KI zusammenfassen</code> eine Zusammenfassung aus Folientext und Transkript. Dafür brauchst du iOS 26 oder neuer auf einem Gerät mit Apple Intelligence.</p></details>
+<details><summary>Wo werden meine Folien und Aufnahmen gespeichert?</summary><p>Auf deinem Gerät. In deine eigene iCloud gelangen sie nur, wenn du unter Meine Angaben <code>Abgleichen</code> einschaltest, und ein Konto brauchst du nicht. Mehr dazu in der Datenschutzerklärung.</p></details></div>
+      <p class="contact">Fragen, Fehler oder Ideen? Schreib an <a href="mailto:leeo@kakao.com">leeo@kakao.com</a>.</p>
     </section>
 
-    <section>
-      <div class="contact">
-        <h2 style="margin-bottom:6px">Brauchst du Hilfe?</h2>
-        <p style="color:var(--muted);margin:0">Fragen, Fehlermeldungen und Ideen für neue Funktionen sind willkommen.</p>
-        <a class="btn" href="mailto:leeo@kakao.com?subject=%5BCatchSlide%5D%20Support">E-Mail schreiben</a>
-        <p style="margin:14px 0 0"><a href="privacy.html">Datenschutzerklärung</a></p>
-      </div>
+    <section class="closing reveal">
+      <h2>Ab der nächsten Vorlesung<br>sind deine Folien gerade</h2>
+      <a class="cta" href="https://apps.apple.com/app/id6790835318">Im App Store laden</a>
     </section>
-  </div>
+  </main>
 
   <footer>
-    © 2026 CatchSlide &nbsp;·&nbsp; leeo@kakao.com
+    <nav id="languages" class="langs" aria-label="Sprache"><a href="../" hreflang="ko" lang="ko">한국어</a>
+<a href="../en/" hreflang="en" lang="en">English</a>
+<a href="../zh-Hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
+<a href="../zh-Hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
+<a href="../ja/" hreflang="ja" lang="ja">日本語</a>
+<a href="../ru/" hreflang="ru" lang="ru">Русский</a>
+<a href="../es/" hreflang="es" lang="es">Español</a>
+<a href="../de/" hreflang="de" lang="de" aria-current="page">Deutsch</a>
+<a href="../fr/" hreflang="fr" lang="fr">Français</a>
+<a href="../it/" hreflang="it" lang="it">Italiano</a>
+<a href="../pt-BR/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a>
+<a href="../th/" hreflang="th" lang="th">ไทย</a>
+<a href="../vi/" hreflang="vi" lang="vi">Tiếng Việt</a>
+<a href="../cs/" hreflang="cs" lang="cs">Čeština</a>
+<a href="../da/" hreflang="da" lang="da">Dansk</a>
+<a href="../el/" hreflang="el" lang="el">Ελληνικά</a>
+<a href="../fi/" hreflang="fi" lang="fi">Suomi</a>
+<a href="../id/" hreflang="id" lang="id">Indonesia</a>
+<a href="../nb/" hreflang="nb" lang="nb">Norsk</a>
+<a href="../nl/" hreflang="nl" lang="nl">Nederlands</a>
+<a href="../pl/" hreflang="pl" lang="pl">Polski</a>
+<a href="../sv/" hreflang="sv" lang="sv">Svenska</a>
+<a href="../tr/" hreflang="tr" lang="tr">Türkçe</a></nav>
+    <p><a href="privacy.html">Datenschutzerklärung</a> · <a href="mailto:leeo@kakao.com">leeo@kakao.com</a> · © 2026 CatchSlide</p>
   </footer>
-<nav style="text-align:center;font-size:0.85rem;line-height:2;padding:0 24px 40px"><a href="../" hreflang="ko">한국어</a> · <a href="../en/" hreflang="en">English</a> · <a href="../zh-Hans/" hreflang="zh-Hans">简体中文</a> · <a href="../zh-Hant/" hreflang="zh-Hant">繁體中文</a> · <a href="../ja/" hreflang="ja">日本語</a> · <a href="../ru/" hreflang="ru">Русский</a> · <a href="../es/" hreflang="es">Español</a> · <a href="../de/" hreflang="de">Deutsch</a> · <a href="../fr/" hreflang="fr">Français</a> · <a href="../it/" hreflang="it">Italiano</a> · <a href="../pt-BR/" hreflang="pt-BR">Português (Brasil)</a> · <a href="../th/" hreflang="th">ไทย</a> · <a href="../vi/" hreflang="vi">Tiếng Việt</a> · <a href="../cs/" hreflang="cs">Čeština</a> · <a href="../da/" hreflang="da">Dansk</a> · <a href="../el/" hreflang="el">Ελληνικά</a> · <a href="../fi/" hreflang="fi">Suomi</a> · <a href="../id/" hreflang="id">Indonesia</a> · <a href="../nb/" hreflang="nb">Norsk</a> · <a href="../nl/" hreflang="nl">Nederlands</a> · <a href="../pl/" hreflang="pl">Polski</a> · <a href="../sv/" hreflang="sv">Svenska</a> · <a href="../tr/" hreflang="tr">Türkçe</a></nav>
+
+  <script>
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target) }
+    }), { rootMargin: "0px 0px -10% 0px" });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  </script>
+  <script src="../demo.js"></script>
 </body>
 </html>

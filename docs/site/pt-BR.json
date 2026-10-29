@@ -1,0 +1,114 @@
+{
+  "title": "CatchSlide: slides da aula retos, mesmo fotografados de lado",
+  "description": "De qualquer lugar da sala, o CatchSlide acha os cantos do slide, deixa ele reto como visto de frente, organiza por apresentação e busca no texto.",
+  "hero": {
+    "headline": "Foto de lado.\nSlide de frente.",
+    "lead": "A câmera acha os quatro cantos do slide, deixa tudo reto e corta o que está em volta. Os slides que você fotografa em sequência ficam juntos na mesma apresentação.",
+    "cta": "Baixar na App Store",
+    "note": "Uma compra, todos os recursos. Sem assinatura e sem conta."
+  },
+  "demo": {
+    "title": "Endireite você mesmo",
+    "lead": "Esta foto foi tirada torta, de um lugar na lateral da sala. O contorno verde mostra os cantos encontrados.",
+    "straighten": "Endireitar",
+    "reset": "Voltar à foto",
+    "photo": "Foto tirada torta",
+    "result": "O slide endireitado pelo CatchSlide",
+    "waiting": "Toque em Endireitar para ver o resultado aqui",
+    "hint": "Você também pode arrastar os pontos dos cantos para ajustar, ou selecionar um e mover com as setas do teclado.",
+    "corners": ["Canto superior esquerdo", "Canto superior direito", "Canto inferior direito", "Canto inferior esquerdo"],
+    "note": "Esta demonstração usa uma única foto tirada antes. No app, os cantos são encontrados ao vivo na câmera e o texto é reconhecido no próprio aparelho."
+  },
+  "problem": {
+    "title": "Já abriu a galeria para estudar e não achou o slide?",
+    "text": "Slides fotografados do fundo da sala sempre saem tortos e se perdem entre selfies e notinhas. Numa sala em silêncio, só o barulho do clique já dá vergonha. O CatchSlide fotografa sem som, endireita cada slide e guarda tudo junto por apresentação."
+  },
+  "features": [
+    {
+      "title": "Reto na hora do clique",
+      "text": "A câmera acompanha ao vivo os quatro cantos do slide e fica verde quando encontra. Mesmo de lado, o slide sai como se fosse visto de frente, sem o fundo.\nSem som de clique. Ative a `Captura automática` e cada slide novo é fotografado sozinho, pulando as fotos tremidas.",
+      "shot": "03-slide"
+    },
+    {
+      "title": "Fotos que você já tem, de uma vez",
+      "text": "Escolha várias fotos da aula no app Fotos e compartilhe com o CatchSlide. Elas são endireitadas e salvas como uma só apresentação, na ordem em que foram tiradas.\nCom `Texto mais nítido`, somem as sombras e o contraste apagado.",
+      "shot": "01-share"
+    },
+    {
+      "title": "Ache com a palavra que você lembra",
+      "text": "O CatchSlide lê o texto de cada slide no próprio aparelho. Semanas depois, uma palavra só já leva você ao slide certo.\nAs notas que você coloca nos slides também entram na busca. Marque alguns com `prova` e toda a matéria aparece numa busca só.",
+      "shot": "06-memo-search"
+    }
+  ],
+  "steps": {
+    "title": "Comece em três passos",
+    "items": [
+      {"title": "Abra a câmera", "text": "Pelo botão na lista, pelo widget da Tela de Início ou pela Tela Bloqueada."},
+      {"title": "Enquadre o slide", "text": "Quando os cantos ficarem verdes, toque no obturador ou deixe a captura automática fazer isso."},
+      {"title": "Revise por apresentação", "text": "Busque, adicione notas e exporte um PDF para estudar."}
+    ]
+  },
+  "reference": {
+    "title": "O que dá para fazer com uma apresentação",
+    "rows": [
+      ["Gravação", "Grave enquanto fotografa e ouça cada slide a partir do momento em que ele foi fotografado"],
+      ["Transcrição", "Transforma a gravação em texto, mostra o que foi dito em cada slide e entra na busca"],
+      ["Resumo com IA", "Resume a apresentação a partir do texto dos slides e da transcrição (iOS 26 ou posterior em aparelhos compatíveis com Apple Intelligence)"],
+      ["PDF", "Material de revisão com um, dois ou quatro slides por página"],
+      ["Markdown", "Um .zip pronto para o Notion ou o Obsidian"],
+      ["PowerPoint", "Exporta um .pptx com a transcrição nas anotações do apresentador"],
+      ["Mesclar", "Escolha várias apresentações e junte em uma"],
+      ["Sincronização com o iCloud", "Ative para ver suas apresentações nos outros aparelhos com o mesmo Apple ID. Vem desativada"],
+      ["Widgets", "Abrem a câmera direto da Tela de Início ou da Tela Bloqueada"]
+    ],
+    "note": "Reconhecimento de texto, transcrição e resumos com IA acontecem no próprio aparelho."
+  },
+  "pricing": {
+    "title": "Compre uma vez e tenha tudo",
+    "free": {
+      "name": "CatchSlide",
+      "items": [
+        "Fotos sem som, captura automática e endireitamento",
+        "Importação de várias fotos do app Fotos",
+        "Slides por apresentação, busca no texto e nas notas",
+        "Gravação, transcrição e resumo com IA",
+        "Exportação para PDF, Markdown e PowerPoint",
+        "Sincronização com o iCloud e widgets"
+      ]
+    },
+    "pro": {
+      "name": "Gorjeta (opcional)",
+      "items": [
+        "Se o app está ajudando, você pode mandar uma gorjetinha para o desenvolvedor",
+        "A gorjeta não libera nada. Todos os recursos funcionam sem ela"
+      ],
+      "note": "Fica na tela Meus dados."
+    },
+    "note": "Sem assinatura e sem compras para liberar recursos. Confira o preço do seu país na App Store."
+  },
+  "faq": {
+    "title": "Perguntas frequentes",
+    "items": [
+      {"q": "Como fotografo um slide?", "a": "Abra a câmera e enquadre o slide. Quando os cantos ficarem verdes, toque no obturador. Com a captura automática ativada, o próximo slide é fotografado sozinho sempre que muda."},
+      {"q": "Faz barulho de clique?", "a": "Não. O quadro é salvo direto da câmera, então fica em silêncio em qualquer país."},
+      {"q": "Por que minhas fotos ficaram numa apresentação só?", "a": "Se você tira a próxima foto em até 5 minutos depois da anterior, ela entra na mesma apresentação. Toque no título na lista para renomear e use `Mesclar apresentações` para juntar as que ficaram separadas."},
+      {"q": "Posso adicionar fotos que já tirei?", "a": "Pode. Selecione no app Fotos e compartilhe com o CatchSlide, ou toque em ＋ na lista e escolha `Importar de Fotos`. Elas são endireitadas e salvas como uma apresentação, na ordem em que foram tiradas."},
+      {"q": "Os cantos foram encontrados errado.", "a": "Abra o slide, escolha `Ajustar cantos` no menu ⋯ e arraste os quatro cantos para o lugar. `Detecção automática` procura de novo e `Imagem inteira` usa a foto toda. O original fica sempre guardado, então dá para refazer quando quiser."},
+      {"q": "Dá para buscar o texto dos slides?", "a": "Digite uma palavra no campo de busca no topo da lista. A busca passa pelo texto dos slides, títulos, notas e transcrições e leva direto ao slide. O reconhecimento de texto acontece no aparelho."},
+      {"q": "Como exporto um PDF?", "a": "Dentro de uma apresentação, abra o menu de compartilhamento, escolha `Exportar como PDF` e defina um, dois ou quatro slides por página. Pela folha de compartilhamento, salve em Arquivos ou envie para outro app."},
+      {"q": "Como mudo a ordem ou apago slides?", "a": "Dentro de uma apresentação, toque e segure um slide e arraste. No mesmo menu você apaga ou compartilha um slide, e com `Selecionar` apaga vários de uma vez."},
+      {"q": "Como funcionam a gravação e o resumo com IA?", "a": "Ative `Gravar` no topo da câmera e cada slide guarda o áudio daquele momento. Em `Notas da apresentação`, `Resumir com IA` cria um resumo a partir do texto dos slides e da transcrição. O resumo com IA precisa do iOS 26 ou posterior num aparelho compatível com Apple Intelligence."},
+      {"q": "Onde ficam meus slides e gravações?", "a": "No seu aparelho. Eles só vão para o seu próprio iCloud se você ativar `Sincronização` em Meus dados, e não precisa de conta. Veja mais na Política de Privacidade."}
+    ]
+  },
+  "closing": {
+    "headline": "Da próxima aula em diante,\nslides retos",
+    "cta": "Baixar na App Store"
+  },
+  "ui": {
+    "skip": "Pular para o conteúdo",
+    "languages": "Idioma",
+    "privacy": "Política de Privacidade",
+    "contact": "Dúvidas, bugs ou ideias? Escreva para {email}."
+  }
+}

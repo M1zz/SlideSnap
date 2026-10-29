@@ -1,184 +1,192 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CatchSlide — Dukungan</title>
-<meta name="description" content="Dukungan CatchSlide — potret slide kuliah, rekam pembicaraan, dan belajar ulang dengan transkrip serta ringkasan AI.">
-<style>
-  :root {
-    --blue: #2f6bde;
-    --blue-light: #4facfe;
-    --green: #29cc70;
-    --ink: #1a2233;
-    --muted: #5b6577;
-    --bg: #f5f7fb;
-    --card: #ffffff;
-    --border: #e4e9f2;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --ink: #e8ecf4;
-      --muted: #9aa4b8;
-      --bg: #0f131b;
-      --card: #1a2130;
-      --border: #2a3346;
-    }
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-    color: var(--ink);
-    background: var(--bg);
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-  }
-  .hero {
-    background: linear-gradient(135deg, var(--blue-light) 0%, var(--blue) 100%);
-    color: #fff;
-    padding: 64px 24px 56px;
-    text-align: center;
-  }
-  .hero img {
-    width: 108px; height: 108px;
-    border-radius: 24px;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.28);
-  }
-  .hero h1 { margin: 20px 0 6px; font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; }
-  .hero p { margin: 0; font-size: 1.05rem; opacity: 0.95; }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-  section { padding: 40px 0; border-bottom: 1px solid var(--border); }
-  section:last-of-type { border-bottom: none; }
-  h2 { font-size: 1.35rem; font-weight: 700; margin: 0 0 18px; letter-spacing: -0.01em; }
-  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 520px) { .features { grid-template-columns: 1fr; } }
-  .feature {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 14px; padding: 18px 18px 16px;
-  }
-  .feature .ic { font-size: 1.5rem; }
-  .feature h3 { margin: 8px 0 4px; font-size: 1rem; }
-  .feature p { margin: 0; color: var(--muted); font-size: 0.92rem; }
-  .faq { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 6px 20px; }
-  details { padding: 14px 0; border-bottom: 1px solid var(--border); }
-  details:last-child { border-bottom: none; }
-  summary { cursor: pointer; font-weight: 600; list-style: none; }
-  summary::-webkit-details-marker { display: none; }
-  summary::before { content: "＋"; color: var(--blue); font-weight: 700; margin-right: 10px; }
-  details[open] summary::before { content: "－"; }
-  details p { margin: 12px 0 2px; color: var(--muted); }
-  .contact {
-    text-align: center; background: var(--card);
-    border: 1px solid var(--border); border-radius: 16px; padding: 32px 24px;
-  }
-  .btn {
-    display: inline-block; margin-top: 12px;
-    background: var(--blue); color: #fff; text-decoration: none;
-    padding: 12px 26px; border-radius: 999px; font-weight: 600;
-  }
-  a { color: var(--blue); }
-  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 32px 24px 48px; }
-  .tag { display:inline-block; color: var(--green); font-weight:700; }
-</style>
-<link rel="canonical" href="https://m1zz.github.io/SlideSnap/id/">
-<link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
-<link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
-<link rel="alternate" hreflang="en-GB" href="https://m1zz.github.io/SlideSnap/en/">
-<link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
-<link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
-<link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
-<link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
-<link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
-<link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
-<link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
-<link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
-<link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
-<link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
-<link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
-<link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
-<link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
-<link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
-<link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
-<link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
-<link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
-<link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
-<link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
-<link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
-<link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
-<link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CatchSlide: slide kuliah tetap lurus walau difoto dari samping</title>
+  <meta name="description" content="Dari kursi mana pun, CatchSlide menemukan sudut slide, meluruskannya seperti difoto dari depan, menyimpannya per presentasi, dan teksnya bisa dicari.">
+  <meta name="theme-color" content="#3478E7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f131b" media="(prefers-color-scheme: dark)">
+  <meta name="apple-itunes-app" content="app-id=6790835318">
+  <link rel="canonical" href="https://m1zz.github.io/SlideSnap/id/">
+  <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
+  <link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
+  <link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
+  <link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
+  <link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
+  <link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
+  <link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
+  <link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
+  <link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
+  <link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
+  <link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
+  <link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
+  <link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
+  <link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
+  <link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
+  <link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
+  <link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
+  <link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
+  <link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
+  <link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
+  <link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
+  <link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CatchSlide: slide kuliah tetap lurus walau difoto dari samping">
+  <meta property="og:description" content="Dari kursi mana pun, CatchSlide menemukan sudut slide, meluruskannya seperti difoto dari depan, menyimpannya per presentasi, dan teksnya bisa dicari.">
+  <meta property="og:url" content="https://m1zz.github.io/SlideSnap/id/">
+  <meta property="og:image" content="https://m1zz.github.io/SlideSnap/img/id/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../icon.png">
+  <link rel="apple-touch-icon" href="../icon.png">
+  <link rel="stylesheet" href="../site.css">
+  <link rel="stylesheet" href="../demo.css">
+  <style>:root{--accent:#3478E7}@media (prefers-color-scheme:dark){:root{--accent:#5EA2FF}}</style>
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
-  <div class="hero">
-    <img src="../icon.png" alt="Ikon aplikasi CatchSlide">
-    <h1>CatchSlide</h1>
-    <p>Potret slide kuliah. Hasilnya lurus, bisa dicari, dan siap dipelajari ulang.</p>
-  </div>
+  <a class="skip" href="#main">Langsung ke konten</a>
+  <header class="bar">
+    <a class="brand" href="../id/"><img src="../icon.png" alt="" width="32" height="32">CatchSlide</a>
+    <a class="lang-link" href="#languages">Bahasa</a>
+  </header>
 
-  <div class="wrap">
-    <section>
-      <h2>Fitur</h2>
-      <div class="features">
-        <div class="feature"><div class="ic">🟩</div><h3>Deteksi slide langsung</h3><p>Kamera menemukan keempat sudut slide saat Anda membidik, meluruskannya seolah Anda memotret dari depan, dan bisa memotretnya secara otomatis.</p></div>
-        <div class="feature"><div class="ic">🤫</div><h3>Pemotretan senyap</h3><p>Tanpa suara rana, jadi Anda bisa memotret di tengah kuliah tanpa mengganggu siapa pun.</p></div>
-        <div class="feature"><div class="ic">🎙️</div><h3>Rekam dan putar ulang</h3><p>Rekam pembicaraan sambil memotret. Ketuk slide mana pun untuk mendengar apa yang disampaikan saat itu.</p></div>
-        <div class="feature"><div class="ic">💬</div><h3>Transkrip</h3><p>Ubah rekaman menjadi teks di perangkat Anda dan baca apa yang disampaikan di setiap slide.</p></div>
-        <div class="feature"><div class="ic">✨</div><h3>Ringkasan AI</h3><p>Dapatkan gambaran umum, poin penting, dan kata kunci untuk seluruh pembicaraan, dibuat di perangkat Anda dengan Apple Intelligence.</p></div>
-        <div class="feature"><div class="ic">🔍</div><h3>Cari apa saja</h3><p>Temukan slide lewat kata apa pun di dalamnya atau apa pun yang disampaikan pembicara.</p></div>
-        <div class="feature"><div class="ic">🗂️</div><h3>Tertata per sesi</h3><p>Slide yang dipotret berurutan menjadi satu presentasi. Ubah nama, urutan, atau gabungkan.</p></div>
-        <div class="feature"><div class="ic">📤</div><h3>PDF, Notion, PowerPoint</h3><p>Ekspor PDF untuk belajar, catatan Markdown untuk Notion atau Obsidian, atau file PowerPoint dengan transkrip di catatan pembicara.</p></div>
-        <div class="feature"><div class="ic">☁️</div><h3>Sinkronisasi iCloud</h3><p>Secara opsional, simpan slide dan rekaman Anda di semua perangkat iPhone, iPad, dan Mac Anda.</p></div>
-        <div class="feature"><div class="ic">🖼️</div><h3>Dari Foto</h3><p>Bagikan foto kuliah dari aplikasi Foto, lalu foto diluruskan dan disimpan sebagai satu presentasi.</p></div>
+  <main id="main">
+    <section class="hero">
+      <div class="copy">
+        <h1>Difoto dari samping.<br>Tersimpan dari depan.</h1>
+        <p class="lead">Kamera menemukan keempat sudut slide, meluruskannya, lalu memotong semua yang ada di sekitarnya. Slide yang Anda foto berurutan masuk ke presentasi yang sama.</p>
+        <div class="actions"><a class="cta" href="https://apps.apple.com/app/id6790835318">Unduh di App Store</a><a class="try" href="#try">Coba luruskan sendiri ↓</a></div>
+        <p class="muted small">Sekali beli, semua fitur. Tanpa langganan, tanpa akun.</p>
       </div>
+      <div class="phone"><img src="../img/id/02-list.jpg" alt="Difoto dari samping. Tersimpan dari depan." width="720" height="1564" decoding="async"></div>
     </section>
 
-    <section>
-      <h2>Tanya Jawab</h2>
-      <div class="faq">
-        <details open>
-          <summary>Bagaimana cara memotret slide?</summary>
-          <p>Buka aplikasi dan kamera langsung siap. Arahkan slide ke layar sampai bingkai berubah <span class="tag">hijau</span>, lalu ketuk tombol rana atau biarkan pemotretan otomatis yang mengambilnya. Saat slide berganti, slide berikutnya dipotret otomatis.</p>
-        </details>
-        <details>
-          <summary>Bagaimana cara merekam pembicaraan?</summary>
-          <p>Ketuk <strong>Rekam</strong> di bagian atas layar kamera. Pembicaraan direkam selama Anda memotret. Setelahnya, buka slide mana pun dan ketuk putar untuk mendengarkan dari saat slide itu dipotret. Slide akan berganti sendiri selama pemutaran.</p>
-        </details>
-        <details>
-          <summary>Bagaimana cara mendapatkan transkrip atau ringkasan AI?</summary>
-          <p>Buka sebuah presentasi dan ketuk tombol catatan ✨. Ketuk <strong>Transkripsikan</strong> di samping rekaman, lalu <strong>Ringkas dengan AI</strong>. Ringkasan AI memerlukan perangkat yang mendukung Apple Intelligence (iOS 26 atau lebih baru) dengan Apple Intelligence yang sudah diaktifkan.</p>
-        </details>
-        <details>
-          <summary>Mengapa slide saya dikelompokkan?</summary>
-          <p>Slide yang dipotret dengan jarak waktu paling lama lima menit dianggap satu sesi dan disimpan dalam satu presentasi. Anda bisa mengubah namanya, atau menggabungkan presentasi dari daftar.</p>
-        </details>
-        <details>
-          <summary>Bagaimana cara mengekspor?</summary>
-          <p>Di dalam presentasi, buka menu ⋯ lalu pilih PDF (satu, dua, atau empat slide per halaman), Markdown untuk Notion atau Obsidian, atau PowerPoint yang juga bisa dibuka di Keynote dan Google Slides.</p>
-        </details>
-        <details>
-          <summary>Bagaimana cara kerja Sinkronisasi iCloud?</summary>
-          <p>Aktifkan di <strong>Info Saya › Sinkronkan</strong>. Presentasi, slide, dan rekaman Anda disimpan di iCloud pribadi Anda dan muncul di perangkat lain yang masuk dengan Apple Account yang sama. Fitur ini nonaktif secara default karena foto dan rekaman menggunakan penyimpanan iCloud Anda.</p>
-        </details>
-        <details>
-          <summary>Di mana data saya disimpan?</summary>
-          <p>Di perangkat Anda. Pengenalan teks, transkripsi, dan Ringkasan AI semuanya berjalan di perangkat Anda. Data hanya masuk ke iCloud Anda sendiri jika Anda mengaktifkan sinkronisasi. Lihat <a href="privacy.html">Kebijakan Privasi</a>.</p>
-        </details>
-      </div>
+
+    <section class="reveal" id="try">
+      <h2>Coba luruskan sendiri</h2>
+      <p class="muted">Foto ini diambil miring dari kursi samping di ruang kuliah. Garis hijau menunjukkan sudut slide yang ditemukan.</p>
+      <div id="demo" class="card demo-card" data-text="{&quot;title&quot;: &quot;Coba luruskan sendiri&quot;, &quot;lead&quot;: &quot;Foto ini diambil miring dari kursi samping di ruang kuliah. Garis hijau menunjukkan sudut slide yang ditemukan.&quot;, &quot;straighten&quot;: &quot;Luruskan&quot;, &quot;reset&quot;: &quot;Kembali ke foto&quot;, &quot;photo&quot;: &quot;Foto yang diambil miring&quot;, &quot;result&quot;: &quot;Slide yang diluruskan CatchSlide&quot;, &quot;waiting&quot;: &quot;Ketuk Luruskan untuk melihat hasilnya di sini&quot;, &quot;hint&quot;: &quot;Anda juga bisa menyeret titik di sudut untuk menyesuaikannya, atau memilih satu titik lalu menggesernya dengan tombol panah.&quot;, &quot;corners&quot;: [&quot;Sudut kiri atas&quot;, &quot;Sudut kanan atas&quot;, &quot;Sudut kanan bawah&quot;, &quot;Sudut kiri bawah&quot;], &quot;note&quot;: &quot;Demo ini memakai satu foto yang sudah diambil sebelumnya. Di aplikasi, sudut ditemukan langsung di kamera dan teks dikenali di perangkat Anda sendiri.&quot;}"></div>
     </section>
 
-    <section>
-      <div class="contact">
-        <h2 style="margin-bottom:6px">Butuh bantuan?</h2>
-        <p style="color:var(--muted);margin:0">Pertanyaan, laporan bug, dan ide fitur sangat kami nantikan.</p>
-        <a class="btn" href="mailto:leeo@kakao.com?subject=%5BCatchSlide%5D%20Support">Kirim email kepada kami</a>
-        <p style="margin:14px 0 0"><a href="privacy.html">Kebijakan Privasi</a></p>
-      </div>
+    <section class="problem reveal">
+      <h2>Pernah buka galeri untuk belajar, tapi slide-nya tidak ketemu?</h2>
+      <p>Slide yang difoto dari barisan belakang selalu miring dan tenggelam di antara swafoto dan struk belanja. Di ruang kuliah yang hening, bunyi rana saja sudah bikin ragu. CatchSlide memotret tanpa suara, meluruskan setiap slide, dan menyimpannya bersama per presentasi.</p>
     </section>
-  </div>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Lurus sejak dipotret</h2>
+        <p>Kamera mengikuti keempat sudut slide secara langsung dan berubah hijau saat sudah menangkapnya. Meski difoto miring, slide diluruskan seperti dilihat dari depan, tanpa latar belakang.<br>Tidak ada bunyi rana. Nyalakan <code>Ambil otomatis</code> dan setiap slide baru akan dipotret sendiri, sementara foto yang goyang dilewati.</p>
+      </div>
+      <div class="phone"><img src="../img/id/03-slide.jpg" alt="Lurus sejak dipotret" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Foto lama, sekaligus</h2>
+        <p>Pilih beberapa foto kuliah di app Foto lalu bagikan ke CatchSlide. Foto-foto itu diluruskan dan disimpan sebagai satu presentasi, sesuai urutan pengambilannya.<br><code>Pertajam Teks</code> menghapus bayangan dan kontras yang pudar.</p>
+      </div>
+      <div class="phone"><img src="../img/id/01-share.jpg" alt="Foto lama, sekaligus" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Cukup satu kata</h2>
+        <p>CatchSlide membaca teks di setiap slide langsung di perangkat Anda. Berminggu-minggu kemudian pun, satu kata sudah cukup untuk menemukan slide itu.<br>Catatan di slide juga bisa dicari. Tulis <code>UAS</code> di beberapa slide, dan semua materi ujian muncul dalam sekali cari.</p>
+      </div>
+      <div class="phone"><img src="../img/id/06-memo-search.jpg" alt="Cukup satu kata" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="reveal">
+      <h2>Mulai dalam tiga langkah</h2>
+      <ol class="steps"><li class="card"><span class="n">1</span><h3>Buka kamera</h3><p>Dari tombol kamera di daftar, widget di Layar Utama, atau Layar Terkunci.</p></li>
+<li class="card"><span class="n">2</span><h3>Bingkai slide-nya</h3><p>Saat sudut berubah hijau, ketuk rana atau biarkan ambil otomatis yang bekerja.</p></li>
+<li class="card"><span class="n">3</span><h3>Buka lagi per presentasi</h3><p>Cari, tambahkan catatan, dan ekspor PDF untuk belajar.</p></li></ol>
+    </section>
+
+    <section class="reveal" id="commands">
+      <h2>Yang bisa dilakukan dengan satu presentasi</h2>
+      <div class="card table">
+        <dl><div><dt>Rekaman</dt><dd>Rekam sambil memotret, lalu putar setiap slide mulai dari saat slide itu difoto</dd></div><div><dt>Transkripsi</dt><dd>Mengubah rekaman jadi teks, menampilkan apa yang diucapkan di tiap slide, dan ikut dalam pencarian</dd></div><div><dt>Ringkasan AI</dt><dd>Meringkas presentasi dari teks slide dan transkrip (iOS 26 atau lebih baru di perangkat yang mendukung Apple Intelligence)</dd></div><div><dt>PDF</dt><dd>Bahan belajar berisi satu, dua, atau empat slide per halaman</dd></div><div><dt>Markdown</dt><dd>File .zip yang siap masuk ke Notion atau Obsidian</dd></div><div><dt>PowerPoint</dt><dd>Ekspor .pptx dengan transkrip di catatan pembicara</dd></div><div><dt>Gabungkan</dt><dd>Pilih beberapa presentasi lalu satukan</dd></div><div><dt>Sinkronisasi iCloud</dt><dd>Nyalakan untuk melihat presentasi di perangkat lain dengan Apple ID yang sama. Mati secara bawaan</dd></div><div><dt>Widget</dt><dd>Membuka kamera langsung dari Layar Utama atau Layar Terkunci</dd></div></dl>
+      </div>
+      <p class="muted">Pengenalan teks, transkripsi, dan ringkasan AI semuanya berjalan di perangkat Anda.</p>
+    </section>
+
+
+    <section class="reveal" id="pricing">
+      <h2>Sekali beli, dapat semuanya</h2>
+      <div class="plans">
+        <div class="card plan free">
+          <h3>CatchSlide</h3>
+          <ul><li>Foto tanpa suara, ambil otomatis, dan pelurusan</li><li>Impor banyak foto sekaligus dari app Foto</li><li>Slide per presentasi, cari di teks dan catatan</li><li>Rekaman, transkripsi, dan ringkasan AI</li><li>Ekspor ke PDF, Markdown, dan PowerPoint</li><li>Sinkronisasi iCloud dan widget</li></ul>
+          
+        </div>
+        <div class="card plan pro">
+          <h3>Tip (opsional)</h3>
+          <ul><li>Kalau aplikasi ini membantu, Anda bisa memberi tip kecil untuk pengembang</li><li>Tip tidak membuka fitur apa pun. Semua fitur tetap bisa dipakai tanpa tip</li></ul>
+          <p class="muted">Ada di layar Info Saya.</p>
+        </div>
+      </div>
+      <p class="muted">Tanpa langganan dan tanpa pembelian untuk membuka fitur. Lihat harga di negara Anda di App Store.</p>
+    </section>
+
+    <section class="reveal" id="faq">
+      <h2>Pertanyaan umum</h2>
+      <div class="faq"><details><summary>Bagaimana cara memotret slide?</summary><p>Buka kamera dan bingkai slide-nya. Saat sudut berubah hijau, ketuk rana. Jika ambil otomatis menyala, slide berikutnya dipotret sendiri setiap kali slide berganti.</p></details>
+<details><summary>Apakah ada bunyi rana?</summary><p>Tidak. Gambar disimpan langsung dari kamera, jadi tetap senyap di negara mana pun.</p></details>
+<details><summary>Kenapa foto-foto saya masuk ke satu presentasi?</summary><p>Jika foto berikutnya diambil kurang dari 5 menit setelah foto sebelumnya, foto itu dianggap bagian dari presentasi yang sama. Ketuk judul di daftar untuk mengganti nama, dan pakai <code>Gabungkan Presentasi</code> untuk menyatukan yang terpisah.</p></details>
+<details><summary>Bisakah saya menambahkan foto yang sudah ada?</summary><p>Bisa. Pilih fotonya di app Foto lalu bagikan ke CatchSlide, atau ketuk ＋ di daftar dan pilih <code>Impor dari Foto</code>. Foto diluruskan dan disimpan sebagai satu presentasi sesuai urutan pengambilan.</p></details>
+<details><summary>Sudutnya terdeteksi salah.</summary><p>Buka slide, pilih <code>Atur Sudut</code> dari menu ⋯, lalu seret keempat sudut ke tempatnya. <code>Deteksi Otomatis</code> mencarinya lagi, dan <code>Seluruh Gambar</code> memakai foto utuh. Foto asli selalu disimpan, jadi Anda bisa mengulangnya kapan saja.</p></details>
+<details><summary>Bisakah saya mencari teks di slide?</summary><p>Ketik kata di kolom pencarian di bagian atas daftar. Pencarian mencakup teks slide, judul presentasi, catatan, dan transkrip, lalu langsung membuka slide-nya. Pengenalan teks berlangsung di perangkat.</p></details>
+<details><summary>Bagaimana cara ekspor PDF?</summary><p>Di dalam presentasi, buka menu bagikan, pilih <code>Ekspor sebagai PDF</code>, lalu pilih satu, dua, atau empat slide per halaman. Dari lembar bagikan, simpan ke File atau kirim ke aplikasi lain.</p></details>
+<details><summary>Bagaimana mengubah urutan atau menghapus slide?</summary><p>Di dalam presentasi, sentuh dan tahan slide lalu seret. Dari menu yang sama Anda bisa menghapus atau membagikan satu slide, dan <code>Pilih</code> menghapus beberapa sekaligus.</p></details>
+<details><summary>Bagaimana rekaman dan ringkasan AI bekerja?</summary><p>Nyalakan <code>Rekam</code> di bagian atas kamera, dan setiap slide akan menyimpan suara pada saat itu. Di <code>Catatan Presentasi</code>, <code>Ringkas dengan AI</code> membuat ringkasan dari teks slide dan transkrip. Fitur ini butuh iOS 26 atau lebih baru di perangkat yang mendukung Apple Intelligence.</p></details>
+<details><summary>Di mana slide dan rekaman saya disimpan?</summary><p>Di perangkat Anda. Data hanya diunggah ke iCloud milik Anda sendiri jika Anda menyalakan <code>Sinkronkan</code> di Info Saya, dan tidak perlu akun. Selengkapnya di Kebijakan Privasi.</p></details></div>
+      <p class="contact">Ada pertanyaan, bug, atau ide? Kirim email ke <a href="mailto:leeo@kakao.com">leeo@kakao.com</a>.</p>
+    </section>
+
+    <section class="closing reveal">
+      <h2>Mulai kuliah berikutnya,<br>slide selalu lurus</h2>
+      <a class="cta" href="https://apps.apple.com/app/id6790835318">Unduh di App Store</a>
+    </section>
+  </main>
 
   <footer>
-    © 2026 CatchSlide &nbsp;·&nbsp; leeo@kakao.com
+    <nav id="languages" class="langs" aria-label="Bahasa"><a href="../" hreflang="ko" lang="ko">한국어</a>
+<a href="../en/" hreflang="en" lang="en">English</a>
+<a href="../zh-Hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
+<a href="../zh-Hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
+<a href="../ja/" hreflang="ja" lang="ja">日本語</a>
+<a href="../ru/" hreflang="ru" lang="ru">Русский</a>
+<a href="../es/" hreflang="es" lang="es">Español</a>
+<a href="../de/" hreflang="de" lang="de">Deutsch</a>
+<a href="../fr/" hreflang="fr" lang="fr">Français</a>
+<a href="../it/" hreflang="it" lang="it">Italiano</a>
+<a href="../pt-BR/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a>
+<a href="../th/" hreflang="th" lang="th">ไทย</a>
+<a href="../vi/" hreflang="vi" lang="vi">Tiếng Việt</a>
+<a href="../cs/" hreflang="cs" lang="cs">Čeština</a>
+<a href="../da/" hreflang="da" lang="da">Dansk</a>
+<a href="../el/" hreflang="el" lang="el">Ελληνικά</a>
+<a href="../fi/" hreflang="fi" lang="fi">Suomi</a>
+<a href="../id/" hreflang="id" lang="id" aria-current="page">Indonesia</a>
+<a href="../nb/" hreflang="nb" lang="nb">Norsk</a>
+<a href="../nl/" hreflang="nl" lang="nl">Nederlands</a>
+<a href="../pl/" hreflang="pl" lang="pl">Polski</a>
+<a href="../sv/" hreflang="sv" lang="sv">Svenska</a>
+<a href="../tr/" hreflang="tr" lang="tr">Türkçe</a></nav>
+    <p><a href="privacy.html">Kebijakan Privasi</a> · <a href="mailto:leeo@kakao.com">leeo@kakao.com</a> · © 2026 CatchSlide</p>
   </footer>
-<nav style="text-align:center;font-size:0.85rem;line-height:2;padding:0 24px 40px"><a href="../" hreflang="ko">한국어</a> · <a href="../en/" hreflang="en">English</a> · <a href="../zh-Hans/" hreflang="zh-Hans">简体中文</a> · <a href="../zh-Hant/" hreflang="zh-Hant">繁體中文</a> · <a href="../ja/" hreflang="ja">日本語</a> · <a href="../ru/" hreflang="ru">Русский</a> · <a href="../es/" hreflang="es">Español</a> · <a href="../de/" hreflang="de">Deutsch</a> · <a href="../fr/" hreflang="fr">Français</a> · <a href="../it/" hreflang="it">Italiano</a> · <a href="../pt-BR/" hreflang="pt-BR">Português (Brasil)</a> · <a href="../th/" hreflang="th">ไทย</a> · <a href="../vi/" hreflang="vi">Tiếng Việt</a> · <a href="../cs/" hreflang="cs">Čeština</a> · <a href="../da/" hreflang="da">Dansk</a> · <a href="../el/" hreflang="el">Ελληνικά</a> · <a href="../fi/" hreflang="fi">Suomi</a> · <a href="../id/" hreflang="id">Indonesia</a> · <a href="../nb/" hreflang="nb">Norsk</a> · <a href="../nl/" hreflang="nl">Nederlands</a> · <a href="../pl/" hreflang="pl">Polski</a> · <a href="../sv/" hreflang="sv">Svenska</a> · <a href="../tr/" hreflang="tr">Türkçe</a></nav>
+
+  <script>
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target) }
+    }), { rootMargin: "0px 0px -10% 0px" });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  </script>
+  <script src="../demo.js"></script>
 </body>
 </html>

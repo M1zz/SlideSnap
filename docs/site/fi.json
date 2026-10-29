@@ -1,0 +1,114 @@
+{
+  "title": "CatchSlide: luentokalvot suoriksi, vaikka kuvaisit sivusta",
+  "description": "Istuit missä tahansa, CatchSlide löytää kalvon kulmat, oikaisee sen kuin olisit kuvannut edestä, järjestää esityksittäin ja tekee tekstistä haettavan.",
+  "hero": {
+    "headline": "Kuvattu sivusta.\nTallennettu edestä.",
+    "lead": "Kamera löytää kalvon kaikki neljä kulmaa, oikaisee sen ja rajaa ympäristön pois. Peräkkäin kuvaamasi kalvot päätyvät samaan esitykseen.",
+    "cta": "Lataa App Storesta",
+    "note": "Yksi ostos, kaikki ominaisuudet. Ei tilausta, ei tiliä."
+  },
+  "demo": {
+    "title": "Oikaise itse",
+    "lead": "Tämä kuva on otettu vinosti luentosalin sivupaikalta. Vihreä reunus näyttää, mistä kalvon kulmat löytyivät.",
+    "straighten": "Oikaise",
+    "reset": "Takaisin kuvaan",
+    "photo": "Vinosti otettu kuva",
+    "result": "CatchSliden oikaisema kalvo",
+    "waiting": "Napauta Oikaise, niin tulos näkyy tässä",
+    "hint": "Voit myös vetää kulmapisteitä itse tai valita pisteen ja siirtää sitä nuolinäppäimillä.",
+    "corners": ["Vasen yläkulma", "Oikea yläkulma", "Oikea alakulma", "Vasen alakulma"],
+    "note": "Kokeilussa käytetään yhtä etukäteen otettua kuvaa. Sovelluksessa kulmat löytyvät suoraan kameranäkymästä ja teksti tunnistetaan laitteella."
+  },
+  "problem": {
+    "title": "Avasitko kuvat kertausta varten etkä löytänyt kalvoa?",
+    "text": "Takarivistä kuvatut kalvot ovat aina vinossa ja hukkuvat selfieiden ja kuittien sekaan. Hiljaisessa luentosalissa jo suljinääni saa epäröimään. CatchSlide kuvaa äänettömästi, oikaisee jokaisen kalvon ja pitää ne yhdessä esityksittäin."
+  },
+  "features": [
+    {
+      "title": "Suora heti kuvatessa",
+      "text": "Kamera seuraa kalvon neljää kulmaa reaaliajassa ja muuttuu vihreäksi, kun se löytää ne. Vinostakin kuvattu kalvo oikaistaan kuin edestä otetuksi, ja tausta rajataan pois.\nEi suljinääntä. Kun `Automaattinen kuvaus` on päällä, jokainen uusi kalvo kuvataan itsestään ja tärähtäneet kuvat ohitetaan.",
+      "shot": "03-slide"
+    },
+    {
+      "title": "Vanhat kuvat kerralla",
+      "text": "Valitse Kuvat-sovelluksesta useita luentokuvia ja jaa ne CatchSlideen. Ne oikaistaan ja tallennetaan yhdeksi esitykseksi siinä järjestyksessä, jossa otit ne.\n`Terävöitä teksti` poistaa varjot ja haalean kontrastin.",
+      "shot": "01-share"
+    },
+    {
+      "title": "Yksi sana riittää",
+      "text": "CatchSlide lukee jokaisen kalvon tekstin suoraan laitteella. Viikkojenkin päästä yksi muistamasi sana vie oikean kalvon luo.\nMyös kalvoihin lisätyt muistiinpanot ovat haettavissa. Merkitse muutama sanalla `tentti`, niin koko tenttialue löytyy yhdellä haulla.",
+      "shot": "06-memo-search"
+    }
+  ],
+  "steps": {
+    "title": "Alkuun kolmessa vaiheessa",
+    "items": [
+      {"title": "Avaa kamera", "text": "Luettelon kamerapainikkeesta, Koti-valikon widgetistä tai lukitusnäytöltä."},
+      {"title": "Rajaa kalvo kuvaan", "text": "Kun kulmat muuttuvat vihreiksi, ota kuva tai anna automaattisen kuvauksen hoitaa se."},
+      {"title": "Kertaa esityksittäin", "text": "Hae, lisää muistiinpanoja ja vie PDF kertausta varten."}
+    ]
+  },
+  "reference": {
+    "title": "Mitä esityksellä voi tehdä",
+    "rows": [
+      ["Äänitys", "Äänitä kuvatessasi ja kuuntele jokainen kalvo siitä hetkestä, jolloin kuvasit sen"],
+      ["Litterointi", "Muuttaa äänityksen tekstiksi, näyttää mitä kunkin kalvon kohdalla sanottiin ja on mukana haussa"],
+      ["Tekoälytiivistelmä", "Tiivistää esityksen kalvojen tekstistä ja litteroinnista (iOS 26 tai uudempi laitteissa, jotka tukevat Apple Intelligencea)"],
+      ["PDF", "Kertausmoniste, jossa yksi, kaksi tai neljä kalvoa sivulla"],
+      ["Markdown", ".zip, joka käy suoraan Notioniin tai Obsidianiin"],
+      ["PowerPoint", "Vie .pptx-tiedoston, ja litterointi tulee puhujan muistiinpanoihin"],
+      ["Yhdistäminen", "Valitse useita esityksiä ja yhdistä ne yhdeksi"],
+      ["iCloud-synkronointi", "Kun se on päällä, näet esitykset myös muilla saman Apple ID:n laitteilla. Oletuksena pois päältä"],
+      ["Widgetit", "Avaavat kameran suoraan Koti-valikosta tai lukitusnäytöltä"]
+    ],
+    "note": "Tekstintunnistus, litterointi ja tekoälytiivistelmät tehdään laitteella."
+  },
+  "pricing": {
+    "title": "Osta kerran, saat kaiken",
+    "free": {
+      "name": "CatchSlide",
+      "items": [
+        "Äänetön kuvaus, automaattinen kuvaus ja oikaisu",
+        "Useiden kuvien tuonti kerralla Kuvat-sovelluksesta",
+        "Kalvot esityksittäin, haku tekstistä ja muistiinpanoista",
+        "Äänitys, litterointi ja tekoälytiivistelmä",
+        "Vienti PDF-, Markdown- ja PowerPoint-muotoon",
+        "iCloud-synkronointi ja widgetit"
+      ]
+    },
+    "pro": {
+      "name": "Tippi (vapaaehtoinen)",
+      "items": [
+        "Jos sovelluksesta on sinulle apua, voit antaa kehittäjälle pienen tipin",
+        "Tippi ei avaa mitään. Kaikki ominaisuudet toimivat ilmankin"
+      ],
+      "note": "Löydät sen Omat tiedot -näkymästä."
+    },
+    "note": "Ei tilausta eikä maksullisia lisäominaisuuksia. Katso hinta omassa maassasi App Storesta."
+  },
+  "faq": {
+    "title": "Usein kysyttyä",
+    "items": [
+      {"q": "Miten kuvaan kalvon?", "a": "Avaa kamera ja rajaa kalvo kuvaan. Kun kulmat muuttuvat vihreiksi, paina laukaisinta. Kun automaattinen kuvaus on päällä, seuraava kalvo kuvataan itsestään aina kalvon vaihtuessa."},
+      {"q": "Kuuluuko suljinääni?", "a": "Ei. Kuva tallennetaan suoraan kameranäkymästä, joten kuvaus on äänetöntä kaikissa maissa."},
+      {"q": "Miksi kuvani ovat samassa esityksessä?", "a": "Jos otat seuraavan kuvan alle 5 minuutin kuluttua edellisestä, se kuuluu samaan esitykseen. Napauta otsikkoa luettelossa nimetäksesi sen uudelleen, ja yhdistä erilleen jääneet esitykset toiminnolla `Yhdistä esitykset`."},
+      {"q": "Voinko lisätä jo ottamiani kuvia?", "a": "Voit. Valitse ne Kuvat-sovelluksessa ja jaa CatchSlideen, tai napauta luettelossa ＋ ja valitse `Tuo Kuvat-sovelluksesta`. Ne oikaistaan ja tallennetaan yhdeksi esitykseksi kuvausjärjestyksessä."},
+      {"q": "Kulmat tunnistettiin väärin.", "a": "Avaa kalvo, valitse ⋯-valikosta `Säädä kulmat` ja vedä neljä kulmaa paikoilleen. `Tunnista automaattisesti` etsii ne uudelleen, ja `Koko kuva` käyttää koko valokuvaa. Alkuperäinen säilyy aina, joten voit tehdä oikaisun uudelleen milloin vain."},
+      {"q": "Voinko hakea kalvojen tekstistä?", "a": "Kirjoita sana luettelon yläreunan hakukenttään. Haku kattaa kalvojen tekstin, esitysten otsikot, muistiinpanot ja litteroinnit ja vie suoraan oikeaan kalvoon. Tekstintunnistus tehdään laitteella."},
+      {"q": "Miten vien PDF:n?", "a": "Avaa esityksessä jakovalikko, valitse `Vie PDF-tiedostona` ja valitse yksi, kaksi tai neljä kalvoa sivulle. Jakotaulukosta voit tallentaa sen Tiedostoihin tai lähettää toiseen sovellukseen."},
+      {"q": "Miten muutan järjestystä tai poistan kalvoja?", "a": "Pidä esityksessä kalvoa painettuna ja vedä se uuteen kohtaan. Samasta valikosta voit poistaa tai jakaa kalvon, ja `Valitse` poistaa useita kerralla."},
+      {"q": "Miten äänitys ja tekoälytiivistelmä toimivat?", "a": "Laita kameran yläreunasta `Äänitä` päälle, niin jokaiseen kalvoon tallentuu sen hetken ääni. Kohdassa `Esityksen muistiinpanot` toiminto `Tiivistä tekoälyllä` tekee tiivistelmän kalvojen tekstistä ja litteroinnista. Se vaatii iOS 26:n tai uudemman laitteessa, joka tukee Apple Intelligencea."},
+      {"q": "Mihin kalvoni ja äänitykseni tallentuvat?", "a": "Laitteellesi. Ne siirtyvät omaan iCloudiisi vain, jos laitat `Synkronointi` päälle Omat tiedot -näkymässä, eikä tiliä tarvita. Lisätietoja tietosuojakäytännössä."}
+    ]
+  },
+  "closing": {
+    "headline": "Seuraavasta luennosta\nalkaen suorat kalvot",
+    "cta": "Lataa App Storesta"
+  },
+  "ui": {
+    "skip": "Siirry sisältöön",
+    "languages": "Kieli",
+    "privacy": "Tietosuojakäytäntö",
+    "contact": "Kysymyksiä, virheitä tai ideoita? Kirjoita osoitteeseen {email}."
+  }
+}

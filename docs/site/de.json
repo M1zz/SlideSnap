@@ -1,0 +1,114 @@
+{
+  "title": "CatchSlide: Vorlesungsfolien gerade, auch schräg fotografiert",
+  "description": "Von jedem Platz aus findet CatchSlide die Ecken der Folie, entzerrt sie wie von vorn, ordnet sie nach Präsentation und macht den Text durchsuchbar.",
+  "hero": {
+    "headline": "Schräg fotografiert.\nGerade gespeichert.",
+    "lead": "Die Kamera findet alle vier Ecken der Folie, richtet sie gerade aus und schneidet den Raum drumherum weg. Folien, die du nacheinander aufnimmst, landen in derselben Präsentation.",
+    "cta": "Im App Store laden",
+    "note": "Einmal kaufen, alles nutzen. Kein Abo, kein Konto."
+  },
+  "demo": {
+    "title": "Selbst entzerren",
+    "lead": "Dieses Foto wurde schräg von einem Seitenplatz im Hörsaal aufgenommen. Die grüne Linie zeigt, wo die Ecken der Folie gefunden wurden.",
+    "straighten": "Entzerren",
+    "reset": "Zurück zum Foto",
+    "photo": "Schräg aufgenommenes Foto",
+    "result": "Die von CatchSlide entzerrte Folie",
+    "waiting": "Tippe auf Entzerren, dann erscheint das Ergebnis hier",
+    "hint": "Du kannst die Eckpunkte auch selbst verschieben oder einen auswählen und mit den Pfeiltasten bewegen.",
+    "corners": ["Ecke oben links", "Ecke oben rechts", "Ecke unten rechts", "Ecke unten links"],
+    "note": "Die Demo nutzt ein vorab aufgenommenes Foto. In der App werden die Ecken live im Kamerabild gefunden, und die Texterkennung läuft direkt auf deinem Gerät."
+  },
+  "problem": {
+    "title": "Zum Lernen die Fotos geöffnet und die Folie nicht gefunden?",
+    "text": "Folien aus der letzten Reihe sind immer schief und gehen zwischen Selfies und Kassenzetteln unter. Im stillen Hörsaal hält dich schon das Auslösegeräusch zurück. CatchSlide fotografiert lautlos, entzerrt jede Folie und hält sie nach Präsentation zusammen."
+  },
+  "features": [
+    {
+      "title": "Gerade, sobald du auslöst",
+      "text": "Die Kamera verfolgt die vier Ecken der Folie live und wird grün, sobald sie sitzen. Selbst schräg aufgenommen wirkt die Folie wie von vorn fotografiert, der Hintergrund ist weg.\nKein Auslösegeräusch. Mit `Automatische Aufnahme` wird jede neue Folie von selbst erfasst, verwackelte Bilder werden übersprungen.",
+      "shot": "03-slide"
+    },
+    {
+      "title": "Vorhandene Fotos in einem Rutsch",
+      "text": "Wähle in der Fotos-App mehrere Bilder aus der Vorlesung und teile sie mit CatchSlide. Sie werden entzerrt und in Aufnahmereihenfolge als eine Präsentation abgelegt.\n`Text schärfen` entfernt Schatten und flauen Kontrast.",
+      "shot": "01-share"
+    },
+    {
+      "title": "Ein Wort genügt",
+      "text": "CatchSlide liest den Text jeder Folie direkt auf deinem Gerät. Auch Wochen später bringt dich ein einziges Wort zur richtigen Folie.\nNotizen zu Folien sind ebenfalls durchsuchbar. Markiere ein paar mit `Klausur`, und der ganze Prüfungsstoff ist eine Suche entfernt.",
+      "shot": "06-memo-search"
+    }
+  ],
+  "steps": {
+    "title": "In drei Schritten startklar",
+    "items": [
+      {"title": "Kamera öffnen", "text": "Über die Kamerataste in der Liste, das Widget auf dem Home-Bildschirm oder den Sperrbildschirm."},
+      {"title": "Folie ins Bild nehmen", "text": "Werden die Ecken grün, auslösen oder die automatische Aufnahme machen lassen."},
+      {"title": "Nach Präsentation nachschlagen", "text": "Suchen, Notizen ergänzen und ein PDF zum Lernen exportieren."}
+    ]
+  },
+  "reference": {
+    "title": "Was du mit einer Präsentation machen kannst",
+    "rows": [
+      ["Aufnahme", "Nimm beim Fotografieren Ton auf und hör dir jede Folie ab dem Moment an, in dem du sie fotografiert hast"],
+      ["Transkription", "Macht aus der Aufnahme Text, zeigt, was zu jeder Folie gesagt wurde, und fließt in die Suche ein"],
+      ["KI-Zusammenfassung", "Fasst die Präsentation aus Folientext und Transkript zusammen (iOS 26 oder neuer auf Geräten mit Apple Intelligence)"],
+      ["PDF", "Lernunterlagen mit einer, zwei oder vier Folien pro Seite"],
+      ["Markdown", "Ein .zip für Notion oder Obsidian"],
+      ["PowerPoint", "Export als .pptx, das Transkript steht in den Sprechernotizen"],
+      ["Zusammenführen", "Mehrere Präsentationen auswählen und zu einer verbinden"],
+      ["iCloud-Abgleich", "Einschalten, um deine Präsentationen auf anderen Geräten mit derselben Apple ID zu sehen. Standardmäßig aus"],
+      ["Widgets", "Öffnen die Kamera direkt vom Home- oder Sperrbildschirm"]
+    ],
+    "note": "Texterkennung, Transkription und KI-Zusammenfassungen laufen auf deinem Gerät."
+  },
+  "pricing": {
+    "title": "Einmal kaufen, alles drin",
+    "free": {
+      "name": "CatchSlide",
+      "items": [
+        "Lautlose Aufnahme, automatische Aufnahme und Entzerren",
+        "Mehrere Fotos auf einmal aus der Fotos-App importieren",
+        "Folien nach Präsentation, Suche in Text und Notizen",
+        "Aufnahme, Transkription und KI-Zusammenfassung",
+        "Export als PDF, Markdown und PowerPoint",
+        "iCloud-Abgleich und Widgets"
+      ]
+    },
+    "pro": {
+      "name": "Trinkgeld (freiwillig)",
+      "items": [
+        "Wenn dir die App hilft, kannst du dem Entwickler ein kleines Trinkgeld geben",
+        "Trinkgeld schaltet nichts frei. Alle Funktionen gibt es auch ohne"
+      ],
+      "note": "Zu finden unter Meine Angaben."
+    },
+    "note": "Kein Abo und keine kostenpflichtigen Zusatzfunktionen. Den Preis für dein Land findest du im App Store."
+  },
+  "faq": {
+    "title": "Häufige Fragen",
+    "items": [
+      {"q": "Wie fotografiere ich eine Folie?", "a": "Öffne die Kamera und richte sie auf die Folie. Sobald die Ecken grün werden, löst du aus. Mit eingeschalteter automatischer Aufnahme wird jede neue Folie von selbst erfasst, sobald sie wechselt."},
+      {"q": "Gibt es ein Auslösegeräusch?", "a": "Nein. Das Bild wird direkt aus dem Kamerabild gespeichert, deshalb bleibt es in jedem Land lautlos."},
+      {"q": "Warum landen meine Fotos in einer Präsentation?", "a": "Machst du das nächste Foto innerhalb von 5 Minuten nach dem letzten, gilt es als Teil derselben Präsentation. Tippe in der Liste auf den Titel, um sie umzubenennen, und verbinde getrennte Präsentationen mit `Präsentationen zusammenführen`."},
+      {"q": "Kann ich Fotos hinzufügen, die ich schon gemacht habe?", "a": "Ja. Wähle sie in der Fotos-App aus und teile sie mit CatchSlide, oder tippe in der Liste auf ＋ und wähle `Aus Fotos importieren`. Sie werden entzerrt und in Aufnahmereihenfolge als eine Präsentation abgelegt."},
+      {"q": "Die Ecken wurden falsch erkannt.", "a": "Öffne die Folie, wähle im Menü ⋯ `Ecken anpassen` und zieh die vier Ecken an die richtige Stelle. `Automatisch erkennen` sucht sie neu, `Ganzes Bild` nimmt das komplette Foto. Das Original bleibt immer erhalten, du kannst es also jederzeit neu entzerren."},
+      {"q": "Kann ich den Text auf meinen Folien durchsuchen?", "a": "Gib oben in der Liste ein Wort ins Suchfeld ein. Durchsucht werden Folientext, Präsentationstitel, Notizen und Transkripte, und du springst direkt zur Folie. Die Texterkennung läuft auf deinem Gerät."},
+      {"q": "Wie exportiere ich ein PDF?", "a": "Öffne in einer Präsentation das Teilen-Menü, wähle `Als PDF exportieren` und entscheide dich für eine, zwei oder vier Folien pro Seite. Über das Teilen-Menü sicherst du es in Dateien oder schickst es an eine andere App."},
+      {"q": "Wie ändere ich die Reihenfolge oder lösche Folien?", "a": "Halte in einer Präsentation eine Folie gedrückt und zieh sie an ihren neuen Platz. Im selben Menü kannst du eine Folie löschen oder teilen, mit `Auswählen` löschst du mehrere auf einmal."},
+      {"q": "Wie funktionieren Aufnahme und KI-Zusammenfassung?", "a": "Schalte oben in der Kamera `Aufnahme` ein, dann behält jede Folie den Ton aus diesem Moment. In `Notizen zur Präsentation` erstellt `Mit KI zusammenfassen` eine Zusammenfassung aus Folientext und Transkript. Dafür brauchst du iOS 26 oder neuer auf einem Gerät mit Apple Intelligence."},
+      {"q": "Wo werden meine Folien und Aufnahmen gespeichert?", "a": "Auf deinem Gerät. In deine eigene iCloud gelangen sie nur, wenn du unter Meine Angaben `Abgleichen` einschaltest, und ein Konto brauchst du nicht. Mehr dazu in der Datenschutzerklärung."}
+    ]
+  },
+  "closing": {
+    "headline": "Ab der nächsten Vorlesung\nsind deine Folien gerade",
+    "cta": "Im App Store laden"
+  },
+  "ui": {
+    "skip": "Zum Inhalt springen",
+    "languages": "Sprache",
+    "privacy": "Datenschutzerklärung",
+    "contact": "Fragen, Fehler oder Ideen? Schreib an {email}."
+  }
+}

@@ -1,184 +1,192 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="cs">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CatchSlide — Podpora</title>
-<meta name="description" content="Podpora CatchSlide: foť slajdy z přednášek, nahrávej výklad a opakuj si podle přepisů a shrnutí od AI.">
-<style>
-  :root {
-    --blue: #2f6bde;
-    --blue-light: #4facfe;
-    --green: #29cc70;
-    --ink: #1a2233;
-    --muted: #5b6577;
-    --bg: #f5f7fb;
-    --card: #ffffff;
-    --border: #e4e9f2;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --ink: #e8ecf4;
-      --muted: #9aa4b8;
-      --bg: #0f131b;
-      --card: #1a2130;
-      --border: #2a3346;
-    }
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-    color: var(--ink);
-    background: var(--bg);
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-  }
-  .hero {
-    background: linear-gradient(135deg, var(--blue-light) 0%, var(--blue) 100%);
-    color: #fff;
-    padding: 64px 24px 56px;
-    text-align: center;
-  }
-  .hero img {
-    width: 108px; height: 108px;
-    border-radius: 24px;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.28);
-  }
-  .hero h1 { margin: 20px 0 6px; font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; }
-  .hero p { margin: 0; font-size: 1.05rem; opacity: 0.95; }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-  section { padding: 40px 0; border-bottom: 1px solid var(--border); }
-  section:last-of-type { border-bottom: none; }
-  h2 { font-size: 1.35rem; font-weight: 700; margin: 0 0 18px; letter-spacing: -0.01em; }
-  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 520px) { .features { grid-template-columns: 1fr; } }
-  .feature {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 14px; padding: 18px 18px 16px;
-  }
-  .feature .ic { font-size: 1.5rem; }
-  .feature h3 { margin: 8px 0 4px; font-size: 1rem; }
-  .feature p { margin: 0; color: var(--muted); font-size: 0.92rem; }
-  .faq { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 6px 20px; }
-  details { padding: 14px 0; border-bottom: 1px solid var(--border); }
-  details:last-child { border-bottom: none; }
-  summary { cursor: pointer; font-weight: 600; list-style: none; }
-  summary::-webkit-details-marker { display: none; }
-  summary::before { content: "＋"; color: var(--blue); font-weight: 700; margin-right: 10px; }
-  details[open] summary::before { content: "－"; }
-  details p { margin: 12px 0 2px; color: var(--muted); }
-  .contact {
-    text-align: center; background: var(--card);
-    border: 1px solid var(--border); border-radius: 16px; padding: 32px 24px;
-  }
-  .btn {
-    display: inline-block; margin-top: 12px;
-    background: var(--blue); color: #fff; text-decoration: none;
-    padding: 12px 26px; border-radius: 999px; font-weight: 600;
-  }
-  a { color: var(--blue); }
-  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 32px 24px 48px; }
-  .tag { display:inline-block; color: var(--green); font-weight:700; }
-</style>
-<link rel="canonical" href="https://m1zz.github.io/SlideSnap/cs/">
-<link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
-<link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
-<link rel="alternate" hreflang="en-GB" href="https://m1zz.github.io/SlideSnap/en/">
-<link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
-<link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
-<link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
-<link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
-<link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
-<link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
-<link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
-<link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
-<link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
-<link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
-<link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
-<link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
-<link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
-<link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
-<link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
-<link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
-<link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
-<link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
-<link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
-<link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
-<link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
-<link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CatchSlide: snímky z přednášek rovně, i když fotíte z boku</title>
+  <meta name="description" content="Z jakéhokoli místa v posluchárně najde CatchSlide rohy snímku, narovná ho jako zepředu, roztřídí podle prezentací a umožní hledat v jeho textu.">
+  <meta name="theme-color" content="#3478E7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f131b" media="(prefers-color-scheme: dark)">
+  <meta name="apple-itunes-app" content="app-id=6790835318">
+  <link rel="canonical" href="https://m1zz.github.io/SlideSnap/cs/">
+  <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
+  <link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
+  <link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
+  <link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
+  <link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
+  <link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
+  <link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
+  <link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
+  <link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
+  <link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
+  <link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
+  <link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
+  <link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
+  <link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
+  <link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
+  <link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
+  <link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
+  <link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
+  <link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
+  <link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
+  <link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
+  <link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CatchSlide: snímky z přednášek rovně, i když fotíte z boku">
+  <meta property="og:description" content="Z jakéhokoli místa v posluchárně najde CatchSlide rohy snímku, narovná ho jako zepředu, roztřídí podle prezentací a umožní hledat v jeho textu.">
+  <meta property="og:url" content="https://m1zz.github.io/SlideSnap/cs/">
+  <meta property="og:image" content="https://m1zz.github.io/SlideSnap/img/cs/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../icon.png">
+  <link rel="apple-touch-icon" href="../icon.png">
+  <link rel="stylesheet" href="../site.css">
+  <link rel="stylesheet" href="../demo.css">
+  <style>:root{--accent:#3478E7}@media (prefers-color-scheme:dark){:root{--accent:#5EA2FF}}</style>
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
-  <div class="hero">
-    <img src="../icon.png" alt="Ikona aplikace CatchSlide">
-    <h1>CatchSlide</h1>
-    <p>Foť slajdy z přednášek. Budou rovné, prohledávatelné a připravené k opakování.</p>
-  </div>
+  <a class="skip" href="#main">Přejít na obsah</a>
+  <header class="bar">
+    <a class="brand" href="../cs/"><img src="../icon.png" alt="" width="32" height="32">CatchSlide</a>
+    <a class="lang-link" href="#languages">Jazyk</a>
+  </header>
 
-  <div class="wrap">
-    <section>
-      <h2>Funkce</h2>
-      <div class="features">
-        <div class="feature"><div class="ic">🟩</div><h3>Živé rozpoznání slajdu</h3><p>Fotoaparát najde čtyři rohy slajdu už při zaměřování, narovná ho, jako bys na něj koukal zepředu, a umí ho vyfotit i sám.</p></div>
-        <div class="feature"><div class="ic">🤫</div><h3>Tiché focení</h3><p>Žádný zvuk spouště, takže můžeš fotit uprostřed přednášky a nikoho nerušit.</p></div>
-        <div class="feature"><div class="ic">🎙️</div><h3>Nahrávání a přehrávání</h3><p>Nahrávej přednášku, zatímco fotíš. Klepni na libovolný slajd a uslyšíš, co v tu chvíli zaznělo.</p></div>
-        <div class="feature"><div class="ic">💬</div><h3>Přepisy</h3><p>Převeď nahrávky na text přímo v zařízení a čti si, co zaznělo u kterého slajdu.</p></div>
-        <div class="feature"><div class="ic">✨</div><h3>Shrnutí od AI</h3><p>Získej přehled, hlavní myšlenky a klíčová slova celé přednášky, vytvořené v zařízení pomocí Apple Intelligence.</p></div>
-        <div class="feature"><div class="ic">🔍</div><h3>Hledání ve všem</h3><p>Najdi slajd podle libovolného slova na něm nebo podle toho, co řekl přednášející.</p></div>
-        <div class="feature"><div class="ic">🗂️</div><h3>Pořádek podle prezentací</h3><p>Slajdy vyfocené za sebou se seskupí do jedné prezentace. Můžeš ji přejmenovat, přeskládat slajdy nebo prezentace sloučit.</p></div>
-        <div class="feature"><div class="ic">📤</div><h3>PDF, Notion, PowerPoint</h3><p>Exportuj PDF k učení, poznámku v Markdownu pro Notion či Obsidian nebo prezentaci v PowerPointu s přepisem v poznámkách přednášejícího.</p></div>
-        <div class="feature"><div class="ic">☁️</div><h3>Synchronizace iCloudu</h3><p>Slajdy a nahrávky můžeš volitelně mít na všech svých iPhonech, iPadech a Macích.</p></div>
-        <div class="feature"><div class="ic">🖼️</div><h3>Z Fotek</h3><p>Sdílej fotky z přednášek z aplikace Fotky a ty se narovnají a uloží jako jedna prezentace.</p></div>
+  <main id="main">
+    <section class="hero">
+      <div class="copy">
+        <h1>Vyfoceno z boku.<br>Uloženo zepředu.</h1>
+        <p class="lead">Fotoaparát najde všechny čtyři rohy snímku, narovná ho a ořízne okolí. Snímky vyfocené za sebou skončí ve stejné prezentaci.</p>
+        <div class="actions"><a class="cta" href="https://apps.apple.com/app/id6790835318">Stáhnout v App Storu</a><a class="try" href="#try">Narovnejte si ho sami ↓</a></div>
+        <p class="muted small">Jeden nákup, všechny funkce. Žádné předplatné, žádný účet.</p>
       </div>
+      <div class="phone"><img src="../img/cs/02-list.jpg" alt="Vyfoceno z boku. Uloženo zepředu." width="720" height="1564" decoding="async"></div>
     </section>
 
-    <section>
+
+    <section class="reveal" id="try">
+      <h2>Narovnejte si ho sami</h2>
+      <p class="muted">Tahle fotka vznikla šikmo z místa na kraji posluchárny. Zelený obrys ukazuje nalezené rohy snímku.</p>
+      <div id="demo" class="card demo-card" data-text="{&quot;title&quot;: &quot;Narovnejte si ho sami&quot;, &quot;lead&quot;: &quot;Tahle fotka vznikla šikmo z místa na kraji posluchárny. Zelený obrys ukazuje nalezené rohy snímku.&quot;, &quot;straighten&quot;: &quot;Narovnat&quot;, &quot;reset&quot;: &quot;Zpět na fotku&quot;, &quot;photo&quot;: &quot;Fotka pořízená šikmo&quot;, &quot;result&quot;: &quot;Snímek narovnaný aplikací CatchSlide&quot;, &quot;waiting&quot;: &quot;Klepněte na Narovnat a výsledek se zobrazí tady&quot;, &quot;hint&quot;: &quot;Rohové body můžete i přetáhnout, nebo jeden vybrat a posouvat ho šipkami na klávesnici.&quot;, &quot;corners&quot;: [&quot;Levý horní roh&quot;, &quot;Pravý horní roh&quot;, &quot;Pravý dolní roh&quot;, &quot;Levý dolní roh&quot;], &quot;note&quot;: &quot;Ukázka používá jednu předem pořízenou fotku. Aplikace hledá rohy živě v náhledu fotoaparátu a text rozpoznává přímo v zařízení.&quot;}"></div>
+    </section>
+
+    <section class="problem reveal">
+      <h2>Otevřeli jste před zkouškou fotky a snímek ne a ne najít?</h2>
+      <p>Snímky ze zadních řad jsou vždycky nakřivo a ztrácejí se mezi selfie a účtenkami. V tiché posluchárně vás od focení odradí už samotný zvuk závěrky. CatchSlide fotí potichu, každý snímek narovná a drží je pohromadě podle prezentací.</p>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Rovně hned při focení</h2>
+        <p>Fotoaparát živě sleduje čtyři rohy snímku a jakmile je zachytí, zezelená. I šikmo pořízený snímek vypadá jako focený zepředu, bez pozadí.<br>Žádný zvuk závěrky. Zapněte <code>Automatické focení</code> a každý nový snímek se vyfotí sám, rozmazané záběry se přeskočí.</p>
+      </div>
+      <div class="phone"><img src="../img/cs/03-slide.jpg" alt="Rovně hned při focení" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Starší fotky najednou</h2>
+        <p>V aplikaci Fotky vyberte několik fotek z přednášky a sdílejte je do CatchSlide. Narovnají se a uloží jako jedna prezentace v pořadí, v jakém jste je fotili.<br><code>Zostřit text</code> odstraní stíny a vybledlý kontrast.</p>
+      </div>
+      <div class="phone"><img src="../img/cs/01-share.jpg" alt="Starší fotky najednou" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Stačí jedno slovo</h2>
+        <p>CatchSlide přečte text každého snímku přímo v zařízení. I po několika týdnech vás jediné slovo dovede ke správnému snímku.<br>Poznámky ke snímkům se dají prohledávat také. Označte pár z nich slovem <code>zkouška</code> a celé učivo najdete jedním hledáním.</p>
+      </div>
+      <div class="phone"><img src="../img/cs/06-memo-search.jpg" alt="Stačí jedno slovo" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="reveal">
+      <h2>Začněte ve třech krocích</h2>
+      <ol class="steps"><li class="card"><span class="n">1</span><h3>Otevřete fotoaparát</h3><p>Tlačítkem v seznamu, widgetem na ploše nebo ze zamčené obrazovky.</p></li>
+<li class="card"><span class="n">2</span><h3>Zaměřte snímek</h3><p>Až rohy zezelenají, vyfoťte, nebo to nechte na automatickém focení.</p></li>
+<li class="card"><span class="n">3</span><h3>Vracejte se k prezentacím</h3><p>Hledejte, přidávejte poznámky a exportujte PDF na opakování.</p></li></ol>
+    </section>
+
+    <section class="reveal" id="commands">
+      <h2>Co všechno jde s prezentací udělat</h2>
+      <div class="card table">
+        <dl><div><dt>Nahrávání</dt><dd>Nahrávejte zvuk při focení a pak si každý snímek pusťte od chvíle, kdy jste ho vyfotili</dd></div><div><dt>Přepis</dt><dd>Převede nahrávku na text, ukáže, co zaznělo u každého snímku, a zapojí ho do hledání</dd></div><div><dt>Shrnutí pomocí AI</dt><dd>Shrne prezentaci z textu snímků a přepisu (iOS 26 nebo novější na zařízeních s podporou Apple Intelligence)</dd></div><div><dt>PDF</dt><dd>Podklady na opakování s jedním, dvěma nebo čtyřmi snímky na stránku</dd></div><div><dt>Markdown</dt><dd>Soubor .zip připravený pro Notion nebo Obsidian</dd></div><div><dt>PowerPoint</dt><dd>Export do .pptx s přepisem v poznámkách řečníka</dd></div><div><dt>Sloučení</dt><dd>Vyberte několik prezentací a spojte je do jedné</dd></div><div><dt>Synchronizace s iCloudem</dt><dd>Po zapnutí uvidíte prezentace i na dalších zařízeních se stejným Apple ID. Ve výchozím stavu vypnutá</dd></div><div><dt>Widgety</dt><dd>Otevřou fotoaparát přímo z plochy nebo zamčené obrazovky</dd></div></dl>
+      </div>
+      <p class="muted">Rozpoznávání textu, přepis i shrnutí pomocí AI běží přímo v zařízení.</p>
+    </section>
+
+
+    <section class="reveal" id="pricing">
+      <h2>Koupíte jednou, máte všechno</h2>
+      <div class="plans">
+        <div class="card plan free">
+          <h3>CatchSlide</h3>
+          <ul><li>Tiché focení, automatické focení a narovnání</li><li>Import více fotek najednou z aplikace Fotky</li><li>Snímky podle prezentací, hledání v textu i poznámkách</li><li>Nahrávání, přepis a shrnutí pomocí AI</li><li>Export do PDF, Markdownu a PowerPointu</li><li>Synchronizace s iCloudem a widgety</li></ul>
+          
+        </div>
+        <div class="card plan pro">
+          <h3>Spropitné (dobrovolné)</h3>
+          <ul><li>Pokud vám aplikace pomáhá, můžete vývojáři poslat malé spropitné</li><li>Spropitné nic neodemyká. Všechny funkce fungují i bez něj</li></ul>
+          <p class="muted">Najdete ho na obrazovce Moje údaje.</p>
+        </div>
+      </div>
+      <p class="muted">Žádné předplatné ani placené odemykání funkcí. Cenu pro vaši zemi najdete v App Storu.</p>
+    </section>
+
+    <section class="reveal" id="faq">
       <h2>Časté dotazy</h2>
-      <div class="faq">
-        <details open>
-          <summary>Jak fotit slajdy?</summary>
-          <p>Otevři aplikaci a fotoaparát je připravený. Zaměř slajd, až se rámeček zbarví <span class="tag">zeleně</span>, a klepni na spoušť nebo nech snímek pořídit automaticky. Když se slajd změní, další se vyfotí sám.</p>
-        </details>
-        <details>
-          <summary>Jak nahrát přednášku?</summary>
-          <p>Klepni nahoře na obrazovce fotoaparátu na <strong>Nahrávat</strong>. Přednáška se nahrává, zatímco fotíš. Později otevři libovolný slajd a klepnutím na přehrávání uslyšíš nahrávku od chvíle, kdy jsi ho vyfotil. Slajdy se při přehrávání přepínají samy.</p>
-        </details>
-        <details>
-          <summary>Jak získám přepis nebo shrnutí od AI?</summary>
-          <p>Otevři prezentaci a klepni na tlačítko poznámek ✨. Klepni na <strong>Přepsat</strong> u nahrávky a poté na <strong>Shrnout pomocí AI</strong>. Shrnutí od AI vyžaduje zařízení s podporou Apple Intelligence (iOS 26 a novější) se zapnutou funkcí Apple Intelligence.</p>
-        </details>
-        <details>
-          <summary>Proč jsou moje slajdy seskupené?</summary>
-          <p>Slajdy vyfocené během pěti minut po sobě se berou jako jedna přednáška a ukládají se do jedné prezentace. Můžeš ji přejmenovat nebo prezentace v seznamu sloučit.</p>
-        </details>
-        <details>
-          <summary>Jak exportovat?</summary>
-          <p>V prezentaci otevři nabídku ⋯ a vyber PDF (jeden, dva nebo čtyři slajdy na stránku), Markdown pro Notion či Obsidian nebo PowerPoint, který se otevře i v Keynote a Prezentacích Google.</p>
-        </details>
-        <details>
-          <summary>Jak funguje synchronizace iCloudu?</summary>
-          <p>Zapni ji v části <strong>Moje údaje › Synchronizace</strong>. Prezentace, slajdy a nahrávky se ukládají do tvého soukromého iCloudu a objeví se na dalších zařízeních přihlášených pod stejným účtem Apple. Ve výchozím stavu je vypnutá, protože fotky a nahrávky zabírají místo v úložišti iCloudu.</p>
-        </details>
-        <details>
-          <summary>Kde jsou moje data?</summary>
-          <p>V tvém zařízení. Rozpoznávání textu, přepis i shrnutí od AI probíhají přímo v zařízení. Data se dostanou do tvého iCloudu, jen když zapneš synchronizaci. Více v <a href="privacy.html">Zásadách ochrany osobních údajů</a>.</p>
-        </details>
-      </div>
+      <div class="faq"><details><summary>Jak vyfotím snímek?</summary><p>Otevřete fotoaparát a zaměřte snímek. Jakmile rohy zezelenají, vyfoťte. Se zapnutým automatickým focením se další snímek vyfotí sám pokaždé, když se změní.</p></details>
+<details><summary>Je slyšet závěrka?</summary><p>Ne. Záběr se ukládá přímo z náhledu fotoaparátu, takže je focení tiché v každé zemi.</p></details>
+<details><summary>Proč se fotky seskupily do jedné prezentace?</summary><p>Když další fotku pořídíte do 5 minut od předchozí, patří do stejné prezentace. Klepnutím na název v seznamu ji přejmenujete a rozdělené prezentace spojíte přes <code>Sloučit prezentace</code>.</p></details>
+<details><summary>Můžu přidat fotky, které už mám?</summary><p>Ano. Vyberte je v aplikaci Fotky a sdílejte do CatchSlide, nebo v seznamu klepněte na ＋ a zvolte <code>Importovat z Fotek</code>. Narovnají se a uloží jako jedna prezentace v pořadí focení.</p></details>
+<details><summary>Rohy se rozpoznaly špatně.</summary><p>Otevřete snímek, v nabídce ⋯ zvolte <code>Upravit rohy</code> a přetáhněte čtyři rohy na správné místo. <code>Rozpoznat automaticky</code> je najde znovu, <code>Celý obrázek</code> použije celou fotku. Originál se vždy uchovává, takže to můžete kdykoli zopakovat.</p></details>
+<details><summary>Dá se hledat v textu snímků?</summary><p>Napište slovo do vyhledávacího pole nad seznamem. Hledá se v textu snímků, názvech prezentací, poznámkách i přepisech a rovnou se otevře příslušný snímek. Rozpoznávání textu probíhá v zařízení.</p></details>
+<details><summary>Jak vyexportuju PDF?</summary><p>V prezentaci otevřete nabídku sdílení, zvolte <code>Exportovat jako PDF</code> a vyberte jeden, dva nebo čtyři snímky na stránku. Z nabídky sdílení ho uložíte do Souborů nebo pošlete do jiné aplikace.</p></details>
+<details><summary>Jak změním pořadí nebo smažu snímky?</summary><p>V prezentaci podržte snímek a přetáhněte ho. Ve stejné nabídce ho můžete smazat nebo sdílet a pomocí <code>Vybrat</code> smažete několik naráz.</p></details>
+<details><summary>Jak funguje nahrávání a shrnutí pomocí AI?</summary><p>Nahoře ve fotoaparátu zapněte <code>Nahrávat</code> a ke každému snímku se uloží zvuk z té chvíle. V <code>Poznámky k prezentaci</code> vytvoří <code>Shrnout pomocí AI</code> shrnutí z textu snímků a přepisu. Shrnutí vyžaduje iOS 26 nebo novější na zařízení s podporou Apple Intelligence.</p></details>
+<details><summary>Kde se ukládají moje snímky a nahrávky?</summary><p>Ve vašem zařízení. Do vašeho vlastního iCloudu se dostanou, jen když v Moje údaje zapnete <code>Synchronizace</code>, a žádný účet nepotřebujete. Podrobnosti najdete v zásadách ochrany soukromí.</p></details></div>
+      <p class="contact">Dotazy, chyby nebo nápady posílejte na <a href="mailto:leeo@kakao.com">leeo@kakao.com</a>.</p>
     </section>
 
-    <section>
-      <div class="contact">
-        <h2 style="margin-bottom:6px">Potřebuješ pomoc?</h2>
-        <p style="color:var(--muted);margin:0">Dotazy, hlášení chyb i nápady na nové funkce jsou vítány.</p>
-        <a class="btn" href="mailto:leeo@kakao.com?subject=%5BCatchSlide%5D%20Support">Napsat nám</a>
-        <p style="margin:14px 0 0"><a href="privacy.html">Zásady ochrany osobních údajů</a></p>
-      </div>
+    <section class="closing reveal">
+      <h2>Od příští přednášky<br>rovné snímky</h2>
+      <a class="cta" href="https://apps.apple.com/app/id6790835318">Stáhnout v App Storu</a>
     </section>
-  </div>
+  </main>
 
   <footer>
-    © 2026 CatchSlide &nbsp;·&nbsp; leeo@kakao.com
+    <nav id="languages" class="langs" aria-label="Jazyk"><a href="../" hreflang="ko" lang="ko">한국어</a>
+<a href="../en/" hreflang="en" lang="en">English</a>
+<a href="../zh-Hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
+<a href="../zh-Hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
+<a href="../ja/" hreflang="ja" lang="ja">日本語</a>
+<a href="../ru/" hreflang="ru" lang="ru">Русский</a>
+<a href="../es/" hreflang="es" lang="es">Español</a>
+<a href="../de/" hreflang="de" lang="de">Deutsch</a>
+<a href="../fr/" hreflang="fr" lang="fr">Français</a>
+<a href="../it/" hreflang="it" lang="it">Italiano</a>
+<a href="../pt-BR/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a>
+<a href="../th/" hreflang="th" lang="th">ไทย</a>
+<a href="../vi/" hreflang="vi" lang="vi">Tiếng Việt</a>
+<a href="../cs/" hreflang="cs" lang="cs" aria-current="page">Čeština</a>
+<a href="../da/" hreflang="da" lang="da">Dansk</a>
+<a href="../el/" hreflang="el" lang="el">Ελληνικά</a>
+<a href="../fi/" hreflang="fi" lang="fi">Suomi</a>
+<a href="../id/" hreflang="id" lang="id">Indonesia</a>
+<a href="../nb/" hreflang="nb" lang="nb">Norsk</a>
+<a href="../nl/" hreflang="nl" lang="nl">Nederlands</a>
+<a href="../pl/" hreflang="pl" lang="pl">Polski</a>
+<a href="../sv/" hreflang="sv" lang="sv">Svenska</a>
+<a href="../tr/" hreflang="tr" lang="tr">Türkçe</a></nav>
+    <p><a href="privacy.html">Zásady ochrany soukromí</a> · <a href="mailto:leeo@kakao.com">leeo@kakao.com</a> · © 2026 CatchSlide</p>
   </footer>
-<nav style="text-align:center;font-size:0.85rem;line-height:2;padding:0 24px 40px"><a href="../" hreflang="ko">한국어</a> · <a href="../en/" hreflang="en">English</a> · <a href="../zh-Hans/" hreflang="zh-Hans">简体中文</a> · <a href="../zh-Hant/" hreflang="zh-Hant">繁體中文</a> · <a href="../ja/" hreflang="ja">日本語</a> · <a href="../ru/" hreflang="ru">Русский</a> · <a href="../es/" hreflang="es">Español</a> · <a href="../de/" hreflang="de">Deutsch</a> · <a href="../fr/" hreflang="fr">Français</a> · <a href="../it/" hreflang="it">Italiano</a> · <a href="../pt-BR/" hreflang="pt-BR">Português (Brasil)</a> · <a href="../th/" hreflang="th">ไทย</a> · <a href="../vi/" hreflang="vi">Tiếng Việt</a> · <a href="../cs/" hreflang="cs">Čeština</a> · <a href="../da/" hreflang="da">Dansk</a> · <a href="../el/" hreflang="el">Ελληνικά</a> · <a href="../fi/" hreflang="fi">Suomi</a> · <a href="../id/" hreflang="id">Indonesia</a> · <a href="../nb/" hreflang="nb">Norsk</a> · <a href="../nl/" hreflang="nl">Nederlands</a> · <a href="../pl/" hreflang="pl">Polski</a> · <a href="../sv/" hreflang="sv">Svenska</a> · <a href="../tr/" hreflang="tr">Türkçe</a></nav>
+
+  <script>
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target) }
+    }), { rootMargin: "0px 0px -10% 0px" });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  </script>
+  <script src="../demo.js"></script>
 </body>
 </html>

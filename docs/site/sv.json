@@ -1,0 +1,114 @@
+{
+  "title": "CatchSlide: raka föreläsningsbilder, även när du fotar från sidan",
+  "description": "Var du än sitter hittar CatchSlide bildens hörn, rätar upp den som sedd rakt framifrån, sorterar per presentation och gör texten sökbar.",
+  "hero": {
+    "headline": "Fotad från sidan.\nSparad rakt framifrån.",
+    "lead": "Kameran hittar alla fyra hörnen på bilden, rätar upp den och skär bort rummet runt omkring. Bilder du tar i följd hamnar i samma presentation.",
+    "cta": "Hämta i App Store",
+    "note": "Ett köp, alla funktioner. Inget abonnemang, inget konto."
+  },
+  "demo": {
+    "title": "Räta upp den själv",
+    "lead": "Fotot är taget snett från en sidoplats i föreläsningssalen. Den gröna kanten visar var bildens hörn hittades.",
+    "straighten": "Räta upp",
+    "reset": "Tillbaka till fotot",
+    "photo": "Foto taget snett",
+    "result": "Bilden uppriktad av CatchSlide",
+    "waiting": "Tryck på Räta upp så visas resultatet här",
+    "hint": "Du kan också dra i hörnpunkterna, eller markera en och flytta den med piltangenterna.",
+    "corners": ["Övre vänstra hörnet", "Övre högra hörnet", "Nedre högra hörnet", "Nedre vänstra hörnet"],
+    "note": "Demon använder ett foto som tagits i förväg. I appen hittas hörnen direkt i kameran och texten känns igen på din enhet."
+  },
+  "problem": {
+    "title": "Öppnat bildbiblioteket för att plugga och inte hittat bilden?",
+    "text": "Bilder från bakersta raden blir alltid sneda och försvinner bland selfies och kvitton. I en tyst sal räcker slutarljudet för att du ska tveka. CatchSlide fotar ljudlöst, rätar upp varje bild och håller ihop dem per presentation."
+  },
+  "features": [
+    {
+      "title": "Rak i samma stund",
+      "text": "Kameran följer bildens fyra hörn i realtid och blir grön när den har dem. Även snett tagen blir bilden uppriktad som om den fotats rakt framifrån, utan bakgrunden.\nInget slutarljud. Slå på `Automatisk tagning` så tar appen varje ny bild själv och hoppar över suddiga foton.",
+      "shot": "03-slide"
+    },
+    {
+      "title": "Foton du redan har, på en gång",
+      "text": "Välj flera foton från föreläsningen i Bilder och dela dem med CatchSlide. De rätas upp och sparas som en presentation, i den ordning du tog dem.\n`Gör texten skarpare` tar bort skuggor och blek kontrast.",
+      "shot": "01-share"
+    },
+    {
+      "title": "Ett ord räcker",
+      "text": "CatchSlide läser texten på varje bild direkt på din enhet. Även veckor senare tar ett enda ord dig tillbaka till rätt bild.\nAnteckningar på bilderna är också sökbara. Skriv `tenta` på några, så är hela tentaplugget en sökning bort.",
+      "shot": "06-memo-search"
+    }
+  ],
+  "steps": {
+    "title": "Kom igång i tre steg",
+    "items": [
+      {"title": "Öppna kameran", "text": "Från kameraknappen i listan, widgeten på hemskärmen eller låsskärmen."},
+      {"title": "Få bilden i rutan", "text": "När hörnen blir gröna tar du bilden, eller låter automatisk tagning göra det."},
+      {"title": "Plugga per presentation", "text": "Sök, lägg till anteckningar och exportera en PDF att plugga på."}
+    ]
+  },
+  "reference": {
+    "title": "Det här kan du göra med en presentation",
+    "rows": [
+      ["Inspelning", "Spela in ljud medan du fotar och lyssna på varje bild från det ögonblick du tog den"],
+      ["Transkribering", "Gör inspelningen till text, visar vad som sades vid varje bild och ingår i sökningen"],
+      ["AI-sammanfattning", "Sammanfattar presentationen utifrån bildtext och transkribering (iOS 26 eller senare på enheter med Apple Intelligence)"],
+      ["PDF", "Studiematerial med en, två eller fyra bilder per sida"],
+      ["Markdown", "En .zip redo för Notion eller Obsidian"],
+      ["PowerPoint", "Exportera en .pptx med transkriberingen i talaranteckningarna"],
+      ["Slå ihop", "Markera flera presentationer och gör dem till en"],
+      ["iCloud-synkronisering", "Slå på för att se dina presentationer på andra enheter med samma Apple ID. Avstängd från början"],
+      ["Widgetar", "Öppnar kameran direkt från hemskärmen eller låsskärmen"]
+    ],
+    "note": "Textigenkänning, transkribering och AI-sammanfattningar sker på din enhet."
+  },
+  "pricing": {
+    "title": "Köp en gång, få allt",
+    "free": {
+      "name": "CatchSlide",
+      "items": [
+        "Ljudlös fotografering, automatisk tagning och upprätning",
+        "Import av flera foton samtidigt från Bilder",
+        "Bilder per presentation, sökning i text och anteckningar",
+        "Inspelning, transkribering och AI-sammanfattning",
+        "Export till PDF, Markdown och PowerPoint",
+        "iCloud-synkronisering och widgetar"
+      ]
+    },
+    "pro": {
+      "name": "Dricks (valfritt)",
+      "items": [
+        "Om appen hjälper dig kan du ge utvecklaren lite dricks",
+        "Dricks låser inte upp något. Alla funktioner fungerar ändå"
+      ],
+      "note": "Du hittar det under Min info."
+    },
+    "note": "Inget abonnemang och inga betalda tillägg. Se priset i ditt land i App Store."
+  },
+  "faq": {
+    "title": "Vanliga frågor",
+    "items": [
+      {"q": "Hur fotar jag en bild?", "a": "Öppna kameran och rikta den mot bilden. När hörnen blir gröna trycker du på avtryckaren. Med automatisk tagning påslagen tas nästa bild av sig själv varje gång den byts."},
+      {"q": "Hörs något slutarljud?", "a": "Nej. Bilden sparas direkt från kameran, så det är ljudlöst i alla länder."},
+      {"q": "Varför hamnade mina foton i en presentation?", "a": "Tar du nästa foto inom 5 minuter efter det förra hör det till samma presentation. Tryck på titeln i listan för att byta namn, och använd `Slå ihop presentationer` för att foga ihop dem som delats upp."},
+      {"q": "Kan jag lägga till foton jag redan har tagit?", "a": "Ja. Markera dem i Bilder och dela dem med CatchSlide, eller tryck på ＋ i listan och välj `Importera från Bilder`. De rätas upp och sparas som en presentation i den ordning de togs."},
+      {"q": "Hörnen hittades fel.", "a": "Öppna bilden, välj `Justera hörn` i menyn ⋯ och dra de fyra hörnen på plats. `Identifiera automatiskt` letar efter dem igen och `Hela bilden` använder hela fotot. Originalet sparas alltid, så du kan göra om det när du vill."},
+      {"q": "Kan jag söka i texten på mina bilder?", "a": "Skriv ett ord i sökfältet överst i listan. Sökningen går igenom bildtext, titlar, anteckningar och transkriberingar och hoppar direkt till bilden. Textigenkänningen sker på enheten."},
+      {"q": "Hur exporterar jag en PDF?", "a": "Öppna delningsmenyn i en presentation, välj `Exportera som PDF` och välj en, två eller fyra bilder per sida. Från delningsbladet sparar du den i Filer eller skickar den till en annan app."},
+      {"q": "Hur ändrar jag ordningen eller raderar bilder?", "a": "Håll fingret på en bild i en presentation och dra den. I samma meny kan du radera eller dela en bild, och med `Markera` raderar du flera på en gång."},
+      {"q": "Hur fungerar inspelning och AI-sammanfattning?", "a": "Slå på `Spela in` överst i kameran, så sparar varje bild ljudet från just det ögonblicket. Under `Presentationsanteckningar` gör `Sammanfatta med AI` en sammanfattning utifrån bildtext och transkribering. Det kräver iOS 26 eller senare på en enhet med Apple Intelligence."},
+      {"q": "Var sparas mina bilder och inspelningar?", "a": "På din enhet. De laddas bara upp till din egen iCloud om du slår på `Synkronisering` under Min info, och du behöver inget konto. Läs mer i integritetspolicyn."}
+    ]
+  },
+  "closing": {
+    "headline": "Från nästa föreläsning\när bilderna raka",
+    "cta": "Hämta i App Store"
+  },
+  "ui": {
+    "skip": "Hoppa till innehållet",
+    "languages": "Språk",
+    "privacy": "Integritetspolicy",
+    "contact": "Frågor, buggar eller idéer? Skriv till {email}."
+  }
+}

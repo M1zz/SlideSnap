@@ -1,184 +1,192 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CatchSlide — Pomoc</title>
-<meta name="description" content="Pomoc CatchSlide: fotografuj slajdy z wykładów, nagrywaj wystąpienia i powtarzaj materiał dzięki transkrypcjom i podsumowaniom AI.">
-<style>
-  :root {
-    --blue: #2f6bde;
-    --blue-light: #4facfe;
-    --green: #29cc70;
-    --ink: #1a2233;
-    --muted: #5b6577;
-    --bg: #f5f7fb;
-    --card: #ffffff;
-    --border: #e4e9f2;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --ink: #e8ecf4;
-      --muted: #9aa4b8;
-      --bg: #0f131b;
-      --card: #1a2130;
-      --border: #2a3346;
-    }
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-    color: var(--ink);
-    background: var(--bg);
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-  }
-  .hero {
-    background: linear-gradient(135deg, var(--blue-light) 0%, var(--blue) 100%);
-    color: #fff;
-    padding: 64px 24px 56px;
-    text-align: center;
-  }
-  .hero img {
-    width: 108px; height: 108px;
-    border-radius: 24px;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.28);
-  }
-  .hero h1 { margin: 20px 0 6px; font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; }
-  .hero p { margin: 0; font-size: 1.05rem; opacity: 0.95; }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-  section { padding: 40px 0; border-bottom: 1px solid var(--border); }
-  section:last-of-type { border-bottom: none; }
-  h2 { font-size: 1.35rem; font-weight: 700; margin: 0 0 18px; letter-spacing: -0.01em; }
-  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 520px) { .features { grid-template-columns: 1fr; } }
-  .feature {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 14px; padding: 18px 18px 16px;
-  }
-  .feature .ic { font-size: 1.5rem; }
-  .feature h3 { margin: 8px 0 4px; font-size: 1rem; }
-  .feature p { margin: 0; color: var(--muted); font-size: 0.92rem; }
-  .faq { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 6px 20px; }
-  details { padding: 14px 0; border-bottom: 1px solid var(--border); }
-  details:last-child { border-bottom: none; }
-  summary { cursor: pointer; font-weight: 600; list-style: none; }
-  summary::-webkit-details-marker { display: none; }
-  summary::before { content: "＋"; color: var(--blue); font-weight: 700; margin-right: 10px; }
-  details[open] summary::before { content: "－"; }
-  details p { margin: 12px 0 2px; color: var(--muted); }
-  .contact {
-    text-align: center; background: var(--card);
-    border: 1px solid var(--border); border-radius: 16px; padding: 32px 24px;
-  }
-  .btn {
-    display: inline-block; margin-top: 12px;
-    background: var(--blue); color: #fff; text-decoration: none;
-    padding: 12px 26px; border-radius: 999px; font-weight: 600;
-  }
-  a { color: var(--blue); }
-  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 32px 24px 48px; }
-  .tag { display:inline-block; color: var(--green); font-weight:700; }
-</style>
-<link rel="canonical" href="https://m1zz.github.io/SlideSnap/pl/">
-<link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
-<link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
-<link rel="alternate" hreflang="en-GB" href="https://m1zz.github.io/SlideSnap/en/">
-<link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
-<link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
-<link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
-<link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
-<link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
-<link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
-<link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
-<link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
-<link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
-<link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
-<link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
-<link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
-<link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
-<link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
-<link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
-<link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
-<link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
-<link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
-<link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
-<link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
-<link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
-<link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CatchSlide: proste slajdy z wykładu, nawet gdy robisz zdjęcie z boku</title>
+  <meta name="description" content="Z każdego miejsca na sali CatchSlide znajduje rogi slajdu, prostuje go jak widziany na wprost, układa według prezentacji i pozwala szukać w tekście.">
+  <meta name="theme-color" content="#3478E7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f131b" media="(prefers-color-scheme: dark)">
+  <meta name="apple-itunes-app" content="app-id=6790835318">
+  <link rel="canonical" href="https://m1zz.github.io/SlideSnap/pl/">
+  <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
+  <link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
+  <link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
+  <link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
+  <link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
+  <link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
+  <link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
+  <link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
+  <link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
+  <link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
+  <link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
+  <link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
+  <link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
+  <link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
+  <link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
+  <link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
+  <link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
+  <link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
+  <link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
+  <link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
+  <link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
+  <link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CatchSlide: proste slajdy z wykładu, nawet gdy robisz zdjęcie z boku">
+  <meta property="og:description" content="Z każdego miejsca na sali CatchSlide znajduje rogi slajdu, prostuje go jak widziany na wprost, układa według prezentacji i pozwala szukać w tekście.">
+  <meta property="og:url" content="https://m1zz.github.io/SlideSnap/pl/">
+  <meta property="og:image" content="https://m1zz.github.io/SlideSnap/img/pl/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../icon.png">
+  <link rel="apple-touch-icon" href="../icon.png">
+  <link rel="stylesheet" href="../site.css">
+  <link rel="stylesheet" href="../demo.css">
+  <style>:root{--accent:#3478E7}@media (prefers-color-scheme:dark){:root{--accent:#5EA2FF}}</style>
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
-  <div class="hero">
-    <img src="../icon.png" alt="Ikona aplikacji CatchSlide">
-    <h1>CatchSlide</h1>
-    <p>Fotografuj slajdy z wykładów. Będą proste, z wyszukiwaniem po tekście i gotowe do powtórek.</p>
-  </div>
+  <a class="skip" href="#main">Przejdź do treści</a>
+  <header class="bar">
+    <a class="brand" href="../pl/"><img src="../icon.png" alt="" width="32" height="32">CatchSlide</a>
+    <a class="lang-link" href="#languages">Język</a>
+  </header>
 
-  <div class="wrap">
-    <section>
-      <h2>Funkcje</h2>
-      <div class="features">
-        <div class="feature"><div class="ic">🟩</div><h3>Wykrywanie slajdu na żywo</h3><p>Aparat wykrywa cztery rogi slajdu podczas celowania, prostuje go tak, jakbyś patrzył na wprost, i może sam zrobić zdjęcie.</p></div>
-        <div class="feature"><div class="ic">🤫</div><h3>Fotografowanie bez dźwięku</h3><p>Bez dźwięku migawki możesz fotografować w trakcie wykładu, nikomu nie przeszkadzając.</p></div>
-        <div class="feature"><div class="ic">🎙️</div><h3>Nagrywanie i odtwarzanie</h3><p>Nagrywaj wystąpienie podczas fotografowania. Dotknij dowolnego slajdu, aby usłyszeć, co mówiono w tamtej chwili.</p></div>
-        <div class="feature"><div class="ic">💬</div><h3>Transkrypcje</h3><p>Zamieniaj nagrania na tekst na urządzeniu i czytaj, co powiedziano przy każdym slajdzie.</p></div>
-        <div class="feature"><div class="ic">✨</div><h3>Podsumowanie AI</h3><p>Otrzymaj omówienie, najważniejsze punkty i słowa kluczowe całego wystąpienia, utworzone na urządzeniu przez Apple Intelligence.</p></div>
-        <div class="feature"><div class="ic">🔍</div><h3>Wyszukiwanie we wszystkim</h3><p>Znajdź slajd po dowolnym słowie z jego treści lub po tym, co powiedział prelegent.</p></div>
-        <div class="feature"><div class="ic">🗂️</div><h3>Porządek według wystąpień</h3><p>Slajdy zrobione jeden po drugim trafiają do jednej prezentacji. Możesz zmienić jej nazwę, przestawić slajdy albo połączyć prezentacje.</p></div>
-        <div class="feature"><div class="ic">📤</div><h3>PDF, Notion, PowerPoint</h3><p>Wyeksportuj PDF do nauki, notatkę Markdown dla Notion lub Obsidian albo prezentację PowerPoint z transkrypcją w notatkach prelegenta.</p></div>
-        <div class="feature"><div class="ic">☁️</div><h3>Synchronizacja iCloud</h3><p>Opcjonalnie trzymaj slajdy i nagrania na wszystkich swoich iPhone’ach, iPadach i Macach.</p></div>
-        <div class="feature"><div class="ic">🖼️</div><h3>Ze Zdjęć</h3><p>Udostępnij zdjęcia z wykładów z aplikacji Zdjęcia, a zostaną wyprostowane i zebrane w jedną prezentację.</p></div>
+  <main id="main">
+    <section class="hero">
+      <div class="copy">
+        <h1>Zdjęcie z boku.<br>Slajd na wprost.</h1>
+        <p class="lead">Aparat znajduje wszystkie cztery rogi slajdu, prostuje go i odcina to, co dookoła. Slajdy fotografowane jeden po drugim trafiają do tej samej prezentacji.</p>
+        <div class="actions"><a class="cta" href="https://apps.apple.com/app/id6790835318">Pobierz z App Store</a><a class="try" href="#try">Wyprostuj go sam ↓</a></div>
+        <p class="muted small">Jeden zakup, wszystkie funkcje. Bez subskrypcji i bez konta.</p>
       </div>
+      <div class="phone"><img src="../img/pl/02-list.jpg" alt="Zdjęcie z boku. Slajd na wprost." width="720" height="1564" decoding="async"></div>
     </section>
 
-    <section>
-      <h2>Pytania i odpowiedzi</h2>
-      <div class="faq">
-        <details open>
-          <summary>Jak fotografować slajdy?</summary>
-          <p>Otwórz aplikację, a aparat jest gotowy. Ustaw slajd w kadrze, aż ramka zrobi się <span class="tag">zielona</span>, po czym dotknij spustu migawki albo pozwól zrobić zdjęcie automatycznie. Gdy slajd się zmieni, następny zostanie zapisany sam.</p>
-        </details>
-        <details>
-          <summary>Jak nagrać wystąpienie?</summary>
-          <p>Dotknij <strong>„Nagrywaj”</strong> u góry ekranu aparatu. Wystąpienie jest nagrywane podczas fotografowania. Później otwórz dowolny slajd i dotknij odtwarzania, aby usłyszeć nagranie od chwili, w której go sfotografowano. Odtwarzanie samo przewija slajdy.</p>
-        </details>
-        <details>
-          <summary>Jak uzyskać transkrypcję lub podsumowanie AI?</summary>
-          <p>Otwórz prezentację i dotknij przycisku notatek ✨. Dotknij <strong>„Przepisz”</strong> przy nagraniu, a potem <strong>„Podsumuj z AI”</strong>. Podsumowanie AI wymaga urządzenia obsługującego Apple Intelligence (iOS 26 lub nowszy) z włączonym Apple Intelligence.</p>
-        </details>
-        <details>
-          <summary>Dlaczego moje slajdy są zgrupowane?</summary>
-          <p>Slajdy zrobione w odstępie nie dłuższym niż pięć minut traktujemy jako jedno wystąpienie i zapisujemy w jednej prezentacji. Możesz zmienić jej nazwę albo połączyć prezentacje na liście.</p>
-        </details>
-        <details>
-          <summary>Jak eksportować?</summary>
-          <p>W prezentacji otwórz menu ⋯ i wybierz PDF (jeden, dwa lub cztery slajdy na stronie), Markdown dla Notion lub Obsidian albo PowerPoint, który otwiera się także w Keynote i Prezentacjach Google.</p>
-        </details>
-        <details>
-          <summary>Jak działa synchronizacja iCloud?</summary>
-          <p>Włącz ją w <strong>Moje dane › Synchronizacja</strong>. Prezentacje, slajdy i nagrania są przechowywane w Twoim prywatnym iCloud i pojawiają się na innych urządzeniach zalogowanych tym samym kontem Apple. Domyślnie jest wyłączona, ponieważ zdjęcia i nagrania zajmują miejsce w iCloud.</p>
-        </details>
-        <details>
-          <summary>Gdzie są moje dane?</summary>
-          <p>Na Twoim urządzeniu. Rozpoznawanie tekstu, transkrypcja i podsumowanie AI działają na urządzeniu. Dane trafiają do Twojego iCloud tylko wtedy, gdy włączysz synchronizację. Więcej w <a href="privacy.html">Polityce prywatności</a>.</p>
-        </details>
-      </div>
+
+    <section class="reveal" id="try">
+      <h2>Wyprostuj go sam</h2>
+      <p class="muted">To zdjęcie zrobiono pod kątem z bocznego miejsca na sali. Zielona ramka pokazuje, gdzie znaleziono rogi slajdu.</p>
+      <div id="demo" class="card demo-card" data-text="{&quot;title&quot;: &quot;Wyprostuj go sam&quot;, &quot;lead&quot;: &quot;To zdjęcie zrobiono pod kątem z bocznego miejsca na sali. Zielona ramka pokazuje, gdzie znaleziono rogi slajdu.&quot;, &quot;straighten&quot;: &quot;Wyprostuj&quot;, &quot;reset&quot;: &quot;Wróć do zdjęcia&quot;, &quot;photo&quot;: &quot;Zdjęcie zrobione pod kątem&quot;, &quot;result&quot;: &quot;Slajd wyprostowany przez CatchSlide&quot;, &quot;waiting&quot;: &quot;Stuknij Wyprostuj, a wynik pojawi się tutaj&quot;, &quot;hint&quot;: &quot;Punkty w rogach możesz też przeciągnąć sam albo zaznaczyć jeden i przesuwać go strzałkami.&quot;, &quot;corners&quot;: [&quot;Lewy górny róg&quot;, &quot;Prawy górny róg&quot;, &quot;Prawy dolny róg&quot;, &quot;Lewy dolny róg&quot;], &quot;note&quot;: &quot;Pokaz korzysta z jednego wcześniej zrobionego zdjęcia. W aplikacji rogi są wykrywane na żywo w aparacie, a tekst jest rozpoznawany na urządzeniu.&quot;}"></div>
     </section>
 
-    <section>
-      <div class="contact">
-        <h2 style="margin-bottom:6px">Potrzebujesz pomocy?</h2>
-        <p style="color:var(--muted);margin:0">Pytania, zgłoszenia błędów i pomysły na nowe funkcje są mile widziane.</p>
-        <a class="btn" href="mailto:leeo@kakao.com?subject=%5BCatchSlide%5D%20Support">Napisz do nas</a>
-        <p style="margin:14px 0 0"><a href="privacy.html">Polityka prywatności</a></p>
-      </div>
+    <section class="problem reveal">
+      <h2>Otwierasz galerię przed kolokwium i nie możesz znaleźć slajdu?</h2>
+      <p>Slajdy z ostatnich rzędów zawsze wychodzą krzywo i giną między selfie a paragonami. W cichej sali sam dźwięk migawki skutecznie zniechęca. CatchSlide robi zdjęcia bezgłośnie, prostuje każdy slajd i trzyma je razem według prezentacji.</p>
     </section>
-  </div>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Prosto od razu</h2>
+        <p>Aparat na żywo śledzi cztery rogi slajdu i robi się zielony, gdy je złapie. Nawet zdjęcie zrobione pod kątem wygląda jak zrobione na wprost, bez tła dookoła.<br>Bez dźwięku migawki. Włącz <code>Automatyczne zdjęcia</code>, a każdy nowy slajd zostanie sfotografowany sam, z pominięciem poruszonych ujęć.</p>
+      </div>
+      <div class="phone"><img src="../img/pl/03-slide.jpg" alt="Prosto od razu" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Stare zdjęcia, wszystkie naraz</h2>
+        <p>Wybierz kilka zdjęć z wykładu w aplikacji Zdjęcia i udostępnij je w CatchSlide. Zostaną wyprostowane i zapisane jako jedna prezentacja, w kolejności robienia.<br><code>Wyostrz tekst</code> usuwa cienie i wyblakły kontrast.</p>
+      </div>
+      <div class="phone"><img src="../img/pl/01-share.jpg" alt="Stare zdjęcia, wszystkie naraz" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Wystarczy jedno słowo</h2>
+        <p>CatchSlide odczytuje tekst każdego slajdu bezpośrednio na urządzeniu. Nawet po kilku tygodniach jedno słowo zaprowadzi cię do właściwego slajdu.<br>Notatki przy slajdach też da się przeszukiwać. Dopisz <code>egzamin</code> do kilku z nich, a cały materiał na egzamin znajdziesz jednym wyszukiwaniem.</p>
+      </div>
+      <div class="phone"><img src="../img/pl/06-memo-search.jpg" alt="Wystarczy jedno słowo" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="reveal">
+      <h2>Zacznij w trzech krokach</h2>
+      <ol class="steps"><li class="card"><span class="n">1</span><h3>Otwórz aparat</h3><p>Przyciskiem na liście, widżetem na ekranie początkowym albo z ekranu blokady.</p></li>
+<li class="card"><span class="n">2</span><h3>Złap slajd w kadrze</h3><p>Gdy rogi zrobią się zielone, zrób zdjęcie albo zostaw to automatycznym zdjęciom.</p></li>
+<li class="card"><span class="n">3</span><h3>Wracaj do prezentacji</h3><p>Szukaj, dodawaj notatki i eksportuj PDF do nauki.</p></li></ol>
+    </section>
+
+    <section class="reveal" id="commands">
+      <h2>Co możesz zrobić z prezentacją</h2>
+      <div class="card table">
+        <dl><div><dt>Nagrywanie</dt><dd>Nagrywaj dźwięk podczas robienia zdjęć, a potem odsłuchaj każdy slajd od chwili, w której go sfotografowałeś</dd></div><div><dt>Transkrypcja</dt><dd>Zamienia nagranie na tekst, pokazuje, co mówiono przy każdym slajdzie, i bierze udział w wyszukiwaniu</dd></div><div><dt>Podsumowanie AI</dt><dd>Streszcza prezentację na podstawie tekstu slajdów i transkrypcji (iOS 26 lub nowszy na urządzeniach z Apple Intelligence)</dd></div><div><dt>PDF</dt><dd>Materiały do powtórki z jednym, dwoma albo czterema slajdami na stronie</dd></div><div><dt>Markdown</dt><dd>Plik .zip gotowy do Notion albo Obsidian</dd></div><div><dt>PowerPoint</dt><dd>Eksport do .pptx z transkrypcją w notatkach prelegenta</dd></div><div><dt>Łączenie</dt><dd>Wybierz kilka prezentacji i połącz je w jedną</dd></div><div><dt>Synchronizacja iCloud</dt><dd>Po włączeniu zobaczysz prezentacje na innych urządzeniach z tym samym Apple ID. Domyślnie wyłączona</dd></div><div><dt>Widżety</dt><dd>Otwierają aparat prosto z ekranu początkowego albo ekranu blokady</dd></div></dl>
+      </div>
+      <p class="muted">Rozpoznawanie tekstu, transkrypcja i podsumowania AI działają na urządzeniu.</p>
+    </section>
+
+
+    <section class="reveal" id="pricing">
+      <h2>Kupujesz raz, masz wszystko</h2>
+      <div class="plans">
+        <div class="card plan free">
+          <h3>CatchSlide</h3>
+          <ul><li>Bezgłośne zdjęcia, automatyczne zdjęcia i prostowanie</li><li>Import wielu zdjęć naraz z aplikacji Zdjęcia</li><li>Slajdy według prezentacji, wyszukiwanie w tekście i notatkach</li><li>Nagrywanie, transkrypcja i podsumowanie AI</li><li>Eksport do PDF, Markdown i PowerPoint</li><li>Synchronizacja iCloud i widżety</li></ul>
+          
+        </div>
+        <div class="card plan pro">
+          <h3>Napiwek (dobrowolny)</h3>
+          <ul><li>Jeśli aplikacja ci pomaga, możesz zostawić twórcy mały napiwek</li><li>Napiwek niczego nie odblokowuje. Wszystkie funkcje działają i bez niego</li></ul>
+          <p class="muted">Znajdziesz go na ekranie Moje dane.</p>
+        </div>
+      </div>
+      <p class="muted">Bez subskrypcji i bez płatnych dodatków. Cenę w swoim kraju sprawdzisz w App Store.</p>
+    </section>
+
+    <section class="reveal" id="faq">
+      <h2>Najczęstsze pytania</h2>
+      <div class="faq"><details><summary>Jak zrobić zdjęcie slajdu?</summary><p>Otwórz aparat i złap slajd w kadrze. Gdy rogi zrobią się zielone, naciśnij migawkę. Przy włączonych automatycznych zdjęciach kolejny slajd zostanie sfotografowany sam za każdym razem, gdy się zmieni.</p></details>
+<details><summary>Czy słychać migawkę?</summary><p>Nie. Kadr jest zapisywany prosto z podglądu aparatu, więc w każdym kraju jest cicho.</p></details>
+<details><summary>Dlaczego moje zdjęcia trafiły do jednej prezentacji?</summary><p>Jeśli kolejne zdjęcie zrobisz w ciągu 5 minut od poprzedniego, trafia do tej samej prezentacji. Stuknij tytuł na liście, by zmienić nazwę, a rozdzielone prezentacje połącz przez <code>Połącz prezentacje</code>.</p></details>
+<details><summary>Czy mogę dodać zdjęcia, które już mam?</summary><p>Tak. Zaznacz je w aplikacji Zdjęcia i udostępnij w CatchSlide albo stuknij ＋ na liście i wybierz <code>Importuj ze Zdjęć</code>. Zostaną wyprostowane i zapisane jako jedna prezentacja w kolejności robienia.</p></details>
+<details><summary>Rogi zostały źle wykryte.</summary><p>Otwórz slajd, wybierz <code>Dopasuj rogi</code> w menu ⋯ i przeciągnij cztery rogi na miejsce. <code>Wykryj automatycznie</code> poszuka ich od nowa, a <code>Cały obraz</code> użyje całego zdjęcia. Oryginał jest zawsze zachowany, więc możesz to powtórzyć w każdej chwili.</p></details>
+<details><summary>Czy mogę szukać w tekście slajdów?</summary><p>Wpisz słowo w pole wyszukiwania nad listą. Szukanie obejmuje tekst slajdów, tytuły prezentacji, notatki i transkrypcje, a wynik od razu otwiera slajd. Rozpoznawanie tekstu odbywa się na urządzeniu.</p></details>
+<details><summary>Jak wyeksportować PDF?</summary><p>W prezentacji otwórz menu udostępniania, wybierz <code>Eksportuj do PDF</code> i ustaw jeden, dwa albo cztery slajdy na stronie. Z arkusza udostępniania zapiszesz go w Plikach albo wyślesz do innej aplikacji.</p></details>
+<details><summary>Jak zmienić kolejność lub usunąć slajdy?</summary><p>W prezentacji przytrzymaj slajd i przeciągnij go. W tym samym menu usuniesz lub udostępnisz pojedynczy slajd, a przez <code>Wybierz</code> usuniesz kilka naraz.</p></details>
+<details><summary>Jak działa nagrywanie i podsumowanie AI?</summary><p>Włącz <code>Nagrywaj</code> u góry aparatu, a każdy slajd zachowa dźwięk z tamtej chwili. W <code>Notatki do prezentacji</code> opcja <code>Podsumuj z AI</code> przygotuje streszczenie na podstawie tekstu slajdów i transkrypcji. Wymaga to iOS 26 lub nowszego na urządzeniu z Apple Intelligence.</p></details>
+<details><summary>Gdzie są przechowywane moje slajdy i nagrania?</summary><p>Na twoim urządzeniu. Trafiają do twojego własnego iCloud tylko wtedy, gdy włączysz <code>Synchronizacja</code> w Moje dane, a konto nie jest potrzebne. Więcej w Polityce prywatności.</p></details></div>
+      <p class="contact">Pytania, błędy albo pomysły? Napisz na <a href="mailto:leeo@kakao.com">leeo@kakao.com</a>.</p>
+    </section>
+
+    <section class="closing reveal">
+      <h2>Od następnego wykładu<br>proste slajdy</h2>
+      <a class="cta" href="https://apps.apple.com/app/id6790835318">Pobierz z App Store</a>
+    </section>
+  </main>
 
   <footer>
-    © 2026 CatchSlide &nbsp;·&nbsp; leeo@kakao.com
+    <nav id="languages" class="langs" aria-label="Język"><a href="../" hreflang="ko" lang="ko">한국어</a>
+<a href="../en/" hreflang="en" lang="en">English</a>
+<a href="../zh-Hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
+<a href="../zh-Hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
+<a href="../ja/" hreflang="ja" lang="ja">日本語</a>
+<a href="../ru/" hreflang="ru" lang="ru">Русский</a>
+<a href="../es/" hreflang="es" lang="es">Español</a>
+<a href="../de/" hreflang="de" lang="de">Deutsch</a>
+<a href="../fr/" hreflang="fr" lang="fr">Français</a>
+<a href="../it/" hreflang="it" lang="it">Italiano</a>
+<a href="../pt-BR/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a>
+<a href="../th/" hreflang="th" lang="th">ไทย</a>
+<a href="../vi/" hreflang="vi" lang="vi">Tiếng Việt</a>
+<a href="../cs/" hreflang="cs" lang="cs">Čeština</a>
+<a href="../da/" hreflang="da" lang="da">Dansk</a>
+<a href="../el/" hreflang="el" lang="el">Ελληνικά</a>
+<a href="../fi/" hreflang="fi" lang="fi">Suomi</a>
+<a href="../id/" hreflang="id" lang="id">Indonesia</a>
+<a href="../nb/" hreflang="nb" lang="nb">Norsk</a>
+<a href="../nl/" hreflang="nl" lang="nl">Nederlands</a>
+<a href="../pl/" hreflang="pl" lang="pl" aria-current="page">Polski</a>
+<a href="../sv/" hreflang="sv" lang="sv">Svenska</a>
+<a href="../tr/" hreflang="tr" lang="tr">Türkçe</a></nav>
+    <p><a href="privacy.html">Polityka prywatności</a> · <a href="mailto:leeo@kakao.com">leeo@kakao.com</a> · © 2026 CatchSlide</p>
   </footer>
-<nav style="text-align:center;font-size:0.85rem;line-height:2;padding:0 24px 40px"><a href="../" hreflang="ko">한국어</a> · <a href="../en/" hreflang="en">English</a> · <a href="../zh-Hans/" hreflang="zh-Hans">简体中文</a> · <a href="../zh-Hant/" hreflang="zh-Hant">繁體中文</a> · <a href="../ja/" hreflang="ja">日本語</a> · <a href="../ru/" hreflang="ru">Русский</a> · <a href="../es/" hreflang="es">Español</a> · <a href="../de/" hreflang="de">Deutsch</a> · <a href="../fr/" hreflang="fr">Français</a> · <a href="../it/" hreflang="it">Italiano</a> · <a href="../pt-BR/" hreflang="pt-BR">Português (Brasil)</a> · <a href="../th/" hreflang="th">ไทย</a> · <a href="../vi/" hreflang="vi">Tiếng Việt</a> · <a href="../cs/" hreflang="cs">Čeština</a> · <a href="../da/" hreflang="da">Dansk</a> · <a href="../el/" hreflang="el">Ελληνικά</a> · <a href="../fi/" hreflang="fi">Suomi</a> · <a href="../id/" hreflang="id">Indonesia</a> · <a href="../nb/" hreflang="nb">Norsk</a> · <a href="../nl/" hreflang="nl">Nederlands</a> · <a href="../pl/" hreflang="pl">Polski</a> · <a href="../sv/" hreflang="sv">Svenska</a> · <a href="../tr/" hreflang="tr">Türkçe</a></nav>
+
+  <script>
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target) }
+    }), { rootMargin: "0px 0px -10% 0px" });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  </script>
+  <script src="../demo.js"></script>
 </body>
 </html>

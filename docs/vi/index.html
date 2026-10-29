@@ -1,184 +1,192 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CatchSlide — Hỗ trợ</title>
-<meta name="description" content="Hỗ trợ CatchSlide — chụp slide bài giảng, ghi âm bài nói và ôn tập bằng văn bản chép lời và bản tóm tắt AI.">
-<style>
-  :root {
-    --blue: #2f6bde;
-    --blue-light: #4facfe;
-    --green: #29cc70;
-    --ink: #1a2233;
-    --muted: #5b6577;
-    --bg: #f5f7fb;
-    --card: #ffffff;
-    --border: #e4e9f2;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --ink: #e8ecf4;
-      --muted: #9aa4b8;
-      --bg: #0f131b;
-      --card: #1a2130;
-      --border: #2a3346;
-    }
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-    color: var(--ink);
-    background: var(--bg);
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-  }
-  .hero {
-    background: linear-gradient(135deg, var(--blue-light) 0%, var(--blue) 100%);
-    color: #fff;
-    padding: 64px 24px 56px;
-    text-align: center;
-  }
-  .hero img {
-    width: 108px; height: 108px;
-    border-radius: 24px;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.28);
-  }
-  .hero h1 { margin: 20px 0 6px; font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; }
-  .hero p { margin: 0; font-size: 1.05rem; opacity: 0.95; }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-  section { padding: 40px 0; border-bottom: 1px solid var(--border); }
-  section:last-of-type { border-bottom: none; }
-  h2 { font-size: 1.35rem; font-weight: 700; margin: 0 0 18px; letter-spacing: -0.01em; }
-  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 520px) { .features { grid-template-columns: 1fr; } }
-  .feature {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 14px; padding: 18px 18px 16px;
-  }
-  .feature .ic { font-size: 1.5rem; }
-  .feature h3 { margin: 8px 0 4px; font-size: 1rem; }
-  .feature p { margin: 0; color: var(--muted); font-size: 0.92rem; }
-  .faq { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 6px 20px; }
-  details { padding: 14px 0; border-bottom: 1px solid var(--border); }
-  details:last-child { border-bottom: none; }
-  summary { cursor: pointer; font-weight: 600; list-style: none; }
-  summary::-webkit-details-marker { display: none; }
-  summary::before { content: "＋"; color: var(--blue); font-weight: 700; margin-right: 10px; }
-  details[open] summary::before { content: "－"; }
-  details p { margin: 12px 0 2px; color: var(--muted); }
-  .contact {
-    text-align: center; background: var(--card);
-    border: 1px solid var(--border); border-radius: 16px; padding: 32px 24px;
-  }
-  .btn {
-    display: inline-block; margin-top: 12px;
-    background: var(--blue); color: #fff; text-decoration: none;
-    padding: 12px 26px; border-radius: 999px; font-weight: 600;
-  }
-  a { color: var(--blue); }
-  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 32px 24px 48px; }
-  .tag { display:inline-block; color: var(--green); font-weight:700; }
-</style>
-<link rel="canonical" href="https://m1zz.github.io/SlideSnap/vi/">
-<link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
-<link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
-<link rel="alternate" hreflang="en-GB" href="https://m1zz.github.io/SlideSnap/en/">
-<link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
-<link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
-<link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
-<link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
-<link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
-<link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
-<link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
-<link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
-<link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
-<link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
-<link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
-<link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
-<link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
-<link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
-<link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
-<link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
-<link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
-<link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
-<link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
-<link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
-<link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
-<link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CatchSlide: chụp slide bài giảng xiên vẫn ra ảnh thẳng</title>
+  <meta name="description" content="Ngồi ở đâu cũng chụp được. CatchSlide tìm bốn góc slide, nắn thẳng như chụp chính diện, xếp theo bài thuyết trình và cho tìm kiếm cả chữ trong slide.">
+  <meta name="theme-color" content="#3478E7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f131b" media="(prefers-color-scheme: dark)">
+  <meta name="apple-itunes-app" content="app-id=6790835318">
+  <link rel="canonical" href="https://m1zz.github.io/SlideSnap/vi/">
+  <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
+  <link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
+  <link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
+  <link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
+  <link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
+  <link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
+  <link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
+  <link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
+  <link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
+  <link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
+  <link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
+  <link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
+  <link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
+  <link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
+  <link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
+  <link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
+  <link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
+  <link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
+  <link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
+  <link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
+  <link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
+  <link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CatchSlide: chụp slide bài giảng xiên vẫn ra ảnh thẳng">
+  <meta property="og:description" content="Ngồi ở đâu cũng chụp được. CatchSlide tìm bốn góc slide, nắn thẳng như chụp chính diện, xếp theo bài thuyết trình và cho tìm kiếm cả chữ trong slide.">
+  <meta property="og:url" content="https://m1zz.github.io/SlideSnap/vi/">
+  <meta property="og:image" content="https://m1zz.github.io/SlideSnap/img/vi/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../icon.png">
+  <link rel="apple-touch-icon" href="../icon.png">
+  <link rel="stylesheet" href="../site.css">
+  <link rel="stylesheet" href="../demo.css">
+  <style>:root{--accent:#3478E7}@media (prefers-color-scheme:dark){:root{--accent:#5EA2FF}}</style>
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
-  <div class="hero">
-    <img src="../icon.png" alt="Biểu tượng ứng dụng CatchSlide">
-    <h1>CatchSlide</h1>
-    <p>Chụp slide bài giảng. Ảnh thẳng, tìm kiếm được và sẵn sàng để ôn tập.</p>
-  </div>
+  <a class="skip" href="#main">Chuyển đến nội dung</a>
+  <header class="bar">
+    <a class="brand" href="../vi/"><img src="../icon.png" alt="" width="32" height="32">CatchSlide</a>
+    <a class="lang-link" href="#languages">Ngôn ngữ</a>
+  </header>
 
-  <div class="wrap">
-    <section>
-      <h2>Tính năng</h2>
-      <div class="features">
-        <div class="feature"><div class="ic">🟩</div><h3>Nhận diện slide trực tiếp</h3><p>Camera tự tìm bốn góc của slide khi bạn ngắm, nắn thẳng như thể bạn chụp chính diện và có thể tự động bấm chụp giúp bạn.</p></div>
-        <div class="feature"><div class="ic">🤫</div><h3>Chụp im lặng</h3><p>Không có tiếng màn trập, nên bạn chụp giữa buổi học mà không làm phiền ai.</p></div>
-        <div class="feature"><div class="ic">🎙️</div><h3>Ghi âm và nghe lại</h3><p>Ghi âm bài nói trong lúc chụp. Chạm vào bất kỳ slide nào để nghe lại những gì đã nói ở thời điểm đó.</p></div>
-        <div class="feature"><div class="ic">💬</div><h3>Chép lời</h3><p>Chuyển bản ghi âm thành văn bản ngay trên thiết bị và đọc xem mỗi slide đã nói gì.</p></div>
-        <div class="feature"><div class="ic">✨</div><h3>Tóm tắt bằng AI</h3><p>Nhận phần tổng quan, ý chính và từ khóa cho cả bài nói, được tạo ngay trên thiết bị bằng Apple Intelligence.</p></div>
-        <div class="feature"><div class="ic">🔍</div><h3>Tìm kiếm mọi thứ</h3><p>Tìm slide theo bất kỳ chữ nào trên slide hoặc bất cứ điều gì diễn giả đã nói.</p></div>
-        <div class="feature"><div class="ic">🗂️</div><h3>Tự sắp xếp theo buổi</h3><p>Các slide chụp liên tiếp được gom thành một bài thuyết trình. Bạn có thể đổi tên, đổi thứ tự hoặc gộp chúng lại.</p></div>
-        <div class="feature"><div class="ic">📤</div><h3>PDF, Notion, PowerPoint</h3><p>Xuất PDF để ôn tập, ghi chú Markdown cho Notion hoặc Obsidian, hoặc bản PowerPoint có văn bản chép lời nằm trong phần ghi chú của diễn giả.</p></div>
-        <div class="feature"><div class="ic">☁️</div><h3>Đồng bộ iCloud</h3><p>Tùy chọn giữ slide và bản ghi âm trên mọi thiết bị iPhone, iPad và Mac của bạn.</p></div>
-        <div class="feature"><div class="ic">🖼️</div><h3>Từ ứng dụng Ảnh</h3><p>Chia sẻ ảnh bài giảng từ ứng dụng Ảnh, ảnh sẽ được nắn thẳng và gom thành một bài thuyết trình.</p></div>
+  <main id="main">
+    <section class="hero">
+      <div class="copy">
+        <h1>Chụp từ bên cạnh,<br>lưu lại như nhìn thẳng</h1>
+        <p class="lead">Camera tìm bốn góc của slide, nắn ảnh cho thẳng và cắt bỏ phần xung quanh. Những slide chụp liên tiếp sẽ nằm chung trong một bài thuyết trình.</p>
+        <div class="actions"><a class="cta" href="https://apps.apple.com/app/id6790835318">Tải về trên App Store</a><a class="try" href="#try">Tự tay nắn thử ↓</a></div>
+        <p class="muted small">Mua một lần, dùng mọi tính năng. Không cần đăng ký gói, không cần tài khoản.</p>
       </div>
+      <div class="phone"><img src="../img/vi/02-list.jpg" alt="Chụp từ bên cạnh, lưu lại như nhìn thẳng" width="720" height="1564" decoding="async"></div>
     </section>
 
-    <section>
+
+    <section class="reveal" id="try">
+      <h2>Tự tay nắn thử</h2>
+      <p class="muted">Ảnh này được chụp xiên từ một chỗ ngồi bên cạnh lớp học. Đường viền xanh lá là vị trí bốn góc slide đã tìm thấy.</p>
+      <div id="demo" class="card demo-card" data-text="{&quot;title&quot;: &quot;Tự tay nắn thử&quot;, &quot;lead&quot;: &quot;Ảnh này được chụp xiên từ một chỗ ngồi bên cạnh lớp học. Đường viền xanh lá là vị trí bốn góc slide đã tìm thấy.&quot;, &quot;straighten&quot;: &quot;Nắn thẳng&quot;, &quot;reset&quot;: &quot;Quay lại ảnh gốc&quot;, &quot;photo&quot;: &quot;Ảnh chụp xiên&quot;, &quot;result&quot;: &quot;Slide sau khi CatchSlide nắn thẳng&quot;, &quot;waiting&quot;: &quot;Nhấn Nắn thẳng để xem kết quả ở đây&quot;, &quot;hint&quot;: &quot;Bạn cũng có thể kéo các chấm ở góc để tự chỉnh, hoặc chọn một chấm rồi di chuyển bằng phím mũi tên.&quot;, &quot;corners&quot;: [&quot;Góc trên bên trái&quot;, &quot;Góc trên bên phải&quot;, &quot;Góc dưới bên phải&quot;, &quot;Góc dưới bên trái&quot;], &quot;note&quot;: &quot;Bản thử này dùng một bức ảnh chụp sẵn. Trong ứng dụng, camera tìm các góc theo thời gian thực và nhận diện chữ ngay trên máy của bạn.&quot;}"></div>
+    </section>
+
+    <section class="problem reveal">
+      <h2>Mở thư viện ảnh để ôn bài mà không tìm thấy slide?</h2>
+      <p>Slide chụp từ hàng ghế cuối lúc nào cũng nghiêng, lại lẫn giữa ảnh selfie và hóa đơn. Giữa lớp học yên tĩnh, chỉ tiếng màn trập thôi cũng đủ khiến bạn ngại bấm. CatchSlide chụp không tiếng động, nắn thẳng từng slide và gom lại theo bài thuyết trình.</p>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Thẳng ngay khi bấm chụp</h2>
+        <p>Camera bám theo bốn góc slide theo thời gian thực và chuyển xanh khi đã bắt được. Dù chụp xiên, slide vẫn được nắn như nhìn thẳng và cắt bỏ phông nền.<br>Không có tiếng màn trập. Bật <code>Tự động chụp</code> để ứng dụng tự chụp mỗi khi slide đổi, bỏ qua những ảnh bị rung.</p>
+      </div>
+      <div class="phone"><img src="../img/vi/03-slide.jpg" alt="Thẳng ngay khi bấm chụp" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Ảnh đã chụp, nhập một lần là xong</h2>
+        <p>Chọn nhiều ảnh buổi học trong ứng dụng Ảnh rồi chia sẻ sang CatchSlide. Ảnh sẽ được nắn thẳng và gom thành một bài thuyết trình theo thứ tự chụp.<br>Bật <code>Làm nét chữ</code> để xóa bóng mờ và độ tương phản nhạt.</p>
+      </div>
+      <div class="phone"><img src="../img/vi/01-share.jpg" alt="Ảnh đã chụp, nhập một lần là xong" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Nhớ một từ là tìm ra</h2>
+        <p>CatchSlide đọc chữ trên từng slide ngay trên máy. Vài tuần sau, chỉ cần một từ là tìm lại được slide đó.<br>Ghi chú bạn thêm vào slide cũng tìm được. Ghi <code>thi cuối kỳ</code> lên vài slide, cả phần ôn thi sẽ hiện ra trong một lần tìm.</p>
+      </div>
+      <div class="phone"><img src="../img/vi/06-memo-search.jpg" alt="Nhớ một từ là tìm ra" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="reveal">
+      <h2>Bắt đầu với ba bước</h2>
+      <ol class="steps"><li class="card"><span class="n">1</span><h3>Mở camera</h3><p>Từ nút camera trong danh sách, tiện ích trên Màn hình chính hoặc Màn hình khóa.</p></li>
+<li class="card"><span class="n">2</span><h3>Đưa slide vào khung</h3><p>Khi các góc chuyển xanh, bấm chụp hoặc để tự động chụp lo.</p></li>
+<li class="card"><span class="n">3</span><h3>Xem lại theo bài thuyết trình</h3><p>Tìm kiếm, ghi chú và xuất PDF để ôn bài.</p></li></ol>
+    </section>
+
+    <section class="reveal" id="commands">
+      <h2>Những gì bạn làm được với một bài thuyết trình</h2>
+      <div class="card table">
+        <dl><div><dt>Ghi âm</dt><dd>Vừa chụp vừa ghi âm, rồi nghe từng slide từ đúng lúc bạn chụp slide đó</dd></div><div><dt>Chép lời</dt><dd>Chuyển bản ghi âm thành chữ, cho biết từng slide đã nói gì và dùng được khi tìm kiếm</dd></div><div><dt>Tóm tắt bằng AI</dt><dd>Tóm tắt bài thuyết trình từ chữ trên slide và lời đã chép (iOS 26 trở lên, trên thiết bị hỗ trợ Apple Intelligence)</dd></div><div><dt>PDF</dt><dd>Tài liệu ôn tập với 1, 2 hoặc 4 slide mỗi trang</dd></div><div><dt>Markdown</dt><dd>Tệp .zip đưa thẳng vào Notion hoặc Obsidian</dd></div><div><dt>PowerPoint</dt><dd>Xuất .pptx, lời đã chép nằm trong ghi chú người thuyết trình</dd></div><div><dt>Gộp bài</dt><dd>Chọn nhiều bài thuyết trình và gộp thành một</dd></div><div><dt>Đồng bộ iCloud</dt><dd>Bật lên để xem bài thuyết trình trên các thiết bị khác dùng cùng Apple ID. Mặc định tắt</dd></div><div><dt>Tiện ích</dt><dd>Mở camera ngay từ Màn hình chính hoặc Màn hình khóa</dd></div></dl>
+      </div>
+      <p class="muted">Nhận diện chữ, chép lời và tóm tắt bằng AI đều chạy ngay trên máy.</p>
+    </section>
+
+
+    <section class="reveal" id="pricing">
+      <h2>Mua một lần, có tất cả</h2>
+      <div class="plans">
+        <div class="card plan free">
+          <h3>CatchSlide</h3>
+          <ul><li>Chụp không tiếng, tự động chụp và nắn thẳng</li><li>Nhập nhiều ảnh cùng lúc từ ứng dụng Ảnh</li><li>Xếp slide theo bài thuyết trình, tìm theo chữ và ghi chú</li><li>Ghi âm, chép lời và tóm tắt bằng AI</li><li>Xuất PDF, Markdown và PowerPoint</li><li>Đồng bộ iCloud và tiện ích</li></ul>
+          
+        </div>
+        <div class="card plan pro">
+          <h3>Tiền tip (tùy ý)</h3>
+          <ul><li>Nếu ứng dụng giúp ích cho bạn, bạn có thể gửi nhà phát triển một khoản tip nhỏ</li><li>Tip không mở khóa gì thêm. Không gửi vẫn dùng đầy đủ mọi tính năng</li></ul>
+          <p class="muted">Gửi tại màn hình Thông tin của tôi.</p>
+        </div>
+      </div>
+      <p class="muted">Không có gói đăng ký, cũng không có khoản mua thêm để mở tính năng. Giá ở nước bạn xem trên App Store.</p>
+    </section>
+
+    <section class="reveal" id="faq">
       <h2>Câu hỏi thường gặp</h2>
-      <div class="faq">
-        <details open>
-          <summary>Chụp slide như thế nào?</summary>
-          <p>Mở ứng dụng là camera đã sẵn sàng. Đưa slide vào màn hình cho đến khi khung chuyển sang màu <span class="tag">xanh lá</span>, rồi chạm nút chụp hoặc để chế độ chụp tự động làm thay bạn. Khi slide thay đổi, slide tiếp theo sẽ được chụp tự động.</p>
-        </details>
-        <details>
-          <summary>Ghi âm bài nói như thế nào?</summary>
-          <p>Chạm <strong>Ghi âm</strong> ở đầu màn hình camera. Bài nói sẽ được ghi lại trong lúc bạn chụp. Sau đó, mở một slide bất kỳ và chạm phát để nghe từ thời điểm bạn chụp slide đó. Khi phát, các slide sẽ tự chuyển theo.</p>
-        </details>
-        <details>
-          <summary>Làm sao để có văn bản chép lời hoặc bản tóm tắt AI?</summary>
-          <p>Mở một bài thuyết trình và chạm nút ghi chú ✨. Chạm <strong>Chép lời</strong> cạnh bản ghi âm, rồi chạm <strong>Tóm tắt bằng AI</strong>. Tóm tắt bằng AI cần thiết bị hỗ trợ Apple Intelligence (iOS 26 trở lên) và đã bật Apple Intelligence.</p>
-        </details>
-        <details>
-          <summary>Vì sao các slide của tôi được gom lại với nhau?</summary>
-          <p>Các slide chụp cách nhau không quá năm phút được coi là cùng một buổi và xếp vào một bài thuyết trình. Bạn có thể đổi tên, hoặc gộp các bài thuyết trình ngay trong danh sách.</p>
-        </details>
-        <details>
-          <summary>Xuất như thế nào?</summary>
-          <p>Trong bài thuyết trình, mở menu ⋯ và chọn PDF (một, hai hoặc bốn slide mỗi trang), Markdown cho Notion hoặc Obsidian, hoặc PowerPoint — cũng mở được bằng Keynote và Google Slides.</p>
-        </details>
-        <details>
-          <summary>Đồng bộ iCloud hoạt động ra sao?</summary>
-          <p>Bật tại <strong>Thông tin của tôi › Đồng bộ</strong>. Bài thuyết trình, slide và bản ghi âm của bạn được lưu trong iCloud riêng của bạn và xuất hiện trên các thiết bị khác đăng nhập cùng Apple Account. Tính năng này mặc định tắt vì ảnh và bản ghi âm dùng dung lượng iCloud của bạn.</p>
-        </details>
-        <details>
-          <summary>Dữ liệu của tôi được lưu ở đâu?</summary>
-          <p>Trên thiết bị của bạn. Nhận dạng chữ, chép lời và tóm tắt bằng AI đều chạy ngay trên thiết bị. Dữ liệu chỉ đi vào iCloud của chính bạn nếu bạn bật đồng bộ. Xem <a href="privacy.html">Chính sách quyền riêng tư</a>.</p>
-        </details>
-      </div>
+      <div class="faq"><details><summary>Chụp slide thế nào?</summary><p>Mở camera và đưa slide vào khung. Khi các góc chuyển xanh, bấm nút chụp. Nếu bật tự động chụp, ứng dụng sẽ tự chụp slide tiếp theo mỗi khi slide đổi.</p></details>
+<details><summary>Có tiếng màn trập không?</summary><p>Không. Ứng dụng lưu khung hình trực tiếp từ camera nên chụp im lặng ở mọi quốc gia.</p></details>
+<details><summary>Vì sao nhiều ảnh bị gom vào một bài thuyết trình?</summary><p>Nếu bạn chụp ảnh tiếp theo trong vòng 5 phút sau ảnh trước, ảnh đó được tính là cùng bài thuyết trình. Chạm vào tiêu đề trong danh sách để đổi tên, và dùng <code>Gộp bài thuyết trình</code> để nối các bài bị tách ra.</p></details>
+<details><summary>Có thêm được ảnh đã chụp trước không?</summary><p>Được. Chọn ảnh trong ứng dụng Ảnh rồi chia sẻ sang CatchSlide, hoặc chạm ＋ trong danh sách và chọn <code>Nhập từ Ảnh</code>. Ảnh được nắn thẳng và gom thành một bài thuyết trình theo thứ tự chụp.</p></details>
+<details><summary>Ứng dụng bắt sai góc.</summary><p>Mở slide, chọn <code>Chỉnh góc</code> trong menu ⋯ rồi kéo bốn góc về đúng chỗ. <code>Tự động nhận diện</code> sẽ tìm lại, còn <code>Toàn bộ ảnh</code> dùng cả bức ảnh. Ảnh gốc luôn được giữ nên bạn có thể làm lại bất cứ lúc nào.</p></details>
+<details><summary>Có tìm được chữ trong slide không?</summary><p>Gõ một từ vào ô tìm kiếm phía trên danh sách. Ứng dụng tìm trong chữ trên slide, tiêu đề bài thuyết trình, ghi chú và lời đã chép, rồi đưa bạn tới thẳng slide đó. Việc nhận diện chữ diễn ra trên máy.</p></details>
+<details><summary>Xuất PDF thế nào?</summary><p>Trong bài thuyết trình, mở menu chia sẻ, chọn <code>Xuất sang PDF</code> và chọn 1, 2 hoặc 4 slide mỗi trang. Từ bảng chia sẻ, bạn có thể lưu vào Tệp hoặc gửi sang ứng dụng khác.</p></details>
+<details><summary>Đổi thứ tự hoặc xóa slide thế nào?</summary><p>Trong bài thuyết trình, chạm và giữ một slide rồi kéo để đổi thứ tự. Menu hiện ra khi chạm giữ cho phép xóa hoặc chia sẻ từng slide, còn <code>Chọn</code> giúp xóa nhiều slide một lúc.</p></details>
+<details><summary>Ghi âm và tóm tắt bằng AI dùng thế nào?</summary><p>Bật <code>Ghi âm</code> ở phía trên màn hình camera rồi chụp, mỗi slide sẽ kèm âm thanh của lúc đó. Trong <code>Ghi chú bài thuyết trình</code>, nút <code>Tóm tắt bằng AI</code> sẽ tóm tắt từ chữ trên slide và lời đã chép. Tính năng này cần iOS 26 trở lên trên thiết bị hỗ trợ Apple Intelligence.</p></details>
+<details><summary>Slide và bản ghi âm của tôi được lưu ở đâu?</summary><p>Tất cả nằm trên máy của bạn. Chỉ khi bật <code>Đồng bộ</code> trong Thông tin của tôi, dữ liệu mới được tải lên iCloud của chính bạn, và không cần tạo tài khoản. Xem thêm trong Chính sách quyền riêng tư.</p></details></div>
+      <p class="contact">Có câu hỏi, lỗi cần báo hay ý tưởng? Hãy gửi email tới <a href="mailto:leeo@kakao.com">leeo@kakao.com</a>.</p>
     </section>
 
-    <section>
-      <div class="contact">
-        <h2 style="margin-bottom:6px">Cần trợ giúp?</h2>
-        <p style="color:var(--muted);margin:0">Chúng tôi luôn chào đón câu hỏi, báo lỗi và ý tưởng tính năng.</p>
-        <a class="btn" href="mailto:leeo@kakao.com?subject=%5BCatchSlide%5D%20Support">Gửi email cho chúng tôi</a>
-        <p style="margin:14px 0 0"><a href="privacy.html">Chính sách quyền riêng tư</a></p>
-      </div>
+    <section class="closing reveal">
+      <h2>Từ buổi học tới,<br>slide nào cũng thẳng</h2>
+      <a class="cta" href="https://apps.apple.com/app/id6790835318">Tải về trên App Store</a>
     </section>
-  </div>
+  </main>
 
   <footer>
-    © 2026 CatchSlide &nbsp;·&nbsp; leeo@kakao.com
+    <nav id="languages" class="langs" aria-label="Ngôn ngữ"><a href="../" hreflang="ko" lang="ko">한국어</a>
+<a href="../en/" hreflang="en" lang="en">English</a>
+<a href="../zh-Hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
+<a href="../zh-Hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
+<a href="../ja/" hreflang="ja" lang="ja">日本語</a>
+<a href="../ru/" hreflang="ru" lang="ru">Русский</a>
+<a href="../es/" hreflang="es" lang="es">Español</a>
+<a href="../de/" hreflang="de" lang="de">Deutsch</a>
+<a href="../fr/" hreflang="fr" lang="fr">Français</a>
+<a href="../it/" hreflang="it" lang="it">Italiano</a>
+<a href="../pt-BR/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a>
+<a href="../th/" hreflang="th" lang="th">ไทย</a>
+<a href="../vi/" hreflang="vi" lang="vi" aria-current="page">Tiếng Việt</a>
+<a href="../cs/" hreflang="cs" lang="cs">Čeština</a>
+<a href="../da/" hreflang="da" lang="da">Dansk</a>
+<a href="../el/" hreflang="el" lang="el">Ελληνικά</a>
+<a href="../fi/" hreflang="fi" lang="fi">Suomi</a>
+<a href="../id/" hreflang="id" lang="id">Indonesia</a>
+<a href="../nb/" hreflang="nb" lang="nb">Norsk</a>
+<a href="../nl/" hreflang="nl" lang="nl">Nederlands</a>
+<a href="../pl/" hreflang="pl" lang="pl">Polski</a>
+<a href="../sv/" hreflang="sv" lang="sv">Svenska</a>
+<a href="../tr/" hreflang="tr" lang="tr">Türkçe</a></nav>
+    <p><a href="privacy.html">Chính sách quyền riêng tư</a> · <a href="mailto:leeo@kakao.com">leeo@kakao.com</a> · © 2026 CatchSlide</p>
   </footer>
-<nav style="text-align:center;font-size:0.85rem;line-height:2;padding:0 24px 40px"><a href="../" hreflang="ko">한국어</a> · <a href="../en/" hreflang="en">English</a> · <a href="../zh-Hans/" hreflang="zh-Hans">简体中文</a> · <a href="../zh-Hant/" hreflang="zh-Hant">繁體中文</a> · <a href="../ja/" hreflang="ja">日本語</a> · <a href="../ru/" hreflang="ru">Русский</a> · <a href="../es/" hreflang="es">Español</a> · <a href="../de/" hreflang="de">Deutsch</a> · <a href="../fr/" hreflang="fr">Français</a> · <a href="../it/" hreflang="it">Italiano</a> · <a href="../pt-BR/" hreflang="pt-BR">Português (Brasil)</a> · <a href="../th/" hreflang="th">ไทย</a> · <a href="../vi/" hreflang="vi">Tiếng Việt</a> · <a href="../cs/" hreflang="cs">Čeština</a> · <a href="../da/" hreflang="da">Dansk</a> · <a href="../el/" hreflang="el">Ελληνικά</a> · <a href="../fi/" hreflang="fi">Suomi</a> · <a href="../id/" hreflang="id">Indonesia</a> · <a href="../nb/" hreflang="nb">Norsk</a> · <a href="../nl/" hreflang="nl">Nederlands</a> · <a href="../pl/" hreflang="pl">Polski</a> · <a href="../sv/" hreflang="sv">Svenska</a> · <a href="../tr/" hreflang="tr">Türkçe</a></nav>
+
+  <script>
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target) }
+    }), { rootMargin: "0px 0px -10% 0px" });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  </script>
+  <script src="../demo.js"></script>
 </body>
 </html>

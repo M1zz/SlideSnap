@@ -1,184 +1,192 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CatchSlide — Tuki</title>
-<meta name="description" content="CatchSlide-tuki — kuvaa luentokalvot, äänitä puhe ja kertaa litteraattien ja tekoälytiivistelmien avulla.">
-<style>
-  :root {
-    --blue: #2f6bde;
-    --blue-light: #4facfe;
-    --green: #29cc70;
-    --ink: #1a2233;
-    --muted: #5b6577;
-    --bg: #f5f7fb;
-    --card: #ffffff;
-    --border: #e4e9f2;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --ink: #e8ecf4;
-      --muted: #9aa4b8;
-      --bg: #0f131b;
-      --card: #1a2130;
-      --border: #2a3346;
-    }
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-    color: var(--ink);
-    background: var(--bg);
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-  }
-  .hero {
-    background: linear-gradient(135deg, var(--blue-light) 0%, var(--blue) 100%);
-    color: #fff;
-    padding: 64px 24px 56px;
-    text-align: center;
-  }
-  .hero img {
-    width: 108px; height: 108px;
-    border-radius: 24px;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.28);
-  }
-  .hero h1 { margin: 20px 0 6px; font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; }
-  .hero p { margin: 0; font-size: 1.05rem; opacity: 0.95; }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-  section { padding: 40px 0; border-bottom: 1px solid var(--border); }
-  section:last-of-type { border-bottom: none; }
-  h2 { font-size: 1.35rem; font-weight: 700; margin: 0 0 18px; letter-spacing: -0.01em; }
-  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 520px) { .features { grid-template-columns: 1fr; } }
-  .feature {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 14px; padding: 18px 18px 16px;
-  }
-  .feature .ic { font-size: 1.5rem; }
-  .feature h3 { margin: 8px 0 4px; font-size: 1rem; }
-  .feature p { margin: 0; color: var(--muted); font-size: 0.92rem; }
-  .faq { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 6px 20px; }
-  details { padding: 14px 0; border-bottom: 1px solid var(--border); }
-  details:last-child { border-bottom: none; }
-  summary { cursor: pointer; font-weight: 600; list-style: none; }
-  summary::-webkit-details-marker { display: none; }
-  summary::before { content: "＋"; color: var(--blue); font-weight: 700; margin-right: 10px; }
-  details[open] summary::before { content: "－"; }
-  details p { margin: 12px 0 2px; color: var(--muted); }
-  .contact {
-    text-align: center; background: var(--card);
-    border: 1px solid var(--border); border-radius: 16px; padding: 32px 24px;
-  }
-  .btn {
-    display: inline-block; margin-top: 12px;
-    background: var(--blue); color: #fff; text-decoration: none;
-    padding: 12px 26px; border-radius: 999px; font-weight: 600;
-  }
-  a { color: var(--blue); }
-  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 32px 24px 48px; }
-  .tag { display:inline-block; color: var(--green); font-weight:700; }
-</style>
-<link rel="canonical" href="https://m1zz.github.io/SlideSnap/fi/">
-<link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
-<link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
-<link rel="alternate" hreflang="en-GB" href="https://m1zz.github.io/SlideSnap/en/">
-<link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
-<link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
-<link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
-<link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
-<link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
-<link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
-<link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
-<link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
-<link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
-<link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
-<link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
-<link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
-<link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
-<link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
-<link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
-<link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
-<link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
-<link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
-<link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
-<link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
-<link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
-<link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CatchSlide: luentokalvot suoriksi, vaikka kuvaisit sivusta</title>
+  <meta name="description" content="Istuit missä tahansa, CatchSlide löytää kalvon kulmat, oikaisee sen kuin olisit kuvannut edestä, järjestää esityksittäin ja tekee tekstistä haettavan.">
+  <meta name="theme-color" content="#3478E7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f131b" media="(prefers-color-scheme: dark)">
+  <meta name="apple-itunes-app" content="app-id=6790835318">
+  <link rel="canonical" href="https://m1zz.github.io/SlideSnap/fi/">
+  <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
+  <link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
+  <link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
+  <link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
+  <link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
+  <link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
+  <link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
+  <link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
+  <link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
+  <link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
+  <link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
+  <link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
+  <link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
+  <link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
+  <link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
+  <link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
+  <link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
+  <link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
+  <link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
+  <link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
+  <link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
+  <link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CatchSlide: luentokalvot suoriksi, vaikka kuvaisit sivusta">
+  <meta property="og:description" content="Istuit missä tahansa, CatchSlide löytää kalvon kulmat, oikaisee sen kuin olisit kuvannut edestä, järjestää esityksittäin ja tekee tekstistä haettavan.">
+  <meta property="og:url" content="https://m1zz.github.io/SlideSnap/fi/">
+  <meta property="og:image" content="https://m1zz.github.io/SlideSnap/img/fi/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../icon.png">
+  <link rel="apple-touch-icon" href="../icon.png">
+  <link rel="stylesheet" href="../site.css">
+  <link rel="stylesheet" href="../demo.css">
+  <style>:root{--accent:#3478E7}@media (prefers-color-scheme:dark){:root{--accent:#5EA2FF}}</style>
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
-  <div class="hero">
-    <img src="../icon.png" alt="CatchSlide-sovelluksen kuvake">
-    <h1>CatchSlide</h1>
-    <p>Kuvaa luentokalvot. Saat ne suorina, haettavina ja valmiina kertausta varten.</p>
-  </div>
+  <a class="skip" href="#main">Siirry sisältöön</a>
+  <header class="bar">
+    <a class="brand" href="../fi/"><img src="../icon.png" alt="" width="32" height="32">CatchSlide</a>
+    <a class="lang-link" href="#languages">Kieli</a>
+  </header>
 
-  <div class="wrap">
-    <section>
-      <h2>Ominaisuudet</h2>
-      <div class="features">
-        <div class="feature"><div class="ic">🟩</div><h3>Kalvon reaaliaikainen tunnistus</h3><p>Kamera löytää kalvon neljä kulmaa jo tähdätessäsi, oikaisee kalvon kuin katsoisit sitä suoraan edestä ja voi ottaa kuvan puolestasi automaattisesti.</p></div>
-        <div class="feature"><div class="ic">🤫</div><h3>Äänetön kuvaus</h3><p>Suljinääntä ei ole, joten voit kuvata kesken luennon häiritsemättä ketään.</p></div>
-        <div class="feature"><div class="ic">🎙️</div><h3>Äänitä ja kuuntele</h3><p>Äänitä puhe kuvaamisen aikana. Napauta mitä tahansa kalvoa kuullaksesi, mitä sillä hetkellä sanottiin.</p></div>
-        <div class="feature"><div class="ic">💬</div><h3>Litteraatit</h3><p>Muuta äänitteet tekstiksi laitteellasi ja lue, mitä jokaisella kalvolla sanottiin.</p></div>
-        <div class="feature"><div class="ic">✨</div><h3>Tekoälytiivistelmä</h3><p>Saat koko esityksestä yleiskuvan, avainkohdat ja avainsanat, jotka Apple Intelligence tekee laitteellasi.</p></div>
-        <div class="feature"><div class="ic">🔍</div><h3>Hae kaikesta</h3><p>Löydä kalvo minkä tahansa sen sanan tai puhujan sanoman perusteella.</p></div>
-        <div class="feature"><div class="ic">🗂️</div><h3>Järjestetty istunnoittain</h3><p>Peräkkäin kuvatuista kalvoista tulee yksi esitys. Nimeä, järjestä tai yhdistä niitä.</p></div>
-        <div class="feature"><div class="ic">📤</div><h3>PDF, Notion, PowerPoint</h3><p>Vie opiskelu-PDF, Markdown-muistiinpano Notionia tai Obsidiania varten tai PowerPoint-esitys, jonka puhujan muistiinpanoissa on litteraatti.</p></div>
-        <div class="feature"><div class="ic">☁️</div><h3>iCloud-synkronointi</h3><p>Halutessasi kalvosi ja äänitteesi ovat kaikilla iPhone-, iPad- ja Mac-laitteillasi.</p></div>
-        <div class="feature"><div class="ic">🖼️</div><h3>Kuvat-sovelluksesta</h3><p>Jaa luentokuvat Kuvat-sovelluksesta, niin ne suoristetaan ja tallennetaan yhdeksi esitykseksi.</p></div>
+  <main id="main">
+    <section class="hero">
+      <div class="copy">
+        <h1>Kuvattu sivusta.<br>Tallennettu edestä.</h1>
+        <p class="lead">Kamera löytää kalvon kaikki neljä kulmaa, oikaisee sen ja rajaa ympäristön pois. Peräkkäin kuvaamasi kalvot päätyvät samaan esitykseen.</p>
+        <div class="actions"><a class="cta" href="https://apps.apple.com/app/id6790835318">Lataa App Storesta</a><a class="try" href="#try">Oikaise itse ↓</a></div>
+        <p class="muted small">Yksi ostos, kaikki ominaisuudet. Ei tilausta, ei tiliä.</p>
       </div>
+      <div class="phone"><img src="../img/fi/02-list.jpg" alt="Kuvattu sivusta. Tallennettu edestä." width="720" height="1564" decoding="async"></div>
     </section>
 
-    <section>
-      <h2>Usein kysytyt kysymykset</h2>
-      <div class="faq">
-        <details open>
-          <summary>Miten kuvaan kalvoja?</summary>
-          <p>Avaa sovellus, niin kamera on valmis. Sovita kalvo näytölle, kunnes kehys muuttuu <span class="tag">vihreäksi</span>, ja napauta sitten suljinta tai anna automaattikuvauksen ottaa kuva. Kun kalvo vaihtuu, seuraava kuvataan automaattisesti.</p>
-        </details>
-        <details>
-          <summary>Miten äänitän puheen?</summary>
-          <p>Napauta kameran yläreunassa <strong>Äänitä</strong>. Puhe äänitetään kuvaamisen aikana. Voit myöhemmin avata minkä tahansa kalvon ja napauttaa toistoa, niin kuulet puheen siitä hetkestä, jolloin kuvasit kyseisen kalvon. Toisto vaihtaa kalvot puolestasi.</p>
-        </details>
-        <details>
-          <summary>Miten saan litteraatin tai tekoälytiivistelmän?</summary>
-          <p>Avaa esitys ja napauta ✨-muistiinpanopainiketta. Napauta äänitteen vieressä <strong>Litteroi</strong> ja sen jälkeen <strong>Tiivistä tekoälyllä</strong>. Tekoälytiivistelmä vaatii laitteen, joka tukee Apple Intelligencea (iOS 26 tai uudempi), ja Apple Intelligencen on oltava päällä.</p>
-        </details>
-        <details>
-          <summary>Miksi kalvoni on ryhmitelty yhteen?</summary>
-          <p>Viiden minuutin sisällä toisistaan kuvatut kalvot katsotaan samaksi istunnoksi ja tallennetaan yhteen esitykseen. Voit nimetä esityksen uudelleen tai yhdistää esityksiä luettelossa.</p>
-        </details>
-        <details>
-          <summary>Miten vien esityksen?</summary>
-          <p>Avaa esityksessä ⋯-valikko ja valitse PDF (yksi, kaksi tai neljä kalvoa sivulla), Markdown Notionia tai Obsidiania varten tai PowerPoint, joka aukeaa myös Keynotessa ja Google Slidesissa.</p>
-        </details>
-        <details>
-          <summary>Miten iCloud-synkronointi toimii?</summary>
-          <p>Ota se käyttöön kohdassa <strong>Omat tiedot › Synkronointi</strong>. Esityksesi, kalvosi ja äänitteesi tallennetaan omaan yksityiseen iCloudiisi, ja ne näkyvät muilla laitteillasi, joihin olet kirjautunut samalla Apple-tilillä. Toiminto on oletuksena pois päältä, koska kuvat ja äänitteet käyttävät iCloud-tilaa.</p>
-        </details>
-        <details>
-          <summary>Missä tietojani säilytetään?</summary>
-          <p>Laitteellasi. Tekstintunnistus, litterointi ja tekoälytiivistelmä toimivat kaikki laitteellasi. Tiedot siirtyvät omaan iCloudiisi vain, jos otat synkronoinnin käyttöön. Lue lisää <a href="privacy.html">tietosuojakäytännöstä</a>.</p>
-        </details>
-      </div>
+
+    <section class="reveal" id="try">
+      <h2>Oikaise itse</h2>
+      <p class="muted">Tämä kuva on otettu vinosti luentosalin sivupaikalta. Vihreä reunus näyttää, mistä kalvon kulmat löytyivät.</p>
+      <div id="demo" class="card demo-card" data-text="{&quot;title&quot;: &quot;Oikaise itse&quot;, &quot;lead&quot;: &quot;Tämä kuva on otettu vinosti luentosalin sivupaikalta. Vihreä reunus näyttää, mistä kalvon kulmat löytyivät.&quot;, &quot;straighten&quot;: &quot;Oikaise&quot;, &quot;reset&quot;: &quot;Takaisin kuvaan&quot;, &quot;photo&quot;: &quot;Vinosti otettu kuva&quot;, &quot;result&quot;: &quot;CatchSliden oikaisema kalvo&quot;, &quot;waiting&quot;: &quot;Napauta Oikaise, niin tulos näkyy tässä&quot;, &quot;hint&quot;: &quot;Voit myös vetää kulmapisteitä itse tai valita pisteen ja siirtää sitä nuolinäppäimillä.&quot;, &quot;corners&quot;: [&quot;Vasen yläkulma&quot;, &quot;Oikea yläkulma&quot;, &quot;Oikea alakulma&quot;, &quot;Vasen alakulma&quot;], &quot;note&quot;: &quot;Kokeilussa käytetään yhtä etukäteen otettua kuvaa. Sovelluksessa kulmat löytyvät suoraan kameranäkymästä ja teksti tunnistetaan laitteella.&quot;}"></div>
     </section>
 
-    <section>
-      <div class="contact">
-        <h2 style="margin-bottom:6px">Tarvitsetko apua?</h2>
-        <p style="color:var(--muted);margin:0">Kysymykset, virheilmoitukset ja ehdotukset uusista ominaisuuksista ovat tervetulleita.</p>
-        <a class="btn" href="mailto:leeo@kakao.com?subject=%5BCatchSlide%5D%20Support">Lähetä sähköpostia</a>
-        <p style="margin:14px 0 0"><a href="privacy.html">Tietosuojakäytäntö</a></p>
-      </div>
+    <section class="problem reveal">
+      <h2>Avasitko kuvat kertausta varten etkä löytänyt kalvoa?</h2>
+      <p>Takarivistä kuvatut kalvot ovat aina vinossa ja hukkuvat selfieiden ja kuittien sekaan. Hiljaisessa luentosalissa jo suljinääni saa epäröimään. CatchSlide kuvaa äänettömästi, oikaisee jokaisen kalvon ja pitää ne yhdessä esityksittäin.</p>
     </section>
-  </div>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Suora heti kuvatessa</h2>
+        <p>Kamera seuraa kalvon neljää kulmaa reaaliajassa ja muuttuu vihreäksi, kun se löytää ne. Vinostakin kuvattu kalvo oikaistaan kuin edestä otetuksi, ja tausta rajataan pois.<br>Ei suljinääntä. Kun <code>Automaattinen kuvaus</code> on päällä, jokainen uusi kalvo kuvataan itsestään ja tärähtäneet kuvat ohitetaan.</p>
+      </div>
+      <div class="phone"><img src="../img/fi/03-slide.jpg" alt="Suora heti kuvatessa" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Vanhat kuvat kerralla</h2>
+        <p>Valitse Kuvat-sovelluksesta useita luentokuvia ja jaa ne CatchSlideen. Ne oikaistaan ja tallennetaan yhdeksi esitykseksi siinä järjestyksessä, jossa otit ne.<br><code>Terävöitä teksti</code> poistaa varjot ja haalean kontrastin.</p>
+      </div>
+      <div class="phone"><img src="../img/fi/01-share.jpg" alt="Vanhat kuvat kerralla" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Yksi sana riittää</h2>
+        <p>CatchSlide lukee jokaisen kalvon tekstin suoraan laitteella. Viikkojenkin päästä yksi muistamasi sana vie oikean kalvon luo.<br>Myös kalvoihin lisätyt muistiinpanot ovat haettavissa. Merkitse muutama sanalla <code>tentti</code>, niin koko tenttialue löytyy yhdellä haulla.</p>
+      </div>
+      <div class="phone"><img src="../img/fi/06-memo-search.jpg" alt="Yksi sana riittää" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="reveal">
+      <h2>Alkuun kolmessa vaiheessa</h2>
+      <ol class="steps"><li class="card"><span class="n">1</span><h3>Avaa kamera</h3><p>Luettelon kamerapainikkeesta, Koti-valikon widgetistä tai lukitusnäytöltä.</p></li>
+<li class="card"><span class="n">2</span><h3>Rajaa kalvo kuvaan</h3><p>Kun kulmat muuttuvat vihreiksi, ota kuva tai anna automaattisen kuvauksen hoitaa se.</p></li>
+<li class="card"><span class="n">3</span><h3>Kertaa esityksittäin</h3><p>Hae, lisää muistiinpanoja ja vie PDF kertausta varten.</p></li></ol>
+    </section>
+
+    <section class="reveal" id="commands">
+      <h2>Mitä esityksellä voi tehdä</h2>
+      <div class="card table">
+        <dl><div><dt>Äänitys</dt><dd>Äänitä kuvatessasi ja kuuntele jokainen kalvo siitä hetkestä, jolloin kuvasit sen</dd></div><div><dt>Litterointi</dt><dd>Muuttaa äänityksen tekstiksi, näyttää mitä kunkin kalvon kohdalla sanottiin ja on mukana haussa</dd></div><div><dt>Tekoälytiivistelmä</dt><dd>Tiivistää esityksen kalvojen tekstistä ja litteroinnista (iOS 26 tai uudempi laitteissa, jotka tukevat Apple Intelligencea)</dd></div><div><dt>PDF</dt><dd>Kertausmoniste, jossa yksi, kaksi tai neljä kalvoa sivulla</dd></div><div><dt>Markdown</dt><dd>.zip, joka käy suoraan Notioniin tai Obsidianiin</dd></div><div><dt>PowerPoint</dt><dd>Vie .pptx-tiedoston, ja litterointi tulee puhujan muistiinpanoihin</dd></div><div><dt>Yhdistäminen</dt><dd>Valitse useita esityksiä ja yhdistä ne yhdeksi</dd></div><div><dt>iCloud-synkronointi</dt><dd>Kun se on päällä, näet esitykset myös muilla saman Apple ID:n laitteilla. Oletuksena pois päältä</dd></div><div><dt>Widgetit</dt><dd>Avaavat kameran suoraan Koti-valikosta tai lukitusnäytöltä</dd></div></dl>
+      </div>
+      <p class="muted">Tekstintunnistus, litterointi ja tekoälytiivistelmät tehdään laitteella.</p>
+    </section>
+
+
+    <section class="reveal" id="pricing">
+      <h2>Osta kerran, saat kaiken</h2>
+      <div class="plans">
+        <div class="card plan free">
+          <h3>CatchSlide</h3>
+          <ul><li>Äänetön kuvaus, automaattinen kuvaus ja oikaisu</li><li>Useiden kuvien tuonti kerralla Kuvat-sovelluksesta</li><li>Kalvot esityksittäin, haku tekstistä ja muistiinpanoista</li><li>Äänitys, litterointi ja tekoälytiivistelmä</li><li>Vienti PDF-, Markdown- ja PowerPoint-muotoon</li><li>iCloud-synkronointi ja widgetit</li></ul>
+          
+        </div>
+        <div class="card plan pro">
+          <h3>Tippi (vapaaehtoinen)</h3>
+          <ul><li>Jos sovelluksesta on sinulle apua, voit antaa kehittäjälle pienen tipin</li><li>Tippi ei avaa mitään. Kaikki ominaisuudet toimivat ilmankin</li></ul>
+          <p class="muted">Löydät sen Omat tiedot -näkymästä.</p>
+        </div>
+      </div>
+      <p class="muted">Ei tilausta eikä maksullisia lisäominaisuuksia. Katso hinta omassa maassasi App Storesta.</p>
+    </section>
+
+    <section class="reveal" id="faq">
+      <h2>Usein kysyttyä</h2>
+      <div class="faq"><details><summary>Miten kuvaan kalvon?</summary><p>Avaa kamera ja rajaa kalvo kuvaan. Kun kulmat muuttuvat vihreiksi, paina laukaisinta. Kun automaattinen kuvaus on päällä, seuraava kalvo kuvataan itsestään aina kalvon vaihtuessa.</p></details>
+<details><summary>Kuuluuko suljinääni?</summary><p>Ei. Kuva tallennetaan suoraan kameranäkymästä, joten kuvaus on äänetöntä kaikissa maissa.</p></details>
+<details><summary>Miksi kuvani ovat samassa esityksessä?</summary><p>Jos otat seuraavan kuvan alle 5 minuutin kuluttua edellisestä, se kuuluu samaan esitykseen. Napauta otsikkoa luettelossa nimetäksesi sen uudelleen, ja yhdistä erilleen jääneet esitykset toiminnolla <code>Yhdistä esitykset</code>.</p></details>
+<details><summary>Voinko lisätä jo ottamiani kuvia?</summary><p>Voit. Valitse ne Kuvat-sovelluksessa ja jaa CatchSlideen, tai napauta luettelossa ＋ ja valitse <code>Tuo Kuvat-sovelluksesta</code>. Ne oikaistaan ja tallennetaan yhdeksi esitykseksi kuvausjärjestyksessä.</p></details>
+<details><summary>Kulmat tunnistettiin väärin.</summary><p>Avaa kalvo, valitse ⋯-valikosta <code>Säädä kulmat</code> ja vedä neljä kulmaa paikoilleen. <code>Tunnista automaattisesti</code> etsii ne uudelleen, ja <code>Koko kuva</code> käyttää koko valokuvaa. Alkuperäinen säilyy aina, joten voit tehdä oikaisun uudelleen milloin vain.</p></details>
+<details><summary>Voinko hakea kalvojen tekstistä?</summary><p>Kirjoita sana luettelon yläreunan hakukenttään. Haku kattaa kalvojen tekstin, esitysten otsikot, muistiinpanot ja litteroinnit ja vie suoraan oikeaan kalvoon. Tekstintunnistus tehdään laitteella.</p></details>
+<details><summary>Miten vien PDF:n?</summary><p>Avaa esityksessä jakovalikko, valitse <code>Vie PDF-tiedostona</code> ja valitse yksi, kaksi tai neljä kalvoa sivulle. Jakotaulukosta voit tallentaa sen Tiedostoihin tai lähettää toiseen sovellukseen.</p></details>
+<details><summary>Miten muutan järjestystä tai poistan kalvoja?</summary><p>Pidä esityksessä kalvoa painettuna ja vedä se uuteen kohtaan. Samasta valikosta voit poistaa tai jakaa kalvon, ja <code>Valitse</code> poistaa useita kerralla.</p></details>
+<details><summary>Miten äänitys ja tekoälytiivistelmä toimivat?</summary><p>Laita kameran yläreunasta <code>Äänitä</code> päälle, niin jokaiseen kalvoon tallentuu sen hetken ääni. Kohdassa <code>Esityksen muistiinpanot</code> toiminto <code>Tiivistä tekoälyllä</code> tekee tiivistelmän kalvojen tekstistä ja litteroinnista. Se vaatii iOS 26:n tai uudemman laitteessa, joka tukee Apple Intelligencea.</p></details>
+<details><summary>Mihin kalvoni ja äänitykseni tallentuvat?</summary><p>Laitteellesi. Ne siirtyvät omaan iCloudiisi vain, jos laitat <code>Synkronointi</code> päälle Omat tiedot -näkymässä, eikä tiliä tarvita. Lisätietoja tietosuojakäytännössä.</p></details></div>
+      <p class="contact">Kysymyksiä, virheitä tai ideoita? Kirjoita osoitteeseen <a href="mailto:leeo@kakao.com">leeo@kakao.com</a>.</p>
+    </section>
+
+    <section class="closing reveal">
+      <h2>Seuraavasta luennosta<br>alkaen suorat kalvot</h2>
+      <a class="cta" href="https://apps.apple.com/app/id6790835318">Lataa App Storesta</a>
+    </section>
+  </main>
 
   <footer>
-    © 2026 CatchSlide &nbsp;·&nbsp; leeo@kakao.com
+    <nav id="languages" class="langs" aria-label="Kieli"><a href="../" hreflang="ko" lang="ko">한국어</a>
+<a href="../en/" hreflang="en" lang="en">English</a>
+<a href="../zh-Hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
+<a href="../zh-Hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
+<a href="../ja/" hreflang="ja" lang="ja">日本語</a>
+<a href="../ru/" hreflang="ru" lang="ru">Русский</a>
+<a href="../es/" hreflang="es" lang="es">Español</a>
+<a href="../de/" hreflang="de" lang="de">Deutsch</a>
+<a href="../fr/" hreflang="fr" lang="fr">Français</a>
+<a href="../it/" hreflang="it" lang="it">Italiano</a>
+<a href="../pt-BR/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a>
+<a href="../th/" hreflang="th" lang="th">ไทย</a>
+<a href="../vi/" hreflang="vi" lang="vi">Tiếng Việt</a>
+<a href="../cs/" hreflang="cs" lang="cs">Čeština</a>
+<a href="../da/" hreflang="da" lang="da">Dansk</a>
+<a href="../el/" hreflang="el" lang="el">Ελληνικά</a>
+<a href="../fi/" hreflang="fi" lang="fi" aria-current="page">Suomi</a>
+<a href="../id/" hreflang="id" lang="id">Indonesia</a>
+<a href="../nb/" hreflang="nb" lang="nb">Norsk</a>
+<a href="../nl/" hreflang="nl" lang="nl">Nederlands</a>
+<a href="../pl/" hreflang="pl" lang="pl">Polski</a>
+<a href="../sv/" hreflang="sv" lang="sv">Svenska</a>
+<a href="../tr/" hreflang="tr" lang="tr">Türkçe</a></nav>
+    <p><a href="privacy.html">Tietosuojakäytäntö</a> · <a href="mailto:leeo@kakao.com">leeo@kakao.com</a> · © 2026 CatchSlide</p>
   </footer>
-<nav style="text-align:center;font-size:0.85rem;line-height:2;padding:0 24px 40px"><a href="../" hreflang="ko">한국어</a> · <a href="../en/" hreflang="en">English</a> · <a href="../zh-Hans/" hreflang="zh-Hans">简体中文</a> · <a href="../zh-Hant/" hreflang="zh-Hant">繁體中文</a> · <a href="../ja/" hreflang="ja">日本語</a> · <a href="../ru/" hreflang="ru">Русский</a> · <a href="../es/" hreflang="es">Español</a> · <a href="../de/" hreflang="de">Deutsch</a> · <a href="../fr/" hreflang="fr">Français</a> · <a href="../it/" hreflang="it">Italiano</a> · <a href="../pt-BR/" hreflang="pt-BR">Português (Brasil)</a> · <a href="../th/" hreflang="th">ไทย</a> · <a href="../vi/" hreflang="vi">Tiếng Việt</a> · <a href="../cs/" hreflang="cs">Čeština</a> · <a href="../da/" hreflang="da">Dansk</a> · <a href="../el/" hreflang="el">Ελληνικά</a> · <a href="../fi/" hreflang="fi">Suomi</a> · <a href="../id/" hreflang="id">Indonesia</a> · <a href="../nb/" hreflang="nb">Norsk</a> · <a href="../nl/" hreflang="nl">Nederlands</a> · <a href="../pl/" hreflang="pl">Polski</a> · <a href="../sv/" hreflang="sv">Svenska</a> · <a href="../tr/" hreflang="tr">Türkçe</a></nav>
+
+  <script>
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target) }
+    }), { rootMargin: "0px 0px -10% 0px" });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  </script>
+  <script src="../demo.js"></script>
 </body>
 </html>

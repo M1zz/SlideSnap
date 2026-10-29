@@ -1,0 +1,114 @@
+{
+  "title": "CatchSlide: slide kuliah tetap lurus walau difoto dari samping",
+  "description": "Dari kursi mana pun, CatchSlide menemukan sudut slide, meluruskannya seperti difoto dari depan, menyimpannya per presentasi, dan teksnya bisa dicari.",
+  "hero": {
+    "headline": "Difoto dari samping.\nTersimpan dari depan.",
+    "lead": "Kamera menemukan keempat sudut slide, meluruskannya, lalu memotong semua yang ada di sekitarnya. Slide yang Anda foto berurutan masuk ke presentasi yang sama.",
+    "cta": "Unduh di App Store",
+    "note": "Sekali beli, semua fitur. Tanpa langganan, tanpa akun."
+  },
+  "demo": {
+    "title": "Coba luruskan sendiri",
+    "lead": "Foto ini diambil miring dari kursi samping di ruang kuliah. Garis hijau menunjukkan sudut slide yang ditemukan.",
+    "straighten": "Luruskan",
+    "reset": "Kembali ke foto",
+    "photo": "Foto yang diambil miring",
+    "result": "Slide yang diluruskan CatchSlide",
+    "waiting": "Ketuk Luruskan untuk melihat hasilnya di sini",
+    "hint": "Anda juga bisa menyeret titik di sudut untuk menyesuaikannya, atau memilih satu titik lalu menggesernya dengan tombol panah.",
+    "corners": ["Sudut kiri atas", "Sudut kanan atas", "Sudut kanan bawah", "Sudut kiri bawah"],
+    "note": "Demo ini memakai satu foto yang sudah diambil sebelumnya. Di aplikasi, sudut ditemukan langsung di kamera dan teks dikenali di perangkat Anda sendiri."
+  },
+  "problem": {
+    "title": "Pernah buka galeri untuk belajar, tapi slide-nya tidak ketemu?",
+    "text": "Slide yang difoto dari barisan belakang selalu miring dan tenggelam di antara swafoto dan struk belanja. Di ruang kuliah yang hening, bunyi rana saja sudah bikin ragu. CatchSlide memotret tanpa suara, meluruskan setiap slide, dan menyimpannya bersama per presentasi."
+  },
+  "features": [
+    {
+      "title": "Lurus sejak dipotret",
+      "text": "Kamera mengikuti keempat sudut slide secara langsung dan berubah hijau saat sudah menangkapnya. Meski difoto miring, slide diluruskan seperti dilihat dari depan, tanpa latar belakang.\nTidak ada bunyi rana. Nyalakan `Ambil otomatis` dan setiap slide baru akan dipotret sendiri, sementara foto yang goyang dilewati.",
+      "shot": "03-slide"
+    },
+    {
+      "title": "Foto lama, sekaligus",
+      "text": "Pilih beberapa foto kuliah di app Foto lalu bagikan ke CatchSlide. Foto-foto itu diluruskan dan disimpan sebagai satu presentasi, sesuai urutan pengambilannya.\n`Pertajam Teks` menghapus bayangan dan kontras yang pudar.",
+      "shot": "01-share"
+    },
+    {
+      "title": "Cukup satu kata",
+      "text": "CatchSlide membaca teks di setiap slide langsung di perangkat Anda. Berminggu-minggu kemudian pun, satu kata sudah cukup untuk menemukan slide itu.\nCatatan di slide juga bisa dicari. Tulis `UAS` di beberapa slide, dan semua materi ujian muncul dalam sekali cari.",
+      "shot": "06-memo-search"
+    }
+  ],
+  "steps": {
+    "title": "Mulai dalam tiga langkah",
+    "items": [
+      {"title": "Buka kamera", "text": "Dari tombol kamera di daftar, widget di Layar Utama, atau Layar Terkunci."},
+      {"title": "Bingkai slide-nya", "text": "Saat sudut berubah hijau, ketuk rana atau biarkan ambil otomatis yang bekerja."},
+      {"title": "Buka lagi per presentasi", "text": "Cari, tambahkan catatan, dan ekspor PDF untuk belajar."}
+    ]
+  },
+  "reference": {
+    "title": "Yang bisa dilakukan dengan satu presentasi",
+    "rows": [
+      ["Rekaman", "Rekam sambil memotret, lalu putar setiap slide mulai dari saat slide itu difoto"],
+      ["Transkripsi", "Mengubah rekaman jadi teks, menampilkan apa yang diucapkan di tiap slide, dan ikut dalam pencarian"],
+      ["Ringkasan AI", "Meringkas presentasi dari teks slide dan transkrip (iOS 26 atau lebih baru di perangkat yang mendukung Apple Intelligence)"],
+      ["PDF", "Bahan belajar berisi satu, dua, atau empat slide per halaman"],
+      ["Markdown", "File .zip yang siap masuk ke Notion atau Obsidian"],
+      ["PowerPoint", "Ekspor .pptx dengan transkrip di catatan pembicara"],
+      ["Gabungkan", "Pilih beberapa presentasi lalu satukan"],
+      ["Sinkronisasi iCloud", "Nyalakan untuk melihat presentasi di perangkat lain dengan Apple ID yang sama. Mati secara bawaan"],
+      ["Widget", "Membuka kamera langsung dari Layar Utama atau Layar Terkunci"]
+    ],
+    "note": "Pengenalan teks, transkripsi, dan ringkasan AI semuanya berjalan di perangkat Anda."
+  },
+  "pricing": {
+    "title": "Sekali beli, dapat semuanya",
+    "free": {
+      "name": "CatchSlide",
+      "items": [
+        "Foto tanpa suara, ambil otomatis, dan pelurusan",
+        "Impor banyak foto sekaligus dari app Foto",
+        "Slide per presentasi, cari di teks dan catatan",
+        "Rekaman, transkripsi, dan ringkasan AI",
+        "Ekspor ke PDF, Markdown, dan PowerPoint",
+        "Sinkronisasi iCloud dan widget"
+      ]
+    },
+    "pro": {
+      "name": "Tip (opsional)",
+      "items": [
+        "Kalau aplikasi ini membantu, Anda bisa memberi tip kecil untuk pengembang",
+        "Tip tidak membuka fitur apa pun. Semua fitur tetap bisa dipakai tanpa tip"
+      ],
+      "note": "Ada di layar Info Saya."
+    },
+    "note": "Tanpa langganan dan tanpa pembelian untuk membuka fitur. Lihat harga di negara Anda di App Store."
+  },
+  "faq": {
+    "title": "Pertanyaan umum",
+    "items": [
+      {"q": "Bagaimana cara memotret slide?", "a": "Buka kamera dan bingkai slide-nya. Saat sudut berubah hijau, ketuk rana. Jika ambil otomatis menyala, slide berikutnya dipotret sendiri setiap kali slide berganti."},
+      {"q": "Apakah ada bunyi rana?", "a": "Tidak. Gambar disimpan langsung dari kamera, jadi tetap senyap di negara mana pun."},
+      {"q": "Kenapa foto-foto saya masuk ke satu presentasi?", "a": "Jika foto berikutnya diambil kurang dari 5 menit setelah foto sebelumnya, foto itu dianggap bagian dari presentasi yang sama. Ketuk judul di daftar untuk mengganti nama, dan pakai `Gabungkan Presentasi` untuk menyatukan yang terpisah."},
+      {"q": "Bisakah saya menambahkan foto yang sudah ada?", "a": "Bisa. Pilih fotonya di app Foto lalu bagikan ke CatchSlide, atau ketuk ＋ di daftar dan pilih `Impor dari Foto`. Foto diluruskan dan disimpan sebagai satu presentasi sesuai urutan pengambilan."},
+      {"q": "Sudutnya terdeteksi salah.", "a": "Buka slide, pilih `Atur Sudut` dari menu ⋯, lalu seret keempat sudut ke tempatnya. `Deteksi Otomatis` mencarinya lagi, dan `Seluruh Gambar` memakai foto utuh. Foto asli selalu disimpan, jadi Anda bisa mengulangnya kapan saja."},
+      {"q": "Bisakah saya mencari teks di slide?", "a": "Ketik kata di kolom pencarian di bagian atas daftar. Pencarian mencakup teks slide, judul presentasi, catatan, dan transkrip, lalu langsung membuka slide-nya. Pengenalan teks berlangsung di perangkat."},
+      {"q": "Bagaimana cara ekspor PDF?", "a": "Di dalam presentasi, buka menu bagikan, pilih `Ekspor sebagai PDF`, lalu pilih satu, dua, atau empat slide per halaman. Dari lembar bagikan, simpan ke File atau kirim ke aplikasi lain."},
+      {"q": "Bagaimana mengubah urutan atau menghapus slide?", "a": "Di dalam presentasi, sentuh dan tahan slide lalu seret. Dari menu yang sama Anda bisa menghapus atau membagikan satu slide, dan `Pilih` menghapus beberapa sekaligus."},
+      {"q": "Bagaimana rekaman dan ringkasan AI bekerja?", "a": "Nyalakan `Rekam` di bagian atas kamera, dan setiap slide akan menyimpan suara pada saat itu. Di `Catatan Presentasi`, `Ringkas dengan AI` membuat ringkasan dari teks slide dan transkrip. Fitur ini butuh iOS 26 atau lebih baru di perangkat yang mendukung Apple Intelligence."},
+      {"q": "Di mana slide dan rekaman saya disimpan?", "a": "Di perangkat Anda. Data hanya diunggah ke iCloud milik Anda sendiri jika Anda menyalakan `Sinkronkan` di Info Saya, dan tidak perlu akun. Selengkapnya di Kebijakan Privasi."}
+    ]
+  },
+  "closing": {
+    "headline": "Mulai kuliah berikutnya,\nslide selalu lurus",
+    "cta": "Unduh di App Store"
+  },
+  "ui": {
+    "skip": "Langsung ke konten",
+    "languages": "Bahasa",
+    "privacy": "Kebijakan Privasi",
+    "contact": "Ada pertanyaan, bug, atau ide? Kirim email ke {email}."
+  }
+}

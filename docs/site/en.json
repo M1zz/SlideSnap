@@ -1,0 +1,153 @@
+{
+  "title": "CatchSlide: lecture slides, straightened the moment you shoot",
+  "description": "Shoot a slide from any seat. CatchSlide finds its corners, flattens it as if seen head-on, files it by presentation and makes the text searchable.",
+  "hero": {
+    "headline": "Shot from the side.\nSaved head-on.",
+    "lead": "The camera finds all four corners of the slide, straightens it and crops away the room. Slides you shoot in a row land in the same presentation.",
+    "cta": "Get it on the App Store",
+    "note": "One purchase, every feature. No subscription, no account."
+  },
+  "demo": {
+    "title": "Straighten one yourself",
+    "lead": "This photo was taken at an angle from a side seat. The green outline is where the slide's corners were found.",
+    "straighten": "Straighten",
+    "reset": "Back to the photo",
+    "photo": "Photo taken at an angle",
+    "result": "The slide, straightened by CatchSlide",
+    "waiting": "Tap Straighten to see the result here",
+    "hint": "You can drag the corner dots to adjust them, or select one and nudge it with the arrow keys.",
+    "corners": ["Top-left corner", "Top-right corner", "Bottom-right corner", "Bottom-left corner"],
+    "note": "This demo uses one photo taken in advance. The app finds the corners live in the camera view and reads the text right on your device."
+  },
+  "problem": {
+    "title": "Ever opened your camera roll to revise and couldn't find the slide?",
+    "text": "Slides shot from the back row come out skewed, then get buried between selfies and receipts. In a quiet lecture hall, the shutter sound alone makes you hesitate. CatchSlide shoots silently, straightens every slide and keeps each talk together as one presentation."
+  },
+  "features": [
+    {
+      "title": "Straight the moment you shoot",
+      "text": "The camera tracks the slide's four corners live and turns green when it has them. Even at an angle, the slide is flattened as if shot head-on, with the background cropped away.\nNo shutter sound. Turn on `Auto Capture` and it grabs each new slide as the speaker moves on, skipping shots that came out blurry.",
+      "shot": "03-slide"
+    },
+    {
+      "title": "Photos you already took, all at once",
+      "text": "Pick a batch of lecture photos in the Photos app and share them to CatchSlide. They're straightened and filed as one presentation, in the order you took them.\nTurn on `Sharpen Text` to clear away shadows and washed-out contrast.",
+      "shot": "01-share"
+    },
+    {
+      "title": "Find it with the one word you remember",
+      "text": "CatchSlide reads the text on every slide, right on your device. Weeks later, a single word brings that slide back.\nNotes you add to a slide are searchable too. Tag a few with `exam` and the whole syllabus for the test is one search away.",
+      "shot": "06-memo-search"
+    }
+  ],
+  "steps": {
+    "title": "Three steps to start",
+    "items": [
+      {
+        "title": "Open the camera",
+        "text": "From the camera button, the Home Screen widget or the Lock Screen."
+      },
+      {
+        "title": "Frame the slide",
+        "text": "When the corners turn green, tap the shutter or let auto capture do it."
+      },
+      {
+        "title": "Come back to it later",
+        "text": "Search, add notes and export a PDF to revise from."
+      }
+    ]
+  },
+  "reference": {
+    "title": "What you can do with a presentation",
+    "rows": [
+      ["Recording", "Record while you shoot, then play each slide from the moment you captured it"],
+      ["Transcription", "Turns the recording into text, shows what was said on each slide and makes it searchable"],
+      ["AI summary", "Summarizes the presentation from slide text and transcripts (iOS 26 or later on devices that support Apple Intelligence)"],
+      ["PDF", "Revision handouts with one, two or four slides per page"],
+      ["Markdown", "A .zip ready for Notion or Obsidian"],
+      ["PowerPoint", "Exports a .pptx with the transcript in the speaker notes"],
+      ["Merge", "Select several presentations and join them into one"],
+      ["iCloud sync", "Turn it on to see your presentations on your other devices with the same Apple ID. Off by default"],
+      ["Widgets", "Open the camera straight from the Home Screen or Lock Screen"]
+    ],
+    "note": "Text recognition, transcription and AI summaries all run on your device."
+  },
+  "pricing": {
+    "title": "Buy once, get everything",
+    "free": {
+      "name": "CatchSlide",
+      "items": [
+        "Silent shooting, auto capture and straightening",
+        "Import a batch of photos from the Photos app",
+        "Slides filed by presentation, with text and note search",
+        "Recording, transcription and AI summaries",
+        "PDF, Markdown and PowerPoint export",
+        "iCloud sync and widgets"
+      ]
+    },
+    "pro": {
+      "name": "Tips (optional)",
+      "items": [
+        "If the app helps you, you can send the developer a small tip",
+        "Tips don't unlock anything. Every feature works without one"
+      ],
+      "note": "Find it on the My Info screen."
+    },
+    "note": "No subscription and no paid add-ons. See the App Store for the price in your country."
+  },
+  "faq": {
+    "title": "Questions",
+    "items": [
+      {
+        "q": "How do I capture a slide?",
+        "a": "Open the camera and frame the slide. When the corners turn green, tap the shutter. With auto capture on, it takes the next slide on its own each time the slide changes."
+      },
+      {
+        "q": "Does it make a shutter sound?",
+        "a": "No. It saves the frame straight from the camera view, so it's silent in every country."
+      },
+      {
+        "q": "Why are my shots grouped into one presentation?",
+        "a": "If you take the next shot within 5 minutes of the last one, it's treated as the same presentation. Tap a title in the list to rename it, and use `Merge Presentations` to join ones that were split up."
+      },
+      {
+        "q": "Can I add photos I already took?",
+        "a": "Yes. Select photos in the Photos app and share them to CatchSlide, or tap ＋ in the list and choose `Import from Photos`. They're straightened and filed as one presentation in the order you took them."
+      },
+      {
+        "q": "The corners were detected wrong.",
+        "a": "Open the slide, then choose `Adjust Corners` from the ⋯ menu and drag the four corners into place. `Auto Detect` finds them again, and `Full Image` uses the whole photo. The original is always kept, so you can redo it anytime."
+      },
+      {
+        "q": "Can I search the text on my slides?",
+        "a": "Type a word in the search field at the top of the list. It searches slide text, presentation titles, notes and transcripts, and jumps straight to the slide. Text recognition happens on your device."
+      },
+      {
+        "q": "How do I export a PDF?",
+        "a": "In a presentation, open the share menu, choose `Export as PDF` and pick one, two or four slides per page. Save it to Files or send it to another app from the share sheet."
+      },
+      {
+        "q": "How do I reorder or delete slides?",
+        "a": "In a presentation, press and hold a slide and drag it to reorder. The same long-press menu lets you delete or share one slide, and `Select` lets you delete several at once."
+      },
+      {
+        "q": "How do recording and AI summaries work?",
+        "a": "Turn on `Record` at the top of the camera and each slide keeps the audio from that moment. In Deck Notes, `Summarize with AI` writes a summary from the slide text and transcripts. AI summaries need iOS 26 or later on a device that supports Apple Intelligence."
+      },
+      {
+        "q": "Where are my slides and recordings stored?",
+        "a": "On your device. They go to your own iCloud only if you turn on `Sync` in My Info, and no account is needed. See the Privacy Policy for details."
+      }
+    ]
+  },
+  "closing": {
+    "headline": "Straight slides,\nstarting next lecture",
+    "cta": "Get it on the App Store"
+  },
+  "ui": {
+    "skip": "Skip to content",
+    "languages": "Language",
+    "privacy": "Privacy Policy",
+    "contact": "Questions, bug reports or ideas? Write to {email}."
+  }
+}

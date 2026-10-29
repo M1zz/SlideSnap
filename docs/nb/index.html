@@ -1,184 +1,192 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="nb">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CatchSlide — Kundestøtte</title>
-<meta name="description" content="Kundestøtte for CatchSlide — ta bilder av forelesningslysbilder, ta opp foredraget og repeter med transkripsjoner og AI-sammendrag.">
-<style>
-  :root {
-    --blue: #2f6bde;
-    --blue-light: #4facfe;
-    --green: #29cc70;
-    --ink: #1a2233;
-    --muted: #5b6577;
-    --bg: #f5f7fb;
-    --card: #ffffff;
-    --border: #e4e9f2;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --ink: #e8ecf4;
-      --muted: #9aa4b8;
-      --bg: #0f131b;
-      --card: #1a2130;
-      --border: #2a3346;
-    }
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-    color: var(--ink);
-    background: var(--bg);
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-  }
-  .hero {
-    background: linear-gradient(135deg, var(--blue-light) 0%, var(--blue) 100%);
-    color: #fff;
-    padding: 64px 24px 56px;
-    text-align: center;
-  }
-  .hero img {
-    width: 108px; height: 108px;
-    border-radius: 24px;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.28);
-  }
-  .hero h1 { margin: 20px 0 6px; font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; }
-  .hero p { margin: 0; font-size: 1.05rem; opacity: 0.95; }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-  section { padding: 40px 0; border-bottom: 1px solid var(--border); }
-  section:last-of-type { border-bottom: none; }
-  h2 { font-size: 1.35rem; font-weight: 700; margin: 0 0 18px; letter-spacing: -0.01em; }
-  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 520px) { .features { grid-template-columns: 1fr; } }
-  .feature {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 14px; padding: 18px 18px 16px;
-  }
-  .feature .ic { font-size: 1.5rem; }
-  .feature h3 { margin: 8px 0 4px; font-size: 1rem; }
-  .feature p { margin: 0; color: var(--muted); font-size: 0.92rem; }
-  .faq { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 6px 20px; }
-  details { padding: 14px 0; border-bottom: 1px solid var(--border); }
-  details:last-child { border-bottom: none; }
-  summary { cursor: pointer; font-weight: 600; list-style: none; }
-  summary::-webkit-details-marker { display: none; }
-  summary::before { content: "＋"; color: var(--blue); font-weight: 700; margin-right: 10px; }
-  details[open] summary::before { content: "－"; }
-  details p { margin: 12px 0 2px; color: var(--muted); }
-  .contact {
-    text-align: center; background: var(--card);
-    border: 1px solid var(--border); border-radius: 16px; padding: 32px 24px;
-  }
-  .btn {
-    display: inline-block; margin-top: 12px;
-    background: var(--blue); color: #fff; text-decoration: none;
-    padding: 12px 26px; border-radius: 999px; font-weight: 600;
-  }
-  a { color: var(--blue); }
-  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 32px 24px 48px; }
-  .tag { display:inline-block; color: var(--green); font-weight:700; }
-</style>
-<link rel="canonical" href="https://m1zz.github.io/SlideSnap/nb/">
-<link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
-<link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
-<link rel="alternate" hreflang="en-GB" href="https://m1zz.github.io/SlideSnap/en/">
-<link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
-<link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
-<link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
-<link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
-<link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
-<link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
-<link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
-<link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
-<link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
-<link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
-<link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
-<link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
-<link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
-<link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
-<link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
-<link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
-<link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
-<link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
-<link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
-<link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
-<link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
-<link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CatchSlide: rette lysbilder fra forelesningen, selv tatt fra siden</title>
+  <meta name="description" content="Uansett hvor du sitter, finner CatchSlide hjørnene på lysbildet, retter det opp som sett forfra, samler det per presentasjon og gjør teksten søkbar.">
+  <meta name="theme-color" content="#3478E7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f131b" media="(prefers-color-scheme: dark)">
+  <meta name="apple-itunes-app" content="app-id=6790835318">
+  <link rel="canonical" href="https://m1zz.github.io/SlideSnap/nb/">
+  <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
+  <link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
+  <link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
+  <link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
+  <link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
+  <link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
+  <link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
+  <link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
+  <link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
+  <link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
+  <link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
+  <link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
+  <link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
+  <link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
+  <link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
+  <link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
+  <link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
+  <link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
+  <link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
+  <link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
+  <link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
+  <link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CatchSlide: rette lysbilder fra forelesningen, selv tatt fra siden">
+  <meta property="og:description" content="Uansett hvor du sitter, finner CatchSlide hjørnene på lysbildet, retter det opp som sett forfra, samler det per presentasjon og gjør teksten søkbar.">
+  <meta property="og:url" content="https://m1zz.github.io/SlideSnap/nb/">
+  <meta property="og:image" content="https://m1zz.github.io/SlideSnap/img/nb/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../icon.png">
+  <link rel="apple-touch-icon" href="../icon.png">
+  <link rel="stylesheet" href="../site.css">
+  <link rel="stylesheet" href="../demo.css">
+  <style>:root{--accent:#3478E7}@media (prefers-color-scheme:dark){:root{--accent:#5EA2FF}}</style>
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
-  <div class="hero">
-    <img src="../icon.png" alt="Appikon for CatchSlide">
-    <h1>CatchSlide</h1>
-    <p>Ta bilder av forelesningslysbilder. Få dem rettet opp, søkbare og klare til repetisjon.</p>
-  </div>
+  <a class="skip" href="#main">Gå til innhold</a>
+  <header class="bar">
+    <a class="brand" href="../nb/"><img src="../icon.png" alt="" width="32" height="32">CatchSlide</a>
+    <a class="lang-link" href="#languages">Språk</a>
+  </header>
 
-  <div class="wrap">
-    <section>
-      <h2>Funksjoner</h2>
-      <div class="features">
-        <div class="feature"><div class="ic">🟩</div><h3>Gjenkjenning av lysbilder i sanntid</h3><p>Kameraet finner de fire hjørnene på lysbildet mens du sikter, retter det opp som om du sto rett foran det, og kan ta bildet automatisk.</p></div>
-        <div class="feature"><div class="ic">🤫</div><h3>Lydløst opptak</h3><p>Ingen lukkerlyd, så du kan ta bilder midt i en forelesning uten å forstyrre noen.</p></div>
-        <div class="feature"><div class="ic">🎙️</div><h3>Ta opp og spill av</h3><p>Ta opp foredraget mens du tar bilder. Trykk på et lysbilde for å høre hva som ble sagt akkurat da.</p></div>
-        <div class="feature"><div class="ic">💬</div><h3>Transkripsjoner</h3><p>Gjør opptak om til tekst på enheten din, og les hva som ble sagt på hvert lysbilde.</p></div>
-        <div class="feature"><div class="ic">✨</div><h3>AI-sammendrag</h3><p>Få en oversikt, hovedpunkter og nøkkelord for hele foredraget, laget på enheten din med Apple Intelligence.</p></div>
-        <div class="feature"><div class="ic">🔍</div><h3>Søk i alt</h3><p>Finn et lysbilde med et hvilket som helst ord på det eller noe foredragsholderen sa.</p></div>
-        <div class="feature"><div class="ic">🗂️</div><h3>Ordnet etter økt</h3><p>Lysbilder du tar etter hverandre blir til én presentasjon. Gi dem nytt navn, endre rekkefølgen eller slå dem sammen.</p></div>
-        <div class="feature"><div class="ic">📤</div><h3>PDF, Notion, PowerPoint</h3><p>Eksporter en studie-PDF, et Markdown-notat for Notion eller Obsidian, eller en PowerPoint med transkripsjonen i foredragsnotatene.</p></div>
-        <div class="feature"><div class="ic">☁️</div><h3>iCloud-synkronisering</h3><p>Behold om ønskelig lysbildene og opptakene dine på alle iPhone-, iPad- og Mac-enhetene dine.</p></div>
-        <div class="feature"><div class="ic">🖼️</div><h3>Fra Bilder</h3><p>Del forelesningsbilder fra Bilder-appen, så rettes de opp og samles i én presentasjon.</p></div>
+  <main id="main">
+    <section class="hero">
+      <div class="copy">
+        <h1>Tatt fra siden.<br>Lagret forfra.</h1>
+        <p class="lead">Kameraet finner alle fire hjørnene på lysbildet, retter det opp og skjærer bort rommet rundt. Lysbilder du tar etter hverandre, havner i samme presentasjon.</p>
+        <div class="actions"><a class="cta" href="https://apps.apple.com/app/id6790835318">Last ned i App Store</a><a class="try" href="#try">Rett det opp selv ↓</a></div>
+        <p class="muted small">Ett kjøp, alle funksjoner. Ingen abonnement, ingen konto.</p>
       </div>
+      <div class="phone"><img src="../img/nb/02-list.jpg" alt="Tatt fra siden. Lagret forfra." width="720" height="1564" decoding="async"></div>
     </section>
 
-    <section>
+
+    <section class="reveal" id="try">
+      <h2>Rett det opp selv</h2>
+      <p class="muted">Bildet er tatt skrått fra en sideplass i auditoriet. Den grønne kanten viser hvor hjørnene på lysbildet ble funnet.</p>
+      <div id="demo" class="card demo-card" data-text="{&quot;title&quot;: &quot;Rett det opp selv&quot;, &quot;lead&quot;: &quot;Bildet er tatt skrått fra en sideplass i auditoriet. Den grønne kanten viser hvor hjørnene på lysbildet ble funnet.&quot;, &quot;straighten&quot;: &quot;Rett opp&quot;, &quot;reset&quot;: &quot;Tilbake til bildet&quot;, &quot;photo&quot;: &quot;Bilde tatt skrått&quot;, &quot;result&quot;: &quot;Lysbildet rettet opp av CatchSlide&quot;, &quot;waiting&quot;: &quot;Trykk på Rett opp for å se resultatet her&quot;, &quot;hint&quot;: &quot;Du kan også dra i hjørnepunktene, eller velge ett og flytte det med piltastene.&quot;, &quot;corners&quot;: [&quot;Øvre venstre hjørne&quot;, &quot;Øvre høyre hjørne&quot;, &quot;Nedre høyre hjørne&quot;, &quot;Nedre venstre hjørne&quot;], &quot;note&quot;: &quot;Demoen bruker ett bilde tatt på forhånd. I appen finnes hjørnene direkte i kameraet, og teksten gjenkjennes på enheten din.&quot;}"></div>
+    </section>
+
+    <section class="problem reveal">
+      <h2>Har du åpnet kamerarullen for å lese og ikke funnet lysbildet?</h2>
+      <p>Lysbilder tatt fra bakerste rad blir alltid skjeve og drukner mellom selfier og kvitteringer. I et stille auditorium er lukkerlyden alene nok til at du nøler. CatchSlide tar bilder uten lyd, retter opp hvert lysbilde og holder dem samlet per presentasjon.</p>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Rett i samme øyeblikk</h2>
+        <p>Kameraet følger de fire hjørnene på lysbildet direkte og blir grønt når det har dem. Selv tatt skrått blir lysbildet rettet opp som om det var tatt forfra, og bakgrunnen skjæres bort.<br>Ingen lukkerlyd. Slå på <code>Automatisk opptak</code>, så tar appen hvert nytt lysbilde av seg selv og hopper over uskarpe bilder.</p>
+      </div>
+      <div class="phone"><img src="../img/nb/03-slide.jpg" alt="Rett i samme øyeblikk" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Bilder du allerede har, på én gang</h2>
+        <p>Velg flere bilder fra forelesningen i Bilder, og del dem med CatchSlide. De rettes opp og lagres som én presentasjon i den rekkefølgen du tok dem.<br><code>Gjør teksten skarpere</code> fjerner skygger og matt kontrast.</p>
+      </div>
+      <div class="phone"><img src="../img/nb/01-share.jpg" alt="Bilder du allerede har, på én gang" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Ett ord er nok</h2>
+        <p>CatchSlide leser teksten på hvert lysbilde rett på enheten din. Selv uker senere tar ett ord deg tilbake til riktig lysbilde.<br>Notater på lysbildene er også søkbare. Skriv <code>eksamen</code> på noen av dem, så er hele pensum ett søk unna.</p>
+      </div>
+      <div class="phone"><img src="../img/nb/06-memo-search.jpg" alt="Ett ord er nok" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="reveal">
+      <h2>Kom i gang på tre steg</h2>
+      <ol class="steps"><li class="card"><span class="n">1</span><h3>Åpne kameraet</h3><p>Fra kameraknappen i listen, widgeten på Hjem-skjermen eller låseskjermen.</p></li>
+<li class="card"><span class="n">2</span><h3>Få lysbildet i bildet</h3><p>Når hjørnene blir grønne, tar du bildet, eller du lar automatisk opptak gjøre det.</p></li>
+<li class="card"><span class="n">3</span><h3>Les per presentasjon</h3><p>Søk, legg til notater og eksporter en PDF å lese på.</p></li></ol>
+    </section>
+
+    <section class="reveal" id="commands">
+      <h2>Dette kan du gjøre med en presentasjon</h2>
+      <div class="card table">
+        <dl><div><dt>Opptak</dt><dd>Ta opp lyd mens du tar bilder, og spill av hvert lysbilde fra øyeblikket du tok det</dd></div><div><dt>Transkripsjon</dt><dd>Gjør opptaket om til tekst, viser hva som ble sagt til hvert lysbilde og er med i søket</dd></div><div><dt>AI-oppsummering</dt><dd>Oppsummerer presentasjonen ut fra lysbildetekst og transkripsjon (iOS 26 eller nyere på enheter med Apple Intelligence)</dd></div><div><dt>PDF</dt><dd>Lesestoff med ett, to eller fire lysbilder per side</dd></div><div><dt>Markdown</dt><dd>En .zip klar for Notion eller Obsidian</dd></div><div><dt>PowerPoint</dt><dd>Eksporter en .pptx med transkripsjonen i foredragsnotatene</dd></div><div><dt>Slå sammen</dt><dd>Velg flere presentasjoner og gjør dem til én</dd></div><div><dt>iCloud-synkronisering</dt><dd>Slå på for å se presentasjonene på andre enheter med samme Apple ID. Av som standard</dd></div><div><dt>Widgeter</dt><dd>Åpner kameraet rett fra Hjem-skjermen eller låseskjermen</dd></div></dl>
+      </div>
+      <p class="muted">Tekstgjenkjenning, transkripsjon og AI-oppsummeringer skjer på enheten din.</p>
+    </section>
+
+
+    <section class="reveal" id="pricing">
+      <h2>Kjøp én gang, få alt</h2>
+      <div class="plans">
+        <div class="card plan free">
+          <h3>CatchSlide</h3>
+          <ul><li>Lydløse bilder, automatisk opptak og oppretting</li><li>Import av flere bilder samtidig fra Bilder</li><li>Lysbilder per presentasjon, søk i tekst og notater</li><li>Opptak, transkripsjon og AI-oppsummering</li><li>Eksport til PDF, Markdown og PowerPoint</li><li>iCloud-synkronisering og widgeter</li></ul>
+          
+        </div>
+        <div class="card plan pro">
+          <h3>Tips (valgfritt)</h3>
+          <ul><li>Hvis appen hjelper deg, kan du gi utvikleren litt tips</li><li>Tips låser ikke opp noe. Alle funksjoner virker uten</li></ul>
+          <p class="muted">Du finner det under Min info.</p>
+        </div>
+      </div>
+      <p class="muted">Ingen abonnement og ingen betaling for ekstra funksjoner. Se prisen i ditt land i App Store.</p>
+    </section>
+
+    <section class="reveal" id="faq">
       <h2>Vanlige spørsmål</h2>
-      <div class="faq">
-        <details open>
-          <summary>Hvordan tar jeg bilder av lysbilder?</summary>
-          <p>Åpne appen, så er kameraet klart. Plasser lysbildet på skjermen til rammen blir <span class="tag">grønn</span>, og trykk på utløseren, eller la automatisk opptak ta bildet. Når lysbildet byttes, tas det neste automatisk.</p>
-        </details>
-        <details>
-          <summary>Hvordan tar jeg opp foredraget?</summary>
-          <p>Trykk på <strong>Ta opp</strong> øverst i kameraet. Foredraget tas opp mens du tar bilder. Senere kan du åpne et lysbilde og trykke på avspilling for å høre det fra øyeblikket du tok bildet. Avspillingen bytter lysbilde for deg.</p>
-        </details>
-        <details>
-          <summary>Hvordan får jeg en transkripsjon eller et AI-sammendrag?</summary>
-          <p>Åpne en presentasjon, og trykk på notatknappen ✨. Trykk på <strong>Transkriber</strong> ved siden av et opptak, og deretter på <strong>Oppsummer med AI</strong>. AI-sammendrag krever en enhet som støtter Apple Intelligence (iOS 26 eller nyere), og at Apple Intelligence er slått på.</p>
-        </details>
-        <details>
-          <summary>Hvorfor er lysbildene mine samlet i grupper?</summary>
-          <p>Lysbilder som tas med under fem minutters mellomrom, regnes som samme økt og samles i én presentasjon. Du kan gi den nytt navn eller slå sammen presentasjoner fra listen.</p>
-        </details>
-        <details>
-          <summary>Hvordan eksporterer jeg?</summary>
-          <p>Åpne ⋯-menyen i en presentasjon, og velg PDF (ett, to eller fire lysbilder per side), Markdown for Notion eller Obsidian, eller PowerPoint, som også kan åpnes i Keynote og Google Slides.</p>
-        </details>
-        <details>
-          <summary>Hvordan fungerer iCloud-synkronisering?</summary>
-          <p>Slå den på under <strong>Min info › Synkronisering</strong>. Presentasjonene, lysbildene og opptakene dine lagres i din egen private iCloud og vises på de andre enhetene dine som er logget på med samme Apple-konto. Den er av som standard fordi bilder og opptak bruker iCloud-lagringen din.</p>
-        </details>
-        <details>
-          <summary>Hvor lagres dataene mine?</summary>
-          <p>På enheten din. Tekstgjenkjenning, transkribering og AI-sammendrag skjer alt sammen på enheten din. Data sendes bare til din egen iCloud hvis du slår på synkronisering. Se <a href="privacy.html">personvernerklæringen</a>.</p>
-        </details>
-      </div>
+      <div class="faq"><details><summary>Hvordan tar jeg bilde av et lysbilde?</summary><p>Åpne kameraet og rett det mot lysbildet. Når hjørnene blir grønne, trykker du på utløseren. Med automatisk opptak på tar appen neste lysbilde selv hver gang det skifter.</p></details>
+<details><summary>Lager den lukkerlyd?</summary><p>Nei. Bildet lagres rett fra kameraet, så det er lydløst i alle land.</p></details>
+<details><summary>Hvorfor er bildene mine samlet i én presentasjon?</summary><p>Tar du neste bilde innen 5 minutter etter det forrige, hører det til samme presentasjon. Trykk på tittelen i listen for å gi den nytt navn, og bruk <code>Slå sammen presentasjoner</code> for å samle dem som er delt opp.</p></details>
+<details><summary>Kan jeg legge til bilder jeg allerede har tatt?</summary><p>Ja. Velg dem i Bilder og del dem med CatchSlide, eller trykk på ＋ i listen og velg <code>Importer fra Bilder</code>. De rettes opp og lagres som én presentasjon i den rekkefølgen de ble tatt.</p></details>
+<details><summary>Hjørnene ble funnet feil.</summary><p>Åpne lysbildet, velg <code>Juster hjørner</code> i ⋯-menyen og dra de fire hjørnene på plass. <code>Gjenkjenn automatisk</code> leter etter dem på nytt, og <code>Hele bildet</code> bruker hele fotoet. Originalen tas alltid vare på, så du kan gjøre det om når som helst.</p></details>
+<details><summary>Kan jeg søke i teksten på lysbildene?</summary><p>Skriv et ord i søkefeltet øverst i listen. Søket går gjennom lysbildetekst, titler, notater og transkripsjoner og hopper rett til lysbildet. Tekstgjenkjenningen skjer på enheten.</p></details>
+<details><summary>Hvordan eksporterer jeg en PDF?</summary><p>Åpne delingsmenyen i en presentasjon, velg <code>Eksporter som PDF</code> og velg ett, to eller fire lysbilder per side. Fra delingsarket kan du lagre den i Filer eller sende den til en annen app.</p></details>
+<details><summary>Hvordan endrer jeg rekkefølgen eller sletter lysbilder?</summary><p>Hold fingeren på et lysbilde i en presentasjon og dra det. I samme meny kan du slette eller dele et lysbilde, og med <code>Velg</code> sletter du flere samtidig.</p></details>
+<details><summary>Hvordan fungerer opptak og AI-oppsummering?</summary><p>Slå på <code>Ta opp</code> øverst i kameraet, så tar hvert lysbilde vare på lyden fra det øyeblikket. Under <code>Presentasjonsnotater</code> lager <code>Oppsummer med AI</code> en oppsummering ut fra lysbildetekst og transkripsjon. Det krever iOS 26 eller nyere på en enhet med Apple Intelligence.</p></details>
+<details><summary>Hvor lagres lysbildene og opptakene mine?</summary><p>På enheten din. De lastes bare opp til din egen iCloud hvis du slår på <code>Synkronisering</code> under Min info, og du trenger ingen konto. Les mer i personvernerklæringen.</p></details></div>
+      <p class="contact">Spørsmål, feil eller ideer? Skriv til <a href="mailto:leeo@kakao.com">leeo@kakao.com</a>.</p>
     </section>
 
-    <section>
-      <div class="contact">
-        <h2 style="margin-bottom:6px">Trenger du hjelp?</h2>
-        <p style="color:var(--muted);margin:0">Spørsmål, feilrapporter og forslag til nye funksjoner er velkomne.</p>
-        <a class="btn" href="mailto:leeo@kakao.com?subject=%5BCatchSlide%5D%20Support">Send oss en e-post</a>
-        <p style="margin:14px 0 0"><a href="privacy.html">Personvernerklæring</a></p>
-      </div>
+    <section class="closing reveal">
+      <h2>Fra neste forelesning<br>er lysbildene rette</h2>
+      <a class="cta" href="https://apps.apple.com/app/id6790835318">Last ned i App Store</a>
     </section>
-  </div>
+  </main>
 
   <footer>
-    © 2026 CatchSlide &nbsp;·&nbsp; leeo@kakao.com
+    <nav id="languages" class="langs" aria-label="Språk"><a href="../" hreflang="ko" lang="ko">한국어</a>
+<a href="../en/" hreflang="en" lang="en">English</a>
+<a href="../zh-Hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
+<a href="../zh-Hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
+<a href="../ja/" hreflang="ja" lang="ja">日本語</a>
+<a href="../ru/" hreflang="ru" lang="ru">Русский</a>
+<a href="../es/" hreflang="es" lang="es">Español</a>
+<a href="../de/" hreflang="de" lang="de">Deutsch</a>
+<a href="../fr/" hreflang="fr" lang="fr">Français</a>
+<a href="../it/" hreflang="it" lang="it">Italiano</a>
+<a href="../pt-BR/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a>
+<a href="../th/" hreflang="th" lang="th">ไทย</a>
+<a href="../vi/" hreflang="vi" lang="vi">Tiếng Việt</a>
+<a href="../cs/" hreflang="cs" lang="cs">Čeština</a>
+<a href="../da/" hreflang="da" lang="da">Dansk</a>
+<a href="../el/" hreflang="el" lang="el">Ελληνικά</a>
+<a href="../fi/" hreflang="fi" lang="fi">Suomi</a>
+<a href="../id/" hreflang="id" lang="id">Indonesia</a>
+<a href="../nb/" hreflang="nb" lang="nb" aria-current="page">Norsk</a>
+<a href="../nl/" hreflang="nl" lang="nl">Nederlands</a>
+<a href="../pl/" hreflang="pl" lang="pl">Polski</a>
+<a href="../sv/" hreflang="sv" lang="sv">Svenska</a>
+<a href="../tr/" hreflang="tr" lang="tr">Türkçe</a></nav>
+    <p><a href="privacy.html">Personvernerklæring</a> · <a href="mailto:leeo@kakao.com">leeo@kakao.com</a> · © 2026 CatchSlide</p>
   </footer>
-<nav style="text-align:center;font-size:0.85rem;line-height:2;padding:0 24px 40px"><a href="../" hreflang="ko">한국어</a> · <a href="../en/" hreflang="en">English</a> · <a href="../zh-Hans/" hreflang="zh-Hans">简体中文</a> · <a href="../zh-Hant/" hreflang="zh-Hant">繁體中文</a> · <a href="../ja/" hreflang="ja">日本語</a> · <a href="../ru/" hreflang="ru">Русский</a> · <a href="../es/" hreflang="es">Español</a> · <a href="../de/" hreflang="de">Deutsch</a> · <a href="../fr/" hreflang="fr">Français</a> · <a href="../it/" hreflang="it">Italiano</a> · <a href="../pt-BR/" hreflang="pt-BR">Português (Brasil)</a> · <a href="../th/" hreflang="th">ไทย</a> · <a href="../vi/" hreflang="vi">Tiếng Việt</a> · <a href="../cs/" hreflang="cs">Čeština</a> · <a href="../da/" hreflang="da">Dansk</a> · <a href="../el/" hreflang="el">Ελληνικά</a> · <a href="../fi/" hreflang="fi">Suomi</a> · <a href="../id/" hreflang="id">Indonesia</a> · <a href="../nb/" hreflang="nb">Norsk</a> · <a href="../nl/" hreflang="nl">Nederlands</a> · <a href="../pl/" hreflang="pl">Polski</a> · <a href="../sv/" hreflang="sv">Svenska</a> · <a href="../tr/" hreflang="tr">Türkçe</a></nav>
+
+  <script>
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target) }
+    }), { rootMargin: "0px 0px -10% 0px" });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  </script>
+  <script src="../demo.js"></script>
 </body>
 </html>

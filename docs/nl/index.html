@@ -1,184 +1,192 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CatchSlide — Ondersteuning</title>
-<meta name="description" content="Ondersteuning voor CatchSlide — leg collegedia's vast, neem de lezing op en bekijk alles terug met transcripties en AI-samenvattingen.">
-<style>
-  :root {
-    --blue: #2f6bde;
-    --blue-light: #4facfe;
-    --green: #29cc70;
-    --ink: #1a2233;
-    --muted: #5b6577;
-    --bg: #f5f7fb;
-    --card: #ffffff;
-    --border: #e4e9f2;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --ink: #e8ecf4;
-      --muted: #9aa4b8;
-      --bg: #0f131b;
-      --card: #1a2130;
-      --border: #2a3346;
-    }
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-    color: var(--ink);
-    background: var(--bg);
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-  }
-  .hero {
-    background: linear-gradient(135deg, var(--blue-light) 0%, var(--blue) 100%);
-    color: #fff;
-    padding: 64px 24px 56px;
-    text-align: center;
-  }
-  .hero img {
-    width: 108px; height: 108px;
-    border-radius: 24px;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.28);
-  }
-  .hero h1 { margin: 20px 0 6px; font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; }
-  .hero p { margin: 0; font-size: 1.05rem; opacity: 0.95; }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-  section { padding: 40px 0; border-bottom: 1px solid var(--border); }
-  section:last-of-type { border-bottom: none; }
-  h2 { font-size: 1.35rem; font-weight: 700; margin: 0 0 18px; letter-spacing: -0.01em; }
-  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 520px) { .features { grid-template-columns: 1fr; } }
-  .feature {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 14px; padding: 18px 18px 16px;
-  }
-  .feature .ic { font-size: 1.5rem; }
-  .feature h3 { margin: 8px 0 4px; font-size: 1rem; }
-  .feature p { margin: 0; color: var(--muted); font-size: 0.92rem; }
-  .faq { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 6px 20px; }
-  details { padding: 14px 0; border-bottom: 1px solid var(--border); }
-  details:last-child { border-bottom: none; }
-  summary { cursor: pointer; font-weight: 600; list-style: none; }
-  summary::-webkit-details-marker { display: none; }
-  summary::before { content: "＋"; color: var(--blue); font-weight: 700; margin-right: 10px; }
-  details[open] summary::before { content: "－"; }
-  details p { margin: 12px 0 2px; color: var(--muted); }
-  .contact {
-    text-align: center; background: var(--card);
-    border: 1px solid var(--border); border-radius: 16px; padding: 32px 24px;
-  }
-  .btn {
-    display: inline-block; margin-top: 12px;
-    background: var(--blue); color: #fff; text-decoration: none;
-    padding: 12px 26px; border-radius: 999px; font-weight: 600;
-  }
-  a { color: var(--blue); }
-  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 32px 24px 48px; }
-  .tag { display:inline-block; color: var(--green); font-weight:700; }
-</style>
-<link rel="canonical" href="https://m1zz.github.io/SlideSnap/nl/">
-<link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
-<link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
-<link rel="alternate" hreflang="en-GB" href="https://m1zz.github.io/SlideSnap/en/">
-<link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
-<link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
-<link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
-<link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
-<link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
-<link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
-<link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
-<link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
-<link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
-<link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
-<link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
-<link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
-<link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
-<link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
-<link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
-<link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
-<link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
-<link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
-<link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
-<link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
-<link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
-<link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CatchSlide: rechte collegeslides, ook als je van opzij fotografeert</title>
+  <meta name="description" content="Vanaf elke plek vindt CatchSlide de hoeken van de slide, trekt hem recht alsof je ervoor zat, ordent per presentatie en maakt de tekst doorzoekbaar.">
+  <meta name="theme-color" content="#3478E7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f131b" media="(prefers-color-scheme: dark)">
+  <meta name="apple-itunes-app" content="app-id=6790835318">
+  <link rel="canonical" href="https://m1zz.github.io/SlideSnap/nl/">
+  <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
+  <link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
+  <link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
+  <link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
+  <link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
+  <link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
+  <link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
+  <link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
+  <link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
+  <link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
+  <link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
+  <link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
+  <link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
+  <link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
+  <link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
+  <link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
+  <link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
+  <link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
+  <link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
+  <link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
+  <link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
+  <link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CatchSlide: rechte collegeslides, ook als je van opzij fotografeert">
+  <meta property="og:description" content="Vanaf elke plek vindt CatchSlide de hoeken van de slide, trekt hem recht alsof je ervoor zat, ordent per presentatie en maakt de tekst doorzoekbaar.">
+  <meta property="og:url" content="https://m1zz.github.io/SlideSnap/nl/">
+  <meta property="og:image" content="https://m1zz.github.io/SlideSnap/img/nl/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../icon.png">
+  <link rel="apple-touch-icon" href="../icon.png">
+  <link rel="stylesheet" href="../site.css">
+  <link rel="stylesheet" href="../demo.css">
+  <style>:root{--accent:#3478E7}@media (prefers-color-scheme:dark){:root{--accent:#5EA2FF}}</style>
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
-  <div class="hero">
-    <img src="../icon.png" alt="App-icoon van CatchSlide">
-    <h1>CatchSlide</h1>
-    <p>Leg collegedia's vast. Recht, doorzoekbaar en klaar om te leren.</p>
-  </div>
+  <a class="skip" href="#main">Naar inhoud</a>
+  <header class="bar">
+    <a class="brand" href="../nl/"><img src="../icon.png" alt="" width="32" height="32">CatchSlide</a>
+    <a class="lang-link" href="#languages">Taal</a>
+  </header>
 
-  <div class="wrap">
-    <section>
-      <h2>Functies</h2>
-      <div class="features">
-        <div class="feature"><div class="ic">🟩</div><h3>Dia's live herkennen</h3><p>De camera vindt de vier hoeken van een dia terwijl je richt, maakt hem vlak alsof je er recht voor stond en kan de foto automatisch voor je nemen.</p></div>
-        <div class="feature"><div class="ic">🤫</div><h3>Geruisloos vastleggen</h3><p>Geen sluitergeluid, dus je kunt midden in een college dia's vastleggen zonder iemand te storen.</p></div>
-        <div class="feature"><div class="ic">🎙️</div><h3>Opnemen en terugluisteren</h3><p>Neem de lezing op terwijl je dia's vastlegt. Tik op een dia om te horen wat er op dat moment werd gezegd.</p></div>
-        <div class="feature"><div class="ic">💬</div><h3>Transcripties</h3><p>Zet opnamen op je apparaat om in tekst en lees na wat er bij elke dia is gezegd.</p></div>
-        <div class="feature"><div class="ic">✨</div><h3>AI-samenvatting</h3><p>Krijg een overzicht, hoofdpunten en trefwoorden van de hele lezing, gemaakt op je apparaat met Apple Intelligence.</p></div>
-        <div class="feature"><div class="ic">🔍</div><h3>Overal in zoeken</h3><p>Vind een dia via een woord op de dia zelf of via iets wat de spreker zei.</p></div>
-        <div class="feature"><div class="ic">🗂️</div><h3>Per sessie geordend</h3><p>Dia's die je achter elkaar vastlegt, worden één presentatie. Hernoem, herschik of voeg ze samen.</p></div>
-        <div class="feature"><div class="ic">📤</div><h3>Pdf, Notion, PowerPoint</h3><p>Exporteer een pdf om mee te studeren, een Markdown-notitie voor Notion of Obsidian, of een PowerPoint-presentatie met de transcriptie in de sprekersnotities.</p></div>
-        <div class="feature"><div class="ic">☁️</div><h3>iCloud-synchronisatie</h3><p>Houd je dia's en opnamen desgewenst op al je iPhone-, iPad- en Mac-apparaten bij.</p></div>
-        <div class="feature"><div class="ic">🖼️</div><h3>Uit Foto's</h3><p>Deel collegefoto's vanuit de Foto's-app en ze worden rechtgezet en als één presentatie bewaard.</p></div>
+  <main id="main">
+    <section class="hero">
+      <div class="copy">
+        <h1>Van opzij gefotografeerd.<br>Recht van voren bewaard.</h1>
+        <p class="lead">De camera vindt alle vier hoeken van de slide, trekt hem recht en snijdt de omgeving weg. Slides die je achter elkaar fotografeert, komen in dezelfde presentatie.</p>
+        <div class="actions"><a class="cta" href="https://apps.apple.com/app/id6790835318">Download in de App Store</a><a class="try" href="#try">Trek hem zelf recht ↓</a></div>
+        <p class="muted small">Eén keer kopen, alle functies. Geen abonnement, geen account.</p>
       </div>
+      <div class="phone"><img src="../img/nl/02-list.jpg" alt="Van opzij gefotografeerd. Recht van voren bewaard." width="720" height="1564" decoding="async"></div>
     </section>
 
-    <section>
+
+    <section class="reveal" id="try">
+      <h2>Trek hem zelf recht</h2>
+      <p class="muted">Deze foto is schuin genomen vanaf een plek aan de zijkant van de collegezaal. De groene lijn laat zien waar de hoeken van de slide zijn gevonden.</p>
+      <div id="demo" class="card demo-card" data-text="{&quot;title&quot;: &quot;Trek hem zelf recht&quot;, &quot;lead&quot;: &quot;Deze foto is schuin genomen vanaf een plek aan de zijkant van de collegezaal. De groene lijn laat zien waar de hoeken van de slide zijn gevonden.&quot;, &quot;straighten&quot;: &quot;Rechttrekken&quot;, &quot;reset&quot;: &quot;Terug naar de foto&quot;, &quot;photo&quot;: &quot;Schuin genomen foto&quot;, &quot;result&quot;: &quot;De slide, rechtgetrokken door CatchSlide&quot;, &quot;waiting&quot;: &quot;Tik op Rechttrekken om het resultaat hier te zien&quot;, &quot;hint&quot;: &quot;Je kunt de hoekpunten ook zelf verslepen, of er een selecteren en verschuiven met de pijltjestoetsen.&quot;, &quot;corners&quot;: [&quot;Hoek linksboven&quot;, &quot;Hoek rechtsboven&quot;, &quot;Hoek rechtsonder&quot;, &quot;Hoek linksonder&quot;], &quot;note&quot;: &quot;Deze demo gebruikt één vooraf genomen foto. In de app worden de hoeken live in de camera gevonden en wordt de tekst op je apparaat herkend.&quot;}"></div>
+    </section>
+
+    <section class="problem reveal">
+      <h2>Je fotorol geopend om te leren en de slide niet kunnen vinden?</h2>
+      <p>Slides vanaf de achterste rij staan altijd scheef en verdwijnen tussen selfies en bonnetjes. In een stille collegezaal houdt het sluitergeluid je al tegen. CatchSlide fotografeert geluidloos, trekt elke slide recht en houdt ze bij elkaar per presentatie.</p>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Recht op het moment dat je fotografeert</h2>
+        <p>De camera volgt live de vier hoeken van de slide en wordt groen zodra hij ze heeft. Ook schuin genomen wordt de slide rechtgetrokken alsof je ervoor zat, zonder achtergrond.<br>Geen sluitergeluid. Zet <code>Automatisch vastleggen</code> aan en elke nieuwe slide wordt vanzelf vastgelegd, onscherpe foto’s worden overgeslagen.</p>
+      </div>
+      <div class="phone"><img src="../img/nl/03-slide.jpg" alt="Recht op het moment dat je fotografeert" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Foto’s die je al hebt, in één keer</h2>
+        <p>Kies een paar collegefoto’s in Foto’s en deel ze met CatchSlide. Ze worden rechtgetrokken en als één presentatie bewaard, in de volgorde waarin je ze nam.<br><code>Tekst verscherpen</code> haalt schaduwen en een flets contrast weg.</p>
+      </div>
+      <div class="phone"><img src="../img/nl/01-share.jpg" alt="Foto’s die je al hebt, in één keer" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Eén woord is genoeg</h2>
+        <p>CatchSlide leest de tekst op elke slide direct op je apparaat. Ook weken later brengt één woord je terug naar de juiste slide.<br>Notities bij slides zijn ook doorzoekbaar. Zet <code>tentamen</code> bij een paar en alle stof voor het tentamen staat in één zoekopdracht klaar.</p>
+      </div>
+      <div class="phone"><img src="../img/nl/06-memo-search.jpg" alt="Eén woord is genoeg" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="reveal">
+      <h2>In drie stappen aan de slag</h2>
+      <ol class="steps"><li class="card"><span class="n">1</span><h3>Open de camera</h3><p>Met de cameraknop in de lijst, de widget op het beginscherm of vanaf het toegangsscherm.</p></li>
+<li class="card"><span class="n">2</span><h3>Zet de slide in beeld</h3><p>Worden de hoeken groen, druk dan af of laat automatisch vastleggen het doen.</p></li>
+<li class="card"><span class="n">3</span><h3>Terugkijken per presentatie</h3><p>Zoek, voeg notities toe en exporteer een pdf om van te leren.</p></li></ol>
+    </section>
+
+    <section class="reveal" id="commands">
+      <h2>Wat je met een presentatie kunt</h2>
+      <div class="card table">
+        <dl><div><dt>Opname</dt><dd>Neem geluid op terwijl je fotografeert en luister elke slide terug vanaf het moment dat je hem nam</dd></div><div><dt>Transcriptie</dt><dd>Zet de opname om in tekst, laat zien wat er bij elke slide is gezegd en telt mee bij het zoeken</dd></div><div><dt>AI-samenvatting</dt><dd>Vat de presentatie samen op basis van slidetekst en transcriptie (iOS 26 of nieuwer op apparaten met Apple Intelligence)</dd></div><div><dt>PDF</dt><dd>Studiemateriaal met één, twee of vier slides per pagina</dd></div><div><dt>Markdown</dt><dd>Een .zip klaar voor Notion of Obsidian</dd></div><div><dt>PowerPoint</dt><dd>Exporteert een .pptx met de transcriptie in de sprekersnotities</dd></div><div><dt>Samenvoegen</dt><dd>Kies een paar presentaties en voeg ze samen tot één</dd></div><div><dt>iCloud-synchronisatie</dt><dd>Zet het aan om je presentaties te zien op andere apparaten met hetzelfde Apple ID. Staat standaard uit</dd></div><div><dt>Widgets</dt><dd>Openen de camera direct vanaf het beginscherm of het toegangsscherm</dd></div></dl>
+      </div>
+      <p class="muted">Tekstherkenning, transcriptie en AI-samenvattingen gebeuren op je apparaat.</p>
+    </section>
+
+
+    <section class="reveal" id="pricing">
+      <h2>Eén keer kopen, alles erin</h2>
+      <div class="plans">
+        <div class="card plan free">
+          <h3>CatchSlide</h3>
+          <ul><li>Geluidloos fotograferen, automatisch vastleggen en rechttrekken</li><li>Meerdere foto’s tegelijk importeren uit Foto’s</li><li>Slides per presentatie, zoeken in tekst en notities</li><li>Opname, transcriptie en AI-samenvatting</li><li>Exporteren naar pdf, Markdown en PowerPoint</li><li>iCloud-synchronisatie en widgets</li></ul>
+          
+        </div>
+        <div class="card plan pro">
+          <h3>Fooi (vrijwillig)</h3>
+          <ul><li>Heb je wat aan de app, dan kun je de ontwikkelaar een kleine fooi geven</li><li>Een fooi ontgrendelt niets. Alle functies werken ook zonder</li></ul>
+          <p class="muted">Je vindt het onder Mijn gegevens.</p>
+        </div>
+      </div>
+      <p class="muted">Geen abonnement en geen betaalde extra’s. De prijs voor jouw land zie je in de App Store.</p>
+    </section>
+
+    <section class="reveal" id="faq">
       <h2>Veelgestelde vragen</h2>
-      <div class="faq">
-        <details open>
-          <summary>Hoe leg ik dia's vast?</summary>
-          <p>Open de app en de camera staat klaar. Breng de dia in beeld tot het kader <span class="tag">groen</span> wordt en tik dan op de sluiter, of laat automatisch vastleggen de foto nemen. Als de dia verandert, wordt de volgende automatisch vastgelegd.</p>
-        </details>
-        <details>
-          <summary>Hoe neem ik de lezing op?</summary>
-          <p>Tik bovenaan het camerascherm op <strong>Opnemen</strong>. De lezing wordt opgenomen terwijl je dia's vastlegt. Open later een dia en tik op afspelen om te horen wat er werd gezegd vanaf het moment dat je die dia vastlegde. Tijdens het afspelen worden de dia's voor je omgeslagen.</p>
-        </details>
-        <details>
-          <summary>Hoe krijg ik een transcriptie of AI-samenvatting?</summary>
-          <p>Open een presentatie en tik op de notitieknop ✨. Tik naast een opname op <strong>Transcriberen</strong> en daarna op <strong>Samenvatten met AI</strong>. Voor AI-samenvatting heb je een apparaat nodig dat Apple Intelligence ondersteunt (iOS 26 of nieuwer), met Apple Intelligence aangezet.</p>
-        </details>
-        <details>
-          <summary>Waarom staan mijn dia's bij elkaar?</summary>
-          <p>Dia's die binnen vijf minuten na elkaar zijn vastgelegd, horen bij dezelfde sessie en komen in één presentatie. Je kunt de presentatie hernoemen of presentaties vanuit de lijst samenvoegen.</p>
-        </details>
-        <details>
-          <summary>Hoe exporteer ik?</summary>
-          <p>Open in een presentatie het menu ⋯ en kies pdf (een, twee of vier dia's per pagina), Markdown voor Notion of Obsidian, of PowerPoint, dat ook in Keynote en Google Presentaties opent.</p>
-        </details>
-        <details>
-          <summary>Hoe werkt iCloud-synchronisatie?</summary>
-          <p>Zet het aan via <strong>Mijn gegevens › Synchroniseren</strong>. Je presentaties, dia's en opnamen worden bewaard in je eigen privé-iCloud en verschijnen op je andere apparaten waarop je met dezelfde Apple Account bent ingelogd. Het staat standaard uit, omdat foto's en opnamen je iCloud-opslag gebruiken.</p>
-        </details>
-        <details>
-          <summary>Waar worden mijn gegevens bewaard?</summary>
-          <p>Op je apparaat. Tekstherkenning, transcriptie en AI-samenvatting draaien allemaal op je apparaat. Gegevens gaan alleen naar je eigen iCloud als je synchronisatie aanzet. Lees het <a href="privacy.html">privacybeleid</a>.</p>
-        </details>
-      </div>
+      <div class="faq"><details><summary>Hoe fotografeer ik een slide?</summary><p>Open de camera en zet de slide in beeld. Worden de hoeken groen, druk dan af. Met automatisch vastleggen aan wordt de volgende slide vanzelf vastgelegd zodra hij verandert.</p></details>
+<details><summary>Is er een sluitergeluid?</summary><p>Nee. Het beeld wordt direct uit de camera bewaard, dus het is in elk land geluidloos.</p></details>
+<details><summary>Waarom staan mijn foto’s in één presentatie?</summary><p>Neem je de volgende foto binnen 5 minuten na de vorige, dan hoort die bij dezelfde presentatie. Tik op de titel in de lijst om hem te hernoemen en gebruik <code>Presentaties samenvoegen</code> om gesplitste presentaties weer samen te voegen.</p></details>
+<details><summary>Kan ik foto’s toevoegen die ik al heb?</summary><p>Ja. Selecteer ze in Foto’s en deel ze met CatchSlide, of tik op ＋ in de lijst en kies <code>Importeren uit Foto's</code>. Ze worden rechtgetrokken en als één presentatie bewaard in de volgorde waarin ze zijn genomen.</p></details>
+<details><summary>De hoeken zijn verkeerd gevonden.</summary><p>Open de slide, kies <code>Hoeken aanpassen</code> in het ⋯-menu en sleep de vier hoeken op hun plek. <code>Automatisch detecteren</code> zoekt ze opnieuw en <code>Hele afbeelding</code> gebruikt de hele foto. Het origineel blijft altijd bewaard, dus je kunt het altijd opnieuw doen.</p></details>
+<details><summary>Kan ik zoeken in de tekst van mijn slides?</summary><p>Typ een woord in het zoekveld boven de lijst. Er wordt gezocht in slidetekst, titels, notities en transcripties, en je springt meteen naar de slide. Tekstherkenning gebeurt op je apparaat.</p></details>
+<details><summary>Hoe exporteer ik een pdf?</summary><p>Open in een presentatie het deelmenu, kies <code>Exporteren als pdf</code> en kies één, twee of vier slides per pagina. Via het deelvenster bewaar je hem in Bestanden of stuur je hem naar een andere app.</p></details>
+<details><summary>Hoe verander ik de volgorde of verwijder ik slides?</summary><p>Houd in een presentatie een slide ingedrukt en sleep hem. In hetzelfde menu verwijder of deel je een slide, en met <code>Selecteren</code> verwijder je er meerdere tegelijk.</p></details>
+<details><summary>Hoe werken opname en AI-samenvatting?</summary><p>Zet bovenin de camera <code>Opnemen</code> aan en elke slide bewaart het geluid van dat moment. Onder <code>Presentatienotities</code> maakt <code>Samenvatten met AI</code> een samenvatting op basis van slidetekst en transcriptie. Daarvoor heb je iOS 26 of nieuwer nodig op een apparaat met Apple Intelligence.</p></details>
+<details><summary>Waar worden mijn slides en opnames bewaard?</summary><p>Op je apparaat. Ze gaan alleen naar je eigen iCloud als je <code>Synchroniseren</code> aanzet onder Mijn gegevens, en je hebt geen account nodig. Meer in het privacybeleid.</p></details></div>
+      <p class="contact">Vragen, bugs of ideeën? Mail naar <a href="mailto:leeo@kakao.com">leeo@kakao.com</a>.</p>
     </section>
 
-    <section>
-      <div class="contact">
-        <h2 style="margin-bottom:6px">Hulp nodig?</h2>
-        <p style="color:var(--muted);margin:0">Vragen, foutmeldingen en ideeën voor nieuwe functies zijn welkom.</p>
-        <a class="btn" href="mailto:leeo@kakao.com?subject=%5BCatchSlide%5D%20Support">Stuur ons een e-mail</a>
-        <p style="margin:14px 0 0"><a href="privacy.html">Privacybeleid</a></p>
-      </div>
+    <section class="closing reveal">
+      <h2>Vanaf het volgende college<br>rechte slides</h2>
+      <a class="cta" href="https://apps.apple.com/app/id6790835318">Download in de App Store</a>
     </section>
-  </div>
+  </main>
 
   <footer>
-    © 2026 CatchSlide &nbsp;·&nbsp; leeo@kakao.com
+    <nav id="languages" class="langs" aria-label="Taal"><a href="../" hreflang="ko" lang="ko">한국어</a>
+<a href="../en/" hreflang="en" lang="en">English</a>
+<a href="../zh-Hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
+<a href="../zh-Hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
+<a href="../ja/" hreflang="ja" lang="ja">日本語</a>
+<a href="../ru/" hreflang="ru" lang="ru">Русский</a>
+<a href="../es/" hreflang="es" lang="es">Español</a>
+<a href="../de/" hreflang="de" lang="de">Deutsch</a>
+<a href="../fr/" hreflang="fr" lang="fr">Français</a>
+<a href="../it/" hreflang="it" lang="it">Italiano</a>
+<a href="../pt-BR/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a>
+<a href="../th/" hreflang="th" lang="th">ไทย</a>
+<a href="../vi/" hreflang="vi" lang="vi">Tiếng Việt</a>
+<a href="../cs/" hreflang="cs" lang="cs">Čeština</a>
+<a href="../da/" hreflang="da" lang="da">Dansk</a>
+<a href="../el/" hreflang="el" lang="el">Ελληνικά</a>
+<a href="../fi/" hreflang="fi" lang="fi">Suomi</a>
+<a href="../id/" hreflang="id" lang="id">Indonesia</a>
+<a href="../nb/" hreflang="nb" lang="nb">Norsk</a>
+<a href="../nl/" hreflang="nl" lang="nl" aria-current="page">Nederlands</a>
+<a href="../pl/" hreflang="pl" lang="pl">Polski</a>
+<a href="../sv/" hreflang="sv" lang="sv">Svenska</a>
+<a href="../tr/" hreflang="tr" lang="tr">Türkçe</a></nav>
+    <p><a href="privacy.html">Privacybeleid</a> · <a href="mailto:leeo@kakao.com">leeo@kakao.com</a> · © 2026 CatchSlide</p>
   </footer>
-<nav style="text-align:center;font-size:0.85rem;line-height:2;padding:0 24px 40px"><a href="../" hreflang="ko">한국어</a> · <a href="../en/" hreflang="en">English</a> · <a href="../zh-Hans/" hreflang="zh-Hans">简体中文</a> · <a href="../zh-Hant/" hreflang="zh-Hant">繁體中文</a> · <a href="../ja/" hreflang="ja">日本語</a> · <a href="../ru/" hreflang="ru">Русский</a> · <a href="../es/" hreflang="es">Español</a> · <a href="../de/" hreflang="de">Deutsch</a> · <a href="../fr/" hreflang="fr">Français</a> · <a href="../it/" hreflang="it">Italiano</a> · <a href="../pt-BR/" hreflang="pt-BR">Português (Brasil)</a> · <a href="../th/" hreflang="th">ไทย</a> · <a href="../vi/" hreflang="vi">Tiếng Việt</a> · <a href="../cs/" hreflang="cs">Čeština</a> · <a href="../da/" hreflang="da">Dansk</a> · <a href="../el/" hreflang="el">Ελληνικά</a> · <a href="../fi/" hreflang="fi">Suomi</a> · <a href="../id/" hreflang="id">Indonesia</a> · <a href="../nb/" hreflang="nb">Norsk</a> · <a href="../nl/" hreflang="nl">Nederlands</a> · <a href="../pl/" hreflang="pl">Polski</a> · <a href="../sv/" hreflang="sv">Svenska</a> · <a href="../tr/" hreflang="tr">Türkçe</a></nav>
+
+  <script>
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target) }
+    }), { rootMargin: "0px 0px -10% 0px" });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  </script>
+  <script src="../demo.js"></script>
 </body>
 </html>

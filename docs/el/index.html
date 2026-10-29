@@ -1,184 +1,192 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="el">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CatchSlide — Υποστήριξη</title>
-<meta name="description" content="Υποστήριξη CatchSlide — φωτογραφίστε διαφάνειες διαλέξεων, ηχογραφήστε την ομιλία και επαναλάβετε με μεταγραφές και συνόψεις AI.">
-<style>
-  :root {
-    --blue: #2f6bde;
-    --blue-light: #4facfe;
-    --green: #29cc70;
-    --ink: #1a2233;
-    --muted: #5b6577;
-    --bg: #f5f7fb;
-    --card: #ffffff;
-    --border: #e4e9f2;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --ink: #e8ecf4;
-      --muted: #9aa4b8;
-      --bg: #0f131b;
-      --card: #1a2130;
-      --border: #2a3346;
-    }
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-    color: var(--ink);
-    background: var(--bg);
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-  }
-  .hero {
-    background: linear-gradient(135deg, var(--blue-light) 0%, var(--blue) 100%);
-    color: #fff;
-    padding: 64px 24px 56px;
-    text-align: center;
-  }
-  .hero img {
-    width: 108px; height: 108px;
-    border-radius: 24px;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.28);
-  }
-  .hero h1 { margin: 20px 0 6px; font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; }
-  .hero p { margin: 0; font-size: 1.05rem; opacity: 0.95; }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-  section { padding: 40px 0; border-bottom: 1px solid var(--border); }
-  section:last-of-type { border-bottom: none; }
-  h2 { font-size: 1.35rem; font-weight: 700; margin: 0 0 18px; letter-spacing: -0.01em; }
-  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 520px) { .features { grid-template-columns: 1fr; } }
-  .feature {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 14px; padding: 18px 18px 16px;
-  }
-  .feature .ic { font-size: 1.5rem; }
-  .feature h3 { margin: 8px 0 4px; font-size: 1rem; }
-  .feature p { margin: 0; color: var(--muted); font-size: 0.92rem; }
-  .faq { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 6px 20px; }
-  details { padding: 14px 0; border-bottom: 1px solid var(--border); }
-  details:last-child { border-bottom: none; }
-  summary { cursor: pointer; font-weight: 600; list-style: none; }
-  summary::-webkit-details-marker { display: none; }
-  summary::before { content: "＋"; color: var(--blue); font-weight: 700; margin-right: 10px; }
-  details[open] summary::before { content: "－"; }
-  details p { margin: 12px 0 2px; color: var(--muted); }
-  .contact {
-    text-align: center; background: var(--card);
-    border: 1px solid var(--border); border-radius: 16px; padding: 32px 24px;
-  }
-  .btn {
-    display: inline-block; margin-top: 12px;
-    background: var(--blue); color: #fff; text-decoration: none;
-    padding: 12px 26px; border-radius: 999px; font-weight: 600;
-  }
-  a { color: var(--blue); }
-  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 32px 24px 48px; }
-  .tag { display:inline-block; color: var(--green); font-weight:700; }
-</style>
-<link rel="canonical" href="https://m1zz.github.io/SlideSnap/el/">
-<link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
-<link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
-<link rel="alternate" hreflang="en-GB" href="https://m1zz.github.io/SlideSnap/en/">
-<link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
-<link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
-<link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
-<link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
-<link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
-<link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
-<link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
-<link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
-<link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
-<link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
-<link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
-<link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
-<link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
-<link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
-<link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
-<link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
-<link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
-<link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
-<link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
-<link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
-<link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
-<link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CatchSlide: ίσιες διαφάνειες μαθήματος, ακόμη κι από το πλάι</title>
+  <meta name="description" content="Από όποια θέση κι αν τραβήξετε, το CatchSlide βρίσκει τις γωνίες της διαφάνειας, την ισιώνει, την οργανώνει ανά παρουσίαση και ψάχνει στο κείμενο.">
+  <meta name="theme-color" content="#3478E7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f131b" media="(prefers-color-scheme: dark)">
+  <meta name="apple-itunes-app" content="app-id=6790835318">
+  <link rel="canonical" href="https://m1zz.github.io/SlideSnap/el/">
+  <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
+  <link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
+  <link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
+  <link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
+  <link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
+  <link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
+  <link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
+  <link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
+  <link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
+  <link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
+  <link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
+  <link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
+  <link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
+  <link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
+  <link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
+  <link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
+  <link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
+  <link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
+  <link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
+  <link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
+  <link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
+  <link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CatchSlide: ίσιες διαφάνειες μαθήματος, ακόμη κι από το πλάι">
+  <meta property="og:description" content="Από όποια θέση κι αν τραβήξετε, το CatchSlide βρίσκει τις γωνίες της διαφάνειας, την ισιώνει, την οργανώνει ανά παρουσίαση και ψάχνει στο κείμενο.">
+  <meta property="og:url" content="https://m1zz.github.io/SlideSnap/el/">
+  <meta property="og:image" content="https://m1zz.github.io/SlideSnap/img/el/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../icon.png">
+  <link rel="apple-touch-icon" href="../icon.png">
+  <link rel="stylesheet" href="../site.css">
+  <link rel="stylesheet" href="../demo.css">
+  <style>:root{--accent:#3478E7}@media (prefers-color-scheme:dark){:root{--accent:#5EA2FF}}</style>
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
-  <div class="hero">
-    <img src="../icon.png" alt="Εικονίδιο της εφαρμογής CatchSlide">
-    <h1>CatchSlide</h1>
-    <p>Φωτογραφίστε τις διαφάνειες της διάλεξης. Ίσιες, με δυνατότητα αναζήτησης και έτοιμες για επανάληψη.</p>
-  </div>
+  <a class="skip" href="#main">Μετάβαση στο περιεχόμενο</a>
+  <header class="bar">
+    <a class="brand" href="../el/"><img src="../icon.png" alt="" width="32" height="32">CatchSlide</a>
+    <a class="lang-link" href="#languages">Γλώσσα</a>
+  </header>
 
-  <div class="wrap">
-    <section>
-      <h2>Λειτουργίες</h2>
-      <div class="features">
-        <div class="feature"><div class="ic">🟩</div><h3>Εντοπισμός διαφάνειας σε πραγματικό χρόνο</h3><p>Η κάμερα εντοπίζει τις τέσσερις γωνίες της διαφάνειας καθώς στοχεύετε, την ισιώνει σαν να την κοιτούσατε κατάφατσα και μπορεί να τραβήξει τη φωτογραφία αυτόματα.</p></div>
-        <div class="feature"><div class="ic">🤫</div><h3>Αθόρυβη λήψη</h3><p>Χωρίς ήχο κλείστρου, ώστε να φωτογραφίζετε μέσα στη διάλεξη χωρίς να ενοχλείτε κανέναν.</p></div>
-        <div class="feature"><div class="ic">🎙️</div><h3>Ηχογράφηση και αναπαραγωγή</h3><p>Ηχογραφήστε την ομιλία ενώ φωτογραφίζετε. Πατήστε οποιαδήποτε διαφάνεια για να ακούσετε τι ειπώθηκε εκείνη τη στιγμή.</p></div>
-        <div class="feature"><div class="ic">💬</div><h3>Μεταγραφές</h3><p>Μετατρέψτε τις ηχογραφήσεις σε κείμενο στη συσκευή σας και διαβάστε τι ειπώθηκε σε κάθε διαφάνεια.</p></div>
-        <div class="feature"><div class="ic">✨</div><h3>Σύνοψη AI</h3><p>Αποκτήστε μια επισκόπηση, τα βασικά σημεία και τις λέξεις-κλειδιά ολόκληρης της ομιλίας, που δημιουργούνται στη συσκευή σας με το Apple Intelligence.</p></div>
-        <div class="feature"><div class="ic">🔍</div><h3>Αναζήτηση σε όλα</h3><p>Βρείτε μια διαφάνεια από οποιαδήποτε λέξη της ή από ό,τι είπε ο ομιλητής.</p></div>
-        <div class="feature"><div class="ic">🗂️</div><h3>Οργάνωση ανά συνεδρία</h3><p>Οι διαφάνειες που τραβάτε διαδοχικά γίνονται μία παρουσίαση. Μετονομάστε, αναδιατάξτε ή συγχωνεύστε τις.</p></div>
-        <div class="feature"><div class="ic">📤</div><h3>PDF, Notion, PowerPoint</h3><p>Εξαγάγετε PDF για μελέτη, σημείωση Markdown για Notion ή Obsidian ή παρουσίαση PowerPoint με τη μεταγραφή στις σημειώσεις ομιλητή.</p></div>
-        <div class="feature"><div class="ic">☁️</div><h3>Συγχρονισμός iCloud</h3><p>Προαιρετικά, έχετε τις διαφάνειες και τις ηχογραφήσεις σας σε όλες τις συσκευές iPhone, iPad και Mac.</p></div>
-        <div class="feature"><div class="ic">🖼️</div><h3>Από τις Φωτογραφίες</h3><p>Κοινοποιήστε φωτογραφίες διάλεξης από την εφαρμογή Φωτογραφίες και θα ισιωθούν και θα αποθηκευτούν ως μία παρουσίαση.</p></div>
+  <main id="main">
+    <section class="hero">
+      <div class="copy">
+        <h1>Τραβηγμένη από το πλάι.<br>Αποθηκευμένη από μπροστά.</h1>
+        <p class="lead">Η κάμερα βρίσκει και τις τέσσερις γωνίες της διαφάνειας, την ισιώνει και κόβει ό,τι υπάρχει γύρω της. Οι διαφάνειες που τραβάτε τη μία μετά την άλλη μπαίνουν στην ίδια παρουσίαση.</p>
+        <div class="actions"><a class="cta" href="https://apps.apple.com/app/id6790835318">Λήψη από το App Store</a><a class="try" href="#try">Ισιώστε τη μόνοι σας ↓</a></div>
+        <p class="muted small">Μία αγορά, όλες οι λειτουργίες. Χωρίς συνδρομή, χωρίς λογαριασμό.</p>
       </div>
+      <div class="phone"><img src="../img/el/02-list.jpg" alt="Τραβηγμένη από το πλάι. Αποθηκευμένη από μπροστά." width="720" height="1564" decoding="async"></div>
     </section>
 
-    <section>
+
+    <section class="reveal" id="try">
+      <h2>Ισιώστε τη μόνοι σας</h2>
+      <p class="muted">Αυτή η φωτογραφία τραβήχτηκε λοξά από μια πλαϊνή θέση στο αμφιθέατρο. Το πράσινο περίγραμμα δείχνει πού βρέθηκαν οι γωνίες της διαφάνειας.</p>
+      <div id="demo" class="card demo-card" data-text="{&quot;title&quot;: &quot;Ισιώστε τη μόνοι σας&quot;, &quot;lead&quot;: &quot;Αυτή η φωτογραφία τραβήχτηκε λοξά από μια πλαϊνή θέση στο αμφιθέατρο. Το πράσινο περίγραμμα δείχνει πού βρέθηκαν οι γωνίες της διαφάνειας.&quot;, &quot;straighten&quot;: &quot;Ίσιωμα&quot;, &quot;reset&quot;: &quot;Πίσω στη φωτογραφία&quot;, &quot;photo&quot;: &quot;Φωτογραφία τραβηγμένη λοξά&quot;, &quot;result&quot;: &quot;Η διαφάνεια ισιωμένη από το CatchSlide&quot;, &quot;waiting&quot;: &quot;Πατήστε Ίσιωμα για να δείτε εδώ το αποτέλεσμα&quot;, &quot;hint&quot;: &quot;Μπορείτε επίσης να σύρετε τα σημεία των γωνιών ή να επιλέξετε ένα και να το μετακινήσετε με τα βελάκια του πληκτρολογίου.&quot;, &quot;corners&quot;: [&quot;Πάνω αριστερή γωνία&quot;, &quot;Πάνω δεξιά γωνία&quot;, &quot;Κάτω δεξιά γωνία&quot;, &quot;Κάτω αριστερή γωνία&quot;], &quot;note&quot;: &quot;Η επίδειξη χρησιμοποιεί μία φωτογραφία τραβηγμένη από πριν. Στην εφαρμογή οι γωνίες εντοπίζονται ζωντανά στην κάμερα και το κείμενο αναγνωρίζεται στη συσκευή σας.&quot;}"></div>
+    </section>
+
+    <section class="problem reveal">
+      <h2>Ανοίξατε τις φωτογραφίες για διάβασμα και δεν βρίσκατε τη διαφάνεια;</h2>
+      <p>Οι διαφάνειες από τις πίσω σειρές βγαίνουν πάντα στραβές και χάνονται ανάμεσα σε σέλφι και αποδείξεις. Σε ένα ήσυχο αμφιθέατρο, μόνο ο ήχος του κλείστρου αρκεί για να διστάσετε. Το CatchSlide φωτογραφίζει αθόρυβα, ισιώνει κάθε διαφάνεια και τις κρατά μαζί ανά παρουσίαση.</p>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Ίσια από τη στιγμή της λήψης</h2>
+        <p>Η κάμερα παρακολουθεί ζωντανά τις τέσσερις γωνίες της διαφάνειας και γίνεται πράσινη όταν τις εντοπίσει. Ακόμη και λοξά τραβηγμένη, η διαφάνεια ισιώνει σαν να τη βλέπετε από μπροστά, χωρίς το φόντο.<br>Κανένας ήχος κλείστρου. Ενεργοποιήστε την <code>Αυτόματη λήψη</code> και κάθε νέα διαφάνεια τραβιέται μόνη της, ενώ οι κουνημένες λήψεις παραλείπονται.</p>
+      </div>
+      <div class="phone"><img src="../img/el/03-slide.jpg" alt="Ίσια από τη στιγμή της λήψης" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Όσες φωτογραφίες έχετε ήδη, μονομιάς</h2>
+        <p>Επιλέξτε αρκετές φωτογραφίες από το μάθημα στις Φωτογραφίες και κοινοποιήστε τις στο CatchSlide. Ισιώνονται και αποθηκεύονται ως μία παρουσίαση, με τη σειρά που τις τραβήξατε.<br>Η <code>Ευκρίνεια κειμένου</code> αφαιρεί σκιές και θαμπή αντίθεση.</p>
+      </div>
+      <div class="phone"><img src="../img/el/01-share.jpg" alt="Όσες φωτογραφίες έχετε ήδη, μονομιάς" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Αρκεί μία λέξη</h2>
+        <p>Το CatchSlide διαβάζει το κείμενο κάθε διαφάνειας απευθείας στη συσκευή σας. Ακόμη και εβδομάδες μετά, μία λέξη σάς φέρνει στη σωστή διαφάνεια.<br>Και οι σημειώσεις στις διαφάνειες είναι αναζητήσιμες. Γράψτε <code>εξεταστική</code> σε μερικές και όλη η ύλη είναι μία αναζήτηση μακριά.</p>
+      </div>
+      <div class="phone"><img src="../img/el/06-memo-search.jpg" alt="Αρκεί μία λέξη" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="reveal">
+      <h2>Ξεκινήστε σε τρία βήματα</h2>
+      <ol class="steps"><li class="card"><span class="n">1</span><h3>Ανοίξτε την κάμερα</h3><p>Από το κουμπί στη λίστα, το widget στην οθόνη Αφετηρίας ή την οθόνη κλειδώματος.</p></li>
+<li class="card"><span class="n">2</span><h3>Πλαισιώστε τη διαφάνεια</h3><p>Όταν οι γωνίες γίνουν πράσινες, πατήστε το κλείστρο ή αφήστε την αυτόματη λήψη.</p></li>
+<li class="card"><span class="n">3</span><h3>Επανάληψη ανά παρουσίαση</h3><p>Αναζητήστε, προσθέστε σημειώσεις και εξαγάγετε PDF για διάβασμα.</p></li></ol>
+    </section>
+
+    <section class="reveal" id="commands">
+      <h2>Τι μπορείτε να κάνετε με μια παρουσίαση</h2>
+      <div class="card table">
+        <dl><div><dt>Ηχογράφηση</dt><dd>Ηχογραφήστε ενώ φωτογραφίζετε και ακούστε κάθε διαφάνεια από τη στιγμή που την τραβήξατε</dd></div><div><dt>Απομαγνητοφώνηση</dt><dd>Μετατρέπει την ηχογράφηση σε κείμενο, δείχνει τι ειπώθηκε σε κάθε διαφάνεια και μπαίνει στην αναζήτηση</dd></div><div><dt>Σύνοψη με AI</dt><dd>Συνοψίζει την παρουσίαση από το κείμενο των διαφανειών και την απομαγνητοφώνηση (iOS 26 ή νεότερο σε συσκευές με Apple Intelligence)</dd></div><div><dt>PDF</dt><dd>Σημειώσεις επανάληψης με μία, δύο ή τέσσερις διαφάνειες ανά σελίδα</dd></div><div><dt>Markdown</dt><dd>Ένα .zip έτοιμο για Notion ή Obsidian</dd></div><div><dt>PowerPoint</dt><dd>Εξαγωγή σε .pptx με την απομαγνητοφώνηση στις σημειώσεις ομιλητή</dd></div><div><dt>Συγχώνευση</dt><dd>Επιλέξτε αρκετές παρουσιάσεις και ενώστε τες σε μία</dd></div><div><dt>Συγχρονισμός iCloud</dt><dd>Ενεργοποιήστε τον για να βλέπετε τις παρουσιάσεις σε άλλες συσκευές με το ίδιο Apple ID. Είναι απενεργοποιημένος από προεπιλογή</dd></div><div><dt>Widget</dt><dd>Ανοίγουν την κάμερα απευθείας από την οθόνη Αφετηρίας ή την οθόνη κλειδώματος</dd></div></dl>
+      </div>
+      <p class="muted">Η αναγνώριση κειμένου, η απομαγνητοφώνηση και οι συνόψεις με AI γίνονται στη συσκευή σας.</p>
+    </section>
+
+
+    <section class="reveal" id="pricing">
+      <h2>Μία αγορά, όλα μέσα</h2>
+      <div class="plans">
+        <div class="card plan free">
+          <h3>CatchSlide</h3>
+          <ul><li>Αθόρυβη λήψη, αυτόματη λήψη και ίσιωμα</li><li>Εισαγωγή πολλών φωτογραφιών μαζί από τις Φωτογραφίες</li><li>Διαφάνειες ανά παρουσίαση, αναζήτηση σε κείμενο και σημειώσεις</li><li>Ηχογράφηση, απομαγνητοφώνηση και σύνοψη με AI</li><li>Εξαγωγή σε PDF, Markdown και PowerPoint</li><li>Συγχρονισμός iCloud και widget</li></ul>
+          
+        </div>
+        <div class="card plan pro">
+          <h3>Φιλοδώρημα (προαιρετικό)</h3>
+          <ul><li>Αν η εφαρμογή σάς βοηθά, μπορείτε να αφήσετε ένα μικρό φιλοδώρημα στον δημιουργό</li><li>Το φιλοδώρημα δεν ξεκλειδώνει τίποτα. Όλες οι λειτουργίες δουλεύουν και χωρίς αυτό</li></ul>
+          <p class="muted">Θα το βρείτε στην οθόνη Τα στοιχεία μου.</p>
+        </div>
+      </div>
+      <p class="muted">Χωρίς συνδρομή και χωρίς πληρωμές για επιπλέον λειτουργίες. Δείτε την τιμή για τη χώρα σας στο App Store.</p>
+    </section>
+
+    <section class="reveal" id="faq">
       <h2>Συχνές ερωτήσεις</h2>
-      <div class="faq">
-        <details open>
-          <summary>Πώς φωτογραφίζω διαφάνειες;</summary>
-          <p>Ανοίξτε την εφαρμογή και η κάμερα είναι έτοιμη. Προσαρμόστε τη διαφάνεια στην οθόνη μέχρι το πλαίσιο να γίνει <span class="tag">πράσινο</span> και πατήστε το κλείστρο ή αφήστε την αυτόματη λήψη να τραβήξει τη φωτογραφία. Όταν αλλάξει η διαφάνεια, η επόμενη καταγράφεται αυτόματα.</p>
-        </details>
-        <details>
-          <summary>Πώς ηχογραφώ την ομιλία;</summary>
-          <p>Πατήστε <strong>Ηχογράφηση</strong> στο πάνω μέρος της κάμερας. Η ομιλία ηχογραφείται ενώ φωτογραφίζετε. Αργότερα, ανοίξτε οποιαδήποτε διαφάνεια και πατήστε αναπαραγωγή για να την ακούσετε από τη στιγμή που τραβήξατε εκείνη τη διαφάνεια. Η αναπαραγωγή αλλάζει τις διαφάνειες για εσάς.</p>
-        </details>
-        <details>
-          <summary>Πώς παίρνω μεταγραφή ή σύνοψη AI;</summary>
-          <p>Ανοίξτε μια παρουσίαση και πατήστε το κουμπί σημειώσεων ✨. Πατήστε <strong>Μεταγραφή</strong> δίπλα σε μια ηχογράφηση και μετά <strong>Σύνοψη με AI</strong>. Η Σύνοψη AI απαιτεί συσκευή που υποστηρίζει το Apple Intelligence (iOS 26 ή νεότερο) με ενεργοποιημένο το Apple Intelligence.</p>
-        </details>
-        <details>
-          <summary>Γιατί οι διαφάνειές μου είναι ομαδοποιημένες;</summary>
-          <p>Οι διαφάνειες που τραβιούνται με διαφορά έως πέντε λεπτών θεωρούνται ίδια συνεδρία και αποθηκεύονται σε μία παρουσίαση. Μπορείτε να τη μετονομάσετε ή να συγχωνεύσετε παρουσιάσεις από τη λίστα.</p>
-        </details>
-        <details>
-          <summary>Πώς κάνω εξαγωγή;</summary>
-          <p>Σε μια παρουσίαση, ανοίξτε το μενού ⋯ και επιλέξτε PDF (μία, δύο ή τέσσερις διαφάνειες ανά σελίδα), Markdown για Notion ή Obsidian ή PowerPoint, που ανοίγει και στο Keynote και στα Google Slides.</p>
-        </details>
-        <details>
-          <summary>Πώς λειτουργεί ο συγχρονισμός iCloud;</summary>
-          <p>Ενεργοποιήστε τον στο <strong>Τα στοιχεία μου › Συγχρονισμός</strong>. Οι παρουσιάσεις, οι διαφάνειες και οι ηχογραφήσεις σας αποθηκεύονται στο δικό σας ιδιωτικό iCloud και εμφανίζονται στις άλλες συσκευές σας που έχουν συνδεθεί με τον ίδιο Apple Account. Είναι απενεργοποιημένος από προεπιλογή, επειδή οι φωτογραφίες και οι ηχογραφήσεις καταλαμβάνουν χώρο στο iCloud.</p>
-        </details>
-        <details>
-          <summary>Πού αποθηκεύονται τα δεδομένα μου;</summary>
-          <p>Στη συσκευή σας. Η αναγνώριση κειμένου, η μεταγραφή και η Σύνοψη AI εκτελούνται όλες στη συσκευή σας. Τα δεδομένα πηγαίνουν στο δικό σας iCloud μόνο αν ενεργοποιήσετε τον συγχρονισμό. Δείτε την <a href="privacy.html">Πολιτική απορρήτου</a>.</p>
-        </details>
-      </div>
+      <div class="faq"><details><summary>Πώς φωτογραφίζω μια διαφάνεια;</summary><p>Ανοίξτε την κάμερα και πλαισιώστε τη διαφάνεια. Όταν οι γωνίες γίνουν πράσινες, πατήστε το κλείστρο. Με την αυτόματη λήψη ενεργή, η επόμενη διαφάνεια τραβιέται μόνη της κάθε φορά που αλλάζει.</p></details>
+<details><summary>Ακούγεται ήχος κλείστρου;</summary><p>Όχι. Το καρέ αποθηκεύεται απευθείας από την κάμερα, οπότε η λήψη είναι αθόρυβη σε κάθε χώρα.</p></details>
+<details><summary>Γιατί οι φωτογραφίες μου μπήκαν σε μία παρουσίαση;</summary><p>Αν τραβήξετε την επόμενη φωτογραφία μέσα σε 5 λεπτά από την προηγούμενη, θεωρείται μέρος της ίδιας παρουσίασης. Πατήστε τον τίτλο στη λίστα για μετονομασία και χρησιμοποιήστε τη <code>Συγχώνευση παρουσιάσεων</code> για να ενώσετε όσες χωρίστηκαν.</p></details>
+<details><summary>Μπορώ να προσθέσω φωτογραφίες που έχω ήδη;</summary><p>Ναι. Επιλέξτε τις στις Φωτογραφίες και κοινοποιήστε τις στο CatchSlide, ή πατήστε ＋ στη λίστα και επιλέξτε <code>Εισαγωγή από τις Φωτογραφίες</code>. Ισιώνονται και αποθηκεύονται ως μία παρουσίαση με τη σειρά λήψης.</p></details>
+<details><summary>Οι γωνίες εντοπίστηκαν λάθος.</summary><p>Ανοίξτε τη διαφάνεια, επιλέξτε <code>Προσαρμογή γωνιών</code> από το μενού ⋯ και σύρετε τις τέσσερις γωνίες στη θέση τους. Η <code>Αυτόματη ανίχνευση</code> τις ψάχνει ξανά και η <code>Ολόκληρη εικόνα</code> κρατά όλη τη φωτογραφία. Το πρωτότυπο φυλάσσεται πάντα, οπότε μπορείτε να το ξανακάνετε όποτε θέλετε.</p></details>
+<details><summary>Μπορώ να ψάξω στο κείμενο των διαφανειών;</summary><p>Γράψτε μια λέξη στο πεδίο αναζήτησης πάνω από τη λίστα. Η αναζήτηση καλύπτει κείμενο διαφανειών, τίτλους, σημειώσεις και απομαγνητοφωνήσεις και σας πηγαίνει κατευθείαν στη διαφάνεια. Η αναγνώριση κειμένου γίνεται στη συσκευή.</p></details>
+<details><summary>Πώς εξάγω PDF;</summary><p>Μέσα σε μια παρουσίαση ανοίξτε το μενού κοινοποίησης, επιλέξτε <code>Εξαγωγή ως PDF</code> και διαλέξτε μία, δύο ή τέσσερις διαφάνειες ανά σελίδα. Από το φύλλο κοινοποίησης αποθηκεύστε το στα Αρχεία ή στείλτε το σε άλλη εφαρμογή.</p></details>
+<details><summary>Πώς αλλάζω τη σειρά ή διαγράφω διαφάνειες;</summary><p>Μέσα σε μια παρουσίαση, πατήστε παρατεταμένα μια διαφάνεια και σύρετέ την. Από το ίδιο μενού τη διαγράφετε ή την κοινοποιείτε, και με την <code>Επιλογή</code> διαγράφετε πολλές μαζί.</p></details>
+<details><summary>Πώς λειτουργούν η ηχογράφηση και η σύνοψη με AI;</summary><p>Ενεργοποιήστε την <code>Ηχογράφηση</code> στο πάνω μέρος της κάμερας και κάθε διαφάνεια κρατά τον ήχο εκείνης της στιγμής. Στις <code>Σημειώσεις παρουσίασης</code>, η <code>Σύνοψη με AI</code> γράφει μια σύνοψη από το κείμενο των διαφανειών και την απομαγνητοφώνηση. Χρειάζεται iOS 26 ή νεότερο σε συσκευή με Apple Intelligence.</p></details>
+<details><summary>Πού αποθηκεύονται οι διαφάνειες και οι ηχογραφήσεις μου;</summary><p>Στη συσκευή σας. Ανεβαίνουν στο δικό σας iCloud μόνο αν ενεργοποιήσετε τον <code>Συγχρονισμός</code> στην οθόνη Τα στοιχεία μου, και δεν χρειάζεται λογαριασμός. Περισσότερα στην Πολιτική απορρήτου.</p></details></div>
+      <p class="contact">Ερωτήσεις, σφάλματα ή ιδέες; Γράψτε στο <a href="mailto:leeo@kakao.com">leeo@kakao.com</a>.</p>
     </section>
 
-    <section>
-      <div class="contact">
-        <h2 style="margin-bottom:6px">Χρειάζεστε βοήθεια;</h2>
-        <p style="color:var(--muted);margin:0">Ερωτήσεις, αναφορές σφαλμάτων και ιδέες για νέες λειτουργίες είναι ευπρόσδεκτες.</p>
-        <a class="btn" href="mailto:leeo@kakao.com?subject=%5BCatchSlide%5D%20Support">Στείλτε μας email</a>
-        <p style="margin:14px 0 0"><a href="privacy.html">Πολιτική απορρήτου</a></p>
-      </div>
+    <section class="closing reveal">
+      <h2>Από το επόμενο μάθημα,<br>ίσιες διαφάνειες</h2>
+      <a class="cta" href="https://apps.apple.com/app/id6790835318">Λήψη από το App Store</a>
     </section>
-  </div>
+  </main>
 
   <footer>
-    © 2026 CatchSlide &nbsp;·&nbsp; leeo@kakao.com
+    <nav id="languages" class="langs" aria-label="Γλώσσα"><a href="../" hreflang="ko" lang="ko">한국어</a>
+<a href="../en/" hreflang="en" lang="en">English</a>
+<a href="../zh-Hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
+<a href="../zh-Hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
+<a href="../ja/" hreflang="ja" lang="ja">日本語</a>
+<a href="../ru/" hreflang="ru" lang="ru">Русский</a>
+<a href="../es/" hreflang="es" lang="es">Español</a>
+<a href="../de/" hreflang="de" lang="de">Deutsch</a>
+<a href="../fr/" hreflang="fr" lang="fr">Français</a>
+<a href="../it/" hreflang="it" lang="it">Italiano</a>
+<a href="../pt-BR/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a>
+<a href="../th/" hreflang="th" lang="th">ไทย</a>
+<a href="../vi/" hreflang="vi" lang="vi">Tiếng Việt</a>
+<a href="../cs/" hreflang="cs" lang="cs">Čeština</a>
+<a href="../da/" hreflang="da" lang="da">Dansk</a>
+<a href="../el/" hreflang="el" lang="el" aria-current="page">Ελληνικά</a>
+<a href="../fi/" hreflang="fi" lang="fi">Suomi</a>
+<a href="../id/" hreflang="id" lang="id">Indonesia</a>
+<a href="../nb/" hreflang="nb" lang="nb">Norsk</a>
+<a href="../nl/" hreflang="nl" lang="nl">Nederlands</a>
+<a href="../pl/" hreflang="pl" lang="pl">Polski</a>
+<a href="../sv/" hreflang="sv" lang="sv">Svenska</a>
+<a href="../tr/" hreflang="tr" lang="tr">Türkçe</a></nav>
+    <p><a href="privacy.html">Πολιτική απορρήτου</a> · <a href="mailto:leeo@kakao.com">leeo@kakao.com</a> · © 2026 CatchSlide</p>
   </footer>
-<nav style="text-align:center;font-size:0.85rem;line-height:2;padding:0 24px 40px"><a href="../" hreflang="ko">한국어</a> · <a href="../en/" hreflang="en">English</a> · <a href="../zh-Hans/" hreflang="zh-Hans">简体中文</a> · <a href="../zh-Hant/" hreflang="zh-Hant">繁體中文</a> · <a href="../ja/" hreflang="ja">日本語</a> · <a href="../ru/" hreflang="ru">Русский</a> · <a href="../es/" hreflang="es">Español</a> · <a href="../de/" hreflang="de">Deutsch</a> · <a href="../fr/" hreflang="fr">Français</a> · <a href="../it/" hreflang="it">Italiano</a> · <a href="../pt-BR/" hreflang="pt-BR">Português (Brasil)</a> · <a href="../th/" hreflang="th">ไทย</a> · <a href="../vi/" hreflang="vi">Tiếng Việt</a> · <a href="../cs/" hreflang="cs">Čeština</a> · <a href="../da/" hreflang="da">Dansk</a> · <a href="../el/" hreflang="el">Ελληνικά</a> · <a href="../fi/" hreflang="fi">Suomi</a> · <a href="../id/" hreflang="id">Indonesia</a> · <a href="../nb/" hreflang="nb">Norsk</a> · <a href="../nl/" hreflang="nl">Nederlands</a> · <a href="../pl/" hreflang="pl">Polski</a> · <a href="../sv/" hreflang="sv">Svenska</a> · <a href="../tr/" hreflang="tr">Türkçe</a></nav>
+
+  <script>
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target) }
+    }), { rootMargin: "0px 0px -10% 0px" });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  </script>
+  <script src="../demo.js"></script>
 </body>
 </html>

@@ -1,0 +1,114 @@
+{
+  "title": "CatchSlide: yandan çekseniz de ders slaytları dümdüz",
+  "description": "Nerede oturursanız oturun, CatchSlide slaydın köşelerini bulur, karşıdan çekilmiş gibi düzeltir, sunumlara göre ayırır ve metnini aranabilir yapar.",
+  "hero": {
+    "headline": "Yandan çekildi.\nKarşıdan kaydedildi.",
+    "lead": "Kamera slaydın dört köşesini bulur, düzeltir ve çevresindeki her şeyi kırpar. Art arda çektiğiniz slaytlar aynı sunumda toplanır.",
+    "cta": "App Store’dan indirin",
+    "note": "Tek satın alma, tüm özellikler. Abonelik yok, hesap yok."
+  },
+  "demo": {
+    "title": "Kendiniz düzeltin",
+    "lead": "Bu fotoğraf amfide yan taraftaki bir koltuktan eğik olarak çekildi. Yeşil çerçeve, slaydın bulunan köşelerini gösteriyor.",
+    "straighten": "Düzelt",
+    "reset": "Fotoğrafa dön",
+    "photo": "Eğik çekilmiş fotoğraf",
+    "result": "CatchSlide’ın düzelttiği slayt",
+    "waiting": "Sonucu burada görmek için Düzelt’e dokunun",
+    "hint": "Köşe noktalarını sürükleyerek kendiniz de ayarlayabilir ya da bir noktayı seçip ok tuşlarıyla kaydırabilirsiniz.",
+    "corners": ["Sol üst köşe", "Sağ üst köşe", "Sağ alt köşe", "Sol alt köşe"],
+    "note": "Bu deneme önceden çekilmiş tek bir fotoğrafla yapılıyor. Uygulamada köşeler kamerada canlı olarak bulunur, metin de cihazınızda tanınır."
+  },
+  "problem": {
+    "title": "Ders çalışmak için galeriyi açıp slaydı bulamadığınız oldu mu?",
+    "text": "Arka sıralardan çekilen slaytlar hep yamuk çıkar, selfie’lerle fişlerin arasında kaybolur. Sessiz bir amfide deklanşör sesi bile çekmekten vazgeçirir. CatchSlide sessizce çeker, her slaydı düzeltir ve sunumlara göre bir arada tutar."
+  },
+  "features": [
+    {
+      "title": "Çektiğiniz anda düz",
+      "text": "Kamera slaydın dört köşesini canlı olarak takip eder ve yakaladığında yeşile döner. Eğik çekilse bile slayt karşıdan çekilmiş gibi düzeltilir, arka plan kırpılır.\nDeklanşör sesi yok. `Otomatik çekim` açıkken her yeni slayt kendiliğinden çekilir, bulanık kareler atlanır.",
+      "shot": "03-slide"
+    },
+    {
+      "title": "Elinizdeki fotoğraflar, tek seferde",
+      "text": "Fotoğraflar uygulamasında dersten birkaç fotoğraf seçip CatchSlide ile paylaşın. Çekildikleri sırayla düzeltilip tek bir sunum olarak kaydedilir.\n`Metni Netleştir` gölgeleri ve soluk kontrastı giderir.",
+      "shot": "01-share"
+    },
+    {
+      "title": "Tek bir kelime yeter",
+      "text": "CatchSlide her slayttaki metni doğrudan cihazınızda okur. Haftalar sonra bile aklınızda kalan tek kelime sizi o slayta götürür.\nSlaytlara eklediğiniz notlar da aranabilir. Birkaçına `final` yazın, sınav konularının hepsi tek aramada karşınıza çıksın.",
+      "shot": "06-memo-search"
+    }
+  ],
+  "steps": {
+    "title": "Üç adımda başlayın",
+    "items": [
+      {"title": "Kamerayı açın", "text": "Listedeki kamera düğmesinden, Ana ekran widget’ından ya da kilitli ekrandan."},
+      {"title": "Slaydı kadraja alın", "text": "Köşeler yeşile dönünce deklanşöre basın ya da işi otomatik çekime bırakın."},
+      {"title": "Sunumlara göre tekrar edin", "text": "Arayın, not ekleyin ve çalışmak için PDF dışa aktarın."}
+    ]
+  },
+  "reference": {
+    "title": "Bir sunumla neler yapabilirsiniz",
+    "rows": [
+      ["Kayıt", "Çekerken ses kaydedin, sonra her slaydı çektiğiniz andan itibaren dinleyin"],
+      ["Yazıya dökme", "Kaydı metne çevirir, her slaytta ne söylendiğini gösterir ve aramaya dahil eder"],
+      ["Yapay zekâ özeti", "Sunumu slayt metninden ve yazıya dökülen konuşmadan özetler (Apple Intelligence destekli cihazlarda iOS 26 veya sonrası)"],
+      ["PDF", "Sayfa başına bir, iki ya da dört slaytlık tekrar notları"],
+      ["Markdown", "Notion veya Obsidian’a hazır bir .zip"],
+      ["PowerPoint", "Konuşmacı notlarında yazıya dökülmüş metinle .pptx olarak dışa aktarır"],
+      ["Birleştirme", "Birkaç sunumu seçip tek sunumda birleştirin"],
+      ["iCloud eşzamanlama", "Açtığınızda sunumlarınızı aynı Apple ID’yi kullanan diğer cihazlarda da görürsünüz. Varsayılan olarak kapalıdır"],
+      ["Widget’lar", "Kamerayı doğrudan Ana ekrandan veya kilitli ekrandan açar"]
+    ],
+    "note": "Metin tanıma, yazıya dökme ve yapay zekâ özetleri cihazınızda çalışır."
+  },
+  "pricing": {
+    "title": "Bir kez alın, hepsi sizin",
+    "free": {
+      "name": "CatchSlide",
+      "items": [
+        "Sessiz çekim, otomatik çekim ve düzeltme",
+        "Fotoğraflar’dan toplu içe aktarma",
+        "Sunumlara göre slaytlar, metin ve notlarda arama",
+        "Kayıt, yazıya dökme ve yapay zekâ özeti",
+        "PDF, Markdown ve PowerPoint olarak dışa aktarma",
+        "iCloud eşzamanlama ve widget’lar"
+      ]
+    },
+    "pro": {
+      "name": "Bahşiş (isteğe bağlı)",
+      "items": [
+        "Uygulama işinize yarıyorsa geliştiriciye küçük bir bahşiş bırakabilirsiniz",
+        "Bahşiş hiçbir özelliği açmaz. Tüm özellikler bahşişsiz de çalışır"
+      ],
+      "note": "Bilgilerim ekranından gönderebilirsiniz."
+    },
+    "note": "Abonelik ya da özellik açmak için ek ödeme yok. Ülkenizdeki fiyatı App Store’da görebilirsiniz."
+  },
+  "faq": {
+    "title": "Sık sorulan sorular",
+    "items": [
+      {"q": "Slaytı nasıl çekerim?", "a": "Kamerayı açıp slaydı kadraja alın. Köşeler yeşile dönünce deklanşöre basın. Otomatik çekim açıksa slayt her değiştiğinde bir sonraki kendiliğinden çekilir."},
+      {"q": "Deklanşör sesi çıkıyor mu?", "a": "Hayır. Kare doğrudan kameradan kaydedildiği için her ülkede sessizdir."},
+      {"q": "Fotoğraflarım neden tek bir sunumda toplandı?", "a": "Bir sonraki fotoğrafı öncekinden sonraki 5 dakika içinde çekerseniz aynı sunuma eklenir. Adını değiştirmek için listede başlığa dokunun, ayrı düşen sunumları `Sunumları Birleştir` ile birleştirin."},
+      {"q": "Daha önce çektiğim fotoğrafları ekleyebilir miyim?", "a": "Evet. Fotoğraflar uygulamasında seçip CatchSlide ile paylaşın ya da listedeki ＋ düğmesine dokunup `Fotoğraflar'dan İçe Aktar`’ı seçin. Çekildikleri sırayla düzeltilip tek sunum olarak kaydedilir."},
+      {"q": "Köşeler yanlış bulundu.", "a": "Slaydı açın, ⋯ menüsünden `Köşeleri Ayarla`’yı seçin ve dört köşeyi yerine sürükleyin. `Otomatik Algıla` köşeleri yeniden arar, `Tüm Görsel` ise fotoğrafın tamamını kullanır. Orijinal her zaman saklanır, yani istediğiniz an yeniden düzeltebilirsiniz."},
+      {"q": "Slaytlardaki metinde arama yapabilir miyim?", "a": "Listenin üstündeki arama alanına bir kelime yazın. Slayt metinleri, sunum başlıkları, notlar ve yazıya dökülen konuşmalar taranır, doğrudan ilgili slayta gidilir. Metin tanıma cihazınızda yapılır."},
+      {"q": "PDF olarak nasıl dışa aktarırım?", "a": "Sunumda paylaşma menüsünü açın, `PDF Olarak Dışa Aktar`’ı seçin ve sayfa başına bir, iki ya da dört slayt belirleyin. Paylaşma sayfasından Dosyalar’a kaydedebilir ya da başka bir uygulamaya gönderebilirsiniz."},
+      {"q": "Slaytların sırasını nasıl değiştirir ya da silerim?", "a": "Sunumda bir slayta basılı tutup sürükleyin. Aynı menüden tek slaytı silebilir veya paylaşabilir, `Seç` ile birden fazlasını birlikte silebilirsiniz."},
+      {"q": "Kayıt ve yapay zekâ özeti nasıl çalışır?", "a": "Kameranın üstündeki `Kayıt`’ı açın, her slayt o anın sesini saklasın. `Sunum Notları` içinde `Yapay Zekayla Özetle` slayt metninden ve yazıya dökülen konuşmadan bir özet çıkarır. Bunun için Apple Intelligence destekli bir cihazda iOS 26 veya sonrası gerekir."},
+      {"q": "Slaytlarım ve kayıtlarım nerede saklanıyor?", "a": "Cihazınızda. Yalnızca Bilgilerim’de `Senkronize Et`’i açarsanız kendi iCloud’unuza yüklenir, hesap gerekmez. Ayrıntılar Gizlilik Politikası’nda."}
+    ]
+  },
+  "closing": {
+    "headline": "Bir sonraki dersten itibaren\nslaytlar dümdüz",
+    "cta": "App Store’dan indirin"
+  },
+  "ui": {
+    "skip": "İçeriğe geç",
+    "languages": "Dil",
+    "privacy": "Gizlilik Politikası",
+    "contact": "Soru, hata bildirimi ya da fikirleriniz için {email} adresine yazın."
+  }
+}

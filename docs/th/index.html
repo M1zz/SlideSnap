@@ -1,184 +1,192 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CatchSlide — ศูนย์ช่วยเหลือ</title>
-<meta name="description" content="ศูนย์ช่วยเหลือ CatchSlide — ถ่ายสไลด์การบรรยาย บันทึกเสียงผู้พูด และทบทวนด้วยข้อความถอดเสียงและสรุปโดย AI">
-<style>
-  :root {
-    --blue: #2f6bde;
-    --blue-light: #4facfe;
-    --green: #29cc70;
-    --ink: #1a2233;
-    --muted: #5b6577;
-    --bg: #f5f7fb;
-    --card: #ffffff;
-    --border: #e4e9f2;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --ink: #e8ecf4;
-      --muted: #9aa4b8;
-      --bg: #0f131b;
-      --card: #1a2130;
-      --border: #2a3346;
-    }
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-    color: var(--ink);
-    background: var(--bg);
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-  }
-  .hero {
-    background: linear-gradient(135deg, var(--blue-light) 0%, var(--blue) 100%);
-    color: #fff;
-    padding: 64px 24px 56px;
-    text-align: center;
-  }
-  .hero img {
-    width: 108px; height: 108px;
-    border-radius: 24px;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.28);
-  }
-  .hero h1 { margin: 20px 0 6px; font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; }
-  .hero p { margin: 0; font-size: 1.05rem; opacity: 0.95; }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-  section { padding: 40px 0; border-bottom: 1px solid var(--border); }
-  section:last-of-type { border-bottom: none; }
-  h2 { font-size: 1.35rem; font-weight: 700; margin: 0 0 18px; letter-spacing: -0.01em; }
-  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 520px) { .features { grid-template-columns: 1fr; } }
-  .feature {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 14px; padding: 18px 18px 16px;
-  }
-  .feature .ic { font-size: 1.5rem; }
-  .feature h3 { margin: 8px 0 4px; font-size: 1rem; }
-  .feature p { margin: 0; color: var(--muted); font-size: 0.92rem; }
-  .faq { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 6px 20px; }
-  details { padding: 14px 0; border-bottom: 1px solid var(--border); }
-  details:last-child { border-bottom: none; }
-  summary { cursor: pointer; font-weight: 600; list-style: none; }
-  summary::-webkit-details-marker { display: none; }
-  summary::before { content: "＋"; color: var(--blue); font-weight: 700; margin-right: 10px; }
-  details[open] summary::before { content: "－"; }
-  details p { margin: 12px 0 2px; color: var(--muted); }
-  .contact {
-    text-align: center; background: var(--card);
-    border: 1px solid var(--border); border-radius: 16px; padding: 32px 24px;
-  }
-  .btn {
-    display: inline-block; margin-top: 12px;
-    background: var(--blue); color: #fff; text-decoration: none;
-    padding: 12px 26px; border-radius: 999px; font-weight: 600;
-  }
-  a { color: var(--blue); }
-  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 32px 24px 48px; }
-  .tag { display:inline-block; color: var(--green); font-weight:700; }
-</style>
-<link rel="canonical" href="https://m1zz.github.io/SlideSnap/th/">
-<link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
-<link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
-<link rel="alternate" hreflang="en-GB" href="https://m1zz.github.io/SlideSnap/en/">
-<link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
-<link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
-<link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
-<link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
-<link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
-<link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
-<link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
-<link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
-<link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
-<link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
-<link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
-<link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
-<link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
-<link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
-<link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
-<link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
-<link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
-<link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
-<link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
-<link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
-<link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
-<link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CatchSlide: ถ่ายสไลด์ในห้องเรียนเอียงแค่ไหนก็ได้ภาพตรง</title>
+  <meta name="description" content="นั่งตรงไหนก็ถ่ายได้ CatchSlide หามุมทั้งสี่ของสไลด์แล้วดัดให้ตรงเหมือนถ่ายจากด้านหน้า เก็บแยกตามงานนำเสนอ และค้นหาจากตัวอักษรในสไลด์ได้">
+  <meta name="theme-color" content="#3478E7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f131b" media="(prefers-color-scheme: dark)">
+  <meta name="apple-itunes-app" content="app-id=6790835318">
+  <link rel="canonical" href="https://m1zz.github.io/SlideSnap/th/">
+  <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
+  <link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
+  <link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
+  <link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
+  <link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
+  <link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
+  <link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
+  <link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
+  <link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
+  <link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
+  <link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
+  <link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
+  <link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
+  <link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
+  <link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
+  <link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
+  <link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
+  <link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
+  <link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
+  <link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
+  <link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
+  <link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CatchSlide: ถ่ายสไลด์ในห้องเรียนเอียงแค่ไหนก็ได้ภาพตรง">
+  <meta property="og:description" content="นั่งตรงไหนก็ถ่ายได้ CatchSlide หามุมทั้งสี่ของสไลด์แล้วดัดให้ตรงเหมือนถ่ายจากด้านหน้า เก็บแยกตามงานนำเสนอ และค้นหาจากตัวอักษรในสไลด์ได้">
+  <meta property="og:url" content="https://m1zz.github.io/SlideSnap/th/">
+  <meta property="og:image" content="https://m1zz.github.io/SlideSnap/img/th/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../icon.png">
+  <link rel="apple-touch-icon" href="../icon.png">
+  <link rel="stylesheet" href="../site.css">
+  <link rel="stylesheet" href="../demo.css">
+  <style>:root{--accent:#3478E7}@media (prefers-color-scheme:dark){:root{--accent:#5EA2FF}}</style>
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
-  <div class="hero">
-    <img src="../icon.png" alt="ไอคอนแอป CatchSlide">
-    <h1>CatchSlide</h1>
-    <p>ถ่ายสไลด์การบรรยาย ได้ภาพตรง ค้นหาได้ และพร้อมทบทวน</p>
-  </div>
+  <a class="skip" href="#main">ข้ามไปที่เนื้อหา</a>
+  <header class="bar">
+    <a class="brand" href="../th/"><img src="../icon.png" alt="" width="32" height="32">CatchSlide</a>
+    <a class="lang-link" href="#languages">ภาษา</a>
+  </header>
 
-  <div class="wrap">
-    <section>
-      <h2>ฟีเจอร์</h2>
-      <div class="features">
-        <div class="feature"><div class="ic">🟩</div><h3>ตรวจจับสไลด์แบบเรียลไทม์</h3><p>กล้องหามุมทั้งสี่ของสไลด์ขณะที่คุณเล็ง ปรับให้เหมือนถ่ายจากด้านหน้า และถ่ายให้อัตโนมัติได้</p></div>
-        <div class="feature"><div class="ic">🤫</div><h3>ถ่ายแบบเงียบ</h3><p>ไม่มีเสียงชัตเตอร์ จึงถ่ายกลางคาบเรียนได้โดยไม่รบกวนใคร</p></div>
-        <div class="feature"><div class="ic">🎙️</div><h3>บันทึกเสียงและเล่นย้อนฟัง</h3><p>บันทึกเสียงการบรรยายไปพร้อมกับการถ่ายสไลด์ แตะสไลด์ใดก็ได้เพื่อฟังสิ่งที่พูดในช่วงนั้น</p></div>
-        <div class="feature"><div class="ic">💬</div><h3>ถอดเสียงเป็นข้อความ</h3><p>แปลงเสียงบันทึกเป็นข้อความบนอุปกรณ์ของคุณ และอ่านว่าแต่ละสไลด์พูดถึงอะไร</p></div>
-        <div class="feature"><div class="ic">✨</div><h3>สรุปโดย AI</h3><p>ได้ภาพรวม ประเด็นสำคัญ และคำสำคัญของการบรรยายทั้งหมด สร้างบนอุปกรณ์ของคุณด้วย Apple Intelligence</p></div>
-        <div class="feature"><div class="ic">🔍</div><h3>ค้นหาได้ทุกอย่าง</h3><p>หาสไลด์จากคำใดก็ได้บนสไลด์ หรือจากสิ่งที่ผู้บรรยายพูด</p></div>
-        <div class="feature"><div class="ic">🗂️</div><h3>จัดระเบียบเป็นรอบ ๆ</h3><p>สไลด์ที่ถ่ายต่อเนื่องกันจะรวมเป็นงานนำเสนอเดียว เปลี่ยนชื่อ จัดลำดับใหม่ หรือรวมเข้าด้วยกันได้</p></div>
-        <div class="feature"><div class="ic">📤</div><h3>PDF, Notion, PowerPoint</h3><p>ส่งออกเป็น PDF สำหรับทบทวน บันทึก Markdown สำหรับ Notion หรือ Obsidian หรือไฟล์ PowerPoint ที่มีข้อความถอดเสียงอยู่ในบันทึกของผู้บรรยาย</p></div>
-        <div class="feature"><div class="ic">☁️</div><h3>ซิงค์ iCloud</h3><p>เลือกเก็บสไลด์และเสียงบันทึกไว้บน iPhone, iPad และ Mac ทุกเครื่องของคุณได้</p></div>
-        <div class="feature"><div class="ic">🖼️</div><h3>จากแอปรูปภาพ</h3><p>แชร์รูปการบรรยายจากแอปรูปภาพ ระบบจะปรับให้ตรงและจัดเป็นงานนำเสนอเดียว</p></div>
+  <main id="main">
+    <section class="hero">
+      <div class="copy">
+        <h1>ถ่ายจากด้านข้าง<br>ได้ภาพเหมือนนั่งตรงหน้า</h1>
+        <p class="lead">กล้องจะหามุมทั้งสี่ของสไลด์ ดัดภาพให้ตรง และตัดพื้นหลังรอบๆ ออก สไลด์ที่ถ่ายต่อกันจะรวมอยู่ในงานนำเสนอเดียวกัน</p>
+        <div class="actions"><a class="cta" href="https://apps.apple.com/app/id6790835318">ดาวน์โหลดบน App Store</a><a class="try" href="#try">ลองดัดภาพเอง ↓</a></div>
+        <p class="muted small">ซื้อครั้งเดียว ใช้ได้ทุกฟีเจอร์ ไม่มีการสมัครสมาชิก ไม่ต้องมีบัญชี</p>
       </div>
+      <div class="phone"><img src="../img/th/02-list.jpg" alt="ถ่ายจากด้านข้าง ได้ภาพเหมือนนั่งตรงหน้า" width="720" height="1564" decoding="async"></div>
     </section>
 
-    <section>
+
+    <section class="reveal" id="try">
+      <h2>ลองดัดภาพเอง</h2>
+      <p class="muted">ภาพนี้ถ่ายเอียงจากที่นั่งด้านข้างของห้องเรียน เส้นสีเขียวคือตำแหน่งมุมของสไลด์ที่หาเจอ</p>
+      <div id="demo" class="card demo-card" data-text="{&quot;title&quot;: &quot;ลองดัดภาพเอง&quot;, &quot;lead&quot;: &quot;ภาพนี้ถ่ายเอียงจากที่นั่งด้านข้างของห้องเรียน เส้นสีเขียวคือตำแหน่งมุมของสไลด์ที่หาเจอ&quot;, &quot;straighten&quot;: &quot;ดัดให้ตรง&quot;, &quot;reset&quot;: &quot;กลับไปที่ภาพเดิม&quot;, &quot;photo&quot;: &quot;ภาพที่ถ่ายเอียง&quot;, &quot;result&quot;: &quot;สไลด์ที่ CatchSlide ดัดให้ตรงแล้ว&quot;, &quot;waiting&quot;: &quot;แตะ ดัดให้ตรง แล้วผลลัพธ์จะแสดงที่นี่&quot;, &quot;hint&quot;: &quot;ลากจุดที่มุมเพื่อปรับเองก็ได้ หรือเลือกจุดแล้วเลื่อนด้วยปุ่มลูกศรบนแป้นพิมพ์&quot;, &quot;corners&quot;: [&quot;มุมซ้ายบน&quot;, &quot;มุมขวาบน&quot;, &quot;มุมขวาล่าง&quot;, &quot;มุมซ้ายล่าง&quot;], &quot;note&quot;: &quot;ตัวอย่างนี้ใช้ภาพที่ถ่ายไว้ล่วงหน้าหนึ่งภาพ ในแอป กล้องจะหามุมแบบเรียลไทม์ และอ่านตัวอักษรบนเครื่องของคุณเอง&quot;}"></div>
+    </section>
+
+    <section class="problem reveal">
+      <h2>เคยเปิดคลังรูปเพื่อทบทวน แต่หาสไลด์ไม่เจอไหม</h2>
+      <p>สไลด์ที่ถ่ายจากแถวหลังมักจะเอียง แล้วก็ปนอยู่กับเซลฟี่และใบเสร็จ ในห้องเรียนที่เงียบ แค่เสียงชัตเตอร์ก็ทำให้ลังเลจะถ่ายแล้ว CatchSlide ถ่ายแบบไม่มีเสียง ดัดสไลด์ทุกภาพให้ตรง และเก็บรวมกันตามงานนำเสนอ</p>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>ตรงตั้งแต่ตอนถ่าย</h2>
+        <p>กล้องจับมุมทั้งสี่ของสไลด์แบบเรียลไทม์และเปลี่ยนเป็นสีเขียวเมื่อจับได้ ถึงจะถ่ายเอียงก็ได้ภาพเหมือนถ่ายจากด้านหน้า พร้อมตัดพื้นหลังออก<br>ไม่มีเสียงชัตเตอร์ เปิด <code>ถ่ายอัตโนมัติ</code> ไว้ แอปจะถ่ายสไลด์ใหม่ให้เองทุกครั้งที่เปลี่ยน และข้ามภาพที่สั่นไหว</p>
+      </div>
+      <div class="phone"><img src="../img/th/03-slide.jpg" alt="ตรงตั้งแต่ตอนถ่าย" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>รูปที่ถ่ายไว้แล้ว ก็นำเข้าได้ทีเดียว</h2>
+        <p>เลือกรูปจากคาบเรียนหลายๆ รูปในแอปรูปภาพ แล้วแชร์ไปที่ CatchSlide แอปจะดัดให้ตรงและรวมเป็นงานนำเสนอเดียว ตามลำดับที่ถ่าย<br>เปิด <code>ทำให้ตัวอักษรคมชัด</code> เพื่อลบเงาและคอนทราสต์ที่ซีดจาง</p>
+      </div>
+      <div class="phone"><img src="../img/th/01-share.jpg" alt="รูปที่ถ่ายไว้แล้ว ก็นำเข้าได้ทีเดียว" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>จำได้แค่คำเดียวก็หาเจอ</h2>
+        <p>CatchSlide อ่านตัวอักษรในสไลด์ทุกภาพไว้บนเครื่อง ผ่านไปหลายสัปดาห์ก็ยังหาสไลด์นั้นเจอได้ด้วยคำเดียว<br>โน้ตที่จดไว้ในแต่ละสไลด์ก็ค้นหาได้ด้วย จดคำว่า <code>สอบปลายภาค</code> ไว้ แล้วเนื้อหาที่ออกสอบจะรวมมาในการค้นหาครั้งเดียว</p>
+      </div>
+      <div class="phone"><img src="../img/th/06-memo-search.jpg" alt="จำได้แค่คำเดียวก็หาเจอ" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="reveal">
+      <h2>เริ่มใช้ได้ใน 3 ขั้นตอน</h2>
+      <ol class="steps"><li class="card"><span class="n">1</span><h3>เปิดกล้อง</h3><p>จากปุ่มกล้องในรายการ วิดเจ็ตบนหน้าจอโฮม หรือหน้าจอล็อก</p></li>
+<li class="card"><span class="n">2</span><h3>เล็งสไลด์ให้อยู่ในกรอบ</h3><p>เมื่อมุมเป็นสีเขียว กดชัตเตอร์หรือปล่อยให้ถ่ายอัตโนมัติ</p></li>
+<li class="card"><span class="n">3</span><h3>เปิดดูตามงานนำเสนอ</h3><p>ค้นหา จดโน้ต และส่งออกเป็น PDF ไว้ทบทวน</p></li></ol>
+    </section>
+
+    <section class="reveal" id="commands">
+      <h2>สิ่งที่ทำได้กับงานนำเสนอหนึ่งชุด</h2>
+      <div class="card table">
+        <dl><div><dt>บันทึกเสียง</dt><dd>อัดเสียงไปพร้อมกับถ่าย แล้วฟังแต่ละสไลด์ได้ตั้งแต่ตอนที่ถ่ายสไลด์นั้น</dd></div><div><dt>ถอดความ</dt><dd>แปลงเสียงเป็นข้อความ แสดงว่าพูดอะไรตอนสไลด์ไหน และค้นหาได้</dd></div><div><dt>สรุปด้วย AI</dt><dd>สรุปงานนำเสนอจากตัวอักษรในสไลด์และข้อความที่ถอดไว้ (iOS 26 ขึ้นไป บนอุปกรณ์ที่รองรับ Apple Intelligence)</dd></div><div><dt>PDF</dt><dd>เอกสารทบทวนแบบหน้าละ 1, 2 หรือ 4 สไลด์</dd></div><div><dt>Markdown</dt><dd>ไฟล์ .zip ที่นำเข้า Notion หรือ Obsidian ได้ทันที</dd></div><div><dt>PowerPoint</dt><dd>ส่งออกเป็น .pptx โดยใส่ข้อความที่ถอดไว้ในโน้ตผู้บรรยาย</dd></div><div><dt>รวมงานนำเสนอ</dt><dd>เลือกหลายชุดแล้วรวมเป็นชุดเดียว</dd></div><div><dt>ซิงค์ iCloud</dt><dd>เปิดเพื่อดูงานนำเสนอบนอุปกรณ์อื่นที่ใช้ Apple ID เดียวกัน ค่าเริ่มต้นปิดอยู่</dd></div><div><dt>วิดเจ็ต</dt><dd>เปิดกล้องได้ทันทีจากหน้าจอโฮมหรือหน้าจอล็อก</dd></div></dl>
+      </div>
+      <p class="muted">การอ่านตัวอักษร การถอดความ และการสรุปด้วย AI ทำงานบนเครื่องทั้งหมด</p>
+    </section>
+
+
+    <section class="reveal" id="pricing">
+      <h2>ซื้อครั้งเดียว ได้ทุกอย่าง</h2>
+      <div class="plans">
+        <div class="card plan free">
+          <h3>CatchSlide</h3>
+          <ul><li>ถ่ายแบบไม่มีเสียง ถ่ายอัตโนมัติ และดัดภาพให้ตรง</li><li>นำเข้ารูปหลายรูปจากแอปรูปภาพ</li><li>จัดสไลด์ตามงานนำเสนอ ค้นหาจากตัวอักษรและโน้ต</li><li>บันทึกเสียง ถอดความ และสรุปด้วย AI</li><li>ส่งออก PDF, Markdown และ PowerPoint</li><li>ซิงค์ iCloud และวิดเจ็ต</li></ul>
+          
+        </div>
+        <div class="card plan pro">
+          <h3>ทิป (ไม่บังคับ)</h3>
+          <ul><li>ถ้าแอปช่วยคุณได้ ส่งทิปเล็กๆ ให้ผู้พัฒนาได้</li><li>ทิปไม่ได้ปลดล็อกอะไรเพิ่ม ไม่ส่งก็ใช้ได้ทุกฟีเจอร์เหมือนเดิม</li></ul>
+          <p class="muted">ส่งได้จากหน้า ข้อมูลของฉัน</p>
+        </div>
+      </div>
+      <p class="muted">ไม่มีการสมัครสมาชิก และไม่มีการซื้อเพิ่มเพื่อปลดล็อกฟีเจอร์ ดูราคาในประเทศของคุณได้ที่ App Store</p>
+    </section>
+
+    <section class="reveal" id="faq">
       <h2>คำถามที่พบบ่อย</h2>
-      <div class="faq">
-        <details open>
-          <summary>ถ่ายสไลด์อย่างไร</summary>
-          <p>เปิดแอปแล้วกล้องพร้อมใช้งานทันที จัดสไลด์ให้อยู่ในหน้าจอจนกรอบเปลี่ยนเป็น<span class="tag">สีเขียว</span> จากนั้นแตะปุ่มชัตเตอร์ หรือปล่อยให้ถ่ายอัตโนมัติ เมื่อสไลด์เปลี่ยน สไลด์ถัดไปก็จะถูกถ่ายให้เองโดยอัตโนมัติ</p>
-        </details>
-        <details>
-          <summary>บันทึกเสียงการบรรยายอย่างไร</summary>
-          <p>แตะ<strong>บันทึกเสียง</strong>ที่ด้านบนของหน้ากล้อง ระบบจะบันทึกเสียงไปพร้อมกับที่คุณถ่ายสไลด์ ภายหลังเปิดสไลด์ใดก็ได้แล้วแตะเล่น เพื่อฟังตั้งแต่ช่วงที่ถ่ายสไลด์นั้น และระหว่างเล่น สไลด์จะเลื่อนไปให้เอง</p>
-        </details>
-        <details>
-          <summary>ขอข้อความถอดเสียงหรือสรุปโดย AI ได้อย่างไร</summary>
-          <p>เปิดงานนำเสนอแล้วแตะปุ่มบันทึก ✨ จากนั้นแตะ<strong>ถอดเสียง</strong>ข้างรายการบันทึกเสียง แล้วแตะ<strong>ให้ AI สรุป</strong> สรุปโดย AI ต้องใช้อุปกรณ์ที่รองรับ Apple Intelligence (iOS 26 ขึ้นไป) และเปิด Apple Intelligence ไว้</p>
-        </details>
-        <details>
-          <summary>ทำไมสไลด์ของฉันถูกรวมกลุ่มกัน</summary>
-          <p>สไลด์ที่ถ่ายห่างกันไม่เกินห้านาทีจะถือเป็นรอบเดียวกันและจัดเก็บในงานนำเสนอเดียว คุณเปลี่ยนชื่อได้ หรือรวมงานนำเสนอจากหน้ารายการก็ได้</p>
-        </details>
-        <details>
-          <summary>ส่งออกอย่างไร</summary>
-          <p>ในงานนำเสนอ เปิดเมนู ⋯ แล้วเลือก PDF (1, 2 หรือ 4 สไลด์ต่อหน้า) Markdown สำหรับ Notion หรือ Obsidian หรือ PowerPoint ซึ่งเปิดได้ใน Keynote และ Google Slides ด้วย</p>
-        </details>
-        <details>
-          <summary>ซิงค์ iCloud ทำงานอย่างไร</summary>
-          <p>เปิดได้ที่<strong>ข้อมูลของฉัน › ซิงค์</strong> งานนำเสนอ สไลด์ และเสียงบันทึกของคุณจะถูกเก็บใน iCloud ส่วนตัวของคุณเอง และปรากฏบนอุปกรณ์อื่นที่ลงชื่อเข้าใช้ด้วย Apple Account เดียวกัน ฟีเจอร์นี้ปิดอยู่ตามค่าเริ่มต้น เพราะรูปภาพและเสียงบันทึกใช้พื้นที่ iCloud ของคุณ</p>
-        </details>
-        <details>
-          <summary>ข้อมูลของฉันเก็บไว้ที่ไหน</summary>
-          <p>บนอุปกรณ์ของคุณ การจดจำข้อความ การถอดเสียง และสรุปโดย AI ทำงานบนอุปกรณ์ทั้งหมด ข้อมูลจะไปอยู่ใน iCloud ของคุณเองก็ต่อเมื่อคุณเปิดการซิงค์ ดู<a href="privacy.html">นโยบายความเป็นส่วนตัว</a></p>
-        </details>
-      </div>
+      <div class="faq"><details><summary>ถ่ายสไลด์อย่างไร</summary><p>เปิดกล้องแล้วเล็งให้สไลด์อยู่ในกรอบ เมื่อมุมเป็นสีเขียวให้กดชัตเตอร์ ถ้าเปิดถ่ายอัตโนมัติไว้ แอปจะถ่ายสไลด์ถัดไปให้เองทุกครั้งที่สไลด์เปลี่ยน</p></details>
+<details><summary>มีเสียงชัตเตอร์ไหม</summary><p>ไม่มี แอปบันทึกภาพจากหน้าจอกล้องโดยตรง จึงเงียบในทุกประเทศ</p></details>
+<details><summary>ทำไมรูปหลายรูปถึงรวมเป็นงานนำเสนอเดียว</summary><p>ถ้าถ่ายรูปถัดไปภายใน 5 นาทีหลังรูปล่าสุด แอปจะถือว่าเป็นงานนำเสนอเดียวกัน แตะชื่อในรายการเพื่อเปลี่ยนชื่อ และใช้ <code>รวมงานนำเสนอ</code> เพื่อรวมชุดที่แยกกันอยู่</p></details>
+<details><summary>เพิ่มรูปที่ถ่ายไว้แล้วได้ไหม</summary><p>ได้ เลือกรูปในแอปรูปภาพแล้วแชร์ไปที่ CatchSlide หรือแตะ ＋ ในรายการแล้วเลือก <code>นำเข้าจากรูปภาพ</code> แอปจะดัดให้ตรงและรวมเป็นงานนำเสนอเดียวตามลำดับที่ถ่าย</p></details>
+<details><summary>แอปจับมุมผิด</summary><p>เปิดสไลด์นั้น เลือก <code>ปรับมุม</code> จากเมนู ⋯ แล้วลากมุมทั้งสี่ไปวางให้ถูกที่ ใช้ <code>ตรวจหาอัตโนมัติ</code> เพื่อให้หาใหม่ หรือ <code>ทั้งภาพ</code> เพื่อใช้ภาพทั้งภาพก็ได้ แอปเก็บภาพต้นฉบับไว้เสมอ จึงทำใหม่ได้ทุกเมื่อ</p></details>
+<details><summary>ค้นหาตัวอักษรในสไลด์ได้ไหม</summary><p>พิมพ์คำในช่องค้นหาด้านบนของรายการ แอปจะค้นจากตัวอักษรในสไลด์ ชื่องานนำเสนอ โน้ต และข้อความที่ถอดไว้ แล้วพาไปที่สไลด์นั้นทันที การอ่านตัวอักษรทำบนเครื่อง</p></details>
+<details><summary>ส่งออกเป็น PDF อย่างไร</summary><p>ในงานนำเสนอ เปิดเมนูแชร์ เลือก <code>ส่งออกเป็น PDF</code> แล้วเลือกหน้าละ 1, 2 หรือ 4 สไลด์ จากนั้นบันทึกลงแอปไฟล์หรือส่งไปแอปอื่นได้จากแผ่นแชร์</p></details>
+<details><summary>จะสลับลำดับหรือลบสไลด์อย่างไร</summary><p>ในงานนำเสนอ แตะสไลด์ค้างไว้แล้วลากเพื่อสลับลำดับ เมนูที่ขึ้นมาจากการแตะค้างใช้ลบหรือแชร์ทีละสไลด์ได้ และใช้ <code>เลือก</code> เพื่อลบหลายสไลด์พร้อมกัน</p></details>
+<details><summary>บันทึกเสียงและสรุปด้วย AI ใช้อย่างไร</summary><p>เปิด <code>บันทึกเสียง</code> ที่ด้านบนของหน้าจอกล้องก่อนถ่าย แต่ละสไลด์จะมีเสียงของช่วงนั้นติดมาด้วย ใน <code>บันทึกของงานนำเสนอ</code> ปุ่ม <code>ให้ AI สรุป</code> จะสรุปจากตัวอักษรในสไลด์และข้อความที่ถอดไว้ การสรุปด้วย AI ใช้ได้เฉพาะ iOS 26 ขึ้นไปบนอุปกรณ์ที่รองรับ Apple Intelligence</p></details>
+<details><summary>สไลด์และไฟล์เสียงของฉันเก็บไว้ที่ไหน</summary><p>เก็บไว้บนเครื่องของคุณทั้งหมด จะอัปโหลดไปที่ iCloud ของคุณเองก็ต่อเมื่อเปิด <code>ซิงค์</code> ในหน้า ข้อมูลของฉัน และไม่ต้องสมัครบัญชีใดๆ ดูรายละเอียดได้ในนโยบายความเป็นส่วนตัว</p></details></div>
+      <p class="contact">มีคำถาม พบปัญหา หรืออยากเสนอไอเดีย ส่งอีเมลมาที่ <a href="mailto:leeo@kakao.com">leeo@kakao.com</a></p>
     </section>
 
-    <section>
-      <div class="contact">
-        <h2 style="margin-bottom:6px">ต้องการความช่วยเหลือ</h2>
-        <p style="color:var(--muted);margin:0">ยินดีรับคำถาม การแจ้งข้อบกพร่อง และข้อเสนอฟีเจอร์ใหม่</p>
-        <a class="btn" href="mailto:leeo@kakao.com?subject=%5BCatchSlide%5D%20Support">ส่งอีเมลหาเรา</a>
-        <p style="margin:14px 0 0"><a href="privacy.html">นโยบายความเป็นส่วนตัว</a></p>
-      </div>
+    <section class="closing reveal">
+      <h2>ตั้งแต่คาบหน้า<br>สไลด์จะตรงทุกภาพ</h2>
+      <a class="cta" href="https://apps.apple.com/app/id6790835318">ดาวน์โหลดบน App Store</a>
     </section>
-  </div>
+  </main>
 
   <footer>
-    © 2026 CatchSlide &nbsp;·&nbsp; leeo@kakao.com
+    <nav id="languages" class="langs" aria-label="ภาษา"><a href="../" hreflang="ko" lang="ko">한국어</a>
+<a href="../en/" hreflang="en" lang="en">English</a>
+<a href="../zh-Hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
+<a href="../zh-Hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
+<a href="../ja/" hreflang="ja" lang="ja">日本語</a>
+<a href="../ru/" hreflang="ru" lang="ru">Русский</a>
+<a href="../es/" hreflang="es" lang="es">Español</a>
+<a href="../de/" hreflang="de" lang="de">Deutsch</a>
+<a href="../fr/" hreflang="fr" lang="fr">Français</a>
+<a href="../it/" hreflang="it" lang="it">Italiano</a>
+<a href="../pt-BR/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a>
+<a href="../th/" hreflang="th" lang="th" aria-current="page">ไทย</a>
+<a href="../vi/" hreflang="vi" lang="vi">Tiếng Việt</a>
+<a href="../cs/" hreflang="cs" lang="cs">Čeština</a>
+<a href="../da/" hreflang="da" lang="da">Dansk</a>
+<a href="../el/" hreflang="el" lang="el">Ελληνικά</a>
+<a href="../fi/" hreflang="fi" lang="fi">Suomi</a>
+<a href="../id/" hreflang="id" lang="id">Indonesia</a>
+<a href="../nb/" hreflang="nb" lang="nb">Norsk</a>
+<a href="../nl/" hreflang="nl" lang="nl">Nederlands</a>
+<a href="../pl/" hreflang="pl" lang="pl">Polski</a>
+<a href="../sv/" hreflang="sv" lang="sv">Svenska</a>
+<a href="../tr/" hreflang="tr" lang="tr">Türkçe</a></nav>
+    <p><a href="privacy.html">นโยบายความเป็นส่วนตัว</a> · <a href="mailto:leeo@kakao.com">leeo@kakao.com</a> · © 2026 CatchSlide</p>
   </footer>
-<nav style="text-align:center;font-size:0.85rem;line-height:2;padding:0 24px 40px"><a href="../" hreflang="ko">한국어</a> · <a href="../en/" hreflang="en">English</a> · <a href="../zh-Hans/" hreflang="zh-Hans">简体中文</a> · <a href="../zh-Hant/" hreflang="zh-Hant">繁體中文</a> · <a href="../ja/" hreflang="ja">日本語</a> · <a href="../ru/" hreflang="ru">Русский</a> · <a href="../es/" hreflang="es">Español</a> · <a href="../de/" hreflang="de">Deutsch</a> · <a href="../fr/" hreflang="fr">Français</a> · <a href="../it/" hreflang="it">Italiano</a> · <a href="../pt-BR/" hreflang="pt-BR">Português (Brasil)</a> · <a href="../th/" hreflang="th">ไทย</a> · <a href="../vi/" hreflang="vi">Tiếng Việt</a> · <a href="../cs/" hreflang="cs">Čeština</a> · <a href="../da/" hreflang="da">Dansk</a> · <a href="../el/" hreflang="el">Ελληνικά</a> · <a href="../fi/" hreflang="fi">Suomi</a> · <a href="../id/" hreflang="id">Indonesia</a> · <a href="../nb/" hreflang="nb">Norsk</a> · <a href="../nl/" hreflang="nl">Nederlands</a> · <a href="../pl/" hreflang="pl">Polski</a> · <a href="../sv/" hreflang="sv">Svenska</a> · <a href="../tr/" hreflang="tr">Türkçe</a></nav>
+
+  <script>
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target) }
+    }), { rootMargin: "0px 0px -10% 0px" });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  </script>
+  <script src="../demo.js"></script>
 </body>
 </html>

@@ -1,180 +1,192 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>장표스냅 (CatchSlide) — 지원</title>
-<meta name="description" content="장표스냅(CatchSlide) 지원 페이지 — 수업 슬라이드를 찍어 복습용 PDF로 만드는 앱">
-<style>
-  :root {
-    --blue: #2f6bde;
-    --blue-light: #4facfe;
-    --green: #29cc70;
-    --ink: #1a2233;
-    --muted: #5b6577;
-    --bg: #f5f7fb;
-    --card: #ffffff;
-    --border: #e4e9f2;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --ink: #e8ecf4;
-      --muted: #9aa4b8;
-      --bg: #0f131b;
-      --card: #1a2130;
-      --border: #2a3346;
-    }
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-    color: var(--ink);
-    background: var(--bg);
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-  }
-  .hero {
-    background: linear-gradient(135deg, var(--blue-light) 0%, var(--blue) 100%);
-    color: #fff;
-    padding: 64px 24px 56px;
-    text-align: center;
-  }
-  .hero img {
-    width: 108px; height: 108px;
-    border-radius: 24px;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.28);
-  }
-  .hero h1 { margin: 20px 0 6px; font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; }
-  .hero p { margin: 0; font-size: 1.05rem; opacity: 0.95; }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-  section { padding: 40px 0; border-bottom: 1px solid var(--border); }
-  section:last-of-type { border-bottom: none; }
-  h2 { font-size: 1.35rem; font-weight: 700; margin: 0 0 18px; letter-spacing: -0.01em; }
-  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 520px) { .features { grid-template-columns: 1fr; } }
-  .feature {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 14px; padding: 18px 18px 16px;
-  }
-  .feature .ic { font-size: 1.5rem; }
-  .feature h3 { margin: 8px 0 4px; font-size: 1rem; }
-  .feature p { margin: 0; color: var(--muted); font-size: 0.92rem; }
-  .faq { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 6px 20px; }
-  details { padding: 14px 0; border-bottom: 1px solid var(--border); }
-  details:last-child { border-bottom: none; }
-  summary { cursor: pointer; font-weight: 600; list-style: none; }
-  summary::-webkit-details-marker { display: none; }
-  summary::before { content: "＋"; color: var(--blue); font-weight: 700; margin-right: 10px; }
-  details[open] summary::before { content: "－"; }
-  details p { margin: 12px 0 2px; color: var(--muted); }
-  .contact {
-    text-align: center; background: var(--card);
-    border: 1px solid var(--border); border-radius: 16px; padding: 32px 24px;
-  }
-  .btn {
-    display: inline-block; margin-top: 12px;
-    background: var(--blue); color: #fff; text-decoration: none;
-    padding: 12px 26px; border-radius: 999px; font-weight: 600;
-  }
-  a { color: var(--blue); }
-  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 32px 24px 48px; }
-  .tag { display:inline-block; color: var(--green); font-weight:700; }
-</style>
-<link rel="canonical" href="https://m1zz.github.io/SlideSnap/">
-<link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
-<link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
-<link rel="alternate" hreflang="en-GB" href="https://m1zz.github.io/SlideSnap/en/">
-<link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
-<link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
-<link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
-<link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
-<link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
-<link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
-<link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
-<link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
-<link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
-<link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
-<link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
-<link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
-<link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
-<link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
-<link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
-<link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
-<link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
-<link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
-<link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
-<link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
-<link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
-<link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>장표스냅: 비스듬히 찍은 강의 장표를 반듯하게</title>
+  <meta name="description" content="강의실 어디서 찍어도 장표의 네 모서리를 찾아 정면에서 본 것처럼 펴고, 발표별로 모아 글자까지 검색합니다. 셔터 소리 없이 찍고 복습용 PDF로 내보냅니다.">
+  <meta name="theme-color" content="#3478E7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f131b" media="(prefers-color-scheme: dark)">
+  <meta name="apple-itunes-app" content="app-id=6790835318">
+  <link rel="canonical" href="https://m1zz.github.io/SlideSnap/">
+  <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
+  <link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
+  <link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
+  <link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
+  <link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
+  <link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
+  <link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
+  <link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
+  <link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
+  <link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
+  <link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
+  <link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
+  <link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
+  <link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
+  <link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
+  <link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
+  <link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
+  <link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
+  <link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
+  <link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
+  <link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
+  <link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="장표스냅: 비스듬히 찍은 강의 장표를 반듯하게">
+  <meta property="og:description" content="강의실 어디서 찍어도 장표의 네 모서리를 찾아 정면에서 본 것처럼 펴고, 발표별로 모아 글자까지 검색합니다. 셔터 소리 없이 찍고 복습용 PDF로 내보냅니다.">
+  <meta property="og:url" content="https://m1zz.github.io/SlideSnap/">
+  <meta property="og:image" content="https://m1zz.github.io/SlideSnap/img/ko/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="icon.png">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="demo.css">
+  <style>:root{--accent:#3478E7}@media (prefers-color-scheme:dark){:root{--accent:#5EA2FF}}</style>
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
-  <div class="hero">
-    <img src="icon.png" alt="장표스냅 앱 아이콘">
-    <h1>장표스냅 <span style="opacity:.8;font-weight:600;font-size:1.1rem">CatchSlide</span></h1>
-    <p>수업 슬라이드를 찍으면, 반듯하게 펴서 복습용 PDF로.</p>
-  </div>
+  <a class="skip" href="#main">본문으로 건너뛰기</a>
+  <header class="bar">
+    <a class="brand" href=""><img src="icon.png" alt="" width="32" height="32">장표스냅</a>
+    <a class="lang-link" href="#languages">언어</a>
+  </header>
 
-  <div class="wrap">
-    <section>
-      <h2>주요 기능</h2>
-      <div class="features">
-        <div class="feature"><div class="ic">🟩</div><h3>실시간 장표 감지</h3><p>화면 속 슬라이드 모서리를 실시간으로 잡아 초록 브래킷으로 알려주고, 잡히면 자동으로 촬영합니다.</p></div>
-        <div class="feature"><div class="ic">🗂️</div><h3>자동 발표 묶기</h3><p>연달아 찍은 장표를 하나의 발표로 자동으로 묶어 정리합니다.</p></div>
-        <div class="feature"><div class="ic">🖼️</div><h3>사진에서 가져오기</h3><p>이미 찍어둔 강의 사진도 불러와 자동 보정해 담을 수 있어요.</p></div>
-        <div class="feature"><div class="ic">🔍</div><h3>텍스트 검색 (OCR)</h3><p>장표 속 글자를 온디바이스로 인식해 키워드로 바로 찾습니다.</p></div>
-        <div class="feature"><div class="ic">📄</div><h3>복습용 PDF</h3><p>한 장·두 장·네 장 레이아웃으로 번호가 매겨진 PDF를 만듭니다.</p></div>
-        <div class="feature"><div class="ic">✋</div><h3>손쉬운 정리</h3><p>드래그로 순서 변경, 길게 눌러 삭제·공유까지.</p></div>
+  <main id="main">
+    <section class="hero">
+      <div class="copy">
+        <h1>옆자리에서 찍어도<br>정면에서 본 장표로</h1>
+        <p class="lead">카메라가 장표의 네 모서리를 찾아 반듯하게 펴고 배경은 잘라 냅니다. 이어서 찍은 장표는 발표 하나로 모입니다.</p>
+        <div class="actions"><a class="cta" href="https://apps.apple.com/app/id6790835318">App Store에서 받기</a><a class="try" href="#try">직접 펴 보세요 ↓</a></div>
+        <p class="muted small">한 번 구매하면 모든 기능을 씁니다. 구독도 계정도 없습니다.</p>
       </div>
+      <div class="phone"><img src="img/ko/02-list.jpg" alt="옆자리에서 찍어도 정면에서 본 장표로" width="720" height="1564" decoding="async"></div>
     </section>
 
-    <section>
+
+    <section class="reveal" id="try">
+      <h2>직접 펴 보세요</h2>
+      <p class="muted">강의실 옆자리에서 비스듬히 찍은 사진입니다. 초록 선이 장표의 네 모서리를 찾은 자리입니다.</p>
+      <div id="demo" class="card demo-card" data-text="{&quot;title&quot;: &quot;직접 펴 보세요&quot;, &quot;lead&quot;: &quot;강의실 옆자리에서 비스듬히 찍은 사진입니다. 초록 선이 장표의 네 모서리를 찾은 자리입니다.&quot;, &quot;straighten&quot;: &quot;반듯하게 펴기&quot;, &quot;reset&quot;: &quot;처음 사진으로&quot;, &quot;photo&quot;: &quot;비스듬히 찍은 사진&quot;, &quot;result&quot;: &quot;장표스냅이 편 장표&quot;, &quot;waiting&quot;: &quot;펴기를 누르면 여기에 나옵니다&quot;, &quot;hint&quot;: &quot;모서리 점을 끌어 직접 맞출 수도 있습니다. 점을 고른 뒤 방향키로 움직여도 됩니다.&quot;, &quot;corners&quot;: [&quot;왼쪽 위 모서리&quot;, &quot;오른쪽 위 모서리&quot;, &quot;오른쪽 아래 모서리&quot;, &quot;왼쪽 아래 모서리&quot;], &quot;note&quot;: &quot;체험은 미리 찍어 둔 사진 한 장으로 합니다. 앱은 카메라 화면에서 모서리를 실시간으로 찾고, 글자 인식까지 기기 안에서 합니다.&quot;}"></div>
+    </section>
+
+    <section class="problem reveal">
+      <h2>복습하려고 사진첩을 열었는데 장표를 못 찾은 적 있나요?</h2>
+      <p>뒷자리에서 찍은 장표는 늘 비스듬하고, 셀카와 영수증 사이에 흩어져 있습니다. 조용한 강의실에서는 셔터 소리가 신경 쓰여 찍기도 망설여집니다. 장표스냅은 소리 없이 찍고, 반듯하게 펴서, 발표별로 모아 둡니다.</p>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>찍는 순간 반듯하게</h2>
+        <p>카메라가 장표의 네 모서리를 실시간으로 찾아 초록색으로 알려 줍니다. 비스듬히 찍어도 정면에서 본 것처럼 펴고 배경은 잘라 냅니다.<br>셔터 소리 없이 찍습니다. <code>자동 촬영</code>을 켜 두면 장표가 바뀔 때마다 알아서 담고, 흔들린 컷은 건너뜁니다.</p>
+      </div>
+      <div class="phone"><img src="img/ko/03-slide.jpg" alt="찍는 순간 반듯하게" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>이미 찍은 사진도 한 번에</h2>
+        <p>사진 앱에서 강의 사진을 여러 장 골라 장표스냅으로 공유하면, 찍은 순서대로 펴서 발표 하나로 정리합니다.<br><code>글자 또렷하게 보정</code>을 켜면 그림자와 흐린 대비도 걷어 냅니다.</p>
+      </div>
+      <div class="phone"><img src="img/ko/01-share.jpg" alt="이미 찍은 사진도 한 번에" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>기억나는 단어 하나로 찾기</h2>
+        <p>찍은 장표의 글자를 기기 안에서 읽어 둡니다. 몇 주 지나도 단어 하나로 그 장표를 찾을 수 있습니다.<br>장표마다 남긴 메모도 함께 찾아집니다. <code>기말고사</code>라고 적어 두면 시험 범위가 한 번에 모입니다.</p>
+      </div>
+      <div class="phone"><img src="img/ko/06-memo-search.jpg" alt="기억나는 단어 하나로 찾기" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="reveal">
+      <h2>시작은 세 단계면 됩니다</h2>
+      <ol class="steps"><li class="card"><span class="n">1</span><h3>카메라를 엽니다</h3><p>목록의 카메라 버튼, 홈 화면 위젯, 잠금 화면 어디서든 열 수 있습니다.</p></li>
+<li class="card"><span class="n">2</span><h3>장표를 화면에 담습니다</h3><p>모서리가 초록색으로 잡히면 셔터를 누르거나 자동 촬영에 맡깁니다.</p></li>
+<li class="card"><span class="n">3</span><h3>발표별로 꺼내 봅니다</h3><p>검색하고, 메모를 남기고, 복습용 PDF로 내보냅니다.</p></li></ol>
+    </section>
+
+    <section class="reveal" id="commands">
+      <h2>발표 하나로 할 수 있는 것</h2>
+      <div class="card table">
+        <dl><div><dt>녹음</dt><dd>찍으면서 녹음하면 장표를 열 때 그 장표를 찍던 순간부터 들을 수 있습니다</dd></div><div><dt>받아쓰기</dt><dd>녹음을 글로 옮겨 장표마다 그때 한 말을 보여 주고, 검색에도 씁니다</dd></div><div><dt>AI 요약</dt><dd>장표 글자와 받아쓴 말로 발표를 요약합니다 (Apple Intelligence를 지원하는 iOS 26 이상 기기)</dd></div><div><dt>PDF</dt><dd>한 장씩, 두 장씩, 네 장씩 배치한 복습용 PDF</dd></div><div><dt>Markdown</dt><dd>Notion이나 Obsidian에 넣을 수 있는 .zip</dd></div><div><dt>PowerPoint</dt><dd>.pptx로 내보내고, 받아쓴 말은 발표자 노트에 넣습니다</dd></div><div><dt>발표 합치기</dt><dd>여러 발표를 골라 하나로 이어 붙입니다</dd></div><div><dt>iCloud 동기화</dt><dd>켜면 같은 Apple ID의 다른 기기에서도 발표를 봅니다. 처음에는 꺼져 있습니다</dd></div><div><dt>위젯</dt><dd>홈 화면과 잠금 화면에서 바로 카메라를 엽니다</dd></div></dl>
+      </div>
+      <p class="muted">글자 인식, 받아쓰기, AI 요약은 모두 기기 안에서 처리합니다.</p>
+    </section>
+
+
+    <section class="reveal" id="pricing">
+      <h2>한 번 사면 모든 기능</h2>
+      <div class="plans">
+        <div class="card plan free">
+          <h3>장표스냅</h3>
+          <ul><li>소리 없는 촬영, 자동 촬영, 반듯하게 펴기</li><li>사진 앱에서 여러 장 가져오기</li><li>발표별 정리, 글자와 메모 검색</li><li>녹음, 받아쓰기, AI 요약</li><li>PDF, Markdown, PowerPoint 내보내기</li><li>iCloud 동기화와 위젯</li></ul>
+          
+        </div>
+        <div class="card plan pro">
+          <h3>팁 (선택)</h3>
+          <ul><li>앱이 도움이 됐다면 개발자에게 작은 팁을 보낼 수 있습니다</li><li>팁은 기능을 열지 않습니다. 보내지 않아도 모든 기능을 그대로 씁니다</li></ul>
+          <p class="muted">내 정보 화면에서 보낼 수 있습니다.</p>
+        </div>
+      </div>
+      <p class="muted">구독이 없고, 기능을 여는 추가 결제도 없습니다. 가격은 App Store에서 확인해 주세요.</p>
+    </section>
+
+    <section class="reveal" id="faq">
       <h2>자주 묻는 질문</h2>
-      <div class="faq">
-        <details open>
-          <summary>장표를 어떻게 촬영하나요?</summary>
-          <p>앱을 열면 바로 카메라가 뜹니다. 슬라이드를 화면에 맞추면 모서리가 <span class="tag">초록색</span>으로 잡히고, 그 상태에서 셔터를 누르거나 자동 촬영으로 담깁니다. 슬라이드가 바뀌면 자동으로 다음 장을 촬영합니다.</p>
-        </details>
-        <details>
-          <summary>여러 장이 왜 하나의 "발표"로 묶이나요?</summary>
-          <p>5분 이내에 이어서 촬영하면 같은 수업으로 보고 하나의 발표에 모읍니다. 목록에서 제목을 눌러 이름을 바꿀 수 있습니다.</p>
-        </details>
-        <details>
-          <summary>이미 찍어둔 사진을 넣을 수 있나요?</summary>
-          <p>네. 목록 화면의 <strong>＋ → 사진에서 가져오기</strong> 또는 발표 안의 메뉴에서 사진을 여러 장 선택하면 자동 보정 후 담깁니다.</p>
-        </details>
-        <details>
-          <summary>장표 속 글자를 검색할 수 있나요?</summary>
-          <p>목록 화면 상단 검색창에 키워드를 입력하면, 인식된 장표 텍스트와 제목에서 검색해 해당 장표로 바로 이동합니다. 텍스트 인식은 모두 기기 안에서 이루어집니다.</p>
-        </details>
-        <details>
-          <summary>PDF로 어떻게 내보내나요?</summary>
-          <p>발표 안의 공유 메뉴에서 <strong>PDF로 내보내기</strong>를 고르고 레이아웃(한 장/두 장/네 장)을 선택하세요. 공유 시트에서 "파일에 저장"으로 저장하거나 다른 앱으로 보낼 수 있습니다.</p>
-        </details>
-        <details>
-          <summary>장표 순서를 바꾸거나 지우려면?</summary>
-          <p>그리드에서 장표를 길게 눌러 드래그하면 순서가 바뀝니다. 길게 누르면 나오는 메뉴에서 개별 삭제·공유가 가능하고, 선택 모드에서는 여러 장을 한 번에 삭제할 수 있습니다.</p>
-        </details>
-        <details>
-          <summary>내 데이터는 어디에 저장되나요?</summary>
-          <p>장표, 녹음, 받아쓴 글, 요약은 모두 기기 안에 저장되고, 글자 인식·받아쓰기·AI 요약도 기기 안에서 처리합니다. iCloud 동기화를 켰을 때만 본인의 iCloud로 올라가며, 계정은 필요 없습니다. 자세한 내용은 <a href="privacy.html">개인정보 처리방침</a>을 참고하세요.</p>
-        </details>
-      </div>
+      <div class="faq"><details><summary>장표는 어떻게 찍나요?</summary><p>카메라를 열고 장표를 화면에 맞추면 모서리가 초록색으로 잡힙니다. 그때 셔터를 누르면 됩니다. 자동 촬영을 켜 두면 장표가 바뀔 때마다 알아서 다음 장을 담습니다.</p></details>
+<details><summary>셔터 소리가 나나요?</summary><p>나지 않습니다. 카메라 화면을 그대로 담는 방식이라 어느 나라에서 쓰든 소리 없이 찍힙니다.</p></details>
+<details><summary>여러 장이 왜 발표 하나로 묶이나요?</summary><p>마지막으로 찍은 지 5분이 지나기 전에 이어서 찍으면 같은 발표로 보고 한곳에 모읍니다. 목록에서 제목을 눌러 이름을 바꿀 수 있고, 따로 찍힌 발표는 <code>발표 합치기</code>로 하나로 이을 수 있습니다.</p></details>
+<details><summary>이미 찍어 둔 사진을 넣을 수 있나요?</summary><p>네. 사진 앱에서 여러 장을 골라 공유 버튼으로 장표스냅을 고르거나, 목록의 ＋ 버튼에서 <code>사진에서 가져오기</code>를 누르세요. 찍은 순서대로 펴서 발표 하나로 정리합니다.</p></details>
+<details><summary>모서리가 잘못 잡혔어요.</summary><p>장표를 연 뒤 ⋯ 메뉴의 <code>모서리 조정</code>에서 네 모서리를 끌어 다시 맞추세요. <code>자동 감지</code>로 다시 찾게 하거나 <code>전체 영역</code>으로 사진 전체를 쓸 수도 있습니다. 원본은 늘 함께 보관되어 언제든 다시 펼 수 있습니다.</p></details>
+<details><summary>장표 속 글자를 검색할 수 있나요?</summary><p>목록 위쪽 검색창에 단어를 넣으면 장표 글자, 발표 제목, 메모, 받아쓴 말에서 찾아 그 장표로 바로 이동합니다. 글자 인식은 기기 안에서 이뤄집니다.</p></details>
+<details><summary>PDF로 어떻게 내보내나요?</summary><p>발표 안의 공유 메뉴에서 <code>PDF로 내보내기</code>를 고르고 한 장, 두 장, 네 장 중 배치를 고르세요. 공유 시트에서 파일에 저장하거나 다른 앱으로 보낼 수 있습니다.</p></details>
+<details><summary>장표 순서를 바꾸거나 지우려면요?</summary><p>발표 안의 장표를 길게 눌러 끌면 순서가 바뀝니다. 길게 누르면 나오는 메뉴에서 한 장씩 지우거나 공유하고, 선택 모드에서는 여러 장을 한 번에 지웁니다.</p></details>
+<details><summary>녹음과 AI 요약은 어떻게 쓰나요?</summary><p>카메라 화면 위쪽의 <code>녹음</code>을 켜고 찍으면 장표마다 그때의 소리가 붙습니다. 발표 노트의 <code>AI로 요약하기</code>는 장표 글자와 받아쓴 말로 발표를 요약합니다. AI 요약은 Apple Intelligence를 지원하는 iOS 26 이상 기기에서만 됩니다.</p></details>
+<details><summary>내 장표와 녹음은 어디에 저장되나요?</summary><p>모두 기기 안에 저장됩니다. 내 정보에서 <code>발표 동기화</code>를 켰을 때만 내 iCloud에 올라가고, 계정 가입은 필요 없습니다. 자세한 내용은 개인정보처리방침을 참고해 주세요.</p></details></div>
+      <p class="contact">문의, 버그 제보, 기능 제안은 <a href="mailto:leeo@kakao.com">leeo@kakao.com</a>로 보내 주세요.</p>
     </section>
 
-    <section>
-      <div class="contact">
-        <h2 style="margin-bottom:6px">도움이 필요하신가요?</h2>
-        <p style="color:var(--muted);margin:0">문의·버그 제보·기능 제안을 이메일로 보내주세요.</p>
-        <a class="btn" href="mailto:leeo@kakao.com?subject=%5B%EC%9E%A5%ED%91%9C%EC%8A%A4%EB%83%85%5D%20%EB%AC%B8%EC%9D%98">이메일로 문의하기</a>
-        <p style="margin:14px 0 0"><a href="privacy.html">개인정보 처리방침</a> · <a href="en/">English</a></p>
-      </div>
+    <section class="closing reveal">
+      <h2>다음 강의부터<br>장표는 반듯하게</h2>
+      <a class="cta" href="https://apps.apple.com/app/id6790835318">App Store에서 받기</a>
     </section>
-  </div>
+  </main>
 
   <footer>
-    © 2026 CatchSlide · 장표스냅 &nbsp;·&nbsp; 문의: leeo@kakao.com
+    <nav id="languages" class="langs" aria-label="언어"><a href="" hreflang="ko" lang="ko" aria-current="page">한국어</a>
+<a href="en/" hreflang="en" lang="en">English</a>
+<a href="zh-Hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
+<a href="zh-Hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
+<a href="ja/" hreflang="ja" lang="ja">日本語</a>
+<a href="ru/" hreflang="ru" lang="ru">Русский</a>
+<a href="es/" hreflang="es" lang="es">Español</a>
+<a href="de/" hreflang="de" lang="de">Deutsch</a>
+<a href="fr/" hreflang="fr" lang="fr">Français</a>
+<a href="it/" hreflang="it" lang="it">Italiano</a>
+<a href="pt-BR/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a>
+<a href="th/" hreflang="th" lang="th">ไทย</a>
+<a href="vi/" hreflang="vi" lang="vi">Tiếng Việt</a>
+<a href="cs/" hreflang="cs" lang="cs">Čeština</a>
+<a href="da/" hreflang="da" lang="da">Dansk</a>
+<a href="el/" hreflang="el" lang="el">Ελληνικά</a>
+<a href="fi/" hreflang="fi" lang="fi">Suomi</a>
+<a href="id/" hreflang="id" lang="id">Indonesia</a>
+<a href="nb/" hreflang="nb" lang="nb">Norsk</a>
+<a href="nl/" hreflang="nl" lang="nl">Nederlands</a>
+<a href="pl/" hreflang="pl" lang="pl">Polski</a>
+<a href="sv/" hreflang="sv" lang="sv">Svenska</a>
+<a href="tr/" hreflang="tr" lang="tr">Türkçe</a></nav>
+    <p><a href="privacy.html">개인정보처리방침</a> · <a href="mailto:leeo@kakao.com">leeo@kakao.com</a> · © 2026 CatchSlide</p>
   </footer>
-<nav style="text-align:center;font-size:0.85rem;line-height:2;padding:0 24px 40px"><a href="./" hreflang="ko">한국어</a> · <a href="en/" hreflang="en">English</a> · <a href="zh-Hans/" hreflang="zh-Hans">简体中文</a> · <a href="zh-Hant/" hreflang="zh-Hant">繁體中文</a> · <a href="ja/" hreflang="ja">日本語</a> · <a href="ru/" hreflang="ru">Русский</a> · <a href="es/" hreflang="es">Español</a> · <a href="de/" hreflang="de">Deutsch</a> · <a href="fr/" hreflang="fr">Français</a> · <a href="it/" hreflang="it">Italiano</a> · <a href="pt-BR/" hreflang="pt-BR">Português (Brasil)</a> · <a href="th/" hreflang="th">ไทย</a> · <a href="vi/" hreflang="vi">Tiếng Việt</a> · <a href="cs/" hreflang="cs">Čeština</a> · <a href="da/" hreflang="da">Dansk</a> · <a href="el/" hreflang="el">Ελληνικά</a> · <a href="fi/" hreflang="fi">Suomi</a> · <a href="id/" hreflang="id">Indonesia</a> · <a href="nb/" hreflang="nb">Norsk</a> · <a href="nl/" hreflang="nl">Nederlands</a> · <a href="pl/" hreflang="pl">Polski</a> · <a href="sv/" hreflang="sv">Svenska</a> · <a href="tr/" hreflang="tr">Türkçe</a></nav>
+
+  <script>
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target) }
+    }), { rootMargin: "0px 0px -10% 0px" });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  </script>
+  <script src="demo.js"></script>
 </body>
 </html>

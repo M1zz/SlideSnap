@@ -1,0 +1,114 @@
+{
+  "title": "CatchSlide: rette lysbilder fra forelesningen, selv tatt fra siden",
+  "description": "Uansett hvor du sitter, finner CatchSlide hjørnene på lysbildet, retter det opp som sett forfra, samler det per presentasjon og gjør teksten søkbar.",
+  "hero": {
+    "headline": "Tatt fra siden.\nLagret forfra.",
+    "lead": "Kameraet finner alle fire hjørnene på lysbildet, retter det opp og skjærer bort rommet rundt. Lysbilder du tar etter hverandre, havner i samme presentasjon.",
+    "cta": "Last ned i App Store",
+    "note": "Ett kjøp, alle funksjoner. Ingen abonnement, ingen konto."
+  },
+  "demo": {
+    "title": "Rett det opp selv",
+    "lead": "Bildet er tatt skrått fra en sideplass i auditoriet. Den grønne kanten viser hvor hjørnene på lysbildet ble funnet.",
+    "straighten": "Rett opp",
+    "reset": "Tilbake til bildet",
+    "photo": "Bilde tatt skrått",
+    "result": "Lysbildet rettet opp av CatchSlide",
+    "waiting": "Trykk på Rett opp for å se resultatet her",
+    "hint": "Du kan også dra i hjørnepunktene, eller velge ett og flytte det med piltastene.",
+    "corners": ["Øvre venstre hjørne", "Øvre høyre hjørne", "Nedre høyre hjørne", "Nedre venstre hjørne"],
+    "note": "Demoen bruker ett bilde tatt på forhånd. I appen finnes hjørnene direkte i kameraet, og teksten gjenkjennes på enheten din."
+  },
+  "problem": {
+    "title": "Har du åpnet kamerarullen for å lese og ikke funnet lysbildet?",
+    "text": "Lysbilder tatt fra bakerste rad blir alltid skjeve og drukner mellom selfier og kvitteringer. I et stille auditorium er lukkerlyden alene nok til at du nøler. CatchSlide tar bilder uten lyd, retter opp hvert lysbilde og holder dem samlet per presentasjon."
+  },
+  "features": [
+    {
+      "title": "Rett i samme øyeblikk",
+      "text": "Kameraet følger de fire hjørnene på lysbildet direkte og blir grønt når det har dem. Selv tatt skrått blir lysbildet rettet opp som om det var tatt forfra, og bakgrunnen skjæres bort.\nIngen lukkerlyd. Slå på `Automatisk opptak`, så tar appen hvert nytt lysbilde av seg selv og hopper over uskarpe bilder.",
+      "shot": "03-slide"
+    },
+    {
+      "title": "Bilder du allerede har, på én gang",
+      "text": "Velg flere bilder fra forelesningen i Bilder, og del dem med CatchSlide. De rettes opp og lagres som én presentasjon i den rekkefølgen du tok dem.\n`Gjør teksten skarpere` fjerner skygger og matt kontrast.",
+      "shot": "01-share"
+    },
+    {
+      "title": "Ett ord er nok",
+      "text": "CatchSlide leser teksten på hvert lysbilde rett på enheten din. Selv uker senere tar ett ord deg tilbake til riktig lysbilde.\nNotater på lysbildene er også søkbare. Skriv `eksamen` på noen av dem, så er hele pensum ett søk unna.",
+      "shot": "06-memo-search"
+    }
+  ],
+  "steps": {
+    "title": "Kom i gang på tre steg",
+    "items": [
+      {"title": "Åpne kameraet", "text": "Fra kameraknappen i listen, widgeten på Hjem-skjermen eller låseskjermen."},
+      {"title": "Få lysbildet i bildet", "text": "Når hjørnene blir grønne, tar du bildet, eller du lar automatisk opptak gjøre det."},
+      {"title": "Les per presentasjon", "text": "Søk, legg til notater og eksporter en PDF å lese på."}
+    ]
+  },
+  "reference": {
+    "title": "Dette kan du gjøre med en presentasjon",
+    "rows": [
+      ["Opptak", "Ta opp lyd mens du tar bilder, og spill av hvert lysbilde fra øyeblikket du tok det"],
+      ["Transkripsjon", "Gjør opptaket om til tekst, viser hva som ble sagt til hvert lysbilde og er med i søket"],
+      ["AI-oppsummering", "Oppsummerer presentasjonen ut fra lysbildetekst og transkripsjon (iOS 26 eller nyere på enheter med Apple Intelligence)"],
+      ["PDF", "Lesestoff med ett, to eller fire lysbilder per side"],
+      ["Markdown", "En .zip klar for Notion eller Obsidian"],
+      ["PowerPoint", "Eksporter en .pptx med transkripsjonen i foredragsnotatene"],
+      ["Slå sammen", "Velg flere presentasjoner og gjør dem til én"],
+      ["iCloud-synkronisering", "Slå på for å se presentasjonene på andre enheter med samme Apple ID. Av som standard"],
+      ["Widgeter", "Åpner kameraet rett fra Hjem-skjermen eller låseskjermen"]
+    ],
+    "note": "Tekstgjenkjenning, transkripsjon og AI-oppsummeringer skjer på enheten din."
+  },
+  "pricing": {
+    "title": "Kjøp én gang, få alt",
+    "free": {
+      "name": "CatchSlide",
+      "items": [
+        "Lydløse bilder, automatisk opptak og oppretting",
+        "Import av flere bilder samtidig fra Bilder",
+        "Lysbilder per presentasjon, søk i tekst og notater",
+        "Opptak, transkripsjon og AI-oppsummering",
+        "Eksport til PDF, Markdown og PowerPoint",
+        "iCloud-synkronisering og widgeter"
+      ]
+    },
+    "pro": {
+      "name": "Tips (valgfritt)",
+      "items": [
+        "Hvis appen hjelper deg, kan du gi utvikleren litt tips",
+        "Tips låser ikke opp noe. Alle funksjoner virker uten"
+      ],
+      "note": "Du finner det under Min info."
+    },
+    "note": "Ingen abonnement og ingen betaling for ekstra funksjoner. Se prisen i ditt land i App Store."
+  },
+  "faq": {
+    "title": "Vanlige spørsmål",
+    "items": [
+      {"q": "Hvordan tar jeg bilde av et lysbilde?", "a": "Åpne kameraet og rett det mot lysbildet. Når hjørnene blir grønne, trykker du på utløseren. Med automatisk opptak på tar appen neste lysbilde selv hver gang det skifter."},
+      {"q": "Lager den lukkerlyd?", "a": "Nei. Bildet lagres rett fra kameraet, så det er lydløst i alle land."},
+      {"q": "Hvorfor er bildene mine samlet i én presentasjon?", "a": "Tar du neste bilde innen 5 minutter etter det forrige, hører det til samme presentasjon. Trykk på tittelen i listen for å gi den nytt navn, og bruk `Slå sammen presentasjoner` for å samle dem som er delt opp."},
+      {"q": "Kan jeg legge til bilder jeg allerede har tatt?", "a": "Ja. Velg dem i Bilder og del dem med CatchSlide, eller trykk på ＋ i listen og velg `Importer fra Bilder`. De rettes opp og lagres som én presentasjon i den rekkefølgen de ble tatt."},
+      {"q": "Hjørnene ble funnet feil.", "a": "Åpne lysbildet, velg `Juster hjørner` i ⋯-menyen og dra de fire hjørnene på plass. `Gjenkjenn automatisk` leter etter dem på nytt, og `Hele bildet` bruker hele fotoet. Originalen tas alltid vare på, så du kan gjøre det om når som helst."},
+      {"q": "Kan jeg søke i teksten på lysbildene?", "a": "Skriv et ord i søkefeltet øverst i listen. Søket går gjennom lysbildetekst, titler, notater og transkripsjoner og hopper rett til lysbildet. Tekstgjenkjenningen skjer på enheten."},
+      {"q": "Hvordan eksporterer jeg en PDF?", "a": "Åpne delingsmenyen i en presentasjon, velg `Eksporter som PDF` og velg ett, to eller fire lysbilder per side. Fra delingsarket kan du lagre den i Filer eller sende den til en annen app."},
+      {"q": "Hvordan endrer jeg rekkefølgen eller sletter lysbilder?", "a": "Hold fingeren på et lysbilde i en presentasjon og dra det. I samme meny kan du slette eller dele et lysbilde, og med `Velg` sletter du flere samtidig."},
+      {"q": "Hvordan fungerer opptak og AI-oppsummering?", "a": "Slå på `Ta opp` øverst i kameraet, så tar hvert lysbilde vare på lyden fra det øyeblikket. Under `Presentasjonsnotater` lager `Oppsummer med AI` en oppsummering ut fra lysbildetekst og transkripsjon. Det krever iOS 26 eller nyere på en enhet med Apple Intelligence."},
+      {"q": "Hvor lagres lysbildene og opptakene mine?", "a": "På enheten din. De lastes bare opp til din egen iCloud hvis du slår på `Synkronisering` under Min info, og du trenger ingen konto. Les mer i personvernerklæringen."}
+    ]
+  },
+  "closing": {
+    "headline": "Fra neste forelesning\ner lysbildene rette",
+    "cta": "Last ned i App Store"
+  },
+  "ui": {
+    "skip": "Gå til innhold",
+    "languages": "Språk",
+    "privacy": "Personvernerklæring",
+    "contact": "Spørsmål, feil eller ideer? Skriv til {email}."
+  }
+}

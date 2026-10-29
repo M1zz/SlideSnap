@@ -1,0 +1,114 @@
+{
+  "title": "CatchSlide: proste slajdy z wykładu, nawet gdy robisz zdjęcie z boku",
+  "description": "Z każdego miejsca na sali CatchSlide znajduje rogi slajdu, prostuje go jak widziany na wprost, układa według prezentacji i pozwala szukać w tekście.",
+  "hero": {
+    "headline": "Zdjęcie z boku.\nSlajd na wprost.",
+    "lead": "Aparat znajduje wszystkie cztery rogi slajdu, prostuje go i odcina to, co dookoła. Slajdy fotografowane jeden po drugim trafiają do tej samej prezentacji.",
+    "cta": "Pobierz z App Store",
+    "note": "Jeden zakup, wszystkie funkcje. Bez subskrypcji i bez konta."
+  },
+  "demo": {
+    "title": "Wyprostuj go sam",
+    "lead": "To zdjęcie zrobiono pod kątem z bocznego miejsca na sali. Zielona ramka pokazuje, gdzie znaleziono rogi slajdu.",
+    "straighten": "Wyprostuj",
+    "reset": "Wróć do zdjęcia",
+    "photo": "Zdjęcie zrobione pod kątem",
+    "result": "Slajd wyprostowany przez CatchSlide",
+    "waiting": "Stuknij Wyprostuj, a wynik pojawi się tutaj",
+    "hint": "Punkty w rogach możesz też przeciągnąć sam albo zaznaczyć jeden i przesuwać go strzałkami.",
+    "corners": ["Lewy górny róg", "Prawy górny róg", "Prawy dolny róg", "Lewy dolny róg"],
+    "note": "Pokaz korzysta z jednego wcześniej zrobionego zdjęcia. W aplikacji rogi są wykrywane na żywo w aparacie, a tekst jest rozpoznawany na urządzeniu."
+  },
+  "problem": {
+    "title": "Otwierasz galerię przed kolokwium i nie możesz znaleźć slajdu?",
+    "text": "Slajdy z ostatnich rzędów zawsze wychodzą krzywo i giną między selfie a paragonami. W cichej sali sam dźwięk migawki skutecznie zniechęca. CatchSlide robi zdjęcia bezgłośnie, prostuje każdy slajd i trzyma je razem według prezentacji."
+  },
+  "features": [
+    {
+      "title": "Prosto od razu",
+      "text": "Aparat na żywo śledzi cztery rogi slajdu i robi się zielony, gdy je złapie. Nawet zdjęcie zrobione pod kątem wygląda jak zrobione na wprost, bez tła dookoła.\nBez dźwięku migawki. Włącz `Automatyczne zdjęcia`, a każdy nowy slajd zostanie sfotografowany sam, z pominięciem poruszonych ujęć.",
+      "shot": "03-slide"
+    },
+    {
+      "title": "Stare zdjęcia, wszystkie naraz",
+      "text": "Wybierz kilka zdjęć z wykładu w aplikacji Zdjęcia i udostępnij je w CatchSlide. Zostaną wyprostowane i zapisane jako jedna prezentacja, w kolejności robienia.\n`Wyostrz tekst` usuwa cienie i wyblakły kontrast.",
+      "shot": "01-share"
+    },
+    {
+      "title": "Wystarczy jedno słowo",
+      "text": "CatchSlide odczytuje tekst każdego slajdu bezpośrednio na urządzeniu. Nawet po kilku tygodniach jedno słowo zaprowadzi cię do właściwego slajdu.\nNotatki przy slajdach też da się przeszukiwać. Dopisz `egzamin` do kilku z nich, a cały materiał na egzamin znajdziesz jednym wyszukiwaniem.",
+      "shot": "06-memo-search"
+    }
+  ],
+  "steps": {
+    "title": "Zacznij w trzech krokach",
+    "items": [
+      {"title": "Otwórz aparat", "text": "Przyciskiem na liście, widżetem na ekranie początkowym albo z ekranu blokady."},
+      {"title": "Złap slajd w kadrze", "text": "Gdy rogi zrobią się zielone, zrób zdjęcie albo zostaw to automatycznym zdjęciom."},
+      {"title": "Wracaj do prezentacji", "text": "Szukaj, dodawaj notatki i eksportuj PDF do nauki."}
+    ]
+  },
+  "reference": {
+    "title": "Co możesz zrobić z prezentacją",
+    "rows": [
+      ["Nagrywanie", "Nagrywaj dźwięk podczas robienia zdjęć, a potem odsłuchaj każdy slajd od chwili, w której go sfotografowałeś"],
+      ["Transkrypcja", "Zamienia nagranie na tekst, pokazuje, co mówiono przy każdym slajdzie, i bierze udział w wyszukiwaniu"],
+      ["Podsumowanie AI", "Streszcza prezentację na podstawie tekstu slajdów i transkrypcji (iOS 26 lub nowszy na urządzeniach z Apple Intelligence)"],
+      ["PDF", "Materiały do powtórki z jednym, dwoma albo czterema slajdami na stronie"],
+      ["Markdown", "Plik .zip gotowy do Notion albo Obsidian"],
+      ["PowerPoint", "Eksport do .pptx z transkrypcją w notatkach prelegenta"],
+      ["Łączenie", "Wybierz kilka prezentacji i połącz je w jedną"],
+      ["Synchronizacja iCloud", "Po włączeniu zobaczysz prezentacje na innych urządzeniach z tym samym Apple ID. Domyślnie wyłączona"],
+      ["Widżety", "Otwierają aparat prosto z ekranu początkowego albo ekranu blokady"]
+    ],
+    "note": "Rozpoznawanie tekstu, transkrypcja i podsumowania AI działają na urządzeniu."
+  },
+  "pricing": {
+    "title": "Kupujesz raz, masz wszystko",
+    "free": {
+      "name": "CatchSlide",
+      "items": [
+        "Bezgłośne zdjęcia, automatyczne zdjęcia i prostowanie",
+        "Import wielu zdjęć naraz z aplikacji Zdjęcia",
+        "Slajdy według prezentacji, wyszukiwanie w tekście i notatkach",
+        "Nagrywanie, transkrypcja i podsumowanie AI",
+        "Eksport do PDF, Markdown i PowerPoint",
+        "Synchronizacja iCloud i widżety"
+      ]
+    },
+    "pro": {
+      "name": "Napiwek (dobrowolny)",
+      "items": [
+        "Jeśli aplikacja ci pomaga, możesz zostawić twórcy mały napiwek",
+        "Napiwek niczego nie odblokowuje. Wszystkie funkcje działają i bez niego"
+      ],
+      "note": "Znajdziesz go na ekranie Moje dane."
+    },
+    "note": "Bez subskrypcji i bez płatnych dodatków. Cenę w swoim kraju sprawdzisz w App Store."
+  },
+  "faq": {
+    "title": "Najczęstsze pytania",
+    "items": [
+      {"q": "Jak zrobić zdjęcie slajdu?", "a": "Otwórz aparat i złap slajd w kadrze. Gdy rogi zrobią się zielone, naciśnij migawkę. Przy włączonych automatycznych zdjęciach kolejny slajd zostanie sfotografowany sam za każdym razem, gdy się zmieni."},
+      {"q": "Czy słychać migawkę?", "a": "Nie. Kadr jest zapisywany prosto z podglądu aparatu, więc w każdym kraju jest cicho."},
+      {"q": "Dlaczego moje zdjęcia trafiły do jednej prezentacji?", "a": "Jeśli kolejne zdjęcie zrobisz w ciągu 5 minut od poprzedniego, trafia do tej samej prezentacji. Stuknij tytuł na liście, by zmienić nazwę, a rozdzielone prezentacje połącz przez `Połącz prezentacje`."},
+      {"q": "Czy mogę dodać zdjęcia, które już mam?", "a": "Tak. Zaznacz je w aplikacji Zdjęcia i udostępnij w CatchSlide albo stuknij ＋ na liście i wybierz `Importuj ze Zdjęć`. Zostaną wyprostowane i zapisane jako jedna prezentacja w kolejności robienia."},
+      {"q": "Rogi zostały źle wykryte.", "a": "Otwórz slajd, wybierz `Dopasuj rogi` w menu ⋯ i przeciągnij cztery rogi na miejsce. `Wykryj automatycznie` poszuka ich od nowa, a `Cały obraz` użyje całego zdjęcia. Oryginał jest zawsze zachowany, więc możesz to powtórzyć w każdej chwili."},
+      {"q": "Czy mogę szukać w tekście slajdów?", "a": "Wpisz słowo w pole wyszukiwania nad listą. Szukanie obejmuje tekst slajdów, tytuły prezentacji, notatki i transkrypcje, a wynik od razu otwiera slajd. Rozpoznawanie tekstu odbywa się na urządzeniu."},
+      {"q": "Jak wyeksportować PDF?", "a": "W prezentacji otwórz menu udostępniania, wybierz `Eksportuj do PDF` i ustaw jeden, dwa albo cztery slajdy na stronie. Z arkusza udostępniania zapiszesz go w Plikach albo wyślesz do innej aplikacji."},
+      {"q": "Jak zmienić kolejność lub usunąć slajdy?", "a": "W prezentacji przytrzymaj slajd i przeciągnij go. W tym samym menu usuniesz lub udostępnisz pojedynczy slajd, a przez `Wybierz` usuniesz kilka naraz."},
+      {"q": "Jak działa nagrywanie i podsumowanie AI?", "a": "Włącz `Nagrywaj` u góry aparatu, a każdy slajd zachowa dźwięk z tamtej chwili. W `Notatki do prezentacji` opcja `Podsumuj z AI` przygotuje streszczenie na podstawie tekstu slajdów i transkrypcji. Wymaga to iOS 26 lub nowszego na urządzeniu z Apple Intelligence."},
+      {"q": "Gdzie są przechowywane moje slajdy i nagrania?", "a": "Na twoim urządzeniu. Trafiają do twojego własnego iCloud tylko wtedy, gdy włączysz `Synchronizacja` w Moje dane, a konto nie jest potrzebne. Więcej w Polityce prywatności."}
+    ]
+  },
+  "closing": {
+    "headline": "Od następnego wykładu\nproste slajdy",
+    "cta": "Pobierz z App Store"
+  },
+  "ui": {
+    "skip": "Przejdź do treści",
+    "languages": "Język",
+    "privacy": "Polityka prywatności",
+    "contact": "Pytania, błędy albo pomysły? Napisz na {email}."
+  }
+}

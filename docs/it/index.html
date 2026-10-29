@@ -1,184 +1,192 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CatchSlide — Supporto</title>
-<meta name="description" content="Supporto di CatchSlide: cattura le slide delle lezioni, registra l'intervento e ripassa con trascrizioni e riepiloghi IA.">
-<style>
-  :root {
-    --blue: #2f6bde;
-    --blue-light: #4facfe;
-    --green: #29cc70;
-    --ink: #1a2233;
-    --muted: #5b6577;
-    --bg: #f5f7fb;
-    --card: #ffffff;
-    --border: #e4e9f2;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --ink: #e8ecf4;
-      --muted: #9aa4b8;
-      --bg: #0f131b;
-      --card: #1a2130;
-      --border: #2a3346;
-    }
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-    color: var(--ink);
-    background: var(--bg);
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-  }
-  .hero {
-    background: linear-gradient(135deg, var(--blue-light) 0%, var(--blue) 100%);
-    color: #fff;
-    padding: 64px 24px 56px;
-    text-align: center;
-  }
-  .hero img {
-    width: 108px; height: 108px;
-    border-radius: 24px;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.28);
-  }
-  .hero h1 { margin: 20px 0 6px; font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; }
-  .hero p { margin: 0; font-size: 1.05rem; opacity: 0.95; }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-  section { padding: 40px 0; border-bottom: 1px solid var(--border); }
-  section:last-of-type { border-bottom: none; }
-  h2 { font-size: 1.35rem; font-weight: 700; margin: 0 0 18px; letter-spacing: -0.01em; }
-  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 520px) { .features { grid-template-columns: 1fr; } }
-  .feature {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 14px; padding: 18px 18px 16px;
-  }
-  .feature .ic { font-size: 1.5rem; }
-  .feature h3 { margin: 8px 0 4px; font-size: 1rem; }
-  .feature p { margin: 0; color: var(--muted); font-size: 0.92rem; }
-  .faq { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 6px 20px; }
-  details { padding: 14px 0; border-bottom: 1px solid var(--border); }
-  details:last-child { border-bottom: none; }
-  summary { cursor: pointer; font-weight: 600; list-style: none; }
-  summary::-webkit-details-marker { display: none; }
-  summary::before { content: "＋"; color: var(--blue); font-weight: 700; margin-right: 10px; }
-  details[open] summary::before { content: "－"; }
-  details p { margin: 12px 0 2px; color: var(--muted); }
-  .contact {
-    text-align: center; background: var(--card);
-    border: 1px solid var(--border); border-radius: 16px; padding: 32px 24px;
-  }
-  .btn {
-    display: inline-block; margin-top: 12px;
-    background: var(--blue); color: #fff; text-decoration: none;
-    padding: 12px 26px; border-radius: 999px; font-weight: 600;
-  }
-  a { color: var(--blue); }
-  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 32px 24px 48px; }
-  .tag { display:inline-block; color: var(--green); font-weight:700; }
-</style>
-<link rel="canonical" href="https://m1zz.github.io/SlideSnap/it/">
-<link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
-<link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
-<link rel="alternate" hreflang="en-GB" href="https://m1zz.github.io/SlideSnap/en/">
-<link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
-<link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
-<link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
-<link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
-<link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
-<link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
-<link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
-<link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
-<link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
-<link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
-<link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
-<link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
-<link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
-<link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
-<link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
-<link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
-<link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
-<link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
-<link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
-<link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
-<link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
-<link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CatchSlide: slide di lezione dritte anche se fotografate di lato</title>
+  <meta name="description" content="Da qualsiasi posto, CatchSlide trova gli angoli della slide, la raddrizza, la archivia per presentazione e ti permette di cercare nel testo.">
+  <meta name="theme-color" content="#3478E7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f131b" media="(prefers-color-scheme: dark)">
+  <meta name="apple-itunes-app" content="app-id=6790835318">
+  <link rel="canonical" href="https://m1zz.github.io/SlideSnap/it/">
+  <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/SlideSnap/">
+  <link rel="alternate" hreflang="en" href="https://m1zz.github.io/SlideSnap/en/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/SlideSnap/zh-Hans/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/SlideSnap/zh-Hant/">
+  <link rel="alternate" hreflang="ja" href="https://m1zz.github.io/SlideSnap/ja/">
+  <link rel="alternate" hreflang="ru" href="https://m1zz.github.io/SlideSnap/ru/">
+  <link rel="alternate" hreflang="es" href="https://m1zz.github.io/SlideSnap/es/">
+  <link rel="alternate" hreflang="de" href="https://m1zz.github.io/SlideSnap/de/">
+  <link rel="alternate" hreflang="fr" href="https://m1zz.github.io/SlideSnap/fr/">
+  <link rel="alternate" hreflang="it" href="https://m1zz.github.io/SlideSnap/it/">
+  <link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/SlideSnap/pt-BR/">
+  <link rel="alternate" hreflang="th" href="https://m1zz.github.io/SlideSnap/th/">
+  <link rel="alternate" hreflang="vi" href="https://m1zz.github.io/SlideSnap/vi/">
+  <link rel="alternate" hreflang="cs" href="https://m1zz.github.io/SlideSnap/cs/">
+  <link rel="alternate" hreflang="da" href="https://m1zz.github.io/SlideSnap/da/">
+  <link rel="alternate" hreflang="el" href="https://m1zz.github.io/SlideSnap/el/">
+  <link rel="alternate" hreflang="fi" href="https://m1zz.github.io/SlideSnap/fi/">
+  <link rel="alternate" hreflang="id" href="https://m1zz.github.io/SlideSnap/id/">
+  <link rel="alternate" hreflang="nb" href="https://m1zz.github.io/SlideSnap/nb/">
+  <link rel="alternate" hreflang="nl" href="https://m1zz.github.io/SlideSnap/nl/">
+  <link rel="alternate" hreflang="pl" href="https://m1zz.github.io/SlideSnap/pl/">
+  <link rel="alternate" hreflang="sv" href="https://m1zz.github.io/SlideSnap/sv/">
+  <link rel="alternate" hreflang="tr" href="https://m1zz.github.io/SlideSnap/tr/">
+  <link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/SlideSnap/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CatchSlide: slide di lezione dritte anche se fotografate di lato">
+  <meta property="og:description" content="Da qualsiasi posto, CatchSlide trova gli angoli della slide, la raddrizza, la archivia per presentazione e ti permette di cercare nel testo.">
+  <meta property="og:url" content="https://m1zz.github.io/SlideSnap/it/">
+  <meta property="og:image" content="https://m1zz.github.io/SlideSnap/img/it/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../icon.png">
+  <link rel="apple-touch-icon" href="../icon.png">
+  <link rel="stylesheet" href="../site.css">
+  <link rel="stylesheet" href="../demo.css">
+  <style>:root{--accent:#3478E7}@media (prefers-color-scheme:dark){:root{--accent:#5EA2FF}}</style>
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
-  <div class="hero">
-    <img src="../icon.png" alt="Icona dell'app CatchSlide">
-    <h1>CatchSlide</h1>
-    <p>Fotografa le slide delle lezioni. Dritte, ricercabili e pronte da ripassare.</p>
-  </div>
+  <a class="skip" href="#main">Vai al contenuto</a>
+  <header class="bar">
+    <a class="brand" href="../it/"><img src="../icon.png" alt="" width="32" height="32">CatchSlide</a>
+    <a class="lang-link" href="#languages">Lingua</a>
+  </header>
 
-  <div class="wrap">
-    <section>
-      <h2>Funzioni</h2>
-      <div class="features">
-        <div class="feature"><div class="ic">🟩</div><h3>Rilevamento delle slide in tempo reale</h3><p>La fotocamera trova i quattro angoli della slide mentre inquadri, la raddrizza come se fossi di fronte e può catturarla in automatico.</p></div>
-        <div class="feature"><div class="ic">🤫</div><h3>Cattura silenziosa</h3><p>Nessun suono dell'otturatore: puoi catturare le slide durante una lezione senza disturbare nessuno.</p></div>
-        <div class="feature"><div class="ic">🎙️</div><h3>Registra e riascolta</h3><p>Registra l'intervento mentre catturi. Tocca una slide qualsiasi per sentire cosa è stato detto in quel momento.</p></div>
-        <div class="feature"><div class="ic">💬</div><h3>Trascrizioni</h3><p>Trasforma le registrazioni in testo sul tuo dispositivo e leggi cosa è stato detto in ogni slide.</p></div>
-        <div class="feature"><div class="ic">✨</div><h3>Riepilogo IA</h3><p>Ottieni una panoramica, i punti chiave e le parole chiave dell'intero intervento, generati sul tuo dispositivo con Apple Intelligence.</p></div>
-        <div class="feature"><div class="ic">🔍</div><h3>Cerca ovunque</h3><p>Trova una slide da una qualsiasi parola che contiene o da qualcosa che ha detto il relatore.</p></div>
-        <div class="feature"><div class="ic">🗂️</div><h3>Organizzate per sessione</h3><p>Le slide catturate di seguito diventano una presentazione. Rinominale, riordinale o uniscile.</p></div>
-        <div class="feature"><div class="ic">📤</div><h3>PDF, Notion, PowerPoint</h3><p>Esporta un PDF di studio, una nota in Markdown per Notion od Obsidian, oppure una presentazione PowerPoint con la trascrizione nelle note del relatore.</p></div>
-        <div class="feature"><div class="ic">☁️</div><h3>Sincronizzazione iCloud</h3><p>Se vuoi, tieni slide e registrazioni su tutti i tuoi iPhone, iPad e Mac.</p></div>
-        <div class="feature"><div class="ic">🖼️</div><h3>Da Foto</h3><p>Condividi le foto delle lezioni dall'app Foto: vengono raddrizzate e raccolte in un'unica presentazione.</p></div>
+  <main id="main">
+    <section class="hero">
+      <div class="copy">
+        <h1>Scattata di lato.<br>Salvata di fronte.</h1>
+        <p class="lead">La fotocamera trova i quattro angoli della slide, la raddrizza e taglia via tutto quello che c’è intorno. Le slide scattate una dopo l’altra finiscono nella stessa presentazione.</p>
+        <div class="actions"><a class="cta" href="https://apps.apple.com/app/id6790835318">Scarica su App Store</a><a class="try" href="#try">Raddrizzala tu ↓</a></div>
+        <p class="muted small">Un solo acquisto, tutte le funzioni. Niente abbonamento, niente account.</p>
       </div>
+      <div class="phone"><img src="../img/it/02-list.jpg" alt="Scattata di lato. Salvata di fronte." width="720" height="1564" decoding="async"></div>
     </section>
 
-    <section>
+
+    <section class="reveal" id="try">
+      <h2>Raddrizzala tu</h2>
+      <p class="muted">Questa foto è stata scattata di sbieco da un posto laterale dell’aula. Il contorno verde indica gli angoli trovati.</p>
+      <div id="demo" class="card demo-card" data-text="{&quot;title&quot;: &quot;Raddrizzala tu&quot;, &quot;lead&quot;: &quot;Questa foto è stata scattata di sbieco da un posto laterale dell’aula. Il contorno verde indica gli angoli trovati.&quot;, &quot;straighten&quot;: &quot;Raddrizza&quot;, &quot;reset&quot;: &quot;Torna alla foto&quot;, &quot;photo&quot;: &quot;Foto scattata di sbieco&quot;, &quot;result&quot;: &quot;La slide raddrizzata da CatchSlide&quot;, &quot;waiting&quot;: &quot;Tocca Raddrizza per vedere qui il risultato&quot;, &quot;hint&quot;: &quot;Puoi anche trascinare i punti agli angoli per sistemarli, oppure selezionarne uno e spostarlo con le frecce della tastiera.&quot;, &quot;corners&quot;: [&quot;Angolo in alto a sinistra&quot;, &quot;Angolo in alto a destra&quot;, &quot;Angolo in basso a destra&quot;, &quot;Angolo in basso a sinistra&quot;], &quot;note&quot;: &quot;La demo usa una sola foto scattata in anticipo. Nell’app gli angoli vengono trovati dal vivo nella fotocamera e il testo viene riconosciuto sul dispositivo.&quot;}"></div>
+    </section>
+
+    <section class="problem reveal">
+      <h2>Ti è mai capitato di aprire il rullino per ripassare senza trovare la slide?</h2>
+      <p>Dalle ultime file le slide escono sempre storte e si perdono tra selfie e scontrini. In un’aula silenziosa basta il suono dello scatto per farti desistere. CatchSlide scatta senza rumore, raddrizza ogni slide e le tiene insieme per presentazione.</p>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Dritta già allo scatto</h2>
+        <p>La fotocamera segue dal vivo i quattro angoli della slide e diventa verde quando li ha agganciati. Anche se scatti di sbieco, la slide viene raddrizzata come vista di fronte, senza lo sfondo.<br>Nessun suono di scatto. Attiva <code>Scatto automatico</code> e ogni nuova slide verrà presa da sola, saltando le foto mosse.</p>
+      </div>
+      <div class="phone"><img src="../img/it/03-slide.jpg" alt="Dritta già allo scatto" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Le foto che hai già, tutte insieme</h2>
+        <p>Scegli più foto della lezione nell’app Foto e condividile con CatchSlide. Vengono raddrizzate e salvate come un’unica presentazione, nell’ordine in cui le hai scattate.<br><code>Testo più nitido</code> elimina ombre e contrasto spento.</p>
+      </div>
+      <div class="phone"><img src="../img/it/01-share.jpg" alt="Le foto che hai già, tutte insieme" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Basta una parola per ritrovarla</h2>
+        <p>CatchSlide legge il testo di ogni slide direttamente sul dispositivo. Anche settimane dopo, una sola parola ti riporta alla slide giusta.<br>Anche le note aggiunte alle slide sono cercabili. Scrivi <code>esame</code> su qualcuna e tutto il programma è a portata di una ricerca.</p>
+      </div>
+      <div class="phone"><img src="../img/it/06-memo-search.jpg" alt="Basta una parola per ritrovarla" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="reveal">
+      <h2>Si parte in tre passi</h2>
+      <ol class="steps"><li class="card"><span class="n">1</span><h3>Apri la fotocamera</h3><p>Dal pulsante nella lista, dal widget nella schermata Home o dalla schermata di blocco.</p></li>
+<li class="card"><span class="n">2</span><h3>Inquadra la slide</h3><p>Quando gli angoli diventano verdi, scatta o lascia fare allo scatto automatico.</p></li>
+<li class="card"><span class="n">3</span><h3>Ripassa per presentazione</h3><p>Cerca, aggiungi note ed esporta un PDF per studiare.</p></li></ol>
+    </section>
+
+    <section class="reveal" id="commands">
+      <h2>Cosa puoi fare con una presentazione</h2>
+      <div class="card table">
+        <dl><div><dt>Registrazione</dt><dd>Registra mentre scatti, poi ascolta ogni slide dal momento in cui l’hai fotografata</dd></div><div><dt>Trascrizione</dt><dd>Trasforma la registrazione in testo, mostra cosa è stato detto su ogni slide e lo rende cercabile</dd></div><div><dt>Riassunto con IA</dt><dd>Riassume la presentazione dal testo delle slide e dalla trascrizione (iOS 26 o successivo su dispositivi compatibili con Apple Intelligence)</dd></div><div><dt>PDF</dt><dd>Dispense per il ripasso con una, due o quattro slide per pagina</dd></div><div><dt>Markdown</dt><dd>Un .zip pronto per Notion o Obsidian</dd></div><div><dt>PowerPoint</dt><dd>Esporta un .pptx con la trascrizione nelle note del relatore</dd></div><div><dt>Unisci</dt><dd>Seleziona più presentazioni e uniscile in una</dd></div><div><dt>Sincronizzazione iCloud</dt><dd>Attivala per vedere le presentazioni sugli altri dispositivi con lo stesso Apple ID. Disattivata di default</dd></div><div><dt>Widget</dt><dd>Aprono la fotocamera direttamente dalla schermata Home o di blocco</dd></div></dl>
+      </div>
+      <p class="muted">Riconoscimento del testo, trascrizione e riassunti con IA avvengono sul dispositivo.</p>
+    </section>
+
+
+    <section class="reveal" id="pricing">
+      <h2>Lo compri una volta, hai tutto</h2>
+      <div class="plans">
+        <div class="card plan free">
+          <h3>CatchSlide</h3>
+          <ul><li>Scatti silenziosi, scatto automatico e raddrizzamento</li><li>Importazione di più foto dall’app Foto</li><li>Slide divise per presentazione, ricerca nel testo e nelle note</li><li>Registrazione, trascrizione e riassunto con IA</li><li>Esportazione in PDF, Markdown e PowerPoint</li><li>Sincronizzazione iCloud e widget</li></ul>
+          
+        </div>
+        <div class="card plan pro">
+          <h3>Mance (facoltative)</h3>
+          <ul><li>Se l’app ti è utile, puoi lasciare una piccola mancia allo sviluppatore</li><li>La mancia non sblocca nulla. Tutte le funzioni restano disponibili anche senza</li></ul>
+          <p class="muted">La trovi nella schermata I miei dati.</p>
+        </div>
+      </div>
+      <p class="muted">Niente abbonamento né acquisti per sbloccare funzioni. Il prezzo per il tuo Paese è indicato su App Store.</p>
+    </section>
+
+    <section class="reveal" id="faq">
       <h2>Domande frequenti</h2>
-      <div class="faq">
-        <details open>
-          <summary>Come catturo le slide?</summary>
-          <p>Apri l'app e la fotocamera è pronta. Inquadra la slide finché il riquadro non diventa <span class="tag">verde</span>, poi tocca l'otturatore o lascia fare alla cattura automatica. Quando la slide cambia, la successiva viene catturata in automatico.</p>
-        </details>
-        <details>
-          <summary>Come registro l'intervento?</summary>
-          <p>Tocca <strong>Registra</strong> in alto nella schermata della fotocamera. L'intervento viene registrato mentre catturi. In seguito, apri una slide qualsiasi e tocca riproduci per riascoltarlo dal momento in cui l'hai scattata. Durante la riproduzione le slide scorrono da sole.</p>
-        </details>
-        <details>
-          <summary>Come ottengo una trascrizione o un riepilogo IA?</summary>
-          <p>Apri una presentazione e tocca il pulsante delle note ✨. Tocca <strong>Trascrivi</strong> accanto a una registrazione, poi <strong>Riassumi con l'IA</strong>. Il riepilogo IA richiede un dispositivo compatibile con Apple Intelligence (iOS 26 o successivi) con Apple Intelligence attiva.</p>
-        </details>
-        <details>
-          <summary>Perché le mie slide vengono raggruppate?</summary>
-          <p>Le slide catturate a meno di cinque minuti l'una dall'altra sono considerate della stessa sessione e finiscono in un'unica presentazione. Puoi rinominarla oppure unire le presentazioni dall'elenco.</p>
-        </details>
-        <details>
-          <summary>Come esporto?</summary>
-          <p>In una presentazione, apri il menu ⋯ e scegli PDF (una, due o quattro slide per pagina), Markdown per Notion od Obsidian, oppure PowerPoint, che si apre anche in Keynote e Google Slides.</p>
-        </details>
-        <details>
-          <summary>Come funziona la sincronizzazione iCloud?</summary>
-          <p>Attivala in <strong>I miei dati › Sincronizza</strong>. Presentazioni, slide e registrazioni vengono salvate nel tuo iCloud privato e compaiono sugli altri dispositivi con lo stesso account Apple. È disattivata di default perché foto e registrazioni occupano spazio su iCloud.</p>
-        </details>
-        <details>
-          <summary>Dove vengono salvati i miei dati?</summary>
-          <p>Sul tuo dispositivo. Riconoscimento del testo, trascrizione e riepilogo IA avvengono tutti sul dispositivo. I dati vanno nel tuo iCloud solo se attivi la sincronizzazione. Leggi l'<a href="privacy.html">Informativa sulla privacy</a>.</p>
-        </details>
-      </div>
+      <div class="faq"><details><summary>Come fotografo una slide?</summary><p>Apri la fotocamera e inquadra la slide. Quando gli angoli diventano verdi, scatta. Con lo scatto automatico attivo, la slide successiva viene presa da sola ogni volta che cambia.</p></details>
+<details><summary>Si sente il suono dello scatto?</summary><p>No. Il fotogramma viene salvato direttamente dalla fotocamera, quindi è silenzioso in qualsiasi Paese.</p></details>
+<details><summary>Perché le foto finiscono in un’unica presentazione?</summary><p>Se scatti la foto successiva entro 5 minuti dall’ultima, viene considerata parte della stessa presentazione. Tocca il titolo nella lista per rinominarla e usa <code>Unisci presentazioni</code> per riunire quelle che si sono divise.</p></details>
+<details><summary>Posso aggiungere foto già scattate?</summary><p>Sì. Selezionale nell’app Foto e condividile con CatchSlide, oppure tocca ＋ nella lista e scegli <code>Importa da Foto</code>. Vengono raddrizzate e salvate come una presentazione nell’ordine di scatto.</p></details>
+<details><summary>Gli angoli non sono stati trovati bene.</summary><p>Apri la slide, scegli <code>Regola angoli</code> dal menu ⋯ e trascina i quattro angoli al loro posto. <code>Rilevamento automatico</code> li cerca di nuovo e <code>Immagine intera</code> usa tutta la foto. L’originale viene sempre conservato, quindi puoi rifarlo quando vuoi.</p></details>
+<details><summary>Posso cercare il testo nelle slide?</summary><p>Scrivi una parola nel campo di ricerca in cima alla lista. La ricerca copre testo delle slide, titoli, note e trascrizioni e ti porta subito alla slide. Il riconoscimento del testo avviene sul dispositivo.</p></details>
+<details><summary>Come esporto un PDF?</summary><p>In una presentazione apri il menu di condivisione, scegli <code>Esporta come PDF</code> e decidi se mettere una, due o quattro slide per pagina. Dal foglio di condivisione puoi salvarlo in File o inviarlo a un’altra app.</p></details>
+<details><summary>Come cambio l’ordine o elimino le slide?</summary><p>In una presentazione tieni premuta una slide e trascinala. Dallo stesso menu puoi eliminarla o condividerla, e con <code>Seleziona</code> ne elimini diverse insieme.</p></details>
+<details><summary>Come funzionano registrazione e riassunto con IA?</summary><p>Attiva <code>Registra</code> in alto nella fotocamera e ogni slide conserverà l’audio di quel momento. In <code>Note della presentazione</code>, <code>Riassumi con l'IA</code> crea un riassunto dal testo delle slide e dalla trascrizione. Serve iOS 26 o successivo su un dispositivo compatibile con Apple Intelligence.</p></details>
+<details><summary>Dove vengono salvate le mie slide e registrazioni?</summary><p>Sul tuo dispositivo. Finiscono sul tuo iCloud solo se attivi <code>Sincronizza</code> in I miei dati, e non serve alcun account. Maggiori dettagli nella Privacy policy.</p></details></div>
+      <p class="contact">Domande, bug o idee? Scrivi a <a href="mailto:leeo@kakao.com">leeo@kakao.com</a>.</p>
     </section>
 
-    <section>
-      <div class="contact">
-        <h2 style="margin-bottom:6px">Serve aiuto?</h2>
-        <p style="color:var(--muted);margin:0">Domande, segnalazioni di errori e idee per nuove funzioni sono sempre benvenute.</p>
-        <a class="btn" href="mailto:leeo@kakao.com?subject=%5BCatchSlide%5D%20Support">Scrivici</a>
-        <p style="margin:14px 0 0"><a href="privacy.html">Informativa sulla privacy</a></p>
-      </div>
+    <section class="closing reveal">
+      <h2>Dalla prossima lezione,<br>slide sempre dritte</h2>
+      <a class="cta" href="https://apps.apple.com/app/id6790835318">Scarica su App Store</a>
     </section>
-  </div>
+  </main>
 
   <footer>
-    © 2026 CatchSlide &nbsp;·&nbsp; leeo@kakao.com
+    <nav id="languages" class="langs" aria-label="Lingua"><a href="../" hreflang="ko" lang="ko">한국어</a>
+<a href="../en/" hreflang="en" lang="en">English</a>
+<a href="../zh-Hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
+<a href="../zh-Hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
+<a href="../ja/" hreflang="ja" lang="ja">日本語</a>
+<a href="../ru/" hreflang="ru" lang="ru">Русский</a>
+<a href="../es/" hreflang="es" lang="es">Español</a>
+<a href="../de/" hreflang="de" lang="de">Deutsch</a>
+<a href="../fr/" hreflang="fr" lang="fr">Français</a>
+<a href="../it/" hreflang="it" lang="it" aria-current="page">Italiano</a>
+<a href="../pt-BR/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a>
+<a href="../th/" hreflang="th" lang="th">ไทย</a>
+<a href="../vi/" hreflang="vi" lang="vi">Tiếng Việt</a>
+<a href="../cs/" hreflang="cs" lang="cs">Čeština</a>
+<a href="../da/" hreflang="da" lang="da">Dansk</a>
+<a href="../el/" hreflang="el" lang="el">Ελληνικά</a>
+<a href="../fi/" hreflang="fi" lang="fi">Suomi</a>
+<a href="../id/" hreflang="id" lang="id">Indonesia</a>
+<a href="../nb/" hreflang="nb" lang="nb">Norsk</a>
+<a href="../nl/" hreflang="nl" lang="nl">Nederlands</a>
+<a href="../pl/" hreflang="pl" lang="pl">Polski</a>
+<a href="../sv/" hreflang="sv" lang="sv">Svenska</a>
+<a href="../tr/" hreflang="tr" lang="tr">Türkçe</a></nav>
+    <p><a href="privacy.html">Privacy policy</a> · <a href="mailto:leeo@kakao.com">leeo@kakao.com</a> · © 2026 CatchSlide</p>
   </footer>
-<nav style="text-align:center;font-size:0.85rem;line-height:2;padding:0 24px 40px"><a href="../" hreflang="ko">한국어</a> · <a href="../en/" hreflang="en">English</a> · <a href="../zh-Hans/" hreflang="zh-Hans">简体中文</a> · <a href="../zh-Hant/" hreflang="zh-Hant">繁體中文</a> · <a href="../ja/" hreflang="ja">日本語</a> · <a href="../ru/" hreflang="ru">Русский</a> · <a href="../es/" hreflang="es">Español</a> · <a href="../de/" hreflang="de">Deutsch</a> · <a href="../fr/" hreflang="fr">Français</a> · <a href="../it/" hreflang="it">Italiano</a> · <a href="../pt-BR/" hreflang="pt-BR">Português (Brasil)</a> · <a href="../th/" hreflang="th">ไทย</a> · <a href="../vi/" hreflang="vi">Tiếng Việt</a> · <a href="../cs/" hreflang="cs">Čeština</a> · <a href="../da/" hreflang="da">Dansk</a> · <a href="../el/" hreflang="el">Ελληνικά</a> · <a href="../fi/" hreflang="fi">Suomi</a> · <a href="../id/" hreflang="id">Indonesia</a> · <a href="../nb/" hreflang="nb">Norsk</a> · <a href="../nl/" hreflang="nl">Nederlands</a> · <a href="../pl/" hreflang="pl">Polski</a> · <a href="../sv/" hreflang="sv">Svenska</a> · <a href="../tr/" hreflang="tr">Türkçe</a></nav>
+
+  <script>
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target) }
+    }), { rootMargin: "0px 0px -10% 0px" });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  </script>
+  <script src="../demo.js"></script>
 </body>
 </html>
