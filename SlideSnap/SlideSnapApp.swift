@@ -21,6 +21,7 @@ struct SlideSnapApp: App {
                 .onOpenURL { url in
                     router.handle(url)
                 }
+                .task { await SlideSnapTip.tipJar.startStandalone() }
                 .onAppear {
                     cloudSync.attach(store)
                     if cloudSync.isEnabled { UIApplication.shared.registerForRemoteNotifications() }

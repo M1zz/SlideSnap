@@ -1,5 +1,6 @@
 import SwiftUI
 import UniformTypeIdentifiers
+import LeeoKit
 
 /// 슬라이드 상세 화면으로 이동하기 위한 라우트
 struct SlideRoute: Hashable {
@@ -325,6 +326,12 @@ struct PresentationDetailView: View {
 
     private func grid(_ presentation: Presentation) -> some View {
         ScrollView {
+            // 응원 부탁 — 장표를 꽤 담아 온 사람에게, 드물게(촬영을 마치고 돌아온 자리)
+            if !isSelecting {
+                LeeoTipAskSlot<SlideSnapSpec>(tipJar: SlideSnapTip.tipJar,
+                                              reached: SlideSnapTipMoments.reachedNow(in: store.presentations))
+                    .padding([.horizontal, .top])
+            }
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 110), spacing: 10)], spacing: 10) {
                 ForEach(Array(presentation.slides.enumerated()), id: \.element.id) { index, slide in
                     if isSelecting {
