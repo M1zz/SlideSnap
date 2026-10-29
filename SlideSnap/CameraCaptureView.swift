@@ -138,6 +138,7 @@ struct CameraCaptureView: View {
 
     @EnvironmentObject private var store: Store
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     let presentationID: UUID
     /// 촬영이 한 장이라도 일어나면 부모에게 알린다(빈 발표 삭제 방지 + 그리드 이동 판단).
@@ -255,6 +256,10 @@ struct CameraCaptureView: View {
         .onChange(of: camera.isLocked) { _, locked in
             if locked {
                 UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+                // VoiceOver: 장표가 화면에 잘 잡혔음을 소리로 알린다.
+                AccessibilityNotification.Announcement(camera.autoCaptureEnabled
+                    ? String(localized: "장표를 잘 잡았어요 · 자동으로 담는 중")
+                    : String(localized: "장표를 잘 잡았어요 · 지금 찍으세요")).post()
             }
         }
         .onChange(of: camera.autoCaptureTick) { _, _ in
@@ -298,22 +303,39 @@ struct CameraCaptureView: View {
             .foregroundStyle(.white)
             .padding(.horizontal, 14)
             .padding(.vertical, 8)
-            .background((locked ? Color.green : Color.black.opacity(0.5)), in: Capsule())
+            .background((locked ? Self.lockedGreen : Color.black.opacity(0.5)), in: Capsule())
             .padding(.top, 4)
             .transition(.opacity)
             .animation(.easeInOut(duration: 0.3), value: locked)
+            .accessibilityElement(children: .combine)
         }
     }
 
+    /// 흰 글씨를 얹어도 읽히는 진한 초록(기본 초록은 흰 글씨와 대비가 모자라다).
+    private static let lockedGreen = Color(red: 0.11, green: 0.52, blue: 0.24)
+
     // MARK: - 줌
 
-    /// 두 손가락 핀치 + 한 손가락 세로 스와이프로 줌을 조작하는 투명 레이어
+    /// 두 손가락 핀치 + 한 손가락 세로 스와이프로 줌을 조작하는 투명 레이어.
+    /// VoiceOver 에서는 위아래로 쓸어 줌을 조절하는 하나의 요소가 된다.
     private var zoomGestureLayer: some View {
         Color.clear
             .contentShape(Rectangle())
             .ignoresSafeArea()
             .gesture(pinchGesture)
             .simultaneousGesture(swipeZoomGesture)
+            .accessibilityElement()
+            .accessibilityLabel("줌")
+            .accessibilityValue(String(format: "%.1f×", camera.zoomFactor))
+            .accessibilityAdjustableAction { direction in
+                let step = max(camera.maxZoomFactor - 1, 1) / 8
+                switch direction {
+                case .increment: camera.setZoom(camera.zoomFactor + step)
+                case .decrement: camera.setZoom(camera.zoomFactor - step)
+                @unknown default: break
+                }
+                zoomBaseline = camera.zoomFactor
+            }
     }
 
     /// 두 손가락으로 벌리면 확대, 오므리면 축소
@@ -391,8 +413,12 @@ struct CameraCaptureView: View {
                 .padding(.vertical, 8)
                 .background(.black.opacity(0.4), in: Capsule())
             }
+            .accessibilityLabel("자동 촬영")
+            .accessibilityValue(camera.autoCaptureEnabled ? Text("켬") : Text("끔"))
         }
         .padding()
+        // 프리뷰를 가리지 않도록 촬영 단추 글씨는 너무 커지지 않게 둔다.
+        .dynamicTypeSize(...DynamicTypeSize.accessibility2)
     }
 
     /// 녹음 켜기/끄기. 녹음 중이면 빨간 점과 경과 시간을 보여 준다.
@@ -424,6 +450,7 @@ struct CameraCaptureView: View {
             .background(recorder.isRecording ? Color.red.opacity(0.75) : Color.black.opacity(0.4), in: Capsule())
         }
         .accessibilityLabel(recorder.isRecording ? Text("녹음 중지") : Text("녹음 시작"))
+        .accessibilityValue(recorder.isRecording ? recorder.elapsed.clockText : "")
     }
 
     // MARK: - 하단 바
@@ -438,6 +465,8 @@ struct CameraCaptureView: View {
                     .onGeometryChange(for: CGRect.self) { $0.frame(in: .named(Self.space)) } action: { thumbnailFrame = $0 }
             }
             .disabled(captureCount == 0)
+            .accessibilityLabel("촬영한 장표 보기")
+            .accessibilityValue(captureCount > 0 ? Text("\(captureCount)장") : Text(""))
 
             Spacer()
 
@@ -455,6 +484,7 @@ struct CameraCaptureView: View {
                 .animation(.easeOut(duration: 0.15), value: camera.isLocked)
             }
             .disabled(camera.authorizationDenied)
+            .accessibilityLabel("촬영하기")
 
             Spacer()
 
@@ -503,12 +533,18 @@ struct CameraCaptureView: View {
                 .scaledToFill()
                 .frame(width: rect.width, height: rect.height)
                 .clipShape(RoundedRectangle(cornerRadius: flyLanded ? 10 : 18))
+                .accessibilityHidden(true)
                 .shadow(color: .black.opacity(0.35), radius: flyLanded ? 2 : 16)
                 .position(x: rect.midX, y: rect.midY)
         }
     }
 
     private func fly(_ shot: UIImage) {
+        // 동작 줄이기: 날아가는 연출 없이 썸네일만 바꾼다.
+        if reduceMotion {
+            lastThumbnail = shot
+            return
+        }
         flyLanded = false
         flyingShot = shot
         // 시작 위치에 한 번 그린 다음 날려 보낸다.
@@ -574,10 +610,12 @@ struct CameraCaptureView: View {
     /// - Parameter auto: 자동 촬영이면 흔들린(흐릿한) 컷을 걸러내고, 결과를 카메라에 알린다.
     ///   수동 촬영은 사용자의 의도이므로 걸러내지 않고 그대로 담는다.
     private func capture(auto: Bool = false) {
-        // 눈부시지 않게 살짝 밝아졌다가 천천히 돌아온다.
-        withAnimation(.easeOut(duration: 0.08)) { flashOpacity = 0.35 }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.08) {
-            withAnimation(.easeOut(duration: 0.35)) { flashOpacity = 0 }
+        // 눈부시지 않게 살짝 밝아졌다가 천천히 돌아온다(동작 줄이기면 번쩍임 없이).
+        if !reduceMotion {
+            withAnimation(.easeOut(duration: 0.08)) { flashOpacity = 0.35 }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.08) {
+                withAnimation(.easeOut(duration: 0.35)) { flashOpacity = 0 }
+            }
         }
 
         // 셔터를 누른 순간 잡혀 있던 모서리로 폅니다(화면 테두리는 늦게 따라오므로 감지값 그대로).
@@ -605,6 +643,8 @@ struct CameraCaptureView: View {
                 // 즉시 피드백: 사진이 도착하자마자 카운트를 올리고 빠른 미리보기를 띄운다.
                 captureCount += 1
                 onCapture?()
+                // VoiceOver: 화면을 볼 수 없어도 몇 장 담겼는지 알 수 있게.
+                AccessibilityNotification.Announcement(String(localized: "지금까지 장표 \(captureCount)장을 담았어요")).post()
                 // 촬영은 핵심 행동 — 로컬 카운트만 올린다(사용 통계 스냅샷의 eventCount에 반영).
                 LeeoEngagement.shared.registerSignificantEvent()
                 Task.detached(priority: .userInitiated) {
@@ -622,6 +662,7 @@ struct CameraCaptureView: View {
     }
 
     private func flashBlurHint() {
+        AccessibilityNotification.Announcement(String(localized: "흔들린 컷은 건너뛰었어요")).post()
         withAnimation(.easeOut(duration: 0.2)) { showBlurHint = true }
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.4) {
             withAnimation(.easeOut(duration: 0.3)) { showBlurHint = false }

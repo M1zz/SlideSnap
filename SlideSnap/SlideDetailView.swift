@@ -146,6 +146,7 @@ struct SlideDetailView: View {
                 } label: {
                     Image(systemName: "ellipsis.circle")
                 }
+                .accessibilityLabel("더 보기")
             }
         }
         .sheet(isPresented: $showingAdjust) {
@@ -174,6 +175,7 @@ struct SlideDetailView: View {
         HStack(alignment: .firstTextBaseline, spacing: 8) {
             Image(systemName: "note.text")
                 .foregroundStyle(.secondary)
+                .accessibilityHidden(true)
             TextField("이 장표에 메모 남기기", text: $memoDraft, axis: .vertical)
                 .lineLimit(1...4)
                 .focused($memoFocused)
@@ -211,7 +213,7 @@ struct SlideDetailView: View {
                         togglePlay(recording: recording, range: range)
                     } label: {
                         Image(systemName: isPlaying(recording) ? "pause.circle.fill" : "play.circle.fill")
-                            .font(.system(size: 34))
+                            .font(.largeTitle)
                     }
                     .accessibilityLabel(isPlaying(recording) ? Text("일시 정지") : Text("이 장표부터 듣기"))
 
@@ -336,13 +338,15 @@ struct SlideDetailView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 6) {
                     ForEach(Array(slides.enumerated()), id: \.element.id) { index, slide in
-                        filmstripThumb(slide, number: index + 1)
-                            .id(slide.id)
-                            .onTapGesture {
-                                withAnimation(.easeInOut(duration: 0.2)) {
-                                    currentSlideID = slide.id
-                                }
+                        Button {
+                            withAnimation(.easeInOut(duration: 0.2)) {
+                                currentSlideID = slide.id
                             }
+                        } label: {
+                            filmstripThumb(slide, number: index + 1)
+                        }
+                        .buttonStyle(.plain)
+                        .id(slide.id)
                     }
                 }
                 .padding(.horizontal, 12)
@@ -382,6 +386,10 @@ struct SlideDetailView: View {
             if slide.memo != nil { MemoBadge(size: 9) }
         }
         .opacity(selected ? 1 : 0.6)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(Text("장표 \(number)"))
+        .accessibilityValue(slide.memo != nil ? Text("메모 있음") : Text(""))
+        .accessibilityAddTraits(selected ? .isSelected : [])
     }
 
     private func slideImage(_ slide: Slide) -> some View {
@@ -389,11 +397,23 @@ struct SlideDetailView: View {
             if let image = store.loadImage(showOriginal ? slide.originalFile : store.displayFile(for: slide)) {
                 ZoomableImage(image: image)
                     .padding(.horizontal, 12)
+                    // VoiceOver: 장표 번호와 인식한 글자를 읽어 준다.
+                    .accessibilityElement()
+                    .accessibilityAddTraits(.isImage)
+                    .accessibilityLabel(slideAccessibilityLabel(slide))
             } else {
                 ContentUnavailableView("이미지를 불러올 수 없습니다", systemImage: "photo")
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    private func slideAccessibilityLabel(_ slide: Slide) -> Text {
+        let number = (slides.firstIndex { $0.id == slide.id } ?? 0) + 1
+        let text = slide.recognizedText?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        return text.isEmpty
+            ? Text("장표 \(number)")
+            : Text("장표 \(number)") + Text(verbatim: ", ") + Text("장표 글자: \(text)")
     }
 
     /// 가독성 보정을 켜거나 끈다.

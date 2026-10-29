@@ -325,6 +325,7 @@ struct ShareView: View {
         }
         .frame(width: 88, height: 66)
         .clipShape(RoundedRectangle(cornerRadius: 6))
+        .accessibilityHidden(true)
         .overlay(alignment: .topLeading) {
             Text("\(number)")
                 .font(.caption2.weight(.bold))

@@ -73,6 +73,7 @@ struct CameraWidgetView: View {
             AccessoryWidgetBackground()
             Image(systemName: "camera.fill")
                 .font(.system(size: 22, weight: .semibold))
+                .accessibilityLabel("장표 촬영")
         }
         .containerBackground(for: .widget) { Color.clear }
         .widgetURL(cameraURL)
@@ -83,6 +84,7 @@ struct CameraWidgetView: View {
         HStack(spacing: 8) {
             Image(systemName: "camera.fill")
                 .font(.title3)
+                .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 1) {
                 Text("장표 촬영")
                     .font(.headline)
@@ -101,6 +103,7 @@ struct CameraWidgetView: View {
         VStack(spacing: 8) {
             Image(systemName: "camera.fill")
                 .font(.system(size: 34, weight: .semibold))
+                .accessibilityHidden(true)
             Text("장표 촬영")
                 .font(.headline)
         }

@@ -9,6 +9,7 @@ struct PresentationListView: View {
     @EnvironmentObject private var router: AppRouter
 
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     @State private var showingNewAlert = false
     @State private var newTitle = ""
@@ -208,6 +209,7 @@ struct PresentationListView: View {
                 } label: {
                     Image(systemName: "ellipsis.circle")
                 }
+                .accessibilityLabel("더 보기")
             }
             if !store.presentations.isEmpty {
                 ToolbarItem(placement: .topBarLeading) {
@@ -225,6 +227,7 @@ struct PresentationListView: View {
                 } label: {
                     Image(systemName: "camera.fill")
                 }
+                .accessibilityLabel("촬영하기")
             }
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {
@@ -242,6 +245,7 @@ struct PresentationListView: View {
                 } label: {
                     Image(systemName: "plus")
                 }
+                .accessibilityLabel("새 발표")
             }
         }
     }
@@ -281,6 +285,7 @@ struct PresentationListView: View {
         Image(systemName: on ? "checkmark.circle.fill" : "circle")
             .font(.title3)
             .foregroundStyle(on ? Color.accentColor : Color.secondary)
+            .accessibilityHidden(true)   // 선택 여부는 행의 '선택됨' 특성으로 읽는다
     }
 
     /// 넛지는 목록 화면에 머물러 있고(카메라·다른 시트가 없고) 아직 노출 대상일 때만 띄운다.
@@ -354,6 +359,7 @@ struct PresentationListView: View {
                                 }
                         }
                         .buttonStyle(.plain)
+                        .accessibilityAddTraits(selectedIDs.contains(presentation.id) ? .isSelected : [])
                     } else {
                         NavigationLink(value: presentation.id) {
                             presentationCard(presentation)
@@ -397,6 +403,7 @@ struct PresentationListView: View {
                             .foregroundStyle(.tertiary)
                     }
                 }
+                .accessibilityHidden(true)
                 .clipShape(RoundedRectangle(cornerRadius: 12))
             .overlay(alignment: .bottomTrailing) {
                 Text("\(presentation.slides.count)장")
@@ -412,13 +419,14 @@ struct PresentationListView: View {
                 Text(presentation.title)
                     .font(.subheadline.weight(.semibold))
                     .foregroundStyle(.primary)
-                    .lineLimit(1)
+                    .lineLimit(dynamicTypeSize.isAccessibilitySize ? 3 : 1)
                 Text(Self.dateString(presentation.createdAt))
                     .font(.caption)
                     .foregroundStyle(.secondary)
-                    .lineLimit(1)
+                    .lineLimit(dynamicTypeSize.isAccessibilitySize ? 2 : 1)
             }
         }
+        .accessibilityElement(children: .combine)
     }
 
     /// 발표 대표 썸네일 — 첫 장표의 썸네일.
@@ -442,6 +450,7 @@ struct PresentationListView: View {
                         }
                     }
                     .buttonStyle(.plain)
+                    .accessibilityAddTraits(selectedIDs.contains(presentation.id) ? .isSelected : [])
                 } else {
                     NavigationLink(value: presentation.id) {
                         row(presentation)
@@ -496,6 +505,7 @@ struct PresentationListView: View {
             }
             .frame(width: 54, height: 54)
             .clipShape(RoundedRectangle(cornerRadius: 6))
+            .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 3) {
                 Text("\(result.presentationTitle) · \(result.slideNumber)번")
@@ -665,6 +675,7 @@ struct PresentationListView: View {
             }
             .frame(width: 64, height: 64)
             .clipShape(RoundedRectangle(cornerRadius: 8))
+            .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 4) {
                 Text(presentation.title)

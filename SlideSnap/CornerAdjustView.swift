@@ -3,6 +3,16 @@ import SwiftUI
 /// 사각형의 네 모서리 식별자
 enum Corner: CaseIterable {
     case topLeft, topRight, bottomRight, bottomLeft
+
+    /// VoiceOver·음성 명령에서 부르는 이름
+    var accessibilityName: LocalizedStringResource {
+        switch self {
+        case .topLeft: return "왼쪽 위 모서리"
+        case .topRight: return "오른쪽 위 모서리"
+        case .bottomRight: return "오른쪽 아래 모서리"
+        case .bottomLeft: return "왼쪽 아래 모서리"
+        }
+    }
 }
 
 extension Quad {
@@ -58,6 +68,7 @@ struct CornerAdjustView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: geometry.size.width, height: geometry.size.height)
+                        .accessibilityHidden(true)
 
                     QuadShape(quad: quad, rect: fitted)
                         .fill(Color.yellow.opacity(0.12))
@@ -127,6 +138,20 @@ struct CornerAdjustView: View {
                     activeCorner = nil
                 }
         )
+        // 끌기 대신 한 걸음씩 옮기는 동작(VoiceOver·음성 명령)
+        .accessibilityElement()
+        .accessibilityLabel(Text(corner.accessibilityName))
+        .accessibilityAction(named: "위로") { nudge(corner, dx: 0, dy: -1) }
+        .accessibilityAction(named: "아래로") { nudge(corner, dx: 0, dy: 1) }
+        .accessibilityAction(named: "왼쪽으로") { nudge(corner, dx: -1, dy: 0) }
+        .accessibilityAction(named: "오른쪽으로") { nudge(corner, dx: 1, dy: 0) }
+    }
+
+    /// 모서리를 사진 크기의 2%씩 옮긴다.
+    private func nudge(_ corner: Corner, dx: CGFloat, dy: CGFloat) {
+        let p = quad[corner]
+        quad[corner] = CGPoint(x: min(max(p.x + dx * 0.02, 0), 1),
+                               y: min(max(p.y + dy * 0.02, 0), 1))
     }
 
     // MARK: - 돋보기(루페)

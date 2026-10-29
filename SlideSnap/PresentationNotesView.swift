@@ -83,6 +83,7 @@ struct PresentationNotesView: View {
                                 Image(systemName: "checkmark.circle.fill")
                                     .font(.footnote)
                                     .foregroundStyle(.tint)
+                                    .accessibilityHidden(true)
                                 Text(point)
                                     .font(.subheadline)
                             }
@@ -193,6 +194,8 @@ struct PresentationNotesView: View {
                     value: Binding(get: { playback.currentTime }, set: { playback.seek(to: $0) }),
                     in: 0...max(playback.duration, 1)
                 )
+                .accessibilityLabel("재생 위치")
+                .accessibilityValue("\(playback.currentTime.clockText) / \(recording.duration.clockText)")
             }
 
             if transcribingID == recording.id {

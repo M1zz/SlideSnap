@@ -201,6 +201,7 @@ struct PresentationDetailView: View {
             ToolbarItem(placement: .topBarTrailing) {
                 shareMenu(label: Image(systemName: "square.and.arrow.up"))
                     .disabled(selectedIDs.isEmpty || isExporting)
+                    .accessibilityLabel("이미지 공유")
             }
             ToolbarItem(placement: .bottomBar) {
                 Button(role: .destructive) {
@@ -225,6 +226,7 @@ struct PresentationDetailView: View {
                 } label: {
                     Image(systemName: "camera.fill")
                 }
+                .accessibilityLabel("촬영하기")
             }
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {
@@ -262,6 +264,7 @@ struct PresentationDetailView: View {
                     }
                 }
                 .disabled(isExporting)
+                .accessibilityLabel("더 보기")
             }
         }
     }
@@ -341,6 +344,7 @@ struct PresentationDetailView: View {
                             thumbnail(slide, number: index + 1)
                         }
                         .buttonStyle(.plain)
+                        .accessibilityAddTraits(selectedIDs.contains(slide.id) ? .isSelected : [])
                     } else {
                         NavigationLink(value: SlideRoute(presentationID: presentationID, slideID: slide.id)) {
                             thumbnail(slide, number: index + 1)
@@ -360,6 +364,13 @@ struct PresentationDetailView: View {
                                 store: store
                             )
                         )
+                        // 끌어서 순서 바꾸기의 대안(VoiceOver·음성 명령)
+                        .accessibilityAction(named: "앞으로 옮기기") {
+                            moveSlide(at: index, by: -1, in: presentation)
+                        }
+                        .accessibilityAction(named: "뒤로 옮기기") {
+                            moveSlide(at: index, by: 1, in: presentation)
+                        }
                         .contextMenu {
                             NavigationLink(value: SlideRoute(presentationID: presentationID, slideID: slide.id)) {
                                 Label("열기", systemImage: "arrow.up.left.and.arrow.down.right")
@@ -379,6 +390,21 @@ struct PresentationDetailView: View {
                 }
             }
             .padding()
+        }
+    }
+
+    /// 장표를 한 칸 앞(-1)이나 뒤(+1)로 옮긴다.
+    private func moveSlide(at index: Int, by step: Int, in presentation: Presentation) {
+        let slides = presentation.slides
+        let target = index + step
+        guard slides.indices.contains(index), slides.indices.contains(target) else { return }
+        // moveSlide(before:)는 대상 앞에 끼워 넣으므로, 뒤로 갈 땐 두 칸 뒤 장표 앞(없으면 맨 끝)에 넣는다.
+        if step < 0 {
+            store.moveSlide(slides[index].id, before: slides[target].id, in: presentationID)
+        } else if slides.indices.contains(index + 2) {
+            store.moveSlide(slides[index].id, before: slides[index + 2].id, in: presentationID)
+        } else {
+            store.moveSlides(in: presentationID, fromOffsets: IndexSet(integer: index), toOffset: slides.count)
         }
     }
 
@@ -403,6 +429,7 @@ struct PresentationDetailView: View {
                     .stroke(selected ? Color.accentColor : Color(.separator), lineWidth: selected ? 2.5 : 0.5)
             )
             .opacity(isSelecting && !selected ? 0.6 : 1)
+            .accessibilityHidden(true)
 
             Text("\(number)")
                 .font(.caption2.bold())
@@ -411,6 +438,7 @@ struct PresentationDetailView: View {
                 .padding(.vertical, 2)
                 .background(.black.opacity(0.6), in: Capsule())
                 .padding(5)
+                .accessibilityLabel(Text("장표 \(number)"))
 
             if slide.memo != nil {
                 MemoBadge()
@@ -437,8 +465,11 @@ struct PresentationDetailView: View {
                     .background(Circle().fill(.black.opacity(0.35)))
                     .padding(5)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                    .accessibilityHidden(true)
             }
         }
+        // VoiceOver: "장표 3, 메모 있음, 장표를 인식하지 못해…" 처럼 한 번에 읽는다.
+        .accessibilityElement(children: .combine)
     }
 
     // MARK: - 선택
