@@ -110,10 +110,10 @@ struct ProfileView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("닫기") { dismiss() }
+                    Button("닫기", systemImage: "xmark") { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("저장", action: save)
+                    Button("저장", systemImage: "checkmark", action: save)
                         .disabled(!isValidEmail)
                         .fontWeight(.semibold)
                 }

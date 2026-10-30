@@ -83,6 +83,8 @@ struct PresentationDetailView: View {
         .toolbar { toolbarContent }
         .fullScreenCover(isPresented: $showingCamera) {
             CameraCaptureView(presentationID: presentationID)
+                // 아이폰 듀오를 펴면 카메라는 고르는 쪽 판에만 선다.
+                .foldConfined()
         }
         .sheet(isPresented: $showingPhotoImport) {
             PhotoImportPicker { providers in
@@ -193,10 +195,11 @@ struct PresentationDetailView: View {
     private var toolbarContent: some ToolbarContent {
         if isSelecting {
             ToolbarItem(placement: .topBarLeading) {
-                Button("취소") { exitSelection() }
+                Button("취소", systemImage: "xmark") { exitSelection() }
             }
             ToolbarItem(placement: .topBarTrailing) {
-                Button(allSelected ? "선택 해제" : "모두") { toggleSelectAll() }
+                Button(allSelected ? "선택 해제" : "모두",
+                       systemImage: allSelected ? "circle" : "checkmark.circle") { toggleSelectAll() }
             }
             ToolbarItem(placement: .topBarTrailing) {
                 shareMenu(label: Image(systemName: "square.and.arrow.up"))

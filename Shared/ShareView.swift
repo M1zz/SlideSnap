@@ -227,14 +227,14 @@ struct ShareView: View {
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
                         if model.phase != .saved {
-                            Button("취소") { model.onCancel() }
+                            Button("취소", systemImage: "xmark") { model.onCancel() }
                         }
                     }
                     ToolbarItem(placement: .confirmationAction) {
                         if model.phase == .saved {
-                            Button("확인") { model.onFinish() }
+                            Button("확인", systemImage: "checkmark") { model.onFinish() }
                         } else {
-                            Button("발표 만들기") { model.save() }
+                            Button("발표 만들기", systemImage: "checkmark") { model.save() }
                                 .fontWeight(.semibold)
                                 .disabled(model.phase != .ready || model.isSaving)
                         }

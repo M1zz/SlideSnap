@@ -187,7 +187,7 @@ struct SlideDetailView: View {
         .toolbar {
             ToolbarItemGroup(placement: .keyboard) {
                 Spacer()
-                Button("완료") { memoFocused = false }
+                Button("완료", systemImage: "checkmark") { memoFocused = false }
             }
         }
     }

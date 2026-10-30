@@ -90,17 +90,17 @@ struct CornerAdjustView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("취소") { dismiss() }
+                    Button("취소", systemImage: "xmark") { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("적용") {
+                    Button("적용", systemImage: "checkmark") {
                         onApply(quad)
                         dismiss()
                     }
                     .fontWeight(.semibold)
                 }
                 ToolbarItemGroup(placement: .bottomBar) {
-                    Button("자동 감지") {
+                    Button("자동 감지", systemImage: "viewfinder") {
                         if let detected = ImageProcessor.detectSlideQuad(in: image) {
                             withAnimation(.easeInOut(duration: 0.2)) { quad = detected }
                         }

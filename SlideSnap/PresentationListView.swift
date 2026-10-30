@@ -44,6 +44,12 @@ struct PresentationListView: View {
     #endif
 
     @State private var path = NavigationPath()
+    /// 아이폰 듀오를 폈을 때 결과 쪽 판에 펼친 발표와, 그 판에서 들어간 장표.
+    @State private var shownID: UUID?
+    @State private var resultPath: [SlideRoute] = []
+    /// 접힌 채 맨 위에 보던 발표(와 장표). 펴는 순간 결과 쪽으로 옮긴다.
+    @State private var stackTop: (presentation: UUID, slide: SlideRoute?)?
+    @Environment(\.foldLayout) private var fold
     @State private var showingCamera = false
     @State private var cameraPresentationID: UUID?
     @State private var hasAutoLaunchedCamera = false
@@ -54,6 +60,64 @@ struct PresentationListView: View {
     private static let groupingWindow: TimeInterval = 5 * 60
 
     var body: some View {
+        // 아이폰 듀오를 펴면 고르는 쪽(왼쪽 · 아래)에 발표 목록, 결과 쪽(오른쪽 · 위)에 고른 발표의 장표.
+        // 접혀 있거나 보통 아이폰이면 목록만 그린다. 지금 화면 그대로.
+        FoldSplitView {
+            list
+        } result: {
+            FoldPresentationPane(presentationID: shownPresentationID, path: $resultPath)
+        }
+        .onChange(of: fold.isUnfolded) { _, unfolded in
+            guard unfolded, !path.isEmpty, let top = stackTop else { return }
+            shownID = top.presentation
+            resultPath = top.slide.map { [$0] } ?? []
+            path = NavigationPath()
+        }
+    }
+
+    /// 결과 쪽에 설 발표. 고른 것이 지워졌으면 맨 위 발표.
+    private var shownPresentationID: UUID? {
+        if let shownID, store.presentation(shownID) != nil { return shownID }
+        return store.presentations.first?.id
+    }
+
+    /// 발표를 연다: 접혀 있으면 밀어 넣고, 펴져 있으면 결과 쪽 판에 펼친다.
+    private func open(_ id: UUID) {
+        if fold.isUnfolded {
+            shownID = id
+            resultPath = []
+        } else {
+            path.append(id)
+        }
+    }
+
+    /// 장표를 연다(검색 결과): 펴져 있으면 결과 쪽 판에서 그 발표의 장표로 들어간다.
+    private func openSlide(_ route: SlideRoute) {
+        if fold.isUnfolded {
+            shownID = route.presentationID
+            resultPath = [route]
+        } else {
+            path.append(route)
+        }
+    }
+
+    /// 접혀 있으면 지금처럼 밀어 넣는 링크, 펴져 있으면 결과 쪽 판에 여는 단추.
+    @ViewBuilder
+    private func openLink<Label: View>(_ value: some Hashable, open: @escaping () -> Void,
+                                       @ViewBuilder label: () -> Label) -> some View {
+        if fold.isUnfolded {
+            Button(action: open) {
+                label()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+        } else {
+            NavigationLink(value: value, label: label)
+        }
+    }
+
+    private var list: some View {
         NavigationStack(path: $path) {
             content
             .navigationTitle(isSelecting ? String(localized: "\(selectedIDs.count)개 선택") : "")
@@ -61,9 +125,11 @@ struct PresentationListView: View {
             .searchable(text: $searchText, prompt: "장표 텍스트·제목 검색")
             .navigationDestination(for: UUID.self) { id in
                 PresentationDetailView(presentationID: id)
+                    .onAppear { stackTop = (id, nil) }
             }
             .navigationDestination(for: SlideRoute.self) { route in
                 SlideDetailView(presentationID: route.presentationID, slideID: route.slideID)
+                    .onAppear { stackTop = (route.presentationID, route) }
             }
             .toolbar { toolbarContent }
             .fullScreenCover(isPresented: $showingCamera, onDismiss: cameraFinished) {
@@ -71,6 +137,8 @@ struct PresentationListView: View {
                     CameraCaptureView(presentationID: cameraPresentationID) {
                         cameraCaptured = true
                     }
+                    // 아이폰 듀오를 펴면 카메라는 고르는 쪽 판에만 선다.
+                    .foldConfined()
                 }
             }
             .sheet(isPresented: $showingPhotoImport) {
@@ -173,14 +241,18 @@ struct PresentationListView: View {
     private var toolbarContent: some ToolbarContent {
         if isSelecting {
             ToolbarItem(placement: .topBarLeading) {
-                Button("취소") { exitSelection() }
+                Button("취소", systemImage: "xmark") { exitSelection() }
             }
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     showingMergeConfirm = true
                 } label: {
-                    Text(selectedIDs.count >= 2 ? "합치기 (\(selectedIDs.count))" : "합치기" as LocalizedStringKey)
-                        .fontWeight(.semibold)
+                    Label {
+                        Text(selectedIDs.count >= 2 ? "합치기 (\(selectedIDs.count))" : "합치기" as LocalizedStringKey)
+                            .fontWeight(.semibold)
+                    } icon: {
+                        Image(systemName: "arrow.triangle.merge")
+                    }
                 }
                 .disabled(selectedIDs.count < 2)
             }
@@ -275,7 +347,7 @@ struct PresentationListView: View {
         guard let merged = store.mergePresentations(selectedIDs) else { return }
         LeeoUsageReporter(spec: SlideSnapSpec.self).logEventInBackground("merge")
         exitSelection()
-        path.append(merged)
+        open(merged)
     }
 
     /// 선택 모드에서 각 발표 앞에 붙는 체크 표시.
@@ -361,10 +433,18 @@ struct PresentationListView: View {
                         .buttonStyle(.plain)
                         .accessibilityAddTraits(selectedIDs.contains(presentation.id) ? .isSelected : [])
                     } else {
-                        NavigationLink(value: presentation.id) {
+                        openLink(presentation.id, open: { open(presentation.id) }) {
                             presentationCard(presentation)
                         }
                         .buttonStyle(.plain)
+                        .overlay {
+                            if fold.isUnfolded && presentation.id == shownPresentationID {
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(Color.accentColor, lineWidth: 3)
+                                    .allowsHitTesting(false)
+                            }
+                        }
+                        .accessibilityAddTraits(fold.isUnfolded && presentation.id == shownPresentationID ? .isSelected : [])
                         .contextMenu {
                             Button {
                                 startRename(presentation)
@@ -452,9 +532,13 @@ struct PresentationListView: View {
                     .buttonStyle(.plain)
                     .accessibilityAddTraits(selectedIDs.contains(presentation.id) ? .isSelected : [])
                 } else {
-                    NavigationLink(value: presentation.id) {
+                    openLink(presentation.id, open: { open(presentation.id) }) {
                         row(presentation)
                     }
+                    // 펼친 화면에서 결과 쪽에 열린 발표
+                    .listRowBackground(fold.isUnfolded && presentation.id == shownPresentationID
+                                       ? Color.accentColor.opacity(0.15) : nil)
+                    .accessibilityAddTraits(fold.isUnfolded && presentation.id == shownPresentationID ? .isSelected : [])
                     .swipeActions(edge: .leading) {
                         Button {
                             startRename(presentation)
@@ -485,7 +569,8 @@ struct PresentationListView: View {
             ContentUnavailableView.search(text: searchText)
         } else {
             List(results) { result in
-                NavigationLink(value: SlideRoute(presentationID: result.presentationID, slideID: result.id)) {
+                let route = SlideRoute(presentationID: result.presentationID, slideID: result.id)
+                openLink(route, open: { openSlide(route) }) {
                     searchRow(result)
                 }
             }
@@ -554,7 +639,7 @@ struct PresentationListView: View {
             if store.presentation(presentation.id)?.slides.isEmpty ?? true {
                 store.deletePresentation(presentation.id)
             } else {
-                path.append(presentation.id)
+                open(presentation.id)
             }
         }
     }
@@ -581,7 +666,7 @@ struct PresentationListView: View {
             isImportingShared = false
             if let lastID {
                 path = NavigationPath()
-                path.append(lastID)
+                open(lastID)
             }
         }
     }
@@ -652,7 +737,7 @@ struct PresentationListView: View {
         cameraPresentationID = nil
         if cameraCaptured {
             store.promoteDraft(id)
-            path.append(id)
+            open(id)
         } else if cameraCreatedNew {
             store.discardDraft(id)
         }
@@ -699,5 +784,30 @@ struct PresentationListView: View {
         let formatter = DateFormatter()
         formatter.setLocalizedDateFormatFromTemplate("yMdEHHmm")
         return formatter.string(from: date)
+    }
+}
+
+// MARK: - 아이폰 듀오 결과 쪽
+
+/// 펼친 화면의 결과 쪽 판. 고른 발표의 장표 격자를, 접혔을 때 밀어 넣던 그 화면 그대로 보여 준다.
+/// 장표를 누르면 이 판 안에서 장표 화면으로 들어간다.
+private struct FoldPresentationPane: View {
+    let presentationID: UUID?
+    @Binding var path: [SlideRoute]
+
+    var body: some View {
+        NavigationStack(path: $path) {
+            Group {
+                if let presentationID {
+                    PresentationDetailView(presentationID: presentationID)
+                        .id(presentationID)
+                } else {
+                    ContentUnavailableView("발표가 없습니다", systemImage: "rectangle.on.rectangle.angled")
+                }
+            }
+            .navigationDestination(for: SlideRoute.self) { route in
+                SlideDetailView(presentationID: route.presentationID, slideID: route.slideID)
+            }
+        }
     }
 }
