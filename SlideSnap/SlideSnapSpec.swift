@@ -33,6 +33,9 @@ enum SlideSnapSpec: LeeoAppSpec {
     /// 인앱 결제 없음.
     static let monetization = LeeoMonetization.free
 
+    /// 금고가 위젯과 함께 쓰는 공유 컨테이너도 백업한다.
+    static let appGroups = ["group.com.leeo.slidesnap"]
+
     /// App Store 앱 ID — 리뷰 링크 · 친구에게 소개하기에 쓴다.
     static var appStoreID: String? { "6790835318" }
 }

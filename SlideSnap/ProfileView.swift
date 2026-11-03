@@ -86,6 +86,9 @@ struct ProfileView: View {
                     NavigationLink(LeeoRoadmapText.entry) { RoadmapScreen() }
                     LeeoShareAppLink<SlideSnapSpec>()
                     LeeoTipJarLink<SlideSnapSpec>(tipJar: SlideSnapTip.tipJar)
+                    NavigationLink { LeeoVaultView(appName: SlideSnapSpec.displayName) } label: {
+                        Label(LeeoVaultText.entry, systemImage: "externaldrive.badge.timemachine")
+                    }
                     LabeledContent("버전", value: AppInfo.appVersion)
                         .contentShape(Rectangle())
                         .onTapGesture { handleVersionTap() }
