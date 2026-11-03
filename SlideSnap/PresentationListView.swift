@@ -206,6 +206,13 @@ struct PresentationListView: View {
             .onChange(of: router.cameraLaunchRequest) { _, _ in
                 openCamera()   // 위젯 등 딥링크로 카메라 즉시 실행
             }
+            .onChange(of: router.slideRequest) { _, route in
+                // Spotlight · Siri 에서 고른 장표를 연다. 보던 화면은 접고 그 장표로 간다.
+                guard let route else { return }
+                path = NavigationPath()
+                openSlide(route)
+                router.slideRequest = nil
+            }
             .alert("새 발표", isPresented: $showingNewAlert) {
                 TextField("발표 제목", text: $newTitle)
                 Button("만들기") {

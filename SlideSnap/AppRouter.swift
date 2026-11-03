@@ -10,6 +10,11 @@ import SwiftUI
 
 @MainActor
 final class AppRouter: ObservableObject {
+    /// Siri · Spotlight 인텐트도 같은 라우터로 화면을 움직인다 (→ SlideIntents.swift).
+    static let shared = AppRouter()
+
+    /// 장표 하나를 열어 달라는 요청(Spotlight · Siri 결과를 눌렀을 때). 목록 화면이 열고 비운다.
+    @Published var slideRequest: SlideRoute?
     /// 카메라 즉시 실행 요청. 값이 바뀔 때마다 목록 화면이 카메라를 연다.
     @Published var cameraLaunchRequest = 0
     /// 공유 익스텐션이 넘긴 사진 가져오기 요청. 값이 바뀔 때마다 목록 화면이 수신함을 비운다.

@@ -68,6 +68,7 @@ final class Store: ObservableObject {
     private func persist() {
         guard let data = try? JSONEncoder().encode(presentations) else { return }
         try? data.write(to: storeFileURL, options: .atomic)
+        SlideLibrary.scheduleReindex()
     }
 
     // MARK: - 발표

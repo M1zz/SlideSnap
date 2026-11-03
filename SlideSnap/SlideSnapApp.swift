@@ -6,7 +6,7 @@ struct SlideSnapApp: App {
     @StateObject private var store = Store()
     @StateObject private var profile = UserProfileStore()
     @StateObject private var feedbackPrompt = FeedbackPromptManager()
-    @StateObject private var router = AppRouter()
+    @StateObject private var router = AppRouter.shared
     @StateObject private var cloudSync = CloudSync()
     @Environment(\.scenePhase) private var scenePhase
 
@@ -24,6 +24,8 @@ struct SlideSnapApp: App {
                     router.handle(url)
                 }
                 .task { await SlideSnapTip.tipJar.startStandalone() }
+                // Spotlight 에 싣는 장표를 지금 것에 맞춘다 (→ SlideIntents.swift)
+                .task { await SlideLibrary.reindex() }
                 .onAppear {
                     cloudSync.attach(store)
                     if cloudSync.isEnabled { UIApplication.shared.registerForRemoteNotifications() }
