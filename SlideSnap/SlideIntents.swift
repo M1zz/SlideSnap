@@ -92,6 +92,7 @@ struct FindSlidesIntent: AppIntent {
     )
 
     @Parameter(title: LocalizedStringResource("찾을 말", comment: "Siri: search word parameter"),
+               description: LocalizedStringResource("장표에 찍힌 글자나 내 메모에서 찾을 단어", comment: "Siri: search word parameter description"),
                requestValueDialog: IntentDialog(LocalizedStringResource("어떤 말을 찾을까요?", comment: "Siri: ask what to search")))
     var query: String
 
@@ -107,8 +108,12 @@ struct FindSlidesIntent: AppIntent {
 /// 장표를 연다. Spotlight · Siri 결과를 누르면 여기로 온다.
 struct OpenSlideIntent: OpenIntent {
     static let title = LocalizedStringResource("장표 열기", comment: "Siri/Spotlight: open a slide")
+    static let description = IntentDescription(
+        LocalizedStringResource("찍어 둔 장표를 앱에서 엽니다.", comment: "Siri: open slide description")
+    )
 
-    @Parameter(title: LocalizedStringResource("장표", comment: "Siri: slide parameter"))
+    @Parameter(title: LocalizedStringResource("장표", comment: "Siri: slide parameter"),
+               description: LocalizedStringResource("열어 볼 장표", comment: "Siri: slide parameter description"))
     var target: SlideEntity
 
     init() {}
