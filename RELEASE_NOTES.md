@@ -3,6 +3,176 @@
 App Store "이 버전의 새로운 기능"에 그대로 올라가는 원본입니다.
 `## 버전` 아래 `### ... 앱스토어` 절만 스토어로 나갑니다.
 
+## 1.0.11
+
+### 앱스토어 (한국어)
+
+Spotlight에서 단어 하나로 장표를 찾을 수 있어요
+Siri에게 장표를 찍거나 찾아 달라고 해 보세요
+매일 자동으로 백업하고 언제든 되살릴 수 있어요
+저장한 장표와 녹음을 더 안전하게 지킵니다
+
+### App Store (English)
+
+Find slides in Spotlight with one word
+Ask Siri to capture or find slides
+Daily backups you can restore anytime
+Slides and recordings are kept safer
+
+### App Store (en-GB)
+
+Find slides in Spotlight with one word
+Ask Siri to capture or find slides
+Daily backups you can restore any time
+Slides and recordings are kept safer
+
+### App Store (zh-Hans)
+
+在聚焦搜索中输入一个词就能找到幻灯片
+可以让 Siri 帮你拍摄或查找幻灯片
+每天自动备份，随时可以恢复
+已保存的幻灯片和录音更加安全
+
+### App Store (zh-Hant)
+
+在 Spotlight 輸入一個詞就能找到投影片
+可以請 Siri 幫你拍攝或尋找投影片
+每天自動備份，隨時都能還原
+已儲存的投影片和錄音更加安全
+
+### 앱스토어 (일본어)
+
+Spotlightで単語ひとつからスライドを探せます
+Siriにスライドの撮影や検索を頼めます
+毎日自動でバックアップ、いつでも復元できます
+保存したスライドと録音をより安全に守ります
+
+### 앱스토어 (러시아어)
+
+Ищите слайды в Spotlight по одному слову
+Попросите Siri снять или найти слайды
+Ежедневные копии с восстановлением
+Слайды и записи теперь хранятся надёжнее
+
+### 앱스토어 (스페인어)
+
+Busca diapositivas en Spotlight
+Siri captura o busca diapositivas
+Copias diarias que puedes restaurar
+Diapositivas y grabaciones más seguras
+
+### 앱스토어 (독일어)
+
+Finde Folien per Spotlight
+Siri nimmt Folien auf oder findet sie
+Tägliche Backups zum Wiederherstellen
+Folien und Aufnahmen sind jetzt sicherer
+
+### 앱스토어 (프랑스어)
+
+Retrouvez une diapositive dans Spotlight
+Demandez à Siri de capturer ou chercher
+Sauvegarde quotidienne restaurable
+Diapos et enregistrements mieux protégés
+
+### 앱스토어 (이탈리아어)
+
+Trova le slide in Spotlight
+Chiedi a Siri di scattare o cercare
+Backup giornalieri sempre ripristinabili
+Slide e registrazioni ora più al sicuro
+
+### App Store (pt-BR)
+
+Encontre slides no Spotlight
+Peça à Siri para fotografar ou buscar
+Backup diário que você pode restaurar
+Slides e gravações ainda mais protegidos
+
+### 앱스토어 (태국어)
+
+ค้นหาสไลด์ใน Spotlight ได้ด้วยคำเดียว
+สั่ง Siri ให้ถ่ายหรือค้นหาสไลด์ได้
+สำรองข้อมูลทุกวัน กู้คืนได้ทุกเมื่อ
+สไลด์และเสียงที่บันทึกไว้ปลอดภัยยิ่งขึ้น
+
+### 앱스토어 (베트남어)
+
+Tìm slide trong Spotlight bằng một từ
+Nhờ Siri chụp hoặc tìm slide giúp bạn
+Tự sao lưu mỗi ngày, khôi phục dễ dàng
+Slide và bản ghi âm được giữ an toàn hơn
+
+### 앱스토어 (체코어)
+
+Najdi slajd ve Spotlightu jedním slovem
+Požádej Siri, ať vyfotí nebo najde slajd
+Denní zálohy, které kdykoli obnovíš
+Slajdy a nahrávky jsou teď v bezpečí
+
+### 앱스토어 (덴마크어)
+
+Find slides i Spotlight med ét ord
+Bed Siri om at tage eller finde slides
+Daglig backup, du kan gendanne
+Slides og optagelser er bedre beskyttet
+
+### 앱스토어 (그리스어)
+
+Βρείτε διαφάνειες στο Spotlight
+Η Siri τραβά ή βρίσκει διαφάνειες
+Καθημερινά αντίγραφα με επαναφορά
+Διαφάνειες και ηχογραφήσεις πιο ασφαλείς
+
+### 앱스토어 (핀란드어)
+
+Löydä kalvo Spotlightista sanalla
+Pyydä Siriä kuvaamaan tai etsimään
+Päivittäiset varmuuskopiot ja palautus
+Kalvot ja nauhoitteet ovat nyt turvassa
+
+### 앱스토어 (인도네시아어)
+
+Cari slide di Spotlight dengan satu kata
+Minta Siri memotret atau mencari slide
+Cadangan harian, pulihkan kapan saja
+Slide dan rekaman kini lebih aman
+
+### 앱스토어 (노르웨이어(보크말))
+
+Finn lysbilder i Spotlight med ett ord
+Be Siri ta eller finne lysbilder
+Daglig sikkerhetskopi med gjenoppretting
+Lysbilder og opptak er bedre beskyttet
+
+### 앱스토어 (네덜란드어)
+
+Vind dia's in Spotlight met één woord
+Vraag Siri dia's te maken of te zoeken
+Dagelijkse back-ups om terug te zetten
+Je dia's en opnamen zijn beter beschermd
+
+### 앱스토어 (폴란드어)
+
+Znajdź slajd w Spotlight jednym słowem
+Siri zrobi zdjęcie lub znajdzie slajd
+Codzienne kopie zapasowe do przywrócenia
+Slajdy i nagrania są bezpieczniejsze
+
+### 앱스토어 (스웨덴어)
+
+Hitta slides i Spotlight med ett ord
+Be Siri fota eller hitta slides åt dig
+Dagliga säkerhetskopior att återställa
+Slides och inspelningar skyddas bättre
+
+### 앱스토어 (튀르키예어)
+
+Spotlight'ta tek kelimeyle slayt bulun
+Siri'ye slayt çektirin ya da buldurun
+Her gün otomatik yedek ve geri yükleme
+Slaytlar ve kayıtlar artık daha güvende
+
 ## 1.0.10
 
 ### 앱스토어 (한국어)
