@@ -137,8 +137,8 @@ def header_html(lang):
     W, H, (l, t, r, b) = SPEC["header"]
     eyebrow, headline = HEADER[lang]
     sw, sh = r - l, b - t
-    left_img = (RAW / lang / "02-list.png").as_uri()
-    right_img = (RAW / lang / "03-slide.png").as_uri()
+    left_img = (RAW / lang / "04-list.png").as_uri()
+    right_img = (RAW / lang / "05-slide.png").as_uri()
     before = (RAW / lang / "before.jpg").as_uri()
     # 뒷줄에서 비스듬히 찍은 사진(before)이 오른쪽 폰에서 반듯해진다. 사진은 안전 영역 밖 장식이다.
     return f"""

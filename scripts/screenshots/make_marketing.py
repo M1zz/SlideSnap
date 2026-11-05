@@ -23,31 +23,52 @@ if DUO:
 W, H = (1398, 2034) if DUO else (1242, 2688)   # 아이폰 듀오 바깥 화면 / App Store 제출 규격 (6.5")
 PREFIX = "duo-" if DUO else ""
 
-# (파일, 레이아웃, 헤드라인, 서브카피) — 파일 이름 순서가 스토어에 보이는 순서
-SHOTS = {
+# 파일 → 레이아웃. 파일 이름 순서가 스토어에 보이는 순서다.
+LAYOUT = {
+    "01-share.png": "hero-bleed",
+    "02-summary.png": "flat-rotate",   # 발표 노트: AI 요약 + 녹음 (notes.json 에 summary 가 있는 언어만)
+    "03-record.png": "text-bottom",    # 장표에서 녹음 듣기 · 받아쓴 말
+    "04-list.png": "left-text",
+    "05-slide.png": "before-after",
+    "06-detail.png": "text-bottom",
+    "07-search.png": "dark",
+    "08-memo.png": "duo",
+}
+# 기본 장(01 · 04~08)의 (헤드라인, 서브카피) — 위 순서에서 02 · 03 을 뺀 순서
+TEXT = {
     "ko": [
-        ("01-share.png",  "hero-bleed",  "사진 앱에서 골라<br>바로 발표 자료로", "여러 장을 공유하면 하나로 정리돼요"),
-        ("02-list.png",   "left-text",   "강의 장표를<br>발표별로 한눈에", "찍은 장표가 자동으로 묶여요"),
-        ("03-slide.png",  "before-after", "비스듬히 찍어도<br>반듯하게", "모서리를 찾아 자동으로 펴 드려요"),
-        ("04-detail.png", "text-bottom", "필기 대신 찍고<br>PDF로 정리", "모은 장표를 복습용 PDF로 내보내요"),
-        ("05-search.png", "dark",        "장표 속 글자까지<br>검색", "기억나는 단어 하나면 충분해요"),
-        ("06-memo.png",   "duo",         "장표마다<br>한 줄 메모", "메모한 단어로도 다시 찾아요"),
+        ("사진 앱에서 골라<br>바로 발표 자료로", "여러 장을 공유하면 하나로 정리돼요"),
+        ("강의 장표를<br>발표별로 한눈에", "찍은 장표가 자동으로 묶여요"),
+        ("비스듬히 찍어도<br>반듯하게", "모서리를 찾아 자동으로 펴 드려요"),
+        ("필기 대신 찍고<br>PDF로 정리", "모은 장표를 복습용 PDF로 내보내요"),
+        ("장표 속 글자까지<br>검색", "기억나는 단어 하나면 충분해요"),
+        ("장표마다<br>한 줄 메모", "메모한 단어로도 다시 찾아요"),
     ],
     "en": [
-        ("01-share.png",  "hero-bleed",  "From Photos<br>to a deck", "Share several photos, get one tidy deck"),
-        ("02-list.png",   "left-text",   "Every lecture,<br>neatly filed", "Slides are grouped by session"),
-        ("03-slide.png",  "before-after", "Shot at an angle?<br>Straightened.", "Edges found and corrected for you"),
-        ("04-detail.png", "text-bottom", "Snap instead<br>of scribbling", "Export your slides as a study PDF"),
-        ("05-search.png", "dark",        "Search the words<br>on your slides", "One word is all it takes"),
-        ("06-memo.png",   "duo",         "A quick note<br>on every slide", "Find slides by what you noted"),
+        ("From Photos<br>to a deck", "Share several photos, get one tidy deck"),
+        ("Every lecture,<br>neatly filed", "Slides are grouped by session"),
+        ("Shot at an angle?<br>Straightened.", "Edges found and corrected for you"),
+        ("Snap instead<br>of scribbling", "Export your slides as a study PDF"),
+        ("Search the words<br>on your slides", "One word is all it takes"),
+        ("A quick note<br>on every slide", "Find slides by what you noted"),
     ],
 }
 
-# 그 밖의 언어: locales/<로케일>.json 의 shots (레이아웃·파일은 위 순서와 같다)
+# 그 밖의 언어: locales/<로케일>.json 의 shots. 녹음 · AI 요약 장(02 · 03)은 notes.json 의 shots.
 import json
 for _f in sorted((pathlib.Path(__file__).parent / "locales").glob("*.json")):
-    _shots = json.loads(_f.read_text(encoding="utf-8"))["shots"]
-    SHOTS.setdefault(_f.stem, [(f, l, h, sub) for (f, l, _, _), (h, sub) in zip(SHOTS["en"], _shots)])
+    TEXT.setdefault(_f.stem, [tuple(x) for x in json.loads(_f.read_text(encoding="utf-8"))["shots"]])
+NOTES = json.loads((pathlib.Path(__file__).parent / "notes.json").read_text(encoding="utf-8"))
+
+def shots_for(lang):
+    base = [f for f in LAYOUT if f not in ("02-summary.png", "03-record.png")]
+    text = dict(zip(base, TEXT[lang]))
+    extra = NOTES[lang]["shots"]
+    if "summary" in extra: text["02-summary.png"] = tuple(extra["summary"])
+    text["03-record.png"] = tuple(extra["record"])
+    return [(f, LAYOUT[f], *text[f]) for f in LAYOUT if f in text]
+
+SHOTS = {lang: shots_for(lang) for lang in TEXT}
 
 # 글자 인식(Vision)이 그 언어를 못 읽어 검색 화면을 보여 줄 수 없는 언어 — 검색 장은 뺀다.
 NO_SEARCH = {"el"}
@@ -161,6 +182,12 @@ DUO_LAYOUTS = {
 .duo.front { left:650px; top:800px; transform:rotate(3deg); }
 .duo .phone { border-radius:64px; padding:16px; }
 .duo .phone img { border-radius:46px; }
+""",
+    "flat-rotate": """
+.headline { text-align:center; margin-top:170px; padding:0 80px; }
+.sub { text-align:center; margin-top:44px; }
+.wrap { position:absolute; left:150px; top:700px; }
+.phone { width:1100px; transform:rotate(-5deg); }
 """,
     "dark": """
 body { background:#131316; }

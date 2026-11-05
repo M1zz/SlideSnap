@@ -112,14 +112,21 @@ for lang in $LANGS; do
 import sys; sys.path.insert(0, 'scripts/screenshots'); from slides import MEMOS
 for i, m in MEMOS['$lang'].items(): print(f'-SSDemoMemo{i}'); print(m)")}")
   shoot $lang 01-share.png  share  6
-  shoot $lang 02-list.png   list   4
-  shoot $lang 03-slide.png  slide  4
-  shoot $lang 04-detail.png detail 4
+  shoot $lang 04-list.png   list   4
+  shoot $lang 05-slide.png  slide  4
+  shoot $lang 06-detail.png detail 4
   # 그리스어는 글자 인식(Vision)이 읽지 못해 검색 화면을 찍지 않는다(make_marketing.py NO_SEARCH).
-  [[ $lang == el ]] || shoot $lang 05-search.png "search:$query" 4
-  # 06 메모 소개(아이폰 두 대): 메모를 단 장표 + 메모 단어로 찾은 결과. 메모 검색은 글자 인식과 상관없어 그리스어도 찍는다.
-  shoot $lang 06-memo.png        "slide:3"              4
-  shoot $lang 06-memo-search.png "search:$memo_query"   4
+  [[ $lang == el ]] || shoot $lang 07-search.png "search:$query" 4
+  # 08 메모 소개(아이폰 두 대): 메모를 단 장표 + 메모 단어로 찾은 결과. 메모 검색은 글자 인식과 상관없어 그리스어도 찍는다.
+  shoot $lang 08-memo.png        "slide:3"              4
+  shoot $lang 08-memo-search.png "search:$memo_query"   4
+
+  # 02 · 03 녹음과 AI 요약: 데모 녹음(받아쓴 말·요약은 notes.json 에 있는 언어만)을 붙인다.
+  # 녹음이 한 번 붙으면 남으므로 다른 장을 다 찍은 뒤에 찍는다.
+  notes=$(python3 -c "import json; d=json.load(open('scripts/screenshots/notes.json'))['$lang']; print(json.dumps({k: d[k] for k in ('summary', 'spoken') if k in d}))")
+  MEMO_ARGS+=(-SSDemoNotes "$(printf %s "$notes" | base64)")
+  [[ $notes == *summary* ]] && shoot $lang 02-summary.png notes 9
+  shoot $lang 03-record.png "slide:1" 4
 done
 xcrun simctl status_bar $UDID clear
 rm -rf "$WORK"
