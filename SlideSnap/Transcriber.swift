@@ -32,9 +32,10 @@ enum Transcriber {
         ("zh-CN", String(localized: "중국어"))
     ]
 
-    /// 앱 언어에 맞춘 기본 받아쓰기 언어
+    /// 앱 언어에 맞춘 기본 받아쓰기 언어. 받아쓸 수 없는 언어면 영어.
     static var defaultLanguage: String {
-        Bundle.main.preferredLocalizations.first?.hasPrefix("en") == true ? "en-US" : "ko-KR"
+        let app = Bundle.main.preferredLocalizations.first ?? "en"
+        return languages.first { app.hasPrefix(String($0.id.prefix(2))) }?.id ?? "en-US"
     }
 
     /// - Parameter onProgress: 0...1 진행률 (알 수 있을 때만)

@@ -13,6 +13,8 @@
 //    -SSDemoScreen search:<검색어>  장표 글자 검색 결과
 //    -SSDemoScreen share           공유 익스텐션 화면 (App Group의 DemoShare/ 사진으로)
 //    -SSDemoMemo<n> <메모>         첫 발표의 n번째(0부터) 장표에 메모를 단다 (어느 화면과도 함께)
+//    -SSDemoNotes <base64 JSON>    첫 발표에 데모 녹음을 붙이고, 있으면 받아쓴 말·AI 요약도 넣는다
+//                                  {"summary":{"overview":…,"points":[…],"keywords":[…]}, "spoken":{"1":"…"}}
 //
 //  scripts/make_screenshots.sh 가 이 인자로 화면을 하나씩 띄워 찍는다.
 //
@@ -48,6 +50,23 @@ enum DemoMode {
         }
         return result
     }
+
+    /// 발표 노트 데모: 녹음 하나와, 있으면 장표별로 받아쓴 말(장표 번호 0부터)과 AI 요약.
+    struct Notes: Decodable {
+        struct Summary: Decodable { var overview: String; var points: [String]; var keywords: [String] }
+        var summary: Summary?
+        var spoken: [String: String]?
+    }
+
+    static var notes: Notes? {
+        // 실행 인자 값은 plist 로 해석되어 JSON 이 깨지므로 base64 로 받는다.
+        guard let raw = UserDefaults.standard.string(forKey: "SSDemoNotes"),
+              let data = Data(base64Encoded: raw) else { return nil }
+        return try? JSONDecoder().decode(Notes.self, from: data)
+    }
+
+    /// 실행할 때마다 녹음이 늘지 않게 늘 같은 id 를 쓴다.
+    static let recordingID = UUID(uuidString: "00000000-0000-0000-0000-00000000DE70")!
 
     /// 공유 화면 데모에 쓸 사진들(이름순).
     static var shareDemoPhotos: [URL] {

@@ -686,6 +686,7 @@ struct PresentationListView: View {
             for (index, memo) in DemoMode.memos where index < first.slides.count {
                 store.setMemo(memo, slideID: first.slides[index].id, presentationID: first.id)
             }
+            if let notes = DemoMode.notes { applyDemoNotes(notes, to: first) }
         }
         switch screen {
         case .list:
@@ -709,6 +710,31 @@ struct PresentationListView: View {
             demoShareModel = model
             let providers = DemoMode.shareDemoPhotos.compactMap { NSItemProvider(contentsOf: $0) }
             Task { await model.load(providers) }
+        }
+    }
+
+    /// 장표를 찍는 내내 녹음한 것처럼 녹음 하나를 붙이고, 장표마다 그때 한 말과 요약을 넣는다.
+    private func applyDemoNotes(_ notes: DemoMode.Notes, to presentation: Presentation) {
+        guard let start = presentation.slides.map(\.createdAt).min(),
+              let end = presentation.slides.map(\.createdAt).max() else { return }
+        if !presentation.allRecordings.contains(where: { $0.id == DemoMode.recordingID }) {
+            let recording = Recording(id: DemoMode.recordingID, startedAt: start.addingTimeInterval(-30),
+                                      duration: end.timeIntervalSince(start) + 90, file: "demo.m4a")
+            store.addRecording(recording, to: presentation.id)
+        }
+        if let spoken = notes.spoken {
+            let segments = spoken.compactMap { key, text -> TranscriptSegment? in
+                guard let index = Int(key), index < presentation.slides.count else { return nil }
+                let offset = presentation.slides[index].createdAt.timeIntervalSince(start) + 30
+                return TranscriptSegment(start: offset + 2, end: offset + 40, text: text)
+            }
+            store.setTranscript(segments.sorted { $0.start < $1.start }, locale: Transcriber.defaultLanguage,
+                                recordingID: DemoMode.recordingID, presentationID: presentation.id)
+        }
+        if let summary = notes.summary {
+            store.setSummary(PresentationSummary(overview: summary.overview, keyPoints: summary.points,
+                                                 keywords: summary.keywords, generatedAt: Date()),
+                             presentationID: presentation.id)
         }
     }
     #endif
