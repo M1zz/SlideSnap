@@ -3749,6 +3749,148 @@
           }
         }
       }
+    },
+    "사진마다 장표 모서리를 찾아 반듯하게 펴고, 글자를 인식해 검색할 수 있게 정리해요." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Each photo is straightened to the slide's edges, and its text is recognized so you can search it."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Each photo is straightened to the slide's edges, and its text is recognised so you can search it."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "会逐张照片找出幻灯片的边角并校正为正面效果，同时识别文字以便搜索。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "會逐張照片找出投影片的邊角並校正為正面效果，同時辨識文字以便搜尋。"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "写真ごとにスライドの角を見つけてまっすぐに補正し、文字を認識して検索できるようにします。"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "На каждом фото находятся края слайда, изображение выравнивается, а текст распознаётся, чтобы его можно было искать."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cada foto se endereza según los bordes de la diapositiva y se reconoce su texto para poder buscarlo."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bei jedem Foto werden die Folienkanten erkannt und begradigt, und der Text wird für die Suche erfasst."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chaque photo est redressée selon les bords de la diapositive, et son texte est reconnu pour la recherche."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ogni foto viene raddrizzata sui bordi della diapositiva e il testo viene riconosciuto per poterlo cercare."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cada foto é endireitada pelas bordas do slide e o texto é reconhecido para você poder pesquisar."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "แอปจะหาขอบสไลด์ในแต่ละรูปแล้วปรับให้ตรง พร้อมจดจำข้อความเพื่อให้ค้นหาได้"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ứng dụng tìm cạnh slide trong từng ảnh, nắn thẳng và nhận dạng chữ để bạn có thể tìm kiếm."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "U každé fotky se najdou okraje slajdu, narovná se a rozpozná se text, takže v něm půjde vyhledávat."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvert foto rettes ud efter slidens kanter, og teksten genkendes, så du kan søge i den."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Κάθε φωτογραφία ισιώνει στα όρια της διαφάνειας και το κείμενό της αναγνωρίζεται, ώστε να μπορείτε να το αναζητάτε."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jokainen kuva suoristetaan kalvon reunojen mukaan, ja sen teksti tunnistetaan, jotta voit hakea sitä."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setiap foto diluruskan mengikuti tepi slide, dan teksnya dikenali agar bisa dicari."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvert bilde rettes opp etter kantene på lysbildet, og teksten gjenkjennes slik at du kan søke i den."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elke foto wordt rechtgezet langs de randen van de dia en de tekst wordt herkend, zodat je erin kunt zoeken."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Na każdym zdjęciu wykrywamy krawędzie slajdu i prostujemy go, a tekst jest rozpoznawany, więc można go wyszukiwać."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varje foto räts upp efter slidens kanter och texten känns igen så att du kan söka i den."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Her fotoğraf slaytın kenarlarına göre düzeltilir ve aranabilmesi için metni tanınır."
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

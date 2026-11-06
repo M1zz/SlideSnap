@@ -119,7 +119,7 @@ final class ShareModel: ObservableObject, Identifiable {
             title: title.trimmingCharacters(in: .whitespacesAndNewlines),
             files: ordered.map(\.file),
             capturedAt: ordered.map(\.capturedAt),
-            enhance: enhance,
+            enhance: enhance && ShareInbox.enhanceUnlocked,
             createdAt: Date()
         )
         do {
@@ -306,9 +306,16 @@ struct ShareView: View {
                         Text(order.label).tag(order)
                     }
                 }
-                Toggle("글자 또렷하게 보정", isOn: $model.enhance)
+                // 또렷하게 보정은 Plus 기능이다. 쓸 수 없으면 단추를 세우지 않는다.
+                if ShareInbox.enhanceUnlocked {
+                    Toggle("글자 또렷하게 보정", isOn: $model.enhance)
+                }
             } footer: {
-                Text("사진마다 장표 모서리를 찾아 반듯하게 펴고, 글자를 인식해 검색할 수 있게 정리해요. 글자 보정은 그림자와 흐린 대비를 걷어 내요.")
+                if ShareInbox.enhanceUnlocked {
+                    Text("사진마다 장표 모서리를 찾아 반듯하게 펴고, 글자를 인식해 검색할 수 있게 정리해요. 글자 보정은 그림자와 흐린 대비를 걷어 내요.")
+                } else {
+                    Text("사진마다 장표 모서리를 찾아 반듯하게 펴고, 글자를 인식해 검색할 수 있게 정리해요.")
+                }
             }
         }
     }

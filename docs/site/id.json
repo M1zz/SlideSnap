@@ -5,7 +5,7 @@
     "headline": "Difoto dari samping.\nTersimpan dari depan.",
     "lead": "Kamera menemukan keempat sudut slide, meluruskannya, lalu memotong semua yang ada di sekitarnya. Slide yang Anda foto berurutan masuk ke presentasi yang sama.",
     "cta": "Unduh di App Store",
-    "note": "Sekali beli, semua fitur. Tanpa langganan, tanpa akun."
+    "note": "Gratis diunduh, hingga 10 presentasi. Tanpa akun."
   },
   "demo": {
     "title": "Coba luruskan sendiri",
@@ -64,27 +64,26 @@
     "note": "Pengenalan teks, transkripsi, dan ringkasan AI semuanya berjalan di perangkat Anda."
   },
   "pricing": {
-    "title": "Sekali beli, dapat semuanya",
+    "title": "Mulai gratis, tambahkan Plus atau Pro saat perlu",
     "free": {
-      "name": "CatchSlide",
+      "name": "Gratis",
       "items": [
         "Foto tanpa suara, ambil otomatis, dan pelurusan",
         "Impor banyak foto sekaligus dari app Foto",
         "Slide per presentasi, cari di teks dan catatan",
-        "Rekaman, transkripsi, dan ringkasan AI",
-        "Ekspor ke PDF, Markdown, dan PowerPoint",
-        "Sinkronisasi iCloud dan widget"
+        "Bagikan gambar, ekspor PDF satu slide per halaman, dan widget",
+        "Hingga 10 presentasi"
       ]
     },
     "pro": {
-      "name": "Tip (opsional)",
+      "name": "Plus · Pro",
       "items": [
-        "Kalau aplikasi ini membantu, Anda bisa memberi tip kecil untuk pengembang",
-        "Tip tidak membuka fitur apa pun. Semua fitur tetap bisa dipakai tanpa tip"
+        "Plus: presentasi tanpa batas, perjelas keterbacaan, PDF dua atau empat slide per halaman",
+        "Pro: semua fitur Plus, ditambah rekaman, transkripsi, ringkasan AI, ekspor Markdown dan PowerPoint, serta sinkronisasi iCloud"
       ],
-      "note": "Ada di layar Info Saya."
+      "note": "Pilih langganan mingguan, bulanan, atau tahunan, atau bayar sekali untuk selamanya."
     },
-    "note": "Tanpa langganan dan tanpa pembelian untuk membuka fitur. Lihat harga di negara Anda di App Store."
+    "note": "Tip hanyalah ucapan terima kasih dan tidak membuka fitur apa pun. Jika Anda membeli CatchSlide saat masih berbayar, Anda tetap mendapat Pro seumur hidup."
   },
   "faq": {
     "title": "Pertanyaan umum",

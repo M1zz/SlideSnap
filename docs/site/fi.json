@@ -5,7 +5,7 @@
     "headline": "Kuvattu sivusta.\nTallennettu edestä.",
     "lead": "Kamera löytää kalvon kaikki neljä kulmaa, oikaisee sen ja rajaa ympäristön pois. Peräkkäin kuvaamasi kalvot päätyvät samaan esitykseen.",
     "cta": "Lataa App Storesta",
-    "note": "Yksi ostos, kaikki ominaisuudet. Ei tilausta, ei tiliä."
+    "note": "Ilmainen ladata, enintään 10 esitystä. Ei tiliä."
   },
   "demo": {
     "title": "Oikaise itse",
@@ -64,27 +64,26 @@
     "note": "Tekstintunnistus, litterointi ja tekoälytiivistelmät tehdään laitteella."
   },
   "pricing": {
-    "title": "Osta kerran, saat kaiken",
+    "title": "Aloita ilmaiseksi ja lisää Plus tai Pro tarvittaessa",
     "free": {
-      "name": "CatchSlide",
+      "name": "Ilmainen",
       "items": [
         "Äänetön kuvaus, automaattinen kuvaus ja oikaisu",
         "Useiden kuvien tuonti kerralla Kuvat-sovelluksesta",
         "Kalvot esityksittäin, haku tekstistä ja muistiinpanoista",
-        "Äänitys, litterointi ja tekoälytiivistelmä",
-        "Vienti PDF-, Markdown- ja PowerPoint-muotoon",
-        "iCloud-synkronointi ja widgetit"
+        "Kuvien jakaminen, PDF-vienti yksi kalvo per sivu ja widgetit",
+        "Enintään 10 esitystä"
       ]
     },
     "pro": {
-      "name": "Tippi (vapaaehtoinen)",
+      "name": "Plus · Pro",
       "items": [
-        "Jos sovelluksesta on sinulle apua, voit antaa kehittäjälle pienen tipin",
-        "Tippi ei avaa mitään. Kaikki ominaisuudet toimivat ilmankin"
+        "Plus: rajattomasti esityksiä, parempi luettavuus, PDF kaksi tai neljä kalvoa per sivu",
+        "Pro: kaikki Plusin ominaisuudet sekä äänitys, litterointi, tekoälytiivistelmä, vienti Markdown- ja PowerPoint-muotoon ja iCloud-synkronointi"
       ],
-      "note": "Löydät sen Omat tiedot -näkymästä."
+      "note": "Valitse viikko-, kuukausi- tai vuositilaus tai maksa kerran ikuisesti."
     },
-    "note": "Ei tilausta eikä maksullisia lisäominaisuuksia. Katso hinta omassa maassasi App Storesta."
+    "note": "Juomaraha on pelkkä kiitos eikä avaa mitään. Jos ostit CatchSliden sen ollessa maksullinen, Pro pysyy sinulla ikuisesti."
   },
   "faq": {
     "title": "Usein kysyttyä",

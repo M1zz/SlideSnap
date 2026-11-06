@@ -30,8 +30,25 @@ enum SlideSnapSpec: LeeoAppSpec {
         marketingURL: URL(string: "https://m1zz.github.io/SlideSnap/")!
     )
 
-    /// 인앱 결제 없음.
-    static let monetization = LeeoMonetization.free
+    /// 수익모델 — 무료로 찍고 펴고 묶다가, 한 학기를 통째로 담으면 Plus, 그때 한 말까지 담으면 Pro.
+    /// 칸마다 주 · 월 · 연 구독과 평생. 무엇이 어느 칸인지는 `ProFeature.tier` 한 곳에 있다 (→ Plan.swift).
+    /// 1.0.11 까지는 유료 다운로드 앱이었고, 그때 산 사람은 Pro 평생이다 (→ PaidDownloadBuyer).
+    static let monetization = LeeoMonetization.freemiumSubscription(
+        LeeoSubscriptionConfig(
+            productIDs: ProProduct.all,
+            // 자체 약관이 없으므로 애플 표준 사용권 계약(EULA)을 건다. 구독을 파는 앱의 심사 필수 항목이다.
+            termsURL: URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!,
+            entitlementIDs: Set(ProProduct.tierByProduct.keys),
+            gate: LeeoGatePolicy(
+                freeLimits: [Gate.presentations: FreeLimit.presentations],
+                proOnly: Set(ProFeature.allCases.map(\.rawValue)).subtracting([ProFeature.unlimitedPresentations.rawValue])),
+            // 개발자 응원 팁. ⚠️ 기능을 여는 상품이 아니다 — productIDs · entitlementIDs 에 넣지 않는다.
+            tipJar: LeeoTipJarConfig(productIDs: ProProduct.tips)))
+
+    /// 게이트 열쇠말 (무료 한도).
+    enum Gate {
+        static let presentations = "presentations"
+    }
 
     /// 금고가 위젯과 함께 쓰는 공유 컨테이너도 백업한다.
     static let appGroups = ["group.com.leeo.slidesnap"]
@@ -42,14 +59,11 @@ enum SlideSnapSpec: LeeoAppSpec {
 
 // MARK: - 팁 (개발자 응원하기)
 
-/// 무료 앱이라 LeeoStore 가 없다. 팁 엔진을 여기 하나 두고, 앱을 열 때 `startStandalone()` 을 부른다.
+/// 팁은 결제 리스너를 함께 쓰려고 LeeoStore 안에 둔다(→ PurchaseManager). 소모성 셋, 작은 것부터.
+/// ⚠️ 기능을 여는 상품이 아니다. 응원 부탁은 이미 Pro 를 가진 사람에게만 한다(→ PresentationDetailView).
 @MainActor
 enum SlideSnapTip {
-    static let tipJar = LeeoTipJar(config: LeeoTipJarConfig(productIDs: [
-        "com.leeo.slidesnap.tip.small",
-        "com.leeo.slidesnap.tip.medium",
-        "com.leeo.slidesnap.tip.large",
-    ]))
+    static var tipJar: LeeoTipJar { PurchaseManager.shared.tipJar }
 }
 
 /// 팁을 부탁할 만한 순간 — 지금까지 담은 장표 수. 큰 것부터.

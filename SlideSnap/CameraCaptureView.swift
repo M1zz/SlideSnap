@@ -146,6 +146,9 @@ struct CameraCaptureView: View {
 
     @StateObject private var camera = CameraController()
     @StateObject private var recorder = AudioRecorder()
+    @ObservedObject private var purchases = PurchaseManager.shared
+    /// 녹음은 Pro 기능이다. 잠겼을 때 누르면 페이월.
+    @State private var paywallFeature: ProFeature?
     /// 촬영하면서 녹음할지(기억됨)
     @AppStorage("camera.recordAudio") private var recordAudio = false
     @State private var showMicDenied = false
@@ -213,12 +216,13 @@ struct CameraCaptureView: View {
         }
         .coordinateSpace(.named(Self.space))
         .statusBarHidden()
+        .paywall(for: $paywallFeature)
         .onAppear {
             camera.start()
             recorder.onFinish = { [store, presentationID] recording in
                 store.addRecording(recording, to: presentationID)
             }
-            if recordAudio { recorder.start() }
+            if recordAudio && purchases.allows(.recording) { recorder.start() }
         }
         .onDisappear {
             camera.stop()
@@ -421,9 +425,16 @@ struct CameraCaptureView: View {
         .dynamicTypeSize(...DynamicTypeSize.accessibility2)
     }
 
+    /// 녹음을 켜 두었고, 지금 칸에서 쓸 수 있는가.
+    private var recordingOn: Bool { recordAudio && purchases.allows(.recording) }
+
     /// 녹음 켜기/끄기. 녹음 중이면 빨간 점과 경과 시간을 보여 준다.
     private var recordButton: some View {
         Button {
+            guard purchases.allows(.recording) else {
+                paywallFeature = .recording
+                return
+            }
             recordAudio.toggle()
             if recordAudio {
                 recorder.start()
@@ -439,12 +450,12 @@ struct CameraCaptureView: View {
                     Text(recorder.elapsed.clockText)
                         .font(.subheadline.weight(.semibold).monospacedDigit())
                 } else {
-                    Image(systemName: recordAudio ? "mic.fill" : "mic.slash")
+                    Image(systemName: ProFeature.recording.icon(recordingOn ? "mic.fill" : "mic.slash"))
                     Text("녹음")
                         .font(.subheadline.weight(.semibold))
                 }
             }
-            .foregroundStyle(recorder.isRecording ? Color.white : (recordAudio ? Color.red : .white))
+            .foregroundStyle(recorder.isRecording ? Color.white : (recordingOn ? Color.red : .white))
             .padding(.horizontal, 14)
             .padding(.vertical, 8)
             .background(recorder.isRecording ? Color.red.opacity(0.75) : Color.black.opacity(0.4), in: Capsule())

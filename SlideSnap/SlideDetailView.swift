@@ -20,6 +20,9 @@ struct SlideDetailView: View {
     @State private var isEnhancing = false
 
     @StateObject private var playback = AudioPlayback()
+    @ObservedObject private var purchases = PurchaseManager.shared
+    /// 또렷하게 보정은 Plus 기능이다. 이미 켠 보정을 끄는 것은 늘 된다.
+    @State private var paywallFeature: ProFeature?
     /// 재생을 따라 장표를 넘기는 중인지(사용자가 넘긴 것과 구분해 되감기 반복을 막는다)
     @State private var autoAdvancing = false
     @State private var showTranscript = true
@@ -111,6 +114,7 @@ struct SlideDetailView: View {
             playback.stop()
         }
         .navigationTitle(pageTitle)
+        .paywall(for: $paywallFeature)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -120,7 +124,7 @@ struct SlideDetailView: View {
                             toggleEnhance(slide)
                         } label: {
                             Label(slide.isEnhanced ? String(localized: "가독성 보정 끄기") : String(localized: "가독성 보정"),
-                                  systemImage: slide.isEnhanced ? "wand.and.stars.inverse" : "wand.and.stars")
+                                  systemImage: slide.isEnhanced ? "wand.and.stars.inverse" : ProFeature.enhance.icon("wand.and.stars"))
                         }
                     }
 
@@ -418,6 +422,10 @@ struct SlideDetailView: View {
 
     /// 가독성 보정을 켜거나 끈다.
     private func toggleEnhance(_ slide: Slide) {
+        guard slide.isEnhanced || purchases.allows(.enhance) else {
+            paywallFeature = .enhance
+            return
+        }
         isEnhancing = true
         Task {
             await store.setEnhanced(!slide.isEnhanced, slideID: slide.id, presentationID: presentationID)

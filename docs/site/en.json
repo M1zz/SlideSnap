@@ -5,7 +5,7 @@
     "headline": "Shot from the side.\nSaved head-on.",
     "lead": "The camera finds all four corners of the slide, straightens it and crops away the room. Slides you shoot in a row land in the same presentation.",
     "cta": "Get it on the App Store",
-    "note": "One purchase, every feature. No subscription, no account."
+    "note": "Free to download, with up to 10 presentations. No account needed."
   },
   "demo": {
     "title": "Straighten one yourself",
@@ -73,27 +73,26 @@
     "note": "Text recognition, transcription and AI summaries all run on your device."
   },
   "pricing": {
-    "title": "Buy once, get everything",
+    "title": "Start free, add Plus or Pro when you need it",
     "free": {
-      "name": "CatchSlide",
+      "name": "Free",
       "items": [
         "Silent shooting, auto capture and straightening",
         "Import a batch of photos from the Photos app",
         "Slides filed by presentation, with text and note search",
-        "Recording, transcription and AI summaries",
-        "PDF, Markdown and PowerPoint export",
-        "iCloud sync and widgets"
+        "Image sharing, one-per-page PDF export and widgets",
+        "Up to 10 presentations"
       ]
     },
     "pro": {
-      "name": "Tips (optional)",
+      "name": "Plus · Pro",
       "items": [
-        "If the app helps you, you can send the developer a small tip",
-        "Tips don't unlock anything. Every feature works without one"
+        "Plus: unlimited presentations, Enhance Readability, two- and four-per-page PDFs",
+        "Pro: everything in Plus, plus recording, transcription, AI summaries, Markdown and PowerPoint export, and iCloud sync"
       ],
-      "note": "Find it on the My Info screen."
+      "note": "Choose weekly, monthly or yearly, or pay once for lifetime."
     },
-    "note": "No subscription and no paid add-ons. See the App Store for the price in your country."
+    "note": "Tips are just a thank-you and don't unlock anything. If you bought CatchSlide when it was a paid app, you keep Pro for life."
   },
   "faq": {
     "title": "Questions",

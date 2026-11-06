@@ -1,0 +1,338 @@
+{
+  "identifier": "331A2C85-AB7E-4836-982F-251A26439D9B",
+  "nonRenewingSubscriptions": [],
+  "products": [
+    {
+      "displayPrice": "23.99",
+      "familyShareable": true,
+      "internalID": "EB5F78E0-1958-46CC-9E7D-69994AEED8CF",
+      "localizations": [
+        {
+          "description": "발표 무제한, 또렷하게 보정, PDF 두 장 · 네 장씩",
+          "displayName": "장표스냅 Plus 평생",
+          "locale": "ko_KR"
+        },
+        {
+          "description": "Unlimited decks, sharper text, 2-up/4-up PDFs",
+          "displayName": "CatchSlide Plus Lifetime",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.leeo.slidesnap.plus",
+      "referenceName": "Plus Lifetime",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "35.99",
+      "familyShareable": true,
+      "internalID": "A0AB76C5-43D3-45C7-B03E-19FB2A7B38A6",
+      "localizations": [
+        {
+          "description": "녹음 · 받아쓰기, 기기 안 요약, 노트 내보내기, 동기화",
+          "displayName": "장표스냅 Pro 평생",
+          "locale": "ko_KR"
+        },
+        {
+          "description": "Recording, transcripts, summaries and sync",
+          "displayName": "CatchSlide Pro Lifetime",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.leeo.slidesnap.pro",
+      "referenceName": "Pro Lifetime",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "11.99",
+      "familyShareable": true,
+      "internalID": "B626CF0A-C5E4-4BBE-AAEB-DD362B5F1B17",
+      "localizations": [
+        {
+          "description": "Plus 평생을 산 분이 Pro 평생으로 올리기",
+          "displayName": "Plus 평생에서 Pro 평생으로",
+          "locale": "ko_KR"
+        },
+        {
+          "description": "Upgrade your Plus Lifetime to Pro Lifetime",
+          "displayName": "Plus Lifetime to Pro Lifetime",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.leeo.slidesnap.pro.upgrade",
+      "referenceName": "Pro Upgrade from Plus Lifetime",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "23.99",
+      "familyShareable": true,
+      "internalID": "FAEEF2BA-D714-4DA5-AD36-6EA8A5CE4CAF",
+      "localizations": [
+        {
+          "description": "구독을 Pro 평생으로 바꾸기",
+          "displayName": "장표스냅 Pro 평생 (구독자용)",
+          "locale": "ko_KR"
+        },
+        {
+          "description": "Switch your subscription to Pro for life",
+          "displayName": "CatchSlide Pro Lifetime",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.leeo.slidesnap.pro.graduate",
+      "referenceName": "Pro Lifetime for Subscribers",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "C7D4A3F6-3C43-41CE-8B82-378E5F58CD93",
+      "localizations": [
+        {
+          "description": "개발자에게 보내는 응원. 열리는 기능은 없어요.",
+          "displayName": "커피 한 잔",
+          "locale": "ko_KR"
+        },
+        {
+          "description": "A tip for the developer. Unlocks nothing.",
+          "displayName": "A coffee",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.leeo.slidesnap.tip.small",
+      "referenceName": "Tip small",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "2.99",
+      "familyShareable": false,
+      "internalID": "A331909E-2694-42E5-A8D0-5F333F2C357C",
+      "localizations": [
+        {
+          "description": "개발자에게 보내는 응원. 열리는 기능은 없어요.",
+          "displayName": "간식 한 번",
+          "locale": "ko_KR"
+        },
+        {
+          "description": "A tip for the developer. Unlocks nothing.",
+          "displayName": "A snack",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.leeo.slidesnap.tip.medium",
+      "referenceName": "Tip medium",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "9.99",
+      "familyShareable": false,
+      "internalID": "ECF38308-6520-4855-BDAC-9C1FCAF059A4",
+      "localizations": [
+        {
+          "description": "개발자에게 보내는 응원. 열리는 기능은 없어요.",
+          "displayName": "든든한 한 끼",
+          "locale": "ko_KR"
+        },
+        {
+          "description": "A tip for the developer. Unlocks nothing.",
+          "displayName": "A hearty meal",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.leeo.slidesnap.tip.large",
+      "referenceName": "Tip large",
+      "type": "Consumable"
+    }
+  ],
+  "settings": {
+    "_applicationInternalID": "6790835318",
+    "_developerTeamID": "",
+    "_failTransactionsEnabled": false,
+    "_lastSynchronizedDate": 0,
+    "_locale": "en_US",
+    "_storefront": "USA",
+    "_storeKitErrors": []
+  },
+  "subscriptionGroups": [
+    {
+      "id": "55724461-EA8F-4359-B92C-377A8C0F07F0",
+      "localizations": [],
+      "name": "CatchSlide",
+      "subscriptions": [
+        {
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "11.99",
+          "familyShareable": true,
+          "groupNumber": 1,
+          "internalID": "6A2E9A53-848A-4A85-B0A5-A831FAACF7D7",
+          "localizations": [
+            {
+              "description": "녹음 · 받아쓰기, 기기 안 요약, 노트 내보내기, 동기화",
+              "displayName": "장표스냅 Pro 연간",
+              "locale": "ko_KR"
+            },
+            {
+              "description": "Recording, transcripts, summaries and sync",
+              "displayName": "CatchSlide Pro Yearly",
+              "locale": "en_US"
+            }
+          ],
+          "productID": "com.leeo.slidesnap.pro.yearly",
+          "recurringSubscriptionPeriod": "P1Y",
+          "referenceName": "Pro Yearly",
+          "subscriptionGroupID": "55724461-EA8F-4359-B92C-377A8C0F07F0",
+          "type": "RecurringSubscription",
+          "winbackOffers": [],
+          "introductoryOffer": {
+            "internalID": "9D95594B-3463-4D95-B27E-F568CCD94DFA",
+            "numberOfPeriods": 1,
+            "paymentMode": "payUpFront",
+            "subscriptionPeriod": "P1Y",
+            "displayPrice": "5.99"
+          }
+        },
+        {
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "3.99",
+          "familyShareable": true,
+          "groupNumber": 1,
+          "internalID": "5BD916DC-A1CE-402C-A476-BE2587CAC60F",
+          "localizations": [
+            {
+              "description": "녹음 · 받아쓰기, 기기 안 요약, 노트 내보내기, 동기화",
+              "displayName": "장표스냅 Pro 월간",
+              "locale": "ko_KR"
+            },
+            {
+              "description": "Recording, transcripts, summaries and sync",
+              "displayName": "CatchSlide Pro Monthly",
+              "locale": "en_US"
+            }
+          ],
+          "productID": "com.leeo.slidesnap.pro.monthly",
+          "recurringSubscriptionPeriod": "P1M",
+          "referenceName": "Pro Monthly",
+          "subscriptionGroupID": "55724461-EA8F-4359-B92C-377A8C0F07F0",
+          "type": "RecurringSubscription",
+          "winbackOffers": []
+        },
+        {
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "1.49",
+          "familyShareable": true,
+          "groupNumber": 1,
+          "internalID": "EC57B1C6-4584-4CC0-ACE0-017739AE9A7C",
+          "localizations": [
+            {
+              "description": "녹음 · 받아쓰기, 기기 안 요약, 노트 내보내기, 동기화",
+              "displayName": "장표스냅 Pro 주간",
+              "locale": "ko_KR"
+            },
+            {
+              "description": "Recording, transcripts, summaries and sync",
+              "displayName": "CatchSlide Pro Weekly",
+              "locale": "en_US"
+            }
+          ],
+          "productID": "com.leeo.slidesnap.pro.weekly",
+          "recurringSubscriptionPeriod": "P1W",
+          "referenceName": "Pro Weekly",
+          "subscriptionGroupID": "55724461-EA8F-4359-B92C-377A8C0F07F0",
+          "type": "RecurringSubscription",
+          "winbackOffers": []
+        },
+        {
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "7.99",
+          "familyShareable": true,
+          "groupNumber": 2,
+          "internalID": "A9A3E636-59BF-489B-8666-9CC4F456E016",
+          "localizations": [
+            {
+              "description": "발표 무제한, 또렷하게 보정, PDF 두 장 · 네 장씩",
+              "displayName": "장표스냅 Plus 연간",
+              "locale": "ko_KR"
+            },
+            {
+              "description": "Unlimited decks, sharper text, 2-up/4-up PDFs",
+              "displayName": "CatchSlide Plus Yearly",
+              "locale": "en_US"
+            }
+          ],
+          "productID": "com.leeo.slidesnap.plus.yearly",
+          "recurringSubscriptionPeriod": "P1Y",
+          "referenceName": "Plus Yearly",
+          "subscriptionGroupID": "55724461-EA8F-4359-B92C-377A8C0F07F0",
+          "type": "RecurringSubscription",
+          "winbackOffers": [],
+          "introductoryOffer": {
+            "internalID": "64CD6E26-272B-4A2E-8736-3F61BB3E02C7",
+            "numberOfPeriods": 1,
+            "paymentMode": "payUpFront",
+            "subscriptionPeriod": "P1Y",
+            "displayPrice": "3.99"
+          }
+        },
+        {
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "2.49",
+          "familyShareable": true,
+          "groupNumber": 2,
+          "internalID": "50F56BFE-1311-4B7A-8949-2D7F732CBC00",
+          "localizations": [
+            {
+              "description": "발표 무제한, 또렷하게 보정, PDF 두 장 · 네 장씩",
+              "displayName": "장표스냅 Plus 월간",
+              "locale": "ko_KR"
+            },
+            {
+              "description": "Unlimited decks, sharper text, 2-up/4-up PDFs",
+              "displayName": "CatchSlide Plus Monthly",
+              "locale": "en_US"
+            }
+          ],
+          "productID": "com.leeo.slidesnap.plus.monthly",
+          "recurringSubscriptionPeriod": "P1M",
+          "referenceName": "Plus Monthly",
+          "subscriptionGroupID": "55724461-EA8F-4359-B92C-377A8C0F07F0",
+          "type": "RecurringSubscription",
+          "winbackOffers": []
+        },
+        {
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "0.99",
+          "familyShareable": true,
+          "groupNumber": 2,
+          "internalID": "B61E4D74-5AEC-435D-AE73-E33866DAD28F",
+          "localizations": [
+            {
+              "description": "발표 무제한, 또렷하게 보정, PDF 두 장 · 네 장씩",
+              "displayName": "장표스냅 Plus 주간",
+              "locale": "ko_KR"
+            },
+            {
+              "description": "Unlimited decks, sharper text, 2-up/4-up PDFs",
+              "displayName": "CatchSlide Plus Weekly",
+              "locale": "en_US"
+            }
+          ],
+          "productID": "com.leeo.slidesnap.plus.weekly",
+          "recurringSubscriptionPeriod": "P1W",
+          "referenceName": "Plus Weekly",
+          "subscriptionGroupID": "55724461-EA8F-4359-B92C-377A8C0F07F0",
+          "type": "RecurringSubscription",
+          "winbackOffers": []
+        }
+      ]
+    }
+  ],
+  "version": {
+    "major": 3,
+    "minor": 0
+  }
+}

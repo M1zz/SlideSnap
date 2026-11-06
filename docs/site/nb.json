@@ -5,7 +5,7 @@
     "headline": "Tatt fra siden.\nLagret forfra.",
     "lead": "Kameraet finner alle fire hjørnene på lysbildet, retter det opp og skjærer bort rommet rundt. Lysbilder du tar etter hverandre, havner i samme presentasjon.",
     "cta": "Last ned i App Store",
-    "note": "Ett kjøp, alle funksjoner. Ingen abonnement, ingen konto."
+    "note": "Gratis å laste ned, opptil 10 presentasjoner. Ingen konto."
   },
   "demo": {
     "title": "Rett det opp selv",
@@ -64,27 +64,26 @@
     "note": "Tekstgjenkjenning, transkripsjon og AI-oppsummeringer skjer på enheten din."
   },
   "pricing": {
-    "title": "Kjøp én gang, få alt",
+    "title": "Start gratis, og legg til Plus eller Pro når du trenger det",
     "free": {
-      "name": "CatchSlide",
+      "name": "Gratis",
       "items": [
         "Lydløse bilder, automatisk opptak og oppretting",
         "Import av flere bilder samtidig fra Bilder",
         "Lysbilder per presentasjon, søk i tekst og notater",
-        "Opptak, transkripsjon og AI-oppsummering",
-        "Eksport til PDF, Markdown og PowerPoint",
-        "iCloud-synkronisering og widgeter"
+        "Del bilder, PDF med ett lysbilde per side og widgeter",
+        "Opptil 10 presentasjoner"
       ]
     },
     "pro": {
-      "name": "Tips (valgfritt)",
+      "name": "Plus · Pro",
       "items": [
-        "Hvis appen hjelper deg, kan du gi utvikleren litt tips",
-        "Tips låser ikke opp noe. Alle funksjoner virker uten"
+        "Plus: ubegrenset med presentasjoner, bedre lesbarhet, PDF med to eller fire lysbilder per side",
+        "Pro: alt i Plus, i tillegg til opptak, transkripsjon, AI-oppsummering, eksport til Markdown og PowerPoint og iCloud-synkronisering"
       ],
-      "note": "Du finner det under Min info."
+      "note": "Velg abonnement per uke, måned eller år, eller betal én gang for alltid."
     },
-    "note": "Ingen abonnement og ingen betaling for ekstra funksjoner. Se prisen i ditt land i App Store."
+    "note": "Tips er bare en takk og låser ikke opp noe. Kjøpte du CatchSlide da appen kostet penger, beholder du Pro for alltid."
   },
   "faq": {
     "title": "Vanlige spørsmål",

@@ -5,7 +5,7 @@
     "headline": "Fotad från sidan.\nSparad rakt framifrån.",
     "lead": "Kameran hittar alla fyra hörnen på bilden, rätar upp den och skär bort rummet runt omkring. Bilder du tar i följd hamnar i samma presentation.",
     "cta": "Hämta i App Store",
-    "note": "Ett köp, alla funktioner. Inget abonnemang, inget konto."
+    "note": "Gratis att ladda ned, upp till 10 presentationer. Inget konto."
   },
   "demo": {
     "title": "Räta upp den själv",
@@ -64,27 +64,26 @@
     "note": "Textigenkänning, transkribering och AI-sammanfattningar sker på din enhet."
   },
   "pricing": {
-    "title": "Köp en gång, få allt",
+    "title": "Börja gratis och lägg till Plus eller Pro när du behöver",
     "free": {
-      "name": "CatchSlide",
+      "name": "Gratis",
       "items": [
         "Ljudlös fotografering, automatisk tagning och upprätning",
         "Import av flera foton samtidigt från Bilder",
         "Bilder per presentation, sökning i text och anteckningar",
-        "Inspelning, transkribering och AI-sammanfattning",
-        "Export till PDF, Markdown och PowerPoint",
-        "iCloud-synkronisering och widgetar"
+        "Dela bilder, PDF med en bild per sida och widgetar",
+        "Upp till 10 presentationer"
       ]
     },
     "pro": {
-      "name": "Dricks (valfritt)",
+      "name": "Plus · Pro",
       "items": [
-        "Om appen hjälper dig kan du ge utvecklaren lite dricks",
-        "Dricks låser inte upp något. Alla funktioner fungerar ändå"
+        "Plus: obegränsat med presentationer, bättre läsbarhet, PDF med två eller fyra bilder per sida",
+        "Pro: allt i Plus samt inspelning, transkribering, AI-sammanfattning, export till Markdown och PowerPoint och iCloud-synkronisering"
       ],
-      "note": "Du hittar det under Min info."
+      "note": "Välj prenumeration per vecka, månad eller år, eller betala en gång för alltid."
     },
-    "note": "Inget abonnemang och inga betalda tillägg. Se priset i ditt land i App Store."
+    "note": "Dricks är bara ett tack och låser inte upp något. Köpte du CatchSlide när appen kostade pengar behåller du Pro för alltid."
   },
   "faq": {
     "title": "Vanliga frågor",

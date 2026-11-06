@@ -5,7 +5,7 @@
     "headline": "Zdjęcie z boku.\nSlajd na wprost.",
     "lead": "Aparat znajduje wszystkie cztery rogi slajdu, prostuje go i odcina to, co dookoła. Slajdy fotografowane jeden po drugim trafiają do tej samej prezentacji.",
     "cta": "Pobierz z App Store",
-    "note": "Jeden zakup, wszystkie funkcje. Bez subskrypcji i bez konta."
+    "note": "Do pobrania za darmo, do 10 prezentacji. Bez konta."
   },
   "demo": {
     "title": "Wyprostuj go sam",
@@ -64,27 +64,26 @@
     "note": "Rozpoznawanie tekstu, transkrypcja i podsumowania AI działają na urządzeniu."
   },
   "pricing": {
-    "title": "Kupujesz raz, masz wszystko",
+    "title": "Zacznij za darmo, a Plus lub Pro dodaj, gdy będziesz potrzebować",
     "free": {
-      "name": "CatchSlide",
+      "name": "Za darmo",
       "items": [
         "Bezgłośne zdjęcia, automatyczne zdjęcia i prostowanie",
         "Import wielu zdjęć naraz z aplikacji Zdjęcia",
         "Slajdy według prezentacji, wyszukiwanie w tekście i notatkach",
-        "Nagrywanie, transkrypcja i podsumowanie AI",
-        "Eksport do PDF, Markdown i PowerPoint",
-        "Synchronizacja iCloud i widżety"
+        "Udostępnianie obrazów, eksport PDF po jednym slajdzie i widżety",
+        "Do 10 prezentacji"
       ]
     },
     "pro": {
-      "name": "Napiwek (dobrowolny)",
+      "name": "Plus · Pro",
       "items": [
-        "Jeśli aplikacja ci pomaga, możesz zostawić twórcy mały napiwek",
-        "Napiwek niczego nie odblokowuje. Wszystkie funkcje działają i bez niego"
+        "Plus: bez limitu prezentacji, lepsza czytelność, PDF po dwa lub cztery slajdy na stronie",
+        "Pro: wszystko z Plus, a do tego nagrywanie, transkrypcja, podsumowanie AI, eksport do Markdown i PowerPoint oraz synchronizacja iCloud"
       ],
-      "note": "Znajdziesz go na ekranie Moje dane."
+      "note": "Wybierz subskrypcję tygodniową, miesięczną lub roczną albo zapłać raz na zawsze."
     },
-    "note": "Bez subskrypcji i bez płatnych dodatków. Cenę w swoim kraju sprawdzisz w App Store."
+    "note": "Napiwek to tylko podziękowanie i niczego nie odblokowuje. Jeśli kupiłeś CatchSlide, gdy aplikacja była płatna, Pro zostaje u Ciebie na zawsze."
   },
   "faq": {
     "title": "Najczęstsze pytania",

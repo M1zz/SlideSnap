@@ -36,6 +36,9 @@ struct ShareSheet: UIViewControllerRepresentable {
 struct PresentationDetailView: View {
 
     @EnvironmentObject private var store: Store
+    @ObservedObject private var purchases = PurchaseManager.shared
+    /// 잠긴 내보내기(PDF 두 장 · 네 장씩, PowerPoint · Markdown)를 고르면 그 기능의 페이월.
+    @State private var paywallFeature: ProFeature?
 
     let presentationID: UUID
 
@@ -81,6 +84,7 @@ struct PresentationDetailView: View {
         .navigationTitle(navTitle)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar { toolbarContent }
+        .paywall(for: $paywallFeature)
         .fullScreenCover(isPresented: $showingCamera) {
             CameraCaptureView(presentationID: presentationID)
                 // 아이폰 듀오를 펴면 카메라는 고르는 쪽 판에만 선다.
@@ -295,7 +299,12 @@ struct PresentationDetailView: View {
                 Button {
                     exportPDF(layout: layout)
                 } label: {
-                    Text(layout.label)
+                    // 한 장씩은 무료, 두 장 · 네 장씩은 Plus. 잠긴 줄은 자물쇠로 미리 알린다.
+                    if layout == .one || purchases.allows(.pdfLayouts) {
+                        Text(layout.label)
+                    } else {
+                        Label(layout.label, systemImage: "lock.fill")
+                    }
                 }
             }
         } label: {
@@ -319,12 +328,12 @@ struct PresentationDetailView: View {
         Button {
             exportNotes(.markdown)
         } label: {
-            Label("Markdown으로 내보내기 (Notion·Obsidian)", systemImage: "doc.plaintext")
+            Label("Markdown으로 내보내기 (Notion·Obsidian)", systemImage: ProFeature.notesExport.icon("doc.plaintext"))
         }
         Button {
             exportNotes(.pptx)
         } label: {
-            Label("PowerPoint로 내보내기 (Keynote)", systemImage: "rectangle.on.rectangle")
+            Label("PowerPoint로 내보내기 (Keynote)", systemImage: ProFeature.notesExport.icon("rectangle.on.rectangle"))
         }
     }
 
@@ -332,8 +341,8 @@ struct PresentationDetailView: View {
 
     private func grid(_ presentation: Presentation) -> some View {
         ScrollView {
-            // 응원 부탁 — 장표를 꽤 담아 온 사람에게, 드물게(촬영을 마치고 돌아온 자리)
-            if !isSelecting {
+            // 응원 부탁 — 장표를 꽤 담아 온 Pro 에게만, 드물게(촬영을 마치고 돌아온 자리)
+            if !isSelecting && purchases.tier == .pro {
                 LeeoTipAskSlot<SlideSnapSpec>(tipJar: SlideSnapTip.tipJar,
                                               reached: SlideSnapTipMoments.reachedNow(in: store.presentations))
                     .padding([.horizontal, .top])
@@ -532,6 +541,10 @@ struct PresentationDetailView: View {
     }
 
     private func exportPDF(layout: PDFLayout = .one) {
+        guard layout == .one || purchases.allows(.pdfLayouts) else {
+            paywallFeature = .pdfLayouts
+            return
+        }
         let slides = targetSlides()
         guard !slides.isEmpty, let presentation else { return }
         let title = presentation.title
@@ -555,6 +568,10 @@ extension PresentationDetailView {
     enum NotesFormat { case markdown, pptx }
 
     fileprivate func exportNotes(_ format: NotesFormat) {
+        guard purchases.allows(.notesExport) else {
+            paywallFeature = .notesExport
+            return
+        }
         guard let presentation else { return }
         let ids: Set<UUID>? = isSelecting && !selectedIDs.isEmpty ? selectedIDs : nil
         let slides = NotesExporter.slides(of: presentation, only: ids, store: store)

@@ -61,6 +61,20 @@ enum ShareInbox {
         try data.write(to: dir.appendingPathComponent(manifestName), options: .atomic)
     }
 
+    // MARK: - 또렷하게 보정을 쓸 수 있는가
+
+    private static let enhanceUnlockedKey = "plan.enhanceUnlocked"
+
+    /// 익스텐션은 결제를 모른다. 앱이 영수증을 읽고 여기에 한 줄로 적어 둔다(→ PurchaseManager).
+    /// 아직 적힌 적이 없으면 연다 — 산 사람의 단추가 사라지는 것보다 낫다. 앱이 가져갈 때 다시 확인한다.
+    static var enhanceUnlocked: Bool {
+        get { UserDefaults(suiteName: appGroupID)?.object(forKey: enhanceUnlockedKey) as? Bool ?? true }
+        set {
+            guard newValue != enhanceUnlocked else { return }
+            UserDefaults(suiteName: appGroupID)?.set(newValue, forKey: enhanceUnlockedKey)
+        }
+    }
+
     static func discard(_ id: UUID) {
         guard let url = batchURL(id) else { return }
         try? FileManager.default.removeItem(at: url)

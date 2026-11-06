@@ -7,6 +7,7 @@ struct PresentationListView: View {
     @EnvironmentObject private var store: Store
     @EnvironmentObject private var feedbackPrompt: FeedbackPromptManager
     @EnvironmentObject private var router: AppRouter
+    @EnvironmentObject private var purchases: PurchaseManager
 
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
@@ -55,6 +56,13 @@ struct PresentationListView: View {
     @State private var hasAutoLaunchedCamera = false
     @State private var cameraCaptured = false
     @State private var cameraCreatedNew = false
+    /// 무료 발표를 다 채워 새 발표 대신 가장 최근 발표에 이어 찍는 중인가.
+    @State private var cameraOverLimit = false
+
+    /// 무료 발표를 다 채워 막힌 자리의 페이월.
+    @State private var paywallFeature: ProFeature?
+    /// 찍은(공유받은) 장표를 가장 최근 발표에 담은 뒤 띄우는 페이월.
+    @State private var showingSavedToRecentPaywall = false
 
     /// 이 시간 이내에 촬영이 이어지면 같은 발표로 묶는다.
     private static let groupingWindow: TimeInterval = 5 * 60
@@ -161,6 +169,10 @@ struct PresentationListView: View {
             }
             .sheet(isPresented: $showingProfile) {
                 ProfileView()
+            }
+            .paywall(for: $paywallFeature)
+            .sheet(isPresented: $showingSavedToRecentPaywall) {
+                PaywallView(highlight: .unlimitedPresentations, savedToRecent: true)
             }
             .alert("사용하시면서 어떠세요?", isPresented: nudgeBinding) {
                 Button("의견 남기기") {
@@ -311,15 +323,17 @@ struct PresentationListView: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {
                     Button {
+                        guard allowsNewPresentation() else { return }
                         newTitle = Store.defaultTitle()
                         showingNewAlert = true
                     } label: {
-                        Label("빈 발표 만들기", systemImage: "rectangle.badge.plus")
+                        Label("빈 발표 만들기", systemImage: newPresentationIcon("rectangle.badge.plus"))
                     }
                     Button {
+                        guard allowsNewPresentation() else { return }
                         showingPhotoImport = true
                     } label: {
-                        Label("사진에서 가져오기", systemImage: "photo.on.rectangle.angled")
+                        Label("사진에서 가져오기", systemImage: newPresentationIcon("photo.on.rectangle.angled"))
                     }
                 } label: {
                     Image(systemName: "plus")
@@ -327,6 +341,21 @@ struct PresentationListView: View {
                 .accessibilityLabel("새 발표")
             }
         }
+    }
+
+    // MARK: - 무료 발표 한도
+
+    /// 새 발표를 하나 더 만들 수 있는가. 아니면 페이월을 띄우고 false.
+    /// 이미 있는 발표를 보고 · 내보내고 · 지우고 · 합치는 일은 막지 않는다.
+    private func allowsNewPresentation() -> Bool {
+        if purchases.canAddPresentation(having: store.presentations.count) { return true }
+        paywallFeature = .unlimitedPresentations
+        return false
+    }
+
+    /// 새 발표를 만드는 메뉴의 아이콘. 무료 발표를 다 채웠으면 자물쇠.
+    private func newPresentationIcon(_ icon: String) -> String {
+        purchases.canAddPresentation(having: store.presentations.count) ? icon : "lock.fill"
     }
 
     // MARK: - 발표 선택·병합
@@ -377,6 +406,7 @@ struct PresentationListView: View {
                 return feedbackPrompt.shouldPrompt
                     && !showingCamera && !showingFeedback && !showingProfile
                     && !showingNewAlert && path.isEmpty
+                    && paywallFeature == nil && !showingSavedToRecentPaywall
             },
             set: { if !$0 { feedbackPrompt.dismiss() } }
         )
@@ -661,12 +691,15 @@ struct PresentationListView: View {
         LeeoUsageReporter(spec: SlideSnapSpec.self).logEventInBackground("share_import")
         Task {
             var lastID: UUID?
+            var savedToRecent = false
             // 처리하는 사이 또 공유가 들어올 수 있으니 수신함이 빌 때까지 돈다.
             while let manifest = ShareInbox.pendingManifests().first {
-                if let id = await store.importSharedBatch(manifest, onProgress: { done, total in
-                    importProgress = (done, total)
-                }) {
+                // 무료 발표를 다 채웠으면 받은 사진은 버리지 않고 가장 최근 발표 뒤에 붙인다.
+                let recent = purchases.canAddPresentation(having: store.presentations.count) ? nil : store.presentations.first?.id
+                if let id = await store.importSharedBatch(manifest, into: recent, allowsEnhance: purchases.allows(.enhance),
+                                                          onProgress: { done, total in importProgress = (done, total) }) {
                     lastID = id
+                    if recent != nil { savedToRecent = true }
                 }
             }
             importProgress = nil
@@ -675,6 +708,7 @@ struct PresentationListView: View {
                 path = NavigationPath()
                 open(lastID)
             }
+            if savedToRecent { showingSavedToRecentPaywall = true }
         }
     }
 
@@ -702,6 +736,8 @@ struct PresentationListView: View {
             if let first { demoNotesID = first.id }
         case .search(let query):
             searchText = query
+        case .paywall:
+            paywallFeature = .unlimitedPresentations
         case .share:
             isGridView = true
             let model = ShareModel()
@@ -746,11 +782,19 @@ struct PresentationListView: View {
     private func openCamera() {
         guard !showingCamera else { return }   // 이미 촬영 중이면(딥링크 중복 등) 무시
         cameraCaptured = false
+        cameraOverLimit = false
         if let recent = store.presentations.first,
            let lastTime = recent.slides.last?.createdAt,
            Date().timeIntervalSince(lastTime) < Self.groupingWindow {
             cameraPresentationID = recent.id
             cameraCreatedNew = false
+        } else if let recent = store.presentations.first,
+                  !purchases.canAddPresentation(having: store.presentations.count) {
+            // 무료 발표를 다 채웠다. 강의 중 흐름을 끊지 않게 촬영은 막지 않고, 가장 최근 발표에 이어 담는다.
+            // 다 찍고 나오면 새 발표로 묶으려면 Plus 가 필요하다고 알린다(→ cameraFinished).
+            cameraPresentationID = recent.id
+            cameraCreatedNew = false
+            cameraOverLimit = true
         } else {
             // 아직 목록에 올리지 않는다. 한 장도 안 찍고 닫으면 목록에 흔적이 남지 않도록.
             let presentation = store.beginDraftPresentation(title: Store.defaultTitle())
@@ -771,6 +815,7 @@ struct PresentationListView: View {
         if cameraCaptured {
             store.promoteDraft(id)
             open(id)
+            if cameraOverLimit { showingSavedToRecentPaywall = true }
         } else if cameraCreatedNew {
             store.discardDraft(id)
         }

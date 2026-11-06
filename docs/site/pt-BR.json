@@ -5,7 +5,7 @@
     "headline": "Foto de lado.\nSlide de frente.",
     "lead": "A câmera acha os quatro cantos do slide, deixa tudo reto e corta o que está em volta. Os slides que você fotografa em sequência ficam juntos na mesma apresentação.",
     "cta": "Baixar na App Store",
-    "note": "Uma compra, todos os recursos. Sem assinatura e sem conta."
+    "note": "Download grátis, com até 10 apresentações. Sem conta."
   },
   "demo": {
     "title": "Endireite você mesmo",
@@ -64,27 +64,26 @@
     "note": "Reconhecimento de texto, transcrição e resumos com IA acontecem no próprio aparelho."
   },
   "pricing": {
-    "title": "Compre uma vez e tenha tudo",
+    "title": "Comece grátis e adicione Plus ou Pro quando precisar",
     "free": {
-      "name": "CatchSlide",
+      "name": "Grátis",
       "items": [
         "Fotos sem som, captura automática e endireitamento",
         "Importação de várias fotos do app Fotos",
         "Slides por apresentação, busca no texto e nas notas",
-        "Gravação, transcrição e resumo com IA",
-        "Exportação para PDF, Markdown e PowerPoint",
-        "Sincronização com o iCloud e widgets"
+        "Compartilhamento de imagens, PDF com um slide por página e widgets",
+        "Até 10 apresentações"
       ]
     },
     "pro": {
-      "name": "Gorjeta (opcional)",
+      "name": "Plus · Pro",
       "items": [
-        "Se o app está ajudando, você pode mandar uma gorjetinha para o desenvolvedor",
-        "A gorjeta não libera nada. Todos os recursos funcionam sem ela"
+        "Plus: apresentações ilimitadas, legibilidade melhorada, PDF com dois ou quatro slides por página",
+        "Pro: tudo do Plus, mais gravação, transcrição, resumo com IA, exportação para Markdown e PowerPoint e sincronização com o iCloud"
       ],
-      "note": "Fica na tela Meus dados."
+      "note": "Escolha assinatura semanal, mensal ou anual, ou pague uma vez para sempre."
     },
-    "note": "Sem assinatura e sem compras para liberar recursos. Confira o preço do seu país na App Store."
+    "note": "Gorjetas são só um agradecimento e não liberam nada. Quem comprou o CatchSlide quando ele era pago continua com o Pro para sempre."
   },
   "faq": {
     "title": "Perguntas frequentes",

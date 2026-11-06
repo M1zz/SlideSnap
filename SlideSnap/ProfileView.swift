@@ -12,6 +12,15 @@ import LeeoKit
 struct ProfileView: View {
     @EnvironmentObject private var profile: UserProfileStore
     @EnvironmentObject private var cloudSync: CloudSync
+    @ObservedObject private var purchases = PurchaseManager.shared
+    /// 요금제(페이월)를 플랜 줄에서 열었는가.
+    @State private var showingPlans = false
+    @State private var paywallFeature: ProFeature?
+    @State private var showingManageSubscription = false
+    /// 구독 중인 사람이 평생으로 옮겨 가는 시트 (→ LeeoGraduation).
+    @State private var showingGraduation = false
+    /// 구매 복원을 눌렀는데 찾지 못했을 때 그 까닭.
+    @State private var restoreMessage: String?
     @State private var enablingSync = false
     @Environment(\.dismiss) private var dismiss
 
@@ -57,6 +66,8 @@ struct ProfileView: View {
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                 }
+
+                planSection
 
                 Section {
                     Toggle(isOn: syncBinding) {
@@ -110,6 +121,15 @@ struct ProfileView: View {
                 }
             }
             .navigationTitle("내 정보")
+            .sheet(isPresented: $showingPlans) { PaywallView() }
+            .paywall(for: $paywallFeature)
+            .manageSubscriptionsSheet(isPresented: $showingManageSubscription)
+            .sheet(isPresented: $showingGraduation) {
+                LeeoGraduationOfferView(graduate: purchases.product(ProProduct.graduate)) {
+                    await purchases.refresh()
+                }
+                .presentationDetents([.medium, .large])
+            }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -152,6 +172,11 @@ struct ProfileView: View {
             get: { cloudSync.isEnabled },
             set: { on in
                 if on {
+                    // iCloud 동기화는 Pro 기능이다. 끄는 것은 늘 된다(이 기기의 발표는 그대로 남는다).
+                    guard purchases.allows(.sync) else {
+                        paywallFeature = .sync
+                        return
+                    }
                     enablingSync = true
                     Task {
                         await cloudSync.enable()
@@ -163,6 +188,47 @@ struct ProfileView: View {
                 }
             }
         )
+    }
+
+    /// 플랜 · 구독 관리. 지금 칸, 요금제 보기, 구독 관리 · 평생으로 바꾸기, 구매 복원.
+    private var planSection: some View {
+        Section {
+            Button {
+                showingPlans = true
+            } label: {
+                LabeledContent("장표스냅 Plus · Pro") {
+                    if purchases.isKnown { Text(purchases.tier.title) }
+                }
+            }
+            if purchases.subscription != nil {
+                Button(LeeoLadderText.manageSubscription) { showingManageSubscription = true }
+                // 구독 중인 사람이 언제든 평생으로 옮겨 갈 수 있는 길. 졸업가 상품을 못 불러왔으면 세우지 않는다.
+                if purchases.product(ProProduct.graduate) != nil {
+                    Button(LeeoLadderText.switchToLifetimeEntry) { showingGraduation = true }
+                }
+            }
+            Button {
+                Task {
+                    await purchases.restore()
+                    restoreMessage = purchases.tier == .free ? purchases.failureMessage : nil
+                }
+            } label: {
+                HStack {
+                    Text("구매 복원")
+                    Spacer()
+                    if purchases.isWorking { ProgressView() }
+                }
+            }
+            .disabled(purchases.isWorking)
+        } header: {
+            Text("플랜 · 구독 관리")
+        } footer: {
+            if purchases.isGrandfathered {
+                Text("유료 앱일 때 장표스냅을 사 주셔서 Pro를 평생 그대로 써요. 고맙습니다.")
+            } else if let restoreMessage {
+                Text(restoreMessage)
+            }
+        }
     }
 
     @ViewBuilder

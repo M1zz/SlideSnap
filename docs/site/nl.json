@@ -5,7 +5,7 @@
     "headline": "Van opzij gefotografeerd.\nRecht van voren bewaard.",
     "lead": "De camera vindt alle vier hoeken van de slide, trekt hem recht en snijdt de omgeving weg. Slides die je achter elkaar fotografeert, komen in dezelfde presentatie.",
     "cta": "Download in de App Store",
-    "note": "Eén keer kopen, alle functies. Geen abonnement, geen account."
+    "note": "Gratis te downloaden, tot 10 presentaties. Geen account nodig."
   },
   "demo": {
     "title": "Trek hem zelf recht",
@@ -64,27 +64,26 @@
     "note": "Tekstherkenning, transcriptie en AI-samenvattingen gebeuren op je apparaat."
   },
   "pricing": {
-    "title": "Eén keer kopen, alles erin",
+    "title": "Begin gratis, neem Plus of Pro wanneer je het nodig hebt",
     "free": {
-      "name": "CatchSlide",
+      "name": "Gratis",
       "items": [
         "Geluidloos fotograferen, automatisch vastleggen en rechttrekken",
         "Meerdere foto’s tegelijk importeren uit Foto’s",
         "Slides per presentatie, zoeken in tekst en notities",
-        "Opname, transcriptie en AI-samenvatting",
-        "Exporteren naar pdf, Markdown en PowerPoint",
-        "iCloud-synchronisatie en widgets"
+        "Afbeeldingen delen, pdf met één slide per pagina en widgets",
+        "Tot 10 presentaties"
       ]
     },
     "pro": {
-      "name": "Fooi (vrijwillig)",
+      "name": "Plus · Pro",
       "items": [
-        "Heb je wat aan de app, dan kun je de ontwikkelaar een kleine fooi geven",
-        "Een fooi ontgrendelt niets. Alle functies werken ook zonder"
+        "Plus: onbeperkt presentaties, betere leesbaarheid, pdf met twee of vier slides per pagina",
+        "Pro: alles van Plus, plus opname, transcriptie, AI-samenvatting, exporteren naar Markdown en PowerPoint en iCloud-synchronisatie"
       ],
-      "note": "Je vindt het onder Mijn gegevens."
+      "note": "Kies een abonnement per week, maand of jaar, of betaal één keer voor altijd."
     },
-    "note": "Geen abonnement en geen betaalde extra’s. De prijs voor jouw land zie je in de App Store."
+    "note": "Fooien zijn gewoon een bedankje en ontgrendelen niets. Heb je CatchSlide gekocht toen de app nog betaald was, dan houd je Pro voor altijd."
   },
   "faq": {
     "title": "Veelgestelde vragen",

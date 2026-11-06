@@ -5,7 +5,7 @@
     "headline": "Schräg fotografiert.\nGerade gespeichert.",
     "lead": "Die Kamera findet alle vier Ecken der Folie, richtet sie gerade aus und schneidet den Raum drumherum weg. Folien, die du nacheinander aufnimmst, landen in derselben Präsentation.",
     "cta": "Im App Store laden",
-    "note": "Einmal kaufen, alles nutzen. Kein Abo, kein Konto."
+    "note": "Kostenlos laden, bis zu 10 Präsentationen. Kein Konto nötig."
   },
   "demo": {
     "title": "Selbst entzerren",
@@ -64,27 +64,26 @@
     "note": "Texterkennung, Transkription und KI-Zusammenfassungen laufen auf deinem Gerät."
   },
   "pricing": {
-    "title": "Einmal kaufen, alles drin",
+    "title": "Kostenlos starten, Plus oder Pro bei Bedarf",
     "free": {
-      "name": "CatchSlide",
+      "name": "Kostenlos",
       "items": [
         "Lautlose Aufnahme, automatische Aufnahme und Entzerren",
         "Mehrere Fotos auf einmal aus der Fotos-App importieren",
         "Folien nach Präsentation, Suche in Text und Notizen",
-        "Aufnahme, Transkription und KI-Zusammenfassung",
-        "Export als PDF, Markdown und PowerPoint",
-        "iCloud-Abgleich und Widgets"
+        "Bilder teilen, PDF mit einer Folie pro Seite und Widgets",
+        "Bis zu 10 Präsentationen"
       ]
     },
     "pro": {
-      "name": "Trinkgeld (freiwillig)",
+      "name": "Plus · Pro",
       "items": [
-        "Wenn dir die App hilft, kannst du dem Entwickler ein kleines Trinkgeld geben",
-        "Trinkgeld schaltet nichts frei. Alle Funktionen gibt es auch ohne"
+        "Plus: unbegrenzt viele Präsentationen, bessere Lesbarkeit, PDFs mit zwei oder vier Folien pro Seite",
+        "Pro: alles aus Plus, dazu Aufnahme, Transkription, KI-Zusammenfassung, Export als Markdown und PowerPoint sowie iCloud-Abgleich"
       ],
-      "note": "Zu finden unter Meine Angaben."
+      "note": "Wähl ein Wochen-, Monats- oder Jahresabo oder zahl einmal für immer."
     },
-    "note": "Kein Abo und keine kostenpflichtigen Zusatzfunktionen. Den Preis für dein Land findest du im App Store."
+    "note": "Trinkgeld ist nur ein Dankeschön und schaltet nichts frei. Wer CatchSlide gekauft hat, als die App noch kostenpflichtig war, behält Pro für immer."
   },
   "faq": {
     "title": "Häufige Fragen",

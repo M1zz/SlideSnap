@@ -5,7 +5,7 @@
     "headline": "Scattata di lato.\nSalvata di fronte.",
     "lead": "La fotocamera trova i quattro angoli della slide, la raddrizza e taglia via tutto quello che c’è intorno. Le slide scattate una dopo l’altra finiscono nella stessa presentazione.",
     "cta": "Scarica su App Store",
-    "note": "Un solo acquisto, tutte le funzioni. Niente abbonamento, niente account."
+    "note": "Download gratuito, fino a 10 presentazioni. Nessun account."
   },
   "demo": {
     "title": "Raddrizzala tu",
@@ -64,27 +64,26 @@
     "note": "Riconoscimento del testo, trascrizione e riassunti con IA avvengono sul dispositivo."
   },
   "pricing": {
-    "title": "Lo compri una volta, hai tutto",
+    "title": "Inizia gratis, aggiungi Plus o Pro quando ti serve",
     "free": {
-      "name": "CatchSlide",
+      "name": "Gratis",
       "items": [
         "Scatti silenziosi, scatto automatico e raddrizzamento",
         "Importazione di più foto dall’app Foto",
         "Slide divise per presentazione, ricerca nel testo e nelle note",
-        "Registrazione, trascrizione e riassunto con IA",
-        "Esportazione in PDF, Markdown e PowerPoint",
-        "Sincronizzazione iCloud e widget"
+        "Condivisione di immagini, PDF con una slide per pagina e widget",
+        "Fino a 10 presentazioni"
       ]
     },
     "pro": {
-      "name": "Mance (facoltative)",
+      "name": "Plus · Pro",
       "items": [
-        "Se l’app ti è utile, puoi lasciare una piccola mancia allo sviluppatore",
-        "La mancia non sblocca nulla. Tutte le funzioni restano disponibili anche senza"
+        "Plus: presentazioni illimitate, leggibilità migliorata, PDF con due o quattro slide per pagina",
+        "Pro: tutto Plus, più registrazione, trascrizione, riassunto con IA, esportazione in Markdown e PowerPoint e sincronizzazione iCloud"
       ],
-      "note": "La trovi nella schermata I miei dati."
+      "note": "Scegli l’abbonamento settimanale, mensile o annuale, oppure paga una volta per sempre."
     },
-    "note": "Niente abbonamento né acquisti per sbloccare funzioni. Il prezzo per il tuo Paese è indicato su App Store."
+    "note": "Le mance sono solo un grazie e non sbloccano nulla. Se hai acquistato CatchSlide quando era a pagamento, tieni Pro per sempre."
   },
   "faq": {
     "title": "Domande frequenti",

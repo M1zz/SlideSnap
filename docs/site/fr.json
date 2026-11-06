@@ -5,7 +5,7 @@
     "headline": "Prise de côté.\nEnregistrée de face.",
     "lead": "L’appareil photo repère les quatre coins de la diapo, la redresse et coupe tout ce qui l’entoure. Les diapos prises à la suite se retrouvent dans la même présentation.",
     "cta": "Télécharger dans l’App Store",
-    "note": "Un seul achat, toutes les fonctions. Ni abonnement, ni compte."
+    "note": "Téléchargement gratuit, jusqu’à 10 présentations. Sans compte."
   },
   "demo": {
     "title": "Redressez-la vous-même",
@@ -64,27 +64,26 @@
     "note": "La reconnaissance de texte, la transcription et les résumés par IA se font sur votre appareil."
   },
   "pricing": {
-    "title": "Un achat, tout est inclus",
+    "title": "Commencez gratuitement, passez à Plus ou Pro au besoin",
     "free": {
-      "name": "CatchSlide",
+      "name": "Gratuit",
       "items": [
         "Prise de vue silencieuse, capture automatique et redressement",
         "Import de plusieurs photos depuis Photos",
         "Diapos rangées par présentation, recherche dans le texte et les notes",
-        "Enregistrement, transcription et résumé par IA",
-        "Export PDF, Markdown et PowerPoint",
-        "Synchronisation iCloud et widgets"
+        "Partage en images, export PDF une diapo par page et widgets",
+        "Jusqu’à 10 présentations"
       ]
     },
     "pro": {
-      "name": "Pourboire (facultatif)",
+      "name": "Plus · Pro",
       "items": [
-        "Si l’app vous rend service, vous pouvez laisser un petit pourboire au développeur",
-        "Le pourboire ne débloque rien. Toutes les fonctions marchent sans"
+        "Plus : présentations illimitées, lisibilité améliorée, PDF deux ou quatre diapos par page",
+        "Pro : tout Plus, avec en plus l’enregistrement, la transcription, le résumé par IA, l’export Markdown et PowerPoint, et la synchronisation iCloud"
       ],
-      "note": "Rendez-vous dans Mes informations."
+      "note": "Abonnement à la semaine, au mois ou à l’année, ou paiement unique à vie."
     },
-    "note": "Pas d’abonnement ni d’achat pour débloquer des fonctions. Le prix pour votre pays est indiqué dans l’App Store."
+    "note": "Les pourboires sont un simple merci et ne débloquent rien. Si vous avez acheté CatchSlide quand l’app était payante, vous gardez Pro à vie."
   },
   "faq": {
     "title": "Questions fréquentes",

@@ -9,6 +9,9 @@ struct PresentationNotesView: View {
     let presentationID: UUID
 
     @StateObject private var playback = AudioPlayback()
+    @ObservedObject private var purchases = PurchaseManager.shared
+    /// 요약 · 받아쓰기는 Pro 기능이다. 이미 만든 요약 · 받아쓴 글 · 녹음은 늘 보고 듣는다.
+    @State private var paywallFeature: ProFeature?
 
     @State private var summarizing = false
     @State private var summaryProgress: Double = 0
@@ -56,6 +59,7 @@ struct PresentationNotesView: View {
                 Text("받아쓴 내용도 함께 삭제됩니다.")
             }
             .onDisappear { playback.stop() }
+            .paywall(for: $paywallFeature)
         }
     }
 
@@ -97,7 +101,7 @@ struct PresentationNotesView: View {
                 Button {
                     summarize(presentation)
                 } label: {
-                    Label("다시 요약하기", systemImage: "arrow.clockwise")
+                    Label("다시 요약하기", systemImage: ProFeature.summary.icon("arrow.clockwise"))
                 }
             } else {
                 let status = Summarizer.status
@@ -105,7 +109,7 @@ struct PresentationNotesView: View {
                     Button {
                         summarize(presentation)
                     } label: {
-                        Label("AI로 요약하기", systemImage: "sparkles")
+                        Label("AI로 요약하기", systemImage: ProFeature.summary.icon("sparkles"))
                     }
                 } else {
                     Label(status.message, systemImage: "sparkles")
@@ -123,6 +127,10 @@ struct PresentationNotesView: View {
     }
 
     private func summarize(_ presentation: Presentation) {
+        guard purchases.allows(.summary) else {
+            paywallFeature = .summary
+            return
+        }
         summarizing = true
         summaryProgress = 0
         Task {
@@ -227,7 +235,7 @@ struct PresentationNotesView: View {
                 Button {
                     transcribe(recording)
                 } label: {
-                    Label("다시 받아쓰기", systemImage: "arrow.clockwise")
+                    Label("다시 받아쓰기", systemImage: ProFeature.recording.icon("arrow.clockwise"))
                 }
             } label: {
                 Label("받아씀", systemImage: "text.bubble.fill")
@@ -237,7 +245,7 @@ struct PresentationNotesView: View {
             Button {
                 transcribe(recording)
             } label: {
-                Label("받아쓰기", systemImage: "text.bubble")
+                Label("받아쓰기", systemImage: ProFeature.recording.icon("text.bubble"))
                     .font(.caption.weight(.semibold))
             }
             .buttonStyle(.bordered)
@@ -255,6 +263,10 @@ struct PresentationNotesView: View {
     }
 
     private func transcribe(_ recording: Recording) {
+        guard purchases.allows(.recording) else {
+            paywallFeature = .recording
+            return
+        }
         transcribingID = recording.id
         transcribeProgress = nil
         let language = transcribeLanguage

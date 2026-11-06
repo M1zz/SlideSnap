@@ -250,9 +250,14 @@ final class Store: ObservableObject {
     /// 공유 익스텐션이 수신함에 넣어 둔 사진 묶음을 발표 하나로 만든다.
     /// 익스텐션에서 정한 순서·제목·보정 여부를 따르고, 발표 날짜는 가장 이른 촬영 시각으로 둔다.
     /// 끝나면 묶음 폴더를 지운다.
-    /// - Returns: 만든 발표 id. 한 장도 넣지 못했으면 nil.
+    /// - Parameters:
+    ///   - existingID: 새 발표 대신 이 발표 뒤에 이어 붙인다(무료 발표를 다 채웠을 때 — 받은 사진은 버리지 않는다).
+    ///   - allowsEnhance: 또렷하게 보정을 쓸 수 있는가. 아니면 익스텐션에서 골랐어도 하지 않는다.
+    /// - Returns: 장표를 넣은 발표 id. 한 장도 넣지 못했으면 nil.
     func importSharedBatch(
         _ manifest: ShareInbox.Manifest,
+        into existingID: UUID? = nil,
+        allowsEnhance: Bool,
         onProgress: @escaping (_ done: Int, _ total: Int) -> Void
     ) async -> UUID? {
         defer { ShareInbox.discard(manifest.id) }
@@ -260,7 +265,10 @@ final class Store: ObservableObject {
 
         let dates = manifest.capturedAt
         let title = manifest.title.isEmpty ? ShareInbox.defaultTitle(for: dates) : manifest.title
-        let presentation = beginDraftPresentation(title: title, createdAt: dates.compactMap { $0 }.min())
+        let existing = existingID.flatMap { self.presentation($0) }
+        let presentation = existing ?? beginDraftPresentation(title: title, createdAt: dates.compactMap { $0 }.min())
+        let countBefore = presentation.slides.count
+        let enhance = manifest.enhance && allowsEnhance
 
         let total = manifest.files.count
         onProgress(0, total)
@@ -271,13 +279,14 @@ final class Store: ObservableObject {
             }.value
             if let image {
                 let capturedAt = index < dates.count ? dates[index] : nil
-                await addSlide(image: image, to: presentation.id, createdAt: capturedAt, enhance: manifest.enhance)
+                await addSlide(image: image, to: presentation.id, createdAt: capturedAt, enhance: enhance)
             }
             onProgress(index + 1, total)
         }
 
-        if self.presentation(presentation.id)?.slides.isEmpty ?? true {
-            deletePresentation(presentation.id)
+        // 한 장도 못 넣었으면 새로 만든 발표는 지우고, 이어 붙이려던 발표는 그대로 둔다.
+        if (self.presentation(presentation.id)?.slides.count ?? 0) == countBefore {
+            if existing == nil { deletePresentation(presentation.id) }
             return nil
         }
         return presentation.id

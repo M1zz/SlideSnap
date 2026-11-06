@@ -5,7 +5,7 @@
     "headline": "La fotografías de lado.\nLa guardas de frente.",
     "lead": "La cámara encuentra las cuatro esquinas de la diapositiva, la endereza y recorta todo lo que la rodea. Las que haces seguidas quedan juntas en una misma presentación.",
     "cta": "Descargar en el App Store",
-    "note": "Un solo pago y todas las funciones. Sin suscripción y sin cuenta."
+    "note": "Descarga gratis, con hasta 10 presentaciones. Sin cuenta."
   },
   "demo": {
     "title": "Enderézala tú",
@@ -64,27 +64,26 @@
     "note": "El reconocimiento de texto, la transcripción y los resúmenes con IA se hacen en tu dispositivo."
   },
   "pricing": {
-    "title": "Pagas una vez y lo tienes todo",
+    "title": "Empieza gratis y añade Plus o Pro cuando lo necesites",
     "free": {
-      "name": "CatchSlide",
+      "name": "Gratis",
       "items": [
         "Fotos sin ruido, captura automática y enderezado",
         "Importación de varias fotos desde Fotos",
         "Diapositivas por presentación, búsqueda en texto y notas",
-        "Grabación, transcripción y resumen con IA",
-        "Exportación a PDF, Markdown y PowerPoint",
-        "Sincronización con iCloud y widgets"
+        "Compartir imágenes, exportar PDF de una por página y widgets",
+        "Hasta 10 presentaciones"
       ]
     },
     "pro": {
-      "name": "Propinas (opcional)",
+      "name": "Plus · Pro",
       "items": [
-        "Si la app te resulta útil, puedes dejarle una pequeña propina al desarrollador",
-        "La propina no desbloquea nada. Todas las funciones van igual sin ella"
+        "Plus: presentaciones ilimitadas, mejora de legibilidad y PDF de dos o cuatro por página",
+        "Pro: todo lo de Plus, más grabación, transcripción, resumen con IA, exportación a Markdown y PowerPoint, y sincronización con iCloud"
       ],
-      "note": "Está en la pantalla Mis datos."
+      "note": "Elige suscripción semanal, mensual o anual, o un pago único de por vida."
     },
-    "note": "Sin suscripción ni compras para desbloquear funciones. Consulta el precio de tu país en el App Store."
+    "note": "Las propinas son solo un agradecimiento y no desbloquean nada. Si compraste CatchSlide cuando era de pago, conservas Pro para siempre."
   },
   "faq": {
     "title": "Preguntas frecuentes",

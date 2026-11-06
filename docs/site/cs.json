@@ -5,7 +5,7 @@
     "headline": "Vyfoceno z boku.\nUloženo zepředu.",
     "lead": "Fotoaparát najde všechny čtyři rohy snímku, narovná ho a ořízne okolí. Snímky vyfocené za sebou skončí ve stejné prezentaci.",
     "cta": "Stáhnout v App Storu",
-    "note": "Jeden nákup, všechny funkce. Žádné předplatné, žádný účet."
+    "note": "Ke stažení zdarma, až 10 prezentací. Bez účtu."
   },
   "demo": {
     "title": "Narovnejte si ho sami",
@@ -64,27 +64,26 @@
     "note": "Rozpoznávání textu, přepis i shrnutí pomocí AI běží přímo v zařízení."
   },
   "pricing": {
-    "title": "Koupíte jednou, máte všechno",
+    "title": "Začněte zdarma, Plus nebo Pro přidejte, až budete chtít",
     "free": {
-      "name": "CatchSlide",
+      "name": "Zdarma",
       "items": [
         "Tiché focení, automatické focení a narovnání",
         "Import více fotek najednou z aplikace Fotky",
         "Snímky podle prezentací, hledání v textu i poznámkách",
-        "Nahrávání, přepis a shrnutí pomocí AI",
-        "Export do PDF, Markdownu a PowerPointu",
-        "Synchronizace s iCloudem a widgety"
+        "Sdílení obrázků, export PDF po jednom slajdu a widgety",
+        "Až 10 prezentací"
       ]
     },
     "pro": {
-      "name": "Spropitné (dobrovolné)",
+      "name": "Plus · Pro",
       "items": [
-        "Pokud vám aplikace pomáhá, můžete vývojáři poslat malé spropitné",
-        "Spropitné nic neodemyká. Všechny funkce fungují i bez něj"
+        "Plus: neomezeně prezentací, lepší čitelnost, PDF po dvou nebo čtyřech slajdech",
+        "Pro: vše z Plus a navíc nahrávání, přepis, shrnutí pomocí AI, export do Markdownu a PowerPointu a synchronizace s iCloudem"
       ],
-      "note": "Najdete ho na obrazovce Moje údaje."
+      "note": "Vyberte týdenní, měsíční nebo roční předplatné, nebo jednorázovou platbu navždy."
     },
-    "note": "Žádné předplatné ani placené odemykání funkcí. Cenu pro vaši zemi najdete v App Storu."
+    "note": "Spropitné je jen poděkování a nic neodemyká. Kdo si CatchSlide koupil, když byla aplikace placená, má Pro navždy."
   },
   "faq": {
     "title": "Časté dotazy",
