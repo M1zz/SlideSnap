@@ -54,6 +54,11 @@ Apple Intelligence가 장표 글자와 받아쓴 발표 내용을 함께 읽고 
 
 찍은 장표는 기기 안에 저장됩니다. 계정이나 로그인이 필요 없습니다.
 
+구독 안내
+장표스냅 Plus와 Pro 구독은 자동 갱신 구독입니다. 갱신일 24시간 전까지 해지하지 않으면 Apple 계정으로 자동 결제되며, 설정의 구독 관리에서 언제든 해지할 수 있습니다.
+이용약관(EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+개인정보처리방침: https://m1zz.github.io/SlideSnap/privacy.html
+
 ### 키워드
 
 녹음,받아쓰기,요약,음성인식,원근보정,교안,판서,칠판,캡처,복습,세미나,PPT,인강,OCR,학회,필기,PDF,수업,대학생,스터디,컨퍼런스,무음카메라
@@ -120,6 +125,11 @@ The app is free, with up to 10 presentations to capture, straighten, search and 
 
 Your slides stay on your device. No account or sign-in needed.
 
+Subscriptions
+CatchSlide Plus and Pro subscriptions renew automatically. Payment is charged to your Apple Account, and a subscription renews unless canceled at least 24 hours before the end of the current period. Manage or cancel anytime in Settings.
+Terms of Use (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Privacy Policy: https://m1zz.github.io/SlideSnap/en/privacy.html
+
 ### 키워드
 
 record,transcribe,summary,ai,notes,perspective,seminar,whiteboard,ppt,ocr,pdf,class,conference
@@ -182,6 +192,11 @@ The app is free, with up to 10 presentations to capture, straighten, search and 
 
 Your slides stay on your device. No account or sign-in needed.
 
+Subscriptions
+CatchSlide Plus and Pro subscriptions renew automatically. Payment is charged to your Apple Account, and a subscription renews unless cancelled at least 24 hours before the end of the current period. Manage or cancel at any time in Settings.
+Terms of Use (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Privacy Policy: https://m1zz.github.io/SlideSnap/en/privacy.html
+
 ### 키워드
 
 record,transcribe,summary,ai,notes,perspective,seminar,whiteboard,ppt,ocr,pdf,revision,uni
@@ -242,6 +257,11 @@ CatchSlide 会识别每张幻灯片上的文字，只要记得一个词，就能
 App 免费，最多可拍摄、校正、搜索和导出 10 个演示。CatchSlide Plus 提供不限数量的演示、优化可读性，以及每页两张或四张的 PDF；Pro 再加上录音与转写、AI 摘要、导出 Markdown 和 PowerPoint、iCloud 同步。可选按周、按月、按年订阅，或一次性终身买断。在 CatchSlide 还是付费 App 时购买的用户，可继续使用 Pro。
 
 拍下的幻灯片保存在你的设备上，无需账号，也无需登录。
+
+订阅说明
+CatchSlide Plus 和 Pro 订阅均为自动续期订阅。费用从你的 Apple 账户扣除，除非在当期结束前至少 24 小时取消，否则将自动续期。可随时在“设置”中管理或取消。
+使用条款（EULA）: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+隐私政策: https://m1zz.github.io/SlideSnap/zh-Hans/privacy.html
 
 ### 키워드
 
@@ -309,6 +329,11 @@ App 免費，最多可拍攝、校正、搜尋和匯出 10 個簡報。CatchSlid
 
 拍下的投影片都儲存在你的裝置上，不需要帳號，也不需要登入。
 
+訂閱說明
+CatchSlide Plus 與 Pro 訂閱皆為自動續訂訂閱。費用會從你的 Apple 帳號扣款，除非在當期結束前至少 24 小時取消，否則將自動續訂。可隨時在「設定」中管理或取消。
+使用條款（EULA）: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+隱私權政策: https://m1zz.github.io/SlideSnap/zh-Hant/privacy.html
+
 ### 키워드
 
 PPT,課件,板書,錄音,逐字稿,摘要,語音轉文字,透視校正,講座,研討會,會議,OCR,PDF,筆記,上課,大學生,複習,文字辨識,白板,講義,聽課,考試複習,靜音拍照,簡報,演講
@@ -375,6 +400,11 @@ Apple Intelligenceがスライドの文字と文字起こしした講義内容�
 
 撮影したスライドはデバイス内に保存されます。アカウントやログインは不要です。
 
+サブスクリプションについて
+CatchSlide PlusとProのサブスクリプションは自動更新です。期間終了の24時間前までに解約しない限り、Apple Accountに自動で請求され更新されます。設定のサブスクリプション管理からいつでも解約できます。
+利用規約（EULA）: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+プライバシーポリシー: https://m1zz.github.io/SlideSnap/ja/privacy.html
+
 ### 키워드
 
 録音,文字起こし,要約,議事録,台形補正,ゼミ,セミナー,板書,OCR,PDF,ノート,授業,大学生,学会,資料,講演,勉強,復習,文字認識,レジュメ,試験対策,無音,プレゼン
@@ -437,6 +467,11 @@ CatchSlide распознаёт текст на каждом слайде, та�
 
 Ваши слайды остаются на вашем устройстве. Аккаунт и вход не нужны.
 
+Подписки
+CatchSlide Plus и Pro — подписки с автопродлением. Оплата списывается с вашего аккаунта Apple, и подписка продлевается, если не отменить её минимум за 24 часа до конца периода. Управлять подпиской и отменить её можно в Настройках.
+Условия использования (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Политика конфиденциальности: https://m1zz.github.io/SlideSnap/ru/privacy.html
+
 ### 키워드
 
 лекция,конспект,запись,диктофон,расшифровка,доска,презентация,OCR,PDF,семинар,студент,учёба
@@ -497,6 +532,11 @@ Empieza gratis
 La app es gratis e incluye hasta 10 presentaciones para capturar, enderezar, buscar y exportar. CatchSlide Plus añade presentaciones ilimitadas, mejora de legibilidad y PDF de dos o cuatro diapositivas por página. Pro suma grabación y transcripción, resumen con IA, exportación a Markdown y PowerPoint, y sincronización con iCloud. Elige una suscripción semanal, mensual o anual, o un pago único de por vida. Si compraste CatchSlide cuando era de pago, conservas Pro.
 
 Tus diapositivas se quedan en tu dispositivo. No necesitas cuenta ni iniciar sesión.
+
+Suscripciones
+Las suscripciones a CatchSlide Plus y Pro se renuevan automáticamente. El cargo se realiza en tu cuenta de Apple y la suscripción se renueva salvo que la canceles al menos 24 horas antes de que termine el periodo. Puedes gestionarla o cancelarla cuando quieras en Ajustes.
+Términos de uso (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Política de privacidad: https://m1zz.github.io/SlideSnap/es/privacy.html
 
 ### 키워드
 
@@ -560,6 +600,11 @@ Die App ist kostenlos, mit bis zu 10 Präsentationen zum Aufnehmen, Begradigen, 
 
 Deine Folien bleiben auf deinem Gerät. Kein Account und keine Anmeldung nötig.
 
+Abos
+Die Abos von CatchSlide Plus und Pro verlängern sich automatisch. Die Zahlung erfolgt über deinen Apple Account. Das Abo verlängert sich, sofern du nicht mindestens 24 Stunden vor Ablauf des Zeitraums kündigst. Verwalten oder kündigen kannst du jederzeit in den Einstellungen.
+Nutzungsbedingungen (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Datenschutzerklärung: https://m1zz.github.io/SlideSnap/de/privacy.html
+
 ### 키워드
 
 Aufnahme,Zusammenfassung,Transkript,KI,Mitschrift,Präsentation,Seminar,Tafel,PDF,OCR,Uni,Studium
@@ -616,6 +661,11 @@ Commencez gratuitement
 L’app est gratuite, avec jusqu’à 10 présentations à capturer, redresser, rechercher et exporter. CatchSlide Plus ajoute les présentations illimitées, l’amélioration de la lisibilité et les PDF à deux ou quatre diapositives par page. Pro y ajoute l’enregistrement et la transcription, les résumés par IA, l’export Markdown et PowerPoint, et la synchronisation iCloud. Choisissez un abonnement à la semaine, au mois ou à l’année, ou un paiement unique à vie. Si vous avez acheté CatchSlide quand l’app était payante, vous gardez Pro.
 
 Vos diapositives restent sur votre appareil. Aucun compte ni connexion requis.
+
+Abonnements
+Les abonnements CatchSlide Plus et Pro se renouvellent automatiquement. Le paiement est débité sur votre compte Apple, et l'abonnement est reconduit sauf résiliation au moins 24 heures avant la fin de la période en cours. Gérez-le ou résiliez-le à tout moment dans Réglages.
+Conditions d'utilisation (EULA) : https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Politique de confidentialité : https://m1zz.github.io/SlideSnap/fr/privacy.html
 
 ### 키워드
 
@@ -677,6 +727,11 @@ Inizia gratis
 L’app è gratuita, con fino a 10 presentazioni da acquisire, raddrizzare, cercare ed esportare. CatchSlide Plus aggiunge presentazioni illimitate, leggibilità migliorata e PDF con due o quattro slide per pagina. Pro aggiunge registrazione e trascrizione, riassunti con IA, esportazione in Markdown e PowerPoint e sincronizzazione iCloud. Scegli un abbonamento settimanale, mensile o annuale, oppure paga una volta per sempre. Se hai acquistato CatchSlide quando era a pagamento, tieni Pro.
 
 Le tue slide restano sul tuo dispositivo. Nessun account e nessun accesso richiesti.
+
+Abbonamenti
+Gli abbonamenti CatchSlide Plus e Pro si rinnovano automaticamente. Il pagamento viene addebitato sul tuo Account Apple e l'abbonamento si rinnova se non lo disdici almeno 24 ore prima della fine del periodo. Puoi gestirlo o disdirlo in qualsiasi momento in Impostazioni.
+Condizioni d'uso (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Informativa sulla privacy: https://m1zz.github.io/SlideSnap/it/privacy.html
 
 ### 키워드
 
@@ -744,6 +799,11 @@ O app é grátis, com até 10 apresentações para capturar, endireitar, pesquis
 
 Seus slides ficam no seu dispositivo. Não precisa de conta nem de login.
 
+Assinaturas
+As assinaturas CatchSlide Plus e Pro são renovadas automaticamente. A cobrança é feita na sua Conta Apple e a assinatura é renovada, a menos que você cancele pelo menos 24 horas antes do fim do período. Gerencie ou cancele quando quiser em Ajustes.
+Termos de Uso (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Política de Privacidade: https://m1zz.github.io/SlideSnap/pt-BR/privacy.html
+
 ### 키워드
 
 gravar,resumo,transcrição,ia,aula,faculdade,apresentação,notas,ocr,pdf,palestra,lousa,estudo
@@ -808,6 +868,11 @@ CatchSlide จดจำข้อความบนทุกสไลด์ แ�
 
 สไลด์ของคุณเก็บอยู่ในอุปกรณ์ ไม่ต้องสมัครบัญชีหรือเข้าสู่ระบบ
 
+การสมัครสมาชิก
+CatchSlide Plus และ Pro เป็นการสมัครสมาชิกที่ต่ออายุอัตโนมัติ ระบบจะเรียกเก็บเงินจากบัญชี Apple ของคุณและต่ออายุ เว้นแต่จะยกเลิกอย่างน้อย 24 ชั่วโมงก่อนสิ้นสุดรอบ จัดการหรือยกเลิกได้ทุกเมื่อในการตั้งค่า
+ข้อกำหนดการใช้งาน (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+นโยบายความเป็นส่วนตัว: https://m1zz.github.io/SlideSnap/th/privacy.html
+
 ### 키워드
 
 ปรับภาพ,สรุปเนื้อหา,ถอดเสียง,บันทึกเสียง,ห้องเรียน,สัมมนา,มหาวิทยาลัย,นักศึกษา,จดโน้ต,pdf,ocr,กระดาน
@@ -869,6 +934,11 @@ Bắt đầu miễn phí
 
 Slide của bạn được lưu ngay trên thiết bị. Không cần tài khoản hay đăng nhập.
 
+Gói đăng ký
+CatchSlide Plus và Pro là các gói đăng ký tự động gia hạn. Phí được tính vào Tài khoản Apple của bạn và tự gia hạn trừ khi bạn hủy ít nhất 24 giờ trước khi kỳ hạn kết thúc. Bạn có thể quản lý hoặc hủy bất cứ lúc nào trong Cài đặt.
+Điều khoản sử dụng (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Chính sách quyền riêng tư: https://m1zz.github.io/SlideSnap/vi/privacy.html
+
 ### 키워드
 
 bài giảng,ghi âm,tóm tắt,nắn thẳng,bảng,ghi chú,hội thảo,sinh viên,đại học,ôn thi,ocr,thuyết trình
@@ -927,6 +997,11 @@ Začni zdarma
 Aplikace je zdarma a až 10 prezentací můžeš fotit, rovnat, prohledávat a exportovat. CatchSlide Plus přidá neomezeně prezentací, lepší čitelnost a PDF po dvou nebo čtyřech slajdech na stránku. Pro přidá nahrávání a přepis, shrnutí pomocí AI, export do Markdownu a PowerPointu a synchronizaci s iCloudem. Vyber si týdenní, měsíční nebo roční předplatné, nebo jednorázovou platbu navždy. Kdo si CatchSlide koupil, když byla placená, má Pro dál.
 
 Tvoje slajdy zůstávají v tvém zařízení. Bez účtu a bez přihlašování.
+
+Předplatné
+CatchSlide Plus a Pro jsou automaticky obnovovaná předplatná. Platba se strhává z tvého účtu Apple a předplatné se obnoví, pokud ho nezrušíš alespoň 24 hodin před koncem období. Spravovat nebo zrušit ho můžeš kdykoli v Nastavení.
+Podmínky použití (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Zásady ochrany osobních údajů: https://m1zz.github.io/SlideSnap/cs/privacy.html
 
 ### 키워드
 
@@ -988,6 +1063,11 @@ Start gratis
 Appen er gratis, og du kan tage, rette ud, søge i og eksportere op til 10 præsentationer. CatchSlide Plus giver ubegrænsede præsentationer, bedre læsbarhed og PDF med to eller fire slides pr. side. Pro tilføjer optagelse og transskription, AI-resuméer, eksport til Markdown og PowerPoint samt iCloud-synkronisering. Vælg abonnement pr. uge, måned eller år, eller betal én gang for altid. Har du købt CatchSlide, dengang appen kostede penge, beholder du Pro.
 
 Dine slides bliver på din enhed. Du behøver ingen konto og ingen login.
+
+Abonnementer
+CatchSlide Plus og Pro er abonnementer, der fornyes automatisk. Betalingen trækkes på din Apple-konto, og abonnementet fornyes, medmindre du opsiger det mindst 24 timer før perioden slutter. Administrer eller opsig når som helst i Indstillinger.
+Brugsvilkår (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Privatlivspolitik: https://m1zz.github.io/SlideSnap/da/privacy.html
 
 ### 키워드
 
@@ -1055,6 +1135,11 @@ CatchSlide: Σάρωση διαφανειών
 
 Οι διαφάνειές σας μένουν στη συσκευή σας. Δεν χρειάζεται λογαριασμός ή σύνδεση.
 
+Συνδρομές
+Τα CatchSlide Plus και Pro είναι συνδρομές με αυτόματη ανανέωση. Η χρέωση γίνεται στον λογαριασμό Apple σας και η συνδρομή ανανεώνεται, εκτός αν την ακυρώσετε τουλάχιστον 24 ώρες πριν λήξει η περίοδος. Μπορείτε να τη διαχειριστείτε ή να την ακυρώσετε οποτεδήποτε από τις Ρυθμίσεις.
+Όροι χρήσης (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Πολιτική απορρήτου: https://m1zz.github.io/SlideSnap/el/privacy.html
+
 ### 키워드
 
 διάλεξη,ηχογράφηση,μεταγραφή,σύνοψη,παρουσίαση,ocr,pdf,σημειώσεις,μάθημα,πίνακας,συνέδριο
@@ -1121,6 +1206,11 @@ Sovellus on ilmainen, ja voit kuvata, suoristaa, hakea ja viedä enintään 10 e
 
 Kalvosi pysyvät laitteellasi. Tiliä tai kirjautumista ei tarvita.
 
+Tilaukset
+CatchSlide Plus ja Pro ovat automaattisesti uusiutuvia tilauksia. Maksu veloitetaan Apple-tililtäsi, ja tilaus uusiutuu, ellei sitä peruta vähintään 24 tuntia ennen jakson päättymistä. Hallitse tai peru milloin tahansa Asetuksissa.
+Käyttöehdot (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Tietosuojakäytäntö: https://m1zz.github.io/SlideSnap/fi/privacy.html
+
 ### 키워드
 
 nauhoitus,litterointi,tiivistelmä,sanelu,esitys,diat,seminaari,ocr,pdf,muistiinpanot,opiskelu
@@ -1185,6 +1275,11 @@ App ini gratis, dengan hingga 10 presentasi untuk dipotret, diluruskan, dicari, 
 
 Slide Anda tersimpan di perangkat. Tanpa akun dan tanpa perlu masuk.
 
+Langganan
+CatchSlide Plus dan Pro adalah langganan yang diperpanjang otomatis. Pembayaran ditagihkan ke Akun Apple Anda dan langganan diperpanjang kecuali dibatalkan paling lambat 24 jam sebelum periode berakhir. Kelola atau batalkan kapan saja di Pengaturan.
+Ketentuan Penggunaan (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Kebijakan Privasi: https://m1zz.github.io/SlideSnap/id/privacy.html
+
 ### 키워드
 
 rekam,transkrip,ringkasan,perekam,materi,catatan,papantulis,mahasiswa,ocr,dokumen,ujian,perspektif
@@ -1247,6 +1342,11 @@ Start gratis
 Appen er gratis, og du kan ta, rette opp, søke i og eksportere opptil 10 presentasjoner. CatchSlide Plus gir ubegrenset med presentasjoner, bedre lesbarhet og PDF med to eller fire lysbilder per side. Pro legger til opptak og transkripsjon, AI-oppsummeringer, eksport til Markdown og PowerPoint og iCloud-synkronisering. Velg abonnement per uke, måned eller år, eller betal én gang for alltid. Kjøpte du CatchSlide da appen kostet penger, beholder du Pro.
 
 Lysbildene dine blir på enheten din. Du trenger ingen konto og ingen pålogging.
+
+Abonnementer
+CatchSlide Plus og Pro er abonnementer som fornyes automatisk. Betalingen belastes Apple-kontoen din, og abonnementet fornyes med mindre du sier det opp minst 24 timer før perioden er over. Administrer eller si opp når som helst i Innstillinger.
+Bruksvilkår (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Personvernerklæring: https://m1zz.github.io/SlideSnap/nb/privacy.html
 
 ### 키워드
 
@@ -1314,6 +1414,11 @@ De app is gratis, met tot 10 presentaties om vast te leggen, recht te zetten, te
 
 Je dia's blijven op je apparaat. Je hebt geen account en geen login nodig.
 
+Abonnementen
+CatchSlide Plus en Pro zijn automatisch verlengende abonnementen. De betaling loopt via je Apple Account en het abonnement wordt verlengd tenzij je minstens 24 uur voor het einde van de periode opzegt. Beheer of zeg op wanneer je wilt in Instellingen.
+Gebruiksvoorwaarden (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Privacybeleid: https://m1zz.github.io/SlideSnap/nl/privacy.html
+
 ### 키워드
 
 opname,samenvatting,transcriptie,college,les,presentatie,whiteboard,ocr,pdf,notities,studie,bord
@@ -1376,6 +1481,11 @@ Aplikacja jest darmowa: do 10 prezentacji możesz fotografować, prostować, prz
 
 Twoje slajdy zostają na Twoim urządzeniu. Nie potrzebujesz konta ani logowania.
 
+Subskrypcje
+CatchSlide Plus i Pro to subskrypcje odnawiane automatycznie. Opłata jest pobierana z Twojego konta Apple, a subskrypcja odnawia się, jeśli nie anulujesz jej co najmniej 24 godziny przed końcem okresu. Zarządzaj nią lub anuluj ją w dowolnej chwili w Ustawieniach.
+Warunki korzystania (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Polityka prywatności: https://m1zz.github.io/SlideSnap/pl/privacy.html
+
 ### 키워드
 
 wykład,nagranie,transkrypcja,dyktafon,notatki,tablica,prezentacja,OCR,PDF,seminarium,student,nauka
@@ -1436,6 +1546,11 @@ Börja gratis
 Appen är gratis, och du kan fota, räta upp, söka i och exportera upp till 10 presentationer. CatchSlide Plus ger obegränsat med presentationer, bättre läsbarhet och PDF med två eller fyra slides per sida. Pro lägger till inspelning och transkribering, AI-sammanfattningar, export till Markdown och PowerPoint samt iCloud-synkronisering. Välj prenumeration per vecka, månad eller år, eller betala en gång för alltid. Köpte du CatchSlide när appen kostade pengar behåller du Pro.
 
 Dina slides stannar på din enhet. Du behöver inget konto och ingen inloggning.
+
+Prenumerationer
+CatchSlide Plus och Pro är prenumerationer som förnyas automatiskt. Betalningen dras från ditt Apple-konto och prenumerationen förnyas om du inte avslutar den minst 24 timmar innan perioden slutar. Hantera eller avsluta när som helst i Inställningar.
+Användarvillkor (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Integritetspolicy: https://m1zz.github.io/SlideSnap/sv/privacy.html
 
 ### 키워드
 
@@ -1502,6 +1617,11 @@ Widget'a dokunun, kamera anında açılsın. Kilit Ekranı'nda da çalışır.
 Uygulama ücretsizdir; 10 sunuma kadar çekebilir, düzeltebilir, arayabilir ve dışa aktarabilirsiniz. CatchSlide Plus sınırsız sunum, okunabilirliği artırma ve sayfada iki veya dört slaytlık PDF ekler. Pro buna kayıt ve yazıya dökme, yapay zekâ özetleri, Markdown ve PowerPoint olarak dışa aktarma ve iCloud eşzamanlamayı ekler. Haftalık, aylık veya yıllık abonelik ya da ömür boyu tek ödeme arasından seçin. CatchSlide’ı ücretliyken satın aldıysanız Pro sizde kalır.
 
 Slaytlarınız cihazınızda kalır. Hesap açmanız ya da oturum açmanız gerekmez.
+
+Abonelikler
+CatchSlide Plus ve Pro otomatik yenilenen aboneliklerdir. Ödeme Apple Hesabınızdan alınır ve abonelik, dönem bitmeden en az 24 saat önce iptal edilmezse yenilenir. Ayarlar'dan istediğiniz zaman yönetebilir veya iptal edebilirsiniz.
+Kullanım Koşulları (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Gizlilik Politikası: https://m1zz.github.io/SlideSnap/tr/privacy.html
 
 ### 키워드
 
