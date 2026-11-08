@@ -2,7 +2,7 @@
 //  SettingsView.swift
 //  SlideSnap
 //
-//  설정 — 요금제와 응원 · 발표 동기화 · 데이터와 도움말 · 의견 보내기 (클립키보드와 같은 차례).
+//  설정 — 요금제와 응원 · 촬영 · 발표 동기화 · 데이터와 도움말 · 의견 보내기 (클립키보드와 같은 차례).
 //  피드백 회신용 이름 · 이메일은 피드백 화면이 직접 받고 기억한다(LeeoKit).
 //
 
@@ -20,6 +20,7 @@ struct SettingsView: View {
     @State private var restoreMessage: String?
     @State private var enablingSync = false
     @State private var showingFeedback = false
+    @AppStorage(LaunchCamera.key) private var opensCameraOnLaunch = true
     @Environment(\.dismiss) private var dismiss
 
     /// 마스터(개발자) 모드 — 버전 행 7번 탭으로 토글. 피드백 수신함 진입점 노출.
@@ -31,6 +32,16 @@ struct SettingsView: View {
         NavigationStack {
             Form {
                 planSection
+
+                Section {
+                    Toggle(isOn: $opensCameraOnLaunch) {
+                        Label("앱을 열면 바로 촬영", systemImage: "camera")
+                    }
+                } header: {
+                    Text("촬영")
+                } footer: {
+                    Text("끄면 발표 목록부터 보여요. 위젯이나 단축어로는 언제든 바로 찍을 수 있어요.")
+                }
 
                 Section {
                     Toggle(isOn: syncBinding) {
@@ -252,6 +263,11 @@ struct SettingsView: View {
         showMasterModeAlert = true
     }
 
+}
+
+/// 앱을 열 때 카메라를 바로 띄울지(설정 ▸ 촬영 · 발표 목록이 같이 읽는다).
+enum LaunchCamera {
+    static let key = "opensCameraOnLaunch"
 }
 
 /// 설정 ▸ 선물하기. 누르면 바로 칸(Plus · Pro)을 고르고 선물하는 한 화면이다(LeeoKit `LeeoGiftPickerView`).

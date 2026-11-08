@@ -54,6 +54,8 @@ struct PresentationListView: View {
     @State private var showingCamera = false
     @State private var cameraPresentationID: UUID?
     @State private var hasAutoLaunchedCamera = false
+    /// 앱을 열면 바로 카메라를 띄운다(설정 ▸ 촬영). 처음엔 켜져 있다.
+    @AppStorage(LaunchCamera.key) private var opensCameraOnLaunch = true
     @State private var cameraCaptured = false
     @State private var cameraCreatedNew = false
     /// 무료 발표를 다 채워 새 발표 대신 가장 최근 발표에 이어 찍는 중인가.
@@ -248,10 +250,11 @@ struct PresentationListView: View {
             }
             #endif
             // 공유로 넘어온 사진이 있어 열린 경우엔 카메라 대신 그 사진부터 정리한다.
-            if ShareInbox.pendingManifests().isEmpty {
-                openCamera()
-            } else {
+            if !ShareInbox.pendingManifests().isEmpty {
                 importSharedPhotos()
+            } else if opensCameraOnLaunch || router.cameraLaunchRequest > 0 {
+                // 설정을 꺼 두었어도 위젯 · 단축어로 '찍으려고' 열었으면 연다(화면이 서기 전에 온 요청).
+                openCamera()
             }
         }
         .onChange(of: scenePhase) { _, phase in
