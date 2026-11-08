@@ -112,9 +112,4 @@ enum SlideSnapTipMoments {
 enum AppInfo {
     /// 피드백 이메일 폴백 수신 주소.
     static let developerEmail = "leeo@kakao.com"
-
-    /// 현재 앱 버전 (예: "1.0").
-    static var appVersion: String {
-        Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "-"
-    }
 }

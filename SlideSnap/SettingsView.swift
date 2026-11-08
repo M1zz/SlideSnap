@@ -2,7 +2,7 @@
 //  SettingsView.swift
 //  SlideSnap
 //
-//  설정 — 요금제와 응원 · 발표 동기화 · 앱 정보.
+//  설정 — 요금제와 응원 · 발표 동기화 · 데이터와 도움말 · 의견 보내기 (클립키보드와 같은 차례).
 //  피드백 회신용 이름 · 이메일은 피드백 화면이 직접 받고 기억한다(LeeoKit).
 //
 
@@ -19,6 +19,7 @@ struct SettingsView: View {
     /// 구매 복원을 눌렀는데 찾지 못했을 때 그 까닭.
     @State private var restoreMessage: String?
     @State private var enablingSync = false
+    @State private var showingFeedback = false
     @Environment(\.dismiss) private var dismiss
 
     /// 마스터(개발자) 모드 — 버전 행 7번 탭으로 토글. 피드백 수신함 진입점 노출.
@@ -54,17 +55,15 @@ struct SettingsView: View {
                     syncFooter
                 }
 
-                Section("앱 정보") {
-                    // 앞으로 만들 기능 — 원본은 SlideSnapRoadmap.swift
-                    NavigationLink(LeeoRoadmapText.entry) { RoadmapScreen() }
-                    LeeoShareAppLink<SlideSnapSpec>()
+                Section("데이터와 도움말") {
                     NavigationLink { LeeoVaultView(appName: SlideSnapSpec.displayName) } label: {
                         Label(LeeoVaultText.entry, systemImage: "externaldrive.badge.timemachine")
                     }
-                    LabeledContent("버전", value: AppInfo.appVersion)
-                        .contentShape(Rectangle())
-                        .onTapGesture { handleVersionTap() }
+                    LeeoShareAppLink<SlideSnapSpec>()
                 }
+
+                // 사용자가 보는 설정의 맨 끝. 버전은 이 칸 아래에 늘 보인다(클립키보드와 같다).
+                feedbackSection
 
                 if masterModeEnabled {
                     Section("개발자") {
@@ -83,6 +82,7 @@ struct SettingsView: View {
             }
             .navigationTitle("설정")
             .paywall(for: $paywallFeature)
+            .sheet(isPresented: $showingFeedback) { FeedbackView() }
             .manageSubscriptionsSheet(isPresented: $showingManageSubscription)
             .sheet(isPresented: $showingGraduation) {
                 LeeoGraduationOfferView(graduate: purchases.product(ProProduct.graduate)) {
@@ -140,15 +140,21 @@ struct SettingsView: View {
             NavigationLink {
                 PaywallView(embedded: true)
             } label: {
-                LabeledContent("장표스냅 Plus · Pro") {
+                LabeledContent {
                     if purchases.isKnown { Text(purchases.tier.title) }
+                } label: {
+                    Label("장표스냅 Plus · Pro", systemImage: "sparkles")
                 }
             }
             if purchases.subscription != nil {
-                Button(LeeoLadderText.manageSubscription) { showingManageSubscription = true }
+                Button { showingManageSubscription = true } label: {
+                    Label(LeeoLadderText.manageSubscription, systemImage: "calendar.badge.clock")
+                }
                 // 구독 중인 사람이 언제든 평생으로 옮겨 갈 수 있는 길. 졸업가 상품을 못 불러왔으면 세우지 않는다.
                 if purchases.product(ProProduct.graduate) != nil {
-                    Button(LeeoLadderText.switchToLifetimeEntry) { showingGraduation = true }
+                    Button { showingGraduation = true } label: {
+                        Label(LeeoLadderText.switchToLifetimeEntry, systemImage: "infinity")
+                    }
                 }
             }
             // 응원 — 낸 사람에게는 후원 단계 배지(LeeoSupporterBadge)가 선다. 팁 상품이 App Store 에서 와야 줄이 선다.
@@ -160,19 +166,22 @@ struct SettingsView: View {
                     Label("선물하기", systemImage: "gift.fill")
                 }
             }
-            Button {
-                Task {
-                    await purchases.restore()
-                    restoreMessage = purchases.tier == .free ? purchases.failureMessage : nil
+            // 유료 앱일 때 산 사람은 되돌릴 구매가 없다. 나머지는 칸 끝에 복원을 둔다.
+            if !purchases.isGrandfathered {
+                Button {
+                    Task {
+                        await purchases.restore()
+                        restoreMessage = purchases.tier == .free ? purchases.failureMessage : nil
+                    }
+                } label: {
+                    HStack {
+                        Label("구매 복원", systemImage: "arrow.clockwise")
+                        Spacer()
+                        if purchases.isWorking { ProgressView() }
+                    }
                 }
-            } label: {
-                HStack {
-                    Text("구매 복원")
-                    Spacer()
-                    if purchases.isWorking { ProgressView() }
-                }
+                .disabled(purchases.isWorking)
             }
-            .disabled(purchases.isWorking)
         } header: {
             Text("요금제와 응원")
         } footer: {
@@ -182,6 +191,44 @@ struct SettingsView: View {
                 Text(restoreMessage)
             }
         }
+    }
+
+    /// 의견 보내기 — 설정 첫 화면의 맨 아래. 아래에 버전(빌드 번호까지)을 적고, 7번 누르면 개발자 모드.
+    private var feedbackSection: some View {
+        Section {
+            // 피드백 화면은 자기 NavigationStack 을 갖고 있어 시트로 띄운다.
+            Button { showingFeedback = true } label: {
+                Label("피드백 보내기", systemImage: "envelope.badge")
+            }
+            // 보낸 적이 있을 때만 보인다. 답장이 오면 숫자가 붙는다.
+            LeeoSentFeedbackRow<SlideSnapSpec>()
+            if let id = SlideSnapSpec.appStoreID,
+               let url = URL(string: "https://apps.apple.com/app/id\(id)?action=write-review") {
+                Link(destination: url) {
+                    Label("리뷰 남기기", systemImage: "star")
+                }
+            }
+            // 앞으로 만들 기능 — 원본은 SlideSnapRoadmap.swift
+            NavigationLink { RoadmapScreen() } label: {
+                Label(LeeoRoadmapText.entry, systemImage: "calendar")
+            }
+        } header: {
+            Text("의견 보내기")
+        } footer: {
+            Text("\(String(localized: "버전")) \(Self.versionText)")
+                .frame(maxWidth: .infinity)
+                .padding(.top, 12)
+                .contentShape(Rectangle())
+                .onTapGesture { handleVersionTap() }
+        }
+    }
+
+    /// "1.0.11 (12)" — 문의할 때 빌드 번호까지 말할 수 있게.
+    private static var versionText: String {
+        let info = Bundle.main.infoDictionary
+        let version = info?["CFBundleShortVersionString"] as? String ?? "?"
+        guard let build = info?["CFBundleVersion"] as? String else { return version }
+        return "\(version) (\(build))"
     }
 
     @ViewBuilder
