@@ -1,6 +1,38 @@
 import AVFoundation
 import Combine
 
+/// 오디오 세션을 켜고 끄는 일. 오래 걸릴 수 있어(다른 앱 소리를 멈추게 하는 동안 막힌다) 메인 스레드에서 하지 않는다.
+/// 한 줄 대기열이라 켜기 · 끄기 순서가 뒤바뀌지 않는다.
+/// iOS 27 의 `activate(options:)` 비동기 API 를 쓰지 않는 것은 iOS 17 부터 지원해서다.
+private enum AudioSessionLine {
+    private static let queue = DispatchQueue(label: "com.leeo.slidesnap.audio-session", qos: .userInitiated)
+
+    /// 그 쓰임으로 세션을 켠다. 켜졌으면 true.
+    static func activate(_ category: AVAudioSession.Category, options: AVAudioSession.CategoryOptions = []) async -> Bool {
+        await withCheckedContinuation { done in
+            queue.async {
+                let session = AVAudioSession.sharedInstance()
+                do {
+                    try session.setCategory(category, mode: .spokenAudio, options: options)
+                    // 녹음 중에도 자동 촬영 햅틱이 울리게 한다.
+                    if category == .playAndRecord { try session.setAllowHapticsAndSystemSoundsDuringRecording(true) }
+                    try session.setActive(true)
+                    done.resume(returning: true)
+                } catch {
+                    done.resume(returning: false)
+                }
+            }
+        }
+    }
+
+    /// 세션을 끄고 다른 앱이 소리를 다시 내게 알린다. 기다리지 않는다.
+    static func deactivate() {
+        queue.async {
+            try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
+        }
+    }
+}
+
 /// 촬영하는 동안 발표 음성을 녹음한다.
 ///
 /// 장표의 촬영 시각과 녹음 시작 시각으로 "이 장표를 찍던 순간"을 찾으므로, 녹음 파일 안의 시간이
@@ -22,8 +54,9 @@ final class AudioRecorder: ObservableObject {
     private var current: (id: UUID, file: String, startedAt: Date)?
     private var timer: AnyCancellable?
     private var interruptionObserver: NSObjectProtocol?
-    /// 끼어들기로 멈췄고, 끝나면 다시 녹음해야 하는지
-    private var resumeAfterInterruption = false
+    /// 녹음하려는 중인가 — 시작을 눌렀고 아직 멈추지 않았다. 세션을 켜는 사이에 멈추면 시작하지 않고,
+    /// 끼어들기가 끝나면 이 값을 보고 다시 녹음한다.
+    private var wantsRecording = false
 
     /// 이보다 짧은 녹음은 실수로 보고 버린다.
     private static let minimumDuration: TimeInterval = 2
@@ -54,34 +87,29 @@ final class AudioRecorder: ObservableObject {
     // MARK: - 시작 / 끝
 
     func start() {
-        guard !isRecording else { return }
+        guard !wantsRecording else { return }
+        wantsRecording = true
         Task {
             guard await Self.requestPermission() else {
+                wantsRecording = false
                 permissionDenied = true
                 return
             }
             permissionDenied = false
-            beginFile()
+            await beginFile()
         }
     }
 
     /// 녹음을 끝내고 파일을 넘긴다.
     func stop() {
-        resumeAfterInterruption = false
+        wantsRecording = false
         finishFile()
-        try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
+        AudioSessionLine.deactivate()
     }
 
-    private func beginFile() {
-        let session = AVAudioSession.sharedInstance()
-        do {
-            try session.setCategory(.playAndRecord, mode: .spokenAudio, options: [.defaultToSpeaker])
-            // 녹음 중에도 자동 촬영 햅틱이 울리게 한다.
-            try session.setAllowHapticsAndSystemSoundsDuringRecording(true)
-            try session.setActive(true)
-        } catch {
-            return
-        }
+    private func beginFile() async {
+        guard await AudioSessionLine.activate(.playAndRecord, options: [.defaultToSpeaker]),
+              wantsRecording, !isRecording else { return }
 
         let id = UUID()
         let file = "\(id.uuidString).m4a"
@@ -133,12 +161,10 @@ final class AudioRecorder: ObservableObject {
         switch type {
         case .began:
             guard isRecording else { return }
-            resumeAfterInterruption = true
             finishFile()
         case .ended:
-            guard resumeAfterInterruption else { return }
-            resumeAfterInterruption = false
-            beginFile()
+            guard wantsRecording, !isRecording else { return }
+            Task { await beginFile() }
         default:
             break
         }
@@ -181,15 +207,18 @@ final class AudioPlayback: ObservableObject {
 
     func play(from time: TimeInterval? = nil) {
         guard let player else { return }
-        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .spokenAudio)
-        try? AVAudioSession.sharedInstance().setActive(true)
         if let time { player.currentTime = min(max(0, time), player.duration) }
-        player.play()
         isPlaying = true
         currentTime = player.currentTime
-        timer = Timer.publish(every: 0.25, on: .main, in: .common)
-            .autoconnect()
-            .sink { [weak self] _ in self?.tick() }
+        Task { [weak self] in
+            _ = await AudioSessionLine.activate(.playback)
+            // 세션을 켜는 사이에 멈췄거나 다른 녹음을 불러왔으면 틀지 않는다.
+            guard let self, isPlaying, self.player === player else { return }
+            player.play()
+            timer = Timer.publish(every: 0.25, on: .main, in: .common)
+                .autoconnect()
+                .sink { [weak self] _ in self?.tick() }
+        }
     }
 
     func pause() {
