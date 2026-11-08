@@ -2,11 +2,11 @@
 //  PaywallView.swift
 //  SlideSnap
 //
-//  장표스냅의 세 칸(무료 · Plus · Pro)을 파는 한 장. 응원 · 선물과 같은 틀이다(LeeoKit `LeeoPurchaseScaffold`):
-//  위에 무료 칸, 고를 Plus · Pro 칸 카드(칸마다 연 구독 · 평생, 펼치면 월 · 주), 늘 떠 있는 구매 단추 하나,
-//  스크롤한 아래에 구독 고지 · 약관 · 코드 사용 · 비교표.
+//  장표스냅의 세 칸(무료 · Plus · Pro)을 파는 한 장. 클립키보드와 같은 그림 틀이다(LeeoKit `LeeoShowcasePaywall`):
+//  위에 고른 칸의 기능 그림(옆으로 넘긴다), 고를 Plus · Pro 칸 카드(칸마다 연 구독 · 평생, 펼치면 월 · 주),
+//  그 아래 무료 칸, 늘 떠 있는 구매 단추 하나, 스크롤한 아래에 구독 고지 · 약관 · 코드 사용 · 비교표.
 //
-//  **무료인 것을 먼저 말한다.** 이 화면을 닫고 나서도 사는 사람도 안 사는 사람도 앱을 계속 쓴다.
+//  **무료로 남는 것도 말한다.** 이 화면을 닫고 나서도 사는 사람도 안 사는 사람도 앱을 계속 쓴다.
 //  첫 해 할인(App Store 첫 구독 할인)과 "연 구독 N년치" 한 줄은 `LeeoTermPicker` 가 알아서 보인다.
 //
 //  무엇이 어느 칸인지는 `ProFeature.tier` 한 곳에 있다 (→ Plan.swift).
@@ -92,17 +92,15 @@ struct PaywallView: View {
     #endif
 
     private var page: some View {
-        LeeoPurchaseScaffold {
-            VStack(alignment: .leading, spacing: 12) {
-                if let reason { reasonLine(reason) }
-                freeCard
-            }
-            .padding(.horizontal, LeeoPurchaseScaffoldMetrics.margin)
-        } options: {
+        // 고른 칸의 기능 그림을 옆으로 넘겨 보인다. 들어온 자리의 기능이 첫 장이다 (→ PaywallShowcase.swift).
+        LeeoShowcasePaywall(showcases: shownTier.showcases(first: highlight)) {
+            if let reason { reasonLine(reason) }
+        } plans: {
             VStack(spacing: 12) {
                 plansStatus
                 // 들어온 자리의 칸이 먼저다.
                 ForEach(highlight?.tier == .pro ? [ProTier.pro, .plus] : [.plus, .pro], id: \.self) { tierCard($0) }
+                freeCard
             }
         } button: {
             if let tier = selectedTier { buyButton(tier) }
@@ -235,6 +233,11 @@ struct PaywallView: View {
     /// 살 수 있는 칸 — 지금 칸보다 높고, 상품을 하나라도 불러왔다.
     private func purchasable(_ tier: ProTier) -> Bool {
         purchases.tier < tier && ProProduct.Term.allCases.contains { product(tier, $0) != nil }
+    }
+
+    /// 그림을 보일 칸. 고른 칸, 살 것이 없으면(이미 Pro) 지금 칸.
+    private var shownTier: ProTier {
+        selectedTier ?? max(highlight?.tier ?? .plus, purchases.tier)
     }
 
     private var selectedTier: ProTier? {
