@@ -17,19 +17,15 @@ final class Store: ObservableObject {
         documentsURL.appendingPathComponent("store.json")
     }
 
-    var imagesDirectoryURL: URL {
-        let url = documentsURL.appendingPathComponent("Images", isDirectory: true)
-        if !fileManager.fileExists(atPath: url.path) {
-            try? fileManager.createDirectory(at: url, withIntermediateDirectories: true)
-        }
-        return url
-    }
+    /// 장표 사진 폴더. 처음 부를 때 한 번 만든다(장표마다 폴더가 있는지 묻지 않게).
+    private(set) lazy var imagesDirectoryURL: URL = directory("Images")
 
-    var audioDirectoryURL: URL {
-        let url = documentsURL.appendingPathComponent("Audio", isDirectory: true)
-        if !fileManager.fileExists(atPath: url.path) {
-            try? fileManager.createDirectory(at: url, withIntermediateDirectories: true)
-        }
+    /// 녹음 폴더.
+    private(set) lazy var audioDirectoryURL: URL = directory("Audio")
+
+    private func directory(_ name: String) -> URL {
+        let url = documentsURL.appendingPathComponent(name, isDirectory: true)
+        try? fileManager.createDirectory(at: url, withIntermediateDirectories: true)
         return url
     }
 
@@ -65,11 +61,19 @@ final class Store: ObservableObject {
         presentations = decoded
     }
 
+    /// 저장은 한 줄로 선 뒤쪽 대기열에서 한다. 발표가 커지면(받아쓴 글 · 인식한 글) JSON 을 만들고
+    /// 쓰는 데 시간이 들어서, 메인 스레드에서 하면 고칠 때마다 화면이 멈칫한다. 대기열이 한 줄이라 순서는 지켜진다.
     private func persist() {
-        guard let data = try? JSONEncoder().encode(presentations) else { return }
-        try? data.write(to: storeFileURL, options: .atomic)
+        let snapshot = presentations
+        let url = storeFileURL
+        Self.saveQueue.async {
+            guard let data = try? JSONEncoder().encode(snapshot) else { return }
+            try? data.write(to: url, options: .atomic)
+        }
         SlideLibrary.scheduleReindex()
     }
+
+    private static let saveQueue = DispatchQueue(label: "com.leeo.slidesnap.store.save", qos: .utility)
 
     // MARK: - 발표
 
@@ -471,9 +475,25 @@ final class Store: ObservableObject {
         imagesDirectoryURL.appendingPathComponent(fileName)
     }
 
+    /// 장표 그림. 화면을 다시 그릴 때마다 디스크에서 읽지 않게 메모리에 둔다.
+    /// 같은 이름으로 덮어쓰는 일이 있어서(다시 펴기 · 보정 · iCloud 에서 받기) 열쇠에 고친 시각을 넣는다.
     func loadImage(_ fileName: String) -> UIImage? {
-        UIImage(contentsOfFile: imageURL(fileName).path)
+        let url = imageURL(fileName)
+        guard let modified = try? url.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate
+        else { return nil }
+        let key = "\(fileName)#\(modified.timeIntervalSinceReferenceDate)" as NSString
+        if let cached = imageCache.object(forKey: key) { return cached }
+        guard let image = UIImage(contentsOfFile: url.path) else { return nil }
+        let pixels = image.size.width * image.size.height * image.scale * image.scale
+        imageCache.setObject(image, forKey: key, cost: Int(pixels) * 4)
+        return image
     }
+
+    private let imageCache: NSCache<NSString, UIImage> = {
+        let cache = NSCache<NSString, UIImage>()
+        cache.totalCostLimit = 120 * 1024 * 1024   // 펼친 그림 기준 120MB, 넘치면 오래된 것부터 버린다
+        return cache
+    }()
 
     func audioURL(_ fileName: String) -> URL {
         audioDirectoryURL.appendingPathComponent(fileName)
@@ -551,24 +571,38 @@ final class Store: ObservableObject {
         guard !pending.isEmpty else { return }
         let directory = imagesDirectoryURL
 
+        // 열 장씩 읽어 한 번에 적는다 — 장마다 저장하면 장표 수만큼 store.json 을 통째로 다시 쓴다.
         Task.detached(priority: .utility) { [weak self] in
-            for item in pending {
-                let url = directory.appendingPathComponent(item.file)
-                guard let image = UIImage(contentsOfFile: url.path) else { continue }
-                let text = ImageProcessor.recognizeText(in: image)
-                await MainActor.run {
-                    self?.setRecognizedText(text, slideID: item.sID, presentationID: item.pID)
+            for start in stride(from: 0, to: pending.count, by: 10) {
+                let found: [RecognizedText] = pending[start..<min(start + 10, pending.count)].compactMap { item in
+                    let url = directory.appendingPathComponent(item.file)
+                    guard let image = UIImage(contentsOfFile: url.path) else { return nil }
+                    return RecognizedText(presentationID: item.pID, slideID: item.sID,
+                                          text: ImageProcessor.recognizeText(in: image))
                 }
+                guard let self else { return }
+                await self.setRecognizedTexts(found)
             }
         }
     }
 
-    private func setRecognizedText(_ text: String, slideID: UUID, presentationID: UUID) {
-        guard let pIndex = presentations.firstIndex(where: { $0.id == presentationID }),
-              let sIndex = presentations[pIndex].slides.firstIndex(where: { $0.id == slideID }) else { return }
-        presentations[pIndex].slides[sIndex].recognizedText = text
+    private struct RecognizedText: Sendable {
+        let presentationID: UUID
+        let slideID: UUID
+        let text: String
+    }
+
+    private func setRecognizedTexts(_ found: [RecognizedText]) {
+        var saved: [SyncRecordID] = []
+        for item in found {
+            guard let pIndex = presentations.firstIndex(where: { $0.id == item.presentationID }),
+                  let sIndex = presentations[pIndex].slides.firstIndex(where: { $0.id == item.slideID }) else { continue }
+            presentations[pIndex].slides[sIndex].recognizedText = item.text
+            saved.append(.slide(item.slideID))
+        }
+        guard !saved.isEmpty else { return }
         persist()
-        track(save: [.slide(slideID)])
+        track(save: saved)
     }
 }
 

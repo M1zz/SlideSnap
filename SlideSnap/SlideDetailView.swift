@@ -371,15 +371,7 @@ struct SlideDetailView: View {
 
     private func filmstripThumb(_ slide: Slide, number: Int) -> some View {
         let selected = slide.id == currentSlideID
-        return Group {
-            if let image = store.loadImage(slide.thumbFile) {
-                Image(uiImage: image)
-                    .resizable()
-                    .scaledToFill()
-            } else {
-                Rectangle().fill(Color(.tertiarySystemBackground))
-            }
-        }
+        return SlideThumb(image: store.loadImage(slide.thumbFile), placeholder: Color(.tertiarySystemBackground))
         .frame(width: 48, height: 48)
         .clipShape(RoundedRectangle(cornerRadius: 6))
         .overlay(

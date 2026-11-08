@@ -430,18 +430,7 @@ struct CameraCaptureView: View {
 
     /// 녹음 켜기/끄기. 녹음 중이면 빨간 점과 경과 시간을 보여 준다.
     private var recordButton: some View {
-        Button {
-            guard purchases.allows(.recording) else {
-                paywallFeature = .recording
-                return
-            }
-            recordAudio.toggle()
-            if recordAudio {
-                recorder.start()
-            } else {
-                recorder.stop()
-            }
-        } label: {
+        Button(action: toggleRecording) {
             HStack(spacing: 5) {
                 if recorder.isRecording {
                     Circle()
@@ -455,13 +444,31 @@ struct CameraCaptureView: View {
                         .font(.subheadline.weight(.semibold))
                 }
             }
-            .foregroundStyle(recorder.isRecording ? Color.white : (recordingOn ? Color.red : .white))
+            .foregroundStyle(recordTint)
             .padding(.horizontal, 14)
             .padding(.vertical, 8)
-            .background(recorder.isRecording ? Color.red.opacity(0.75) : Color.black.opacity(0.4), in: Capsule())
+            .background(recordBackground, in: Capsule())
         }
         .accessibilityLabel(recorder.isRecording ? Text("녹음 중지") : Text("녹음 시작"))
         .accessibilityValue(recorder.isRecording ? recorder.elapsed.clockText : "")
+    }
+
+    /// 녹음 중이거나 꺼져 있으면 흰 글자, 켜 두고 기다리는 중이면 빨간 글자.
+    private var recordTint: Color { recorder.isRecording || !recordingOn ? .white : .red }
+
+    private var recordBackground: Color { recorder.isRecording ? .red.opacity(0.75) : .black.opacity(0.4) }
+
+    private func toggleRecording() {
+        guard purchases.allows(.recording) else {
+            paywallFeature = .recording
+            return
+        }
+        recordAudio.toggle()
+        if recordAudio {
+            recorder.start()
+        } else {
+            recorder.stop()
+        }
     }
 
     // MARK: - 하단 바

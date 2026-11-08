@@ -125,132 +125,154 @@ struct PresentationListView: View {
         }
     }
 
+    /// 목록 화면 전체. 수식어를 갈래(길 · 띄우기 · 알림창 · 반응)마다 나눠 둔다 —
+    /// 한 식에 다 이어 두면 타입 검사가 1초 가까이 걸린다.
     private var list: some View {
         NavigationStack(path: $path) {
-            content
-            .navigationTitle(isSelecting ? String(localized: "\(selectedIDs.count)개 선택") : "")
-            .navigationBarTitleDisplayMode(.inline)
-            .searchable(text: $searchText, prompt: "장표 텍스트·제목 검색")
-            .navigationDestination(for: UUID.self) { id in
-                PresentationDetailView(presentationID: id)
-                    .onAppear { stackTop = (id, nil) }
+            reacting(alerting(presenting(routed)))
+        }
+    }
+
+    /// 내용 · 제목 · 검색 · 다음 화면으로 가는 길 · 툴바.
+    private var routed: some View {
+        content
+        .navigationTitle(isSelecting ? String(localized: "\(selectedIDs.count)개 선택") : "")
+        .navigationBarTitleDisplayMode(.inline)
+        .searchable(text: $searchText, prompt: "장표 텍스트·제목 검색")
+        .navigationDestination(for: UUID.self) { id in
+            PresentationDetailView(presentationID: id)
+                .onAppear { stackTop = (id, nil) }
+        }
+        .navigationDestination(for: SlideRoute.self) { route in
+            SlideDetailView(presentationID: route.presentationID, slideID: route.slideID)
+                .onAppear { stackTop = (route.presentationID, route) }
+        }
+        .toolbar { toolbarContent }
+    }
+
+    /// 카메라 · 사진 · 피드백 · 설정 · 페이월처럼 위로 띄우는 화면.
+    private func presenting(_ base: some View) -> some View {
+        base
+        .fullScreenCover(isPresented: $showingCamera, onDismiss: cameraFinished) {
+            if let cameraPresentationID {
+                CameraCaptureView(presentationID: cameraPresentationID) {
+                    cameraCaptured = true
+                }
+                // 아이폰 듀오를 펴면 카메라는 고르는 쪽 판에만 선다.
+                .foldConfined()
             }
-            .navigationDestination(for: SlideRoute.self) { route in
-                SlideDetailView(presentationID: route.presentationID, slideID: route.slideID)
-                    .onAppear { stackTop = (route.presentationID, route) }
+        }
+        .sheet(isPresented: $showingPhotoImport) {
+            PhotoImportPicker { providers in
+                importPhotos(providers)
             }
-            .toolbar { toolbarContent }
-            .fullScreenCover(isPresented: $showingCamera, onDismiss: cameraFinished) {
-                if let cameraPresentationID {
-                    CameraCaptureView(presentationID: cameraPresentationID) {
-                        cameraCaptured = true
-                    }
-                    // 아이폰 듀오를 펴면 카메라는 고르는 쪽 판에만 선다.
-                    .foldConfined()
+            .ignoresSafeArea()
+        }
+        .overlay { importOverlay }
+        #if DEBUG
+        .sheet(item: $demoShareModel) { model in
+            ShareView(model: model)
+        }
+        .sheet(isPresented: Binding(get: { demoNotesID != nil }, set: { if !$0 { demoNotesID = nil } })) {
+            if let demoNotesID { PresentationNotesView(presentationID: demoNotesID) }
+        }
+        #endif
+        .sheet(isPresented: $showingFeedback) {
+            FeedbackView(initialType: feedbackInitialType)
+        }
+        .sheet(isPresented: $showingSettings) {
+            SettingsView()
+        }
+        .paywall(for: $paywallFeature)
+        .sheet(isPresented: $showingSavedToRecentPaywall) {
+            PaywallView(highlight: .unlimitedPresentations, savedToRecent: true)
+        }
+    }
+
+    /// 알림창 — 의견 부탁 · 새 발표 · 제목 수정 · 합치기.
+    private func alerting(_ base: some View) -> some View {
+        base
+        .alert("사용하시면서 어떠세요?", isPresented: nudgeBinding) {
+            Button("의견 남기기") {
+                feedbackPrompt.dismiss()
+                feedbackInitialType = .improvement
+                showingFeedback = true
+            }
+            Button("다음에 할게요", role: .cancel) {
+                feedbackPrompt.dismiss()
+            }
+            Button("다시 묻지 않기", role: .destructive) {
+                feedbackPrompt.optOut()
+            }
+        } message: {
+            Text("불편한 점이나 개선했으면 하는 점이 있으신가요?\n작은 의견도 앱을 더 좋게 만드는 데 큰 도움이 돼요.")
+        }
+        .alert("새 발표", isPresented: $showingNewAlert) {
+            TextField("발표 제목", text: $newTitle)
+            Button("만들기") {
+                store.addPresentation(title: newTitle)
+            }
+            Button("취소", role: .cancel) {}
+        } message: {
+            Text("발표 제목을 입력하세요.")
+        }
+        .alert("발표 제목 수정", isPresented: renameBinding) {
+            TextField("발표 제목", text: $renameText)
+            Button("저장") {
+                if let id = renamingID {
+                    store.renamePresentation(id, to: renameText)
                 }
             }
-            .sheet(isPresented: $showingPhotoImport) {
-                PhotoImportPicker { providers in
-                    importPhotos(providers)
-                }
-                .ignoresSafeArea()
-            }
-            .overlay { importOverlay }
+            Button("취소", role: .cancel) {}
+        } message: {
+            Text("새 발표 제목을 입력하세요.")
+        }
+        .alert("발표 합치기", isPresented: $showingMergeConfirm) {
+            Button("합치기") { mergeSelected() }
+            Button("취소", role: .cancel) {}
+        } message: {
+            Text("선택한 \(selectedIDs.count)개 발표를 하나로 합칩니다.\n장표는 목록 순서대로 이어 붙고, 되돌릴 수 없어요.")
+        }
+    }
+
+    /// 처음 열릴 때 · 앞으로 돌아올 때 · 딥링크에 반응한다.
+    private func reacting(_ base: some View) -> some View {
+        base
+        .onAppear {
+            guard !hasAutoLaunchedCamera else { return }
+            hasAutoLaunchedCamera = true
             #if DEBUG
-            .sheet(item: $demoShareModel) { model in
-                ShareView(model: model)
-            }
-            .sheet(isPresented: Binding(get: { demoNotesID != nil }, set: { if !$0 { demoNotesID = nil } })) {
-                if let demoNotesID { PresentationNotesView(presentationID: demoNotesID) }
+            if let screen = DemoMode.screen {
+                showDemo(screen)
+                return
             }
             #endif
-            .sheet(isPresented: $showingFeedback) {
-                FeedbackView(initialType: feedbackInitialType)
-            }
-            .sheet(isPresented: $showingSettings) {
-                SettingsView()
-            }
-            .paywall(for: $paywallFeature)
-            .sheet(isPresented: $showingSavedToRecentPaywall) {
-                PaywallView(highlight: .unlimitedPresentations, savedToRecent: true)
-            }
-            .alert("사용하시면서 어떠세요?", isPresented: nudgeBinding) {
-                Button("의견 남기기") {
-                    feedbackPrompt.dismiss()
-                    feedbackInitialType = .improvement
-                    showingFeedback = true
-                }
-                Button("다음에 할게요", role: .cancel) {
-                    feedbackPrompt.dismiss()
-                }
-                Button("다시 묻지 않기", role: .destructive) {
-                    feedbackPrompt.optOut()
-                }
-            } message: {
-                Text("불편한 점이나 개선했으면 하는 점이 있으신가요?\n작은 의견도 앱을 더 좋게 만드는 데 큰 도움이 돼요.")
-            }
-            .onAppear {
-                guard !hasAutoLaunchedCamera else { return }
-                hasAutoLaunchedCamera = true
-                #if DEBUG
-                if let screen = DemoMode.screen {
-                    showDemo(screen)
-                    return
-                }
-                #endif
-                // 공유로 넘어온 사진이 있어 열린 경우엔 카메라 대신 그 사진부터 정리한다.
-                if ShareInbox.pendingManifests().isEmpty {
-                    openCamera()
-                } else {
-                    importSharedPhotos()
-                }
-            }
-            .onChange(of: scenePhase) { _, phase in
-                if phase == .active {
-                    feedbackPrompt.registerLaunch()
-                    // 공유 후 앱이 자동으로 열리지 못했더라도 사용자가 앱을 열면 가져간다.
-                    importSharedPhotos()
-                }
-            }
-            .onChange(of: router.sharedImportRequest) { _, _ in
+            // 공유로 넘어온 사진이 있어 열린 경우엔 카메라 대신 그 사진부터 정리한다.
+            if ShareInbox.pendingManifests().isEmpty {
+                openCamera()
+            } else {
                 importSharedPhotos()
             }
-            .onChange(of: router.cameraLaunchRequest) { _, _ in
-                openCamera()   // 위젯 등 딥링크로 카메라 즉시 실행
+        }
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .active {
+                feedbackPrompt.registerLaunch()
+                // 공유 후 앱이 자동으로 열리지 못했더라도 사용자가 앱을 열면 가져간다.
+                importSharedPhotos()
             }
-            .onChange(of: router.slideRequest) { _, route in
-                // Spotlight · Siri 에서 고른 장표를 연다. 보던 화면은 접고 그 장표로 간다.
-                guard let route else { return }
-                path = NavigationPath()
-                openSlide(route)
-                router.slideRequest = nil
-            }
-            .alert("새 발표", isPresented: $showingNewAlert) {
-                TextField("발표 제목", text: $newTitle)
-                Button("만들기") {
-                    store.addPresentation(title: newTitle)
-                }
-                Button("취소", role: .cancel) {}
-            } message: {
-                Text("발표 제목을 입력하세요.")
-            }
-            .alert("발표 제목 수정", isPresented: renameBinding) {
-                TextField("발표 제목", text: $renameText)
-                Button("저장") {
-                    if let id = renamingID {
-                        store.renamePresentation(id, to: renameText)
-                    }
-                }
-                Button("취소", role: .cancel) {}
-            } message: {
-                Text("새 발표 제목을 입력하세요.")
-            }
-            .alert("발표 합치기", isPresented: $showingMergeConfirm) {
-                Button("합치기") { mergeSelected() }
-                Button("취소", role: .cancel) {}
-            } message: {
-                Text("선택한 \(selectedIDs.count)개 발표를 하나로 합칩니다.\n장표는 목록 순서대로 이어 붙고, 되돌릴 수 없어요.")
-            }
+        }
+        .onChange(of: router.sharedImportRequest) { _, _ in
+            importSharedPhotos()
+        }
+        .onChange(of: router.cameraLaunchRequest) { _, _ in
+            openCamera()   // 위젯 등 딥링크로 카메라 즉시 실행
+        }
+        .onChange(of: router.slideRequest) { _, route in
+            // Spotlight · Siri 에서 고른 장표를 연다. 보던 화면은 접고 그 장표로 간다.
+            guard let route else { return }
+            path = NavigationPath()
+            openSlide(route)
+            router.slideRequest = nil
         }
     }
 
@@ -510,15 +532,9 @@ struct PresentationListView: View {
                 .frame(maxWidth: .infinity)
                 .frame(height: 130)
                 .overlay {
-                    if let cover = coverImage(presentation) {
-                        Image(uiImage: cover)
-                            .resizable()
-                            .scaledToFill()
-                    } else {
-                        Image(systemName: "rectangle.on.rectangle.angled")
-                            .font(.largeTitle)
-                            .foregroundStyle(.tertiary)
-                    }
+                    SlideThumb(image: coverImage(presentation), placeholderIcon: "rectangle.on.rectangle.angled",
+                               placeholder: .clear)
+                        .font(.largeTitle)
                 }
                 .accessibilityHidden(true)
                 .clipShape(RoundedRectangle(cornerRadius: 12))
@@ -616,15 +632,7 @@ struct PresentationListView: View {
 
     private func searchRow(_ result: SlideSearchResult) -> some View {
         HStack(spacing: 12) {
-            Group {
-                if let image = store.loadImage(result.slide.thumbFile) {
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFill()
-                } else {
-                    Rectangle().fill(Color(.secondarySystemBackground))
-                }
-            }
+            SlideThumb(image: store.loadImage(result.slide.thumbFile))
             .frame(width: 54, height: 54)
             .clipShape(RoundedRectangle(cornerRadius: 6))
             .accessibilityHidden(true)
@@ -825,19 +833,7 @@ struct PresentationListView: View {
 
     private func row(_ presentation: Presentation) -> some View {
         HStack(spacing: 12) {
-            Group {
-                if let cover = coverImage(presentation) {
-                    Image(uiImage: cover)
-                        .resizable()
-                        .scaledToFill()
-                } else {
-                    ZStack {
-                        Rectangle().fill(Color(.secondarySystemBackground))
-                        Image(systemName: "rectangle.on.rectangle.angled")
-                            .foregroundStyle(.tertiary)
-                    }
-                }
-            }
+            SlideThumb(image: coverImage(presentation), placeholderIcon: "rectangle.on.rectangle.angled")
             .frame(width: 64, height: 64)
             .clipShape(RoundedRectangle(cornerRadius: 8))
             .accessibilityHidden(true)

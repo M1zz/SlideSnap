@@ -423,16 +423,7 @@ struct PresentationDetailView: View {
     private func thumbnail(_ slide: Slide, number: Int) -> some View {
         let selected = selectedIDs.contains(slide.id)
         return ZStack(alignment: .bottomTrailing) {
-            Group {
-                if let image = store.loadImage(slide.thumbFile) {
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFill()
-                } else {
-                    Rectangle()
-                        .fill(Color(.secondarySystemBackground))
-                }
-            }
+            SlideThumb(image: store.loadImage(slide.thumbFile))
             .frame(minWidth: 0, maxWidth: .infinity)
             .frame(height: 90)
             .clipShape(RoundedRectangle(cornerRadius: 8))
