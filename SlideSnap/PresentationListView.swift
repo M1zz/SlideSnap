@@ -16,7 +16,7 @@ struct PresentationListView: View {
     @State private var newTitle = ""
 
     @State private var showingFeedback = false
-    @State private var showingProfile = false
+    @State private var showingSettings = false
     @State private var feedbackInitialType: FeedbackType = .improvement
 
     /// 목록/그리드 보기 선택(기억됨). 그리드는 썸네일 미리보기를 보여준다.
@@ -167,8 +167,8 @@ struct PresentationListView: View {
             .sheet(isPresented: $showingFeedback) {
                 FeedbackView(initialType: feedbackInitialType)
             }
-            .sheet(isPresented: $showingProfile) {
-                ProfileView()
+            .sheet(isPresented: $showingSettings) {
+                SettingsView()
             }
             .paywall(for: $paywallFeature)
             .sheet(isPresented: $showingSavedToRecentPaywall) {
@@ -279,7 +279,7 @@ struct PresentationListView: View {
             ToolbarItem(placement: .topBarLeading) {
                 Menu {
                     Button {
-                        showingProfile = true
+                        showingSettings = true
                     } label: {
                         Label("설정", systemImage: "gearshape")
                     }
@@ -404,7 +404,7 @@ struct PresentationListView: View {
                 if DemoMode.screen != nil { return false }   // 스크린샷에 팝업이 찍히지 않게
                 #endif
                 return feedbackPrompt.shouldPrompt
-                    && !showingCamera && !showingFeedback && !showingProfile
+                    && !showingCamera && !showingFeedback && !showingSettings
                     && !showingNewAlert && path.isEmpty
                     && paywallFeature == nil && !showingSavedToRecentPaywall
             },
@@ -738,6 +738,8 @@ struct PresentationListView: View {
             searchText = query
         case .paywall:
             paywallFeature = .unlimitedPresentations
+        case .settings:
+            showingSettings = true
         case .share:
             isGridView = true
             let model = ShareModel()

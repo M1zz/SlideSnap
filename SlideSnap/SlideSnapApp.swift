@@ -4,7 +4,6 @@ import LeeoKit
 @main
 struct SlideSnapApp: App {
     @StateObject private var store = Store()
-    @StateObject private var profile = UserProfileStore()
     @StateObject private var feedbackPrompt = FeedbackPromptManager()
     @StateObject private var router = AppRouter.shared
     @StateObject private var cloudSync = CloudSync()
@@ -28,7 +27,6 @@ struct SlideSnapApp: App {
                 .reviewShotScene()
                 #endif
                 .environmentObject(store)
-                .environmentObject(profile)
                 .environmentObject(feedbackPrompt)
                 .environmentObject(router)
                 .environmentObject(cloudSync)

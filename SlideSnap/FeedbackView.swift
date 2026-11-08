@@ -13,8 +13,6 @@ import LeeoKit
 typealias FeedbackType = LeeoFeedbackType
 
 struct FeedbackView: View {
-    @EnvironmentObject private var profile: UserProfileStore
-
     /// 진입 시 미리 선택할 유형 (넛지에서 "개선 제안"으로 들어오는 경우 등).
     var initialType: FeedbackType = .improvement
 
@@ -24,9 +22,7 @@ struct FeedbackView: View {
         LeeoFeedbackView<SlideSnapSpec>(
             types: [.improvement, .bug, .feature, .other],
             initialType: initialType,
-            showsContactFields: true,
-            initialContactName: profile.name,
-            initialContactEmail: profile.email
+            showsContactFields: true   // 이름 · 회신 이메일은 LeeoKit 이 한 번 적은 것을 기억한다
         )
     }
 }

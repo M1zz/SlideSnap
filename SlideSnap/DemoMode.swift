@@ -25,7 +25,7 @@ import Foundation
 
 enum DemoMode {
     enum Screen: Equatable {
-        case list, detail, slide(Int), notes, search(String), share, paywall
+        case list, detail, slide(Int), notes, search(String), share, paywall, settings
     }
 
     static var screen: Screen? {
@@ -37,6 +37,7 @@ enum DemoMode {
         case "notes": return .notes
         case "share": return .share
         case "paywall": return .paywall
+        case "settings": return .settings
         default:
             if raw.hasPrefix("search:") { return .search(String(raw.dropFirst("search:".count))) }
             if raw.hasPrefix("slide:"), let index = Int(raw.dropFirst("slide:".count)) { return .slide(index) }
