@@ -75,6 +75,14 @@ enum SlideSnapSpec: LeeoAppSpec {
         static let presentations = "presentations"
     }
 
+    /// 내 데이터는 어디에 (설정 ▸ 데이터와 도움말). 글자 인식 · 받아쓰기 · 요약이 모두 기기 안이라 인터넷 없이 된다.
+    /// ⚠️ 개발자에게 새로 무언가를 보내게 되면 LeeoImprovementData 스위치를 지나게 하고 여기 말과 맞춘다.
+    static var dataPromise: LeeoDataPromise {
+        LeeoDataPromise(onDevice: [String(localized: "장표 · 녹음 · 받아쓴 글 · 요약 · 메모")],
+                        inICloud: [String(localized: "발표 동기화 (켰을 때)")],
+                        worksOffline: true)
+    }
+
     /// 금고가 위젯과 함께 쓰는 공유 컨테이너도 백업한다.
     static let appGroups = ["group.com.leeo.slidesnap"]
 

@@ -61,6 +61,8 @@ struct SettingsView: View {
                 }
 
                 Section("데이터와 도움말") {
+                    // 내가 만든 것은 이 기기와 내 iCloud 에만 — 개발자의 부탁 스위치도 여기 (LeeoKit).
+                    LeeoDataPromiseLink<SlideSnapSpec>()
                     NavigationLink { LeeoVaultView(appName: SlideSnapSpec.displayName) } label: {
                         Label(LeeoVaultText.entry, systemImage: "externaldrive.badge.timemachine")
                     }
