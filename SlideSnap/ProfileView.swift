@@ -2,7 +2,7 @@
 //  ProfileView.swift
 //  SlideSnap
 //
-//  "내 정보" — 이름·회신용 이메일을 입력하면 iCloud에 안전하게 보관되고
+//  "설정" — 이름·회신용 이메일을 입력하면 iCloud에 안전하게 보관되고
 //  같은 Apple ID의 다른 기기와 동기화된다. 피드백을 보낼 때 회신처로 자동 첨부된다.
 //
 
@@ -120,7 +120,7 @@ struct ProfileView: View {
                     }
                 }
             }
-            .navigationTitle("내 정보")
+            .navigationTitle("설정")
             .sheet(isPresented: $showingPlans) { PaywallView() }
             .paywall(for: $paywallFeature)
             .manageSubscriptionsSheet(isPresented: $showingManageSubscription)

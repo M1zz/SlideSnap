@@ -35,7 +35,7 @@ final class PurchaseManager: ObservableObject {
 
     @Published private(set) var products: [Product] = []
     @Published private(set) var ownedProductIDs: Set<String> = []
-    /// 지금 살아 있는 구독. 있으면 내 정보에 '구독 관리' · '평생으로 바꾸기'가 선다.
+    /// 지금 살아 있는 구독. 있으면 설정에 '구독 관리' · '평생으로 바꾸기'가 선다.
     @Published private(set) var subscription: LeeoGraduation.Subscription?
     @Published private(set) var isWorking = false
     /// 사다가 막혔을 때 화면에 그대로 보여 줄 말.

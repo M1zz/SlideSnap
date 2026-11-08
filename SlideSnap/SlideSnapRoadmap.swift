@@ -2,7 +2,7 @@
 //  SlideSnapRoadmap.swift
 //  SlideSnap
 //
-//  **앞으로 만들 것**의 원본. 내 정보 ▸ 앞으로 만들 기능(`LeeoRoadmapView`)이 이 목록을 그대로 보여 준다.
+//  **앞으로 만들 것**의 원본. 설정 ▸ 앞으로 만들 기능(`LeeoRoadmapView`)이 이 목록을 그대로 보여 준다.
 //
 //  ⚠️ 개발하다 "이건 다음에" 가 생기면 **여기에 한 줄을 더한다.** 코드의 TODO 주석으로만 남기지 않는다.
 //     - 새 항목: `.planned`. 손대기 시작하면 `.building`. 내보내면 `.shipped("1.2.0")`.
@@ -73,14 +73,14 @@ extension SlideSnapSpec {
 
 // MARK: - 화면
 
-/// 내 정보 ▸ 앞으로 만들 기능. "이런 기능이 있으면 좋겠어요" 는 기능 제안으로 시작하는 피드백 창을 연다.
+/// 설정 ▸ 앞으로 만들 기능. "이런 기능이 있으면 좋겠어요" 는 기능 제안으로 시작하는 피드백 창을 연다.
 struct RoadmapScreen: View {
     @State private var showFeedback = false
 
     var body: some View {
         LeeoRoadmapView<SlideSnapSpec>(onSuggest: { showFeedback = true })
             .sheet(isPresented: $showFeedback) {
-                // 앱의 피드백 래퍼 — 이름·이메일을 내 정보에서 채운다(LeeoFeedbackView 가 NavigationStack 을 갖고 있다).
+                // 앱의 피드백 래퍼 — 이름·이메일을 설정에서 채운다(LeeoFeedbackView 가 NavigationStack 을 갖고 있다).
                 FeedbackView(initialType: .feature)
             }
     }

@@ -281,7 +281,7 @@ struct PresentationListView: View {
                     Button {
                         showingProfile = true
                     } label: {
-                        Label("내 정보", systemImage: "person.crop.circle")
+                        Label("설정", systemImage: "gearshape")
                     }
                     Button {
                         feedbackInitialType = .improvement

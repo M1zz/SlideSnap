@@ -143,7 +143,7 @@ struct PaywallView: View {
                 .font(.body)
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
-            // 이미 이 칸 이상이면 살 것이 없다. 구독을 평생으로 바꾸는 길은 내 정보에 있다.
+            // 이미 이 칸 이상이면 살 것이 없다. 구독을 평생으로 바꾸는 길은 설정에 있다.
             if purchases.tier < tier && !purchases.products.isEmpty {
                 terms(for: tier)
                 buyButton(tier)
