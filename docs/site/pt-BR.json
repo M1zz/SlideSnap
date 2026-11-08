@@ -51,17 +51,15 @@
   "reference": {
     "title": "O que dá para fazer com uma apresentação",
     "rows": [
-      ["Gravação", "Grave enquanto fotografa e ouça cada slide a partir do momento em que ele foi fotografado"],
-      ["Transcrição", "Transforma a gravação em texto, mostra o que foi dito em cada slide e entra na busca"],
-      ["Resumo com IA", "Resume a apresentação a partir do texto dos slides e da transcrição (iOS 26 ou posterior em aparelhos compatíveis com Apple Intelligence)"],
+      ["Resumo com IA", "Resume a apresentação a partir do texto dos slides (iOS 26 ou posterior em aparelhos compatíveis com Apple Intelligence)"],
       ["PDF", "Material de revisão com um, dois ou quatro slides por página"],
       ["Markdown", "Um .zip pronto para o Notion ou o Obsidian"],
-      ["PowerPoint", "Exporta um .pptx com a transcrição nas anotações do apresentador"],
+      ["PowerPoint", "Exporta um .pptx"],
       ["Mesclar", "Escolha várias apresentações e junte em uma"],
       ["Sincronização com o iCloud", "Ative para ver suas apresentações nos outros aparelhos com o mesmo Apple ID. Vem desativada"],
       ["Widgets", "Abrem a câmera direto da Tela de Início ou da Tela Bloqueada"]
     ],
-    "note": "Reconhecimento de texto, transcrição e resumos com IA acontecem no próprio aparelho."
+    "note": "Reconhecimento de texto e resumos com IA acontecem no próprio aparelho."
   },
   "pricing": {
     "title": "Comece grátis e adicione Plus ou Pro quando precisar",
@@ -79,9 +77,9 @@
       "name": "Plus · Pro",
       "items": [
         "Plus: apresentações ilimitadas, legibilidade melhorada, PDF com dois ou quatro slides por página",
-        "Pro: tudo do Plus, mais gravação, transcrição, resumo com IA, exportação para Markdown e PowerPoint e sincronização com o iCloud"
+        "Pro: tudo do Plus, mais resumo com IA, exportação para Markdown e PowerPoint e sincronização com o iCloud"
       ],
-      "note": "Escolha assinatura semanal, mensal ou anual, ou pague uma vez para sempre."
+      "note": "Escolha assinatura mensal ou anual, ou pague uma vez para sempre."
     },
     "note": "Gorjetas são só um agradecimento e não liberam nada. Quem comprou o CatchSlide quando ele era pago continua com o Pro para sempre."
   },
@@ -93,11 +91,11 @@
       {"q": "Por que minhas fotos ficaram numa apresentação só?", "a": "Se você tira a próxima foto em até 5 minutos depois da anterior, ela entra na mesma apresentação. Toque no título na lista para renomear e use `Mesclar apresentações` para juntar as que ficaram separadas."},
       {"q": "Posso adicionar fotos que já tirei?", "a": "Pode. Selecione no app Fotos e compartilhe com o CatchSlide, ou toque em ＋ na lista e escolha `Importar de Fotos`. Elas são endireitadas e salvas como uma apresentação, na ordem em que foram tiradas."},
       {"q": "Os cantos foram encontrados errado.", "a": "Abra o slide, escolha `Ajustar cantos` no menu ⋯ e arraste os quatro cantos para o lugar. `Detecção automática` procura de novo e `Imagem inteira` usa a foto toda. O original fica sempre guardado, então dá para refazer quando quiser."},
-      {"q": "Dá para buscar o texto dos slides?", "a": "Digite uma palavra no campo de busca no topo da lista. A busca passa pelo texto dos slides, títulos, notas e transcrições e leva direto ao slide. O reconhecimento de texto acontece no aparelho."},
+      {"q": "Dá para buscar o texto dos slides?", "a": "Digite uma palavra no campo de busca no topo da lista. A busca passa pelo texto dos slides, títulos e notas e leva direto ao slide. O reconhecimento de texto acontece no aparelho."},
       {"q": "Como exporto um PDF?", "a": "Dentro de uma apresentação, abra o menu de compartilhamento, escolha `Exportar como PDF` e defina um, dois ou quatro slides por página. Pela folha de compartilhamento, salve em Arquivos ou envie para outro app."},
       {"q": "Como mudo a ordem ou apago slides?", "a": "Dentro de uma apresentação, toque e segure um slide e arraste. No mesmo menu você apaga ou compartilha um slide, e com `Selecionar` apaga vários de uma vez."},
-      {"q": "Como funcionam a gravação e o resumo com IA?", "a": "Ative `Gravar` no topo da câmera e cada slide guarda o áudio daquele momento. Em `Notas da apresentação`, `Resumir com IA` cria um resumo a partir do texto dos slides e da transcrição. O resumo com IA precisa do iOS 26 ou posterior num aparelho compatível com Apple Intelligence."},
-      {"q": "Onde ficam meus slides e gravações?", "a": "No seu aparelho. Eles só vão para o seu próprio iCloud se você ativar `Sincronização` em Meus dados, e não precisa de conta. Veja mais na Política de Privacidade."}
+      {"q": "Como funciona o resumo com IA?", "a": "Em `Notas da apresentação`, `Resumir com IA` cria um resumo a partir do texto dos slides. Precisa do iOS 26 ou posterior num aparelho compatível com Apple Intelligence. As gravações feitas em versões anteriores continuam no aparelho e ainda podem ser ouvidas."},
+      {"q": "Onde ficam meus slides?", "a": "No seu aparelho. Eles só vão para o seu próprio iCloud se você ativar `Sincronização` em Meus dados, e não precisa de conta. Veja mais na Política de Privacidade."}
     ]
   },
   "closing": {

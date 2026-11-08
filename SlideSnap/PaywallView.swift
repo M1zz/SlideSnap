@@ -3,7 +3,7 @@
 //  SlideSnap
 //
 //  장표스냅의 세 칸(무료 · Plus · Pro)을 파는 한 장. 클립키보드와 같은 그림 틀이다(LeeoKit `LeeoShowcasePaywall`):
-//  위에 고른 칸의 기능 그림(옆으로 넘긴다), 고를 Plus · Pro 칸 카드(칸마다 연 구독 · 평생, 펼치면 월 · 주),
+//  위에 고른 칸의 기능 그림(옆으로 넘긴다), 고를 Plus · Pro 칸 카드(칸마다 연 구독 · 평생, 펼치면 월),
 //  그 아래 무료 칸, 늘 떠 있는 구매 단추 하나, 스크롤한 아래에 구독 고지 · 약관 · 코드 사용 · 비교표.
 //
 //  **무료로 남는 것도 말한다.** 이 화면을 닫고 나서도 사는 사람도 안 사는 사람도 앱을 계속 쓴다.
@@ -35,9 +35,9 @@ struct PaywallView: View {
     @State private var chosenTier: ProTier?
     /// 칸마다 고른 연 구독 / 평생. 처음엔 연 구독.
     @State private var terms: [ProTier: LeeoPlanTerm] = [:]
-    /// 펼쳐서 고른 월 · 주 구독. 고르면 연 / 평생보다 먼저다.
+    /// 펼쳐서 고른 월 구독. 고르면 연 / 평생보다 먼저다.
     @State private var shortTerms: [ProTier: ProProduct.Term] = [:]
-    /// 월 · 주 구독을 펼쳤는가.
+    /// 월 구독을 펼쳤는가.
     @State private var showsShortTerms = false
     @State private var loadingProducts = true
     /// App Store 의 코드 사용 시트(오퍼 코드 · 선물받은 코드).
@@ -84,7 +84,7 @@ struct PaywallView: View {
         switch term {
         case .yearly:   terms[tier] = .yearly
         case .lifetime: terms[tier] = .lifetime
-        case .monthly, .weekly:
+        case .monthly:
             shortTerms[tier] = term
             showsShortTerms = true
         }
@@ -171,7 +171,7 @@ struct PaywallView: View {
         }
     }
 
-    /// 유료 칸. 누르면 고른다. 고른 칸에서 길(연 구독 · 평생, 펼치면 월 · 주)을 고르고, 사는 것은 떠 있는 단추다.
+    /// 유료 칸. 누르면 고른다. 고른 칸에서 길(연 구독 · 평생, 펼치면 월)을 고르고, 사는 것은 떠 있는 단추다.
     private func tierCard(_ tier: ProTier) -> some View {
         let selected = tier == selectedTier
         return card(selected: selected) {
@@ -257,7 +257,7 @@ struct PaywallView: View {
         }
     }
 
-    /// 월 · 주를 고르면 연 / 평생 고르기는 연 구독 자리에 둔다. 연 / 평생을 누르면 월 · 주 고른 것이 풀린다.
+    /// 월을 고르면 연 / 평생 고르기는 연 구독 자리에 둔다. 연 / 평생을 누르면 월 고른 것이 풀린다.
     private func termBinding(_ tier: ProTier) -> Binding<LeeoPlanTerm> {
         Binding(get: { shortTerms[tier] == nil ? term(tier) : .yearly },
                 set: { terms[tier] = $0; shortTerms[tier] = nil })
@@ -268,10 +268,10 @@ struct PaywallView: View {
         return product(tier, term(tier) == .yearly ? .yearly : .lifetime)
     }
 
-    /// 월 · 주 구독. 연 구독이 기본이라 펼쳐야 보인다. 상품이 없으면 줄이 서지 않는다.
+    /// 월 구독. 연 구독이 기본이라 펼쳐야 보인다. 상품이 없으면 줄이 서지 않는다.
     @ViewBuilder
     private func shortTermRows(_ tier: ProTier) -> some View {
-        let available = [ProProduct.Term.monthly, .weekly].compactMap { term in product(tier, term).map { (term, $0) } }
+        let available = [ProProduct.Term.monthly].compactMap { term in product(tier, term).map { (term, $0) } }
         if showsShortTerms {
             ForEach(available, id: \.0) { term, product in
                 shortTermRow(tier, term, product)
@@ -280,7 +280,7 @@ struct PaywallView: View {
             Button {
                 withAnimation(.snappy) { showsShortTerms = true }
             } label: {
-                Label("주 · 월 구독도 보기", systemImage: "chevron.down")
+                Label("월 구독도 보기", systemImage: "chevron.down")
                     .font(.body)
                     .frame(maxWidth: .infinity, minHeight: 44)
             }
@@ -297,7 +297,7 @@ struct PaywallView: View {
                 Image(systemName: selected ? "checkmark.circle.fill" : "circle")
                     .foregroundStyle(selected ? Color.accentColor : .secondary)
                     .accessibilityHidden(true)
-                Text(term == .monthly ? String(localized: "월 구독") : String(localized: "주 구독"))
+                Text("월 구독")
                 Spacer()
                 Text(term == .monthly ? String(localized: "\(product.displayPrice) / 월")
                                       : String(localized: "\(product.displayPrice) / 주"))
@@ -431,7 +431,6 @@ struct PlanComparisonTable: View {
                 free: .count(FreeLimit.presentations), plus: .unlimited, pro: .unlimited),
             Row(title: String(localized: "또렷하게 보정"), feature: .enhance, free: .no, plus: .yes, pro: .yes),
             Row(title: String(localized: "PDF 두 장 · 네 장씩"), feature: .pdfLayouts, free: .no, plus: .yes, pro: .yes),
-            Row(title: String(localized: "녹음 · 받아쓰기"), feature: .recording, free: .no, plus: .no, pro: .yes),
             Row(title: String(localized: "기기 안 요약"), feature: .summary, free: .no, plus: .no, pro: .yes),
             Row(title: String(localized: "PowerPoint · Markdown 내보내기"), feature: .notesExport, free: .no, plus: .no, pro: .yes),
             Row(title: String(localized: "iCloud 동기화"), feature: .sync, free: .no, plus: .no, pro: .yes),

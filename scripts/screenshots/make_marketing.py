@@ -26,15 +26,14 @@ PREFIX = "duo-" if DUO else ""
 # 파일 → 레이아웃. 파일 이름 순서가 스토어에 보이는 순서다.
 LAYOUT = {
     "01-share.png": "hero-bleed",
-    "02-summary.png": "flat-rotate",   # 발표 노트: AI 요약 + 녹음 (notes.json 에 summary 가 있는 언어만)
-    "03-record.png": "text-bottom",    # 장표에서 녹음 듣기 · 받아쓴 말
+    "02-summary.png": "flat-rotate",   # 발표 노트: AI 요약 (notes.json 에 summary 가 있는 언어만)
     "04-list.png": "left-text",
     "05-slide.png": "before-after",
     "06-detail.png": "text-bottom",
     "07-search.png": "dark",
     "08-memo.png": "duo",
 }
-# 기본 장(01 · 04~08)의 (헤드라인, 서브카피) — 위 순서에서 02 · 03 을 뺀 순서
+# 기본 장(01 · 04~08)의 (헤드라인, 서브카피) — 위 순서에서 02 를 뺀 순서
 TEXT = {
     "ko": [
         ("사진 앱에서 골라<br>바로 발표 자료로", "여러 장을 공유하면 하나로 정리돼요"),
@@ -54,18 +53,17 @@ TEXT = {
     ],
 }
 
-# 그 밖의 언어: locales/<로케일>.json 의 shots. 녹음 · AI 요약 장(02 · 03)은 notes.json 의 shots.
+# 그 밖의 언어: locales/<로케일>.json 의 shots. AI 요약 장(02)은 notes.json 의 shots.
 import json
 for _f in sorted((pathlib.Path(__file__).parent / "locales").glob("*.json")):
     TEXT.setdefault(_f.stem, [tuple(x) for x in json.loads(_f.read_text(encoding="utf-8"))["shots"]])
 NOTES = json.loads((pathlib.Path(__file__).parent / "notes.json").read_text(encoding="utf-8"))
 
 def shots_for(lang):
-    base = [f for f in LAYOUT if f not in ("02-summary.png", "03-record.png")]
+    base = [f for f in LAYOUT if f != "02-summary.png"]
     text = dict(zip(base, TEXT[lang]))
-    extra = NOTES[lang]["shots"]
+    extra = NOTES.get(lang, {}).get("shots", {})
     if "summary" in extra: text["02-summary.png"] = tuple(extra["summary"])
-    text["03-record.png"] = tuple(extra["record"])
     return [(f, LAYOUT[f], *text[f]) for f in LAYOUT if f in text]
 
 SHOTS = {lang: shots_for(lang) for lang in TEXT}

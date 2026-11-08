@@ -51,17 +51,15 @@
   "reference": {
     "title": "Ce que vous pouvez faire d’une présentation",
     "rows": [
-      ["Enregistrement", "Enregistrez le son pendant la prise de vue, puis écoutez chaque diapo à partir du moment où vous l’avez prise"],
-      ["Transcription", "Transforme l’enregistrement en texte, affiche ce qui a été dit sur chaque diapo et sert à la recherche"],
-      ["Résumé par IA", "Résume la présentation à partir du texte des diapos et de la transcription (iOS 26 ou ultérieur sur les appareils compatibles avec Apple Intelligence)"],
+      ["Résumé par IA", "Résume la présentation à partir du texte des diapos (iOS 26 ou ultérieur sur les appareils compatibles avec Apple Intelligence)"],
       ["PDF", "Des supports de révision avec une, deux ou quatre diapos par page"],
       ["Markdown", "Un .zip prêt pour Notion ou Obsidian"],
-      ["PowerPoint", "Export en .pptx, la transcription dans les notes de l’intervenant"],
+      ["PowerPoint", "Export en .pptx"],
       ["Fusion", "Sélectionnez plusieurs présentations et réunissez-les en une"],
       ["Synchronisation iCloud", "Activez-la pour retrouver vos présentations sur vos autres appareils avec le même identifiant Apple. Désactivée par défaut"],
       ["Widgets", "Ouvrent l’appareil photo directement depuis l’écran d’accueil ou l’écran verrouillé"]
     ],
-    "note": "La reconnaissance de texte, la transcription et les résumés par IA se font sur votre appareil."
+    "note": "La reconnaissance de texte et les résumés par IA se font sur votre appareil."
   },
   "pricing": {
     "title": "Commencez gratuitement, passez à Plus ou Pro au besoin",
@@ -79,9 +77,9 @@
       "name": "Plus · Pro",
       "items": [
         "Plus : présentations illimitées, lisibilité améliorée, PDF deux ou quatre diapos par page",
-        "Pro : tout Plus, avec en plus l’enregistrement, la transcription, le résumé par IA, l’export Markdown et PowerPoint, et la synchronisation iCloud"
+        "Pro : tout Plus, avec en plus le résumé par IA, l’export Markdown et PowerPoint, et la synchronisation iCloud"
       ],
-      "note": "Abonnement à la semaine, au mois ou à l’année, ou paiement unique à vie."
+      "note": "Abonnement au mois ou à l’année, ou paiement unique à vie."
     },
     "note": "Les pourboires sont un simple merci et ne débloquent rien. Si vous avez acheté CatchSlide quand l’app était payante, vous gardez Pro à vie."
   },
@@ -93,11 +91,11 @@
       {"q": "Pourquoi mes photos sont-elles regroupées en une présentation ?", "a": "Si vous prenez la photo suivante moins de 5 minutes après la précédente, elle rejoint la même présentation. Touchez le titre dans la liste pour la renommer, et utilisez `Fusionner des présentations` pour réunir celles qui ont été séparées."},
       {"q": "Puis-je ajouter des photos déjà prises ?", "a": "Oui. Sélectionnez-les dans l’app Photos et partagez-les avec CatchSlide, ou touchez ＋ dans la liste puis `Importer depuis Photos`. Elles sont redressées et rangées en une présentation, dans l’ordre de prise de vue."},
       {"q": "Les coins ont été mal repérés.", "a": "Ouvrez la diapo, choisissez `Ajuster les coins` dans le menu ⋯ et faites glisser les quatre coins au bon endroit. `Détection automatique` les cherche à nouveau et `Image entière` garde toute la photo. L’original est toujours conservé, vous pouvez donc recommencer quand vous voulez."},
-      {"q": "Puis-je chercher dans le texte des diapos ?", "a": "Tapez un mot dans le champ de recherche en haut de la liste. La recherche porte sur le texte des diapos, les titres, les notes et les transcriptions, et vous mène directement à la diapo. La reconnaissance de texte se fait sur votre appareil."},
+      {"q": "Puis-je chercher dans le texte des diapos ?", "a": "Tapez un mot dans le champ de recherche en haut de la liste. La recherche porte sur le texte des diapos, les titres et les notes, et vous mène directement à la diapo. La reconnaissance de texte se fait sur votre appareil."},
       {"q": "Comment exporter un PDF ?", "a": "Dans une présentation, ouvrez le menu de partage, choisissez `Exporter en PDF` puis une, deux ou quatre diapos par page. Depuis la feuille de partage, enregistrez-le dans Fichiers ou envoyez-le vers une autre app."},
       {"q": "Comment réordonner ou supprimer des diapos ?", "a": "Dans une présentation, maintenez une diapo puis faites-la glisser. Le même menu permet de supprimer ou partager une diapo, et `Sélectionner` en supprime plusieurs d’un coup."},
-      {"q": "Comment marchent l’enregistrement et le résumé par IA ?", "a": "Activez `Enregistrement` en haut de l’appareil photo et chaque diapo garde le son de ce moment-là. Dans `Notes de la présentation`, `Résumer avec l’IA` rédige un résumé à partir du texte des diapos et de la transcription. Il faut iOS 26 ou ultérieur sur un appareil compatible avec Apple Intelligence."},
-      {"q": "Où sont stockés mes diapos et enregistrements ?", "a": "Sur votre appareil. Ils ne partent sur votre propre iCloud que si vous activez `Synchroniser` dans Mes informations, et aucun compte n’est nécessaire. Plus de détails dans la Politique de confidentialité."}
+      {"q": "Comment marche le résumé par IA ?", "a": "Dans `Notes de la présentation`, `Résumer avec l’IA` rédige un résumé à partir du texte des diapos. Il faut iOS 26 ou ultérieur sur un appareil compatible avec Apple Intelligence. Les enregistrements faits avec les versions précédentes restent sur votre appareil et peuvent toujours être écoutés."},
+      {"q": "Où sont stockées mes diapos ?", "a": "Sur votre appareil. Elles ne partent sur votre propre iCloud que si vous activez `Synchroniser` dans Mes informations, et aucun compte n’est nécessaire. Plus de détails dans la Politique de confidentialité."}
     ]
   },
   "closing": {

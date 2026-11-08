@@ -51,17 +51,15 @@
   "reference": {
     "title": "Det här kan du göra med en presentation",
     "rows": [
-      ["Inspelning", "Spela in ljud medan du fotar och lyssna på varje bild från det ögonblick du tog den"],
-      ["Transkribering", "Gör inspelningen till text, visar vad som sades vid varje bild och ingår i sökningen"],
-      ["AI-sammanfattning", "Sammanfattar presentationen utifrån bildtext och transkribering (iOS 26 eller senare på enheter med Apple Intelligence)"],
+      ["AI-sammanfattning", "Sammanfattar presentationen utifrån bildtexten (iOS 26 eller senare på enheter med Apple Intelligence)"],
       ["PDF", "Studiematerial med en, två eller fyra bilder per sida"],
       ["Markdown", "En .zip redo för Notion eller Obsidian"],
-      ["PowerPoint", "Exportera en .pptx med transkriberingen i talaranteckningarna"],
+      ["PowerPoint", "Exportera en .pptx"],
       ["Slå ihop", "Markera flera presentationer och gör dem till en"],
       ["iCloud-synkronisering", "Slå på för att se dina presentationer på andra enheter med samma Apple ID. Avstängd från början"],
       ["Widgetar", "Öppnar kameran direkt från hemskärmen eller låsskärmen"]
     ],
-    "note": "Textigenkänning, transkribering och AI-sammanfattningar sker på din enhet."
+    "note": "Textigenkänning och AI-sammanfattningar sker på din enhet."
   },
   "pricing": {
     "title": "Börja gratis och lägg till Plus eller Pro när du behöver",
@@ -79,9 +77,9 @@
       "name": "Plus · Pro",
       "items": [
         "Plus: obegränsat med presentationer, bättre läsbarhet, PDF med två eller fyra bilder per sida",
-        "Pro: allt i Plus samt inspelning, transkribering, AI-sammanfattning, export till Markdown och PowerPoint och iCloud-synkronisering"
+        "Pro: allt i Plus samt AI-sammanfattning, export till Markdown och PowerPoint och iCloud-synkronisering"
       ],
-      "note": "Välj prenumeration per vecka, månad eller år, eller betala en gång för alltid."
+      "note": "Välj prenumeration per månad eller år, eller betala en gång för alltid."
     },
     "note": "Dricks är bara ett tack och låser inte upp något. Köpte du CatchSlide när appen kostade pengar behåller du Pro för alltid."
   },
@@ -93,11 +91,11 @@
       {"q": "Varför hamnade mina foton i en presentation?", "a": "Tar du nästa foto inom 5 minuter efter det förra hör det till samma presentation. Tryck på titeln i listan för att byta namn, och använd `Slå ihop presentationer` för att foga ihop dem som delats upp."},
       {"q": "Kan jag lägga till foton jag redan har tagit?", "a": "Ja. Markera dem i Bilder och dela dem med CatchSlide, eller tryck på ＋ i listan och välj `Importera från Bilder`. De rätas upp och sparas som en presentation i den ordning de togs."},
       {"q": "Hörnen hittades fel.", "a": "Öppna bilden, välj `Justera hörn` i menyn ⋯ och dra de fyra hörnen på plats. `Identifiera automatiskt` letar efter dem igen och `Hela bilden` använder hela fotot. Originalet sparas alltid, så du kan göra om det när du vill."},
-      {"q": "Kan jag söka i texten på mina bilder?", "a": "Skriv ett ord i sökfältet överst i listan. Sökningen går igenom bildtext, titlar, anteckningar och transkriberingar och hoppar direkt till bilden. Textigenkänningen sker på enheten."},
+      {"q": "Kan jag söka i texten på mina bilder?", "a": "Skriv ett ord i sökfältet överst i listan. Sökningen går igenom bildtext, titlar och anteckningar och hoppar direkt till bilden. Textigenkänningen sker på enheten."},
       {"q": "Hur exporterar jag en PDF?", "a": "Öppna delningsmenyn i en presentation, välj `Exportera som PDF` och välj en, två eller fyra bilder per sida. Från delningsbladet sparar du den i Filer eller skickar den till en annan app."},
       {"q": "Hur ändrar jag ordningen eller raderar bilder?", "a": "Håll fingret på en bild i en presentation och dra den. I samma meny kan du radera eller dela en bild, och med `Markera` raderar du flera på en gång."},
-      {"q": "Hur fungerar inspelning och AI-sammanfattning?", "a": "Slå på `Spela in` överst i kameran, så sparar varje bild ljudet från just det ögonblicket. Under `Presentationsanteckningar` gör `Sammanfatta med AI` en sammanfattning utifrån bildtext och transkribering. Det kräver iOS 26 eller senare på en enhet med Apple Intelligence."},
-      {"q": "Var sparas mina bilder och inspelningar?", "a": "På din enhet. De laddas bara upp till din egen iCloud om du slår på `Synkronisering` under Min info, och du behöver inget konto. Läs mer i integritetspolicyn."}
+      {"q": "Hur fungerar AI-sammanfattning?", "a": "Under `Presentationsanteckningar` gör `Sammanfatta med AI` en sammanfattning utifrån bildtexten. Det kräver iOS 26 eller senare på en enhet med Apple Intelligence. Inspelningar från tidigare versioner ligger kvar på enheten och kan fortfarande spelas upp."},
+      {"q": "Var sparas mina bilder?", "a": "På din enhet. De laddas bara upp till din egen iCloud om du slår på `Synkronisering` under Min info, och du behöver inget konto. Läs mer i integritetspolicyn."}
     ]
   },
   "closing": {

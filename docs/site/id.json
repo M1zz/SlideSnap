@@ -51,17 +51,15 @@
   "reference": {
     "title": "Yang bisa dilakukan dengan satu presentasi",
     "rows": [
-      ["Rekaman", "Rekam sambil memotret, lalu putar setiap slide mulai dari saat slide itu difoto"],
-      ["Transkripsi", "Mengubah rekaman jadi teks, menampilkan apa yang diucapkan di tiap slide, dan ikut dalam pencarian"],
-      ["Ringkasan AI", "Meringkas presentasi dari teks slide dan transkrip (iOS 26 atau lebih baru di perangkat yang mendukung Apple Intelligence)"],
+      ["Ringkasan AI", "Meringkas presentasi dari teks slide (iOS 26 atau lebih baru di perangkat yang mendukung Apple Intelligence)"],
       ["PDF", "Bahan belajar berisi satu, dua, atau empat slide per halaman"],
       ["Markdown", "File .zip yang siap masuk ke Notion atau Obsidian"],
-      ["PowerPoint", "Ekspor .pptx dengan transkrip di catatan pembicara"],
+      ["PowerPoint", "Ekspor .pptx"],
       ["Gabungkan", "Pilih beberapa presentasi lalu satukan"],
       ["Sinkronisasi iCloud", "Nyalakan untuk melihat presentasi di perangkat lain dengan Apple ID yang sama. Mati secara bawaan"],
       ["Widget", "Membuka kamera langsung dari Layar Utama atau Layar Terkunci"]
     ],
-    "note": "Pengenalan teks, transkripsi, dan ringkasan AI semuanya berjalan di perangkat Anda."
+    "note": "Pengenalan teks dan ringkasan AI semuanya berjalan di perangkat Anda."
   },
   "pricing": {
     "title": "Mulai gratis, tambahkan Plus atau Pro saat perlu",
@@ -79,9 +77,9 @@
       "name": "Plus · Pro",
       "items": [
         "Plus: presentasi tanpa batas, perjelas keterbacaan, PDF dua atau empat slide per halaman",
-        "Pro: semua fitur Plus, ditambah rekaman, transkripsi, ringkasan AI, ekspor Markdown dan PowerPoint, serta sinkronisasi iCloud"
+        "Pro: semua fitur Plus, ditambah ringkasan AI, ekspor Markdown dan PowerPoint, serta sinkronisasi iCloud"
       ],
-      "note": "Pilih langganan mingguan, bulanan, atau tahunan, atau bayar sekali untuk selamanya."
+      "note": "Pilih langganan bulanan atau tahunan, atau bayar sekali untuk selamanya."
     },
     "note": "Tip hanyalah ucapan terima kasih dan tidak membuka fitur apa pun. Jika Anda membeli CatchSlide saat masih berbayar, Anda tetap mendapat Pro seumur hidup."
   },
@@ -93,11 +91,11 @@
       {"q": "Kenapa foto-foto saya masuk ke satu presentasi?", "a": "Jika foto berikutnya diambil kurang dari 5 menit setelah foto sebelumnya, foto itu dianggap bagian dari presentasi yang sama. Ketuk judul di daftar untuk mengganti nama, dan pakai `Gabungkan Presentasi` untuk menyatukan yang terpisah."},
       {"q": "Bisakah saya menambahkan foto yang sudah ada?", "a": "Bisa. Pilih fotonya di app Foto lalu bagikan ke CatchSlide, atau ketuk ＋ di daftar dan pilih `Impor dari Foto`. Foto diluruskan dan disimpan sebagai satu presentasi sesuai urutan pengambilan."},
       {"q": "Sudutnya terdeteksi salah.", "a": "Buka slide, pilih `Atur Sudut` dari menu ⋯, lalu seret keempat sudut ke tempatnya. `Deteksi Otomatis` mencarinya lagi, dan `Seluruh Gambar` memakai foto utuh. Foto asli selalu disimpan, jadi Anda bisa mengulangnya kapan saja."},
-      {"q": "Bisakah saya mencari teks di slide?", "a": "Ketik kata di kolom pencarian di bagian atas daftar. Pencarian mencakup teks slide, judul presentasi, catatan, dan transkrip, lalu langsung membuka slide-nya. Pengenalan teks berlangsung di perangkat."},
+      {"q": "Bisakah saya mencari teks di slide?", "a": "Ketik kata di kolom pencarian di bagian atas daftar. Pencarian mencakup teks slide, judul presentasi, dan catatan, lalu langsung membuka slide-nya. Pengenalan teks berlangsung di perangkat."},
       {"q": "Bagaimana cara ekspor PDF?", "a": "Di dalam presentasi, buka menu bagikan, pilih `Ekspor sebagai PDF`, lalu pilih satu, dua, atau empat slide per halaman. Dari lembar bagikan, simpan ke File atau kirim ke aplikasi lain."},
       {"q": "Bagaimana mengubah urutan atau menghapus slide?", "a": "Di dalam presentasi, sentuh dan tahan slide lalu seret. Dari menu yang sama Anda bisa menghapus atau membagikan satu slide, dan `Pilih` menghapus beberapa sekaligus."},
-      {"q": "Bagaimana rekaman dan ringkasan AI bekerja?", "a": "Nyalakan `Rekam` di bagian atas kamera, dan setiap slide akan menyimpan suara pada saat itu. Di `Catatan Presentasi`, `Ringkas dengan AI` membuat ringkasan dari teks slide dan transkrip. Fitur ini butuh iOS 26 atau lebih baru di perangkat yang mendukung Apple Intelligence."},
-      {"q": "Di mana slide dan rekaman saya disimpan?", "a": "Di perangkat Anda. Data hanya diunggah ke iCloud milik Anda sendiri jika Anda menyalakan `Sinkronkan` di Info Saya, dan tidak perlu akun. Selengkapnya di Kebijakan Privasi."}
+      {"q": "Bagaimana ringkasan AI bekerja?", "a": "Di `Catatan Presentasi`, `Ringkas dengan AI` membuat ringkasan dari teks slide. Fitur ini butuh iOS 26 atau lebih baru di perangkat yang mendukung Apple Intelligence. Rekaman yang dibuat di versi sebelumnya tetap ada di perangkat dan masih bisa diputar."},
+      {"q": "Di mana slide saya disimpan?", "a": "Di perangkat Anda. Data hanya diunggah ke iCloud milik Anda sendiri jika Anda menyalakan `Sinkronkan` di Info Saya, dan tidak perlu akun. Selengkapnya di Kebijakan Privasi."}
     ]
   },
   "closing": {

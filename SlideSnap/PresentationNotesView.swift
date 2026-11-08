@@ -150,12 +150,9 @@ struct PresentationNotesView: View {
 
     @ViewBuilder
     private func recordingsSection(_ presentation: Presentation) -> some View {
-        Section {
-            if presentation.allRecordings.isEmpty {
-                Label("촬영 화면 위쪽의 '녹음'을 켜면 장표를 찍는 동안 발표를 함께 녹음해요.", systemImage: "mic")
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-            } else {
+        // 새로 녹음하지는 않는다(1.0.11 에서 뺐다). 전에 녹음해 둔 발표에만 이 칸이 선다.
+        if !presentation.allRecordings.isEmpty {
+            Section {
                 ForEach(presentation.allRecordings) { recording in
                     recordingRow(recording)
                 }
@@ -164,11 +161,9 @@ struct PresentationNotesView: View {
                         Text(language.label).tag(language.id)
                     }
                 }
-            }
-        } header: {
-            Text("녹음 목록")
-        } footer: {
-            if !presentation.allRecordings.isEmpty {
+            } header: {
+                Text("녹음 목록")
+            } footer: {
                 Text("받아쓰면 장표마다 그때 한 말을 볼 수 있고, 검색과 AI 요약에도 쓰여요.")
             }
         }
@@ -235,7 +230,7 @@ struct PresentationNotesView: View {
                 Button {
                     transcribe(recording)
                 } label: {
-                    Label("다시 받아쓰기", systemImage: ProFeature.recording.icon("arrow.clockwise"))
+                    Label("다시 받아쓰기", systemImage: "arrow.clockwise")
                 }
             } label: {
                 Label("받아씀", systemImage: "text.bubble.fill")
@@ -245,7 +240,7 @@ struct PresentationNotesView: View {
             Button {
                 transcribe(recording)
             } label: {
-                Label("받아쓰기", systemImage: ProFeature.recording.icon("text.bubble"))
+                Label("받아쓰기", systemImage: "text.bubble")
                     .font(.caption.weight(.semibold))
             }
             .buttonStyle(.bordered)
@@ -263,10 +258,7 @@ struct PresentationNotesView: View {
     }
 
     private func transcribe(_ recording: Recording) {
-        guard purchases.allows(.recording) else {
-            paywallFeature = .recording
-            return
-        }
+        // 녹음은 뺐지만 전에 녹음해 둔 것은 누구나 받아쓴다 — 이미 누리던 것은 줄이지 않는다.
         transcribingID = recording.id
         transcribeProgress = nil
         let language = transcribeLanguage

@@ -1,83 +1,78 @@
 {
-  "_": "발표 노트(녹음·받아쓰기·AI 요약) 장의 데모 내용과 헤드라인. 첫 발표(UX 리서치)에 붙는다. summary 는 Apple Intelligence 가 그 언어로 요약할 수 있을 때만, spoken 은 앱이 그 언어로 받아쓸 수 있을 때만(ko·en·ja·zh) 둔다 — 없는 언어는 그 장을 찍지 않거나 녹음만 보인다.",
+  "_": "발표 노트(AI 요약) 장의 데모 내용과 헤드라인. 첫 발표(UX 리서치)에 붙는다. summary 는 Apple Intelligence 가 그 언어로 요약할 수 있을 때만 둔다 — 없는 언어는 그 장을 찍지 않는다.",
   "ko": {
     "summary": {"overview": "UX 리서치를 계획, 참가자 모집, 인터뷰, 정리 순서로 소개한 발표입니다. 가장 많이 쓰는 방법은 사용자 인터뷰이며, 사용자의 의견보다 실제 행동을 보라고 강조했습니다.", "points": ["목표를 한 문장으로 정리하기", "의견보다 행동을 먼저 묻기", "어피니티 다이어그램으로 인사이트 묶기"], "keywords": ["사용자 인터뷰", "어피니티 다이어그램", "사용성 테스트", "다이어리 연구"]},
-    "spoken": {"1": "인터뷰 전에 목표를 한 문장으로 적어 두세요. 열린 질문으로 시작하고, 실제로 무엇을 했는지 물어보세요. 녹음하기 전에는 꼭 동의를 받으셔야 합니다."},
-    "shots": {"summary": ["강의 요약은<br>AI가 기기 안에서", "장표와 녹음을 읽고 핵심만 정리해요"], "record": ["장표마다<br>그때 한 말까지", "녹음을 받아써 장표에 붙여 둬요"]}
+    "shots": {"summary": ["강의 요약은<br>AI가 기기 안에서", "장표 글자를 읽고 핵심만 정리해요"]}
   },
   "en": {
     "summary": {"overview": "An introduction to UX research, from planning and recruiting to interviews and synthesis. User interviews are the most widely used method, and the talk stresses watching what users do over what they say.", "points": ["Write the research goal in one sentence", "Ask about behavior first, opinions later", "Group findings with an affinity map"], "keywords": ["User interview", "Affinity map", "Usability test", "Diary study"]},
-    "spoken": {"1": "Before the interview, write your goal in one sentence. Start with open questions, ask what people actually did, and always get consent before you hit record."},
-    "shots": {"summary": ["Your lecture,<br>summarized", "Apple Intelligence, right on device"], "record": ["What was said<br>on every slide", "Record the talk, read it as text"]}
+    "shots": {"summary": ["Your lecture,<br>summarized", "Apple Intelligence, right on device"]}
   },
   "en-GB": {
     "summary": {"overview": "An introduction to UX research, from planning and recruiting to interviews and synthesis. User interviews are the most widely used method, and the talk stresses watching what users do over what they say.", "points": ["Write the research goal in one sentence", "Ask about behaviour first, opinions later", "Group findings with an affinity map"], "keywords": ["User interview", "Affinity map", "Usability test", "Diary study"]},
-    "spoken": {"1": "Before the interview, write your goal in one sentence. Start with open questions, ask what people actually did, and always get consent before you hit record."},
-    "shots": {"summary": ["Your lecture,<br>summarised", "Apple Intelligence, right on device"], "record": ["What was said<br>on every slide", "Record the talk, read it as text"]}
+    "shots": {"summary": ["Your lecture,<br>summarised", "Apple Intelligence, right on device"]}
   },
   "ja": {
     "summary": {"overview": "計画・リクルートからインタビュー、分析までUXリサーチの流れを紹介。最もよく使われる手法はユーザーインタビューで、意見より実際の行動を観察する大切さが強調された。", "points": ["調査の目的を一文で書き出す", "まず行動を聞き、意見はあとで", "親和図で気づきをまとめる"], "keywords": ["ユーザーインタビュー", "親和図", "ユーザビリティテスト", "日記調査"]},
-    "spoken": {"1": "インタビューの前に、まず目的を一文で書き出してください。オープンな質問から始めて、実際に何をしたかを聞きます。録音する前には必ず同意をもらいましょう。"},
-    "shots": {"summary": ["講義のまとめは<br>AIにおまかせ", "Apple Intelligenceがデバイス上で"], "record": ["スライドごとに<br>話した内容まで", "録音を文字起こしして添えます"]}
+    "shots": {"summary": ["講義のまとめは<br>AIにおまかせ", "Apple Intelligenceがデバイス上で"]}
   },
   "zh-Hans": {
     "summary": {"overview": "本讲介绍 UX 研究从规划、招募到访谈与整理的完整流程。用户访谈是最常用的方法，讲者强调观察用户的行为比听取意见更重要。", "points": ["用一句话写清研究目标", "先问行为，再问看法", "用亲和图归纳洞察"], "keywords": ["用户访谈", "亲和图", "可用性测试", "日记研究"]},
-    "spoken": {"1": "访谈之前，先用一句话写清目标。从开放式问题开始，多问对方实际做了什么，开始录音前一定要先征得同意。"},
-    "shots": {"summary": ["整场讲座<br>AI 帮你总结", "Apple Intelligence 在设备上完成"], "record": ["每页幻灯片<br>都记下讲了什么", "录音自动转成文字"]}
+    "shots": {"summary": ["整场讲座<br>AI 帮你总结", "Apple Intelligence 在设备上完成"]}
   },
   "zh-Hant": {
     "summary": {"overview": "這堂課介紹 UX 研究從規劃、招募到訪談與整理的完整流程。使用者訪談是最常用的方法，講者強調觀察使用者的行為比聽取意見更重要。", "points": ["用一句話寫下研究目標", "先問行為，再問看法", "用親和圖歸納洞察"], "keywords": ["使用者訪談", "親和圖", "易用性測試", "日記研究"]},
-    "shots": {"summary": ["整堂課重點<br>AI 幫你整理", "Apple Intelligence 在裝置上完成"], "record": ["點一下投影片<br>從那一刻重播", "拍攝時一併錄下講解"]}
+    "shots": {"summary": ["整堂課重點<br>AI 幫你整理", "Apple Intelligence 在裝置上完成"]}
   },
   "de": {
     "summary": {"overview": "Ein Überblick über UX-Research – von Planung und Rekrutierung bis zu Interviews und Auswertung. Nutzerinterviews sind die meistgenutzte Methode; betont wird, Verhalten zu beobachten statt Meinungen abzufragen.", "points": ["Ziel in einem Satz formulieren", "Erst nach Verhalten fragen, dann nach Meinungen", "Erkenntnisse im Affinity-Diagramm bündeln"], "keywords": ["Nutzerinterview", "Affinity-Diagramm", "Usability-Test", "Tagebuchstudie"]},
-    "shots": {"summary": ["Deine Vorlesung,<br>zusammengefasst", "Mit Apple Intelligence auf dem iPhone"], "record": ["Jede Folie<br>zum Nachhören", "Der Vortrag wird beim Fotografieren aufgenommen"]}
+    "shots": {"summary": ["Deine Vorlesung,<br>zusammengefasst", "Mit Apple Intelligence auf dem iPhone"]}
   },
   "es": {
     "summary": {"overview": "Introducción a la investigación UX, desde la planificación y el reclutamiento hasta las entrevistas y el análisis. La entrevista con usuarios es el método más usado, y se insiste en observar lo que hacen más que lo que opinan.", "points": ["Define el objetivo en una frase", "Pregunta primero por lo que hacen", "Agrupa hallazgos en un mapa de afinidad"], "keywords": ["Entrevista", "Mapa de afinidad", "Prueba de usabilidad", "Estudio de diario"]},
-    "shots": {"summary": ["Tu clase,<br>resumida", "Con Apple Intelligence, en tu iPhone"], "record": ["Vuelve a escuchar<br>cada diapositiva", "La clase se graba mientras capturas"]}
+    "shots": {"summary": ["Tu clase,<br>resumida", "Con Apple Intelligence, en tu iPhone"]}
   },
   "fr": {
     "summary": {"overview": "Une introduction à la recherche UX, de la planification et du recrutement aux entretiens et à l’analyse. L’entretien utilisateur est la méthode la plus utilisée, et l’accent est mis sur l’observation des comportements plutôt que des opinions.", "points": ["Formuler l’objectif en une phrase", "Interroger sur les actions avant les avis", "Regrouper les constats par affinités"], "keywords": ["Entretien", "Diagramme d’affinités", "Test d’utilisabilité", "Étude de journal"]},
-    "shots": {"summary": ["Votre cours,<br>résumé", "Par Apple Intelligence, sur l’iPhone"], "record": ["Réécoutez<br>chaque diapositive", "Le cours s’enregistre pendant la capture"]}
+    "shots": {"summary": ["Votre cours,<br>résumé", "Par Apple Intelligence, sur l’iPhone"]}
   },
   "it": {
     "summary": {"overview": "Un’introduzione alla ricerca UX, dalla pianificazione e il reclutamento fino alle interviste e all’analisi. L’intervista agli utenti è il metodo più usato, e si sottolinea l’importanza di osservare i comportamenti più che le opinioni.", "points": ["Scrivi l’obiettivo in una frase", "Chiedi prima cosa fanno, poi cosa pensano", "Raggruppa le scoperte in una mappa di affinità"], "keywords": ["Intervista", "Mappa di affinità", "Test di usabilità", "Studio diario"]},
-    "shots": {"summary": ["La tua lezione,<br>riassunta", "Con Apple Intelligence, sull’iPhone"], "record": ["Riascolta<br>ogni slide", "La lezione si registra mentre scatti"]}
+    "shots": {"summary": ["La tua lezione,<br>riassunta", "Con Apple Intelligence, sull’iPhone"]}
   },
   "pt-BR": {
     "summary": {"overview": "Uma introdução à pesquisa de UX, do planejamento e recrutamento às entrevistas e à análise. A entrevista com usuários é o método mais usado, e a palestra reforça observar o que as pessoas fazem, não o que dizem.", "points": ["Defina o objetivo em uma frase", "Pergunte primeiro sobre o que fazem", "Agrupe descobertas em um mapa de afinidade"], "keywords": ["Entrevista", "Mapa de afinidade", "Teste de usabilidade", "Estudo de diário"]},
-    "shots": {"summary": ["Sua aula,<br>resumida", "Com a Apple Intelligence, no iPhone"], "record": ["Ouça de novo<br>cada slide", "A aula é gravada enquanto você fotografa"]}
+    "shots": {"summary": ["Sua aula,<br>resumida", "Com a Apple Intelligence, no iPhone"]}
   },
   "vi": {
     "summary": {"overview": "Giới thiệu quy trình nghiên cứu UX, từ lên kế hoạch, tuyển người tham gia đến phỏng vấn và tổng hợp. Phỏng vấn người dùng là phương pháp phổ biến nhất, và bài giảng nhấn mạnh quan sát hành vi hơn là hỏi ý kiến.", "points": ["Viết mục tiêu nghiên cứu trong một câu", "Hỏi về hành vi trước, ý kiến sau", "Gom nhóm phát hiện bằng sơ đồ tương đồng"], "keywords": ["Phỏng vấn người dùng", "Sơ đồ tương đồng", "Kiểm thử khả dụng", "Nhật ký"]},
-    "shots": {"summary": ["Bài giảng<br>được tóm tắt", "Bằng Apple Intelligence, ngay trên iPhone"], "record": ["Nghe lại<br>từng slide", "Ghi âm bài giảng trong lúc chụp"]}
+    "shots": {"summary": ["Bài giảng<br>được tóm tắt", "Bằng Apple Intelligence, ngay trên iPhone"]}
   },
   "da": {
     "summary": {"overview": "En introduktion til UX-research fra planlægning og rekruttering til interviews og analyse. Brugerinterviews er den mest brugte metode, og der lægges vægt på at observere adfærd frem for meninger.", "points": ["Skriv målet i én sætning", "Spørg først om adfærd, så om meninger", "Saml indsigter i et affinitetsdiagram"], "keywords": ["Brugerinterview", "Affinitetsdiagram", "Brugertest", "Dagbogsstudie"]},
-    "shots": {"summary": ["Din forelæsning,<br>opsummeret", "Med Apple Intelligence på din iPhone"], "record": ["Genhør<br>hver slide", "Forelæsningen optages, mens du fotograferer"]}
+    "shots": {"summary": ["Din forelæsning,<br>opsummeret", "Med Apple Intelligence på din iPhone"]}
   },
   "nb": {
     "summary": {"overview": "En innføring i UX-research, fra planlegging og rekruttering til intervjuer og analyse. Brukerintervjuer er den mest brukte metoden, og det legges vekt på å observere atferd fremfor meninger.", "points": ["Skriv målet i én setning", "Spør om atferd først, meninger etterpå", "Samle innsikt i et affinitetsdiagram"], "keywords": ["Brukerintervju", "Affinitetsdiagram", "Brukertest", "Dagbokstudie"]},
-    "shots": {"summary": ["Forelesningen din,<br>oppsummert", "Med Apple Intelligence på iPhone"], "record": ["Hør hvert<br>lysbilde igjen", "Forelesningen tas opp mens du fotograferer"]}
+    "shots": {"summary": ["Forelesningen din,<br>oppsummert", "Med Apple Intelligence på iPhone"]}
   },
   "nl": {
     "summary": {"overview": "Een introductie in UX-onderzoek, van plannen en werven tot interviews en analyse. Gebruikersinterviews zijn de meest gebruikte methode, en de nadruk ligt op gedrag observeren in plaats van meningen vragen.", "points": ["Formuleer het doel in één zin", "Vraag eerst naar gedrag, dan naar meningen", "Bundel inzichten in een affiniteitsdiagram"], "keywords": ["Gebruikersinterview", "Affiniteitsdiagram", "Usabilitytest", "Dagboekstudie"]},
-    "shots": {"summary": ["Je college,<br>samengevat", "Met Apple Intelligence op je iPhone"], "record": ["Luister elke<br>dia terug", "Het college wordt opgenomen terwijl je fotografeert"]}
+    "shots": {"summary": ["Je college,<br>samengevat", "Met Apple Intelligence op je iPhone"]}
   },
   "sv": {
     "summary": {"overview": "En introduktion till UX-research, från planering och rekrytering till intervjuer och analys. Användarintervjuer är den mest använda metoden, och fokus ligger på att observera beteenden snarare än åsikter.", "points": ["Skriv målet i en mening", "Fråga om beteende först, åsikter sedan", "Samla insikter i ett affinitetsdiagram"], "keywords": ["Användarintervju", "Affinitetsdiagram", "Användartest", "Dagboksstudie"]},
-    "shots": {"summary": ["Din föreläsning,<br>sammanfattad", "Med Apple Intelligence på din iPhone"], "record": ["Lyssna om på<br>varje slide", "Föreläsningen spelas in medan du fotar"]}
+    "shots": {"summary": ["Din föreläsning,<br>sammanfattad", "Med Apple Intelligence på din iPhone"]}
   },
   "tr": {
     "summary": {"overview": "Planlama ve katılımcı bulmaktan görüşmelere ve analize kadar UX araştırmasına bir giriş. En sık kullanılan yöntem kullanıcı görüşmesi; fikirlerden çok davranışları gözlemlemenin önemi vurgulanıyor.", "points": ["Amacı tek cümleyle yazın", "Önce davranışı, sonra fikri sorun", "Bulguları benzeşim diyagramıyla gruplayın"], "keywords": ["Kullanıcı görüşmesi", "Benzeşim diyagramı", "Kullanılabilirlik testi", "Günlük çalışması"]},
-    "shots": {"summary": ["Dersiniz,<br>özetlendi", "Apple Intelligence ile, iPhone'unuzda"], "record": ["Her slaytı<br>yeniden dinleyin", "Siz çekerken ders kaydedilir"]}
+    "shots": {"summary": ["Dersiniz,<br>özetlendi", "Apple Intelligence ile, iPhone'unuzda"]}
   },
-  "ru": {"shots": {"record": ["Переслушайте<br>любой слайд", "Лекция записывается во время съёмки"]}},
-  "th": {"shots": {"record": ["ฟังย้อนได้<br>ทุกสไลด์", "อัดเสียงการบรรยายระหว่างถ่าย"]}},
-  "cs": {"shots": {"record": ["Poslechni si<br>každý slajd", "Přednáška se nahrává při focení"]}},
-  "el": {"shots": {"record": ["Ξανακούστε<br>κάθε διαφάνεια", "Η διάλεξη ηχογραφείται στη λήψη"]}},
-  "fi": {"shots": {"record": ["Kuuntele<br>jokainen kalvo", "Luento nauhoittuu kuvatessa"]}},
-  "id": {"shots": {"record": ["Dengar ulang<br>tiap slide", "Kuliah direkam selagi kamu memotret"]}},
-  "pl": {"shots": {"record": ["Odsłuchaj<br>każdy slajd", "Wykład nagrywa się podczas zdjęć"]}}
+  "ru": {"shots": {}},
+  "th": {"shots": {}},
+  "cs": {"shots": {}},
+  "el": {"shots": {}},
+  "fi": {"shots": {}},
+  "id": {"shots": {}},
+  "pl": {"shots": {}}
 }

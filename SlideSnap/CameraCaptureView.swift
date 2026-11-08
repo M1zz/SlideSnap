@@ -150,13 +150,6 @@ struct CameraCaptureView: View {
     @State private var continueDismissed = false
 
     @StateObject private var camera = CameraController()
-    @StateObject private var recorder = AudioRecorder()
-    @ObservedObject private var purchases = PurchaseManager.shared
-    /// 녹음은 Pro 기능이다. 잠겼을 때 누르면 페이월.
-    @State private var paywallFeature: ProFeature?
-    /// 촬영하면서 녹음할지(기억됨)
-    @AppStorage("camera.recordAudio") private var recordAudio = false
-    @State private var showMicDenied = false
     @State private var captureCount = 0
     @State private var processingCount = 0
     @State private var lastThumbnail: UIImage?
@@ -222,31 +215,11 @@ struct CameraCaptureView: View {
         }
         .coordinateSpace(.named(Self.space))
         .statusBarHidden()
-        .paywall(for: $paywallFeature)
         .onAppear {
             camera.start()
-            recorder.onFinish = { [store, presentationID] recording in
-                store.addRecording(recording, to: presentationID)
-            }
-            if recordAudio && purchases.allows(.recording) { recorder.start() }
-        }
-        .onChange(of: presentationID) { _, id in
-            // 이어 찍기로 발표가 바뀌었다. 이미 돌고 있는 녹음도 그 발표로 간다.
-            recorder.onFinish = { [store] recording in store.addRecording(recording, to: id) }
         }
         .onDisappear {
             camera.stop()
-            recorder.stop()
-        }
-        .onChange(of: recorder.elapsed) { _, elapsed in
-            // 장표 없이 녹음만 해도 발표로 남긴다.
-            if elapsed >= 3 { onCapture?() }
-        }
-        .onChange(of: recorder.permissionDenied) { _, denied in
-            if denied {
-                recordAudio = false
-                showMicDenied = true
-            }
         }
         .alert("방금 찍은 장표에 메모", isPresented: memoAlertShown) {
             TextField("이 장표에 메모 남기기", text: $memoDraft)
@@ -256,16 +229,6 @@ struct CameraCaptureView: View {
                 }
             }
             Button("취소", role: .cancel) {}
-        }
-        .alert("마이크 접근이 허용되지 않았습니다", isPresented: $showMicDenied) {
-            Button("설정 열기") {
-                if let url = URL(string: UIApplication.openSettingsURLString) {
-                    UIApplication.shared.open(url)
-                }
-            }
-            Button("닫기", role: .cancel) {}
-        } message: {
-            Text("발표를 녹음하려면 설정에서 마이크 접근을 허용해 주세요.")
         }
         .onChange(of: camera.isLocked) { _, locked in
             if locked {
@@ -444,7 +407,6 @@ struct CameraCaptureView: View {
                     .tint(.white)
                     .padding(.trailing, 8)
             }
-            recordButton
             Button {
                 camera.autoCaptureEnabled.toggle()
             } label: {
@@ -464,52 +426,6 @@ struct CameraCaptureView: View {
         .padding()
         // 프리뷰를 가리지 않도록 촬영 단추 글씨는 너무 커지지 않게 둔다.
         .dynamicTypeSize(...DynamicTypeSize.accessibility2)
-    }
-
-    /// 녹음을 켜 두었고, 지금 칸에서 쓸 수 있는가.
-    private var recordingOn: Bool { recordAudio && purchases.allows(.recording) }
-
-    /// 녹음 켜기/끄기. 녹음 중이면 빨간 점과 경과 시간을 보여 준다.
-    private var recordButton: some View {
-        Button(action: toggleRecording) {
-            HStack(spacing: 5) {
-                if recorder.isRecording {
-                    Circle()
-                        .fill(.red)
-                        .frame(width: 8, height: 8)
-                    Text(recorder.elapsed.clockText)
-                        .font(.subheadline.weight(.semibold).monospacedDigit())
-                } else {
-                    Image(systemName: ProFeature.recording.icon(recordingOn ? "mic.fill" : "mic.slash"))
-                    Text("녹음")
-                        .font(.subheadline.weight(.semibold))
-                }
-            }
-            .foregroundStyle(recordTint)
-            .padding(.horizontal, 14)
-            .padding(.vertical, 8)
-            .background(recordBackground, in: Capsule())
-        }
-        .accessibilityLabel(recorder.isRecording ? Text("녹음 중지") : Text("녹음 시작"))
-        .accessibilityValue(recorder.isRecording ? recorder.elapsed.clockText : "")
-    }
-
-    /// 녹음 중이거나 꺼져 있으면 흰 글자, 켜 두고 기다리는 중이면 빨간 글자.
-    private var recordTint: Color { recorder.isRecording || !recordingOn ? .white : .red }
-
-    private var recordBackground: Color { recorder.isRecording ? .red.opacity(0.75) : .black.opacity(0.4) }
-
-    private func toggleRecording() {
-        guard purchases.allows(.recording) else {
-            paywallFeature = .recording
-            return
-        }
-        recordAudio.toggle()
-        if recordAudio {
-            recorder.start()
-        } else {
-            recorder.stop()
-        }
     }
 
     // MARK: - 하단 바

@@ -553,7 +553,6 @@
 				INFOPLIST_KEY_CFBundleDisplayName = CatchSlide;
 				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "지금 진행 중인 일정 이름을 새 발표 이름으로 쓰려고 캘린더를 이 기기 안에서 읽어요.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "발표 장표를 촬영하기 위해 카메라 접근이 필요합니다.";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "장표를 찍는 동안 발표 내용을 녹음해 장표별로 다시 들을 수 있게 합니다.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "녹음한 발표를 기기 안에서 글로 받아써 장표별로 보여 주고 검색할 수 있게 합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -589,7 +588,6 @@
 				INFOPLIST_KEY_CFBundleDisplayName = CatchSlide;
 				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "지금 진행 중인 일정 이름을 새 발표 이름으로 쓰려고 캘린더를 이 기기 안에서 읽어요.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "발표 장표를 촬영하기 위해 카메라 접근이 필요합니다.";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "장표를 찍는 동안 발표 내용을 녹음해 장표별로 다시 들을 수 있게 합니다.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "녹음한 발표를 기기 안에서 글로 받아써 장표별로 보여 주고 검색할 수 있게 합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

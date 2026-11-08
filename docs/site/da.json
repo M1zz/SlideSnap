@@ -51,17 +51,15 @@
   "reference": {
     "title": "Det kan du med en præsentation",
     "rows": [
-      ["Optagelse", "Optag lyd, mens du tager billeder, og afspil hver slide fra det øjeblik, du tog den"],
-      ["Transskription", "Gør optagelsen til tekst, viser hvad der blev sagt til hver slide og indgår i søgningen"],
-      ["AI-resumé", "Opsummerer præsentationen ud fra slidetekst og transskription (iOS 26 eller nyere på enheder med Apple Intelligence)"],
+      ["AI-resumé", "Opsummerer præsentationen ud fra slideteksten (iOS 26 eller nyere på enheder med Apple Intelligence)"],
       ["PDF", "Læsemateriale med en, to eller fire slides pr. side"],
       ["Markdown", "En .zip klar til Notion eller Obsidian"],
-      ["PowerPoint", "Eksportér en .pptx med transskriptionen i talernoterne"],
+      ["PowerPoint", "Eksportér en .pptx"],
       ["Flet", "Vælg flere præsentationer, og saml dem til én"],
       ["iCloud-synkronisering", "Slå til for at se dine præsentationer på andre enheder med samme Apple ID. Slået fra fra start"],
       ["Widgets", "Åbner kameraet direkte fra hjemmeskærmen eller låseskærmen"]
     ],
-    "note": "Tekstgenkendelse, transskription og AI-resuméer sker på din enhed."
+    "note": "Tekstgenkendelse og AI-resuméer sker på din enhed."
   },
   "pricing": {
     "title": "Start gratis, og tilføj Plus eller Pro, når du har brug for det",
@@ -79,9 +77,9 @@
       "name": "Plus · Pro",
       "items": [
         "Plus: ubegrænsede præsentationer, bedre læsbarhed, PDF med to eller fire slides pr. side",
-        "Pro: alt i Plus samt optagelse, transskription, AI-resumé, eksport til Markdown og PowerPoint og iCloud-synkronisering"
+        "Pro: alt i Plus samt AI-resumé, eksport til Markdown og PowerPoint og iCloud-synkronisering"
       ],
-      "note": "Vælg abonnement pr. uge, måned eller år, eller betal én gang for altid."
+      "note": "Vælg abonnement pr. måned eller år, eller betal én gang for altid."
     },
     "note": "Drikkepenge er bare et tak og låser ikke noget op. Har du købt CatchSlide, dengang appen kostede penge, beholder du Pro for altid."
   },
@@ -93,11 +91,11 @@
       {"q": "Hvorfor er mine billeder samlet i én præsentation?", "a": "Tager du næste billede inden for 5 minutter efter det forrige, hører det til samme præsentation. Tryk på titlen i listen for at omdøbe den, og brug `Flet præsentationer` til at samle dem, der er blevet delt op."},
       {"q": "Kan jeg tilføje billeder, jeg allerede har taget?", "a": "Ja. Vælg dem i Fotos, og del dem med CatchSlide, eller tryk på ＋ i listen og vælg `Importér fra Fotos`. De rettes op og gemmes som én præsentation i den rækkefølge, de blev taget."},
       {"q": "Hjørnerne blev fundet forkert.", "a": "Åbn sliden, vælg `Juster hjørner` i menuen ⋯, og træk de fire hjørner på plads. `Registrér automatisk` finder dem igen, og `Hele billedet` bruger hele fotoet. Originalen gemmes altid, så du kan gøre det om når som helst."},
-      {"q": "Kan jeg søge i teksten på mine slides?", "a": "Skriv et ord i søgefeltet øverst i listen. Der søges i slidetekst, titler, noter og transskriptioner, og du hopper direkte til sliden. Tekstgenkendelsen sker på din enhed."},
+      {"q": "Kan jeg søge i teksten på mine slides?", "a": "Skriv et ord i søgefeltet øverst i listen. Der søges i slidetekst, titler og noter, og du hopper direkte til sliden. Tekstgenkendelsen sker på din enhed."},
       {"q": "Hvordan eksporterer jeg en PDF?", "a": "Åbn delingsmenuen i en præsentation, vælg `Eksportér som PDF`, og vælg en, to eller fire slides pr. side. Fra delingsarket kan du gemme den i Filer eller sende den til en anden app."},
       {"q": "Hvordan ændrer jeg rækkefølgen eller sletter slides?", "a": "Hold fingeren på en slide i en præsentation, og træk den. I samme menu kan du slette eller dele en slide, og med `Vælg` sletter du flere på én gang."},
-      {"q": "Hvordan virker optagelse og AI-resumé?", "a": "Slå `Optag` til øverst i kameraet, så gemmer hver slide lyden fra det øjeblik. Under `Præsentationsnoter` laver `Resumér med AI` et resumé ud fra slidetekst og transskription. Det kræver iOS 26 eller nyere på en enhed med Apple Intelligence."},
-      {"q": "Hvor gemmes mine slides og optagelser?", "a": "På din enhed. De kommer kun op i din egen iCloud, hvis du slår `Synkronisering` til under Mine oplysninger, og du behøver ingen konto. Læs mere i privatlivspolitikken."}
+      {"q": "Hvordan virker AI-resumé?", "a": "Under `Præsentationsnoter` laver `Resumér med AI` et resumé ud fra slideteksten. Det kræver iOS 26 eller nyere på en enhed med Apple Intelligence. Optagelser fra tidligere versioner bliver på din enhed og kan stadig afspilles."},
+      {"q": "Hvor gemmes mine slides?", "a": "På din enhed. De kommer kun op i din egen iCloud, hvis du slår `Synkronisering` til under Mine oplysninger, og du behøver ingen konto. Læs mere i privatlivspolitikken."}
     ]
   },
   "closing": {

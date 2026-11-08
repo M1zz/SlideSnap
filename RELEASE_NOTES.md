@@ -11,7 +11,7 @@ App Store "이 버전의 새로운 기능"에 그대로 올라가는 원본입�
 Spotlight에서 단어 하나로 장표를 찾을 수 있어요
 Siri에게 장표를 찍거나 찾아 달라고 해 보세요
 매일 자동으로 백업하고 언제든 되살릴 수 있어요
-저장한 장표와 녹음을 더 안전하게 지킵니다
+녹음 기능을 뺐지만 이미 녹음한 것은 그대로 들을 수 있어요
 
 ### App Store (English)
 
@@ -19,7 +19,7 @@ CatchSlide is now free to download
 Find slides in Spotlight with one word
 Ask Siri to capture or find slides
 Daily backups you can restore anytime
-Slides and recordings are kept safer
+Recording is gone but old ones still play
 
 ### App Store (en-GB)
 
@@ -27,7 +27,7 @@ CatchSlide is now free to download
 Find slides in Spotlight with one word
 Ask Siri to capture or find slides
 Daily backups you can restore any time
-Slides and recordings are kept safer
+Recording is gone but old ones still play
 
 ### App Store (zh-Hans)
 
@@ -35,7 +35,7 @@ Slides and recordings are kept safer
 在聚焦搜索中输入一个词就能找到幻灯片
 可以让 Siri 帮你拍摄或查找幻灯片
 每天自动备份，随时可以恢复
-已保存的幻灯片和录音更加安全
+已移除录音功能，之前的录音仍可播放
 
 ### App Store (zh-Hant)
 
@@ -43,7 +43,7 @@ Slides and recordings are kept safer
 在 Spotlight 輸入一個詞就能找到投影片
 可以請 Siri 幫你拍攝或尋找投影片
 每天自動備份，隨時都能還原
-已儲存的投影片和錄音更加安全
+已移除錄音功能，之前的錄音仍可播放
 
 ### 앱스토어 (일본어)
 
@@ -51,7 +51,7 @@ Slides and recordings are kept safer
 Spotlightで単語ひとつからスライドを探せます
 Siriにスライドの撮影や検索を頼めます
 毎日自動でバックアップ、いつでも復元できます
-保存したスライドと録音をより安全に守ります
+録音機能を外し、これまでの録音はそのまま聴けます
 
 ### 앱스토어 (러시아어)
 
@@ -59,7 +59,7 @@ Siriにスライドの撮影や検索を頼めます
 Ищите слайды в Spotlight по одному слову
 Попросите Siri снять или найти слайды
 Ежедневные копии с восстановлением
-Слайды и записи теперь хранятся надёжнее
+Запись убрана, старые записи можно слушать
 
 ### 앱스토어 (스페인어)
 
@@ -67,7 +67,7 @@ Ahora puedes empezar gratis
 Busca diapositivas en Spotlight
 Siri captura o busca diapositivas
 Copias diarias que puedes restaurar
-Diapositivas y grabaciones más seguras
+Quitamos la grabación, lo grabado aún se oye
 
 ### 앱스토어 (독일어)
 
@@ -75,7 +75,7 @@ Jetzt kostenlos loslegen
 Finde Folien per Spotlight
 Siri nimmt Folien auf oder findet sie
 Tägliche Backups zum Wiederherstellen
-Folien und Aufnahmen sind jetzt sicherer
+Keine Tonaufnahme mehr, alte bleiben hörbar
 
 ### 앱스토어 (프랑스어)
 
@@ -83,7 +83,7 @@ Commencez désormais gratuitement
 Retrouvez une diapositive dans Spotlight
 Demandez à Siri de capturer ou chercher
 Sauvegarde quotidienne restaurable
-Diapos et enregistrements mieux protégés
+Enregistrement retiré, l’existant reste lisible
 
 ### 앱스토어 (이탈리아어)
 
@@ -91,7 +91,7 @@ Ora puoi iniziare gratis
 Trova le slide in Spotlight
 Chiedi a Siri di scattare o cercare
 Backup giornalieri sempre ripristinabili
-Slide e registrazioni ora più al sicuro
+Registrazione rimossa, quelle fatte si ascoltano
 
 ### App Store (pt-BR)
 
@@ -99,7 +99,7 @@ Agora você pode começar de graça
 Encontre slides no Spotlight
 Peça à Siri para fotografar ou buscar
 Backup diário que você pode restaurar
-Slides e gravações ainda mais protegidos
+Gravação removida, as antigas ainda tocam
 
 ### 앱스토어 (태국어)
 
@@ -107,7 +107,7 @@ Slides e gravações ainda mais protegidos
 ค้นหาสไลด์ใน Spotlight ได้ด้วยคำเดียว
 สั่ง Siri ให้ถ่ายหรือค้นหาสไลด์ได้
 สำรองข้อมูลทุกวัน กู้คืนได้ทุกเมื่อ
-สไลด์และเสียงที่บันทึกไว้ปลอดภัยยิ่งขึ้น
+เอาการอัดเสียงออกแล้ว เสียงที่อัดไว้ยังฟังได้
 
 ### 앱스토어 (베트남어)
 
@@ -115,7 +115,7 @@ Giờ đây bạn có thể bắt đầu miễn phí
 Tìm slide trong Spotlight bằng một từ
 Nhờ Siri chụp hoặc tìm slide giúp bạn
 Tự sao lưu mỗi ngày, khôi phục dễ dàng
-Slide và bản ghi âm được giữ an toàn hơn
+Đã bỏ ghi âm, bản ghi cũ vẫn nghe được
 
 ### 앱스토어 (체코어)
 
@@ -123,7 +123,7 @@ Nově můžeš začít zdarma
 Najdi slajd ve Spotlightu jedním slovem
 Požádej Siri, ať vyfotí nebo najde slajd
 Denní zálohy, které kdykoli obnovíš
-Slajdy a nahrávky jsou teď v bezpečí
+Nahrávání je pryč, staré nahrávky přehraješ dál
 
 ### 앱스토어 (덴마크어)
 
@@ -131,7 +131,7 @@ Nu kan du komme i gang gratis
 Find slides i Spotlight med ét ord
 Bed Siri om at tage eller finde slides
 Daglig backup, du kan gendanne
-Slides og optagelser er bedre beskyttet
+Optagelse fjernet, gamle optagelser kan høres
 
 ### 앱스토어 (그리스어)
 
@@ -139,7 +139,7 @@ Slides og optagelser er bedre beskyttet
 Βρείτε διαφάνειες στο Spotlight
 Η Siri τραβά ή βρίσκει διαφάνειες
 Καθημερινά αντίγραφα με επαναφορά
-Διαφάνειες και ηχογραφήσεις πιο ασφαλείς
+Η ηχογράφηση αφαιρέθηκε, οι παλιές ακούγονται
 
 ### 앱스토어 (핀란드어)
 
@@ -147,7 +147,7 @@ Nyt pääset alkuun ilmaiseksi
 Löydä kalvo Spotlightista sanalla
 Pyydä Siriä kuvaamaan tai etsimään
 Päivittäiset varmuuskopiot ja palautus
-Kalvot ja nauhoitteet ovat nyt turvassa
+Nauhoitus poistui, vanhat voi yhä kuunnella
 
 ### 앱스토어 (인도네시아어)
 
@@ -155,7 +155,7 @@ Kini bisa mulai gratis
 Cari slide di Spotlight dengan satu kata
 Minta Siri memotret atau mencari slide
 Cadangan harian, pulihkan kapan saja
-Slide dan rekaman kini lebih aman
+Perekaman dihapus, rekaman lama tetap bisa diputar
 
 ### 앱스토어 (노르웨이어(보크말))
 
@@ -163,7 +163,7 @@ Nå kan du komme i gang gratis
 Finn lysbilder i Spotlight med ett ord
 Be Siri ta eller finne lysbilder
 Daglig sikkerhetskopi med gjenoppretting
-Lysbilder og opptak er bedre beskyttet
+Opptak fjernet, gamle kan fortsatt høres
 
 ### 앱스토어 (네덜란드어)
 
@@ -171,7 +171,7 @@ Je kunt nu gratis beginnen
 Vind dia's in Spotlight met één woord
 Vraag Siri dia's te maken of te zoeken
 Dagelijkse back-ups om terug te zetten
-Je dia's en opnamen zijn beter beschermd
+Opnemen is weg, oude opnamen blijf je horen
 
 ### 앱스토어 (폴란드어)
 
@@ -179,7 +179,7 @@ Teraz zaczniesz za darmo
 Znajdź slajd w Spotlight jednym słowem
 Siri zrobi zdjęcie lub znajdzie slajd
 Codzienne kopie zapasowe do przywrócenia
-Slajdy i nagrania są bezpieczniejsze
+Nagrywanie usunięte, stare nagrania odsłuchasz
 
 ### 앱스토어 (스웨덴어)
 
@@ -187,7 +187,7 @@ Nu kan du komma igång gratis
 Hitta slides i Spotlight med ett ord
 Be Siri fota eller hitta slides åt dig
 Dagliga säkerhetskopior att återställa
-Slides och inspelningar skyddas bättre
+Inspelning borttagen, gamla går att lyssna på
 
 ### 앱스토어 (튀르키예어)
 
@@ -195,7 +195,7 @@ Artık ücretsiz başlayabilirsiniz
 Spotlight'ta tek kelimeyle slayt bulun
 Siri'ye slayt çektirin ya da buldurun
 Her gün otomatik yedek ve geri yükleme
-Slaytlar ve kayıtlar artık daha güvende
+Kayıt kaldırıldı, eski kayıtlar dinlenebilir
 
 ## 1.0.10
 

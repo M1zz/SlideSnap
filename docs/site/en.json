@@ -60,17 +60,15 @@
   "reference": {
     "title": "What you can do with a presentation",
     "rows": [
-      ["Recording", "Record while you shoot, then play each slide from the moment you captured it"],
-      ["Transcription", "Turns the recording into text, shows what was said on each slide and makes it searchable"],
-      ["AI summary", "Summarizes the presentation from slide text and transcripts (iOS 26 or later on devices that support Apple Intelligence)"],
+      ["AI summary", "Summarizes the presentation from slide text (iOS 26 or later on devices that support Apple Intelligence)"],
       ["PDF", "Revision handouts with one, two or four slides per page"],
       ["Markdown", "A .zip ready for Notion or Obsidian"],
-      ["PowerPoint", "Exports a .pptx with the transcript in the speaker notes"],
+      ["PowerPoint", "Exports a .pptx"],
       ["Merge", "Select several presentations and join them into one"],
       ["iCloud sync", "Turn it on to see your presentations on your other devices with the same Apple ID. Off by default"],
       ["Widgets", "Open the camera straight from the Home Screen or Lock Screen"]
     ],
-    "note": "Text recognition, transcription and AI summaries all run on your device."
+    "note": "Text recognition and AI summaries run on your device."
   },
   "pricing": {
     "title": "Start free, add Plus or Pro when you need it",
@@ -88,9 +86,9 @@
       "name": "Plus · Pro",
       "items": [
         "Plus: unlimited presentations, Enhance Readability, two- and four-per-page PDFs",
-        "Pro: everything in Plus, plus recording, transcription, AI summaries, Markdown and PowerPoint export, and iCloud sync"
+        "Pro: everything in Plus, plus AI summaries, Markdown and PowerPoint export, and iCloud sync"
       ],
-      "note": "Choose weekly, monthly or yearly, or pay once for lifetime."
+      "note": "Choose monthly or yearly, or pay once for lifetime."
     },
     "note": "Tips are just a thank-you and don't unlock anything. If you bought CatchSlide when it was a paid app, you keep Pro for life."
   },
@@ -119,7 +117,7 @@
       },
       {
         "q": "Can I search the text on my slides?",
-        "a": "Type a word in the search field at the top of the list. It searches slide text, presentation titles, notes and transcripts, and jumps straight to the slide. Text recognition happens on your device."
+        "a": "Type a word in the search field at the top of the list. It searches slide text, presentation titles and notes, and jumps straight to the slide. Text recognition happens on your device."
       },
       {
         "q": "How do I export a PDF?",
@@ -130,11 +128,11 @@
         "a": "In a presentation, press and hold a slide and drag it to reorder. The same long-press menu lets you delete or share one slide, and `Select` lets you delete several at once."
       },
       {
-        "q": "How do recording and AI summaries work?",
-        "a": "Turn on `Record` at the top of the camera and each slide keeps the audio from that moment. In Deck Notes, `Summarize with AI` writes a summary from the slide text and transcripts. AI summaries need iOS 26 or later on a device that supports Apple Intelligence."
+        "q": "How does AI summary work?",
+        "a": "In Deck Notes, `Summarize with AI` writes a summary from the slide text. It needs iOS 26 or later on a device that supports Apple Intelligence. Recordings made with earlier versions stay on your device and can still be played."
       },
       {
-        "q": "Where are my slides and recordings stored?",
+        "q": "Where are my slides stored?",
         "a": "On your device. They go to your own iCloud only if you turn on `Sync` in My Info, and no account is needed. See the Privacy Policy for details."
       }
     ]

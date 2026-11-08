@@ -51,17 +51,15 @@
   "reference": {
     "title": "Cosa puoi fare con una presentazione",
     "rows": [
-      ["Registrazione", "Registra mentre scatti, poi ascolta ogni slide dal momento in cui l’hai fotografata"],
-      ["Trascrizione", "Trasforma la registrazione in testo, mostra cosa è stato detto su ogni slide e lo rende cercabile"],
-      ["Riassunto con IA", "Riassume la presentazione dal testo delle slide e dalla trascrizione (iOS 26 o successivo su dispositivi compatibili con Apple Intelligence)"],
+      ["Riassunto con IA", "Riassume la presentazione dal testo delle slide (iOS 26 o successivo su dispositivi compatibili con Apple Intelligence)"],
       ["PDF", "Dispense per il ripasso con una, due o quattro slide per pagina"],
       ["Markdown", "Un .zip pronto per Notion o Obsidian"],
-      ["PowerPoint", "Esporta un .pptx con la trascrizione nelle note del relatore"],
+      ["PowerPoint", "Esporta un .pptx"],
       ["Unisci", "Seleziona più presentazioni e uniscile in una"],
       ["Sincronizzazione iCloud", "Attivala per vedere le presentazioni sugli altri dispositivi con lo stesso Apple ID. Disattivata di default"],
       ["Widget", "Aprono la fotocamera direttamente dalla schermata Home o di blocco"]
     ],
-    "note": "Riconoscimento del testo, trascrizione e riassunti con IA avvengono sul dispositivo."
+    "note": "Riconoscimento del testo e riassunti con IA avvengono sul dispositivo."
   },
   "pricing": {
     "title": "Inizia gratis, aggiungi Plus o Pro quando ti serve",
@@ -79,9 +77,9 @@
       "name": "Plus · Pro",
       "items": [
         "Plus: presentazioni illimitate, leggibilità migliorata, PDF con due o quattro slide per pagina",
-        "Pro: tutto Plus, più registrazione, trascrizione, riassunto con IA, esportazione in Markdown e PowerPoint e sincronizzazione iCloud"
+        "Pro: tutto Plus, più riassunto con IA, esportazione in Markdown e PowerPoint e sincronizzazione iCloud"
       ],
-      "note": "Scegli l’abbonamento settimanale, mensile o annuale, oppure paga una volta per sempre."
+      "note": "Scegli l’abbonamento mensile o annuale, oppure paga una volta per sempre."
     },
     "note": "Le mance sono solo un grazie e non sbloccano nulla. Se hai acquistato CatchSlide quando era a pagamento, tieni Pro per sempre."
   },
@@ -93,11 +91,11 @@
       {"q": "Perché le foto finiscono in un’unica presentazione?", "a": "Se scatti la foto successiva entro 5 minuti dall’ultima, viene considerata parte della stessa presentazione. Tocca il titolo nella lista per rinominarla e usa `Unisci presentazioni` per riunire quelle che si sono divise."},
       {"q": "Posso aggiungere foto già scattate?", "a": "Sì. Selezionale nell’app Foto e condividile con CatchSlide, oppure tocca ＋ nella lista e scegli `Importa da Foto`. Vengono raddrizzate e salvate come una presentazione nell’ordine di scatto."},
       {"q": "Gli angoli non sono stati trovati bene.", "a": "Apri la slide, scegli `Regola angoli` dal menu ⋯ e trascina i quattro angoli al loro posto. `Rilevamento automatico` li cerca di nuovo e `Immagine intera` usa tutta la foto. L’originale viene sempre conservato, quindi puoi rifarlo quando vuoi."},
-      {"q": "Posso cercare il testo nelle slide?", "a": "Scrivi una parola nel campo di ricerca in cima alla lista. La ricerca copre testo delle slide, titoli, note e trascrizioni e ti porta subito alla slide. Il riconoscimento del testo avviene sul dispositivo."},
+      {"q": "Posso cercare il testo nelle slide?", "a": "Scrivi una parola nel campo di ricerca in cima alla lista. La ricerca copre testo delle slide, titoli e note e ti porta subito alla slide. Il riconoscimento del testo avviene sul dispositivo."},
       {"q": "Come esporto un PDF?", "a": "In una presentazione apri il menu di condivisione, scegli `Esporta come PDF` e decidi se mettere una, due o quattro slide per pagina. Dal foglio di condivisione puoi salvarlo in File o inviarlo a un’altra app."},
       {"q": "Come cambio l’ordine o elimino le slide?", "a": "In una presentazione tieni premuta una slide e trascinala. Dallo stesso menu puoi eliminarla o condividerla, e con `Seleziona` ne elimini diverse insieme."},
-      {"q": "Come funzionano registrazione e riassunto con IA?", "a": "Attiva `Registra` in alto nella fotocamera e ogni slide conserverà l’audio di quel momento. In `Note della presentazione`, `Riassumi con l'IA` crea un riassunto dal testo delle slide e dalla trascrizione. Serve iOS 26 o successivo su un dispositivo compatibile con Apple Intelligence."},
-      {"q": "Dove vengono salvate le mie slide e registrazioni?", "a": "Sul tuo dispositivo. Finiscono sul tuo iCloud solo se attivi `Sincronizza` in I miei dati, e non serve alcun account. Maggiori dettagli nella Privacy policy."}
+      {"q": "Come funziona il riassunto con IA?", "a": "In `Note della presentazione`, `Riassumi con l'IA` crea un riassunto dal testo delle slide. Serve iOS 26 o successivo su un dispositivo compatibile con Apple Intelligence. Le registrazioni fatte con le versioni precedenti restano sul dispositivo e si possono ancora ascoltare."},
+      {"q": "Dove vengono salvate le mie slide?", "a": "Sul tuo dispositivo. Finiscono sul tuo iCloud solo se attivi `Sincronizza` in I miei dati, e non serve alcun account. Maggiori dettagli nella Privacy policy."}
     ]
   },
   "closing": {

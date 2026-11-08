@@ -51,17 +51,15 @@
   "reference": {
     "title": "Was du mit einer Präsentation machen kannst",
     "rows": [
-      ["Aufnahme", "Nimm beim Fotografieren Ton auf und hör dir jede Folie ab dem Moment an, in dem du sie fotografiert hast"],
-      ["Transkription", "Macht aus der Aufnahme Text, zeigt, was zu jeder Folie gesagt wurde, und fließt in die Suche ein"],
-      ["KI-Zusammenfassung", "Fasst die Präsentation aus Folientext und Transkript zusammen (iOS 26 oder neuer auf Geräten mit Apple Intelligence)"],
+      ["KI-Zusammenfassung", "Fasst die Präsentation aus dem Folientext zusammen (iOS 26 oder neuer auf Geräten mit Apple Intelligence)"],
       ["PDF", "Lernunterlagen mit einer, zwei oder vier Folien pro Seite"],
       ["Markdown", "Ein .zip für Notion oder Obsidian"],
-      ["PowerPoint", "Export als .pptx, das Transkript steht in den Sprechernotizen"],
+      ["PowerPoint", "Export als .pptx"],
       ["Zusammenführen", "Mehrere Präsentationen auswählen und zu einer verbinden"],
       ["iCloud-Abgleich", "Einschalten, um deine Präsentationen auf anderen Geräten mit derselben Apple ID zu sehen. Standardmäßig aus"],
       ["Widgets", "Öffnen die Kamera direkt vom Home- oder Sperrbildschirm"]
     ],
-    "note": "Texterkennung, Transkription und KI-Zusammenfassungen laufen auf deinem Gerät."
+    "note": "Texterkennung und KI-Zusammenfassungen laufen auf deinem Gerät."
   },
   "pricing": {
     "title": "Kostenlos starten, Plus oder Pro bei Bedarf",
@@ -79,9 +77,9 @@
       "name": "Plus · Pro",
       "items": [
         "Plus: unbegrenzt viele Präsentationen, bessere Lesbarkeit, PDFs mit zwei oder vier Folien pro Seite",
-        "Pro: alles aus Plus, dazu Aufnahme, Transkription, KI-Zusammenfassung, Export als Markdown und PowerPoint sowie iCloud-Abgleich"
+        "Pro: alles aus Plus, dazu KI-Zusammenfassung, Export als Markdown und PowerPoint sowie iCloud-Abgleich"
       ],
-      "note": "Wähl ein Wochen-, Monats- oder Jahresabo oder zahl einmal für immer."
+      "note": "Wähl ein Monats- oder Jahresabo oder zahl einmal für immer."
     },
     "note": "Trinkgeld ist nur ein Dankeschön und schaltet nichts frei. Wer CatchSlide gekauft hat, als die App noch kostenpflichtig war, behält Pro für immer."
   },
@@ -93,11 +91,11 @@
       {"q": "Warum landen meine Fotos in einer Präsentation?", "a": "Machst du das nächste Foto innerhalb von 5 Minuten nach dem letzten, gilt es als Teil derselben Präsentation. Tippe in der Liste auf den Titel, um sie umzubenennen, und verbinde getrennte Präsentationen mit `Präsentationen zusammenführen`."},
       {"q": "Kann ich Fotos hinzufügen, die ich schon gemacht habe?", "a": "Ja. Wähle sie in der Fotos-App aus und teile sie mit CatchSlide, oder tippe in der Liste auf ＋ und wähle `Aus Fotos importieren`. Sie werden entzerrt und in Aufnahmereihenfolge als eine Präsentation abgelegt."},
       {"q": "Die Ecken wurden falsch erkannt.", "a": "Öffne die Folie, wähle im Menü ⋯ `Ecken anpassen` und zieh die vier Ecken an die richtige Stelle. `Automatisch erkennen` sucht sie neu, `Ganzes Bild` nimmt das komplette Foto. Das Original bleibt immer erhalten, du kannst es also jederzeit neu entzerren."},
-      {"q": "Kann ich den Text auf meinen Folien durchsuchen?", "a": "Gib oben in der Liste ein Wort ins Suchfeld ein. Durchsucht werden Folientext, Präsentationstitel, Notizen und Transkripte, und du springst direkt zur Folie. Die Texterkennung läuft auf deinem Gerät."},
+      {"q": "Kann ich den Text auf meinen Folien durchsuchen?", "a": "Gib oben in der Liste ein Wort ins Suchfeld ein. Durchsucht werden Folientext, Präsentationstitel und Notizen, und du springst direkt zur Folie. Die Texterkennung läuft auf deinem Gerät."},
       {"q": "Wie exportiere ich ein PDF?", "a": "Öffne in einer Präsentation das Teilen-Menü, wähle `Als PDF exportieren` und entscheide dich für eine, zwei oder vier Folien pro Seite. Über das Teilen-Menü sicherst du es in Dateien oder schickst es an eine andere App."},
       {"q": "Wie ändere ich die Reihenfolge oder lösche Folien?", "a": "Halte in einer Präsentation eine Folie gedrückt und zieh sie an ihren neuen Platz. Im selben Menü kannst du eine Folie löschen oder teilen, mit `Auswählen` löschst du mehrere auf einmal."},
-      {"q": "Wie funktionieren Aufnahme und KI-Zusammenfassung?", "a": "Schalte oben in der Kamera `Aufnahme` ein, dann behält jede Folie den Ton aus diesem Moment. In `Notizen zur Präsentation` erstellt `Mit KI zusammenfassen` eine Zusammenfassung aus Folientext und Transkript. Dafür brauchst du iOS 26 oder neuer auf einem Gerät mit Apple Intelligence."},
-      {"q": "Wo werden meine Folien und Aufnahmen gespeichert?", "a": "Auf deinem Gerät. In deine eigene iCloud gelangen sie nur, wenn du unter Meine Angaben `Abgleichen` einschaltest, und ein Konto brauchst du nicht. Mehr dazu in der Datenschutzerklärung."}
+      {"q": "Wie funktioniert die KI-Zusammenfassung?", "a": "In `Notizen zur Präsentation` erstellt `Mit KI zusammenfassen` eine Zusammenfassung aus dem Folientext. Dafür brauchst du iOS 26 oder neuer auf einem Gerät mit Apple Intelligence. Tonaufnahmen aus früheren Versionen bleiben auf deinem Gerät und lassen sich weiter abspielen."},
+      {"q": "Wo werden meine Folien gespeichert?", "a": "Auf deinem Gerät. In deine eigene iCloud gelangen sie nur, wenn du unter Meine Angaben `Abgleichen` einschaltest, und ein Konto brauchst du nicht. Mehr dazu in der Datenschutzerklärung."}
     ]
   },
   "closing": {

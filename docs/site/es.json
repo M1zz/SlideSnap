@@ -51,17 +51,15 @@
   "reference": {
     "title": "Qué puedes hacer con una presentación",
     "rows": [
-      ["Grabación", "Graba mientras fotografías y escucha cada diapositiva desde el momento en que la tomaste"],
-      ["Transcripción", "Pasa la grabación a texto, muestra lo que se dijo en cada diapositiva y entra en la búsqueda"],
-      ["Resumen con IA", "Resume la presentación a partir del texto de las diapositivas y la transcripción (iOS 26 o posterior en dispositivos compatibles con Apple Intelligence)"],
+      ["Resumen con IA", "Resume la presentación a partir del texto de las diapositivas (iOS 26 o posterior en dispositivos compatibles con Apple Intelligence)"],
       ["PDF", "Apuntes para repasar con una, dos o cuatro diapositivas por página"],
       ["Markdown", "Un .zip listo para Notion u Obsidian"],
-      ["PowerPoint", "Exporta un .pptx con la transcripción en las notas del orador"],
+      ["PowerPoint", "Exporta un .pptx"],
       ["Combinar", "Elige varias presentaciones y únelas en una"],
       ["Sincronización con iCloud", "Actívala para ver tus presentaciones en tus otros dispositivos con el mismo Apple ID. Viene desactivada"],
       ["Widgets", "Abren la cámara directamente desde la pantalla de inicio o la pantalla bloqueada"]
     ],
-    "note": "El reconocimiento de texto, la transcripción y los resúmenes con IA se hacen en tu dispositivo."
+    "note": "El reconocimiento de texto y los resúmenes con IA se hacen en tu dispositivo."
   },
   "pricing": {
     "title": "Empieza gratis y añade Plus o Pro cuando lo necesites",
@@ -79,9 +77,9 @@
       "name": "Plus · Pro",
       "items": [
         "Plus: presentaciones ilimitadas, mejora de legibilidad y PDF de dos o cuatro por página",
-        "Pro: todo lo de Plus, más grabación, transcripción, resumen con IA, exportación a Markdown y PowerPoint, y sincronización con iCloud"
+        "Pro: todo lo de Plus, más resumen con IA, exportación a Markdown y PowerPoint, y sincronización con iCloud"
       ],
-      "note": "Elige suscripción semanal, mensual o anual, o un pago único de por vida."
+      "note": "Elige suscripción mensual o anual, o un pago único de por vida."
     },
     "note": "Las propinas son solo un agradecimiento y no desbloquean nada. Si compraste CatchSlide cuando era de pago, conservas Pro para siempre."
   },
@@ -93,11 +91,11 @@
       {"q": "¿Por qué se agrupan mis fotos en una sola presentación?", "a": "Si haces la siguiente foto antes de que pasen 5 minutos desde la anterior, se considera la misma presentación. Toca el título en la lista para cambiarle el nombre y usa `Combinar presentaciones` para unir las que se hayan separado."},
       {"q": "¿Puedo añadir fotos que ya hice?", "a": "Sí. Selecciónalas en la app Fotos y compártelas con CatchSlide, o toca ＋ en la lista y elige `Importar desde Fotos`. Se enderezan y se guardan como una presentación en el orden en que las hiciste."},
       {"q": "Las esquinas no se detectaron bien.", "a": "Abre la diapositiva, elige `Ajustar esquinas` en el menú ⋯ y arrastra las cuatro esquinas a su sitio. `Detección automática` las busca de nuevo e `Imagen completa` usa la foto entera. El original siempre se guarda, así que puedes rehacerlo cuando quieras."},
-      {"q": "¿Puedo buscar el texto de las diapositivas?", "a": "Escribe una palabra en el campo de búsqueda de la parte superior de la lista. Busca en el texto de las diapositivas, los títulos, las notas y las transcripciones, y te lleva directo a la diapositiva. El reconocimiento de texto se hace en tu dispositivo."},
+      {"q": "¿Puedo buscar el texto de las diapositivas?", "a": "Escribe una palabra en el campo de búsqueda de la parte superior de la lista. Busca en el texto de las diapositivas, los títulos y las notas, y te lleva directo a la diapositiva. El reconocimiento de texto se hace en tu dispositivo."},
       {"q": "¿Cómo exporto un PDF?", "a": "Dentro de una presentación, abre el menú de compartir, elige `Exportar como PDF` y decide si quieres una, dos o cuatro diapositivas por página. Desde la hoja de compartir puedes guardarlo en Archivos o enviarlo a otra app."},
       {"q": "¿Cómo cambio el orden o borro diapositivas?", "a": "Dentro de una presentación, mantén pulsada una diapositiva y arrástrala. En ese mismo menú puedes borrarla o compartirla, y con `Seleccionar` borras varias a la vez."},
-      {"q": "¿Cómo funcionan la grabación y el resumen con IA?", "a": "Activa `Grabar` arriba en la cámara y cada diapositiva guardará el audio de ese momento. En `Notas de la presentación`, `Resumir con IA` crea un resumen con el texto de las diapositivas y la transcripción. El resumen con IA requiere iOS 26 o posterior en un dispositivo compatible con Apple Intelligence."},
-      {"q": "¿Dónde se guardan mis diapositivas y grabaciones?", "a": "En tu dispositivo. Solo se suben a tu propio iCloud si activas `Sincronización` en Mis datos, y no necesitas ninguna cuenta. Más detalles en la Política de privacidad."}
+      {"q": "¿Cómo funciona el resumen con IA?", "a": "En `Notas de la presentación`, `Resumir con IA` crea un resumen con el texto de las diapositivas. Requiere iOS 26 o posterior en un dispositivo compatible con Apple Intelligence. Las grabaciones que hiciste con versiones anteriores siguen en tu dispositivo y puedes seguir escuchándolas."},
+      {"q": "¿Dónde se guardan mis diapositivas?", "a": "En tu dispositivo. Solo se suben a tu propio iCloud si activas `Sincronización` en Mis datos, y no necesitas ninguna cuenta. Más detalles en la Política de privacidad."}
     ]
   },
   "closing": {

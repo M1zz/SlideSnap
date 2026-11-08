@@ -260,32 +260,6 @@
         {
           "adHocOffers": [],
           "codeOffers": [],
-          "displayPrice": "1.49",
-          "familyShareable": true,
-          "groupNumber": 1,
-          "internalID": "EC57B1C6-4584-4CC0-ACE0-017739AE9A7C",
-          "localizations": [
-            {
-              "description": "녹음 · 받아쓰기, 기기 안 요약, 노트 내보내기, 동기화",
-              "displayName": "장표스냅 Pro 주간",
-              "locale": "ko_KR"
-            },
-            {
-              "description": "Recording, transcripts, summaries and sync",
-              "displayName": "CatchSlide Pro Weekly",
-              "locale": "en_US"
-            }
-          ],
-          "productID": "com.leeo.slidesnap.pro.weekly",
-          "recurringSubscriptionPeriod": "P1W",
-          "referenceName": "Pro Weekly",
-          "subscriptionGroupID": "55724461-EA8F-4359-B92C-377A8C0F07F0",
-          "type": "RecurringSubscription",
-          "winbackOffers": []
-        },
-        {
-          "adHocOffers": [],
-          "codeOffers": [],
           "displayPrice": "7.99",
           "familyShareable": true,
           "groupNumber": 2,
@@ -338,32 +312,6 @@
           "productID": "com.leeo.slidesnap.plus.monthly",
           "recurringSubscriptionPeriod": "P1M",
           "referenceName": "Plus Monthly",
-          "subscriptionGroupID": "55724461-EA8F-4359-B92C-377A8C0F07F0",
-          "type": "RecurringSubscription",
-          "winbackOffers": []
-        },
-        {
-          "adHocOffers": [],
-          "codeOffers": [],
-          "displayPrice": "0.99",
-          "familyShareable": true,
-          "groupNumber": 2,
-          "internalID": "B61E4D74-5AEC-435D-AE73-E33866DAD28F",
-          "localizations": [
-            {
-              "description": "발표 무제한, 또렷하게 보정, PDF 두 장 · 네 장씩",
-              "displayName": "장표스냅 Plus 주간",
-              "locale": "ko_KR"
-            },
-            {
-              "description": "Unlimited decks, sharper text, 2-up/4-up PDFs",
-              "displayName": "CatchSlide Plus Weekly",
-              "locale": "en_US"
-            }
-          ],
-          "productID": "com.leeo.slidesnap.plus.weekly",
-          "recurringSubscriptionPeriod": "P1W",
-          "referenceName": "Plus Weekly",
           "subscriptionGroupID": "55724461-EA8F-4359-B92C-377A8C0F07F0",
           "type": "RecurringSubscription",
           "winbackOffers": []

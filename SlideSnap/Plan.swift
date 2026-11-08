@@ -9,7 +9,7 @@
 //   · 무료: 원근 보정 · 무음 · 자동 촬영, 발표별 묶기 · 합치기, 사진 앱 가져오기 · 공유 확장, 글자 인식 · 검색,
 //           이미지 공유 · PDF 한 장씩, 위젯, 발표 10개
 //   · Plus: 발표 무제한, 또렷하게 보정, PDF 두 장 · 네 장씩
-//   · Pro:  Plus 전부 + 녹음 · 받아쓰기, 기기 안 요약, PowerPoint · Markdown 내보내기, iCloud 동기화
+//   · Pro:  Plus 전부 + 기기 안 요약, PowerPoint · Markdown 내보내기, iCloud 동기화
 //
 //  ⚠️ 이미 만든 발표 · 장표 · 녹음 · 받아쓴 글 · 요약은 칸과 관계없이 보고 듣고 내보내고 지울 수 있다.
 //     잠그는 것은 **새로 만드는 것**과 **잠긴 것을 새로 켜는 것**뿐이다.
@@ -43,8 +43,6 @@ enum ProFeature: String, CaseIterable, Identifiable {
     case enhance
     /// PDF 두 장씩 · 네 장씩
     case pdfLayouts
-    /// 발표 녹음 · 기기 안 받아쓰기
-    case recording
     /// 기기 안 Apple 언어 모델로 발표 요약
     case summary
     /// PowerPoint · Markdown 내보내기
@@ -58,7 +56,7 @@ enum ProFeature: String, CaseIterable, Identifiable {
     var tier: ProTier {
         switch self {
         case .unlimitedPresentations, .enhance, .pdfLayouts: .plus
-        case .recording, .summary, .notesExport, .sync:      .pro
+        case .summary, .notesExport, .sync:                  .pro
         }
     }
 }
@@ -73,16 +71,14 @@ enum FreeLimit {
 
 /// App Store Connect · `SlideSnap.storekit` 과 **글자 하나까지 같아야 한다.**
 ///
-/// 주 · 월 · 연 구독 여섯은 구독 그룹 하나에 넣는다(Pro 가 위 단계). 그래야 Plus 에서 Pro 로 갈아탈 수 있다.
+/// 월 · 연 구독 넷은 구독 그룹 하나에 넣는다(Pro 가 위 단계). 그래야 Plus 에서 Pro 로 갈아탈 수 있다.
 /// ⚠️ 언제나 평생 패스는 팔지 않는다(포트폴리오 전체에서 판매를 멈췄다).
 enum ProProduct {
     private static let prefix = "com.leeo.slidesnap"
 
-    static let plusWeekly   = prefix + ".plus.weekly"
     static let plusMonthly  = prefix + ".plus.monthly"
     static let plusYearly   = prefix + ".plus.yearly"
     static let plusLifetime = prefix + ".plus"
-    static let proWeekly    = prefix + ".pro.weekly"
     static let proMonthly   = prefix + ".pro.monthly"
     static let proYearly    = prefix + ".pro.yearly"
     static let proLifetime  = prefix + ".pro"
@@ -106,27 +102,26 @@ enum ProProduct {
 
     /// 상품마다 여는 칸. 구독은 같은 칸의 평생과 같은 권한, 올리기 · 졸업은 Pro 평생이다.
     static let tierByProduct: [String: ProTier] = [
-        plusWeekly: .plus, plusMonthly: .plus, plusYearly: .plus, plusLifetime: .plus,
-        proWeekly: .pro, proMonthly: .pro, proYearly: .pro, proLifetime: .pro,
+        plusMonthly: .plus, plusYearly: .plus, plusLifetime: .plus,
+        proMonthly: .pro, proYearly: .pro, proLifetime: .pro,
         upgrade: .pro, graduate: .pro,
     ]
 
     /// 페이월이 불러오는 상품.
-    static let all = [plusYearly, plusLifetime, plusMonthly, plusWeekly,
-                      proYearly, proLifetime, proMonthly, proWeekly,
+    static let all = [plusYearly, plusLifetime, plusMonthly,
+                      proYearly, proLifetime, proMonthly,
                       upgrade, graduate]
 
-    static let subscriptionIDs: Set<String> = [plusWeekly, plusMonthly, plusYearly,
-                                               proWeekly, proMonthly, proYearly]
+    static let subscriptionIDs: Set<String> = [plusMonthly, plusYearly, proMonthly, proYearly]
 
     /// 가진 상품들이 여는 칸. 가장 높은 것을 쓴다.
     static func tier(owning ids: Set<String>) -> ProTier {
         ids.compactMap { tierByProduct[$0] }.max() ?? .free
     }
 
-    /// 칸마다 고르는 길 — 연이 기본, 평생, 그리고 펼쳐 보이는 월 · 주.
+    /// 칸마다 고르는 길 — 연이 기본, 평생, 그리고 펼쳐 보이는 월.
     enum Term: CaseIterable {
-        case yearly, lifetime, monthly, weekly
+        case yearly, lifetime, monthly
     }
 
     /// 그 칸 · 그 길의 상품 ID. Plus 평생을 가진 사람의 Pro 평생은 올리기 상품이다.
@@ -135,11 +130,9 @@ enum ProProduct {
         case (.pro, .yearly):   proYearly
         case (.pro, .lifetime): ownsPlusLifetime ? upgrade : proLifetime
         case (.pro, .monthly):  proMonthly
-        case (.pro, .weekly):   proWeekly
         case (_, .yearly):      plusYearly
         case (_, .lifetime):    plusLifetime
         case (_, .monthly):     plusMonthly
-        case (_, .weekly):      plusWeekly
         }
     }
 }

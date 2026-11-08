@@ -6186,432 +6186,6 @@
         }
       }
     },
-    "녹음" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Record"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Record"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "录音"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "錄音"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "録音"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Запись"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Grabar"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aufnahme"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enregistrement"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Registra"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gravar"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "บันทึกเสียง"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ghi âm"
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nahrávat"
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Optag"
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ηχογράφηση"
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Äänitä"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rekam"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ta opp"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Opnemen"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nagrywaj"
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spela in"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kayıt"
-          }
-        }
-      }
-    },
-    "녹음 시작" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Start Recording"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Start Recording"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "开始录音"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "開始錄音"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "録音を開始"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Начать запись"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Empezar a grabar"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aufnahme starten"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Démarrer l’enregistrement"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Avvia registrazione"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Iniciar gravação"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "เริ่มบันทึกเสียง"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bắt đầu ghi âm"
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spustit nahrávání"
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Start optagelse"
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Έναρξη ηχογράφησης"
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aloita äänitys"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mulai Merekam"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Start opptak"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Opname starten"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rozpocznij nagrywanie"
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Starta inspelning"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kaydı Başlat"
-          }
-        }
-      }
-    },
-    "녹음 중지" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Stop Recording"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Stop Recording"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "停止录音"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "停止錄音"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "録音を停止"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Остановить запись"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Detener grabación"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aufnahme beenden"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Arrêter l’enregistrement"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Interrompi registrazione"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Parar gravação"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "หยุดบันทึกเสียง"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dừng ghi âm"
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zastavit nahrávání"
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Stop optagelse"
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Διακοπή ηχογράφησης"
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lopeta äänitys"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Berhenti Merekam"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Stopp opptak"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Opname stoppen"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zatrzymaj nagrywanie"
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Stoppa inspelning"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kaydı Durdur"
-          }
-        }
-      }
-    },
     "다시 묻지 않기" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -7464,148 +7038,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sayfada iki (tekrar için)"
-          }
-        }
-      }
-    },
-    "마이크 접근이 허용되지 않았습니다" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Microphone Access Is Off"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Microphone Access Is Off"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "未允许访问麦克风"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "未允許使用麥克風"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "マイクへのアクセスが許可されていません"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Нет доступа к микрофону"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "El acceso al micrófono está desactivado"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zugriff auf das Mikrofon ist deaktiviert"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Accès au micro désactivé"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Accesso al microfono disattivato"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Acesso ao microfone desativado"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ไม่ได้อนุญาตให้เข้าถึงไมโครโฟน"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Chưa cho phép truy cập micrô"
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Přístup k mikrofonu je vypnutý"
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mikrofonadgang er slået fra"
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Η πρόσβαση στο μικρόφωνο είναι απενεργοποιημένη"
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mikrofonin käyttö on estetty"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Akses Mikrofon Tidak Diizinkan"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mikrofontilgang er av"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Geen toegang tot de microfoon"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Brak dostępu do mikrofonu"
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mikrofonåtkomst är avstängd"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mikrofon Erişimi Kapalı"
           }
         }
       }
@@ -10456,148 +9888,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sunum Yok"
-          }
-        }
-      }
-    },
-    "발표를 녹음하려면 설정에서 마이크 접근을 허용해 주세요." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "To record talks, allow microphone access in Settings."
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "To record talks, allow microphone access in Settings."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "要录制讲解，请在“设置”中允许访问麦克风。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "要錄製講解，請在「設定」中允許使用麥克風。"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "講演を録音するには、設定でマイクへのアクセスを許可してください。"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Чтобы записывать выступления, разрешите доступ к микрофону в Настройках."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Para grabar charlas, permite el acceso al micrófono en Ajustes."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Um Vorträge aufzunehmen, erlaube in den Einstellungen den Zugriff auf das Mikrofon."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pour enregistrer un exposé, autorisez l’accès au micro dans Réglages."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Per registrare gli interventi, consenti l'accesso al microfono in Impostazioni."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Para gravar palestras, permita o acesso ao microfone em Ajustes."
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "หากต้องการบันทึกเสียงการบรรยาย โปรดอนุญาตให้เข้าถึงไมโครโฟนในการตั้งค่า"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Để ghi âm bài nói, hãy cho phép truy cập micrô trong Cài đặt."
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Chceš-li nahrávat přednášky, povol v Nastavení přístup k mikrofonu."
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tillad mikrofonadgang i Indstillinger for at optage foredrag."
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Για να ηχογραφείτε ομιλίες, επιτρέψτε την πρόσβαση στο μικρόφωνο από τις Ρυθμίσεις."
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Salli mikrofonin käyttö Asetuksissa, jos haluat äänittää esityksiä."
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Untuk merekam pembicaraan, izinkan akses mikrofon di Pengaturan."
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gi tilgang til mikrofonen i Innstillinger for å ta opp foredrag."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Geef in Instellingen toegang tot de microfoon om lezingen op te nemen."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aby nagrywać wystąpienia, zezwól na dostęp do mikrofonu w Ustawieniach."
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tillåt mikrofonåtkomst i Inställningar för att spela in föredrag."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Konuşmaları kaydetmek için Ayarlar'dan mikrofon erişimine izin verin."
           }
         }
       }
@@ -13747,149 +13037,6 @@
         }
       }
     },
-    "장표마다 그때 한 말을 녹음하고 글로 받아써요" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Record what was said on each slide and turn it into text."
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Record what was said on each slide and turn it into text."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "录下每张幻灯片讲解时说的话，并转成文字。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "錄下每張投影片講解時說的話，並轉成文字。"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "スライドごとにその場の話を録音し、文字に起こします。"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Записывайте сказанное к каждому слайду и получайте текст."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Graba lo que se dijo en cada diapositiva y pásalo a texto."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nimm das Gesagte zu jeder Folie auf und erhalte es als Text."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enregistrez ce qui a été dit sur chaque diapositive, en texte."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Registra quello che è stato detto su ogni diapositiva e trascrivilo."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Grave o que foi dito em cada slide e transforme em texto."
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "อัดเสียงสิ่งที่พูดในแต่ละสไลด์และถอดเป็นข้อความ"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ghi âm lời nói ở từng slide và chuyển thành chữ."
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nahraj, co zaznělo u každého slajdu, a přepiš to do textu."
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Optag det, der blev sagt ved hver slide, og få det som tekst."
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ηχογραφήστε όσα ειπώθηκαν σε κάθε διαφάνεια και πάρτε τα σε κείμενο."
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nauhoita jokaisen kalvon puhe ja saa se tekstiksi."
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rekam yang diucapkan di tiap slide lalu jadikan teks."
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ta opp det som ble sagt ved hvert lysbilde, og få det som tekst."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Neem op wat er bij elke dia gezegd werd en krijg het als tekst."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nagrywaj to, co padło przy każdym slajdzie, i zamieniaj na tekst."
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spela in det som sades vid varje slide och få det som text."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Her slaytta söylenenleri kaydedin ve yazıya dökün."
-          }
-        }
-      }
-    },
     "발표 내용을 밖으로 보내지 않고 기기 안에서 요약해요" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -14033,145 +13180,145 @@
         }
       }
     },
-    "장표와 받아쓴 글을 한 파일로 내보내요" : {
+    "장표와 요약 · 메모를 한 파일로 내보내요" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Export slides and transcripts as a single file."
+            "value" : "Export slides, summaries and notes as a single file."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Export slides and transcripts as a single file."
+            "value" : "Export slides, summaries and notes as a single file."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "把幻灯片和转写文字导出为一个文件。"
+            "value" : "把幻灯片、摘要和备注导出为一个文件。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "把投影片和逐字稿匯出成一個檔案。"
+            "value" : "把投影片、摘要和備註匯出成一個檔案。"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "スライドと文字起こしを一つのファイルに書き出します。"
+            "value" : "スライドと要約・メモを一つのファイルに書き出します。"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Экспорт слайдов и расшифровок одним файлом."
+            "value" : "Экспорт слайдов, итогов и заметок одним файлом."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exporta diapositivas y transcripciones en un solo archivo."
+            "value" : "Exporta diapositivas, resúmenes y notas en un solo archivo."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exportiere Folien und Mitschriften in eine Datei."
+            "value" : "Exportiere Folien, Zusammenfassungen und Notizen in eine Datei."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exportez diapositives et transcriptions dans un seul fichier."
+            "value" : "Exportez diapositives, résumés et notes dans un seul fichier."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Esporta diapositive e trascrizioni in un unico file."
+            "value" : "Esporta diapositive, riassunti e note in un unico file."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exporte slides e transcrições em um só arquivo."
+            "value" : "Exporte slides, resumos e notas em um só arquivo."
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ส่งออกสไลด์และข้อความที่ถอดไว้เป็นไฟล์เดียว"
+            "value" : "ส่งออกสไลด์ สรุป และโน้ตเป็นไฟล์เดียว"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Xuất slide và bản chép lời thành một tệp."
+            "value" : "Xuất slide, bản tóm tắt và ghi chú thành một tệp."
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exportuj slajdy a přepisy do jednoho souboru."
+            "value" : "Exportuj slajdy, shrnutí a poznámky do jednoho souboru."
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eksportér slides og transskriptioner som én fil."
+            "value" : "Eksportér slides, resuméer og noter som én fil."
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Εξαγωγή διαφανειών και απομαγνητοφωνήσεων σε ένα αρχείο."
+            "value" : "Εξαγωγή διαφανειών, συνόψεων και σημειώσεων σε ένα αρχείο."
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vie kalvot ja litteroinnit yhteen tiedostoon."
+            "value" : "Vie kalvot, tiivistelmät ja muistiinpanot yhteen tiedostoon."
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ekspor slide dan transkrip dalam satu file."
+            "value" : "Ekspor slide, ringkasan, dan catatan dalam satu file."
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eksporter lysbilder og transkripsjoner som én fil."
+            "value" : "Eksporter lysbilder, sammendrag og notater som én fil."
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exporteer dia's en transcripties als één bestand."
+            "value" : "Exporteer dia's, samenvattingen en notities als één bestand."
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eksportuj slajdy i transkrypcje do jednego pliku."
+            "value" : "Eksportuj slajdy, podsumowania i notatki do jednego pliku."
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exportera slides och transkriptioner som en fil."
+            "value" : "Exportera slides, sammanfattningar och anteckningar som en fil."
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Slaytları ve dökümleri tek dosya olarak dışa aktarın."
+            "value" : "Slaytları, özetleri ve notları tek dosya olarak dışa aktarın."
           }
         }
       }
@@ -26649,148 +25796,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yazıya dökme şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyin."
-          }
-        }
-      }
-    },
-    "촬영 화면 위쪽의 '녹음'을 켜면 장표를 찍는 동안 발표를 함께 녹음해요." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Turn on Record at the top of the camera to record the talk while you capture slides."
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Turn on Record at the top of the camera to record the talk while you capture slides."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在拍摄界面顶部打开“录音”，拍摄幻灯片时会同时录下讲解。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在拍攝畫面頂部開啟「錄音」，拍攝投影片時會同步錄下講解。"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "カメラ画面の上部にある「録音」をオンにすると、スライドの撮影中に講演も一緒に録音します。"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Включите «Запись» вверху экрана камеры, чтобы записывать выступление, пока вы снимаете слайды."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Activa «Grabar» en la parte superior de la cámara para grabar la charla mientras capturas diapositivas."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Schalte oben in der Kameraansicht „Aufnahme“ ein, um den Vortrag mitzuschneiden, während du Folien aufnimmst."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Activez « Enregistrement » en haut de l’écran de l’appareil photo pour enregistrer l’exposé pendant que vous capturez des diapositives."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Attiva «Registra» in alto nella schermata della fotocamera per registrare l'intervento mentre catturi le diapositive."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ative «Gravar» no alto da câmera para gravar a palestra enquanto captura os slides."
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "เปิด “บันทึกเสียง” ที่ด้านบนของหน้ากล้อง เพื่อบันทึกเสียงการบรรยายไปพร้อมกับถ่ายสไลด์"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bật “Ghi âm” ở đầu màn hình camera để ghi lại bài nói trong lúc chụp slide."
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zapni nahrávání nahoře na obrazovce fotoaparátu a přednáška se bude nahrávat, zatímco fotíš slajdy."
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Slå Optag til øverst i kameraet for at optage foredraget, mens du tager billeder af slides."
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ενεργοποιήστε την Ηχογράφηση στο πάνω μέρος της κάμερας για να ηχογραφείτε την ομιλία ενώ φωτογραφίζετε διαφάνειες."
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ota kameranäkymän yläreunasta Äänitä käyttöön, niin esitys äänitetään kalvoja kuvatessasi."
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aktifkan “Rekam” di bagian atas layar kamera untuk merekam pembicaraan sambil memotret slide."
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Slå på Ta opp øverst i kameraet for å ta opp foredraget mens du tar bilder av lysbilder."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zet bovenaan het camerascherm Opnemen aan om de lezing op te nemen terwijl je dia's vastlegt."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Włącz „Nagrywaj” u góry ekranu aparatu, aby nagrywać wystąpienie podczas fotografowania slajdów."
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Slå på Spela in högst upp i kameran för att spela in föredraget medan du fotograferar slides."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Slayt çekerken konuşmayı da kaydetmek için kamera ekranının üstündeki Kayıt'ı açın."
           }
         }
       }
@@ -42070,144 +41075,144 @@
         }
       }
     },
-    "주 · 월 구독도 보기" : {
+    "월 구독도 보기" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Show weekly and monthly"
+            "value" : "Show monthly"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Show weekly and monthly"
+            "value" : "Show monthly"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "查看按周、按月订阅"
+            "value" : "查看按月订阅"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "查看按週、按月訂閱"
+            "value" : "查看按月訂閱"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "週額・月額も見る"
+            "value" : "月額も見る"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Показать недельную и месячную"
+            "value" : "Показать месячную"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ver también semanal y mensual"
+            "value" : "Ver también mensual"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Auch wöchentlich und monatlich zeigen"
+            "value" : "Auch monatlich zeigen"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Voir aussi hebdo et mensuel"
+            "value" : "Voir aussi mensuel"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostra anche settimanale e mensile"
+            "value" : "Mostra anche mensile"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ver também semanal e mensal"
+            "value" : "Ver também mensal"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ดูแบบรายสัปดาห์และรายเดือนด้วย"
+            "value" : "ดูแบบรายเดือนด้วย"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Xem cả gói tuần và tháng"
+            "value" : "Xem cả gói tháng"
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zobrazit i týdenní a měsíční"
+            "value" : "Zobrazit i měsíční"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vis også uge og måned"
+            "value" : "Vis også måned"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Δείτε και εβδομαδιαία ή μηνιαία"
+            "value" : "Δείτε και μηνιαία"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Näytä myös viikko ja kuukausi"
+            "value" : "Näytä myös kuukausi"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lihat juga mingguan dan bulanan"
+            "value" : "Lihat juga bulanan"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vis også uke og måned"
+            "value" : "Vis også måned"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toon ook per week en maand"
+            "value" : "Toon ook per maand"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pokaż też tygodniową i miesięczną"
+            "value" : "Pokaż też miesięczną"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Visa även vecka och månad"
+            "value" : "Visa även månad"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Haftalık ve aylığı da göster"
+            "value" : "Aylığı da göster"
           }
         }
       }
@@ -42350,148 +41355,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aylık"
-          }
-        }
-      }
-    },
-    "주 구독" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Weekly"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Weekly"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "按周订阅"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "按週訂閱"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "週額"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Еженедельно"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Semanal"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wöchentlich"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hebdomadaire"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Settimanale"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Semanal"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "รายสัปดาห์"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Theo tuần"
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Týdně"
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ugentlig"
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Εβδομαδιαία"
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Viikoittain"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mingguan"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ukentlig"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Per week"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tygodniowo"
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Veckovis"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Haftalık"
           }
         }
       }
@@ -44622,148 +43485,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "PDF sayfada iki · dört"
-          }
-        }
-      }
-    },
-    "녹음 · 받아쓰기" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Recording · transcription"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Recording · transcription"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "录音 · 转写"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "錄音 · 轉錄"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "録音・文字起こし"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Запись · расшифровка"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Grabación · transcripción"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aufnahme · Transkription"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enregistrement · transcription"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Registrazione · trascrizione"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gravação · transcrição"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "บันทึกเสียง · ถอดเสียง"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ghi âm · chép lời"
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nahrávání · přepis"
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Optagelse · transskription"
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ηχογράφηση · μεταγραφή"
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Äänitys · litterointi"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rekaman · transkripsi"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Opptak · transkripsjon"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Opnemen · transcriptie"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nagrywanie · transkrypcja"
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inspelning · transkribering"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kayıt · yazıya dökme"
           }
         }
       }

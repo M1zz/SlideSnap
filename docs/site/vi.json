@@ -51,17 +51,15 @@
   "reference": {
     "title": "Những gì bạn làm được với một bài thuyết trình",
     "rows": [
-      ["Ghi âm", "Vừa chụp vừa ghi âm, rồi nghe từng slide từ đúng lúc bạn chụp slide đó"],
-      ["Chép lời", "Chuyển bản ghi âm thành chữ, cho biết từng slide đã nói gì và dùng được khi tìm kiếm"],
-      ["Tóm tắt bằng AI", "Tóm tắt bài thuyết trình từ chữ trên slide và lời đã chép (iOS 26 trở lên, trên thiết bị hỗ trợ Apple Intelligence)"],
+      ["Tóm tắt bằng AI", "Tóm tắt bài thuyết trình từ chữ trên slide (iOS 26 trở lên, trên thiết bị hỗ trợ Apple Intelligence)"],
       ["PDF", "Tài liệu ôn tập với 1, 2 hoặc 4 slide mỗi trang"],
       ["Markdown", "Tệp .zip đưa thẳng vào Notion hoặc Obsidian"],
-      ["PowerPoint", "Xuất .pptx, lời đã chép nằm trong ghi chú người thuyết trình"],
+      ["PowerPoint", "Xuất .pptx"],
       ["Gộp bài", "Chọn nhiều bài thuyết trình và gộp thành một"],
       ["Đồng bộ iCloud", "Bật lên để xem bài thuyết trình trên các thiết bị khác dùng cùng Apple ID. Mặc định tắt"],
       ["Tiện ích", "Mở camera ngay từ Màn hình chính hoặc Màn hình khóa"]
     ],
-    "note": "Nhận diện chữ, chép lời và tóm tắt bằng AI đều chạy ngay trên máy."
+    "note": "Nhận diện chữ và tóm tắt bằng AI đều chạy ngay trên máy."
   },
   "pricing": {
     "title": "Bắt đầu miễn phí, thêm Plus hoặc Pro khi cần",
@@ -79,9 +77,9 @@
       "name": "Plus · Pro",
       "items": [
         "Plus: không giới hạn bài thuyết trình, tăng độ dễ đọc, PDF hai hoặc bốn slide mỗi trang",
-        "Pro: mọi thứ trong Plus, thêm ghi âm, chép lời, tóm tắt bằng AI, xuất Markdown và PowerPoint, đồng bộ iCloud"
+        "Pro: mọi thứ trong Plus, thêm tóm tắt bằng AI, xuất Markdown và PowerPoint, đồng bộ iCloud"
       ],
-      "note": "Chọn gói tuần, tháng hoặc năm, hoặc trả một lần dùng mãi mãi."
+      "note": "Chọn gói tháng hoặc năm, hoặc trả một lần dùng mãi mãi."
     },
     "note": "Tiền tip chỉ là lời cảm ơn và không mở khóa gì. Nếu bạn đã mua CatchSlide khi còn là ứng dụng trả phí, bạn được dùng Pro trọn đời."
   },
@@ -93,11 +91,11 @@
       {"q": "Vì sao nhiều ảnh bị gom vào một bài thuyết trình?", "a": "Nếu bạn chụp ảnh tiếp theo trong vòng 5 phút sau ảnh trước, ảnh đó được tính là cùng bài thuyết trình. Chạm vào tiêu đề trong danh sách để đổi tên, và dùng `Gộp bài thuyết trình` để nối các bài bị tách ra."},
       {"q": "Có thêm được ảnh đã chụp trước không?", "a": "Được. Chọn ảnh trong ứng dụng Ảnh rồi chia sẻ sang CatchSlide, hoặc chạm ＋ trong danh sách và chọn `Nhập từ Ảnh`. Ảnh được nắn thẳng và gom thành một bài thuyết trình theo thứ tự chụp."},
       {"q": "Ứng dụng bắt sai góc.", "a": "Mở slide, chọn `Chỉnh góc` trong menu ⋯ rồi kéo bốn góc về đúng chỗ. `Tự động nhận diện` sẽ tìm lại, còn `Toàn bộ ảnh` dùng cả bức ảnh. Ảnh gốc luôn được giữ nên bạn có thể làm lại bất cứ lúc nào."},
-      {"q": "Có tìm được chữ trong slide không?", "a": "Gõ một từ vào ô tìm kiếm phía trên danh sách. Ứng dụng tìm trong chữ trên slide, tiêu đề bài thuyết trình, ghi chú và lời đã chép, rồi đưa bạn tới thẳng slide đó. Việc nhận diện chữ diễn ra trên máy."},
+      {"q": "Có tìm được chữ trong slide không?", "a": "Gõ một từ vào ô tìm kiếm phía trên danh sách. Ứng dụng tìm trong chữ trên slide, tiêu đề bài thuyết trình và ghi chú, rồi đưa bạn tới thẳng slide đó. Việc nhận diện chữ diễn ra trên máy."},
       {"q": "Xuất PDF thế nào?", "a": "Trong bài thuyết trình, mở menu chia sẻ, chọn `Xuất sang PDF` và chọn 1, 2 hoặc 4 slide mỗi trang. Từ bảng chia sẻ, bạn có thể lưu vào Tệp hoặc gửi sang ứng dụng khác."},
       {"q": "Đổi thứ tự hoặc xóa slide thế nào?", "a": "Trong bài thuyết trình, chạm và giữ một slide rồi kéo để đổi thứ tự. Menu hiện ra khi chạm giữ cho phép xóa hoặc chia sẻ từng slide, còn `Chọn` giúp xóa nhiều slide một lúc."},
-      {"q": "Ghi âm và tóm tắt bằng AI dùng thế nào?", "a": "Bật `Ghi âm` ở phía trên màn hình camera rồi chụp, mỗi slide sẽ kèm âm thanh của lúc đó. Trong `Ghi chú bài thuyết trình`, nút `Tóm tắt bằng AI` sẽ tóm tắt từ chữ trên slide và lời đã chép. Tính năng này cần iOS 26 trở lên trên thiết bị hỗ trợ Apple Intelligence."},
-      {"q": "Slide và bản ghi âm của tôi được lưu ở đâu?", "a": "Tất cả nằm trên máy của bạn. Chỉ khi bật `Đồng bộ` trong Thông tin của tôi, dữ liệu mới được tải lên iCloud của chính bạn, và không cần tạo tài khoản. Xem thêm trong Chính sách quyền riêng tư."}
+      {"q": "Tóm tắt bằng AI dùng thế nào?", "a": "Trong `Ghi chú bài thuyết trình`, nút `Tóm tắt bằng AI` sẽ tóm tắt từ chữ trên slide. Tính năng này cần iOS 26 trở lên trên thiết bị hỗ trợ Apple Intelligence. Các bản ghi âm từ phiên bản trước vẫn nằm trên máy và vẫn nghe lại được."},
+      {"q": "Slide của tôi được lưu ở đâu?", "a": "Tất cả nằm trên máy của bạn. Chỉ khi bật `Đồng bộ` trong Thông tin của tôi, dữ liệu mới được tải lên iCloud của chính bạn, và không cần tạo tài khoản. Xem thêm trong Chính sách quyền riêng tư."}
     ]
   },
   "closing": {

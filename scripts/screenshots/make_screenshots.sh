@@ -121,12 +121,13 @@ for i, m in MEMOS['$lang'].items(): print(f'-SSDemoMemo{i}'); print(m)")}")
   shoot $lang 08-memo.png        "slide:3"              4
   shoot $lang 08-memo-search.png "search:$memo_query"   4
 
-  # 02 · 03 녹음과 AI 요약: 데모 녹음(받아쓴 말·요약은 notes.json 에 있는 언어만)을 붙인다.
-  # 녹음이 한 번 붙으면 남으므로 다른 장을 다 찍은 뒤에 찍는다.
-  notes=$(python3 -c "import json; d=json.load(open('scripts/screenshots/notes.json'))['$lang']; print(json.dumps({k: d[k] for k in ('summary', 'spoken') if k in d}))")
-  MEMO_ARGS+=(-SSDemoNotes "$(printf %s "$notes" | base64)")
-  [[ $notes == *summary* ]] && shoot $lang 02-summary.png notes 9
-  shoot $lang 03-record.png "slide:1" 4
+  # 02 AI 요약: 데모 요약(notes.json 에 summary 가 있는 언어만)을 붙여 찍는다.
+  # 요약이 한 번 붙으면 남으므로 다른 장을 다 찍은 뒤에 찍는다.
+  notes=$(python3 -c "import json; d=json.load(open('scripts/screenshots/notes.json')).get('$lang', {}); print(json.dumps({k: d[k] for k in ('summary',) if k in d}))")
+  if [[ $notes == *summary* ]]; then
+    MEMO_ARGS+=(-SSDemoNotes "$(printf %s "$notes" | base64)")
+    shoot $lang 02-summary.png notes 9
+  fi
 done
 xcrun simctl status_bar $UDID clear
 rm -rf "$WORK"

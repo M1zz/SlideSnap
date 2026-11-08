@@ -51,17 +51,15 @@
   "reference": {
     "title": "Bir sunumla neler yapabilirsiniz",
     "rows": [
-      ["Kayıt", "Çekerken ses kaydedin, sonra her slaydı çektiğiniz andan itibaren dinleyin"],
-      ["Yazıya dökme", "Kaydı metne çevirir, her slaytta ne söylendiğini gösterir ve aramaya dahil eder"],
-      ["Yapay zekâ özeti", "Sunumu slayt metninden ve yazıya dökülen konuşmadan özetler (Apple Intelligence destekli cihazlarda iOS 26 veya sonrası)"],
+      ["Yapay zekâ özeti", "Sunumu slayt metninden özetler (Apple Intelligence destekli cihazlarda iOS 26 veya sonrası)"],
       ["PDF", "Sayfa başına bir, iki ya da dört slaytlık tekrar notları"],
       ["Markdown", "Notion veya Obsidian’a hazır bir .zip"],
-      ["PowerPoint", "Konuşmacı notlarında yazıya dökülmüş metinle .pptx olarak dışa aktarır"],
+      ["PowerPoint", ".pptx olarak dışa aktarır"],
       ["Birleştirme", "Birkaç sunumu seçip tek sunumda birleştirin"],
       ["iCloud eşzamanlama", "Açtığınızda sunumlarınızı aynı Apple ID’yi kullanan diğer cihazlarda da görürsünüz. Varsayılan olarak kapalıdır"],
       ["Widget’lar", "Kamerayı doğrudan Ana ekrandan veya kilitli ekrandan açar"]
     ],
-    "note": "Metin tanıma, yazıya dökme ve yapay zekâ özetleri cihazınızda çalışır."
+    "note": "Metin tanıma ve yapay zekâ özetleri cihazınızda çalışır."
   },
   "pricing": {
     "title": "Ücretsiz başlayın, gerektiğinde Plus veya Pro ekleyin",
@@ -79,9 +77,9 @@
       "name": "Plus · Pro",
       "items": [
         "Plus: sınırsız sunum, okunabilirliği artırma, sayfada iki veya dört slaytlık PDF",
-        "Pro: Plus’taki her şeye ek olarak kayıt, yazıya dökme, yapay zekâ özeti, Markdown ve PowerPoint olarak dışa aktarma ve iCloud eşzamanlama"
+        "Pro: Plus’taki her şeye ek olarak yapay zekâ özeti, Markdown ve PowerPoint olarak dışa aktarma ve iCloud eşzamanlama"
       ],
-      "note": "Haftalık, aylık veya yıllık abonelik ya da ömür boyu tek ödeme arasından seçin."
+      "note": "Aylık veya yıllık abonelik ya da ömür boyu tek ödeme arasından seçin."
     },
     "note": "Bahşiş yalnızca bir teşekkürdür ve hiçbir özelliği açmaz. CatchSlide’ı ücretliyken satın aldıysanız Pro ömür boyu sizde kalır."
   },
@@ -93,11 +91,11 @@
       {"q": "Fotoğraflarım neden tek bir sunumda toplandı?", "a": "Bir sonraki fotoğrafı öncekinden sonraki 5 dakika içinde çekerseniz aynı sunuma eklenir. Adını değiştirmek için listede başlığa dokunun, ayrı düşen sunumları `Sunumları Birleştir` ile birleştirin."},
       {"q": "Daha önce çektiğim fotoğrafları ekleyebilir miyim?", "a": "Evet. Fotoğraflar uygulamasında seçip CatchSlide ile paylaşın ya da listedeki ＋ düğmesine dokunup `Fotoğraflar'dan İçe Aktar`’ı seçin. Çekildikleri sırayla düzeltilip tek sunum olarak kaydedilir."},
       {"q": "Köşeler yanlış bulundu.", "a": "Slaydı açın, ⋯ menüsünden `Köşeleri Ayarla`’yı seçin ve dört köşeyi yerine sürükleyin. `Otomatik Algıla` köşeleri yeniden arar, `Tüm Görsel` ise fotoğrafın tamamını kullanır. Orijinal her zaman saklanır, yani istediğiniz an yeniden düzeltebilirsiniz."},
-      {"q": "Slaytlardaki metinde arama yapabilir miyim?", "a": "Listenin üstündeki arama alanına bir kelime yazın. Slayt metinleri, sunum başlıkları, notlar ve yazıya dökülen konuşmalar taranır, doğrudan ilgili slayta gidilir. Metin tanıma cihazınızda yapılır."},
+      {"q": "Slaytlardaki metinde arama yapabilir miyim?", "a": "Listenin üstündeki arama alanına bir kelime yazın. Slayt metinleri, sunum başlıkları ve notlar taranır, doğrudan ilgili slayta gidilir. Metin tanıma cihazınızda yapılır."},
       {"q": "PDF olarak nasıl dışa aktarırım?", "a": "Sunumda paylaşma menüsünü açın, `PDF Olarak Dışa Aktar`’ı seçin ve sayfa başına bir, iki ya da dört slayt belirleyin. Paylaşma sayfasından Dosyalar’a kaydedebilir ya da başka bir uygulamaya gönderebilirsiniz."},
       {"q": "Slaytların sırasını nasıl değiştirir ya da silerim?", "a": "Sunumda bir slayta basılı tutup sürükleyin. Aynı menüden tek slaytı silebilir veya paylaşabilir, `Seç` ile birden fazlasını birlikte silebilirsiniz."},
-      {"q": "Kayıt ve yapay zekâ özeti nasıl çalışır?", "a": "Kameranın üstündeki `Kayıt`’ı açın, her slayt o anın sesini saklasın. `Sunum Notları` içinde `Yapay Zekayla Özetle` slayt metninden ve yazıya dökülen konuşmadan bir özet çıkarır. Bunun için Apple Intelligence destekli bir cihazda iOS 26 veya sonrası gerekir."},
-      {"q": "Slaytlarım ve kayıtlarım nerede saklanıyor?", "a": "Cihazınızda. Yalnızca Bilgilerim’de `Senkronize Et`’i açarsanız kendi iCloud’unuza yüklenir, hesap gerekmez. Ayrıntılar Gizlilik Politikası’nda."}
+      {"q": "Yapay zekâ özeti nasıl çalışır?", "a": "`Sunum Notları` içinde `Yapay Zekayla Özetle` slayt metninden bir özet çıkarır. Bunun için Apple Intelligence destekli bir cihazda iOS 26 veya sonrası gerekir. Önceki sürümlerle yapılan ses kayıtları cihazınızda kalır ve hâlâ dinlenebilir."},
+      {"q": "Slaytlarım nerede saklanıyor?", "a": "Cihazınızda. Yalnızca Bilgilerim’de `Senkronize Et`’i açarsanız kendi iCloud’unuza yüklenir, hesap gerekmez. Ayrıntılar Gizlilik Politikası’nda."}
     ]
   },
   "closing": {

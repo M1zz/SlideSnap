@@ -51,17 +51,15 @@
   "reference": {
     "title": "Mitä esityksellä voi tehdä",
     "rows": [
-      ["Äänitys", "Äänitä kuvatessasi ja kuuntele jokainen kalvo siitä hetkestä, jolloin kuvasit sen"],
-      ["Litterointi", "Muuttaa äänityksen tekstiksi, näyttää mitä kunkin kalvon kohdalla sanottiin ja on mukana haussa"],
-      ["Tekoälytiivistelmä", "Tiivistää esityksen kalvojen tekstistä ja litteroinnista (iOS 26 tai uudempi laitteissa, jotka tukevat Apple Intelligencea)"],
+      ["Tekoälytiivistelmä", "Tiivistää esityksen kalvojen tekstistä (iOS 26 tai uudempi laitteissa, jotka tukevat Apple Intelligencea)"],
       ["PDF", "Kertausmoniste, jossa yksi, kaksi tai neljä kalvoa sivulla"],
       ["Markdown", ".zip, joka käy suoraan Notioniin tai Obsidianiin"],
-      ["PowerPoint", "Vie .pptx-tiedoston, ja litterointi tulee puhujan muistiinpanoihin"],
+      ["PowerPoint", "Vie .pptx-tiedoston"],
       ["Yhdistäminen", "Valitse useita esityksiä ja yhdistä ne yhdeksi"],
       ["iCloud-synkronointi", "Kun se on päällä, näet esitykset myös muilla saman Apple ID:n laitteilla. Oletuksena pois päältä"],
       ["Widgetit", "Avaavat kameran suoraan Koti-valikosta tai lukitusnäytöltä"]
     ],
-    "note": "Tekstintunnistus, litterointi ja tekoälytiivistelmät tehdään laitteella."
+    "note": "Tekstintunnistus ja tekoälytiivistelmät tehdään laitteella."
   },
   "pricing": {
     "title": "Aloita ilmaiseksi ja lisää Plus tai Pro tarvittaessa",
@@ -79,9 +77,9 @@
       "name": "Plus · Pro",
       "items": [
         "Plus: rajattomasti esityksiä, parempi luettavuus, PDF kaksi tai neljä kalvoa per sivu",
-        "Pro: kaikki Plusin ominaisuudet sekä äänitys, litterointi, tekoälytiivistelmä, vienti Markdown- ja PowerPoint-muotoon ja iCloud-synkronointi"
+        "Pro: kaikki Plusin ominaisuudet sekä tekoälytiivistelmä, vienti Markdown- ja PowerPoint-muotoon ja iCloud-synkronointi"
       ],
-      "note": "Valitse viikko-, kuukausi- tai vuositilaus tai maksa kerran ikuisesti."
+      "note": "Valitse kuukausi- tai vuositilaus tai maksa kerran ikuisesti."
     },
     "note": "Juomaraha on pelkkä kiitos eikä avaa mitään. Jos ostit CatchSliden sen ollessa maksullinen, Pro pysyy sinulla ikuisesti."
   },
@@ -93,11 +91,11 @@
       {"q": "Miksi kuvani ovat samassa esityksessä?", "a": "Jos otat seuraavan kuvan alle 5 minuutin kuluttua edellisestä, se kuuluu samaan esitykseen. Napauta otsikkoa luettelossa nimetäksesi sen uudelleen, ja yhdistä erilleen jääneet esitykset toiminnolla `Yhdistä esitykset`."},
       {"q": "Voinko lisätä jo ottamiani kuvia?", "a": "Voit. Valitse ne Kuvat-sovelluksessa ja jaa CatchSlideen, tai napauta luettelossa ＋ ja valitse `Tuo Kuvat-sovelluksesta`. Ne oikaistaan ja tallennetaan yhdeksi esitykseksi kuvausjärjestyksessä."},
       {"q": "Kulmat tunnistettiin väärin.", "a": "Avaa kalvo, valitse ⋯-valikosta `Säädä kulmat` ja vedä neljä kulmaa paikoilleen. `Tunnista automaattisesti` etsii ne uudelleen, ja `Koko kuva` käyttää koko valokuvaa. Alkuperäinen säilyy aina, joten voit tehdä oikaisun uudelleen milloin vain."},
-      {"q": "Voinko hakea kalvojen tekstistä?", "a": "Kirjoita sana luettelon yläreunan hakukenttään. Haku kattaa kalvojen tekstin, esitysten otsikot, muistiinpanot ja litteroinnit ja vie suoraan oikeaan kalvoon. Tekstintunnistus tehdään laitteella."},
+      {"q": "Voinko hakea kalvojen tekstistä?", "a": "Kirjoita sana luettelon yläreunan hakukenttään. Haku kattaa kalvojen tekstin, esitysten otsikot ja muistiinpanot ja vie suoraan oikeaan kalvoon. Tekstintunnistus tehdään laitteella."},
       {"q": "Miten vien PDF:n?", "a": "Avaa esityksessä jakovalikko, valitse `Vie PDF-tiedostona` ja valitse yksi, kaksi tai neljä kalvoa sivulle. Jakotaulukosta voit tallentaa sen Tiedostoihin tai lähettää toiseen sovellukseen."},
       {"q": "Miten muutan järjestystä tai poistan kalvoja?", "a": "Pidä esityksessä kalvoa painettuna ja vedä se uuteen kohtaan. Samasta valikosta voit poistaa tai jakaa kalvon, ja `Valitse` poistaa useita kerralla."},
-      {"q": "Miten äänitys ja tekoälytiivistelmä toimivat?", "a": "Laita kameran yläreunasta `Äänitä` päälle, niin jokaiseen kalvoon tallentuu sen hetken ääni. Kohdassa `Esityksen muistiinpanot` toiminto `Tiivistä tekoälyllä` tekee tiivistelmän kalvojen tekstistä ja litteroinnista. Se vaatii iOS 26:n tai uudemman laitteessa, joka tukee Apple Intelligencea."},
-      {"q": "Mihin kalvoni ja äänitykseni tallentuvat?", "a": "Laitteellesi. Ne siirtyvät omaan iCloudiisi vain, jos laitat `Synkronointi` päälle Omat tiedot -näkymässä, eikä tiliä tarvita. Lisätietoja tietosuojakäytännössä."}
+      {"q": "Miten tekoälytiivistelmä toimii?", "a": "Kohdassa `Esityksen muistiinpanot` toiminto `Tiivistä tekoälyllä` tekee tiivistelmän kalvojen tekstistä. Se vaatii iOS 26:n tai uudemman laitteessa, joka tukee Apple Intelligencea. Aiemmilla versioilla tehdyt äänitykset säilyvät laitteella, ja voit yhä kuunnella niitä."},
+      {"q": "Mihin kalvoni tallentuvat?", "a": "Laitteellesi. Ne siirtyvät omaan iCloudiisi vain, jos laitat `Synkronointi` päälle Omat tiedot -näkymässä, eikä tiliä tarvita. Lisätietoja tietosuojakäytännössä."}
     ]
   },
   "closing": {
