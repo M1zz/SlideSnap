@@ -436,7 +436,10 @@ struct PresentationListView: View {
                     && !showingNewAlert && path.isEmpty
                     && paywallFeature == nil && !showingSavedToRecentPaywall
             },
-            set: { if !$0 { feedbackPrompt.dismiss() } }
+            // 닫는 것은 알림창의 단추들이 한다(dismiss · optOut). 여기서 상태를 바꾸지 않는다 —
+            // 카메라 · 시트가 떠서 알림창이 내려갈 때 SwiftUI 가 화면을 그리는 중에 false 를 쓰는데,
+            // 그때 바꾸면 '그리는 중 게시' 경고가 나고, 보지도 못한 권유가 닫힌 것으로 처리된다.
+            set: { _ in }
         )
     }
 

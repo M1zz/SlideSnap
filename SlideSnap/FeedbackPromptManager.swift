@@ -53,6 +53,7 @@ final class FeedbackPromptManager: ObservableObject {
 
     /// 넛지를 닫는다(이번 회차만). 다음 임계값에서 다시 물어본다.
     func dismiss() {
+        guard shouldPrompt else { return }
         shouldPrompt = false
     }
 
