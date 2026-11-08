@@ -54,8 +54,8 @@ struct PresentationListView: View {
     @State private var showingCamera = false
     @State private var cameraPresentationID: UUID?
     @State private var hasAutoLaunchedCamera = false
-    /// 앱을 열면 바로 카메라를 띄운다(설정 ▸ 촬영). 처음엔 켜져 있다.
-    @AppStorage(LaunchCamera.key) private var opensCameraOnLaunch = true
+    /// 앱을 열면 무엇부터 보일지(설정 ▸ 촬영).
+    @AppStorage(LaunchCamera.key) private var launchCamera: LaunchCamera = .always
     @State private var cameraCaptured = false
     @State private var cameraCreatedNew = false
     /// 무료 발표를 다 채워 새 발표 대신 가장 최근 발표에 이어 찍는 중인가.
@@ -157,9 +157,10 @@ struct PresentationListView: View {
         base
         .fullScreenCover(isPresented: $showingCamera, onDismiss: cameraFinished) {
             if let cameraPresentationID {
-                CameraCaptureView(presentationID: cameraPresentationID) {
-                    cameraCaptured = true
-                }
+                CameraCaptureView(presentationID: cameraPresentationID,
+                                  onCapture: { cameraCaptured = true },
+                                  continueCandidate: cameraCreatedNew ? ContinueCapture.candidate(in: store.presentations) : nil,
+                                  onContinue: continueCapture)
                 // 아이폰 듀오를 펴면 카메라는 고르는 쪽 판에만 선다.
                 .foldConfined()
             }
@@ -252,7 +253,9 @@ struct PresentationListView: View {
             // 공유로 넘어온 사진이 있어 열린 경우엔 카메라 대신 그 사진부터 정리한다.
             if !ShareInbox.pendingManifests().isEmpty {
                 importSharedPhotos()
-            } else if opensCameraOnLaunch || router.cameraLaunchRequest > 0 {
+            } else if router.cameraLaunchRequest > 0
+                        || launchCamera.opensCamera(lastCapture: store.presentations.first?.slides.last?.createdAt,
+                                                    hasPresentations: !store.presentations.isEmpty) {
                 // 설정을 꺼 두었어도 위젯 · 단축어로 '찍으려고' 열었으면 연다(화면이 서기 전에 온 요청).
                 openCamera()
             }
@@ -810,11 +813,20 @@ struct PresentationListView: View {
             cameraOverLimit = true
         } else {
             // 아직 목록에 올리지 않는다. 한 장도 안 찍고 닫으면 목록에 흔적이 남지 않도록.
-            let presentation = store.beginDraftPresentation(title: Store.defaultTitle())
+            // 지금 캘린더 일정이 있으면 그 이름으로(설정에서 켰을 때만).
+            let presentation = store.beginDraftPresentation(title: CalendarNaming.currentEventTitle() ?? Store.defaultTitle())
             cameraPresentationID = presentation.id
             cameraCreatedNew = true
         }
         showingCamera = true
+    }
+
+    /// 카메라 위 "이어 찍기" — 새 발표 초안을 버리고 찍던 발표 뒤에 붙인다. 카메라는 닫지 않는다.
+    private func continueCapture(_ id: UUID) {
+        guard let draft = cameraPresentationID, cameraCreatedNew else { return }
+        store.discardDraft(draft)
+        cameraPresentationID = id
+        cameraCreatedNew = false
     }
 
     /// 촬영을 마치면 처리한다.

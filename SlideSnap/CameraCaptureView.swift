@@ -143,6 +143,11 @@ struct CameraCaptureView: View {
     let presentationID: UUID
     /// 촬영이 한 장이라도 일어나면 부모에게 알린다(빈 발표 삭제 방지 + 그리드 이동 판단).
     var onCapture: (() -> Void)? = nil
+    /// 새 발표로 열었지만 하루 안에 찍던 발표가 있다 — 첫 장을 찍기 전에 이어 찍기를 권한다 (→ ContinueCapture).
+    var continueCandidate: Presentation? = nil
+    /// 이어 찍기를 골랐다. 부모가 새 발표 초안을 버리고 그 발표로 바꾼다.
+    var onContinue: ((UUID) -> Void)? = nil
+    @State private var continueDismissed = false
 
     @StateObject private var camera = CameraController()
     @StateObject private var recorder = AudioRecorder()
@@ -202,6 +207,7 @@ struct CameraCaptureView: View {
 
             VStack {
                 topBar
+                continueBanner
                 statusLabel
                     .animation(.easeInOut(duration: 0.25), value: camera.detectedQuad == nil)
                 Spacer()
@@ -223,6 +229,10 @@ struct CameraCaptureView: View {
                 store.addRecording(recording, to: presentationID)
             }
             if recordAudio && purchases.allows(.recording) { recorder.start() }
+        }
+        .onChange(of: presentationID) { _, id in
+            // 이어 찍기로 발표가 바뀌었다. 이미 돌고 있는 녹음도 그 발표로 간다.
+            recorder.onFinish = { [store] recording in store.addRecording(recording, to: id) }
         }
         .onDisappear {
             camera.stop()
@@ -270,6 +280,37 @@ struct CameraCaptureView: View {
             capture(auto: true)   // 장표가 바뀌어 초록(락인)되면 자동으로 촬영
         }
         .overlay(alignment: .top) { blurHintLabel }
+    }
+
+    /// "‘운영체제’에 이어 찍기" — 첫 장을 찍으면 사라진다. 누르면 그 발표 뒤에 붙고, ✕ 면 새 발표 그대로.
+    @ViewBuilder
+    private var continueBanner: some View {
+        if let candidate = continueCandidate, captureCount == 0, !continueDismissed {
+            HStack(spacing: 0) {
+                Button {
+                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                    onContinue?(candidate.id)
+                } label: {
+                    Label(String(localized: "‘\(candidate.title)’에 이어 찍기"), systemImage: "arrow.uturn.forward")
+                        .font(.subheadline.weight(.semibold))
+                        .lineLimit(1)
+                        .padding(.leading, 14)
+                        .padding(.vertical, 10)
+                }
+                Button {
+                    withAnimation(.snappy) { continueDismissed = true }
+                } label: {
+                    Image(systemName: "xmark")
+                        .font(.caption.weight(.bold))
+                        .frame(width: 40, height: 40)
+                }
+                .accessibilityLabel(Text("닫기"))
+            }
+            .foregroundStyle(.white)
+            .background(.black.opacity(0.6), in: Capsule())
+            .padding(.horizontal, 24)
+            .transition(.move(edge: .top).combined(with: .opacity))
+        }
     }
 
     /// 흔들린 자동 촬영을 건너뛰었을 때 잠깐 보여주는 안내.

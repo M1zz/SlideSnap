@@ -9,6 +9,7 @@
 
 import WidgetKit
 import SwiftUI
+import AppIntents
 
 struct CameraEntry: TimelineEntry {
     let date: Date
@@ -136,4 +137,21 @@ struct CameraWidgetView: View {
     SlideSnapCameraWidget()
 } timeline: {
     CameraEntry(date: Date())
+}
+
+// MARK: - 제어 센터 · 잠금 화면 · 동작 버튼
+
+/// 잠긴 폰에서도 버튼 하나로 장표스냅 카메라를 연다. 위젯과 같은 slidesnap://camera 로 열어,
+/// 앱의 '앱을 열면' 설정과 관계없이 카메라가 뜬다(→ PresentationListView).
+@available(iOS 18.0, *)
+struct SlideSnapCaptureControl: ControlWidget {
+    var body: some ControlWidgetConfiguration {
+        StaticControlConfiguration(kind: "com.leeo.slidesnap.capture") {
+            ControlWidgetButton(action: OpenURLIntent(URL(string: "slidesnap://camera")!)) {
+                Label("장표 촬영", systemImage: "camera.fill")
+            }
+        }
+        .displayName("장표 촬영")
+        .description("제어 센터, 잠금 화면, 동작 버튼에서 바로 장표스냅 카메라를 열어요.")
+    }
 }

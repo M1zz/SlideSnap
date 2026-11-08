@@ -20,7 +20,9 @@ struct SettingsView: View {
     @State private var restoreMessage: String?
     @State private var enablingSync = false
     @State private var showingFeedback = false
-    @AppStorage(LaunchCamera.key) private var opensCameraOnLaunch = true
+    @AppStorage(LaunchCamera.key) private var launchCamera: LaunchCamera = .always
+    @AppStorage(CalendarNaming.key) private var calendarNaming = false
+    @State private var showCalendarDenied = false
     @Environment(\.dismiss) private var dismiss
 
     /// 마스터(개발자) 모드 — 버전 행 7번 탭으로 토글. 피드백 수신함 진입점 노출.
@@ -33,15 +35,7 @@ struct SettingsView: View {
             Form {
                 planSection
 
-                Section {
-                    Toggle(isOn: $opensCameraOnLaunch) {
-                        Label("앱을 열면 바로 촬영", systemImage: "camera")
-                    }
-                } header: {
-                    Text("촬영")
-                } footer: {
-                    Text("끄면 발표 목록부터 보여요. 위젯이나 단축어로는 언제든 바로 찍을 수 있어요.")
-                }
+                captureSection
 
                 Section {
                     Toggle(isOn: syncBinding) {
@@ -204,6 +198,43 @@ struct SettingsView: View {
         }
     }
 
+    /// 촬영 — 앱을 열면 무엇부터, 새 발표 이름은 무엇으로 (→ LaunchCamera.swift).
+    private var captureSection: some View {
+        Section {
+            Picker(selection: $launchCamera) {
+                ForEach(LaunchCamera.allCases) { Text($0.title).tag($0) }
+            } label: {
+                Label("앱을 열면", systemImage: "camera")
+            }
+            Toggle(isOn: calendarBinding) {
+                Label("캘린더 일정으로 이름 짓기", systemImage: "calendar.badge.clock")
+            }
+        } header: {
+            Text("촬영")
+        } footer: {
+            Text(verbatim: launchCamera.footer + " "
+                 + String(localized: "캘린더를 켜면 지금 진행 중인 일정 이름을 새 발표 이름으로 써요. 일정은 이 기기 안에서만 읽어요."))
+        }
+        .alert("캘린더 접근이 허용되지 않았어요", isPresented: $showCalendarDenied) {
+            Button("설정 열기") {
+                if let url = URL(string: UIApplication.openSettingsURLString) { UIApplication.shared.open(url) }
+            }
+            Button("닫기", role: .cancel) {}
+        } message: {
+            Text("일정 이름을 쓰려면 설정에서 캘린더 전체 접근을 허용해 주세요.")
+        }
+    }
+
+    /// 켤 때 캘린더 접근을 묻는다. 거절했으면 켜지 않고 까닭을 알린다.
+    private var calendarBinding: Binding<Bool> {
+        Binding(get: { calendarNaming }, set: { on in
+            guard on else { calendarNaming = false; return }
+            Task {
+                if await CalendarNaming.requestAccess() { calendarNaming = true } else { showCalendarDenied = true }
+            }
+        })
+    }
+
     /// 의견 보내기 — 설정 첫 화면의 맨 아래. 아래에 버전(빌드 번호까지)을 적고, 7번 누르면 개발자 모드.
     private var feedbackSection: some View {
         Section {
@@ -263,11 +294,6 @@ struct SettingsView: View {
         showMasterModeAlert = true
     }
 
-}
-
-/// 앱을 열 때 카메라를 바로 띄울지(설정 ▸ 촬영 · 발표 목록이 같이 읽는다).
-enum LaunchCamera {
-    static let key = "opensCameraOnLaunch"
 }
 
 /// 설정 ▸ 선물하기. 누르면 바로 칸(Plus · Pro)을 고르고 선물하는 한 화면이다(LeeoKit `LeeoGiftPickerView`).

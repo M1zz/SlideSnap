@@ -144,6 +144,149 @@
         }
       }
     },
+    "제어 센터, 잠금 화면, 동작 버튼에서 바로 장표스냅 카메라를 열어요." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open the CatchSlide camera right from Control Center, the Lock Screen or the Action button."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open the CatchSlide camera right from Control Centre, the Lock Screen or the Action button."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "从控制中心、锁定屏幕或操作按钮直接打开 CatchSlide 相机。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "從控制中心、鎖定畫面或動作按鈕直接打開 CatchSlide 相機。"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "コントロールセンター、ロック画面、アクションボタンからすぐに CatchSlide のカメラを開きます。"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открывайте камеру CatchSlide прямо из Пункта управления, с экрана блокировки или кнопкой действия."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abre la cámara de CatchSlide desde el Centro de control, la pantalla bloqueada o el botón de acción."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öffne die CatchSlide-Kamera direkt im Kontrollzentrum, auf dem Sperrbildschirm oder mit der Aktionstaste."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrez l’appareil photo CatchSlide depuis le centre de contrôle, l’écran verrouillé ou le bouton Action."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apri la fotocamera di CatchSlide da Centro di Controllo, dalla schermata di blocco o con il tasto Azione."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abra a câmera do CatchSlide pela Central de Controle, Tela Bloqueada ou botão de Ação."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "เปิดกล้อง CatchSlide ได้ทันทีจากศูนย์ควบคุม หน้าจอล็อก หรือปุ่มการทำงาน"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mở camera CatchSlide ngay từ Trung tâm điều khiển, Màn hình khóa hoặc nút Tác vụ."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otevři fotoaparát CatchSlide přímo z Ovládacího centra, zamčené obrazovky nebo akčním tlačítkem."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åbn CatchSlide-kameraet direkte fra Kontrolcenter, låseskærmen eller handlingsknappen."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ανοίξτε την κάμερα του CatchSlide από το Κέντρο ελέγχου, την οθόνη κλειδώματος ή το κουμπί Ενέργειας."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avaa CatchSlide-kamera suoraan Ohjauskeskuksesta, lukitulta näytöltä tai Toimintopainikkeella."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buka kamera CatchSlide langsung dari Pusat Kontrol, Layar Terkunci, atau tombol Tindakan."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åpne CatchSlide-kameraet rett fra Kontrollsenter, låseskjermen eller handlingsknappen."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open de CatchSlide-camera direct vanuit het bedieningspaneel, het toegangsscherm of de Actieknop."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otwieraj aparat CatchSlide prosto z centrum sterowania, ekranu blokady lub przycisku czynności."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öppna CatchSlide-kameran direkt från Kontrollcenter, låsskärmen eller åtgärdsknappen."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide kamerasını Denetim Merkezi'nden, Kilitli Ekran'dan veya Eylem düğmesinden hemen açın."
+          }
+        }
+      }
+    },
     "장표 촬영" : {
       "extractionState" : "manual",
       "localizations" : {

@@ -311,6 +311,155 @@
         }
       }
     },
+    "NSCalendarsFullAccessUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide reads your calendar on this device to name new presentations after the event happening now."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지금 진행 중인 일정 이름을 새 발표 이름으로 쓰려고 캘린더를 이 기기 안에서 읽어요."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide reads your calendar on this device to name new presentations after the event happening now."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide 会在本设备上读取日历，用正在进行的日程为新演示命名。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide 會在本裝置上讀取行事曆，用正在進行的行程為新簡報命名。"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "進行中の予定の名前を新しい発表につけるため、CatchSlide はこのデバイスの中でカレンダーを読み取ります。"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide читает календарь на этом устройстве, чтобы называть новые презентации по текущему событию."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide lee tu calendario en este dispositivo para nombrar las presentaciones nuevas como el evento en curso."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide liest deinen Kalender auf diesem Gerät, um neue Präsentationen nach dem laufenden Termin zu benennen."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide lit votre calendrier sur cet appareil pour nommer les nouvelles présentations d’après l’événement en cours."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide legge il calendario su questo dispositivo per dare alle nuove presentazioni il nome dell’evento in corso."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O CatchSlide lê sua agenda neste dispositivo para dar às novas apresentações o nome do evento em andamento."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide อ่านปฏิทินบนอุปกรณ์นี้เพื่อตั้งชื่องานนำเสนอใหม่ตามนัดที่กำลังดำเนินอยู่"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide đọc lịch trên thiết bị này để đặt tên bài thuyết trình mới theo sự kiện đang diễn ra."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide čte kalendář v tomto zařízení, aby nové prezentace pojmenoval podle právě probíhající události."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide læser din kalender på denne enhed for at navngive nye præsentationer efter den igangværende begivenhed."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Το CatchSlide διαβάζει το ημερολόγιο σε αυτή τη συσκευή για να ονομάζει τις νέες παρουσιάσεις με το τρέχον συμβάν."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide lukee kalenteria tällä laitteella nimetäkseen uudet esitykset käynnissä olevan tapahtuman mukaan."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide membaca kalender di perangkat ini untuk menamai presentasi baru sesuai acara yang sedang berlangsung."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide leser kalenderen på denne enheten for å gi nye presentasjoner navnet på hendelsen som pågår."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide leest je agenda op dit apparaat om nieuwe presentaties te noemen naar het lopende agenda-item."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide czyta kalendarz na tym urządzeniu, aby nazywać nowe prezentacje według trwającego wydarzenia."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide läser kalendern på den här enheten för att namnge nya presentationer efter den pågående händelsen."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CatchSlide, yeni sunumlara devam eden etkinliğin adını vermek için takviminizi bu cihazda okur."
+          }
+        }
+      }
+    },
     "NSMicrophoneUsageDescription" : {
       "extractionState" : "manual",
       "localizations" : {

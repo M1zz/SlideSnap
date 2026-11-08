@@ -10,5 +10,6 @@ import SwiftUI
 struct SlideSnapWidgetBundle: WidgetBundle {
     var body: some Widget {
         SlideSnapCameraWidget()
+        if #available(iOS 18.0, *) { SlideSnapCaptureControl() }
     }
 }
