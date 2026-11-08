@@ -13,8 +13,6 @@ struct ProfileView: View {
     @EnvironmentObject private var profile: UserProfileStore
     @EnvironmentObject private var cloudSync: CloudSync
     @ObservedObject private var purchases = PurchaseManager.shared
-    /// 요금제(페이월)를 플랜 줄에서 열었는가.
-    @State private var showingPlans = false
     @State private var paywallFeature: ProFeature?
     @State private var showingManageSubscription = false
     /// 구독 중인 사람이 평생으로 옮겨 가는 시트 (→ LeeoGraduation).
@@ -96,7 +94,6 @@ struct ProfileView: View {
                     // 앞으로 만들 기능 — 원본은 SlideSnapRoadmap.swift
                     NavigationLink(LeeoRoadmapText.entry) { RoadmapScreen() }
                     LeeoShareAppLink<SlideSnapSpec>()
-                    LeeoTipJarLink<SlideSnapSpec>(tipJar: SlideSnapTip.tipJar)
                     NavigationLink { LeeoVaultView(appName: SlideSnapSpec.displayName) } label: {
                         Label(LeeoVaultText.entry, systemImage: "externaldrive.badge.timemachine")
                     }
@@ -121,7 +118,6 @@ struct ProfileView: View {
                 }
             }
             .navigationTitle("설정")
-            .sheet(isPresented: $showingPlans) { PaywallView() }
             .paywall(for: $paywallFeature)
             .manageSubscriptionsSheet(isPresented: $showingManageSubscription)
             .sheet(isPresented: $showingGraduation) {
@@ -190,11 +186,13 @@ struct ProfileView: View {
         )
     }
 
-    /// 플랜 · 구독 관리. 지금 칸, 요금제 보기, 구독 관리 · 평생으로 바꾸기, 구매 복원.
+    /// 요금제와 응원 — 돈 이야기는 여기 한 칸에 모은다(두번알림 · 클립키보드와 같다).
+    /// 요금제 → (구독 관리 · 평생으로 바꾸기) → 응원 → 선물하기 → 구매 복원.
     private var planSection: some View {
         Section {
-            Button {
-                showingPlans = true
+            // 설정의 다른 줄처럼 화면으로 넘어간다.
+            NavigationLink {
+                PaywallView(embedded: true)
             } label: {
                 LabeledContent("장표스냅 Plus · Pro") {
                     if purchases.isKnown { Text(purchases.tier.title) }
@@ -205,6 +203,15 @@ struct ProfileView: View {
                 // 구독 중인 사람이 언제든 평생으로 옮겨 갈 수 있는 길. 졸업가 상품을 못 불러왔으면 세우지 않는다.
                 if purchases.product(ProProduct.graduate) != nil {
                     Button(LeeoLadderText.switchToLifetimeEntry) { showingGraduation = true }
+                }
+            }
+            // 응원 — 낸 사람에게는 후원 단계 배지(LeeoSupporterBadge)가 선다. 팁 상품이 App Store 에서 와야 줄이 선다.
+            LeeoTipJarLink<SlideSnapSpec>(tipJar: SlideSnapTip.tipJar)
+            if SettingsGiftView.hasContent(purchases) {
+                NavigationLink {
+                    SettingsGiftView()
+                } label: {
+                    Label("선물하기", systemImage: "gift.fill")
                 }
             }
             Button {
@@ -221,7 +228,7 @@ struct ProfileView: View {
             }
             .disabled(purchases.isWorking)
         } header: {
-            Text("플랜 · 구독 관리")
+            Text("요금제와 응원")
         } footer: {
             if purchases.isGrandfathered {
                 Text("유료 앱일 때 장표스냅을 사 주셔서 Pro를 평생 그대로 써요. 고맙습니다.")
@@ -257,5 +264,37 @@ struct ProfileView: View {
         profile.email = email.trimmed
         withAnimation { justSaved = true }
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { dismiss() }
+    }
+}
+
+/// 설정 ▸ 선물하기. 누르면 바로 칸(Plus · Pro)을 고르고 선물하는 한 화면이다(LeeoKit `LeeoGiftPickerView`).
+/// 선물을 사면 App Store 오퍼 코드 링크가 나오고, 받은 사람은 App Store 에서 "사용" 한 번으로 열린다 —
+/// 여는 것은 우리 코드가 아니라 App Store 다(지침 3.1.1).
+/// ⚠️ 문구는 LeeoKit 카탈로그에 있다(`LeeoGiftText`) — 앱 카탈로그에 다시 적지 않는다.
+struct SettingsGiftView: View {
+    @ObservedObject private var purchases = PurchaseManager.shared
+    /// 선물이 안 될 때의 문의 창(결제 번호 · 코드가 붙는다).
+    @State private var showSupport = false
+
+    /// 보낼 수 있는 선물, 싼 것(Plus)부터. 상품이 App Store 에서 왔거나 이미 보낸 · 준비 중인 결제가 있으면 선다.
+    private static func senders(_ purchases: PurchaseManager) -> [LeeoGiftStore] {
+        purchases.gifts.filter { $0.isAvailable || $0.pendingCount > 0 || !$0.sentGifts.isEmpty }.reversed()
+    }
+
+    /// 설정에 선물 줄을 세울지. 상품이 App Store 에 서기 전에 이 빌드가 나가도 빈 줄은 보이지 않는다.
+    static func hasContent(_ purchases: PurchaseManager) -> Bool {
+        !senders(purchases).isEmpty
+    }
+
+    var body: some View {
+        // 받기 링크는 아직 Pro 가 아닌 사람에게만 — 링크 없이 코드만 받은 사람을 위한 자리다.
+        LeeoGiftPickerView<SlideSnapSpec>(gifts: Self.senders(purchases),
+                                          showsRedeemLink: purchases.tier < .pro,
+                                          onContactSupport: { showSupport = true })
+            .sheet(isPresented: $showSupport) {
+                LeeoFeedbackView<SlideSnapSpec>(initialType: .bug,
+                                                extraInfo: purchases.gifts.flatMap(\.supportLines),
+                                                initialCategory: .purchase)
+            }
     }
 }

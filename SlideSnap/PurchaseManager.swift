@@ -6,6 +6,9 @@
 //  상품 로드 · 구매 · 복원 · 거래 리스너(다른 기기, 가족 공유, 환불, 구독 만료) · 팁은 LeeoStore 안에 있고,
 //  여기서는 그 값을 칸(`ProTier`)으로 읽고, 공유 확장이 볼 한 줄(또렷하게 보정)을 옮겨 적는다.
 //
+//  칸은 **래치**로 읽는다(→ PlanLatch). 평생은 Keychain 에, 구독은 만료일과 함께 적고, 내리는 것은 환불을 확인했을 때뿐.
+//  권한은 앱을 켤 때 · 앞으로 돌아올 때 · 코드를 쓴 뒤(App Store 오퍼 코드, 선물) 다시 읽는다.
+//
 
 import Foundation
 import Combine
@@ -42,7 +45,9 @@ final class PurchaseManager: ObservableObject {
     @Published private(set) var failureMessage: String?
 
     private static let sellsPaidKey = "slidesnap.plan.sellsPaid"
-    private var observation: AnyCancellable?
+    private var observations: [AnyCancellable] = []
+    /// 산 칸을 붙드는 래치. 바뀔 때마다 Keychain 에 적는다.
+    private var latch = PlanLatch.load()
 
     private init() {
         guard let config = SlideSnapSpec.paywall else {
@@ -51,8 +56,18 @@ final class PurchaseManager: ObservableObject {
         store = LeeoStore(config: config, grandfather: { await PaidDownloadBuyer.boughtBeforeFree() })
         sellsPaid = UserDefaults.standard.bool(forKey: Self.sellsPaidKey)
         // ⚠️ objectWillChange 는 값이 바뀌기 **직전**에 온다. 다음 차례로 미뤄서 읽는다.
-        observation = store.objectWillChange.sink { [weak self] _ in
+        observations.append(store.objectWillChange.sink { [weak self] _ in
             Task { @MainActor in self?.pull() }
+        })
+        // 받은 오퍼 코드가 그 칸을 열었다(선물 받기 화면) — 권한을 다시 읽는다.
+        for gift in store.gifts {
+            observations.append(gift.$ownsGrantedProduct.removeDuplicates().filter { $0 }.sink { [weak self] _ in
+                Task { await self?.refresh() }
+            })
+            // 선물 상품이 불러와지거나 보낸 선물이 바뀌면 설정의 선물 줄도 다시 그린다.
+            observations.append(gift.objectWillChange.sink { [weak self] _ in
+                Task { @MainActor in self?.objectWillChange.send() }
+            })
         }
         pull()
     }
@@ -76,7 +91,16 @@ final class PurchaseManager: ObservableObject {
     /// 유료 앱일 때 사서 Pro 인가.
     var isGrandfathered: Bool { store.isGrandfathered }
 
-    var ownsPlusLifetime: Bool { ownedProductIDs.contains(ProProduct.plusLifetime) }
+    /// Plus 평생을 가졌는가(래치). 그러면 Pro 평생은 올리기(차액) 상품으로 판다.
+    var ownsPlusLifetime: Bool {
+        #if DEBUG
+        if ReviewShot.productID == ProProduct.upgrade { return true }   // 올리기 상품의 심사 이미지
+        #endif
+        return latch.lifetime >= .plus
+    }
+
+    /// 파는 선물(Pro · Plus). 받는 사람의 칸은 App Store 오퍼 코드로 정식 구매가 되어 들어온다.
+    var gifts: [LeeoGiftStore] { store.gifts }
 
     /// 팁(응원). 기능을 열지 않는다.
     var tipJar: LeeoTipJar {
@@ -86,13 +110,15 @@ final class PurchaseManager: ObservableObject {
 
     // MARK: - 상태 맞추기
 
-    /// 영수증을 다시 읽고 상품을 불러온다. 앱이 켜질 때와 앞으로 돌아올 때마다 부른다.
+    /// 영수증을 다시 읽고 상품을 불러온다. 앱이 켜질 때 · 앞으로 돌아올 때 · 코드를 쓴 뒤에 부른다.
     func refresh() async {
         await store.refreshEntitlements()
         await store.loadProducts()
-        subscription = await LeeoGraduation.currentSubscription(among: ProProduct.subscriptionIDs)
+        await readSubscription()
         isKnown = true
         pull()
+        // 래치가 StoreKit 보다 높은 칸을 붙들고 있을 때만 환불을 확인한다. 그때 말고는 볼 까닭이 없다.
+        if latch.tier() > liveTier { await checkRefunds() }
     }
 
     func loadProducts() async {
@@ -114,7 +140,7 @@ final class PurchaseManager: ObservableObject {
     func purchase(_ product: Product, using action: PurchaseAction) async {
         _ = await store.purchase(product) { try await action($0) }
         isKnown = true
-        subscription = await LeeoGraduation.currentSubscription(among: ProProduct.subscriptionIDs)
+        await readSubscription()
         pull()
     }
 
@@ -122,7 +148,7 @@ final class PurchaseManager: ObservableObject {
     func restore() async {
         await store.restore()
         isKnown = true
-        subscription = await LeeoGraduation.currentSubscription(among: ProProduct.subscriptionIDs)
+        await readSubscription()
         pull()
         if tier == .free, failureMessage == nil {
             failureMessage = String(localized: "이 Apple 계정에서 구매한 기록을 찾지 못했어요.")
@@ -131,10 +157,45 @@ final class PurchaseManager: ObservableObject {
 
     // MARK: -
 
+    /// StoreKit 이 지금 보여 주는 칸 (래치 없이).
+    private var liveTier: ProTier {
+        store.isGrandfathered ? .pro : ProProduct.tier(owning: store.purchasedProductIDs)
+    }
+
+    /// 살아 있는 구독을 읽어 래치에 만료일과 함께 적는다. 안 보이면 그대로 둔다 — 만료일이 닫는다.
+    private func readSubscription() async {
+        subscription = await LeeoGraduation.currentSubscription(among: ProProduct.subscriptionIDs)
+        if let subscription, let expires = subscription.renewsAt {
+            update { $0.mark(subscription: subscription.productID, expiresAt: expires) }
+        }
+    }
+
+    /// 환불 확인 — `Transaction.all` 은 환불된 결제도 내보낸다(`currentEntitlements` 는 아예 빼서 "환불"과
+    /// "조회가 비었다"를 가를 수 없다).
+    private func checkRefunds() async {
+        let ids = Set(ProProduct.tierByProduct.keys)
+        var payments: [PlanLatch.Payment] = []
+        for await result in Transaction.all {
+            guard case .verified(let tx) = result, ids.contains(tx.productID) else { continue }
+            payments.append(.init(productID: tx.productID, revoked: tx.revocationDate != nil))
+        }
+        update { $0.applyRefunds(payments) }
+        pull()
+    }
+
+    private func update(_ change: (inout PlanLatch) -> Void) {
+        var next = latch
+        change(&next)
+        guard next != latch else { return }
+        latch = next
+        latch.save()
+    }
+
     private func pull() {
         products = store.products
         ownedProductIDs = store.purchasedProductIDs
-        tier = store.isGrandfathered ? .pro : ProProduct.tier(owning: store.purchasedProductIDs)
+        update { $0.raise(owned: store.purchasedProductIDs, grandfathered: store.isGrandfathered) }
+        tier = max(liveTier, latch.tier())
         isWorking = store.purchasingProductID != nil || store.isRestoring
         failureMessage = store.lastError
 

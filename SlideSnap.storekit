@@ -141,6 +141,46 @@
       "productID": "com.leeo.slidesnap.tip.large",
       "referenceName": "Tip large",
       "type": "Consumable"
+    },
+    {
+      "displayPrice": "23.99",
+      "familyShareable": false,
+      "internalID": "79B83C28-C70B-40A2-ADD1-4E5C0CE6398D",
+      "localizations": [
+        {
+          "description": "받는 분께 Plus 평생을 App Store 코드로 보내요",
+          "displayName": "장표스냅 Plus 선물",
+          "locale": "ko_KR"
+        },
+        {
+          "description": "Send Plus Lifetime as an App Store code",
+          "displayName": "CatchSlide Plus Gift",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.leeo.slidesnap.gift.plus",
+      "referenceName": "Gift Plus",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "35.99",
+      "familyShareable": false,
+      "internalID": "4243AC0D-5A1C-4E31-8C31-3860A2F67EAD",
+      "localizations": [
+        {
+          "description": "받는 분께 Pro 평생을 App Store 코드로 보내요",
+          "displayName": "장표스냅 Pro 선물",
+          "locale": "ko_KR"
+        },
+        {
+          "description": "Send Pro Lifetime as an App Store code",
+          "displayName": "CatchSlide Pro Gift",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.leeo.slidesnap.gift.pro",
+      "referenceName": "Gift Pro",
+      "type": "Consumable"
     }
   ],
   "settings": {

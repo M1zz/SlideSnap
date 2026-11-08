@@ -3,7 +3,7 @@
 //  SlideSnap
 //
 //  장표스냅의 세 칸(무료 · Plus · Pro)과 칸마다 여는 것. **무엇이 잠기는지는 이 파일 한 곳에만 적는다.**
-//  페이월의 비교표 · 잠긴 자리 · 설정의 '플랜 · 구독 관리'가 모두 여기서 읽는다.
+//  페이월의 비교표 · 잠긴 자리 · 설정의 '요금제와 응원'이 모두 여기서 읽는다.
 //
 //  선은 한 문장으로 긋는다 — "찍고 펴고 묶고 찾는 일은 무료, 한 학기를 통째로 담는 것은 Plus, 그때 한 말까지 담는 것은 Pro".
 //   · 무료: 원근 보정 · 무음 · 자동 촬영, 발표별 묶기 · 합치기, 사진 앱 가져오기 · 공유 확장, 글자 인식 · 검색,
@@ -93,6 +93,16 @@ enum ProProduct {
 
     /// 개발자 응원 팁. 아무것도 열지 않는다 — `all` · `tierByProduct` 에 넣지 않는다.
     static let tips = [prefix + ".tip.small", prefix + ".tip.medium", prefix + ".tip.large"]
+
+    /// 선물(소모성, 몇 번이고 보낸다). 사면 받는 사람에게 같은 칸의 평생이 **App Store 오퍼 코드**로 간다.
+    /// ⚠️ 산 사람에게는 아무것도 열지 않는다 — `all` · `tierByProduct` 에 넣지 않는다.
+    static let giftPro  = prefix + ".gift.pro"
+    static let giftPlus = prefix + ".gift.plus"
+    /// Plus 선물의 오퍼 코드 묶음 열쇠. 허브(FeedbackHub)가 같은 열쇠로 묶음을 채운다. Pro 묶음은 번들 ID 그대로다.
+    static let giftPlusPoolKey = prefix + "#" + plusLifetime
+
+    /// 평생 상품. 이것만 래치(Keychain)에 적는다 (→ PlanLatch). 구독은 만료일이 있는 표식이다.
+    static let lifetimeIDs: Set<String> = [plusLifetime, proLifetime, upgrade, graduate]
 
     /// 상품마다 여는 칸. 구독은 같은 칸의 평생과 같은 권한, 올리기 · 졸업은 Pro 평생이다.
     static let tierByProduct: [String: ProTier] = [

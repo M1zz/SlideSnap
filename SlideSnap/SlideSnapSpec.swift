@@ -42,8 +42,33 @@ enum SlideSnapSpec: LeeoAppSpec {
             gate: LeeoGatePolicy(
                 freeLimits: [Gate.presentations: FreeLimit.presentations],
                 proOnly: Set(ProFeature.allCases.map(\.rawValue)).subtracting([ProFeature.unlimitedPresentations.rawValue])),
+            gift: gift,
+            moreGifts: moreGifts,
             // 개발자 응원 팁. ⚠️ 기능을 여는 상품이 아니다 — productIDs · entitlementIDs 에 넣지 않는다.
             tipJar: LeeoTipJarConfig(productIDs: ProProduct.tips)))
+
+    /// Pro 선물하기 — **App Store 오퍼 코드로만.** 보내는 사람이 소모성 선물 상품을 사면 허브 공개 DB 의
+    /// 오퍼 코드 묶음에서 한 장을 가져와 App Store 사용 링크로 보낸다. 받는 사람은 링크를 누르고 "사용" 한 번 —
+    /// Pro 평생을 여는 것은 App Store 다(지침 3.1.1).
+    /// ⚠️ 앱이 만든 코드로 칸을 여는 길은 만들지 않는다(클립키보드 · 두번알림이 그 길로 거절됐다).
+    /// ⚠️ 선물 상품은 `productIDs` · `entitlementIDs` 에 넣지 않는다. 넣으면 선물을 산 사람이 Pro 가 된다.
+    /// ⚠️ 묶음은 FeedbackHub ▸ 인앱 구입 ▸ 선물 코드 묶음에서 채운다. 비어 있으면 산 사람이 "준비 중" 에서 기다린다.
+    static let gift = LeeoGiftConfig(
+        productID: ProProduct.giftPro,
+        grantsProductID: ProProduct.proLifetime,
+        containerIdentifier: feedback.containerIdentifier,
+        sellsGifts: true
+    )
+
+    /// Plus 도 선물한다. 받는 사람에게 Plus 평생이 오퍼 코드로 열린다. 묶음은 Pro 와 따로다(`poolKey`).
+    static let moreGifts = [LeeoGiftConfig(
+        productID: ProProduct.giftPlus,
+        grantsProductID: ProProduct.plusLifetime,
+        containerIdentifier: feedback.containerIdentifier,
+        sellsGifts: true,
+        tierName: "Plus",
+        poolKey: ProProduct.giftPlusPoolKey
+    )]
 
     /// 게이트 열쇠말 (무료 한도).
     enum Gate {

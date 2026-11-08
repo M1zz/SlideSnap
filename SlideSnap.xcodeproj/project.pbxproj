@@ -27,6 +27,13 @@
 			remoteGlobalIDString = 3A00000000000000000000A3;
 			remoteInfo = SlideSnapShare;
 		};
+		4A00000000000000000000AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1A0000000000000000000006 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1A0000000000000000000005;
+			remoteInfo = SlideSnap;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,6 +56,7 @@
 		2A00000000000000000000A4 /* SlideSnapWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SlideSnapWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		812A5EE69DF8F41C3A0F884A /* Version.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
 		3A00000000000000000000A4 /* SlideSnapShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SlideSnapShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A00000000000000000000A4 /* SlideSnapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SlideSnapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -96,6 +104,11 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
+		4A00000000000000000000A5 /* SlideSnapTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SlideSnapTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +134,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4A00000000000000000000A7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -131,6 +151,7 @@
 				2A00000000000000000000A5 /* SlideSnapWidget */,
 				3A00000000000000000000A5 /* SlideSnapShare */,
 				3A00000000000000000000B0 /* Shared */,
+				4A00000000000000000000A5 /* SlideSnapTests */,
 				1A0000000000000000000003 /* Products */,
 				812A5EE69DF8F41C3A0F884A /* Version.xcconfig */,
 			);
@@ -142,6 +163,7 @@
 				1A0000000000000000000004 /* SlideSnap.app */,
 				2A00000000000000000000A4 /* SlideSnapWidgetExtension.appex */,
 				3A00000000000000000000A4 /* SlideSnapShare.appex */,
+				4A00000000000000000000A4 /* SlideSnapTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -217,6 +239,27 @@
 			productReference = 3A00000000000000000000A4 /* SlideSnapShare.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		4A00000000000000000000A3 /* SlideSnapTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4A00000000000000000000A9 /* Build configuration list for PBXNativeTarget "SlideSnapTests" */;
+			buildPhases = (
+				4A00000000000000000000A6 /* Sources */,
+				4A00000000000000000000A7 /* Frameworks */,
+				4A00000000000000000000A8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4A00000000000000000000AC /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				4A00000000000000000000A5 /* SlideSnapTests */,
+			);
+			name = SlideSnapTests;
+			productName = SlideSnapTests;
+			productReference = 4A00000000000000000000A4 /* SlideSnapTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -235,6 +278,10 @@
 					};
 					3A00000000000000000000A3 = {
 						CreatedOnToolsVersion = 16.0;
+					};
+					4A00000000000000000000A3 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 1A0000000000000000000005;
 					};
 				};
 			};
@@ -281,6 +328,7 @@
 				1A0000000000000000000005 /* SlideSnap */,
 				2A00000000000000000000A3 /* SlideSnapWidgetExtension */,
 				3A00000000000000000000A3 /* SlideSnapShare */,
+				4A00000000000000000000A3 /* SlideSnapTests */,
 			);
 		};
 /* End PBXProject section */
@@ -301,6 +349,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3A00000000000000000000A8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A00000000000000000000A8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -331,6 +386,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4A00000000000000000000A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -343,6 +405,11 @@
 			isa = PBXTargetDependency;
 			target = 3A00000000000000000000A3 /* SlideSnapShare */;
 			targetProxy = 3A00000000000000000000AD /* PBXContainerItemProxy */;
+		};
+		4A00000000000000000000AC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1A0000000000000000000005 /* SlideSnap */;
+			targetProxy = 4A00000000000000000000AD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -654,6 +721,42 @@
 			};
 			name = Release;
 		};
+		4A00000000000000000000AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QGAQ3AY3R3;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leeo.slidesnap.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SlideSnap.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SlideSnap";
+			};
+			name = Debug;
+		};
+		4A00000000000000000000AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QGAQ3AY3R3;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leeo.slidesnap.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SlideSnap.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SlideSnap";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -693,6 +796,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		4A00000000000000000000A9 /* Build configuration list for PBXNativeTarget "SlideSnapTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A00000000000000000000AA /* Debug */,
+				4A00000000000000000000AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -701,7 +813,7 @@
 			repositoryURL = "https://github.com/M1zz/LeeoKit.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 3.38.1;
+				minimumVersion = 3.40.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
