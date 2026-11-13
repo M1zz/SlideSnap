@@ -2,6 +2,8 @@
 # 앱스토어 원본 스크린샷 찍기 (시뮬레이터 · DEBUG 데모 모드).
 #
 #   scripts/screenshots/make_screenshots.sh [ko|en ...]    (기본: ko en)
+#   KIND=ipad scripts/screenshots/make_screenshots.sh ...   iPad Pro 13" (2064×2752) → 꾸미지 않은 화면 그대로 제출본
+#     docs/screenshots/marketing/<언어>/ipad-NN-….png (넓은 화면의 목록 | 장표 두 칸)
 #   KIND=duo scripts/screenshots/make_screenshots.sh ...    아이폰 듀오 바깥 화면(1398×2034) → raw/duo/<언어>/
 #     듀오는 Xcode 27.1 이상으로 빌드해야 호환 틀(옆 검은 띠) 없이 뜬다. 안쪽 화면은 손으로 펴야 해서 찍지 않는다.
 #
@@ -13,7 +15,9 @@ cd "${0:A:h}/../.."
 ROOT=$PWD
 LANGS=(${@:-ko en})
 KIND="${KIND:-iphone}"
-if [[ $KIND == duo ]]; then
+if [[ $KIND == ipad ]]; then
+  DEFAULT_DEVICE="iPad Pro 13-inch (M5)"; RAW=docs/screenshots/raw/ipad; DISPLAY_ARGS=()
+elif [[ $KIND == duo ]]; then
   DEFAULT_DEVICE="iPhone Duo"; RAW=docs/screenshots/raw/duo; DISPLAY_ARGS=(--display=1)   # 1번이 바깥 화면
 else
   DEFAULT_DEVICE="iPhone 18 Pro Max"; RAW=docs/screenshots/raw; DISPLAY_ARGS=()
@@ -111,6 +115,20 @@ for lang in $LANGS; do
   MEMO_ARGS=("${(@f)$(python3 -c "
 import sys; sys.path.insert(0, 'scripts/screenshots'); from slides import MEMOS
 for i, m in MEMOS['$lang'].items(): print(f'-SSDemoMemo{i}'); print(m)")}")
+  if [[ $KIND == ipad ]]; then
+    shoot $lang 04-list.png   list   5
+    shoot $lang 05-slide.png  slide  5
+    shoot $lang 06-detail.png detail 5
+    [[ $lang == el ]] || shoot $lang 07-search.png "search:$query" 5
+    OUT=docs/screenshots/marketing/$lang; mkdir -p $OUT; rm -f $OUT/ipad-*.png(N)
+    n=0
+    # 목록 화면에 이미 고른 발표가 서 있어 발표 화면은 빼고, 검색이 없는 언어(그리스어)만 대신 넣는다.
+    for f in 04-list 05-slide 07-search $([[ $lang == el ]] && echo 06-detail); do
+      [[ -f $RAW/$lang/$f.png ]] || continue
+      n=$((n+1)); cp $RAW/$lang/$f.png $OUT/ipad-0$n-${f#*-}.png
+    done
+    continue
+  fi
   shoot $lang 01-share.png  share  6
   shoot $lang 04-list.png   list   4
   shoot $lang 05-slide.png  slide  4

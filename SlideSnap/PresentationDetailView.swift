@@ -36,6 +36,11 @@ struct ShareSheet: UIViewControllerRepresentable {
 struct PresentationDetailView: View {
 
     @EnvironmentObject private var store: Store
+    @Environment(\.horizontalSizeClass) private var sizeClass
+    /// 장표 칸의 가장 작은 폭. 넓은 아이패드에서는 글자가 읽히게 크게 둔다.
+    private var thumbMin: CGFloat {
+        UIDevice.current.userInterfaceIdiom == .pad && sizeClass == .regular ? 220 : 110
+    }
     @ObservedObject private var purchases = PurchaseManager.shared
     /// 잠긴 내보내기(PDF 두 장 · 네 장씩, PowerPoint · Markdown)를 고르면 그 기능의 페이월.
     @State private var paywallFeature: ProFeature?
@@ -347,7 +352,7 @@ struct PresentationDetailView: View {
                                               reached: SlideSnapTipMoments.reachedNow(in: store.presentations))
                     .padding([.horizontal, .top])
             }
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 110), spacing: 10)], spacing: 10) {
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: thumbMin), spacing: 10)], spacing: 10) {
                 ForEach(Array(presentation.slides.enumerated()), id: \.element.id) { index, slide in
                     if isSelecting {
                         Button {

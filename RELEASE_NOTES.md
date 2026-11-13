@@ -3,6 +3,152 @@
 App Store "이 버전의 새로운 기능"에 그대로 올라가는 원본입니다.
 `## 버전` 아래 `### ... 앱스토어` 절만 스토어로 나갑니다.
 
+## 1.0.12
+
+### 앱스토어 (한국어)
+
+이제 iPad에서도 쓸 수 있어요
+넓은 화면에서는 발표 목록과 장표를 나란히 봐요
+키보드 단축키로 새 발표를 만들고 바로 촬영해요
+
+### App Store (English)
+
+Now available on iPad
+Presentations and slides side by side
+Keyboard shortcuts to create and capture
+
+### App Store (en-GB)
+
+Now available on iPad
+Presentations and slides side by side
+Keyboard shortcuts to create and capture
+
+### App Store (zh-Hans)
+
+现在也可以在 iPad 上使用
+宽屏下演示列表和幻灯片并排显示
+用键盘快捷键新建演示并马上拍摄
+
+### App Store (zh-Hant)
+
+現在也可以在 iPad 上使用
+寬螢幕上簡報列表和投影片並排顯示
+用鍵盤快速鍵新增簡報並馬上拍攝
+
+### 앱스토어 (일본어)
+
+iPadでも使えるようになりました
+広い画面ではプレゼン一覧とスライドを並べて表示
+キーボードショートカットで新規プレゼンと撮影
+
+### 앱스토어 (러시아어)
+
+Теперь и на iPad
+Презентации и слайды бок о бок
+Новая презентация и съёмка с клавиатуры
+
+### 앱스토어 (스페인어)
+
+Ahora también en iPad
+Presentaciones y diapositivas juntas
+Crea y captura con atajos de teclado
+
+### 앱스토어 (독일어)
+
+Jetzt auch auf dem iPad
+Präsentationen und Folien nebeneinander
+Neu anlegen und aufnehmen per Tastatur
+
+### 앱스토어 (프랑스어)
+
+Désormais disponible sur iPad
+Présentations et diapos côte à côte
+Créez et capturez au clavier
+
+### 앱스토어 (이탈리아어)
+
+Ora disponibile su iPad
+Presentazioni e slide affiancate
+Crea e scatta dalla tastiera
+
+### App Store (pt-BR)
+
+Agora também no iPad
+Apresentações e slides lado a lado
+Crie e fotografe com atalhos de teclado
+
+### 앱스토어 (태국어)
+
+ใช้งานบน iPad ได้แล้ว
+จอกว้างดูงานนำเสนอคู่กับสไลด์ได้
+สร้างงานนำเสนอใหม่และถ่ายได้ด้วยคีย์ลัด
+
+### 앱스토어 (베트남어)
+
+Giờ đây đã dùng được trên iPad
+Bài thuyết trình và slide hiện song song
+Tạo bài mới và chụp ngay bằng phím tắt
+
+### 앱스토어 (체코어)
+
+Nově i na iPadu
+Prezentace a slajdy vedle sebe
+Tvoř a foť pomocí klávesových zkratek
+
+### 앱스토어 (덴마크어)
+
+Nu også på iPad
+Præsentationer og slides side om side
+Opret og fotografér med tastaturgenveje
+
+### 앱스토어 (그리스어)
+
+Τώρα και στο iPad
+Παρουσιάσεις και διαφάνειες δίπλα δίπλα
+Δημιουργία και λήψη από το πληκτρολόγιο
+
+### 앱스토어 (핀란드어)
+
+Nyt myös iPadilla
+Esitykset ja kalvot rinnakkain
+Luo ja kuvaa pikanäppäimillä
+
+### 앱스토어 (인도네시아어)
+
+Kini tersedia di iPad
+Presentasi dan slide berdampingan
+Buat dan potret lewat papan ketik
+
+### 앱스토어 (노르웨이어(보크말))
+
+Nå også på iPad
+Presentasjoner og lysbilder side om side
+Opprett og ta bilder med hurtigtaster
+
+### 앱스토어 (네덜란드어)
+
+Nu ook op iPad
+Presentaties en dia's naast elkaar
+Maak en fotografeer met sneltoetsen
+
+### 앱스토어 (폴란드어)
+
+Teraz także na iPadzie
+Prezentacje i slajdy obok siebie
+Twórz i rób zdjęcia skrótami klawiszy
+
+### 앱스토어 (스웨덴어)
+
+Nu även på iPad
+Presentationer och slides sida vid sida
+Skapa och fota med kortkommandon
+
+### 앱스토어 (튀르키예어)
+
+Artık iPad'de de kullanılabilir
+Sunumlar ve slaytlar yan yana
+Klavye kısayoluyla sunum oluşturup çekin
+
 ## 1.0.11
 
 ### 앱스토어 (한국어)

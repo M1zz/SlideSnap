@@ -51,6 +51,7 @@ struct PresentationListView: View {
     /// 접힌 채 맨 위에 보던 발표(와 장표). 펴는 순간 결과 쪽으로 옮긴다.
     @State private var stackTop: (presentation: UUID, slide: SlideRoute?)?
     @Environment(\.foldLayout) private var fold
+    @Environment(\.horizontalSizeClass) private var sizeClass
     @State private var showingCamera = false
     @State private var cameraPresentationID: UUID?
     @State private var hasAutoLaunchedCamera = false
@@ -72,18 +73,34 @@ struct PresentationListView: View {
     var body: some View {
         // 아이폰 듀오를 펴면 고르는 쪽(왼쪽 · 아래)에 발표 목록, 결과 쪽(오른쪽 · 위)에 고른 발표의 장표.
         // 접혀 있거나 보통 아이폰이면 목록만 그린다. 지금 화면 그대로.
-        FoldSplitView {
-            list
-        } result: {
-            FoldPresentationPane(presentationID: shownPresentationID, path: $resultPath)
+        Group {
+            if isWidePad {
+                // 넓은 아이패드: 접힌 선 없이 왼쪽 목록 | 오른쪽 고른 발표.
+                HStack(spacing: 0) {
+                    list.frame(width: 400)
+                    Divider().ignoresSafeArea()
+                    FoldPresentationPane(presentationID: shownPresentationID, path: $resultPath)
+                }
+            } else {
+                FoldSplitView {
+                    list
+                } result: {
+                    FoldPresentationPane(presentationID: shownPresentationID, path: $resultPath)
+                }
+            }
         }
-        .onChange(of: fold.isUnfolded) { _, unfolded in
+        .onChange(of: split) { _, unfolded in
             guard unfolded, !path.isEmpty, let top = stackTop else { return }
             shownID = top.presentation
             resultPath = top.slide.map { [$0] } ?? []
             path = NavigationPath()
         }
     }
+
+    /// 넓은 아이패드인가. Slide Over · 좁은 분할에서는 아이폰처럼 밀어 넣는다.
+    private var isWidePad: Bool { UIDevice.current.userInterfaceIdiom == .pad && sizeClass == .regular }
+    /// 두 칸으로 서는가: 펼친 듀오이거나 넓은 아이패드.
+    private var split: Bool { fold.isUnfolded || isWidePad }
 
     /// 결과 쪽에 설 발표. 고른 것이 지워졌으면 맨 위 발표.
     private var shownPresentationID: UUID? {
@@ -93,7 +110,7 @@ struct PresentationListView: View {
 
     /// 발표를 연다: 접혀 있으면 밀어 넣고, 펴져 있으면 결과 쪽 판에 펼친다.
     private func open(_ id: UUID) {
-        if fold.isUnfolded {
+        if split {
             shownID = id
             resultPath = []
         } else {
@@ -103,7 +120,7 @@ struct PresentationListView: View {
 
     /// 장표를 연다(검색 결과): 펴져 있으면 결과 쪽 판에서 그 발표의 장표로 들어간다.
     private func openSlide(_ route: SlideRoute) {
-        if fold.isUnfolded {
+        if split {
             shownID = route.presentationID
             resultPath = [route]
         } else {
@@ -115,7 +132,7 @@ struct PresentationListView: View {
     @ViewBuilder
     private func openLink<Label: View>(_ value: some Hashable, open: @escaping () -> Void,
                                        @ViewBuilder label: () -> Label) -> some View {
-        if fold.isUnfolded {
+        if split {
             Button(action: open) {
                 label()
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -347,6 +364,7 @@ struct PresentationListView: View {
                     Image(systemName: "camera.fill")
                 }
                 .accessibilityLabel("촬영하기")
+                .keyboardShortcut("k")
             }
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {
@@ -357,6 +375,7 @@ struct PresentationListView: View {
                     } label: {
                         Label("빈 발표 만들기", systemImage: newPresentationIcon("rectangle.badge.plus"))
                     }
+                    .keyboardShortcut("n")
                     Button {
                         guard allowsNewPresentation() else { return }
                         showingPhotoImport = true
@@ -506,13 +525,13 @@ struct PresentationListView: View {
                         }
                         .buttonStyle(.plain)
                         .overlay {
-                            if fold.isUnfolded && presentation.id == shownPresentationID {
+                            if split && presentation.id == shownPresentationID {
                                 RoundedRectangle(cornerRadius: 12)
                                     .stroke(Color.accentColor, lineWidth: 3)
                                     .allowsHitTesting(false)
                             }
                         }
-                        .accessibilityAddTraits(fold.isUnfolded && presentation.id == shownPresentationID ? .isSelected : [])
+                        .accessibilityAddTraits(split && presentation.id == shownPresentationID ? .isSelected : [])
                         .contextMenu {
                             Button {
                                 startRename(presentation)
@@ -598,9 +617,9 @@ struct PresentationListView: View {
                         row(presentation)
                     }
                     // 펼친 화면에서 결과 쪽에 열린 발표
-                    .listRowBackground(fold.isUnfolded && presentation.id == shownPresentationID
+                    .listRowBackground(split && presentation.id == shownPresentationID
                                        ? Color.accentColor.opacity(0.15) : nil)
-                    .accessibilityAddTraits(fold.isUnfolded && presentation.id == shownPresentationID ? .isSelected : [])
+                    .accessibilityAddTraits(split && presentation.id == shownPresentationID ? .isSelected : [])
                     .swipeActions(edge: .leading) {
                         Button {
                             startRename(presentation)
@@ -743,11 +762,11 @@ struct PresentationListView: View {
         case .list:
             isGridView = true
         case .detail:
-            if let first { path.append(first.id) }
+            if let first { open(first.id) }
         case .slide(let index):
             if let first, index < first.slides.count {
-                path.append(first.id)
-                path.append(SlideRoute(presentationID: first.id, slideID: first.slides[index].id))
+                let route = SlideRoute(presentationID: first.id, slideID: first.slides[index].id)
+                if split { openSlide(route) } else { path.append(first.id); path.append(route) }
             }
         case .notes:
             if let first { demoNotesID = first.id }
