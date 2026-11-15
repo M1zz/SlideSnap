@@ -188,12 +188,14 @@ struct SlideDetailView: View {
         .padding(.horizontal, 16)
         .padding(.vertical, 10)
         .background(Color(.secondarySystemBackground))
+        #if !os(visionOS)
         .toolbar {
             ToolbarItemGroup(placement: .keyboard) {
                 Spacer()
                 Button("완료", systemImage: "checkmark") { memoFocused = false }
             }
         }
+        #endif
     }
 
     private func loadMemo() {

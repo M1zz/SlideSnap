@@ -47,7 +47,7 @@ enum Summarizer {
 
     static var status: Status {
         #if canImport(FoundationModels)
-        if #available(iOS 26.0, *) {
+        if #available(iOS 26.0, visionOS 26.0, *) {
             switch SystemLanguageModel.default.availability {
             case .available:
                 return .available
@@ -87,7 +87,7 @@ enum Summarizer {
         guard !blocks.isEmpty else { throw Failure.noContent }
 
         #if canImport(FoundationModels)
-        if #available(iOS 26.0, *) {
+        if #available(iOS 26.0, visionOS 26.0, *) {
             let status = status
             guard status == .available else { throw Failure.unavailable(status) }
             let language = answerLanguage(for: blocks.joined(separator: "\n"))
@@ -111,7 +111,7 @@ enum Summarizer {
 
 #if canImport(FoundationModels)
 
-@available(iOS 26.0, *)
+@available(iOS 26.0, visionOS 26.0, *)
 @Generable
 private struct GeneratedSummary {
     @Guide(description: "A 2-4 sentence overview of what the whole talk was about.")
@@ -122,7 +122,7 @@ private struct GeneratedSummary {
     var keywords: [String]
 }
 
-@available(iOS 26.0, *)
+@available(iOS 26.0, visionOS 26.0, *)
 private struct ModelSummarizer {
     let title: String
     /// 답할 언어의 영어 이름 (예: "Korean")

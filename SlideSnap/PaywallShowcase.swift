@@ -27,12 +27,12 @@ extension ProTier {
                 detail: String(localized: "한 쪽에 장표를 모아 종이를 아껴 인쇄해요")) { PDFLayoutArt() }),
         ]
         case .pro: [
-            (.summary, LeeoShowcase(id: "summary", title: String(localized: "기기 안 요약"),
-                detail: String(localized: "발표 내용을 밖으로 보내지 않고 기기 안에서 요약해요")) { SummaryArt() }),
+            (.summary, LeeoShowcase(id: "summary", title: String(localized: "AI 요약 · 복습 문제"),
+                detail: String(localized: "기기 안에서 발표를 요약하고 장표마다 복습 문제를 만들어요")) { SummaryArt() }),
             (.notesExport, LeeoShowcase(id: "export", title: String(localized: "PowerPoint · Markdown 내보내기"),
                 detail: String(localized: "장표와 요약 · 메모를 한 파일로 내보내요")) { ExportArt() }),
             (.sync, LeeoShowcase(id: "sync", title: String(localized: "iCloud 동기화"),
-                detail: String(localized: "iPhone · iPad · Mac에서 같은 발표를 봐요")) { SyncArt() }),
+                detail: String(localized: "iPhone으로 찍고 Mac · iPad · Vision Pro에서 공부해요")) { SyncArt() }),
             (nil, LeeoShowcase(id: "plus", title: String(localized: "Plus의 모든 것"),
                 detail: String(localized: "Plus에서 열리는 것을 모두 그대로 써요")) { EverythingInPlusArt() }),
         ]

@@ -1,3 +1,6 @@
+// 촬영은 iPhone · iPad 에서만 한다 (→ Capture.swift).
+#if os(iOS) && !targetEnvironment(macCatalyst)
+
 import SwiftUI
 import AVFoundation
 import LeeoKit
@@ -644,3 +647,5 @@ struct CameraCaptureView: View {
         }
     }
 }
+
+#endif

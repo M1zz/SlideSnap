@@ -450,6 +450,24 @@ final class Store: ObservableObject {
         track(save: [.presentation(presentationID)])
     }
 
+    // MARK: - 공부하기
+
+    func setStudyMark(_ mark: StudyMark, slideID: UUID, presentationID: UUID) {
+        guard let pIndex = presentations.firstIndex(where: { $0.id == presentationID }),
+              let sIndex = presentations[pIndex].slides.firstIndex(where: { $0.id == slideID }),
+              presentations[pIndex].slides[sIndex].studyMark != mark else { return }
+        presentations[pIndex].slides[sIndex].studyMark = mark
+        persist()
+        track(save: [.slide(slideID)])
+    }
+
+    func setQuiz(_ quiz: [QuizCard], presentationID: UUID) {
+        guard let index = presentations.firstIndex(where: { $0.id == presentationID }) else { return }
+        presentations[index].quiz = quiz
+        persist()
+        track(save: [.presentation(presentationID)])
+    }
+
     // MARK: - iCloud 동기화 반영
 
     /// iCloud에서 받은 변경을 반영한다. 동기화 대기열에는 다시 올리지 않는다.

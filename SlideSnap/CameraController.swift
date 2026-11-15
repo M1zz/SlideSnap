@@ -1,3 +1,6 @@
+// 촬영은 iPhone · iPad 에서만 한다 (→ Capture.swift).
+#if os(iOS) && !targetEnvironment(macCatalyst)
+
 import AVFoundation
 import UIKit
 import Vision
@@ -626,3 +629,5 @@ extension CameraController: AVCaptureVideoDataOutputSampleBufferDelegate {
         )
     }
 }
+
+#endif

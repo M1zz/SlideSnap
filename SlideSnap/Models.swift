@@ -48,9 +48,26 @@ struct Slide: Identifiable, Codable, Equatable {
     var enhancedFile: String?
     /// 사용자가 이 장표에 남긴 메모. nil = 메모 없음.
     var memo: String?
+    /// 공부하기에서 고른 표시. nil = 아직 공부하지 않음.
+    var studyMark: StudyMark?
 
     /// 가독성 보정이 켜져 있는지.
     var isEnhanced: Bool { enhanced == true && enhancedFile != nil }
+}
+
+/// 공부하기에서 장표 한 장에 남기는 표시.
+enum StudyMark: String, Codable, Sendable {
+    /// 알았어요
+    case known
+    /// 다시 볼래요
+    case review
+}
+
+/// 장표 한 장으로 만든 복습 문제 하나.
+struct QuizCard: Codable, Equatable, Sendable {
+    var slideID: UUID
+    var question: String
+    var answer: String
 }
 
 /// 받아쓰기 결과 한 토막. 시각은 녹음 시작부터의 초.
@@ -104,6 +121,13 @@ struct Presentation: Identifiable, Codable, Equatable {
     var recordings: [Recording]?
     /// AI 요약 (nil = 아직 만들지 않음)
     var summary: PresentationSummary?
+    /// AI가 장표마다 만든 복습 문제 (nil = 아직 만들지 않음)
+    var quiz: [QuizCard]?
+
+    /// 이 장표의 복습 문제.
+    func quizCard(for slideID: UUID) -> QuizCard? {
+        quiz?.first { $0.slideID == slideID }
+    }
 
     var allRecordings: [Recording] { recordings ?? [] }
 

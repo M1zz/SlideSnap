@@ -45,7 +45,7 @@ enum Transcriber {
         onProgress: @escaping @Sendable (Double) -> Void
     ) async throws -> [TranscriptSegment] {
         let locale = Locale(identifier: localeID)
-        if #available(iOS 26.0, *), SpeechTranscriber.isAvailable {
+        if #available(iOS 26.0, visionOS 26.0, *), SpeechTranscriber.isAvailable {
             return try await transcribeWithAnalyzer(url: url, locale: locale, onProgress: onProgress)
         }
         return try await transcribeWithRecognizer(url: url, locale: locale)
@@ -53,7 +53,7 @@ enum Transcriber {
 
     // MARK: - iOS 26+: SpeechAnalyzer
 
-    @available(iOS 26.0, *)
+    @available(iOS 26.0, visionOS 26.0, *)
     private static func transcribeWithAnalyzer(
         url: URL,
         locale: Locale,

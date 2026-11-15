@@ -97,8 +97,10 @@ struct PresentationListView: View {
         }
     }
 
-    /// 넓은 아이패드인가. Slide Over · 좁은 분할에서는 아이폰처럼 밀어 넣는다.
-    private var isWidePad: Bool { UIDevice.current.userInterfaceIdiom == .pad && sizeClass == .regular }
+    /// 넓은 아이패드 · Mac · Vision Pro 인가. Slide Over · 좁은 분할에서는 아이폰처럼 밀어 넣는다.
+    private var isWidePad: Bool {
+        [.pad, .mac, .vision].contains(UIDevice.current.userInterfaceIdiom) && sizeClass == .regular
+    }
     /// 두 칸으로 서는가: 펼친 듀오이거나 넓은 아이패드.
     private var split: Bool { fold.isUnfolded || isWidePad }
 
@@ -172,6 +174,7 @@ struct PresentationListView: View {
     /// 카메라 · 사진 · 피드백 · 설정 · 페이월처럼 위로 띄우는 화면.
     private func presenting(_ base: some View) -> some View {
         base
+        #if os(iOS) && !targetEnvironment(macCatalyst)
         .fullScreenCover(isPresented: $showingCamera, onDismiss: cameraFinished) {
             if let cameraPresentationID {
                 CameraCaptureView(presentationID: cameraPresentationID,
@@ -182,6 +185,7 @@ struct PresentationListView: View {
                 .foldConfined()
             }
         }
+        #endif
         .sheet(isPresented: $showingPhotoImport) {
             PhotoImportPicker { providers in
                 importPhotos(providers)
@@ -357,14 +361,16 @@ struct PresentationListView: View {
                     .accessibilityLabel(isGridView ? Text("목록으로 보기") : Text("그리드로 보기"))
                 }
             }
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    openCamera()
-                } label: {
-                    Image(systemName: "camera.fill")
+            if Capture.isAvailable {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        openCamera()
+                    } label: {
+                        Image(systemName: "camera.fill")
+                    }
+                    .accessibilityLabel("촬영하기")
+                    .keyboardShortcut("k")
                 }
-                .accessibilityLabel("촬영하기")
-                .keyboardShortcut("k")
             }
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {
@@ -481,11 +487,23 @@ struct PresentationListView: View {
         if !searchText.trimmingCharacters(in: .whitespaces).isEmpty {
             searchResults
         } else if store.presentations.isEmpty {
-            ContentUnavailableView(
-                "발표가 없습니다",
-                systemImage: "rectangle.on.rectangle.angled",
-                description: Text("오른쪽 위 + 버튼으로 새 발표를 만들고\n장표를 촬영해 보세요.")
-            )
+            if Capture.isAvailable {
+                ContentUnavailableView(
+                    "발표가 없습니다",
+                    systemImage: "rectangle.on.rectangle.angled",
+                    description: Text("오른쪽 위 + 버튼으로 새 발표를 만들고\n장표를 촬영해 보세요.")
+                )
+            } else {
+                // Mac · Vision Pro: 찍는 곳이 아니라 공부하는 곳이다.
+                ContentUnavailableView {
+                    Label("iPhone에서 찍은 장표로 공부해요", systemImage: "graduationcap")
+                } description: {
+                    Text("설정에서 iCloud 동기화를 켜면 iPhone·iPad로 찍은 강의 장표가 여기에 모여요. 사진에서 가져와도 돼요.")
+                } actions: {
+                    Button("설정 열기", systemImage: "gearshape") { showingSettings = true }
+                        .buttonStyle(.borderedProminent)
+                }
+            }
         } else if isGridView {
             presentationsGrid
         } else {
@@ -818,7 +836,8 @@ struct PresentationListView: View {
     /// 카메라를 띄운다. 최근 발표의 마지막 촬영이 5분 이내면 그 발표에 이어 붙이고,
     /// 아니면 새 발표를 만든다.
     private func openCamera() {
-        guard !showingCamera else { return }   // 이미 촬영 중이면(딥링크 중복 등) 무시
+        // Mac · Vision Pro 는 찍지 않는다. 앱을 열 때 · 딥링크로 와도 목록 그대로 둔다.
+        guard Capture.isAvailable, !showingCamera else { return }   // 이미 촬영 중이면(딥링크 중복 등) 무시
         cameraCaptured = false
         cameraOverLimit = false
         if let recent = store.presentations.first,

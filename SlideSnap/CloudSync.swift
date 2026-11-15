@@ -71,6 +71,7 @@ final class CloudSync: ObservableObject {
         var createdAt: Date
         var slideOrder: [UUID]
         var summary: PresentationSummary?
+        var quiz: [QuizCard]?
     }
 
     private struct SlidePayload: Codable {
@@ -220,7 +221,8 @@ final class CloudSync: ObservableObject {
                 title: presentation.title,
                 createdAt: presentation.createdAt,
                 slideOrder: presentation.slides.map(\.id),
-                summary: presentation.summary
+                summary: presentation.summary,
+                quiz: presentation.quiz
             )
             guard let data = try? encoder.encode(payload) else { return nil }
             let record = baseRecord(type: "Presentation", id: recordID)
@@ -331,6 +333,8 @@ final class CloudSync: ObservableObject {
                 presentations[index].title = payload.title
                 presentations[index].createdAt = payload.createdAt
                 presentations[index].summary = payload.summary
+                // 복습 문제를 모르는 예전 버전이 발표를 다시 보내도 문제는 지우지 않는다.
+                presentations[index].quiz = payload.quiz ?? presentations[index].quiz
                 presentations[index].slides = Self.ordered(presentations[index].slides + orphanSlides, by: payload.slideOrder)
                 if !orphanRecordings.isEmpty {
                     presentations[index].recordings = presentations[index].allRecordings + orphanRecordings
@@ -342,7 +346,8 @@ final class CloudSync: ObservableObject {
                     createdAt: payload.createdAt,
                     slides: Self.ordered(orphanSlides, by: payload.slideOrder),
                     recordings: orphanRecordings.isEmpty ? nil : orphanRecordings,
-                    summary: payload.summary
+                    summary: payload.summary,
+                    quiz: payload.quiz
                 )
                 // 목록은 최근 발표가 위 — 만든 시각 순서에 맞춰 끼운다.
                 let insertAt = presentations.firstIndex(where: { $0.createdAt < payload.createdAt }) ?? presentations.count
@@ -370,7 +375,11 @@ final class CloudSync: ObservableObject {
             }
             guard let index = presentations.firstIndex(where: { $0.id == pid }) else { return }
             if let sIndex = presentations[index].slides.firstIndex(where: { $0.id == slide.id }) {
-                staleFiles.append(presentations[index].slides[sIndex])
+                let old = presentations[index].slides[sIndex]
+                staleFiles.append(old)
+                var slide = slide
+                // 공부 표시를 모르는 예전 버전이 장표를 다시 보내도 표시는 지우지 않는다.
+                slide.studyMark = slide.studyMark ?? old.studyMark
                 presentations[index].slides[sIndex] = slide
             } else if let order {
                 presentations[index].slides = Self.ordered(presentations[index].slides + [slide], by: order)

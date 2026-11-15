@@ -35,7 +35,7 @@ struct SettingsView: View {
             Form {
                 planSection
 
-                captureSection
+                if Capture.isAvailable { captureSection }
 
                 Section {
                     Toggle(isOn: syncBinding) {
@@ -292,7 +292,9 @@ struct SettingsView: View {
         guard versionTapCount >= 7 else { return }
         versionTapCount = 0
         masterModeEnabled.toggle()
+        #if !os(visionOS)
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        #endif
         showMasterModeAlert = true
     }
 

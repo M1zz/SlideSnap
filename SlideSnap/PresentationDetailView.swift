@@ -48,6 +48,7 @@ struct PresentationDetailView: View {
     let presentationID: UUID
 
     @State private var showingCamera = false
+    @State private var showingStudy = false
     @State private var showingNotes = false
     @State private var isExporting = false
     @State private var exportError: String?
@@ -90,11 +91,13 @@ struct PresentationDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar { toolbarContent }
         .paywall(for: $paywallFeature)
+        #if os(iOS) && !targetEnvironment(macCatalyst)
         .fullScreenCover(isPresented: $showingCamera) {
             CameraCaptureView(presentationID: presentationID)
                 // 아이폰 듀오를 펴면 카메라는 고르는 쪽 판에만 선다.
                 .foldConfined()
         }
+        #endif
         .sheet(isPresented: $showingPhotoImport) {
             PhotoImportPicker { providers in
                 importPhotos(providers)
@@ -106,6 +109,9 @@ struct PresentationDetailView: View {
         }
         .sheet(isPresented: $showingNotes) {
             PresentationNotesView(presentationID: presentationID)
+        }
+        .fullScreenCover(isPresented: $showingStudy) {
+            StudyView(presentationID: presentationID)
         }
         .alert("내보내지 못했어요", isPresented: Binding(get: { exportError != nil }, set: { if !$0 { exportError = nil } })) {
             Button("확인", role: .cancel) {}
@@ -147,12 +153,14 @@ struct PresentationDetailView: View {
         } description: {
             Text("장표를 촬영하거나\n사진 앱에서 강의 사진을 가져올 수 있어요.")
         } actions: {
-            Button {
-                showingCamera = true
-            } label: {
-                Label("촬영하기", systemImage: "camera.fill")
+            if Capture.isAvailable {
+                Button {
+                    showingCamera = true
+                } label: {
+                    Label("촬영하기", systemImage: "camera.fill")
+                }
+                .buttonStyle(.borderedProminent)
             }
-            .buttonStyle(.borderedProminent)
             Button {
                 showingPhotoImport = true
             } label: {
@@ -224,6 +232,16 @@ struct PresentationDetailView: View {
                 .disabled(selectedIDs.isEmpty)
             }
         } else {
+            if !(presentation?.slides.isEmpty ?? true) {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        showingStudy = true
+                    } label: {
+                        Label("공부하기", systemImage: "graduationcap")
+                    }
+                    .keyboardShortcut("l")
+                }
+            }
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     showingNotes = true
@@ -232,13 +250,15 @@ struct PresentationDetailView: View {
                 }
                 .accessibilityLabel("발표 노트")
             }
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    showingCamera = true
-                } label: {
-                    Image(systemName: "camera.fill")
+            if Capture.isAvailable {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        showingCamera = true
+                    } label: {
+                        Image(systemName: "camera.fill")
+                    }
+                    .accessibilityLabel("촬영하기")
                 }
-                .accessibilityLabel("촬영하기")
             }
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {
