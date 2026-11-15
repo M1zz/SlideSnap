@@ -11,6 +11,9 @@ import SwiftUI
 
 struct StudyView: View {
     let presentationID: UUID
+    /// 처음 펼칠 장표 번호와 답을 펼쳐 둘지. 스크린샷 데모(→ DemoMode)만 바꾼다.
+    var startIndex = 0
+    var startRevealed = false
 
     @EnvironmentObject private var store: Store
     @EnvironmentObject private var purchases: PurchaseManager
@@ -53,7 +56,12 @@ struct StudyView: View {
             .toolbar { toolbarContent }
             .safeAreaInset(edge: .top) { header }
         }
-        .onAppear { if !started { startRound(.all) } }
+        .onAppear {
+            guard !started else { return }
+            startRound(.all)
+            index = min(startIndex, max(deck.count - 1, 0))
+            revealed = startRevealed
+        }
         .paywall(for: $paywallFeature)
         .alert("문제를 만들지 못했어요", isPresented: Binding(get: { errorMessage != nil }, set: { if !$0 { errorMessage = nil } })) {
             Button("확인", role: .cancel) {}
@@ -111,6 +119,7 @@ struct StudyView: View {
             }
             .padding(.horizontal)
             .padding(.vertical, 10)
+            .frame(maxWidth: .infinity)
             .background(.bar)
         }
     }
@@ -125,12 +134,18 @@ struct StudyView: View {
                     .font(.footnote.monospacedDigit())
                     .foregroundStyle(.secondary)
 
-                SlideThumb(image: store.loadImage(store.displayFile(for: slide)), placeholderIcon: "photo")
-                    .aspectRatio(4 / 3, contentMode: .fit)
-                    .frame(maxWidth: 720)
-                    .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
-                    .shadow(color: .black.opacity(0.12), radius: 10, y: 4)
-                    .accessibilityLabel("장표")
+                // 공부할 때는 장표 전체가 보여야 한다 — 칸을 채우지 않고 맞춰 그린다.
+                Group {
+                    if let image = store.loadImage(store.displayFile(for: slide)) {
+                        Image(uiImage: image).resizable().scaledToFit()
+                    } else {
+                        SlideThumb(image: nil, placeholderIcon: "photo").aspectRatio(4 / 3, contentMode: .fit)
+                    }
+                }
+                .frame(maxWidth: 720, maxHeight: 520)
+                .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+                .shadow(color: .black.opacity(0.12), radius: 10, y: 4)
+                .accessibilityLabel("장표")
 
                 if let quiz {
                     Text(quiz.question)

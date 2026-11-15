@@ -7,147 +7,171 @@ App Store "이 버전의 새로운 기능"에 그대로 올라가는 원본입�
 
 ### 앱스토어 (한국어)
 
-이제 iPad에서도 쓸 수 있어요
-넓은 화면에서는 발표 목록과 장표를 나란히 봐요
-키보드 단축키로 새 발표를 만들고 바로 촬영해요
+이제 iPad와 Mac, Apple Vision Pro에서도 써요
+찍은 장표를 카드처럼 넘기며 공부해요
+헷갈린 장표만 모아 한 번 더 복습해요
+AI가 장표마다 복습 문제를 만들어 줘요
 
 ### App Store (English)
 
-Now available on iPad
-Presentations and slides side by side
-Keyboard shortcuts to create and capture
+Now on iPad, Mac and Apple Vision Pro
+Study your slides like flashcards
+Review only the slides you missed
+AI writes a review question for each slide
 
 ### App Store (en-GB)
 
-Now available on iPad
-Presentations and slides side by side
-Keyboard shortcuts to create and capture
+Now on iPad, Mac and Apple Vision Pro
+Study your slides like flashcards
+Review only the slides you missed
+AI writes a revision question for each slide
 
 ### App Store (zh-Hans)
 
-现在也可以在 iPad 上使用
-宽屏下演示列表和幻灯片并排显示
-用键盘快捷键新建演示并马上拍摄
+现已支持 iPad、Mac 和 Apple Vision Pro
+像翻卡片一样复习拍下的幻灯片
+只挑出没记住的幻灯片再复习一遍
+AI 为每张幻灯片出一道复习题
 
 ### App Store (zh-Hant)
 
-現在也可以在 iPad 上使用
-寬螢幕上簡報列表和投影片並排顯示
-用鍵盤快速鍵新增簡報並馬上拍攝
+現已支援 iPad、Mac 和 Apple Vision Pro
+像翻卡片一樣複習拍下的投影片
+只挑出沒記住的投影片再複習一次
+AI 為每張投影片出一道複習題
 
 ### 앱스토어 (일본어)
 
-iPadでも使えるようになりました
-広い画面ではプレゼン一覧とスライドを並べて表示
-キーボードショートカットで新規プレゼンと撮影
+iPad、Mac、Apple Vision Proに対応しました
+撮ったスライドを単語カードのように復習
+覚えきれなかったスライドだけをもう一度
+AIがスライドごとに復習問題を作ります
 
 ### 앱스토어 (러시아어)
 
-Теперь и на iPad
-Презентации и слайды бок о бок
-Новая презентация и съёмка с клавиатуры
+Теперь на iPad, Mac и Apple Vision Pro
+Учите слайды как карточки
+Повторяйте только то, что забыли
+ИИ составит вопрос к каждому слайду
 
 ### 앱스토어 (스페인어)
 
-Ahora también en iPad
-Presentaciones y diapositivas juntas
-Crea y captura con atajos de teclado
+Ahora en iPad, Mac y Apple Vision Pro
+Estudia tus diapositivas como tarjetas
+Repasa solo las que no te sabías
+La IA crea una pregunta por diapositiva
 
 ### 앱스토어 (독일어)
 
-Jetzt auch auf dem iPad
-Präsentationen und Folien nebeneinander
-Neu anlegen und aufnehmen per Tastatur
+Jetzt auf iPad, Mac und Apple Vision Pro
+Lerne deine Folien wie Karteikarten
+Wiederhole nur, was noch nicht sitzt
+KI stellt zu jeder Folie eine Lernfrage
 
 ### 앱스토어 (프랑스어)
 
-Désormais disponible sur iPad
-Présentations et diapos côte à côte
-Créez et capturez au clavier
+Disponible sur iPad, Mac et Vision Pro
+Révisez vos diapos comme des fiches
+Revoyez seulement celles à retravailler
+L’IA crée une question par diapositive
 
 ### 앱스토어 (이탈리아어)
 
-Ora disponibile su iPad
-Presentazioni e slide affiancate
-Crea e scatta dalla tastiera
+Ora su iPad, Mac e Apple Vision Pro
+Studia le diapositive come flashcard
+Ripassa solo quelle che non sai ancora
+L’IA crea una domanda per diapositiva
 
 ### App Store (pt-BR)
 
-Agora também no iPad
-Apresentações e slides lado a lado
-Crie e fotografe com atalhos de teclado
+Agora no iPad, Mac e Apple Vision Pro
+Estude seus slides como flashcards
+Revise só os slides que você errou
+A IA cria uma pergunta para cada slide
 
 ### 앱스토어 (태국어)
 
-ใช้งานบน iPad ได้แล้ว
-จอกว้างดูงานนำเสนอคู่กับสไลด์ได้
-สร้างงานนำเสนอใหม่และถ่ายได้ด้วยคีย์ลัด
+ใช้ได้แล้วบน iPad, Mac และ Vision Pro
+ทบทวนสไลด์ที่ถ่ายไว้เหมือนพลิกแฟลชการ์ด
+รวมเฉพาะสไลด์ที่ยังจำไม่ได้มาทบทวนอีกรอบ
+AI สร้างคำถามทบทวนให้ทุกสไลด์
 
 ### 앱스토어 (베트남어)
 
-Giờ đây đã dùng được trên iPad
-Bài thuyết trình và slide hiện song song
-Tạo bài mới và chụp ngay bằng phím tắt
+Đã có trên iPad, Mac và Apple Vision Pro
+Ôn slide đã chụp như lật thẻ ghi nhớ
+Chỉ ôn lại những slide bạn chưa nhớ
+AI tạo câu hỏi ôn tập cho từng slide
 
 ### 앱스토어 (체코어)
 
-Nově i na iPadu
-Prezentace a slajdy vedle sebe
-Tvoř a foť pomocí klávesových zkratek
+Nově na iPadu, Macu a Apple Vision Pro
+Uč se ze slajdů jako z kartiček
+Opakuj jen slajdy, které ještě neumíš
+AI ke každému slajdu vymyslí otázku
 
 ### 앱스토어 (덴마크어)
 
-Nu også på iPad
-Præsentationer og slides side om side
-Opret og fotografér med tastaturgenveje
+Nu på iPad, Mac og Apple Vision Pro
+Lær dine slides som flashcards
+Gentag kun de slides, du ikke kunne
+AI laver et spørgsmål til hvert slide
 
 ### 앱스토어 (그리스어)
 
-Τώρα και στο iPad
-Παρουσιάσεις και διαφάνειες δίπλα δίπλα
-Δημιουργία και λήψη από το πληκτρολόγιο
+Τώρα σε iPad, Mac και Apple Vision Pro
+Μελετήστε τις διαφάνειες σαν κάρτες
+Επαναλάβετε μόνο όσες δεν θυμηθήκατε
+Το AI φτιάχνει ερώτηση για κάθε διαφάνεια
 
 ### 앱스토어 (핀란드어)
 
-Nyt myös iPadilla
-Esitykset ja kalvot rinnakkain
-Luo ja kuvaa pikanäppäimillä
+Nyt iPadilla, Macilla ja Vision Prolla
+Opiskele kalvoja kuin muistikortteja
+Kertaa vain kalvot, jotka eivät vielä muistu
+Tekoäly tekee kysymyksen joka kalvoon
 
 ### 앱스토어 (인도네시아어)
 
-Kini tersedia di iPad
-Presentasi dan slide berdampingan
-Buat dan potret lewat papan ketik
+Kini di iPad, Mac, dan Apple Vision Pro
+Belajar dari slide seperti kartu hafalan
+Ulangi hanya slide yang belum kamu kuasai
+AI membuat soal latihan untuk tiap slide
 
 ### 앱스토어 (노르웨이어(보크말))
 
-Nå også på iPad
-Presentasjoner og lysbilder side om side
-Opprett og ta bilder med hurtigtaster
+Nå på iPad, Mac og Apple Vision Pro
+Lær lysbildene som huskekort
+Repeter bare lysbildene du ikke kunne
+KI lager et spørsmål til hvert lysbilde
 
 ### 앱스토어 (네덜란드어)
 
-Nu ook op iPad
-Presentaties en dia's naast elkaar
-Maak en fotografeer met sneltoetsen
+Nu op iPad, Mac en Apple Vision Pro
+Leer je dia’s als flashcards
+Herhaal alleen de dia’s die je nog niet kent
+AI maakt bij elke dia een oefenvraag
 
 ### 앱스토어 (폴란드어)
 
-Teraz także na iPadzie
-Prezentacje i slajdy obok siebie
-Twórz i rób zdjęcia skrótami klawiszy
+Teraz na iPadzie, Macu i Vision Pro
+Ucz się slajdów jak z fiszek
+Powtarzaj tylko slajdy, których nie umiesz
+AI układa pytanie do każdego slajdu
 
 ### 앱스토어 (스웨덴어)
 
-Nu även på iPad
-Presentationer och slides sida vid sida
-Skapa och fota med kortkommandon
+Nu på iPad, Mac och Apple Vision Pro
+Plugga dina slides som flashcards
+Repetera bara slides du inte kunde
+AI skapar en fråga till varje slide
 
 ### 앱스토어 (튀르키예어)
 
-Artık iPad'de de kullanılabilir
-Sunumlar ve slaytlar yan yana
-Klavye kısayoluyla sunum oluşturup çekin
+Artık iPad, Mac ve Apple Vision Pro’da
+Slaytlarınızı kart gibi çevirerek çalışın
+Yalnızca bilemediğiniz slaytları tekrarlayın
+Yapay zekâ her slayta bir soru hazırlar
 
 ## 1.0.11
 

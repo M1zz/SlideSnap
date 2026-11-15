@@ -42,6 +42,8 @@ struct PresentationListView: View {
     @State private var demoShareModel: ShareModel?
     /// 스크린샷 데모 모드에서 띄우는 발표 노트.
     @State private var demoNotesID: UUID?
+    /// 스크린샷 데모 모드에서 띄우는 공부하기.
+    @State private var demoStudyID: UUID?
     #endif
 
     @State private var path = NavigationPath()
@@ -199,6 +201,9 @@ struct PresentationListView: View {
         }
         .sheet(isPresented: Binding(get: { demoNotesID != nil }, set: { if !$0 { demoNotesID = nil } })) {
             if let demoNotesID { PresentationNotesView(presentationID: demoNotesID) }
+        }
+        .fullScreenCover(isPresented: Binding(get: { demoStudyID != nil }, set: { if !$0 { demoStudyID = nil } })) {
+            if let demoStudyID { StudyView(presentationID: demoStudyID, startIndex: 3, startRevealed: true) }
         }
         #endif
         .sheet(isPresented: $showingFeedback) {
@@ -769,6 +774,14 @@ struct PresentationListView: View {
     #if DEBUG
     /// 스크린샷 데모 모드 — 실행 인자로 정한 화면을 바로 띄운다.
     private func showDemo(_ screen: DemoMode.Screen) {
+        #if targetEnvironment(macCatalyst)
+        // Mac 제출 규격(2880×1800)이 Retina 에서 창 그대로 나오게 창을 1440×900 에 묶는다.
+        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            let size = CGSize(width: 1440, height: 900)
+            scene.sizeRestrictions?.minimumSize = size
+            scene.sizeRestrictions?.maximumSize = size
+        }
+        #endif
         let first = store.presentations.first
         if let first {
             for (index, memo) in DemoMode.memos where index < first.slides.count {
@@ -794,6 +807,15 @@ struct PresentationListView: View {
             paywallFeature = .unlimitedPresentations
         case .settings:
             showingSettings = true
+        case .study:
+            if let first {
+                open(first.id)
+                // 한 바퀴를 돌던 중처럼 앞 장표들에 표시를 남긴다 → '다시 볼 것' 칸이 보인다.
+                for (index, slide) in first.slides.prefix(3).enumerated() {
+                    store.setStudyMark(index == 1 ? .review : .known, slideID: slide.id, presentationID: first.id)
+                }
+                demoStudyID = first.id
+            }
         case .share:
             isGridView = true
             let model = ShareModel()

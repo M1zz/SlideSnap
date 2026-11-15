@@ -13,6 +13,7 @@
 //    -SSDemoScreen search:<검색어>  장표 글자 검색 결과
 //    -SSDemoScreen share           공유 익스텐션 화면 (App Group의 DemoShare/ 사진으로)
 //    -SSDemoScreen paywall         요금제(무료 발표를 다 채운 자리에서 연 페이월)
+//    -SSDemoScreen study           첫 발표 공부하기 — 메모를 단 넷째 장표의 답을 펼친 모습
 //    -SSDemoMemo<n> <메모>         첫 발표의 n번째(0부터) 장표에 메모를 단다 (어느 화면과도 함께)
 //    -SSDemoNotes <base64 JSON>    첫 발표에 데모 녹음을 붙이고, 있으면 받아쓴 말·AI 요약도 넣는다
 //                                  {"summary":{"overview":…,"points":[…],"keywords":[…]}, "spoken":{"1":"…"}}
@@ -25,7 +26,7 @@ import Foundation
 
 enum DemoMode {
     enum Screen: Equatable {
-        case list, detail, slide(Int), notes, search(String), share, paywall, settings
+        case list, detail, slide(Int), notes, search(String), share, paywall, settings, study
     }
 
     static var screen: Screen? {
@@ -38,6 +39,7 @@ enum DemoMode {
         case "share": return .share
         case "paywall": return .paywall
         case "settings": return .settings
+        case "study": return .study
         default:
             if raw.hasPrefix("search:") { return .search(String(raw.dropFirst("search:".count))) }
             if raw.hasPrefix("slide:"), let index = Int(raw.dropFirst("slide:".count)) { return .slide(index) }

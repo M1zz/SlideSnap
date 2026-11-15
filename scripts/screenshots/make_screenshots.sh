@@ -5,6 +5,8 @@
 #   KIND=ipad scripts/screenshots/make_screenshots.sh ...   iPad Pro 13" (2064×2752) → 꾸미지 않은 화면 그대로 제출본
 #     docs/screenshots/marketing/<언어>/ipad-NN-….png (넓은 화면의 목록 | 장표 두 칸)
 #   KIND=duo scripts/screenshots/make_screenshots.sh ...    아이폰 듀오 바깥 화면(1398×2034) → raw/duo/<언어>/
+#   KIND=vision scripts/screenshots/make_screenshots.sh ... Apple Vision Pro(3840×2160) → 방 안에 뜬 창 그대로 제출본
+#     docs/screenshots/marketing/<언어>/vision-NN-….jpg (PNG 는 장마다 수 MB 라 JPEG 품질 92)
 #     듀오는 Xcode 27.1 이상으로 빌드해야 호환 틀(옆 검은 띠) 없이 뜬다. 안쪽 화면은 손으로 펴야 해서 찍지 않는다.
 #
 # 1) 데모 사진 합성 → 2) 앱을 새로 깔고 App Group 수신함에 넣어 실제 보정 파이프라인으로 발표 생성
@@ -17,6 +19,8 @@ LANGS=(${@:-ko en})
 KIND="${KIND:-iphone}"
 if [[ $KIND == ipad ]]; then
   DEFAULT_DEVICE="iPad Pro 13-inch (M5)"; RAW=docs/screenshots/raw/ipad; DISPLAY_ARGS=()
+elif [[ $KIND == vision ]]; then
+  DEFAULT_DEVICE="Apple Vision Pro"; RAW=docs/screenshots/raw/vision; DISPLAY_ARGS=()
 elif [[ $KIND == duo ]]; then
   DEFAULT_DEVICE="iPhone Duo"; RAW=docs/screenshots/raw/duo; DISPLAY_ARGS=(--display=1)   # 1번이 바깥 화면
 else
@@ -30,19 +34,21 @@ WORK=$(mktemp -d)
 UDID=$(xcrun simctl list devices available -j | python3 -c "
 import json,sys
 d=json.load(sys.stdin)['devices']
-c=[x for rt,v in d.items() if 'iOS' in rt for x in v if x['name']=='$DEVICE_NAME']
+c=[x for rt,v in d.items() if ('xrOS' if '$KIND'=='vision' else 'iOS') in rt for x in v if x['name']=='$DEVICE_NAME']
 b=[x for x in c if x['state']=='Booted']
 print((b or c)[0]['udid'])")
 echo "기기: $DEVICE_NAME ($UDID)"
 xcrun simctl boot $UDID 2>/dev/null || true
 xcrun simctl bootstatus $UDID -b >/dev/null
-xcrun simctl ui $UDID appearance light   # 제출본은 라이트 모드로 맞춘다(기기마다 설정이 다를 수 있다)
-xcrun simctl status_bar $UDID override --time 9:41 --dataNetwork wifi --wifiBars 3 --cellularBars 4 --batteryState charged --batteryLevel 100
+if [[ $KIND != vision ]]; then   # Vision Pro 는 밝기 · 상태 막대가 없다
+  xcrun simctl ui $UDID appearance light   # 제출본은 라이트 모드로 맞춘다(기기마다 설정이 다를 수 있다)
+  xcrun simctl status_bar $UDID override --time 9:41 --dataNetwork wifi --wifiBars 3 --cellularBars 4 --batteryState charged --batteryLevel 100
+fi
 
 echo "빌드 중…"
 xcodebuild -project SlideSnap.xcodeproj -scheme SlideSnap -configuration Debug \
   -destination "id=$UDID" -derivedDataPath "$WORK/dd" build -quiet
-APP="$WORK/dd/Build/Products/Debug-iphonesimulator/SlideSnap.app"
+APP="$WORK/dd/Build/Products/Debug-$([[ $KIND == vision ]] && echo xrsimulator || echo iphonesimulator)/SlideSnap.app"
 
 # 스토어 로케일 → 기기 지역(날짜·숫자 형식). en-GB 는 영국식 날짜(일/월)로 찍힌다.
 locale_for() {
@@ -115,15 +121,32 @@ for lang in $LANGS; do
   MEMO_ARGS=("${(@f)$(python3 -c "
 import sys; sys.path.insert(0, 'scripts/screenshots'); from slides import MEMOS
 for i, m in MEMOS['$lang'].items(): print(f'-SSDemoMemo{i}'); print(m)")}")
+  if [[ $KIND == vision ]]; then
+    # 장면은 iPad 와 같다. 찍지 않는 기기라 공유 · 촬영 대신 공부하기를 앞에 둔다.
+    shoot $lang 04-list.png   list   8
+    shoot $lang 08-study.png  study  8
+    shoot $lang 05-slide.png  slide  8
+    [[ $lang == el ]] || shoot $lang 07-search.png "search:$query" 8
+    OUT=docs/screenshots/marketing/$lang; mkdir -p $OUT; rm -f $OUT/vision-*.jpg(N)
+    n=0
+    for f in 04-list 08-study 05-slide $([[ $lang == el ]] || echo 07-search); do
+      [[ -f $RAW/$lang/$f.png ]] || continue
+      n=$((n+1))
+      python3 -c "import sys;from PIL import Image;Image.open(sys.argv[1]).convert('RGB').save(sys.argv[2],quality=92,optimize=True)" \
+        $RAW/$lang/$f.png $OUT/vision-0$n-${f#*-}.jpg
+    done
+    continue
+  fi
   if [[ $KIND == ipad ]]; then
     shoot $lang 04-list.png   list   5
+    shoot $lang 08-study.png  study  5
     shoot $lang 05-slide.png  slide  5
     shoot $lang 06-detail.png detail 5
     [[ $lang == el ]] || shoot $lang 07-search.png "search:$query" 5
     OUT=docs/screenshots/marketing/$lang; mkdir -p $OUT; rm -f $OUT/ipad-*.png(N)
     n=0
     # 목록 화면에 이미 고른 발표가 서 있어 발표 화면은 빼고, 검색이 없는 언어(그리스어)만 대신 넣는다.
-    for f in 04-list 05-slide 07-search $([[ $lang == el ]] && echo 06-detail); do
+    for f in 04-list 08-study 05-slide 07-search $([[ $lang == el ]] && echo 06-detail); do
       [[ -f $RAW/$lang/$f.png ]] || continue
       n=$((n+1)); cp $RAW/$lang/$f.png $OUT/ipad-0$n-${f#*-}.png
     done

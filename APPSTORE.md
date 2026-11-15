@@ -22,6 +22,12 @@ DeployBar 가 이 파일을 읽어 App Store Connect 의 스토어 페이지를 
 
 강의실 뒷자리에서 찍은 장표는 늘 비스듬하고, 사진첩 속 셀카와 영수증 사이에 흩어집니다. 장표스냅은 발표 장표만 찍고, 펴고, 모아 두는 카메라입니다. 장표 속 글자로 찾고, Apple Intelligence로 요약까지 기기 안에서 합니다.
 
+찍고, 공부하기
+찍은 장표를 카드처럼 한 장씩 넘기며 먼저 떠올려 보고, 답을 본 뒤 알았어요 또는 다시 볼래요를 고릅니다. 헷갈린 장표만 모아 한 번 더 돌 수 있고, Apple Intelligence가 장표마다 복습 문제를 만들어 줍니다.
+
+iPhone으로 찍고 Mac, iPad, Vision Pro에서 공부
+iPad에서는 넓은 화면으로 찍고 공부합니다. Mac과 Apple Vision Pro에서는 iCloud 동기화로 넘어온 강의 장표로 복습합니다. 공부한 표시도 기기 사이에 그대로 이어집니다.
+
 찍으면 반듯하게
 카메라가 장표의 네 모서리를 실시간으로 찾습니다. 옆자리에서 비스듬히 찍어도 정면에서 본 것처럼 펴서 저장하고, 배경은 잘라 냅니다. 잘 잡히면 초록색으로 알려 주고, 자동 촬영을 켜 두면 알아서 담습니다.
 
@@ -90,6 +96,12 @@ Capture straight slides without a shutter sound, find any slide by a word you re
 
 Slides photographed from the back row always come out crooked, and they get lost between selfies and receipts. CatchSlide is a camera just for presentation slides: it captures them, straightens them, and keeps them together. It can also summarize your slides with Apple Intelligence, all on device.
 
+Capture, then study
+Flip through your slides like flashcards. Try to recall each one, show the answer, then mark it Got It or Review Again. Go around once more with just the slides you missed, and let Apple Intelligence write a review question for every slide.
+
+Capture on iPhone, study on Mac, iPad and Vision Pro
+On iPad, capture and study on the big screen. On Mac and Apple Vision Pro, review the lecture slides that arrive through iCloud sync. Your progress follows you from device to device.
+
 Straight, every time
 The camera finds the four corners of the slide as you aim. Shoot from any seat and CatchSlide flattens the slide as if you were facing it head on, cropping away the room. A green frame tells you it is locked, and auto capture can take the shot for you.
 
@@ -154,6 +166,12 @@ Capture straight slides without a shutter sound, find any slide by a word you re
 
 Slides photographed from the back row always come out crooked, and they get lost between selfies and receipts. CatchSlide is a camera just for presentation slides: it captures them, straightens them, and keeps them together. It can also summarise your slides with Apple Intelligence, all on device.
 
+Capture, then revise
+Flip through your slides like flashcards. Try to recall each one, show the answer, then mark it Got It or Review Again. Go round once more with just the slides you missed, and let Apple Intelligence write a revision question for every slide.
+
+Capture on iPhone, revise on Mac, iPad and Vision Pro
+On iPad, capture and revise on the big screen. On Mac and Apple Vision Pro, go over the lecture slides that arrive through iCloud sync. Your progress follows you from device to device.
+
 Straight, every time
 The camera finds the four corners of the slide as you aim. Shoot from any seat and CatchSlide flattens the slide as if you were facing it head on, cropping away the room. A green frame tells you it is locked, and auto capture can take the shot for you.
 
@@ -216,6 +234,12 @@ CatchSlide：课堂幻灯片扫描
 ### 설명
 
 坐在教室后排拍下的幻灯片，总是歪歪斜斜，还会淹没在自拍和小票之间。CatchSlide 是一款专为演示幻灯片打造的相机：拍下来、矫正好、统一收纳。还能按文字搜索，并用 Apple Intelligence 生成摘要，全程在设备上完成。
+
+拍下，再复习
+像翻卡片一样逐张浏览幻灯片：先回想，再看答案，然后选择“记住了”或“再看一遍”。可以只挑出没记住的幻灯片再复习一轮，Apple Intelligence 还会为每张幻灯片出一道复习题。
+
+用 iPhone 拍，在 Mac、iPad 和 Vision Pro 上复习
+在 iPad 上，可以用大屏幕拍摄和复习。在 Mac 和 Apple Vision Pro 上，用通过 iCloud 同步过来的课堂幻灯片复习。复习进度也会在设备之间同步。
 
 每张都拍得端正
 相机会在你取景时实时找到幻灯片的四个角。无论坐在哪个位置，CatchSlide 都会把幻灯片矫正成正面视角，并裁掉周围的环境。取景框变绿就表示已锁定，开启自动拍摄后连快门都不用按。
@@ -285,6 +309,12 @@ CatchSlide：課堂投影片掃描
 
 坐在教室後排拍下的投影片，總是歪歪斜斜，還會淹沒在自拍和收據之間。CatchSlide 是專為簡報投影片打造的相機：拍下來、校正好、統一收納。還能依文字搜尋，並用 Apple Intelligence 產生摘要，全程在裝置上完成。
 
+拍下，再複習
+像翻卡片一樣逐張瀏覽投影片：先回想，再看答案，然後選擇「記住了」或「再看一次」。可以只挑出沒記住的投影片再複習一輪，Apple Intelligence 還會為每張投影片出一道複習題。
+
+用 iPhone 拍，在 Mac、iPad 和 Vision Pro 上複習
+在 iPad 上，可以用大螢幕拍攝和複習。在 Mac 和 Apple Vision Pro 上，用透過 iCloud 同步過來的課堂投影片複習。複習進度也會在裝置之間同步。
+
 每張都拍得端正
 相機會在你取景時即時找出投影片的四個角。不管坐在哪個位置，CatchSlide 都會把投影片校正成正面視角，並裁掉周圍的環境。取景框變綠就代表已鎖定，開啟自動拍攝後連快門都不用按。
 
@@ -353,6 +383,12 @@ CatchSlide：講義スライドスキャン
 
 講義室の後ろの席から撮ったスライドは、いつも斜めになり、自撮りやレシートに紛れてしまいます。CatchSlideは、プレゼンのスライドだけを撮影し、まっすぐに補正して、まとめて保管するカメラです。スライドの文字で検索でき、Apple Intelligenceによる要約まで、すべてデバイス上で行えます。
 
+撮って、そのまま復習
+撮ったスライドを単語カードのように1枚ずつめくり、まず思い出してから答えを見て「わかった」か「もう一度」を選びます。覚えきれなかったスライドだけでもう1周でき、Apple Intelligenceがスライドごとに復習問題を作ります。
+
+iPhoneで撮って、Mac・iPad・Vision Proで勉強
+iPadでは大きな画面で撮影も復習もできます。MacとApple Vision Proでは、iCloud同期で届いた講義のスライドで復習します。どこまで覚えたかもデバイス間で引き継がれます。
+
 いつでもまっすぐ
 カメラがスライドの四隅をリアルタイムで見つけます。どの席から撮っても、正面から見たようにまっすぐ補正し、周りの背景はカットして保存します。緑の枠が出たらロックオンの合図。自動撮影をオンにしておけば、シャッターもおまかせです。
 
@@ -417,6 +453,12 @@ CatchSlide: сканер слайдов
 
 Слайды, снятые с последнего ряда, всегда выходят кривыми и теряются в галерее среди селфи и чеков. CatchSlide — камера только для слайдов презентаций: снимает их, выпрямляет и хранит вместе. А ещё по тексту слайдов можно искать и получать краткий пересказ от Apple Intelligence прямо на устройстве.
 
+Снимайте и учите
+Листайте слайды как карточки: сначала вспомните, потом посмотрите ответ и отметьте «Знаю» или «Повторить». Пройдите ещё круг только по забытым слайдам, а Apple Intelligence составит вопрос к каждому слайду.
+
+Снимайте на iPhone, учите на Mac, iPad и Vision Pro
+На iPad удобно и снимать, и учить на большом экране. На Mac и Apple Vision Pro повторяйте слайды лекций, пришедшие через синхронизацию iCloud. Отметки о прогрессе тоже переходят между устройствами.
+
 Ровно с первого кадра
 Камера находит четыре угла слайда прямо во время наведения. Снимайте с любого места: CatchSlide выпрямит слайд, как будто вы смотрели на него строго по центру, и обрежет всё лишнее. Зелёная рамка показывает, что слайд захвачен, а автосъёмка может сделать кадр за вас.
 
@@ -479,6 +521,12 @@ Captura diapositivas derechas sin sonido de obturador y encuentra cualquiera con
 ### 설명
 
 Las diapositivas fotografiadas desde la última fila siempre salen torcidas y acaban perdidas entre selfis y tickets. CatchSlide es una cámara pensada solo para diapositivas: las captura, las endereza y las mantiene juntas. Además, puedes buscar por el texto de las diapositivas y resumirlas con Apple Intelligence en el propio dispositivo.
+
+Captura y estudia
+Pasa tus diapositivas como si fueran tarjetas: intenta recordar, mira la respuesta y marca Me la sé o Repasar otra vez. Da otra vuelta solo con las que fallaste, y deja que Apple Intelligence cree una pregunta de repaso para cada diapositiva.
+
+Captura en el iPhone y estudia en Mac, iPad y Vision Pro
+En el iPad, captura y estudia en la pantalla grande. En el Mac y el Apple Vision Pro, repasa las diapositivas que llegan con la sincronización de iCloud. Tu progreso te acompaña de un dispositivo a otro.
 
 Siempre derechas
 La cámara detecta las cuatro esquinas de la diapositiva mientras apuntas. Hazla desde cualquier asiento y CatchSlide la aplana como si estuvieras justo enfrente, recortando todo lo que sobra. Un marco verde te avisa de que está detectada, y la captura automática puede hacer la foto por ti.
@@ -544,6 +592,12 @@ Fotografiere Folien lautlos und automatisch begradigt und finde jede mit einem e
 
 Folien, die man aus der letzten Reihe fotografiert, sind immer schief und gehen zwischen Selfies und Kassenbons unter. CatchSlide ist die Kamera nur für Präsentationsfolien: Sie nimmt sie auf, begradigt sie und hält sie zusammen. Außerdem durchsuchst du den Text deiner Folien und lässt sie von Apple Intelligence direkt auf dem Gerät zusammenfassen.
 
+Aufnehmen und lernen
+Blättere deine Folien wie Karteikarten durch: erst erinnern, dann die Antwort ansehen und Gewusst oder Nochmal ansehen wählen. Geh eine weitere Runde nur mit den Folien, die noch nicht sitzen, und lass Apple Intelligence zu jeder Folie eine Lernfrage stellen.
+
+Auf dem iPhone aufnehmen, auf Mac, iPad und Vision Pro lernen
+Auf dem iPad nimmst du auf und lernst auf dem großen Bildschirm. Auf Mac und Apple Vision Pro wiederholst du die Vorlesungsfolien, die per iCloud-Synchronisierung ankommen. Dein Lernstand wandert mit.
+
 Immer gerade
 Die Kamera erkennt beim Zielen die vier Ecken der Folie. Von jedem Platz aus begradigt CatchSlide die Folie, als hättest du direkt davorgestanden, und schneidet den Raum drumherum weg. Ein grüner Rahmen zeigt dir, dass die Folie erfasst ist, und die automatische Aufnahme löst für dich aus.
 
@@ -602,6 +656,12 @@ Capturez des diapositives bien droites, sans bruit d’obturateur, et retrouvez-
 ### 설명
 
 Les diapositives photographiées depuis le fond de la salle sont toujours de travers, et elles se perdent entre les selfies et les tickets de caisse. CatchSlide est l’appareil photo dédié aux présentations : il les capture, les redresse et les garde réunies. Il permet aussi de chercher dans leur texte et de les résumer avec Apple Intelligence, directement sur l’appareil.
+
+Capturez, puis révisez
+Faites défiler vos diapositives comme des fiches : essayez de vous souvenir, affichez la réponse, puis choisissez Je sais ou À revoir. Refaites un tour avec seulement les diapositives à retravailler, et laissez Apple Intelligence créer une question de révision pour chacune.
+
+Capturez sur iPhone, révisez sur Mac, iPad et Vision Pro
+Sur iPad, capturez et révisez sur grand écran. Sur Mac et Apple Vision Pro, révisez les diapositives de cours reçues grâce à la synchronisation iCloud. Votre progression vous suit d’un appareil à l’autre.
 
 Toujours bien droit
 L’appareil photo repère les quatre coins de la diapositive pendant que vous visez. Où que vous soyez assis, CatchSlide la redresse comme si vous étiez en face et rogne le reste de la salle. Un cadre vert indique que la diapositive est bien détectée, et la capture automatique peut déclencher la photo à votre place.
@@ -665,6 +725,12 @@ Cattura slide dritte senza il suono dell’otturatore e ritrova ognuna con una s
 ### 설명
 
 Le slide fotografate dall'ultima fila vengono sempre storte e si perdono tra selfie e scontrini. CatchSlide è una fotocamera pensata solo per le slide: le cattura, le raddrizza e le tiene insieme. Puoi anche cercare nel testo delle slide e riassumerle con Apple Intelligence, tutto sul dispositivo.
+
+Cattura, poi studia
+Sfoglia le diapositive come flashcard: prova a ricordare, mostra la risposta e scegli La so o Da ripassare. Fai un altro giro solo con quelle che non sai ancora e lascia che Apple Intelligence crei una domanda di ripasso per ogni diapositiva.
+
+Cattura con iPhone, studia su Mac, iPad e Vision Pro
+Su iPad catturi e studi sul grande schermo. Su Mac e Apple Vision Pro ripassi le diapositive delle lezioni che arrivano con la sincronizzazione iCloud. I tuoi progressi ti seguono su ogni dispositivo.
 
 Sempre dritte
 La fotocamera trova i quattro angoli della slide mentre inquadri. Scatta da qualsiasi posto e CatchSlide la raddrizza come se fossi di fronte, eliminando tutto ciò che c'è intorno. Una cornice verde ti dice che è a fuoco e la cattura automatica può scattare al posto tuo.
@@ -734,6 +800,12 @@ Capture slides retos sem som de obturador e encontre qualquer um com uma só pal
 
 Slides fotografados do fundo da sala sempre saem tortos e se perdem no meio de selfies e recibos. O CatchSlide é uma câmera feita só para slides: ele captura, endireita e mantém tudo junto. Ele também busca pelo texto dos slides e resume tudo com a Apple Intelligence, no próprio aparelho.
 
+Capture e estude
+Passe os slides como flashcards: tente lembrar, veja a resposta e marque Já sei ou Revisar de novo. Dê mais uma volta só com os slides que você errou e deixe a Apple Intelligence criar uma pergunta de revisão para cada slide.
+
+Capture no iPhone, estude no Mac, iPad e Vision Pro
+No iPad, capture e estude na tela grande. No Mac e no Apple Vision Pro, revise os slides de aula que chegam pela sincronização do iCloud. Seu progresso acompanha você em todos os aparelhos.
+
 Sempre retos
 A câmera encontra os quatro cantos do slide enquanto você aponta. Fotografe de qualquer lugar e o CatchSlide deixa o slide plano, como se você estivesse bem de frente, cortando o que sobra ao redor. Uma moldura verde avisa que o slide foi detectado, e a captura automática pode tirar a foto por você.
 
@@ -800,6 +872,12 @@ CatchSlide: ถ่ายสไลด์เรียน
 
 สไลด์ที่ถ่ายจากแถวหลังมักเอียงเสมอ แถมยังไปปะปนกับเซลฟีและใบเสร็จในอัลบั้ม CatchSlide คือกล้องสำหรับสไลด์งานนำเสนอโดยเฉพาะ ถ่าย ปรับให้ตรง และเก็บรวมไว้ในที่เดียว ค้นหาจากข้อความบนสไลด์ได้ และสรุปเนื้อหาด้วย Apple Intelligence ในเครื่อง
 
+ถ่ายแล้วทบทวน
+พลิกดูสไลด์ทีละใบเหมือนแฟลชการ์ด ลองนึกก่อน แล้วดูคำตอบ จากนั้นเลือกจำได้แล้วหรือดูอีกครั้ง รวมเฉพาะสไลด์ที่ยังจำไม่ได้มาทบทวนอีกรอบ และให้ Apple Intelligence สร้างคำถามทบทวนให้ทุกสไลด์
+
+ถ่ายด้วย iPhone ทบทวนบน Mac, iPad และ Vision Pro
+บน iPad ถ่ายและทบทวนได้บนจอใหญ่ บน Mac และ Apple Vision Pro ทบทวนสไลด์การบรรยายที่ซิงค์มาทาง iCloud ความคืบหน้าก็ตามไปทุกอุปกรณ์
+
 ตรงทุกภาพ
 กล้องจะหามุมทั้งสี่ของสไลด์แบบเรียลไทม์ ไม่ว่าจะนั่งตรงไหน CatchSlide ก็ปรับสไลด์ให้เหมือนถ่ายจากด้านหน้า พร้อมตัดฉากหลังออก เมื่อจับสไลด์ได้จะขึ้นกรอบสีเขียว และเปิดถ่ายอัตโนมัติไว้ได้เลย
 
@@ -863,6 +941,12 @@ Chụp slide thẳng tắp mà không có tiếng màn trập, chỉ cần nhớ
 
 Slide chụp từ dãy bàn cuối lúc nào cũng bị nghiêng, lại lẫn giữa ảnh selfie và hóa đơn trong thư viện. CatchSlide là chiếc camera dành riêng cho slide thuyết trình: chụp, nắn thẳng và gom chúng vào một chỗ. Ứng dụng còn cho tìm theo chữ trên slide và tóm tắt bằng Apple Intelligence ngay trên máy.
 
+Chụp xong là ôn
+Lật từng slide như thẻ ghi nhớ: tự nhớ lại trước, xem đáp án rồi chọn Đã nhớ hoặc Xem lại. Ôn thêm một vòng chỉ với những slide chưa nhớ, và để Apple Intelligence tạo câu hỏi ôn tập cho từng slide.
+
+Chụp trên iPhone, ôn bài trên Mac, iPad và Vision Pro
+Trên iPad, bạn chụp và ôn bài ngay trên màn hình lớn. Trên Mac và Apple Vision Pro, bạn ôn lại slide bài giảng được đồng bộ qua iCloud. Tiến độ ôn tập cũng theo bạn qua mọi thiết bị.
+
 Luôn thẳng, mọi góc chụp
 Camera tự tìm bốn góc của slide ngay khi bạn ngắm. Ngồi ở đâu cũng được, CatchSlide sẽ nắn slide như thể bạn chụp chính diện và cắt bỏ phần nền xung quanh. Khung xanh báo đã bắt được slide, và chế độ chụp tự động có thể bấm máy thay bạn.
 
@@ -923,6 +1007,12 @@ Foť slajdy potichu a rovně a jediným slovem najdi ten pravý. Apple Intellige
 ### 설명
 
 Slajdy vyfocené z poslední řady jsou vždycky křivé a ztrácejí se v galerii mezi selfie a účtenkami. CatchSlide je fotoaparát jen pro slajdy prezentací: vyfotí je, narovná a uloží pohromadě. Navíc v nich můžeš hledat podle textu.
+
+Vyfoť a uč se
+Listuj slajdy jako kartičkami: nejdřív si vzpomeň, pak si ukaž odpověď a zvol Umím nebo Ještě jednou. Projdi další kolo jen se slajdy, které ještě neumíš, a nech Apple Intelligence vymyslet ke každému slajdu otázku.
+
+Foť iPhonem, uč se na Macu, iPadu a Vision Pro
+Na iPadu fotíš i se učíš na velké obrazovce. Na Macu a Apple Vision Pro opakuješ slajdy z přednášek, které dorazí přes synchronizaci s iCloudem. Tvůj pokrok tě provází na všech zařízeních.
 
 Vždy rovně
 Fotoaparát najde čtyři rohy slajdu už při zaměřování. Foť odkudkoli, CatchSlide slajd narovná, jako bys na něj koukal zepředu, a okolí ořízne. Zelený rámeček ukáže, že je slajd zachycen, a automatické focení může snímek pořídit za tebe.
@@ -986,6 +1076,12 @@ Tag lige billeder af slides uden lukkerlyd, og find enhver slide med et enkelt o
 ### 설명
 
 Slides, du tager billeder af fra bagerste række, bliver altid skæve, og de drukner mellem selfies og kvitteringer. CatchSlide er et kamera kun til præsentationsslides: Det tager billederne, retter dem op og samler dem på ét sted. Du kan også søge i teksten på dem og få det hele opsummeret med Apple Intelligence direkte på enheden.
+
+Tag billeder, og lær
+Bladr gennem dine slides som flashcards: prøv at huske, vis svaret, og vælg Kan den eller Se igen. Tag en runde mere med kun de slides, du ikke kunne, og lad Apple Intelligence lave et repetitionsspørgsmål til hvert slide.
+
+Tag billeder på iPhone, lær på Mac, iPad og Vision Pro
+På iPad tager du billeder og lærer på den store skærm. På Mac og Apple Vision Pro repeterer du de forelæsningsslides, der kommer via iCloud-synkronisering. Dine fremskridt følger med på alle enheder.
 
 Altid lige
 Kameraet finder slidens fire hjørner, mens du sigter. Tag billedet fra en hvilken som helst plads, og CatchSlide retter sliden ud, som om du stod lige foran den, og beskærer lokalet væk. En grøn ramme viser, at sliden er fanget, og automatisk optagelse kan tage billedet for dig.
@@ -1055,6 +1151,12 @@ CatchSlide: Σάρωση διαφανειών
 
 Οι διαφάνειες που φωτογραφίζετε από τα τελευταία θρανία βγαίνουν πάντα στραβές και χάνονται ανάμεσα σε selfie και αποδείξεις. Το CatchSlide είναι μια κάμερα φτιαγμένη μόνο για διαφάνειες παρουσιάσεων: τις φωτογραφίζει, τις ισιώνει και τις κρατά όλες μαζί. Επιπλέον, μπορείτε να κάνετε αναζήτηση στο κείμενό τους.
 
+Τραβήξτε και μελετήστε
+Ξεφυλλίστε τις διαφάνειες σαν κάρτες: θυμηθείτε πρώτα, δείτε την απάντηση και επιλέξτε Το ξέρω ή Ξανά. Κάντε έναν ακόμη γύρο μόνο με όσες δεν θυμηθήκατε και αφήστε το Apple Intelligence να φτιάξει μια ερώτηση επανάληψης για κάθε διαφάνεια.
+
+Τραβήξτε με iPhone, μελετήστε σε Mac, iPad και Vision Pro
+Στο iPad τραβάτε και μελετάτε στη μεγάλη οθόνη. Σε Mac και Apple Vision Pro επαναλαμβάνετε τις διαφάνειες διαλέξεων που φτάνουν μέσω συγχρονισμού iCloud. Η πρόοδός σας σας ακολουθεί σε κάθε συσκευή.
+
 Πάντα ίσια
 Η κάμερα εντοπίζει τις τέσσερις γωνίες της διαφάνειας καθώς στοχεύετε. Φωτογραφίστε από όποια θέση κι αν κάθεστε και το CatchSlide ισιώνει τη διαφάνεια σαν να την κοιτούσατε κατάφατσα, κόβοντας ό,τι περισσεύει από την αίθουσα. Ένα πράσινο πλαίσιο δείχνει ότι η διαφάνεια έχει κλειδώσει και η αυτόματη λήψη μπορεί να τραβήξει τη φωτογραφία για εσάς.
 
@@ -1123,6 +1225,12 @@ Kuvaa kalvot äänettömästi ja suoraan, ja löydä oikea kalvo yhdellä sanall
 
 Takarivistä otetut kalvokuvat ovat aina vinossa, ja ne hukkuvat selfieiden ja kuittien sekaan. CatchSlide on kamera, joka on tehty pelkästään esityskalvoille: se kuvaa kalvot, suoristaa ne ja pitää ne yhdessä. Lisäksi voit hakea kalvojen tekstistä.
 
+Kuvaa ja opiskele
+Selaa kalvoja kuin muistikortteja: muistele ensin, katso vastaus ja valitse Osaan tai Uudelleen. Kierrä vielä kierros pelkillä kalvoilla, jotka eivät vielä muistu, ja anna Apple Intelligencen tehdä jokaiseen kalvoon kertauskysymys.
+
+Kuvaa iPhonella, opiskele Macilla, iPadilla ja Vision Prolla
+iPadilla kuvaat ja opiskelet isolla näytöllä. Macilla ja Apple Vision Prolla kertaat luentokalvoja, jotka tulevat iCloud-synkronoinnin kautta. Edistymisesi kulkee mukana laitteelta toiselle.
+
 Aina suorassa
 Kamera löytää kalvon neljä kulmaa jo tähdätessäsi. Kuvaa miltä paikalta tahansa, ja CatchSlide oikaisee kalvon kuin katsoisit sitä suoraan edestä ja rajaa huoneen pois. Vihreä kehys kertoo, että kalvo on lukittu, ja automaattikuvaus voi ottaa kuvan puolestasi.
 
@@ -1189,6 +1297,12 @@ Potret slide dengan lurus tanpa suara rana, lalu temukan slide mana pun dari sat
 
 Slide yang difoto dari bangku belakang selalu miring, dan mudah hilang di antara foto selfie dan struk. CatchSlide adalah kamera khusus untuk slide presentasi: memotret, meluruskan, dan menyimpannya jadi satu. Teks di setiap slide juga bisa dicari.
 
+Potret, lalu belajar
+Balik slide satu per satu seperti kartu hafalan: ingat dulu, lihat jawabannya, lalu pilih Sudah Paham atau Ulangi Lagi. Ulangi satu putaran lagi hanya dengan slide yang belum kamu kuasai, dan biarkan Apple Intelligence membuat soal latihan untuk tiap slide.
+
+Potret di iPhone, belajar di Mac, iPad, dan Vision Pro
+Di iPad, potret dan belajar di layar besar. Di Mac dan Apple Vision Pro, ulangi slide kuliah yang masuk lewat sinkronisasi iCloud. Kemajuan belajarmu ikut tersimpan di semua perangkat.
+
 Selalu lurus
 Kamera menemukan keempat sudut slide secara langsung saat Anda membidik. Dari bangku mana pun, CatchSlide meluruskan slide seolah Anda memotret dari depan dan memangkas latar di sekitarnya. Bingkai hijau menandakan slide sudah terkunci, dan pemotretan otomatis bisa mengambil gambarnya untuk Anda.
 
@@ -1253,6 +1367,12 @@ Ta rette bilder av lysbilder uten lukkerlyd, og finn hvilket som helst lysbilde 
 ### 설명
 
 Lysbilder du tar bilde av fra bakerste rad blir alltid skeive, og de forsvinner mellom selfier og kvitteringer. CatchSlide er et kamera bare for presentasjonslysbilder: Det tar bildene, retter dem opp og holder dem samlet. Du kan også søke i teksten på dem og få alt oppsummert med Apple Intelligence rett på enheten.
+
+Ta bilder, og lær
+Bla gjennom lysbildene som huskekort: prøv å huske, vis svaret, og velg Kan det eller Se igjen. Ta en runde til med bare lysbildene du ikke kunne, og la Apple Intelligence lage et øvingsspørsmål til hvert lysbilde.
+
+Ta bilder med iPhone, lær på Mac, iPad og Vision Pro
+På iPad tar du bilder og lærer på den store skjermen. På Mac og Apple Vision Pro repeterer du forelesningsbildene som kommer via iCloud-synkronisering. Fremgangen din følger med på alle enheter.
 
 Rett hver gang
 Kameraet finner de fire hjørnene på lysbildet mens du sikter. Ta bildet fra hvilken som helst plass, så retter CatchSlide opp lysbildet som om du sto rett foran det, og beskjærer bort resten av rommet. En grønn ramme viser at lysbildet er fanget, og automatisk opptak kan ta bildet for deg.
@@ -1322,6 +1442,12 @@ Leg dia's geruisloos en kaarsrecht vast en vind elke dia terug met één woord. 
 
 Dia's die je vanaf de achterste rij fotografeert, staan altijd scheef en raken zoek tussen selfies en bonnetjes. CatchSlide is een camera speciaal voor presentatiedia's: hij legt ze vast, zet ze recht en houdt ze bij elkaar. Ook kun je zoeken in de tekst op je dia's, en vat Apple Intelligence alles samen op je apparaat.
 
+Vastleggen en leren
+Blader door je dia’s als flashcards: probeer het je te herinneren, toon het antwoord en kies Weet ik of Nog een keer. Doe nog een ronde met alleen de dia’s die je nog niet kent, en laat Apple Intelligence bij elke dia een oefenvraag maken.
+
+Vastleggen op iPhone, leren op Mac, iPad en Vision Pro
+Op iPad leg je vast en leer je op het grote scherm. Op Mac en Apple Vision Pro herhaal je de collegedia’s die via iCloud-synchronisatie binnenkomen. Je voortgang gaat mee naar elk apparaat.
+
 Elke keer recht
 De camera vindt de vier hoeken van de dia terwijl je richt. Fotografeer vanaf elke plek: CatchSlide maakt de dia vlak, alsof je er recht voor stond, en snijdt de rest van de zaal weg. Een groen kader laat zien dat de dia vergrendeld is en met automatisch vastleggen neemt de app de foto voor je.
 
@@ -1386,6 +1512,12 @@ Fotografuj slajdy bezgłośnie i prosto, a każdy znajdziesz po jednym słowie. 
 
 Slajdy fotografowane z ostatniego rzędu zawsze wychodzą krzywo i giną w galerii wśród selfie i paragonów. CatchSlide to aparat stworzony tylko do slajdów prezentacji: fotografuje je, prostuje i trzyma w jednym miejscu. Do tego możesz przeszukiwać ich tekst.
 
+Fotografuj i ucz się
+Przeglądaj slajdy jak fiszki: najpierw przypomnij sobie treść, potem pokaż odpowiedź i wybierz Umiem albo Jeszcze raz. Zrób kolejną rundę tylko ze slajdami, których jeszcze nie umiesz, a Apple Intelligence ułoży pytanie powtórkowe do każdego slajdu.
+
+Fotografuj iPhone’em, ucz się na Macu, iPadzie i Vision Pro
+Na iPadzie fotografujesz i uczysz się na dużym ekranie. Na Macu i Apple Vision Pro powtarzasz slajdy z wykładów, które docierają przez synchronizację iCloud. Twoje postępy są na każdym urządzeniu.
+
 Prosto za każdym razem
 Aparat wykrywa cztery rogi slajdu już podczas celowania. Fotografuj z dowolnego miejsca – CatchSlide wyprostuje slajd tak, jakbyś patrzył na niego na wprost, i przytnie otoczenie. Zielona ramka pokazuje, że slajd jest złapany, a automatyczne robienie zdjęć może zrobić je za Ciebie.
 
@@ -1448,6 +1580,12 @@ Fota slides ljudlöst och raka, och hitta vilken slide som helst med ett enda or
 ### 설명
 
 Slides som fotas från sista raden blir alltid sneda, och de försvinner bland selfies och kvitton. CatchSlide är en kamera enbart för presentationsslides: Den fotar dem, rätar upp dem och håller ihop dem. Du kan också söka i texten på dem och få allt sammanfattat med Apple Intelligence direkt på enheten.
+
+Fota och plugga
+Bläddra igenom dina slides som flashcards: försök minnas, visa svaret och välj Kan den eller Visa igen. Ta ett varv till med bara de slides du inte kunde, och låt Apple Intelligence skapa en övningsfråga till varje slide.
+
+Fota med iPhone, plugga på Mac, iPad och Vision Pro
+På iPad fotar och pluggar du på den stora skärmen. På Mac och Apple Vision Pro repeterar du föreläsningsslides som kommer via iCloud-synkronisering. Dina framsteg följer med till alla enheter.
 
 Rakt varje gång
 Kameran hittar slidens fyra hörn medan du siktar. Fota från vilken plats som helst, så rätar CatchSlide upp sliden som om du stod rakt framför den och beskär bort resten av rummet. En grön ram visar att slidan är fångad, och automatisk fotografering kan ta bilden åt dig.
@@ -1516,6 +1654,12 @@ Slaytları deklanşör sesi olmadan dümdüz çekin, tek bir sözcükle istediğ
 ### 설명
 
 Arka sıradan çekilen slaytlar hep eğri çıkar ve selfie'lerle fişlerin arasında kaybolur. CatchSlide, yalnızca sunum slaytları için tasarlanmış bir kamera: slaytları çeker, düzeltir ve bir arada tutar. Ayrıca slaytlardaki metinde arama yapabilir, hepsini Apple Intelligence ile doğrudan cihazda özetleyebilirsiniz.
+
+Çekin, sonra çalışın
+Slaytlarınızı kart gibi tek tek çevirin: önce hatırlamaya çalışın, cevabı görün, sonra Biliyorum ya da Tekrar bak seçin. Yalnızca bilemediğiniz slaytlarla bir tur daha atın; Apple Intelligence her slayt için bir tekrar sorusu hazırlasın.
+
+iPhone ile çekin, Mac, iPad ve Vision Pro’da çalışın
+iPad’de büyük ekranda hem çekin hem çalışın. Mac ve Apple Vision Pro’da iCloud eşzamanlamayla gelen ders slaytlarını tekrar edin. İlerlemeniz tüm cihazlarınızda sizi takip eder.
 
 Her seferinde dümdüz
 Kamera, siz nişan alırken slaytın dört köşesini bulur. Hangi sıradan çekerseniz çekin CatchSlide slaytı sanki tam karşısından bakıyormuşsunuz gibi düzleştirir, salonun geri kalanını keser. Yeşil çerçeve slaytın yakalandığını gösterir; otomatik çekim açıksa fotoğrafı sizin yerinize çeker.
