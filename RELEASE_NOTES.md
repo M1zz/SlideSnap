@@ -11,6 +11,7 @@ App Store "이 버전의 새로운 기능"에 그대로 올라가는 원본입�
 찍은 장표를 카드처럼 넘기며 공부해요
 헷갈린 장표만 모아 한 번 더 복습해요
 AI가 장표마다 복습 문제를 만들어 줘요
+큰 화면에서는 장표 옆에 메모를 펼쳐 적어요
 
 ### App Store (English)
 
@@ -18,6 +19,7 @@ Now on iPad, Mac and Apple Vision Pro
 Study your slides like flashcards
 Review only the slides you missed
 AI writes a review question for each slide
+On bigger screens, take notes right beside each slide
 
 ### App Store (en-GB)
 
@@ -25,6 +27,7 @@ Now on iPad, Mac and Apple Vision Pro
 Study your slides like flashcards
 Review only the slides you missed
 AI writes a revision question for each slide
+On bigger screens, take notes right beside each slide
 
 ### App Store (zh-Hans)
 
@@ -32,6 +35,7 @@ AI writes a revision question for each slide
 像翻卡片一样复习拍下的幻灯片
 只挑出没记住的幻灯片再复习一遍
 AI 为每张幻灯片出一道复习题
+大屏幕上可在幻灯片旁边直接记笔记
 
 ### App Store (zh-Hant)
 
@@ -39,6 +43,7 @@ AI 为每张幻灯片出一道复习题
 像翻卡片一樣複習拍下的投影片
 只挑出沒記住的投影片再複習一次
 AI 為每張投影片出一道複習題
+大螢幕上可在投影片旁邊直接做筆記
 
 ### 앱스토어 (일본어)
 
@@ -46,6 +51,7 @@ iPad、Mac、Apple Vision Proに対応しました
 撮ったスライドを単語カードのように復習
 覚えきれなかったスライドだけをもう一度
 AIがスライドごとに復習問題を作ります
+大きな画面ではスライドの横でメモが書けます
 
 ### 앱스토어 (러시아어)
 
@@ -53,6 +59,7 @@ AIがスライドごとに復習問題を作ります
 Учите слайды как карточки
 Повторяйте только то, что забыли
 ИИ составит вопрос к каждому слайду
+На большом экране заметки пишутся рядом со слайдом
 
 ### 앱스토어 (스페인어)
 
@@ -60,6 +67,7 @@ Ahora en iPad, Mac y Apple Vision Pro
 Estudia tus diapositivas como tarjetas
 Repasa solo las que no te sabías
 La IA crea una pregunta por diapositiva
+En pantallas grandes, toma notas junto a cada diapositiva
 
 ### 앱스토어 (독일어)
 
@@ -67,6 +75,7 @@ Jetzt auf iPad, Mac und Apple Vision Pro
 Lerne deine Folien wie Karteikarten
 Wiederhole nur, was noch nicht sitzt
 KI stellt zu jeder Folie eine Lernfrage
+Auf großen Displays Notizen direkt neben der Folie
 
 ### 앱스토어 (프랑스어)
 
@@ -74,6 +83,7 @@ Disponible sur iPad, Mac et Vision Pro
 Révisez vos diapos comme des fiches
 Revoyez seulement celles à retravailler
 L’IA crée une question par diapositive
+Sur grand écran, prenez des notes à côté de la diapo
 
 ### 앱스토어 (이탈리아어)
 
@@ -81,6 +91,7 @@ Ora su iPad, Mac e Apple Vision Pro
 Studia le diapositive come flashcard
 Ripassa solo quelle che non sai ancora
 L’IA crea una domanda per diapositiva
+Sugli schermi grandi, prendi appunti accanto alla slide
 
 ### App Store (pt-BR)
 
@@ -88,6 +99,7 @@ Agora no iPad, Mac e Apple Vision Pro
 Estude seus slides como flashcards
 Revise só os slides que você errou
 A IA cria uma pergunta para cada slide
+Em telas grandes, anote ao lado de cada slide
 
 ### 앱스토어 (태국어)
 
@@ -95,6 +107,7 @@ A IA cria uma pergunta para cada slide
 ทบทวนสไลด์ที่ถ่ายไว้เหมือนพลิกแฟลชการ์ด
 รวมเฉพาะสไลด์ที่ยังจำไม่ได้มาทบทวนอีกรอบ
 AI สร้างคำถามทบทวนให้ทุกสไลด์
+บนจอใหญ่ จดโน้ตข้างสไลด์ได้เลย
 
 ### 앱스토어 (베트남어)
 
@@ -102,6 +115,7 @@ AI สร้างคำถามทบทวนให้ทุกสไลด�
 Ôn slide đã chụp như lật thẻ ghi nhớ
 Chỉ ôn lại những slide bạn chưa nhớ
 AI tạo câu hỏi ôn tập cho từng slide
+Trên màn hình lớn, ghi chú ngay cạnh slide
 
 ### 앱스토어 (체코어)
 
@@ -109,6 +123,7 @@ Nově na iPadu, Macu a Apple Vision Pro
 Uč se ze slajdů jako z kartiček
 Opakuj jen slajdy, které ještě neumíš
 AI ke každému slajdu vymyslí otázku
+Na velké obrazovce si pište poznámky vedle snímku
 
 ### 앱스토어 (덴마크어)
 
@@ -116,6 +131,7 @@ Nu på iPad, Mac og Apple Vision Pro
 Lær dine slides som flashcards
 Gentag kun de slides, du ikke kunne
 AI laver et spørgsmål til hvert slide
+På store skærme skriver du noter ved siden af dias
 
 ### 앱스토어 (그리스어)
 
@@ -123,6 +139,7 @@ AI laver et spørgsmål til hvert slide
 Μελετήστε τις διαφάνειες σαν κάρτες
 Επαναλάβετε μόνο όσες δεν θυμηθήκατε
 Το AI φτιάχνει ερώτηση για κάθε διαφάνεια
+Σε μεγάλη οθόνη κρατάτε σημειώσεις δίπλα στη διαφάνεια
 
 ### 앱스토어 (핀란드어)
 
@@ -130,6 +147,7 @@ Nyt iPadilla, Macilla ja Vision Prolla
 Opiskele kalvoja kuin muistikortteja
 Kertaa vain kalvot, jotka eivät vielä muistu
 Tekoäly tekee kysymyksen joka kalvoon
+Isolla näytöllä kirjoitat muistiinpanot dian viereen
 
 ### 앱스토어 (인도네시아어)
 
@@ -137,6 +155,7 @@ Kini di iPad, Mac, dan Apple Vision Pro
 Belajar dari slide seperti kartu hafalan
 Ulangi hanya slide yang belum kamu kuasai
 AI membuat soal latihan untuk tiap slide
+Di layar besar, catat langsung di samping slide
 
 ### 앱스토어 (노르웨이어(보크말))
 
@@ -144,6 +163,7 @@ Nå på iPad, Mac og Apple Vision Pro
 Lær lysbildene som huskekort
 Repeter bare lysbildene du ikke kunne
 KI lager et spørsmål til hvert lysbilde
+På store skjermer skriver du notater ved siden av lysbildet
 
 ### 앱스토어 (네덜란드어)
 
@@ -151,6 +171,7 @@ Nu op iPad, Mac en Apple Vision Pro
 Leer je dia’s als flashcards
 Herhaal alleen de dia’s die je nog niet kent
 AI maakt bij elke dia een oefenvraag
+Op grote schermen maak je notities naast de dia
 
 ### 앱스토어 (폴란드어)
 
@@ -158,6 +179,7 @@ Teraz na iPadzie, Macu i Vision Pro
 Ucz się slajdów jak z fiszek
 Powtarzaj tylko slajdy, których nie umiesz
 AI układa pytanie do każdego slajdu
+Na dużym ekranie notujesz tuż obok slajdu
 
 ### 앱스토어 (스웨덴어)
 
@@ -165,6 +187,7 @@ Nu på iPad, Mac och Apple Vision Pro
 Plugga dina slides som flashcards
 Repetera bara slides du inte kunde
 AI skapar en fråga till varje slide
+På stora skärmar skriver du anteckningar bredvid bilden
 
 ### 앱스토어 (튀르키예어)
 
@@ -172,6 +195,7 @@ Artık iPad, Mac ve Apple Vision Pro’da
 Slaytlarınızı kart gibi çevirerek çalışın
 Yalnızca bilemediğiniz slaytları tekrarlayın
 Yapay zekâ her slayta bir soru hazırlar
+Büyük ekranda notlarını slaytın hemen yanına yaz
 
 ## 1.0.11
 

@@ -60,27 +60,17 @@ struct SlideDetailView: View {
             if slides.isEmpty {
                 Color.clear
             } else {
-                VStack(spacing: 0) {
-                    TabView(selection: $currentSlideID) {
-                        ForEach(slides) { slide in
-                            slideImage(slide)
-                                .tag(slide.id)
+                // 자리가 넉넉하면(iPad · Mac · Vision Pro) 장표 옆에 메모 노트를 펼쳐 두고 공부한다.
+                GeometryReader { geo in
+                    if geo.size.width >= 760 {
+                        HStack(spacing: 0) {
+                            viewer(memo: false)
+                            Divider()
+                            memoNote
                         }
+                    } else {
+                        viewer(memo: true)
                     }
-                    .tabViewStyle(.page(indexDisplayMode: .never))
-
-                    audioPanel
-
-                    memoField
-
-                    filmstrip
-
-                    Picker("보기", selection: $showOriginal) {
-                        Text("보정본").tag(false)
-                        Text("원본").tag(true)
-                    }
-                    .pickerStyle(.segmented)
-                    .padding()
                 }
                 .background(Color(.systemBackground))
             }
@@ -189,7 +179,68 @@ struct SlideDetailView: View {
         }
     }
 
+    /// 장표 넘기기 · 녹음 · 필름 띠 · 보기 고르기. 좁은 화면은 메모 한 줄도 이 안에 둔다.
+    private func viewer(memo: Bool) -> some View {
+        VStack(spacing: 0) {
+            TabView(selection: $currentSlideID) {
+                ForEach(slides) { slide in
+                    slideImage(slide)
+                        .tag(slide.id)
+                }
+            }
+            .tabViewStyle(.page(indexDisplayMode: .never))
+
+            audioPanel
+
+            if memo { memoField }
+
+            filmstrip
+
+            Picker("보기", selection: $showOriginal) {
+                Text("보정본").tag(false)
+                Text("원본").tag(true)
+            }
+            .pickerStyle(.segmented)
+            .padding()
+        }
+    }
+
     // MARK: - 메모
+
+    /// 넓은 화면의 메모 노트: 장표를 보면서 길게 적는다. 같은 장표 메모라 검색 · 공부하기 · 내보내기 · iCloud 에 그대로 간다.
+    private var memoNote: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Label("메모", systemImage: "note.text")
+                .font(.headline)
+                .foregroundStyle(.secondary)
+            ZStack(alignment: .topLeading) {
+                TextEditor(text: $memoDraft)
+                    .focused($memoFocused)
+                    .scrollContentBackground(.hidden)
+                if memoDraft.isEmpty {
+                    Text("이 장표에 메모 남기기")
+                        .foregroundStyle(.tertiary)
+                        .padding(.top, 8)
+                        .padding(.leading, 5)
+                        .allowsHitTesting(false)
+                        .accessibilityHidden(true)
+                }
+            }
+            .font(.body)
+        }
+        .padding(16)
+        .frame(width: 340)
+        .frame(maxHeight: .infinity, alignment: .top)
+        .background(Color(.secondarySystemBackground))
+        #if !os(visionOS)
+        .toolbar {
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button("완료", systemImage: "checkmark") { memoFocused = false }
+            }
+        }
+        #endif
+    }
 
     private var memoField: some View {
         HStack(alignment: .firstTextBaseline, spacing: 8) {
