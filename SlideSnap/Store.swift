@@ -234,6 +234,55 @@ final class Store: ObservableObject {
         return slide.id
     }
 
+    /// 잘못 찍은 장표를 새로 찍은 사진으로 바꾼다. 자리 · id · 찍은 시각(녹음 속 위치) · 메모 · 공부 표시는 그대로 두고,
+    /// 그림 · 모서리 · 인식한 글자만 새것으로 바꾼다. 또렷하게 보정을 켜 둔 장표면 새 사진도 보정한다.
+    /// - Returns: 바꿨으면 true.
+    @discardableResult
+    func replaceSlide(_ slideID: UUID, in presentationID: UUID, with image: UIImage, detectedQuad: Quad? = nil) async -> Bool {
+        guard let old = presentation(presentationID)?.slides.first(where: { $0.id == slideID }) else { return false }
+        let directory = imagesDirectoryURL
+        let made = await Task.detached(priority: .userInitiated) {
+            SlideFactory.makeSlide(
+                from: image, in: directory, detectedQuad: detectedQuad,
+                createdAt: old.createdAt, enhance: old.isEnhanced
+            )
+        }.value
+        guard let made else { return false }
+
+        // 기다리는 사이 장표가 지워졌으면 새 파일만 치운다.
+        guard let pIndex = presentations.firstIndex(where: { $0.id == presentationID }),
+              let sIndex = presentations[pIndex].slides.firstIndex(where: { $0.id == slideID }) else {
+            deleteFiles(of: made)
+            return false
+        }
+        let current = presentations[pIndex].slides[sIndex]
+        var replaced = Slide(
+            id: slideID,
+            createdAt: current.createdAt,
+            originalFile: made.originalFile,
+            correctedFile: made.correctedFile,
+            thumbFile: made.thumbFile,
+            corners: made.corners,
+            autoDetected: made.autoDetected,
+            recognizedText: made.recognizedText,
+            enhanced: made.enhanced,
+            enhancedFile: made.enhancedFile
+        )
+        replaced.memo = current.memo
+        replaced.studyMark = current.studyMark
+        deleteFiles(of: current)
+        presentations[pIndex].slides[sIndex] = replaced
+        // 예전 그림으로 만든 복습 문제는 맞지 않으니 뺀다.
+        var saves: [SyncRecordID] = [.slide(slideID)]
+        if presentations[pIndex].quiz?.contains(where: { $0.slideID == slideID }) == true {
+            presentations[pIndex].quiz?.removeAll { $0.slideID == slideID }
+            saves.append(.presentation(presentationID))
+        }
+        persist()
+        track(save: saves)
+        return true
+    }
+
     /// 사진 앱에서 고른 이미지들을 순서대로 감지·보정해 발표에 넣습니다.
     /// 메모리를 아끼려고 한 장씩 로드→처리→해제하며, 진행 상황을 콜백으로 알립니다.
     func importImages(

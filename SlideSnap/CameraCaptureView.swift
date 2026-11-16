@@ -151,6 +151,14 @@ struct CameraCaptureView: View {
     /// 이어 찍기를 골랐다. 부모가 새 발표 초안을 버리고 그 발표로 바꾼다.
     var onContinue: ((UUID) -> Void)? = nil
     @State private var continueDismissed = false
+    /// 이 장표를 다시 찍는다. 한 장을 찍으면 그 자리에 바꿔 넣고 닫는다(순서는 그대로).
+    var retake: RetakeTarget? = nil
+    /// 다시 찍기에서 셔터가 한 번 눌렸다(두 번 바꿔 넣지 않게).
+    @State private var retakeShot = false
+    /// 촬영 중 '방금 찍은 장표 다시 찍기'를 눌렀다. 다음 셔터가 그 장표를 바꾸고, 카메라는 그대로 이어 찍는다.
+    @State private var armedRetake: RetakeTarget?
+    /// 지금 셔터가 바꿀 장표(장표 화면에서 열었거나, 촬영 중 골랐거나).
+    private var activeRetake: RetakeTarget? { retake ?? armedRetake }
 
     @StateObject private var camera = CameraController()
     @State private var captureCount = 0
@@ -251,7 +259,31 @@ struct CameraCaptureView: View {
     /// "‘운영체제’에 이어 찍기" — 첫 장을 찍으면 사라진다. 누르면 그 발표 뒤에 붙고, ✕ 면 새 발표 그대로.
     @ViewBuilder
     private var continueBanner: some View {
-        if let candidate = continueCandidate, captureCount == 0, !continueDismissed {
+        if let target = activeRetake {
+            HStack(spacing: 0) {
+                Label(String(localized: "장표 \(target.number) 다시 찍기"), systemImage: "arrow.triangle.2.circlepath.camera")
+                    .font(.subheadline.weight(.semibold))
+                    .padding(.leading, 14)
+                    .padding(.trailing, retake == nil ? 0 : 14)
+                    .padding(.vertical, 10)
+                    .accessibilityAddTraits(.isHeader)
+                // 촬영 중에 고른 다시 찍기는 ✕ 로 물린다(새 장표로 이어 찍기).
+                if retake == nil {
+                    Button {
+                        withAnimation(.snappy) { armedRetake = nil }
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.subheadline.weight(.bold))
+                            .frame(width: 40, height: 40)
+                    }
+                    .accessibilityLabel(Text("다시 찍기 그만두기"))
+                }
+            }
+            .foregroundStyle(.white)
+            .background(Color.orange.opacity(0.85), in: Capsule())
+            .padding(.horizontal, 24)
+            .transition(.move(edge: .top).combined(with: .opacity))
+        } else if let candidate = continueCandidate, captureCount == 0, !continueDismissed {
             HStack(spacing: 0) {
                 Button {
                     UIImpactFeedbackGenerator(style: .light).impactOccurred()
@@ -397,7 +429,7 @@ struct CameraCaptureView: View {
             Button {
                 dismiss()
             } label: {
-                Text("완료")
+                (retake == nil ? Text("완료") : Text("취소"))
                     .font(.headline)
                     .foregroundStyle(.white)
                     .padding(.horizontal, 16)
@@ -443,6 +475,8 @@ struct CameraCaptureView: View {
                     .onGeometryChange(for: CGRect.self) { $0.frame(in: .named(Self.space)) } action: { thumbnailFrame = $0 }
             }
             .disabled(captureCount == 0)
+            .opacity(retake == nil ? 1 : 0)
+            .accessibilityHidden(retake != nil)
             .accessibilityLabel("촬영한 장표 보기")
             .accessibilityValue(captureCount > 0 ? Text("\(captureCount)장") : Text(""))
 
@@ -453,7 +487,7 @@ struct CameraCaptureView: View {
             } label: {
                 ZStack {
                     Circle()
-                        .stroke(camera.isLocked ? Color.green : .white, lineWidth: 4)
+                        .stroke(activeRetake != nil ? Color.orange : camera.isLocked ? Color.green : .white, lineWidth: 4)
                         .frame(width: 76, height: 76)
                     Circle()
                         .fill(.white)
@@ -461,16 +495,44 @@ struct CameraCaptureView: View {
                 }
                 .animation(.easeOut(duration: 0.15), value: camera.isLocked)
             }
-            .disabled(camera.authorizationDenied)
-            .accessibilityLabel("촬영하기")
+            .disabled(camera.authorizationDenied || retakeShot)
+            .accessibilityLabel(activeRetake == nil ? Text("촬영하기") : Text("다시 찍기"))
 
             Spacer()
 
-            memoButton
-                .frame(width: 64, height: 64)
+            VStack(spacing: 10) {
+                retakeLastButton
+                memoButton
+            }
+            .frame(width: 64)
         }
         .padding(.horizontal, 28)
         .padding(.bottom, 28)
+    }
+
+    /// 방금 담은 장표가 흔들렸거나 잘못 찍혔으면 — 다음 셔터로 그 자리를 바꾼다(순서는 그대로).
+    private var retakeLastButton: some View {
+        let hidden = lastSlideID == nil || retake != nil
+        return Button {
+            guard let lastSlideID,
+                  let index = store.presentation(presentationID)?.slides.firstIndex(where: { $0.id == lastSlideID })
+            else { return }
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+            withAnimation(.snappy) {
+                armedRetake = armedRetake == nil ? RetakeTarget(id: lastSlideID, number: index + 1) : nil
+            }
+        } label: {
+            Image(systemName: "arrow.triangle.2.circlepath.camera")
+                .font(.title2)
+                .foregroundStyle(armedRetake == nil ? Color.white : Color.orange)
+                .frame(width: 52, height: 52)
+                .background(.black.opacity(0.4), in: Circle())
+        }
+        .opacity(hidden ? 0 : 1)
+        .disabled(hidden || retakeShot)
+        .animation(.easeOut(duration: 0.25), value: hidden)
+        .accessibilityLabel("방금 찍은 장표 다시 찍기")
+        .accessibilityValue(armedRetake == nil ? Text("") : Text("켬"))
     }
 
     /// 방금 담은 장표에 바로 메모를 붙인다(촬영을 멈추지 않고).
@@ -486,8 +548,8 @@ struct CameraCaptureView: View {
                 .frame(width: 52, height: 52)
                 .background(.black.opacity(0.4), in: Circle())
         }
-        .opacity(lastSlideID == nil ? 0 : 1)
-        .disabled(lastSlideID == nil)
+        .opacity(lastSlideID == nil || retake != nil ? 0 : 1)
+        .disabled(lastSlideID == nil || retake != nil)
         .animation(.easeOut(duration: 0.25), value: lastSlideID == nil)
         .accessibilityLabel("방금 찍은 장표에 메모")
     }
@@ -588,6 +650,10 @@ struct CameraCaptureView: View {
     /// - Parameter auto: 자동 촬영이면 흔들린(흐릿한) 컷을 걸러내고, 결과를 카메라에 알린다.
     ///   수동 촬영은 사용자의 의도이므로 걸러내지 않고 그대로 담는다.
     private func capture(auto: Bool = false) {
+        if activeRetake != nil {
+            guard !retakeShot else { return }
+            retakeShot = true
+        }
         // 눈부시지 않게 살짝 밝아졌다가 천천히 돌아온다(동작 줄이기면 번쩍임 없이).
         if !reduceMotion {
             withAnimation(.easeOut(duration: 0.08)) { flashOpacity = 0.35 }
@@ -612,10 +678,31 @@ struct CameraCaptureView: View {
                     if blurry {
                         processingCount = max(0, processingCount - 1)
                         camera.finishAutoCapture(saved: false)   // 기준 유지 → 안정되면 다시 시도
+                        retakeShot = false
                         flashBlurHint()
                         return
                     }
                     camera.finishAutoCapture(saved: true)
+                }
+
+                // 다시 찍기: 그 자리에 바꿔 넣는다. 장표 화면에서 열었으면 닫고, 촬영 중이면 이어 찍는다.
+                if let target = activeRetake {
+                    let replaced = await store.replaceSlide(target.id, in: presentationID, with: image, detectedQuad: quadAtCapture)
+                    processingCount = max(0, processingCount - 1)
+                    retakeShot = false
+                    guard replaced else { return }
+                    UINotificationFeedbackGenerator().notificationOccurred(.success)
+                    AccessibilityNotification.Announcement(String(localized: "새로 찍은 장표로 바꿨어요")).post()
+                    if retake != nil {
+                        dismiss()
+                    } else {
+                        withAnimation(.snappy) { armedRetake = nil }
+                        Task.detached(priority: .userInitiated) {
+                            let quick = image.downsampled(maxDimension: 600)
+                            await MainActor.run { fly(quick) }
+                        }
+                    }
+                    return
                 }
 
                 // 즉시 피드백: 사진이 도착하자마자 카운트를 올리고 빠른 미리보기를 띄운다.

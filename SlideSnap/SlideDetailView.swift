@@ -18,6 +18,8 @@ struct SlideDetailView: View {
     @State private var showingDeleteConfirm = false
     @State private var shareItem: ShareItem?
     @State private var isEnhancing = false
+    /// 잘못 찍은 장표를 그 자리에서 다시 찍는다.
+    @State private var retakeTarget: RetakeTarget?
 
     @StateObject private var playback = AudioPlayback()
     @ObservedObject private var purchases = PurchaseManager.shared
@@ -128,6 +130,14 @@ struct SlideDetailView: View {
                         }
                     }
 
+                    if Capture.isAvailable, let index = currentIndex {
+                        Button {
+                            retakeTarget = RetakeTarget(id: currentSlideID, number: index + 1)
+                        } label: {
+                            Label("다시 찍기", systemImage: "arrow.triangle.2.circlepath.camera")
+                        }
+                    }
+
                     Button {
                         showingAdjust = true
                     } label: {
@@ -165,6 +175,12 @@ struct SlideDetailView: View {
         .sheet(item: $shareItem) { item in
             ShareSheet(items: [item.url])
         }
+        #if os(iOS) && !targetEnvironment(macCatalyst)
+        .fullScreenCover(item: $retakeTarget) { target in
+            CameraCaptureView(presentationID: presentationID, retake: target)
+                .foldConfined()
+        }
+        #endif
         .confirmationDialog("이 장표를 삭제할까요?", isPresented: $showingDeleteConfirm, titleVisibility: .visible) {
             Button("삭제", role: .destructive) {
                 deleteCurrent()

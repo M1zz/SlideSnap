@@ -7,10 +7,19 @@
 //  화면이 '찍기' 단추를 그릴지는 이 값 하나로 정한다.
 //
 
+import Foundation
+
 enum Capture {
     #if os(iOS) && !targetEnvironment(macCatalyst)
     static let isAvailable = true
     #else
     static let isAvailable = false
     #endif
+}
+
+/// 다시 찍을 장표. 카메라를 `fullScreenCover(item:)` 로 띄울 때 쓴다.
+struct RetakeTarget: Identifiable, Hashable {
+    let id: UUID
+    /// 화면에 적을 장표 번호(1부터)
+    let number: Int
 }

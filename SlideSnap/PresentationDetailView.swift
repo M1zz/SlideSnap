@@ -48,6 +48,8 @@ struct PresentationDetailView: View {
     let presentationID: UUID
 
     @State private var showingCamera = false
+    /// 잘못 찍은 장표를 그 자리에서 다시 찍는다.
+    @State private var retakeTarget: RetakeTarget?
     @State private var showingStudy = false
     @State private var showingNotes = false
     @State private var isExporting = false
@@ -95,6 +97,10 @@ struct PresentationDetailView: View {
         .fullScreenCover(isPresented: $showingCamera) {
             CameraCaptureView(presentationID: presentationID)
                 // 아이폰 듀오를 펴면 카메라는 고르는 쪽 판에만 선다.
+                .foldConfined()
+        }
+        .fullScreenCover(item: $retakeTarget) { target in
+            CameraCaptureView(presentationID: presentationID, retake: target)
                 .foldConfined()
         }
         #endif
@@ -416,6 +422,13 @@ struct PresentationDetailView: View {
                                 shareBundle = ShareBundle(items: [store.imageURL(store.displayFile(for: slide))])
                             } label: {
                                 Label("이미지 공유", systemImage: "square.and.arrow.up")
+                            }
+                            if Capture.isAvailable {
+                                Button {
+                                    retakeTarget = RetakeTarget(id: slide.id, number: index + 1)
+                                } label: {
+                                    Label("다시 찍기", systemImage: "arrow.triangle.2.circlepath.camera")
+                                }
                             }
                             Button(role: .destructive) {
                                 store.deleteSlide(slide.id, from: presentationID)
