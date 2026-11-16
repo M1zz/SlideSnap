@@ -104,7 +104,8 @@ for lang in $LANGS; do
   # 수신함을 앱이 다 가져갈 때까지(발표로 만들어질 때까지) 기다린다.
   locale=$(locale_for $lang)
   # 설치 직후엔 앱이 아직 등록되지 않아 실행이 거부될 때가 있다 — 잠깐 기다려 다시 띄운다.
-  for i in {1..5}; do
+  # Vision Pro 는 부팅이 끝나고도 1분 넘게 실행을 거부한다.
+  for i in {1..20}; do
     perl -e 'alarm shift; exec @ARGV' 60 xcrun simctl launch $UDID $BUNDLE -AppleLanguages "($lang)" -AppleLocale $locale >/dev/null && break
     sleep 5
   done
