@@ -1,0 +1,19 @@
+{
+  "color-space-for-untagged-svg-colors" : "display-p3",
+  "fill-specializations" : [
+    { "value" : { "linear-gradient" : [ "display-p3:0.17000,0.26000,0.62000,1.00000", "display-p3:0.07000,0.11000,0.36000,1.00000" ],
+                  "orientation" : { "start" : { "x" : 0.15, "y" : 0.0 }, "stop" : { "x" : 0.85, "y" : 1.0 } } } },
+    { "appearance" : "dark",
+      "value" : { "linear-gradient" : [ "display-p3:0.08000,0.12000,0.30000,1.00000", "display-p3:0.02000,0.03000,0.12000,1.00000" ],
+                  "orientation" : { "start" : { "x" : 0.5, "y" : 0.0 }, "stop" : { "x" : 0.5, "y" : 1.0 } } } }
+  ],
+  "groups" : [
+    { "name" : "Text", "layers" : [ { "name" : "Text", "glass" : false, "image-name-specializations" : [ { "value" : "text.svg" } ] } ],
+      "lighting" : "individual", "shadow" : { "kind" : "neutral", "opacity" : 0.0 }, "specular" : false, "translucency" : { "enabled" : false, "value" : 0.0 } },
+    { "name" : "Card", "layers" : [ { "name" : "Card", "glass" : true, "image-name-specializations" : [ { "value" : "card.svg" } ] } ],
+      "lighting" : "individual", "shadow" : { "kind" : "neutral", "opacity" : 0.45 }, "specular" : true, "translucency" : { "enabled" : false, "value" : 0.0 } },
+    { "name" : "Brackets", "layers" : [ { "name" : "Brackets", "glass" : true, "image-name-specializations" : [ { "value" : "brackets.svg" } ] } ],
+      "lighting" : "individual", "shadow" : { "kind" : "neutral", "opacity" : 0.35 }, "specular" : true, "translucency" : { "enabled" : false, "value" : 0.0 } }
+  ],
+  "supported-platforms" : { "circles" : [ "watchOS" ], "squares" : "shared" }
+}
