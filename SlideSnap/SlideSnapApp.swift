@@ -24,6 +24,8 @@ struct SlideSnapApp: App {
                 .leeoFeedbackReplyNotice(SlideSnapSpec.self)
                 // 아이폰 듀오: 접힘을 재서 아래로 흘리고, 시트 · 알림창이 접힌 선을 비키게 한다.
                 .foldAware()
+                // 유료가 되면 콘페티, 모두에게 한 번은 감사 (LeeoKit — 판정은 LeeoStore 가 한다).
+                .leeoCelebrations(appName: SlideSnapSpec.displayName)
                 #if DEBUG
                 // `-reviewShot <상품 ID>` 면 앱 대신 그 상품의 심사 이미지 장면을 세운다 (→ ReviewShot.swift).
                 .reviewShotScene()
