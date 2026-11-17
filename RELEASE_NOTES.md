@@ -3,6 +3,200 @@
 App Store "이 버전의 새로운 기능"에 그대로 올라가는 원본입니다.
 `## 버전` 아래 `### ... 앱스토어` 절만 스토어로 나갑니다.
 
+## 1.0.13
+
+### 앱스토어 (한국어)
+
+iCloud 동기화를 이제 누구나 무료로 써요
+iPhone으로 찍고 iPad, Mac, Vision Pro에서 공부해요
+큰 화면에서는 장표 옆에 메모를 펼쳐 적어요
+찍으면서 강의를 녹음할 수 있어요
+이름을 가져올 캘린더를 고를 수 있어요
+
+### App Store (English)
+
+iCloud sync is now free for everyone
+Capture on iPhone, study on iPad, Mac and Vision Pro
+On bigger screens, take notes right beside each slide
+Record the lecture while you capture
+Choose which calendars to use for naming
+
+### App Store (en-GB)
+
+iCloud sync is now free for everyone
+Capture on iPhone, revise on iPad, Mac and Vision Pro
+On bigger screens, take notes right beside each slide
+Record the lecture while you capture
+Choose which calendars to use for naming
+
+### App Store (zh-Hans)
+
+iCloud 同步现在对所有人免费
+用 iPhone 拍，在 iPad、Mac 和 Vision Pro 上复习
+大屏幕上可在幻灯片旁边直接记笔记
+拍摄时可以同时录下课堂内容
+可以选择用哪些日历来命名
+
+### App Store (zh-Hant)
+
+iCloud 同步現在人人免費
+用 iPhone 拍，在 iPad、Mac 和 Vision Pro 上複習
+大螢幕上可在投影片旁邊直接做筆記
+拍攝時可以同時錄下課堂內容
+可以選擇用哪些行事曆來命名
+
+### 앱스토어 (일본어)
+
+iCloud同期がどなたでも無料になりました
+iPhoneで撮ってiPad、Mac、Vision Proで復習
+大きな画面ではスライドの横でメモが書けます
+撮影しながら講義を録音できます
+名前に使うカレンダーを選べます
+
+### 앱스토어 (러시아어)
+
+Синхронизация iCloud теперь бесплатна
+Снимайте на iPhone, учите на iPad, Mac и Vision Pro
+На большом экране заметки пишутся рядом со слайдом
+Записывайте лекцию прямо во время съёмки
+Выбирайте календари для названий
+
+### 앱스토어 (스페인어)
+
+La sincronización con iCloud ya es gratis
+Captura en el iPhone y estudia en iPad, Mac y Vision Pro
+En pantallas grandes, toma notas junto a cada diapositiva
+Graba la clase mientras capturas
+Elige qué calendarios usar para los nombres
+
+### 앱스토어 (독일어)
+
+Der iCloud-Abgleich ist jetzt kostenlos
+Auf dem iPhone aufnehmen, auf iPad, Mac und Vision Pro lernen
+Auf großen Displays Notizen direkt neben der Folie
+Nimm die Vorlesung beim Fotografieren auf
+Wähle die Kalender für die Benennung
+
+### 앱스토어 (프랑스어)
+
+La synchronisation iCloud devient gratuite
+Capturez sur iPhone, révisez sur iPad, Mac et Vision Pro
+Sur grand écran, prenez des notes à côté de la diapo
+Enregistrez le cours pendant la capture
+Choisissez les calendriers utilisés pour nommer
+
+### 앱스토어 (이탈리아어)
+
+La sincronizzazione iCloud ora è gratis
+Scatta su iPhone, studia su iPad, Mac e Vision Pro
+Sugli schermi grandi, prendi appunti accanto alla slide
+Registra la lezione mentre scatti
+Scegli quali calendari usare per i nomi
+
+### App Store (pt-BR)
+
+A sincronização com o iCloud agora é grátis
+Capture no iPhone e estude no iPad, Mac e Vision Pro
+Em telas grandes, anote ao lado de cada slide
+Grave a aula enquanto captura
+Escolha quais calendários usar nos nomes
+
+### 앱스토어 (태국어)
+
+ซิงค์ iCloud ใช้ได้ฟรีทุกคนแล้ว
+ถ่ายด้วย iPhone แล้วทบทวนบน iPad, Mac และ Vision Pro
+บนจอใหญ่ จดโน้ตข้างสไลด์ได้เลย
+อัดเสียงบรรยายไปพร้อมกับถ่ายสไลด์
+เลือกปฏิทินที่จะใช้ตั้งชื่อได้
+
+### 앱스토어 (베트남어)
+
+Đồng bộ iCloud nay miễn phí cho mọi người
+Chụp trên iPhone, ôn bài trên iPad, Mac và Vision Pro
+Trên màn hình lớn, ghi chú ngay cạnh slide
+Ghi âm bài giảng trong lúc chụp
+Chọn lịch dùng để đặt tên
+
+### 앱스토어 (체코어)
+
+Synchronizace s iCloudem je teď zdarma
+Foť na iPhonu, uč se na iPadu, Macu a Vision Pro
+Na velké obrazovce si pište poznámky vedle snímku
+Nahrávej přednášku, zatímco fotíš
+Vyber kalendáře, podle kterých se pojmenovává
+
+### 앱스토어 (덴마크어)
+
+iCloud-synkronisering er nu gratis for alle
+Tag billeder på iPhone, lær på iPad, Mac og Vision Pro
+På store skærme skriver du noter ved siden af dias
+Optag forelæsningen, mens du tager billeder
+Vælg hvilke kalendere der bruges til navne
+
+### 앱스토어 (그리스어)
+
+Ο συγχρονισμός iCloud είναι πλέον δωρεάν
+Τραβήξτε στο iPhone, μελετήστε σε iPad, Mac και Vision Pro
+Σε μεγάλη οθόνη κρατάτε σημειώσεις δίπλα στη διαφάνεια
+Ηχογραφήστε τη διάλεξη ενώ τραβάτε
+Επιλέξτε ημερολόγια για την ονομασία
+
+### 앱스토어 (핀란드어)
+
+iCloud-synkronointi on nyt kaikille ilmainen
+Kuvaa iPhonella, opiskele iPadilla, Macilla ja Vision Prolla
+Isolla näytöllä kirjoitat muistiinpanot dian viereen
+Nauhoita luento samalla kun kuvaat
+Valitse kalenterit, joista nimet haetaan
+
+### 앱스토어 (인도네시아어)
+
+Sinkronisasi iCloud kini gratis untuk semua
+Potret di iPhone, belajar di iPad, Mac, dan Vision Pro
+Di layar besar, catat langsung di samping slide
+Rekam kuliah sambil memotret
+Pilih kalender yang dipakai untuk nama
+
+### 앱스토어 (노르웨이어(보크말))
+
+iCloud-synkronisering er nå gratis for alle
+Ta bilder på iPhone, lær på iPad, Mac og Vision Pro
+På store skjermer skriver du notater ved siden av lysbildet
+Ta opp forelesningen mens du tar bilder
+Velg hvilke kalendere som brukes til navn
+
+### 앱스토어 (네덜란드어)
+
+iCloud-synchronisatie is nu gratis
+Leg vast op iPhone, leer op iPad, Mac en Vision Pro
+Op grote schermen maak je notities naast de dia
+Neem het college op terwijl je vastlegt
+Kies welke agenda's je voor namen gebruikt
+
+### 앱스토어 (폴란드어)
+
+Synchronizacja iCloud jest teraz bezpłatna
+Rób zdjęcia na iPhonie, ucz się na iPadzie, Macu i Vision Pro
+Na dużym ekranie notujesz tuż obok slajdu
+Nagrywaj wykład podczas robienia zdjęć
+Wybierz kalendarze używane do nazw
+
+### 앱스토어 (스웨덴어)
+
+iCloud-synkronisering är nu gratis för alla
+Fota på iPhone, plugga på iPad, Mac och Vision Pro
+På stora skärmar skriver du anteckningar bredvid bilden
+Spela in föreläsningen medan du fotar
+Välj vilka kalendrar som används för namn
+
+### 앱스토어 (튀르키예어)
+
+iCloud eşzamanlama artık herkese ücretsiz
+iPhone’da çek, iPad, Mac ve Vision Pro’da çalış
+Büyük ekranda notlarını slaytın hemen yanına yaz
+Çekerken dersi kaydet
+Adlandırmada kullanılacak takvimleri seç
+
 ## 1.0.12
 
 ### 앱스토어 (한국어)
@@ -11,7 +205,6 @@ App Store "이 버전의 새로운 기능"에 그대로 올라가는 원본입�
 찍은 장표를 카드처럼 넘기며 공부해요
 헷갈린 장표만 모아 한 번 더 복습해요
 AI가 장표마다 복습 문제를 만들어 줘요
-큰 화면에서는 장표 옆에 메모를 펼쳐 적어요
 
 ### App Store (English)
 
@@ -19,7 +212,6 @@ Now on iPad, Mac and Apple Vision Pro
 Study your slides like flashcards
 Review only the slides you missed
 AI writes a review question for each slide
-On bigger screens, take notes right beside each slide
 
 ### App Store (en-GB)
 
@@ -27,7 +219,6 @@ Now on iPad, Mac and Apple Vision Pro
 Study your slides like flashcards
 Review only the slides you missed
 AI writes a revision question for each slide
-On bigger screens, take notes right beside each slide
 
 ### App Store (zh-Hans)
 
@@ -35,7 +226,6 @@ On bigger screens, take notes right beside each slide
 像翻卡片一样复习拍下的幻灯片
 只挑出没记住的幻灯片再复习一遍
 AI 为每张幻灯片出一道复习题
-大屏幕上可在幻灯片旁边直接记笔记
 
 ### App Store (zh-Hant)
 
@@ -43,7 +233,6 @@ AI 为每张幻灯片出一道复习题
 像翻卡片一樣複習拍下的投影片
 只挑出沒記住的投影片再複習一次
 AI 為每張投影片出一道複習題
-大螢幕上可在投影片旁邊直接做筆記
 
 ### 앱스토어 (일본어)
 
@@ -51,7 +240,6 @@ iPad、Mac、Apple Vision Proに対応しました
 撮ったスライドを単語カードのように復習
 覚えきれなかったスライドだけをもう一度
 AIがスライドごとに復習問題を作ります
-大きな画面ではスライドの横でメモが書けます
 
 ### 앱스토어 (러시아어)
 
@@ -59,7 +247,6 @@ AIがスライドごとに復習問題を作ります
 Учите слайды как карточки
 Повторяйте только то, что забыли
 ИИ составит вопрос к каждому слайду
-На большом экране заметки пишутся рядом со слайдом
 
 ### 앱스토어 (스페인어)
 
@@ -67,7 +254,6 @@ Ahora en iPad, Mac y Apple Vision Pro
 Estudia tus diapositivas como tarjetas
 Repasa solo las que no te sabías
 La IA crea una pregunta por diapositiva
-En pantallas grandes, toma notas junto a cada diapositiva
 
 ### 앱스토어 (독일어)
 
@@ -75,7 +261,6 @@ Jetzt auf iPad, Mac und Apple Vision Pro
 Lerne deine Folien wie Karteikarten
 Wiederhole nur, was noch nicht sitzt
 KI stellt zu jeder Folie eine Lernfrage
-Auf großen Displays Notizen direkt neben der Folie
 
 ### 앱스토어 (프랑스어)
 
@@ -83,7 +268,6 @@ Disponible sur iPad, Mac et Vision Pro
 Révisez vos diapos comme des fiches
 Revoyez seulement celles à retravailler
 L’IA crée une question par diapositive
-Sur grand écran, prenez des notes à côté de la diapo
 
 ### 앱스토어 (이탈리아어)
 
@@ -91,7 +275,6 @@ Ora su iPad, Mac e Apple Vision Pro
 Studia le diapositive come flashcard
 Ripassa solo quelle che non sai ancora
 L’IA crea una domanda per diapositiva
-Sugli schermi grandi, prendi appunti accanto alla slide
 
 ### App Store (pt-BR)
 
@@ -99,7 +282,6 @@ Agora no iPad, Mac e Apple Vision Pro
 Estude seus slides como flashcards
 Revise só os slides que você errou
 A IA cria uma pergunta para cada slide
-Em telas grandes, anote ao lado de cada slide
 
 ### 앱스토어 (태국어)
 
@@ -107,7 +289,6 @@ Em telas grandes, anote ao lado de cada slide
 ทบทวนสไลด์ที่ถ่ายไว้เหมือนพลิกแฟลชการ์ด
 รวมเฉพาะสไลด์ที่ยังจำไม่ได้มาทบทวนอีกรอบ
 AI สร้างคำถามทบทวนให้ทุกสไลด์
-บนจอใหญ่ จดโน้ตข้างสไลด์ได้เลย
 
 ### 앱스토어 (베트남어)
 
@@ -115,7 +296,6 @@ AI สร้างคำถามทบทวนให้ทุกสไลด�
 Ôn slide đã chụp như lật thẻ ghi nhớ
 Chỉ ôn lại những slide bạn chưa nhớ
 AI tạo câu hỏi ôn tập cho từng slide
-Trên màn hình lớn, ghi chú ngay cạnh slide
 
 ### 앱스토어 (체코어)
 
@@ -123,7 +303,6 @@ Nově na iPadu, Macu a Apple Vision Pro
 Uč se ze slajdů jako z kartiček
 Opakuj jen slajdy, které ještě neumíš
 AI ke každému slajdu vymyslí otázku
-Na velké obrazovce si pište poznámky vedle snímku
 
 ### 앱스토어 (덴마크어)
 
@@ -131,7 +310,6 @@ Nu på iPad, Mac og Apple Vision Pro
 Lær dine slides som flashcards
 Gentag kun de slides, du ikke kunne
 AI laver et spørgsmål til hvert slide
-På store skærme skriver du noter ved siden af dias
 
 ### 앱스토어 (그리스어)
 
@@ -139,7 +317,6 @@ På store skærme skriver du noter ved siden af dias
 Μελετήστε τις διαφάνειες σαν κάρτες
 Επαναλάβετε μόνο όσες δεν θυμηθήκατε
 Το AI φτιάχνει ερώτηση για κάθε διαφάνεια
-Σε μεγάλη οθόνη κρατάτε σημειώσεις δίπλα στη διαφάνεια
 
 ### 앱스토어 (핀란드어)
 
@@ -147,7 +324,6 @@ Nyt iPadilla, Macilla ja Vision Prolla
 Opiskele kalvoja kuin muistikortteja
 Kertaa vain kalvot, jotka eivät vielä muistu
 Tekoäly tekee kysymyksen joka kalvoon
-Isolla näytöllä kirjoitat muistiinpanot dian viereen
 
 ### 앱스토어 (인도네시아어)
 
@@ -155,7 +331,6 @@ Kini di iPad, Mac, dan Apple Vision Pro
 Belajar dari slide seperti kartu hafalan
 Ulangi hanya slide yang belum kamu kuasai
 AI membuat soal latihan untuk tiap slide
-Di layar besar, catat langsung di samping slide
 
 ### 앱스토어 (노르웨이어(보크말))
 
@@ -163,7 +338,6 @@ Nå på iPad, Mac og Apple Vision Pro
 Lær lysbildene som huskekort
 Repeter bare lysbildene du ikke kunne
 KI lager et spørsmål til hvert lysbilde
-På store skjermer skriver du notater ved siden av lysbildet
 
 ### 앱스토어 (네덜란드어)
 
@@ -171,7 +345,6 @@ Nu op iPad, Mac en Apple Vision Pro
 Leer je dia’s als flashcards
 Herhaal alleen de dia’s die je nog niet kent
 AI maakt bij elke dia een oefenvraag
-Op grote schermen maak je notities naast de dia
 
 ### 앱스토어 (폴란드어)
 
@@ -179,7 +352,6 @@ Teraz na iPadzie, Macu i Vision Pro
 Ucz się slajdów jak z fiszek
 Powtarzaj tylko slajdy, których nie umiesz
 AI układa pytanie do każdego slajdu
-Na dużym ekranie notujesz tuż obok slajdu
 
 ### 앱스토어 (스웨덴어)
 
@@ -187,7 +359,6 @@ Nu på iPad, Mac och Apple Vision Pro
 Plugga dina slides som flashcards
 Repetera bara slides du inte kunde
 AI skapar en fråga till varje slide
-På stora skärmar skriver du anteckningar bredvid bilden
 
 ### 앱스토어 (튀르키예어)
 
@@ -195,7 +366,6 @@ Artık iPad, Mac ve Apple Vision Pro’da
 Slaytlarınızı kart gibi çevirerek çalışın
 Yalnızca bilemediğiniz slaytları tekrarlayın
 Yapay zekâ her slayta bir soru hazırlar
-Büyük ekranda notlarını slaytın hemen yanına yaz
 
 ## 1.0.11
 

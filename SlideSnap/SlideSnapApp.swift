@@ -83,11 +83,9 @@ struct SlideSnapApp: App {
         }
     }
 
-    /// 영수증을 다시 읽고, 칸에 맞춰 iCloud 동기화를 멈추거나 구독 졸업을 제안한다.
+    /// 영수증을 다시 읽고, 때가 되면 구독 졸업을 제안한다.
     private func refreshPlan() async {
         await purchases.refresh()
-        // 구독이 끝났으면 동기화를 멈춘다. 이 기기의 발표 · 장표 · 녹음은 그대로 남는다.
-        if cloudSync.isEnabled, !purchases.allows(.sync) { cloudSync.disable() }
         if purchases.graduationIsDue, !showingGraduation {
             purchases.markGraduationOffered()
             showingGraduation = true

@@ -33,8 +33,6 @@ extension ProTier {
                 detail: String(localized: "기기 안에서 발표를 요약하고 장표마다 복습 문제를 만들어요")) { SummaryArt() }),
             (.notesExport, LeeoShowcase(id: "export", title: String(localized: "PowerPoint · Markdown 내보내기"),
                 detail: String(localized: "장표와 요약 · 메모를 한 파일로 내보내요")) { ExportArt() }),
-            (.sync, LeeoShowcase(id: "sync", title: String(localized: "iCloud 동기화"),
-                detail: String(localized: "iPhone으로 찍고 Mac · iPad · Vision Pro에서 공부해요")) { SyncArt() }),
             (nil, LeeoShowcase(id: "plus", title: String(localized: "Plus의 모든 것"),
                 detail: String(localized: "Plus에서 열리는 것을 모두 그대로 써요")) { EverythingInPlusArt() }),
         ]
@@ -255,26 +253,6 @@ private struct ExportArt: View {
         .frame(width: 72, height: 72)
         .background(Color(.systemBackground), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
         .shadow(color: .black.opacity(0.06), radius: 5, y: 2)
-    }
-}
-
-/// iCloud 동기화: iPhone · iPad · Mac 이 같은 발표를
-private struct SyncArt: View {
-    @Environment(\.leeoStyle) private var theme
-
-    var body: some View {
-        ZStack {
-            Image(systemName: "arrow.triangle.2.circlepath")
-                .font(.system(size: 120, weight: .ultraLight))
-                .foregroundStyle(theme.accent.opacity(0.25))
-            HStack(alignment: .bottom, spacing: 18) {
-                Image(systemName: "iphone").font(.system(size: 50))
-                Image(systemName: "ipad.landscape").font(.system(size: 64))
-                Image(systemName: "laptopcomputer").font(.system(size: 70))
-            }
-            .foregroundStyle(theme.accent)
-        }
-        .padding(16)
     }
 }
 

@@ -123,11 +123,6 @@ struct SettingsView: View {
             get: { cloudSync.isEnabled },
             set: { on in
                 if on {
-                    // iCloud 동기화는 Pro 기능이다. 끄는 것은 늘 된다(이 기기의 발표는 그대로 남는다).
-                    guard purchases.allows(.sync) else {
-                        paywallFeature = .sync
-                        return
-                    }
                     enablingSync = true
                     Task {
                         await cloudSync.enable()

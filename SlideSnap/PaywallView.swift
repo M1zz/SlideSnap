@@ -426,6 +426,7 @@ struct PlanComparisonTable: View {
             Row(title: String(localized: "원근 보정 · 무음 · 자동 촬영"), free: .yes, plus: .yes, pro: .yes),
             Row(title: String(localized: "글자 인식 · 검색"), free: .yes, plus: .yes, pro: .yes),
             Row(title: String(localized: "사진 앱 가져오기 · 공유 확장 · 위젯"), free: .yes, plus: .yes, pro: .yes),
+            Row(title: String(localized: "iCloud 동기화"), free: .yes, plus: .yes, pro: .yes),
             Row(title: String(localized: "이미지 공유 · PDF 한 장씩"), free: .yes, plus: .yes, pro: .yes),
             Row(title: String(localized: "발표"), feature: .unlimitedPresentations,
                 free: .count(FreeLimit.presentations), plus: .unlimited, pro: .unlimited),
@@ -434,7 +435,6 @@ struct PlanComparisonTable: View {
             Row(title: String(localized: "녹음 · 받아쓰기"), feature: .recording, free: .no, plus: .no, pro: .yes),
             Row(title: String(localized: "AI 요약 · 복습 문제"), feature: .summary, free: .no, plus: .no, pro: .yes),
             Row(title: String(localized: "PowerPoint · Markdown 내보내기"), feature: .notesExport, free: .no, plus: .no, pro: .yes),
-            Row(title: String(localized: "iCloud 동기화"), feature: .sync, free: .no, plus: .no, pro: .yes),
         ]
     }
 

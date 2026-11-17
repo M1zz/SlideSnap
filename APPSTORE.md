@@ -53,7 +53,7 @@ Apple Intelligence가 장표 글자를 읽고 개요, 핵심 내용, 키워드�
 위젯을 탭하면 곧바로 카메라가 열립니다. 잠금화면에서도 쓸 수 있습니다.
 
 무료로 시작하기
-앱은 무료이고, 발표 10개까지 찍고 펴고 찾고 내보낼 수 있습니다. 장표스냅 Plus는 발표 무제한, 또렷하게 보정, PDF 두 장씩 · 네 장씩을 열고, Pro는 여기에 AI 요약, Markdown · PowerPoint 내보내기, iCloud 동기화를 더합니다. 월 · 연 구독이나 평생 한 번 결제 중에 고를 수 있습니다. 유료 앱일 때 사신 분은 Pro를 그대로 씁니다.
+앱은 무료이고, 발표 10개까지 찍고 펴고 찾고 내보낼 수 있습니다. 장표스냅 Plus는 발표 무제한, 또렷하게 보정, PDF 두 장씩 · 네 장씩을 열고, Pro는 여기에 AI 요약, Markdown · PowerPoint 내보내기를 더합니다. iCloud 동기화는 누구나 무료로 씁니다. 월 · 연 구독이나 평생 한 번 결제 중에 고를 수 있습니다. 유료 앱일 때 사신 분은 Pro를 그대로 씁니다.
 
 찍은 장표는 기기 안에 저장됩니다. 계정이나 로그인이 필요 없습니다.
 
@@ -127,7 +127,7 @@ Capture from the Home Screen
 Tap the widget and the camera opens right away. It works on the Lock Screen too.
 
 Start free
-The app is free, with up to 10 presentations to capture, straighten, search and export. CatchSlide Plus adds unlimited presentations, Enhance Readability and two- or four-per-page PDFs. Pro adds AI summaries, Markdown and PowerPoint export, and iCloud sync. Choose a monthly or yearly subscription, or pay once for lifetime. If you bought CatchSlide when it was a paid app, you keep Pro.
+The app is free, with up to 10 presentations to capture, straighten, search and export. CatchSlide Plus adds unlimited presentations, Enhance Readability and two- or four-per-page PDFs. Pro adds AI summaries and Markdown and PowerPoint export. iCloud sync is free for everyone. Choose a monthly or yearly subscription, or pay once for lifetime. If you bought CatchSlide when it was a paid app, you keep Pro.
 
 Your slides stay on your device. No account or sign-in needed.
 
@@ -197,7 +197,7 @@ Capture from the Home Screen
 Tap the widget and the camera opens right away. It works on the Lock Screen too.
 
 Start free
-The app is free, with up to 10 presentations to capture, straighten, search and export. CatchSlide Plus adds unlimited presentations, Enhance Readability and two- or four-per-page PDFs. Pro adds AI summaries, Markdown and PowerPoint export, and iCloud sync. Choose a monthly or yearly subscription, or pay once for lifetime. If you bought CatchSlide when it was a paid app, you keep Pro.
+The app is free, with up to 10 presentations to capture, straighten, search and export. CatchSlide Plus adds unlimited presentations, Enhance Readability and two- or four-per-page PDFs. Pro adds AI summaries and Markdown and PowerPoint export. iCloud sync is free for everyone. Choose a monthly or yearly subscription, or pay once for lifetime. If you bought CatchSlide when it was a paid app, you keep Pro.
 
 Your slides stay on your device. No account or sign-in needed.
 
@@ -266,7 +266,7 @@ CatchSlide 会识别每张幻灯片上的文字，只要记得一个词，就能
 轻点小组件，相机立刻打开。锁定屏幕上也能使用。
 
 免费开始
-App 免费，最多可拍摄、校正、搜索和导出 10 个演示。CatchSlide Plus 提供不限数量的演示、优化可读性，以及每页两张或四张的 PDF；Pro 再加上 AI 摘要、导出 Markdown 和 PowerPoint、iCloud 同步。可选按月、按年订阅，或一次性终身买断。在 CatchSlide 还是付费 App 时购买的用户，可继续使用 Pro。
+App 免费，最多可拍摄、校正、搜索和导出 10 个演示。CatchSlide Plus 提供不限数量的演示、优化可读性，以及每页两张或四张的 PDF；Pro 再加上 AI 摘要、导出 Markdown 和 PowerPoint。iCloud 同步对所有人免费。可选按月、按年订阅，或一次性终身买断。在 CatchSlide 还是付费 App 时购买的用户，可继续使用 Pro。
 
 拍下的幻灯片保存在你的设备上，无需账号，也无需登录。
 
@@ -340,7 +340,7 @@ CatchSlide 會辨識每張投影片上的文字，只要記得一個詞，就能
 輕點小工具，相機立刻開啟。鎖定畫面上也能使用。
 
 免費開始
-App 免費，最多可拍攝、校正、搜尋和匯出 10 個簡報。CatchSlide Plus 提供不限數量的簡報、優化可讀性，以及每頁兩張或四張的 PDF；Pro 再加上 AI 摘要、匯出 Markdown 和 PowerPoint、iCloud 同步。可選按月、按年訂閱，或一次性終身買斷。在 CatchSlide 還是付費 App 時購買的用戶，可繼續使用 Pro。
+App 免費，最多可拍攝、校正、搜尋和匯出 10 個簡報。CatchSlide Plus 提供不限數量的簡報、優化可讀性，以及每頁兩張或四張的 PDF；Pro 再加上 AI 摘要、匯出 Markdown 和 PowerPoint。iCloud 同步人人免費。可選按月、按年訂閱，或一次性終身買斷。在 CatchSlide 還是付費 App 時購買的用戶，可繼續使用 Pro。
 
 拍下的投影片都儲存在你的裝置上，不需要帳號，也不需要登入。
 
@@ -414,7 +414,7 @@ Apple Intelligenceがスライドの文字を読み、概要・要点・キー�
 ウィジェットをタップすると、すぐにカメラが開きます。ロック画面でも使えます。
 
 無料で始める
-アプリは無料で、プレゼン10件まで撮影・補正・検索・書き出しができます。CatchSlide Plusではプレゼンが無制限になり、見やすさの補正と2枚・4枚ずつのPDFが使えます。ProではさらにAI要約、Markdown・PowerPointへの書き出し、iCloud同期が加わります。月額・年額のサブスクリプションか、1回払いの買い切りから選べます。有料アプリだった頃に購入した方は、Proをそのままお使いいただけます。
+アプリは無料で、プレゼン10件まで撮影・補正・検索・書き出しができます。CatchSlide Plusではプレゼンが無制限になり、見やすさの補正と2枚・4枚ずつのPDFが使えます。ProではさらにAI要約、Markdown・PowerPointへの書き出しが加わります。iCloud同期はどなたでも無料です。月額・年額のサブスクリプションか、1回払いの買い切りから選べます。有料アプリだった頃に購入した方は、Proをそのままお使いいただけます。
 
 撮影したスライドはデバイス内に保存されます。アカウントやログインは不要です。
 
@@ -484,7 +484,7 @@ CatchSlide распознаёт текст на каждом слайде, та�
 Нажмите виджет, и камера сразу откроется. Работает и на экране блокировки.
 
 Начните бесплатно
-Приложение бесплатное: до 10 презентаций можно снимать, выравнивать, искать и экспортировать. CatchSlide Plus снимает ограничение на число презентаций, добавляет улучшение читаемости и PDF по два и по четыре слайда на странице. Pro добавляет итоги с ИИ, экспорт в Markdown и PowerPoint и синхронизацию iCloud. Выберите подписку на месяц или год — или один платёж навсегда. Если вы купили CatchSlide, когда оно было платным, Pro остаётся у вас.
+Приложение бесплатное: до 10 презентаций можно снимать, выравнивать, искать и экспортировать. CatchSlide Plus снимает ограничение на число презентаций, добавляет улучшение читаемости и PDF по два и по четыре слайда на странице. Pro добавляет итоги с ИИ и экспорт в Markdown и PowerPoint. Синхронизация iCloud бесплатна для всех. Выберите подписку на месяц или год — или один платёж навсегда. Если вы купили CatchSlide, когда оно было платным, Pro остаётся у вас.
 
 Ваши слайды остаются на вашем устройстве. Аккаунт и вход не нужны.
 
@@ -553,7 +553,7 @@ Captura desde la pantalla de inicio
 Toca el widget y la cámara se abre al instante. También funciona en la pantalla bloqueada.
 
 Empieza gratis
-La app es gratis e incluye hasta 10 presentaciones para capturar, enderezar, buscar y exportar. CatchSlide Plus añade presentaciones ilimitadas, mejora de legibilidad y PDF de dos o cuatro diapositivas por página. Pro suma resumen con IA, exportación a Markdown y PowerPoint, y sincronización con iCloud. Elige una suscripción mensual o anual, o un pago único de por vida. Si compraste CatchSlide cuando era de pago, conservas Pro.
+La app es gratis e incluye hasta 10 presentaciones para capturar, enderezar, buscar y exportar. CatchSlide Plus añade presentaciones ilimitadas, mejora de legibilidad y PDF de dos o cuatro diapositivas por página. Pro suma resumen con IA y exportación a Markdown y PowerPoint. La sincronización con iCloud es gratis para todos. Elige una suscripción mensual o anual, o un pago único de por vida. Si compraste CatchSlide cuando era de pago, conservas Pro.
 
 Tus diapositivas se quedan en tu dispositivo. No necesitas cuenta ni iniciar sesión.
 
@@ -623,7 +623,7 @@ Direkt vom Home-Bildschirm aufnehmen
 Tippe auf das Widget, und die Kamera öffnet sich sofort. Auch auf dem Sperrbildschirm verfügbar.
 
 Kostenlos starten
-Die App ist kostenlos, mit bis zu 10 Präsentationen zum Aufnehmen, Begradigen, Durchsuchen und Exportieren. CatchSlide Plus bringt unbegrenzt viele Präsentationen, bessere Lesbarkeit und PDFs mit zwei oder vier Folien pro Seite. Pro ergänzt KI-Zusammenfassungen, Export als Markdown und PowerPoint sowie iCloud-Abgleich. Wähl ein Monats- oder Jahresabo oder zahl einmal für immer. Wer CatchSlide gekauft hat, als die App noch kostenpflichtig war, behält Pro.
+Die App ist kostenlos, mit bis zu 10 Präsentationen zum Aufnehmen, Begradigen, Durchsuchen und Exportieren. CatchSlide Plus bringt unbegrenzt viele Präsentationen, bessere Lesbarkeit und PDFs mit zwei oder vier Folien pro Seite. Pro ergänzt KI-Zusammenfassungen und Export als Markdown und PowerPoint. Der iCloud-Abgleich ist für alle kostenlos. Wähl ein Monats- oder Jahresabo oder zahl einmal für immer. Wer CatchSlide gekauft hat, als die App noch kostenpflichtig war, behält Pro.
 
 Deine Folien bleiben auf deinem Gerät. Kein Account und keine Anmeldung nötig.
 
@@ -688,7 +688,7 @@ Capturez depuis l’écran d’accueil
 Touchez le widget : l’appareil photo s’ouvre aussitôt. Il est aussi disponible sur l’écran de verrouillage.
 
 Commencez gratuitement
-L’app est gratuite, avec jusqu’à 10 présentations à capturer, redresser, rechercher et exporter. CatchSlide Plus ajoute les présentations illimitées, l’amélioration de la lisibilité et les PDF à deux ou quatre diapositives par page. Pro y ajoute les résumés par IA, l’export Markdown et PowerPoint, et la synchronisation iCloud. Choisissez un abonnement au mois ou à l’année, ou un paiement unique à vie. Si vous avez acheté CatchSlide quand l’app était payante, vous gardez Pro.
+L’app est gratuite, avec jusqu’à 10 présentations à capturer, redresser, rechercher et exporter. CatchSlide Plus ajoute les présentations illimitées, l’amélioration de la lisibilité et les PDF à deux ou quatre diapositives par page. Pro y ajoute les résumés par IA et l’export Markdown et PowerPoint. La synchronisation iCloud est gratuite pour tous. Choisissez un abonnement au mois ou à l’année, ou un paiement unique à vie. Si vous avez acheté CatchSlide quand l’app était payante, vous gardez Pro.
 
 Vos diapositives restent sur votre appareil. Aucun compte ni connexion requis.
 
@@ -757,7 +757,7 @@ Cattura dalla schermata Home
 Tocca il widget e la fotocamera si apre subito. Funziona anche dalla schermata di blocco.
 
 Inizia gratis
-L’app è gratuita, con fino a 10 presentazioni da acquisire, raddrizzare, cercare ed esportare. CatchSlide Plus aggiunge presentazioni illimitate, leggibilità migliorata e PDF con due o quattro slide per pagina. Pro aggiunge riassunti con IA, esportazione in Markdown e PowerPoint e sincronizzazione iCloud. Scegli un abbonamento mensile o annuale, oppure paga una volta per sempre. Se hai acquistato CatchSlide quando era a pagamento, tieni Pro.
+L’app è gratuita, con fino a 10 presentazioni da acquisire, raddrizzare, cercare ed esportare. CatchSlide Plus aggiunge presentazioni illimitate, leggibilità migliorata e PDF con due o quattro slide per pagina. Pro aggiunge riassunti con IA ed esportazione in Markdown e PowerPoint. La sincronizzazione iCloud è gratis per tutti. Scegli un abbonamento mensile o annuale, oppure paga una volta per sempre. Se hai acquistato CatchSlide quando era a pagamento, tieni Pro.
 
 Le tue slide restano sul tuo dispositivo. Nessun account e nessun accesso richiesti.
 
@@ -831,7 +831,7 @@ Capture pela Tela de Início
 Toque no widget e a câmera abre na hora. Também funciona na Tela Bloqueada.
 
 Comece grátis
-O app é grátis, com até 10 apresentações para capturar, endireitar, pesquisar e exportar. O CatchSlide Plus libera apresentações ilimitadas, legibilidade melhorada e PDF com dois ou quatro slides por página. O Pro acrescenta resumos com IA, exportação para Markdown e PowerPoint e sincronização com o iCloud. Escolha assinatura mensal ou anual, ou pague uma vez para sempre. Quem comprou o CatchSlide quando ele era pago continua com o Pro.
+O app é grátis, com até 10 apresentações para capturar, endireitar, pesquisar e exportar. O CatchSlide Plus libera apresentações ilimitadas, legibilidade melhorada e PDF com dois ou quatro slides por página. O Pro acrescenta resumos com IA e exportação para Markdown e PowerPoint. A sincronização com o iCloud é grátis para todos. Escolha assinatura mensal ou anual, ou pague uma vez para sempre. Quem comprou o CatchSlide quando ele era pago continua com o Pro.
 
 Seus slides ficam no seu dispositivo. Não precisa de conta nem de login.
 
@@ -903,7 +903,7 @@ CatchSlide จดจำข้อความบนทุกสไลด์ แ�
 แตะวิดเจ็ตเพื่อเปิดกล้องทันที ใช้บนหน้าจอล็อกได้ด้วย
 
 เริ่มใช้ฟรี
-แอปใช้ฟรี ถ่าย ปรับให้ตรง ค้นหา และส่งออกได้สูงสุด 10 งานนำเสนอ CatchSlide Plus เพิ่มงานนำเสนอไม่จำกัด การปรับให้อ่านง่าย และ PDF สองหรือสี่สไลด์ต่อหน้า ส่วน Pro เพิ่มการสรุปด้วย AI ส่งออก Markdown และ PowerPoint และซิงค์ iCloud เลือกสมัครรายเดือน รายปี หรือจ่ายครั้งเดียวใช้ตลอดไป ผู้ที่ซื้อ CatchSlide ตอนยังเป็นแอปแบบเสียเงินจะใช้ Pro ได้ต่อไป
+แอปใช้ฟรี ถ่าย ปรับให้ตรง ค้นหา และส่งออกได้สูงสุด 10 งานนำเสนอ CatchSlide Plus เพิ่มงานนำเสนอไม่จำกัด การปรับให้อ่านง่าย และ PDF สองหรือสี่สไลด์ต่อหน้า ส่วน Pro เพิ่มการสรุปด้วย AI และส่งออก Markdown และ PowerPoint ซิงค์ iCloud ใช้ได้ฟรีทุกคน เลือกสมัครรายเดือน รายปี หรือจ่ายครั้งเดียวใช้ตลอดไป ผู้ที่ซื้อ CatchSlide ตอนยังเป็นแอปแบบเสียเงินจะใช้ Pro ได้ต่อไป
 
 สไลด์ของคุณเก็บอยู่ในอุปกรณ์ ไม่ต้องสมัครบัญชีหรือเข้าสู่ระบบ
 
@@ -972,7 +972,7 @@ Chụp ngay từ Màn hình chính
 Chạm vào widget là camera mở ngay. Dùng được cả trên Màn hình khóa.
 
 Bắt đầu miễn phí
-Ứng dụng miễn phí, cho chụp, nắn thẳng, tìm kiếm và xuất tối đa 10 bài thuyết trình. CatchSlide Plus mở không giới hạn bài thuyết trình, tăng độ dễ đọc và PDF hai hoặc bốn slide mỗi trang. Pro thêm tóm tắt bằng AI, xuất Markdown và PowerPoint, cùng đồng bộ iCloud. Chọn gói tháng hoặc năm, hoặc trả một lần dùng mãi mãi. Nếu bạn đã mua CatchSlide khi còn là ứng dụng trả phí, bạn vẫn giữ Pro.
+Ứng dụng miễn phí, cho chụp, nắn thẳng, tìm kiếm và xuất tối đa 10 bài thuyết trình. CatchSlide Plus mở không giới hạn bài thuyết trình, tăng độ dễ đọc và PDF hai hoặc bốn slide mỗi trang. Pro thêm tóm tắt bằng AI và xuất Markdown, PowerPoint. Đồng bộ iCloud miễn phí cho mọi người. Chọn gói tháng hoặc năm, hoặc trả một lần dùng mãi mãi. Nếu bạn đã mua CatchSlide khi còn là ứng dụng trả phí, bạn vẫn giữ Pro.
 
 Slide của bạn được lưu ngay trên thiết bị. Không cần tài khoản hay đăng nhập.
 
@@ -1039,7 +1039,7 @@ Focení z domovské obrazovky
 Klepni na widget a fotoaparát se hned otevře. Funguje i na zamčené obrazovce.
 
 Začni zdarma
-Aplikace je zdarma a až 10 prezentací můžeš fotit, rovnat, prohledávat a exportovat. CatchSlide Plus přidá neomezeně prezentací, lepší čitelnost a PDF po dvou nebo čtyřech slajdech na stránku. Pro přidá shrnutí pomocí AI, export do Markdownu a PowerPointu a synchronizaci s iCloudem. Vyber si měsíční nebo roční předplatné, nebo jednorázovou platbu navždy. Kdo si CatchSlide koupil, když byla placená, má Pro dál.
+Aplikace je zdarma a až 10 prezentací můžeš fotit, rovnat, prohledávat a exportovat. CatchSlide Plus přidá neomezeně prezentací, lepší čitelnost a PDF po dvou nebo čtyřech slajdech na stránku. Pro přidá shrnutí pomocí AI a export do Markdownu a PowerPointu. Synchronizace s iCloudem je zdarma pro všechny. Vyber si měsíční nebo roční předplatné, nebo jednorázovou platbu navždy. Kdo si CatchSlide koupil, když byla placená, má Pro dál.
 
 Tvoje slajdy zůstávají v tvém zařízení. Bez účtu a bez přihlašování.
 
@@ -1108,7 +1108,7 @@ Tag billede fra hjemmeskærmen
 Tryk på widgetten, og kameraet åbner med det samme. Det virker også på låseskærmen.
 
 Start gratis
-Appen er gratis, og du kan tage, rette ud, søge i og eksportere op til 10 præsentationer. CatchSlide Plus giver ubegrænsede præsentationer, bedre læsbarhed og PDF med to eller fire slides pr. side. Pro tilføjer AI-resuméer, eksport til Markdown og PowerPoint samt iCloud-synkronisering. Vælg abonnement pr. måned eller år, eller betal én gang for altid. Har du købt CatchSlide, dengang appen kostede penge, beholder du Pro.
+Appen er gratis, og du kan tage, rette ud, søge i og eksportere op til 10 præsentationer. CatchSlide Plus giver ubegrænsede præsentationer, bedre læsbarhed og PDF med to eller fire slides pr. side. Pro tilføjer AI-resuméer og eksport til Markdown og PowerPoint. iCloud-synkronisering er gratis for alle. Vælg abonnement pr. måned eller år, eller betal én gang for altid. Har du købt CatchSlide, dengang appen kostede penge, beholder du Pro.
 
 Dine slides bliver på din enhed. Du behøver ingen konto og ingen login.
 
@@ -1182,7 +1182,7 @@ CatchSlide: Σάρωση διαφανειών
 Πατήστε το γραφικό στοιχείο και η κάμερα ανοίγει αμέσως. Λειτουργεί και στην Οθόνη κλειδώματος.
 
 Ξεκινήστε δωρεάν
-Η εφαρμογή είναι δωρεάν, με έως 10 παρουσιάσεις για λήψη, ίσιωμα, αναζήτηση και εξαγωγή. Το CatchSlide Plus προσθέτει απεριόριστες παρουσιάσεις, βελτίωση αναγνωσιμότητας και PDF με δύο ή τέσσερις διαφάνειες ανά σελίδα. Το Pro προσθέτει σύνοψη με AI, εξαγωγή σε Markdown και PowerPoint και συγχρονισμό iCloud. Επιλέξτε μηνιαία ή ετήσια συνδρομή ή μία πληρωμή για πάντα. Όποιος αγόρασε το CatchSlide όταν ήταν επί πληρωμή, κρατά το Pro.
+Η εφαρμογή είναι δωρεάν, με έως 10 παρουσιάσεις για λήψη, ίσιωμα, αναζήτηση και εξαγωγή. Το CatchSlide Plus προσθέτει απεριόριστες παρουσιάσεις, βελτίωση αναγνωσιμότητας και PDF με δύο ή τέσσερις διαφάνειες ανά σελίδα. Το Pro προσθέτει σύνοψη με AI και εξαγωγή σε Markdown και PowerPoint. Ο συγχρονισμός iCloud είναι δωρεάν για όλους. Επιλέξτε μηνιαία ή ετήσια συνδρομή ή μία πληρωμή για πάντα. Όποιος αγόρασε το CatchSlide όταν ήταν επί πληρωμή, κρατά το Pro.
 
 Οι διαφάνειές σας μένουν στη συσκευή σας. Δεν χρειάζεται λογαριασμός ή σύνδεση.
 
@@ -1256,7 +1256,7 @@ Kuvaa Koti-näytöltä
 Napauta widgetiä, niin kamera aukeaa heti. Se toimii myös Lukitusnäytöllä.
 
 Aloita ilmaiseksi
-Sovellus on ilmainen, ja voit kuvata, suoristaa, hakea ja viedä enintään 10 esitystä. CatchSlide Plus tuo rajattomasti esityksiä, paremman luettavuuden ja PDF:t kahdella tai neljällä kalvolla per sivu. Pro lisää tekoälytiivistelmät, viennin Markdown- ja PowerPoint-muotoon sekä iCloud-synkronoinnin. Valitse kuukausi- tai vuositilaus tai maksa kerran ikuisesti. Jos ostit CatchSliden sen ollessa maksullinen, Pro pysyy sinulla.
+Sovellus on ilmainen, ja voit kuvata, suoristaa, hakea ja viedä enintään 10 esitystä. CatchSlide Plus tuo rajattomasti esityksiä, paremman luettavuuden ja PDF:t kahdella tai neljällä kalvolla per sivu. Pro lisää tekoälytiivistelmät ja viennin Markdown- ja PowerPoint-muotoon. iCloud-synkronointi on kaikille ilmainen. Valitse kuukausi- tai vuositilaus tai maksa kerran ikuisesti. Jos ostit CatchSliden sen ollessa maksullinen, Pro pysyy sinulla.
 
 Kalvosi pysyvät laitteellasi. Tiliä tai kirjautumista ei tarvita.
 
@@ -1328,7 +1328,7 @@ Potret dari Layar Utama
 Ketuk widget dan kamera langsung terbuka. Bisa dipakai juga di Layar Kunci.
 
 Mulai gratis
-App ini gratis, dengan hingga 10 presentasi untuk dipotret, diluruskan, dicari, dan diekspor. CatchSlide Plus membuka presentasi tanpa batas, perjelas keterbacaan, dan PDF dua atau empat slide per halaman. Pro menambahkan ringkasan AI, ekspor Markdown dan PowerPoint, serta sinkronisasi iCloud. Pilih langganan bulanan atau tahunan, atau bayar sekali untuk selamanya. Jika Anda membeli CatchSlide saat masih berbayar, Anda tetap mendapat Pro.
+App ini gratis, dengan hingga 10 presentasi untuk dipotret, diluruskan, dicari, dan diekspor. CatchSlide Plus membuka presentasi tanpa batas, perjelas keterbacaan, dan PDF dua atau empat slide per halaman. Pro menambahkan ringkasan AI serta ekspor Markdown dan PowerPoint. Sinkronisasi iCloud gratis untuk semua. Pilih langganan bulanan atau tahunan, atau bayar sekali untuk selamanya. Jika Anda membeli CatchSlide saat masih berbayar, Anda tetap mendapat Pro.
 
 Slide Anda tersimpan di perangkat. Tanpa akun dan tanpa perlu masuk.
 
@@ -1399,7 +1399,7 @@ Ta bilde fra Hjem-skjermen
 Trykk på widgeten, så åpnes kameraet med én gang. Det fungerer også på låseskjermen.
 
 Start gratis
-Appen er gratis, og du kan ta, rette opp, søke i og eksportere opptil 10 presentasjoner. CatchSlide Plus gir ubegrenset med presentasjoner, bedre lesbarhet og PDF med to eller fire lysbilder per side. Pro legger til AI-oppsummeringer, eksport til Markdown og PowerPoint og iCloud-synkronisering. Velg abonnement per måned eller år, eller betal én gang for alltid. Kjøpte du CatchSlide da appen kostet penger, beholder du Pro.
+Appen er gratis, og du kan ta, rette opp, søke i og eksportere opptil 10 presentasjoner. CatchSlide Plus gir ubegrenset med presentasjoner, bedre lesbarhet og PDF med to eller fire lysbilder per side. Pro legger til AI-oppsummeringer og eksport til Markdown og PowerPoint. iCloud-synkronisering er gratis for alle. Velg abonnement per måned eller år, eller betal én gang for alltid. Kjøpte du CatchSlide da appen kostet penger, beholder du Pro.
 
 Lysbildene dine blir på enheten din. Du trenger ingen konto og ingen pålogging.
 
@@ -1473,7 +1473,7 @@ Vastleggen vanaf het beginscherm
 Tik op de widget en de camera opent meteen. Werkt ook op het toegangsscherm.
 
 Begin gratis
-De app is gratis, met tot 10 presentaties om vast te leggen, recht te zetten, te doorzoeken en te exporteren. CatchSlide Plus geeft onbeperkt presentaties, betere leesbaarheid en pdf's met twee of vier dia's per pagina. Pro voegt AI-samenvattingen, exporteren naar Markdown en PowerPoint en iCloud-synchronisatie toe. Kies een abonnement per maand of jaar, of betaal één keer voor altijd. Heb je CatchSlide gekocht toen de app nog betaald was, dan houd je Pro.
+De app is gratis, met tot 10 presentaties om vast te leggen, recht te zetten, te doorzoeken en te exporteren. CatchSlide Plus geeft onbeperkt presentaties, betere leesbaarheid en pdf's met twee of vier dia's per pagina. Pro voegt AI-samenvattingen en exporteren naar Markdown en PowerPoint toe. iCloud-synchronisatie is gratis voor iedereen. Kies een abonnement per maand of jaar, of betaal één keer voor altijd. Heb je CatchSlide gekocht toen de app nog betaald was, dan houd je Pro.
 
 Je dia's blijven op je apparaat. Je hebt geen account en geen login nodig.
 
@@ -1543,7 +1543,7 @@ Zdjęcie z ekranu początkowego
 Dotknij widżetu, a aparat otworzy się od razu. Działa też na ekranie blokady.
 
 Zacznij za darmo
-Aplikacja jest darmowa: do 10 prezentacji możesz fotografować, prostować, przeszukiwać i eksportować. CatchSlide Plus daje nielimitowane prezentacje, lepszą czytelność i PDF po dwa lub cztery slajdy na stronie. Pro dodaje podsumowania AI, eksport do Markdown i PowerPoint oraz synchronizację iCloud. Wybierz subskrypcję miesięczną lub roczną albo zapłać raz na zawsze. Jeśli kupiłeś CatchSlide, gdy był płatny, zachowujesz Pro.
+Aplikacja jest darmowa: do 10 prezentacji możesz fotografować, prostować, przeszukiwać i eksportować. CatchSlide Plus daje nielimitowane prezentacje, lepszą czytelność i PDF po dwa lub cztery slajdy na stronie. Pro dodaje podsumowania AI oraz eksport do Markdown i PowerPoint. Synchronizacja iCloud jest bezpłatna dla wszystkich. Wybierz subskrypcję miesięczną lub roczną albo zapłać raz na zawsze. Jeśli kupiłeś CatchSlide, gdy był płatny, zachowujesz Pro.
 
 Twoje slajdy zostają na Twoim urządzeniu. Nie potrzebujesz konta ani logowania.
 
@@ -1612,7 +1612,7 @@ Fota från hemskärmen
 Tryck på widgeten så öppnas kameran direkt. Den fungerar även på låsskärmen.
 
 Börja gratis
-Appen är gratis, och du kan fota, räta upp, söka i och exportera upp till 10 presentationer. CatchSlide Plus ger obegränsat med presentationer, bättre läsbarhet och PDF med två eller fyra slides per sida. Pro lägger till AI-sammanfattningar, export till Markdown och PowerPoint samt iCloud-synkronisering. Välj prenumeration per månad eller år, eller betala en gång för alltid. Köpte du CatchSlide när appen kostade pengar behåller du Pro.
+Appen är gratis, och du kan fota, räta upp, söka i och exportera upp till 10 presentationer. CatchSlide Plus ger obegränsat med presentationer, bättre läsbarhet och PDF med två eller fyra slides per sida. Pro lägger till AI-sammanfattningar och export till Markdown och PowerPoint. iCloud-synkronisering är gratis för alla. Välj prenumeration per månad eller år, eller betala en gång för alltid. Köpte du CatchSlide när appen kostade pengar behåller du Pro.
 
 Dina slides stannar på din enhet. Du behöver inget konto och ingen inloggning.
 
@@ -1686,7 +1686,7 @@ Ana Ekran'dan çekin
 Widget'a dokunun, kamera anında açılsın. Kilit Ekranı'nda da çalışır.
 
 Ücretsiz başlayın
-Uygulama ücretsizdir; 10 sunuma kadar çekebilir, düzeltebilir, arayabilir ve dışa aktarabilirsiniz. CatchSlide Plus sınırsız sunum, okunabilirliği artırma ve sayfada iki veya dört slaytlık PDF ekler. Pro buna yapay zekâ özetleri, Markdown ve PowerPoint olarak dışa aktarma ve iCloud eşzamanlamayı ekler. Aylık veya yıllık abonelik ya da ömür boyu tek ödeme arasından seçin. CatchSlide’ı ücretliyken satın aldıysanız Pro sizde kalır.
+Uygulama ücretsizdir; 10 sunuma kadar çekebilir, düzeltebilir, arayabilir ve dışa aktarabilirsiniz. CatchSlide Plus sınırsız sunum, okunabilirliği artırma ve sayfada iki veya dört slaytlık PDF ekler. Pro buna yapay zekâ özetleri ile Markdown ve PowerPoint olarak dışa aktarmayı ekler. iCloud eşzamanlama herkese ücretsizdir. Aylık veya yıllık abonelik ya da ömür boyu tek ödeme arasından seçin. CatchSlide’ı ücretliyken satın aldıysanız Pro sizde kalır.
 
 Slaytlarınız cihazınızda kalır. Hesap açmanız ya da oturum açmanız gerekmez.
 

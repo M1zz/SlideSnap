@@ -49,8 +49,7 @@ enum ProFeature: String, CaseIterable, Identifiable {
     case summary
     /// PowerPoint · Markdown 내보내기
     case notesExport
-    /// iCloud 동기화
-    case sync
+    // iCloud 동기화는 모두에게 무료다 — iPhone 으로 찍고 iPad · Mac · Vision Pro 에서 공부하는 길이라 막지 않는다.
 
     var id: String { rawValue }
 
@@ -58,7 +57,7 @@ enum ProFeature: String, CaseIterable, Identifiable {
     var tier: ProTier {
         switch self {
         case .unlimitedPresentations, .enhance, .pdfLayouts: .plus
-        case .recording, .summary, .notesExport, .sync:      .pro
+        case .recording, .summary, .notesExport:      .pro
         }
     }
 }
