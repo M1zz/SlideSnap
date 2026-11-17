@@ -109,9 +109,18 @@ for lang in $LANGS; do
     perl -e 'alarm shift; exec @ARGV' 60 xcrun simctl launch $UDID $BUNDLE -AppleLanguages "($lang)" -AppleLocale $locale >/dev/null && break
     sleep 5
   done
-  for i in {1..120}; do [[ -z "$(ls "$G/ShareInbox" 2>/dev/null)" ]] && break; sleep 2; done
-  sleep 3
-  echo "  발표 생성 완료"
+  # 수신함이 비었다고 끝난 게 아니다 — 앱이 저장한 장표 수가 넣은 사진 수와 같아질 때까지 기다린다.
+  want=$(python3 -c "import json,glob,sys; print(sum(len(json.load(open(m))['files']) for m in glob.glob(sys.argv[1]+'/ShareInbox/*/manifest.json')))" "$WORK/demo-$lang")
+  D=$(xcrun simctl get_app_container $UDID $BUNDLE data)
+  got=0
+  for i in {1..150}; do
+    got=$(python3 -c "import json,sys; print(sum(len(p.get('slides',[])) for p in json.load(open(sys.argv[1]))))" "$D/Documents/store.json" 2>/dev/null || echo 0)
+    [[ $got == $want && -z "$(ls "$G/ShareInbox" 2>/dev/null)" ]] && break
+    sleep 2
+  done
+  [[ $got == $want ]] || { echo "  ❌ 발표를 다 만들지 못함 (${got}/${want})"; exit 1; }
+  sleep 5   # 글자 인식 마무리
+  echo "  발표 생성 완료 (${got}장)"
 
   mkdir -p $RAW/$lang
   # 제출본 3번의 '보정 전' 카드 — 맨 위 발표(UX 리서치)의 둘째 장 원본 사진
