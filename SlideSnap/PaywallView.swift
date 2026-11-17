@@ -431,6 +431,7 @@ struct PlanComparisonTable: View {
                 free: .count(FreeLimit.presentations), plus: .unlimited, pro: .unlimited),
             Row(title: String(localized: "또렷하게 보정"), feature: .enhance, free: .no, plus: .yes, pro: .yes),
             Row(title: String(localized: "PDF 두 장 · 네 장씩"), feature: .pdfLayouts, free: .no, plus: .yes, pro: .yes),
+            Row(title: String(localized: "녹음 · 받아쓰기"), feature: .recording, free: .no, plus: .no, pro: .yes),
             Row(title: String(localized: "AI 요약 · 복습 문제"), feature: .summary, free: .no, plus: .no, pro: .yes),
             Row(title: String(localized: "PowerPoint · Markdown 내보내기"), feature: .notesExport, free: .no, plus: .no, pro: .yes),
             Row(title: String(localized: "iCloud 동기화"), feature: .sync, free: .no, plus: .no, pro: .yes),

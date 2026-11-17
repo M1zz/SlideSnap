@@ -150,8 +150,19 @@ struct PresentationNotesView: View {
 
     @ViewBuilder
     private func recordingsSection(_ presentation: Presentation) -> some View {
-        // 새로 녹음하지는 않는다(1.0.11 에서 뺐다). 전에 녹음해 둔 발표에만 이 칸이 선다.
-        if !presentation.allRecordings.isEmpty {
+        if presentation.allRecordings.isEmpty {
+            // 녹음이 없으면 어디서 켜는지 알려 준다. 촬영이 되는 기기에서만(Mac · Vision Pro 는 찍지 않는다).
+            if Capture.isAvailable {
+                Section {
+                    Label("촬영 화면 위쪽의 '녹음'을 켜면 장표를 찍는 동안 발표를 함께 녹음해요.", systemImage: "mic")
+                        .foregroundStyle(.secondary)
+                } header: {
+                    Text("녹음 목록")
+                } footer: {
+                    Text("녹음은 촬영 화면이 떠 있는 동안 이어져요. 다른 앱으로 가거나 화면을 잠그면 멈췄다가, 돌아오면 다시 이어서 녹음해요.")
+                }
+            }
+        } else {
             Section {
                 ForEach(presentation.allRecordings) { recording in
                     recordingRow(recording)
@@ -258,7 +269,7 @@ struct PresentationNotesView: View {
     }
 
     private func transcribe(_ recording: Recording) {
-        // 녹음은 뺐지만 전에 녹음해 둔 것은 누구나 받아쓴다 — 이미 누리던 것은 줄이지 않는다.
+        // 이미 녹음해 둔 것은 누구나 받아쓴다 — 잠그는 것은 새로 녹음하는 일뿐이다.
         transcribingID = recording.id
         transcribeProgress = nil
         let language = transcribeLanguage

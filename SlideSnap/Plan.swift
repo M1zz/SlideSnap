@@ -9,7 +9,7 @@
 //   · 무료: 원근 보정 · 무음 · 자동 촬영, 발표별 묶기 · 합치기, 사진 앱 가져오기 · 공유 확장, 글자 인식 · 검색,
 //           이미지 공유 · PDF 한 장씩, 위젯, 발표 10개
 //   · Plus: 발표 무제한, 또렷하게 보정, PDF 두 장 · 네 장씩
-//   · Pro:  Plus 전부 + 기기 안 요약, PowerPoint · Markdown 내보내기, iCloud 동기화
+//   · Pro:  Plus 전부 + 녹음 · 받아쓰기, 기기 안 요약, PowerPoint · Markdown 내보내기, iCloud 동기화
 //
 //  ⚠️ 이미 만든 발표 · 장표 · 녹음 · 받아쓴 글 · 요약은 칸과 관계없이 보고 듣고 내보내고 지울 수 있다.
 //     잠그는 것은 **새로 만드는 것**과 **잠긴 것을 새로 켜는 것**뿐이다.
@@ -43,6 +43,8 @@ enum ProFeature: String, CaseIterable, Identifiable {
     case enhance
     /// PDF 두 장씩 · 네 장씩
     case pdfLayouts
+    /// 촬영하며 발표 녹음 (앱이 앞에 떠 있는 동안만 → AudioRecorder)
+    case recording
     /// 기기 안 Apple 언어 모델로 발표 요약
     case summary
     /// PowerPoint · Markdown 내보내기
@@ -56,7 +58,7 @@ enum ProFeature: String, CaseIterable, Identifiable {
     var tier: ProTier {
         switch self {
         case .unlimitedPresentations, .enhance, .pdfLayouts: .plus
-        case .summary, .notesExport, .sync:                  .pro
+        case .recording, .summary, .notesExport, .sync:      .pro
         }
     }
 }

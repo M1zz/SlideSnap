@@ -84,12 +84,39 @@ enum CalendarNaming {
         }
     }
 
+    /// 이름을 가져올 캘린더(`calendarIdentifier`) — 줄바꿈으로 이어 적는다. 비어 있으면 모든 캘린더.
+    /// 캘린더가 여럿이면(개인 · 가족 · 강의 시간표) 어느 일정이 발표인지 앱은 모른다. 사람이 고른다.
+    static let calendarsKey = "calendarNamingCalendars"
+
+    static var chosenCalendarIDs: Set<String> {
+        get { decodeIDs(UserDefaults.standard.string(forKey: calendarsKey) ?? "") }
+        set { UserDefaults.standard.set(encodeIDs(newValue), forKey: calendarsKey) }
+    }
+
+    static func decodeIDs(_ stored: String) -> Set<String> {
+        Set(stored.split(separator: "\n").map(String.init))
+    }
+
+    static func encodeIDs(_ ids: Set<String>) -> String {
+        ids.sorted().joined(separator: "\n")
+    }
+
+    /// 고른 캘린더 가운데 지금도 있는 것. nil 이면 모든 캘린더에서 찾는다 —
+    /// 고르지 않았거나, 고른 캘린더가 모두 지워졌을 때(이름 짓기가 말없이 멈추지 않게).
+    static func chosenCalendars(in store: EKEventStore) -> [EKCalendar]? {
+        let ids = chosenCalendarIDs
+        guard !ids.isEmpty else { return nil }
+        let found = store.calendars(for: .event).filter { ids.contains($0.calendarIdentifier) }
+        return found.isEmpty ? nil : found
+    }
+
     /// 지금 진행 중인 일정 이름. 종일 일정은 강의 · 발표가 아니라 빼고, 여럿이면 가장 늦게 시작한 것.
     static func currentEventTitle(at now: Date = Date()) -> String? {
         guard isEnabled else { return nil }
         let store = EKEventStore()
         // 시작 10분 전에 자리에 앉아 찍기 시작하는 일도 일정 안으로 본다.
-        let predicate = store.predicateForEvents(withStart: now, end: now.addingTimeInterval(10 * 60), calendars: nil)
+        let predicate = store.predicateForEvents(withStart: now, end: now.addingTimeInterval(10 * 60),
+                                                 calendars: chosenCalendars(in: store))
         return store.events(matching: predicate)
             .filter { !$0.isAllDay && $0.endDate > now }
             .max { $0.startDate < $1.startDate }?

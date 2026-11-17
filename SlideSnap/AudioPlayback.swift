@@ -4,7 +4,7 @@ import Combine
 /// 오디오 세션을 켜고 끄는 일. 오래 걸릴 수 있어(다른 앱 소리를 멈추게 하는 동안 막힌다) 메인 스레드에서 하지 않는다.
 /// 한 줄 대기열이라 켜기 · 끄기 순서가 뒤바뀌지 않는다.
 /// iOS 27 의 `activate(options:)` 비동기 API 를 쓰지 않는 것은 iOS 17 부터 지원해서다.
-private enum AudioSessionLine {
+enum AudioSessionLine {
     private static let queue = DispatchQueue(label: "com.leeo.slidesnap.audio-session", qos: .userInitiated)
 
     /// 그 쓰임으로 세션을 켠다. 켜졌으면 true.
@@ -14,6 +14,8 @@ private enum AudioSessionLine {
                 let session = AVAudioSession.sharedInstance()
                 do {
                     try session.setCategory(category, mode: .spokenAudio, options: options)
+                    // 녹음 중에도 자동 촬영 햅틱이 울리게 한다.
+                    if category == .playAndRecord { try session.setAllowHapticsAndSystemSoundsDuringRecording(true) }
                     try session.setActive(true)
                     done.resume(returning: true)
                 } catch {
@@ -31,7 +33,7 @@ private enum AudioSessionLine {
     }
 }
 
-/// 녹음을 장표와 함께 듣는 재생기. 새로 녹음하지는 않는다 — 1.0.11 부터 녹음 기능을 뺐고, 전에 녹음해 둔 것만 듣는다.
+/// 녹음을 장표와 함께 듣는 재생기. 녹음하는 쪽은 AudioRecorder.swift.
 @MainActor
 final class AudioPlayback: ObservableObject {
 

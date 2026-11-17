@@ -27,6 +27,8 @@ extension ProTier {
                 detail: String(localized: "한 쪽에 장표를 모아 종이를 아껴 인쇄해요")) { PDFLayoutArt() }),
         ]
         case .pro: [
+            (.recording, LeeoShowcase(id: "recording", title: String(localized: "녹음 · 받아쓰기"),
+                detail: String(localized: "장표마다 그때 한 말을 녹음하고 글로 받아써요")) { RecordingArt() }),
             (.summary, LeeoShowcase(id: "summary", title: String(localized: "AI 요약 · 복습 문제"),
                 detail: String(localized: "기기 안에서 발표를 요약하고 장표마다 복습 문제를 만들어요")) { SummaryArt() }),
             (.notesExport, LeeoShowcase(id: "export", title: String(localized: "PowerPoint · Markdown 내보내기"),
@@ -156,6 +158,34 @@ private struct PDFLayoutArt: View {
 }
 
 // MARK: - Pro
+
+/// 녹음 · 받아쓰기: 장표 아래 소리 물결, 그 아래 받아쓴 글
+private struct RecordingArt: View {
+    @Environment(\.leeoStyle) private var theme
+    private let bars: [CGFloat] = [10, 22, 34, 18, 40, 26, 14, 30, 38, 20, 12, 28, 36, 16, 24, 10]
+
+    var body: some View {
+        VStack(spacing: 14) {
+            ArtSlide(width: 150)
+            HStack(spacing: 10) {
+                Image(systemName: "mic.fill")
+                    .foregroundStyle(.white)
+                    .frame(width: 32, height: 32)
+                    .background(Color.red, in: Circle())
+                HStack(alignment: .center, spacing: 3) {
+                    ForEach(bars.indices, id: \.self) { i in
+                        Capsule().fill(theme.accent).frame(width: 4, height: bars[i])
+                    }
+                }
+            }
+            VStack(alignment: .leading, spacing: 6) {
+                Capsule().fill(Color.primary.opacity(0.6)).frame(width: 180, height: 6)
+                Capsule().fill(Color.primary.opacity(0.6)).frame(width: 140, height: 6)
+            }
+        }
+        .padding(16)
+    }
+}
 
 /// 기기 안 요약: 긴 글 → 반짝 → 세 줄
 private struct SummaryArt: View {

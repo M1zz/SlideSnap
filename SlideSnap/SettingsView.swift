@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import EventKit
 import LeeoKit
 
 struct SettingsView: View {
@@ -22,6 +23,7 @@ struct SettingsView: View {
     @State private var showingFeedback = false
     @AppStorage(LaunchCamera.key) private var launchCamera: LaunchCamera = .always
     @AppStorage(CalendarNaming.key) private var calendarNaming = false
+    @AppStorage(CalendarNaming.calendarsKey) private var chosenCalendars = ""
     @State private var showCalendarDenied = false
     @Environment(\.dismiss) private var dismiss
 
@@ -211,6 +213,16 @@ struct SettingsView: View {
             Toggle(isOn: calendarBinding) {
                 Label("캘린더 일정으로 이름 짓기", systemImage: "calendar.badge.clock")
             }
+            // 캘린더가 여럿이면 어느 것이 강의 · 발표 일정인지 고른다. 켜져 있고 접근이 허락됐을 때만.
+            if CalendarNaming.isEnabled {
+                NavigationLink { CalendarChoiceView() } label: {
+                    LabeledContent {
+                        Text(verbatim: calendarSummary).lineLimit(1)
+                    } label: {
+                        Label("캘린더", systemImage: "calendar")
+                    }
+                }
+            }
         } header: {
             Text("촬영")
         } footer: {
@@ -225,6 +237,13 @@ struct SettingsView: View {
         } message: {
             Text("일정 이름을 쓰려면 설정에서 캘린더 전체 접근을 허용해 주세요.")
         }
+    }
+
+    /// 고른 캘린더 이름들. 고르지 않았으면(또는 고른 것이 다 지워졌으면) '모두'.
+    private var calendarSummary: String {
+        _ = chosenCalendars   // 고르고 돌아오면 다시 그린다
+        guard let chosen = CalendarNaming.chosenCalendars(in: EKEventStore()) else { return String(localized: "모두") }
+        return chosen.map(\.title).sorted().formatted(.list(type: .and, width: .narrow))
     }
 
     /// 켤 때 캘린더 접근을 묻는다. 거절했으면 켜지 않고 까닭을 알린다.
@@ -329,5 +348,74 @@ struct SettingsGiftView: View {
                                                 extraInfo: purchases.gifts.flatMap(\.supportLines),
                                                 initialCategory: .purchase)
             }
+    }
+}
+
+// MARK: - 캘린더 고르기
+
+/// 이름을 가져올 캘린더 고르기 (설정 ▸ 촬영 ▸ 캘린더). 계정별로 묶어 보여 주고 여럿을 고를 수 있다.
+/// 하나도 고르지 않으면 모든 캘린더 — 처음 값이고, 지금까지와 같다.
+private struct CalendarChoiceView: View {
+    @AppStorage(CalendarNaming.calendarsKey) private var stored = ""
+    @State private var groups: [(source: String, calendars: [EKCalendar])] = []
+
+    private var chosen: Set<String> { CalendarNaming.decodeIDs(stored) }
+
+    var body: some View {
+        Form {
+            Section {
+                Button { stored = "" } label: {
+                    row(title: String(localized: "모든 캘린더"), color: nil, isOn: chosen.isEmpty)
+                }
+            } footer: {
+                Text("고른 캘린더의 일정만 새 발표 이름으로 써요. 강의 시간표처럼 따로 둔 캘린더가 있으면 그것만 골라 두세요.")
+            }
+            ForEach(groups, id: \.source) { group in
+                Section {
+                    ForEach(group.calendars, id: \.calendarIdentifier) { calendar in
+                        Button { toggle(calendar.calendarIdentifier) } label: {
+                            row(title: calendar.title, color: Color(cgColor: calendar.cgColor),
+                                isOn: chosen.contains(calendar.calendarIdentifier))
+                        }
+                    }
+                } header: {
+                    Text(verbatim: group.source)
+                }
+            }
+        }
+        .navigationTitle("캘린더")
+        .navigationBarTitleDisplayMode(.inline)
+        .onAppear(perform: load)
+    }
+
+    private func row(title: String, color: Color?, isOn: Bool) -> some View {
+        HStack(spacing: 12) {
+            if let color {
+                Circle().fill(color).frame(width: 12, height: 12).accessibilityHidden(true)
+            }
+            Text(verbatim: title).foregroundStyle(.primary)
+            Spacer()
+            if isOn {
+                Image(systemName: "checkmark").fontWeight(.semibold).foregroundStyle(.tint)
+            }
+        }
+        .contentShape(Rectangle())
+        .accessibilityAddTraits(isOn ? .isSelected : [])
+    }
+
+    private func toggle(_ id: String) {
+        var ids = chosen
+        if ids.contains(id) { ids.remove(id) } else { ids.insert(id) }
+        stored = CalendarNaming.encodeIDs(ids)
+    }
+
+    /// 지금 있는 캘린더를 계정별로. 지워진 캘린더는 고른 것에서도 뺀다(안 보이는 것이 골라진 채 남지 않게).
+    private func load() {
+        let calendars = EKEventStore().calendars(for: .event)
+        groups = Dictionary(grouping: calendars) { $0.source?.title ?? "" }
+            .map { (source: $0.key, calendars: $0.value.sorted { $0.title.localizedStandardCompare($1.title) == .orderedAscending }) }
+            .sorted { $0.source.localizedStandardCompare($1.source) == .orderedAscending }
+        let alive = chosen.intersection(calendars.map(\.calendarIdentifier))
+        if alive != chosen { stored = CalendarNaming.encodeIDs(alive) }
     }
 }

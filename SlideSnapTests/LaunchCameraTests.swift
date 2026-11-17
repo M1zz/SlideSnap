@@ -40,4 +40,11 @@ final class LaunchCameraTests: XCTestCase {
                           corners: nil, autoDetected: true)
         return Presentation(id: UUID(), title: "운영체제", createdAt: lastCapture, slides: [slide])
     }
+
+    func test_고른_캘린더는_적은_대로_돌아온다_비어_있으면_모두() {
+        XCTAssertTrue(CalendarNaming.decodeIDs("").isEmpty)
+        let ids: Set<String> = ["A-1", "B-2"]
+        XCTAssertEqual(CalendarNaming.decodeIDs(CalendarNaming.encodeIDs(ids)), ids)
+        XCTAssertEqual(CalendarNaming.encodeIDs([]), "")
+    }
 }
