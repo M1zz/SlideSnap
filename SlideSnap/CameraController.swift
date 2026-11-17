@@ -57,6 +57,8 @@ final class CameraController: NSObject, ObservableObject {
     private let videoQueue = DispatchQueue(label: "com.leeo.slidesnap.video", qos: .utility)
     private var isConfigured = false
     private var rotationCoordinator: AVCaptureDevice.RotationCoordinator?
+    /// 기기를 돌릴 때마다 프리뷰를 다시 세우려고 코디네이터의 각도를 지켜본다.
+    private var previewRotationObservation: NSKeyValueObservation?
     private var videoDevice: AVCaptureDevice?
     private var previewLayerRef: AVCaptureVideoPreviewLayer?
     /// 다음 프레임을 받아 갈 촬영 요청들 (videoQueue에서만 접근)
@@ -129,7 +131,7 @@ final class CameraController: NSObject, ObservableObject {
 
     // MARK: - 프리뷰 연결
 
-    /// 프리뷰 레이어를 등록하면 RotationCoordinator가 화면 회전을 자동으로 맞춥니다.
+    /// 프리뷰 레이어를 등록한다. 화면 회전은 RotationCoordinator 의 각도를 프리뷰 연결에 넣어 맞춘다.
     func attachPreview(_ layer: AVCaptureVideoPreviewLayer) {
         previewLayerRef = layer
         rebuildRotationCoordinator()
@@ -138,7 +140,22 @@ final class CameraController: NSObject, ObservableObject {
     /// 메인 스레드에서 호출. device와 previewLayer가 준비되면 코디네이터를 만든다.
     private func rebuildRotationCoordinator() {
         guard let device = videoDevice else { return }
-        rotationCoordinator = AVCaptureDevice.RotationCoordinator(device: device, previewLayer: previewLayerRef)
+        let coordinator = AVCaptureDevice.RotationCoordinator(device: device, previewLayer: previewLayerRef)
+        rotationCoordinator = coordinator
+        // 코디네이터는 각도를 알려 줄 뿐, 프리뷰를 돌려 주지는 않는다. 넣어 주지 않으면 프리뷰는 세로(90°)에 멈춰
+        // iPad 를 가로로 들었을 때 화면이 90° 돌아가 보이고, 감지 네모 · 찍힌 사진과도 어긋난다.
+        applyPreviewRotation(coordinator.videoRotationAngleForHorizonLevelPreview)
+        previewRotationObservation = coordinator.observe(\.videoRotationAngleForHorizonLevelPreview, options: [.new]) { [weak self] _, change in
+            guard let angle = change.newValue else { return }
+            DispatchQueue.main.async { self?.applyPreviewRotation(angle) }
+        }
+    }
+
+    private func applyPreviewRotation(_ angle: CGFloat) {
+        guard let connection = previewLayerRef?.connection,
+              connection.isVideoRotationAngleSupported(angle),
+              connection.videoRotationAngle != angle else { return }
+        connection.videoRotationAngle = angle
     }
 
     // MARK: - 시작/종료
