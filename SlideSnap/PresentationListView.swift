@@ -203,7 +203,11 @@ struct PresentationListView: View {
             if let demoNotesID { PresentationNotesView(presentationID: demoNotesID) }
         }
         .fullScreenCover(isPresented: Binding(get: { demoStudyID != nil }, set: { if !$0 { demoStudyID = nil } })) {
-            if let demoStudyID { StudyView(presentationID: demoStudyID, startIndex: 3, startRevealed: true) }
+            if let demoStudyID {
+                StudyView(presentationID: demoStudyID, startIndex: 3, startRevealed: true)
+                    .environmentObject(store)
+                    .environmentObject(purchases)
+            }
         }
         #endif
         .sheet(isPresented: $showingFeedback) {

@@ -117,7 +117,10 @@ struct PresentationDetailView: View {
             PresentationNotesView(presentationID: presentationID)
         }
         .fullScreenCover(isPresented: $showingStudy) {
+            // Mac(Catalyst)의 전체 화면 덮개는 환경 객체를 넘겨받지 못해 앱이 꺼진다 — 직접 건넨다.
             StudyView(presentationID: presentationID)
+                .environmentObject(store)
+                .environmentObject(purchases)
         }
         .alert("내보내지 못했어요", isPresented: Binding(get: { exportError != nil }, set: { if !$0 { exportError = nil } })) {
             Button("확인", role: .cancel) {}
