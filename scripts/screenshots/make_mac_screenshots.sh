@@ -18,8 +18,24 @@ LANGS=(${@:-$ALL})
 DERIVED=$ROOT/build/mac-shots
 APP=$DERIVED/Build/Products/Debug-maccatalyst/SlideSnap.app
 BIN=$APP/Contents/MacOS/SlideSnap
-CONTAINER=$HOME/Library/Containers/com.leeo.slidesnap
+# 앱 컨테이너는 macOS 가 UUID 이름으로 만들기도 한다 — 번들 ID 로 찾아 지운다.
+wipe() {
+  local d
+  for d in $HOME/Library/Containers/*(N/); do
+    [[ $(plutil -extract MCMMetadataIdentifier raw "$d/.com.apple.containermanagerd.metadata.plist" 2>/dev/null) == com.leeo.slidesnap ]] && rm -rf "$d"
+  done
+  rm -rf "$GROUP"
+}
 GROUP="$HOME/Library/Group Containers/group.com.leeo.slidesnap"
+# 앱이 저장한 장표 수
+slide_count() {
+  local d
+  for d in $HOME/Library/Containers/*(N/); do
+    [[ $(plutil -extract MCMMetadataIdentifier raw "$d/.com.apple.containermanagerd.metadata.plist" 2>/dev/null) == com.leeo.slidesnap ]] || continue
+    python3 -c "import json,sys; print(sum(len(p.get('slides',[])) for p in json.load(open(sys.argv[1]))))" "$d/Data/Documents/store.json" 2>/dev/null && return
+  done
+  echo 0
+}
 RAW=docs/screenshots/raw/mac
 WORK=$(mktemp -d)
 
@@ -40,7 +56,7 @@ locale_for() {
 cleanup() {
   pkill -f "$BIN" 2>/dev/null || true
   sleep 1
-  rm -rf "$CONTAINER" "$GROUP"
+  wipe
   echo "↩︎  이 Mac 의 장표스냅 데모 데이터를 지웠다"
 }
 trap cleanup EXIT
@@ -68,7 +84,13 @@ launch() {  # launch <lang> [데모 인자...]
   open -n "$APP" --args -AppleLanguages "($lang)" -AppleLocale $(locale_for $lang) "$@"
 }
 
-shoot() {  # shoot <lang> <파일이름> <데모 화면>
+shoot() {  # shoot <lang> <파일이름> <데모 화면> — 창이 늦게 뜨는 때가 있어 세 번까지 다시 띄운다
+  local try
+  for try in 1 2 3; do shoot_once "$@" && return 0; echo "  ↻ 다시 ($try)"; done
+  return 1
+}
+
+shoot_once() {
   local lang=$1 name=$2 screen=$3 pid wid
   launch $lang -SSDemoScreen "$screen" "${MEMO_ARGS[@]}"
   sleep 6
@@ -76,7 +98,8 @@ shoot() {  # shoot <lang> <파일이름> <데모 화면>
   [[ -z $pid ]] && { echo "  ❌ 앱이 뜨지 않음 ($screen)"; return 1; }
   wid=$($WORK/winid $pid || true)
   [[ -z $wid ]] && { echo "  ❌ 창을 못 찾음 ($screen)"; return 1; }
-  screencapture -x -o -l $wid $RAW/$lang/$name
+  rm -f $RAW/$lang/$name
+  screencapture -x -o -l $wid $RAW/$lang/$name 2>/dev/null; [[ -s $RAW/$lang/$name ]] || { echo "  ❌ 창을 못 찍음 ($screen)"; return 1; }
   echo "  찍음 $lang/$name"
 }
 
@@ -84,13 +107,24 @@ for lang in $LANGS; do
   echo "── $lang"
   python3 scripts/screenshots/make_demo_photos.py $lang "$WORK/demo-$lang" >/dev/null
   pkill -f "$BIN" 2>/dev/null || true; sleep 1
-  rm -rf "$CONTAINER" "$GROUP"
+  wipe
   mkdir -p "$GROUP"
   cp -R "$WORK/demo-$lang/ShareInbox" "$GROUP/"
-  launch $lang
-  for i in {1..120}; do [[ -z "$(ls "$GROUP/ShareInbox" 2>/dev/null)" ]] && break; sleep 2; done
-  sleep 3
-  echo "  발표 생성 완료"
+  # 사진이 모두 장표가 될 때까지 기다린다 — 수신함이 비었다고 끝난 게 아니다(앱이 늦게 뜨면 아예 안 가져가기도 한다).
+  want=$(python3 -c "import json,glob,sys; print(sum(len(json.load(open(m))['files']) for m in glob.glob(sys.argv[1]+'/ShareInbox/*/manifest.json')))" "$WORK/demo-$lang")
+  got=0
+  for attempt in 1 2 3; do
+    launch $lang
+    for i in {1..90}; do
+      sleep 2
+      got=$(slide_count)
+      [[ $got == $want && -z "$(ls "$GROUP/ShareInbox" 2>/dev/null)" ]] && break 2
+    done
+    echo "  ↻ 발표 만들기 다시 ($got/$want)"
+  done
+  [[ $got == $want ]] || { echo "  ❌ 발표를 다 만들지 못함 ($got/$want)"; exit 1; }
+  sleep 5   # 글자 인식 마무리
+  echo "  발표 생성 완료 (${got}장)"
 
   mkdir -p $RAW/$lang
   query=$(python3 -c "import sys; sys.path.insert(0, 'scripts/screenshots'); from slides import SEARCH; print(SEARCH['$lang'])")
@@ -107,6 +141,7 @@ for i, m in MEMOS['$lang'].items(): print(f'-SSDemoMemo{i}'); print(m)")}")
   for f in 04-list 08-study 05-slide 07-search; do
     [[ -f $RAW/$lang/$f.png ]] || continue
     n=$((n+1))
-    python3 scripts/screenshots/frame_mac.py $RAW/$lang/$f.png $OUT/mac-0$n-${f#*-}.png
+    # Chrome 이 가끔 그리지 못한다 — 세 번까지
+    for try in 1 2 3; do python3 scripts/screenshots/frame_mac.py $RAW/$lang/$f.png $OUT/mac-0$n-${f#*-}.png && break; sleep 2; done
   done
 done
