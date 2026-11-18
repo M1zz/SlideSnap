@@ -20,6 +20,8 @@ struct PresentationNotesView: View {
     @State private var errorMessage: String?
     @State private var deletingRecording: Recording?
     @AppStorage("transcribe.language") private var transcribeLanguage = Transcriber.defaultLanguage
+    /// 이 기기가 받아쓸 수 있는 언어. 화면이 뜰 때 불러온다.
+    @State private var languages: [String] = []
 
     private var presentation: Presentation? { store.presentation(presentationID) }
 
@@ -168,9 +170,14 @@ struct PresentationNotesView: View {
                     recordingRow(recording)
                 }
                 Picker("받아쓰기 언어", selection: $transcribeLanguage) {
-                    ForEach(Transcriber.languages, id: \.id) { language in
-                        Text(language.label).tag(language.id)
+                    ForEach(languages, id: \.self) { id in
+                        Text(Transcriber.label(id)).tag(id)
                     }
+                }
+                .task {
+                    let list = await Transcriber.languages()
+                    transcribeLanguage = await Transcriber.resolve(transcribeLanguage, in: list)
+                    languages = list
                 }
             } header: {
                 Text("녹음 목록")
@@ -200,6 +207,11 @@ struct PresentationNotesView: View {
                         .foregroundStyle(.secondary)
                 }
                 Spacer()
+                ShareLink(item: store.audioURL(recording.file)) {
+                    Image(systemName: "square.and.arrow.up")
+                }
+                .buttonStyle(.borderless)
+                .accessibilityLabel("녹음 내보내기")
                 transcriptBadge(recording)
             }
 

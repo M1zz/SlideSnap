@@ -24,18 +24,46 @@ enum Transcriber {
         }
     }
 
-    /// 받아쓰기 언어 선택지
-    static let languages: [(id: String, label: String)] = [
-        ("ko-KR", String(localized: "한국어")),
-        ("en-US", String(localized: "영어")),
-        ("ja-JP", String(localized: "일본어")),
-        ("zh-CN", String(localized: "중국어"))
-    ]
+    /// 이 기기가 기기 안에서 받아쓸 수 있는 언어(BCP 47), 이름순.
+    static func languages() async -> [String] {
+        var locales: [Locale]
+        if #available(iOS 26.0, visionOS 26.0, *), SpeechTranscriber.isAvailable {
+            locales = await SpeechTranscriber.supportedLocales + DictationTranscriber.supportedLocales
+        } else {
+            locales = SFSpeechRecognizer.supportedLocales().filter {
+                SFSpeechRecognizer(locale: $0)?.supportsOnDeviceRecognition == true
+            }
+        }
+        return Set(locales.map { $0.identifier(.bcp47) })
+            .sorted { label($0).localizedStandardCompare(label($1)) == .orderedAscending }
+    }
 
-    /// 앱 언어에 맞춘 기본 받아쓰기 언어. 받아쓸 수 없는 언어면 영어.
+    /// 언어 이름을 앱 언어로. 예: "pl-PL" → "폴란드어(폴란드)"
+    static func label(_ id: String) -> String {
+        Locale.current.localizedString(forIdentifier: id) ?? id
+    }
+
+    /// 고른 언어가 목록에 없으면(예전 값 · 처음 실행) 같은 언어 중 가장 알맞은 것으로 바꾼다.
+    static func resolve(_ id: String, in list: [String]) async -> String {
+        if list.contains(id) { return id }
+        if #available(iOS 26.0, visionOS 26.0, *), SpeechTranscriber.isAvailable {
+            let locale = Locale(identifier: id)
+            let speech = await SpeechTranscriber.supportedLocale(equivalentTo: locale)
+            let dictation = await DictationTranscriber.supportedLocale(equivalentTo: locale)
+            if let match = (speech ?? dictation)?.identifier(.bcp47), list.contains(match) {
+                return match
+            }
+        }
+        let language = Locale(identifier: id).language.languageCode
+        return list.first { Locale(identifier: $0).language.languageCode == language }
+            ?? (list.contains("en-US") ? "en-US" : list.first ?? id)
+    }
+
+    /// 앱 언어와 이 기기의 지역으로 정한 기본 받아쓰기 언어. 예: 폴란드어 앱 → "pl-PL"
     static var defaultLanguage: String {
-        let app = Bundle.main.preferredLocalizations.first ?? "en"
-        return languages.first { app.hasPrefix(String($0.id.prefix(2))) }?.id ?? "en-US"
+        let app = Locale(identifier: Bundle.main.preferredLocalizations.first ?? "en")
+        let region = Locale.current.region ?? app.region
+        return Locale(languageCode: app.language.languageCode, languageRegion: region).identifier(.bcp47)
     }
 
     /// - Parameter onProgress: 0...1 진행률 (알 수 있을 때만)
@@ -53,54 +81,56 @@ enum Transcriber {
 
     // MARK: - iOS 26+: SpeechAnalyzer
 
+    /// 긴 녹음에 맞춘 `SpeechTranscriber`를 먼저 쓰고, 그 모델에 없는 언어(폴란드어 등)는
+    /// 더 많은 언어를 아는 `DictationTranscriber`로 받아쓴다. 둘 다 기기 안에서 돈다.
     @available(iOS 26.0, visionOS 26.0, *)
     private static func transcribeWithAnalyzer(
         url: URL,
         locale: Locale,
         onProgress: @escaping @Sendable (Double) -> Void
     ) async throws -> [TranscriptSegment] {
-        guard let supported = await SpeechTranscriber.supportedLocale(equivalentTo: locale) else {
-            throw Failure.unsupportedLanguage
+        if let supported = await SpeechTranscriber.supportedLocale(equivalentTo: locale) {
+            let module = SpeechTranscriber(
+                locale: supported,
+                transcriptionOptions: [],
+                reportingOptions: [],
+                attributeOptions: [.audioTimeRange]
+            )
+            return try await analyze(url: url, module: module) { total in
+                try await words(from: module.results.map { ($0.text, $0.range) }, total: total, onProgress: onProgress)
+            }
         }
-        let transcriber = SpeechTranscriber(
-            locale: supported,
-            transcriptionOptions: [],
-            reportingOptions: [],
-            attributeOptions: [.audioTimeRange]
-        )
+        if let supported = await DictationTranscriber.supportedLocale(equivalentTo: locale) {
+            let module = DictationTranscriber(
+                locale: supported,
+                contentHints: [],
+                transcriptionOptions: [.punctuation],
+                reportingOptions: [],
+                attributeOptions: [.audioTimeRange]
+            )
+            return try await analyze(url: url, module: module) { total in
+                try await words(from: module.results.map { ($0.text, $0.range) }, total: total, onProgress: onProgress)
+            }
+        }
+        throw Failure.unsupportedLanguage
+    }
+
+    /// 모듈 하나로 파일을 끝까지 들으며, 그동안 `collect`가 결과를 단어로 모은다.
+    @available(iOS 26.0, visionOS 26.0, *)
+    private static func analyze(
+        url: URL,
+        module: any SpeechModule,
+        collect: @escaping @Sendable (_ total: TimeInterval) async throws -> [Word]
+    ) async throws -> [TranscriptSegment] {
         // 언어 모델이 아직 기기에 없으면 내려받는다(처음 한 번).
-        if let request = try await AssetInventory.assetInstallationRequest(supporting: [transcriber]) {
+        if let request = try await AssetInventory.assetInstallationRequest(supporting: [module]) {
             try await request.downloadAndInstall()
         }
 
         let file = try AVAudioFile(forReading: url)
         let total = Double(file.length) / file.processingFormat.sampleRate
-        let analyzer = SpeechAnalyzer(modules: [transcriber])
-
-        let collector = Task {
-            var words: [Word] = []
-            for try await result in transcriber.results {
-                let end = result.range.end.seconds
-                if total > 0, end.isFinite { onProgress(min(1, end / total)) }
-                // 결과 하나가 여러 문장(수십 초)일 수 있어, 단어마다 붙은 시간으로 다시 나눈다.
-                var runWords: [Word] = []
-                for run in result.text.runs {
-                    let piece = String(result.text[run.range].characters)
-                    guard let range = run.audioTimeRange, range.start.seconds.isFinite else { continue }
-                    runWords.append(Word(text: piece, start: range.start.seconds, end: range.end.seconds))
-                }
-                if runWords.isEmpty {
-                    let start = result.range.start.seconds
-                    runWords = [Word(
-                        text: String(result.text.characters),
-                        start: start.isFinite ? start : 0,
-                        end: end.isFinite ? end : 0
-                    )]
-                }
-                words += runWords
-            }
-            return group(words)
-        }
+        let analyzer = SpeechAnalyzer(modules: [module])
+        let collector = Task { try await collect(total) }
 
         do {
             if let last = try await analyzer.analyzeSequence(from: file) {
@@ -112,7 +142,38 @@ enum Transcriber {
             collector.cancel()
             throw error
         }
-        return try await collector.value
+        return group(try await collector.value)
+    }
+
+    /// 받아쓰기 결과(글 · 시간)를 단어 단위로 편다.
+    @available(iOS 26.0, visionOS 26.0, *)
+    private static func words<Results: AsyncSequence>(
+        from results: Results,
+        total: TimeInterval,
+        onProgress: @Sendable (Double) -> Void
+    ) async throws -> [Word] where Results.Element == (AttributedString, CMTimeRange) {
+        var words: [Word] = []
+        for try await (text, range) in results {
+            let end = range.end.seconds
+            if total > 0, end.isFinite { onProgress(min(1, end / total)) }
+            // 결과 하나가 여러 문장(수십 초)일 수 있어, 단어마다 붙은 시간으로 다시 나눈다.
+            var runWords: [Word] = []
+            for run in text.runs {
+                let piece = String(text[run.range].characters)
+                guard let time = run.audioTimeRange, time.start.seconds.isFinite else { continue }
+                runWords.append(Word(text: piece, start: time.start.seconds, end: time.end.seconds))
+            }
+            if runWords.isEmpty {
+                let start = range.start.seconds
+                runWords = [Word(
+                    text: String(text.characters),
+                    start: start.isFinite ? start : 0,
+                    end: end.isFinite ? end : 0
+                )]
+            }
+            words += runWords
+        }
+        return words
     }
 
     // MARK: - iOS 17~25: SFSpeechRecognizer
