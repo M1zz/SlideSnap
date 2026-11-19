@@ -5,7 +5,14 @@
 - [x] `SlideSnapSpec.analytics = LeeoUsageAnalytics(spec:)`, 앱 init 에서 `LeeoAnalyticsCenter.register(SlideSnapSpec.self)` — 사용 통계와 같은 길
 - [x] 시뮬레이터 빌드 성공
 - [ ] 다음 빌드 배포 뒤 허브에서 페이월 노출 · 구매 시도가 잡히는지 보기
-- [ ] 로컬 main 에만 있는 커밋 80e2041(파일 · 클라우드에 저장)은 원격과 `Localizable.xcstrings` 가 겹쳐 아직 얹지 못함 — 정한 뒤 rebase
+
+## 파일 · 클라우드에 저장 (2026-11-19, 사용자 의견 "支持更多同步备份方式如WPS云文档，one drive，谷歌等")
+- [x] 발표 화면 ⋯ 메뉴 · 선택 모드 공유 메뉴에 '파일 · 클라우드에 저장' — 이미지 · PDF · Markdown · PowerPoint 를 골라 저장할 위치 고르기(`FileSaver`, UIDocumentPickerViewController)로 바로 보낸다. 파일 앱에 켜 둔 OneDrive · Google Drive · WPS 등의 폴더가 뜬다. 잠금(Plus · Pro)은 공유와 같다
+- [x] 이미지는 "발표 제목 01.jpg" 꼴 이름으로 복사해 넘긴다(보관함 안의 이름은 식별자라서)
+- [x] 새 문구 2개 번역 24개 언어 · iOS 시뮬레이터 · Mac Catalyst(서명 없이) · visionOS 시뮬레이터 빌드 통과
+- [ ] 실기기에서 OneDrive · Google Drive(있으면 WPS) 폴더에 저장되는지, 장표가 많은 발표의 이미지 저장이 되는지 확인 — 빌드만 했고 화면을 눌러 보지는 못했다
+- [ ] 릴리즈 노트에 넣기
+- [ ] 보관함 전체 백업 · 되불러오기는 아직 없다(로드맵 '백업과 내보내기' 그대로 planned). 동기화는 여전히 iCloud 만
 
 ## iPad 가로 촬영 프리뷰가 90° 돌아가 보인다 (2026-11-17, 사용자 제보 "横向拍摄时预览和实际移动方向相差90度")
 - [x] 원인: RotationCoordinator 의 각도를 영상 프레임(감지 · 사진)에만 넣고 프리뷰 연결에는 넣지 않았다. 프리뷰는 세로(90°)에 멈춰 있어 세로 고정인 iPhone 에서는 안 보이던 문제

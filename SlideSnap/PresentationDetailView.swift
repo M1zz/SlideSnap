@@ -31,6 +31,25 @@ struct ShareSheet: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }
 
+/// 내보낸 파일을 어디로 보낼지.
+enum ExportDestination {
+    /// 공유 시트
+    case share
+    /// 파일 앱의 위치 고르기 — iCloud Drive 와, 설치한 클라우드 앱(OneDrive · Google Drive · WPS 등)의 폴더가 뜬다.
+    case files
+}
+
+/// 저장할 위치를 고르는 화면(UIDocumentPickerViewController). 파일은 복사해 넣으므로 원본은 그대로 남는다.
+struct FileSaver: UIViewControllerRepresentable {
+    let urls: [URL]
+
+    func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
+        UIDocumentPickerViewController(forExporting: urls, asCopy: true)
+    }
+
+    func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {}
+}
+
 /// 발표 하나의 장표 그리드 화면.
 /// 선택 모드로 장표를 골라 이미지/PDF로 공유하거나 전체를 발표자료(PDF)로 내보낼 수 있습니다.
 struct PresentationDetailView: View {
@@ -55,6 +74,8 @@ struct PresentationDetailView: View {
     @State private var isExporting = false
     @State private var exportError: String?
     @State private var shareBundle: ShareBundle?
+    /// 파일 · 클라우드에 저장할 파일들
+    @State private var saveBundle: ShareBundle?
 
     // 이름 변경
     @State private var showingRenameAlert = false
@@ -112,6 +133,10 @@ struct PresentationDetailView: View {
         }
         .sheet(item: $shareBundle) { bundle in
             ShareSheet(items: bundle.items)
+        }
+        .sheet(item: $saveBundle) { bundle in
+            FileSaver(urls: bundle.items.compactMap { $0 as? URL })
+                .ignoresSafeArea()
         }
         .sheet(isPresented: $showingNotes) {
             PresentationNotesView(presentationID: presentationID)
@@ -290,6 +315,7 @@ struct PresentationDetailView: View {
                         }
                         pdfMenu()
                         notesExportButtons()
+                        saveToFilesMenu()
                         Divider()
                         Button {
                             enterSelection()
@@ -320,18 +346,35 @@ struct PresentationDetailView: View {
             }
             pdfMenu(count: selectedIDs.count)
             notesExportButtons()
+            saveToFilesMenu(count: selectedIDs.count)
         } label: {
             if isExporting { ProgressView() } else { label }
         }
     }
 
+    /// 공유 시트를 거치지 않고 저장할 위치부터 고른다 — iCloud Drive 말고 다른 클라우드(OneDrive · Google Drive · WPS 등)에
+    /// 두고 싶다는 의견에서. 같은 내보내기를 형식만 골라 파일 앱의 위치 고르기로 보낸다.
+    private func saveToFilesMenu(count: Int? = nil) -> some View {
+        Menu {
+            Button {
+                shareImages(to: .files)
+            } label: {
+                Label("이미지", systemImage: "photo.on.rectangle")
+            }
+            pdfMenu(count: count, to: .files)
+            notesExportButtons(to: .files)
+        } label: {
+            Label("파일 · 클라우드에 저장", systemImage: "folder")
+        }
+    }
+
     /// PDF 레이아웃(한 장/두 장/네 장)을 고르는 하위 메뉴.
     /// - Parameter count: 선택 모드에서 고른 장표 수(메뉴 제목에 붙는다). nil이면 전체.
-    private func pdfMenu(count: Int? = nil) -> some View {
+    private func pdfMenu(count: Int? = nil, to destination: ExportDestination = .share) -> some View {
         Menu {
             ForEach([PDFLayout.one, .two, .four]) { layout in
                 Button {
-                    exportPDF(layout: layout)
+                    exportPDF(layout: layout, to: destination)
                 } label: {
                     // 한 장씩은 무료, 두 장 · 네 장씩은 Plus. 잠긴 줄은 자물쇠로 미리 알린다.
                     if layout == .one || purchases.allows(.pdfLayouts) {
@@ -358,14 +401,14 @@ struct PresentationDetailView: View {
 
     /// Markdown·PowerPoint 내보내기 버튼
     @ViewBuilder
-    private func notesExportButtons() -> some View {
+    private func notesExportButtons(to destination: ExportDestination = .share) -> some View {
         Button {
-            exportNotes(.markdown)
+            exportNotes(.markdown, to: destination)
         } label: {
             Label("Markdown으로 내보내기 (Notion·Obsidian)", systemImage: ProFeature.notesExport.icon("doc.plaintext"))
         }
         Button {
-            exportNotes(.pptx)
+            exportNotes(.pptx, to: destination)
         } label: {
             Label("PowerPoint로 내보내기 (Keynote)", systemImage: ProFeature.notesExport.icon("rectangle.on.rectangle"))
         }
@@ -566,13 +609,58 @@ struct PresentationDetailView: View {
         return presentation.slides
     }
 
-    private func shareImages() {
+    private func shareImages(to destination: ExportDestination = .share) {
         let urls = targetSlides().map { store.imageURL(store.displayFile(for: $0)) }
         guard !urls.isEmpty else { return }
-        shareBundle = ShareBundle(items: urls)
+        guard destination == .files, let presentation else {
+            shareBundle = ShareBundle(items: urls)
+            return
+        }
+        // 보관함 안의 파일 이름은 뜻 없는 식별자라, 폴더에 넣을 때는 "발표 제목 01" 처럼 읽히는 이름으로 복사해 준다.
+        let title = presentation.title
+        isExporting = true
+        Task {
+            let named = await Task.detached(priority: .userInitiated) {
+                Self.namedCopies(of: urls, title: title)
+            }.value
+            isExporting = false
+            deliver(named, to: .files)
+        }
     }
 
-    private func exportPDF(layout: PDFLayout = .one) {
+    /// 장표 그림을 임시 폴더에 "제목 01.jpg" 꼴로 복사한다. 복사하지 못한 그림은 원래 파일 그대로 넘긴다.
+    nonisolated private static func namedCopies(of urls: [URL], title: String) -> [URL] {
+        let fm = FileManager.default
+        let invalid = CharacterSet(charactersIn: "/\\:?%*|\"<>\n\r\t")
+        let cleaned = title.components(separatedBy: invalid).joined(separator: "_").trimmingCharacters(in: .whitespaces)
+        let base = cleaned.isEmpty ? "slides" : cleaned
+        let folder = fm.temporaryDirectory.appendingPathComponent("save-images", isDirectory: true)
+        try? fm.removeItem(at: folder)
+        try? fm.createDirectory(at: folder, withIntermediateDirectories: true)
+        let digits = max(2, String(urls.count).count)
+        return urls.enumerated().map { index, url in
+            let number = String(format: "%0\(digits)d", index + 1)
+            let ext = url.pathExtension.isEmpty ? "jpg" : url.pathExtension
+            let copy = folder.appendingPathComponent("\(base) \(number).\(ext)")
+            do {
+                try fm.copyItem(at: url, to: copy)
+                return copy
+            } catch {
+                return url
+            }
+        }
+    }
+
+    /// 만든 파일을 고른 곳으로 — 공유 시트 또는 저장할 위치 고르기.
+    fileprivate func deliver(_ urls: [URL], to destination: ExportDestination) {
+        guard !urls.isEmpty else { return }
+        switch destination {
+        case .share: shareBundle = ShareBundle(items: urls)
+        case .files: saveBundle = ShareBundle(items: urls)
+        }
+    }
+
+    private func exportPDF(layout: PDFLayout = .one, to destination: ExportDestination = .share) {
         guard layout == .one || purchases.allows(.pdfLayouts) else {
             paywallFeature = .pdfLayouts
             return
@@ -590,7 +678,7 @@ struct PresentationDetailView: View {
 
             isExporting = false
             if let pdfURL {
-                shareBundle = ShareBundle(items: [pdfURL])
+                deliver([pdfURL], to: destination)
             }
         }
     }
@@ -599,7 +687,7 @@ struct PresentationDetailView: View {
 extension PresentationDetailView {
     enum NotesFormat { case markdown, pptx }
 
-    fileprivate func exportNotes(_ format: NotesFormat) {
+    fileprivate func exportNotes(_ format: NotesFormat, to destination: ExportDestination = .share) {
         guard purchases.allows(.notesExport) else {
             paywallFeature = .notesExport
             return
@@ -625,7 +713,7 @@ extension PresentationDetailView {
             }.value
             isExporting = false
             switch result {
-            case .success(let url): shareBundle = ShareBundle(items: [url])
+            case .success(let url): deliver([url], to: destination)
             case .failure(let error): exportError = error.localizedDescription
             }
         }
