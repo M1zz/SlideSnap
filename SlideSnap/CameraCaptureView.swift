@@ -223,7 +223,10 @@ struct CameraCaptureView: View {
                     .animation(.easeInOut(duration: 0.25), value: camera.detectedQuad == nil)
                 Spacer()
                 zoomIndicator
-                bottomBar
+                if !Self.sideControls { bottomBar }
+            }
+            .overlay(alignment: .trailing) {
+                if Self.sideControls { sideBar }
             }
 
             GeometryReader { proxy in
@@ -550,49 +553,76 @@ struct CameraCaptureView: View {
 
     // MARK: - 하단 바
 
+    /// 아이패드는 양손으로 옆을 잡고 찍는다 — 아래 가운데는 손이 닿지 않으니
+    /// 기본 카메라처럼 셔터를 오른쪽 가장자리 가운데(엄지 자리)에 둔다.
+    private static let sideControls = UIDevice.current.userInterfaceIdiom == .pad
+
     private var bottomBar: some View {
         HStack {
-            Button {
-                dismiss()   // 앨범 탭 → 카메라를 닫으면 촬영한 장표 그리드로 이동
-            } label: {
-                thumbnailView
-                    .frame(width: 64, height: 64)
-                    .onGeometryChange(for: CGRect.self) { $0.frame(in: .named(Self.space)) } action: { thumbnailFrame = $0 }
-            }
-            .disabled(captureCount == 0)
-            .opacity(retake == nil ? 1 : 0)
-            .accessibilityHidden(retake != nil)
-            .accessibilityLabel("촬영한 장표 보기")
-            .accessibilityValue(captureCount > 0 ? Text("\(captureCount)장") : Text(""))
-
+            albumButton
             Spacer()
-
-            Button {
-                capture()
-            } label: {
-                ZStack {
-                    Circle()
-                        .stroke(activeRetake != nil ? Color.orange : camera.isLocked ? Color.green : .white, lineWidth: 4)
-                        .frame(width: 76, height: 76)
-                    Circle()
-                        .fill(.white)
-                        .frame(width: 62, height: 62)
-                }
-                .animation(.easeOut(duration: 0.15), value: camera.isLocked)
-            }
-            .disabled(camera.authorizationDenied || retakeShot)
-            .accessibilityLabel(activeRetake == nil ? Text("촬영하기") : Text("다시 찍기"))
-
+            shutterButton
             Spacer()
-
-            VStack(spacing: 10) {
-                retakeLastButton
-                memoButton
-            }
-            .frame(width: 64)
+            lastSlideButtons
+                .frame(width: 64)
         }
         .padding(.horizontal, 28)
         .padding(.bottom, 28)
+    }
+
+    /// 아이패드용 — 셔터가 화면 높이의 한가운데에 오도록 위아래 칸 높이를 맞춘다.
+    private var sideBar: some View {
+        VStack(spacing: 28) {
+            albumButton
+                .frame(height: Self.sideSlotHeight, alignment: .bottom)
+            shutterButton
+            lastSlideButtons
+                .frame(height: Self.sideSlotHeight, alignment: .top)
+        }
+        .padding(.trailing, 28)
+    }
+
+    /// 다시 찍기 + 메모 단추 두 개가 들어가는 높이(52 + 10 + 52).
+    private static let sideSlotHeight: CGFloat = 114
+
+    private var albumButton: some View {
+        Button {
+            dismiss()   // 앨범 탭 → 카메라를 닫으면 촬영한 장표 그리드로 이동
+        } label: {
+            thumbnailView
+                .frame(width: 64, height: 64)
+                .onGeometryChange(for: CGRect.self) { $0.frame(in: .named(Self.space)) } action: { thumbnailFrame = $0 }
+        }
+        .disabled(captureCount == 0)
+        .opacity(retake == nil ? 1 : 0)
+        .accessibilityHidden(retake != nil)
+        .accessibilityLabel("촬영한 장표 보기")
+        .accessibilityValue(captureCount > 0 ? Text("\(captureCount)장") : Text(""))
+    }
+
+    private var shutterButton: some View {
+        Button {
+            capture()
+        } label: {
+            ZStack {
+                Circle()
+                    .stroke(activeRetake != nil ? Color.orange : camera.isLocked ? Color.green : .white, lineWidth: 4)
+                    .frame(width: 76, height: 76)
+                Circle()
+                    .fill(.white)
+                    .frame(width: 62, height: 62)
+            }
+            .animation(.easeOut(duration: 0.15), value: camera.isLocked)
+        }
+        .disabled(camera.authorizationDenied || retakeShot)
+        .accessibilityLabel(activeRetake == nil ? Text("촬영하기") : Text("다시 찍기"))
+    }
+
+    private var lastSlideButtons: some View {
+        VStack(spacing: 10) {
+            retakeLastButton
+            memoButton
+        }
     }
 
     /// 방금 담은 장표가 흔들렸거나 잘못 찍혔으면 — 다음 셔터로 그 자리를 바꾼다(순서는 그대로).
