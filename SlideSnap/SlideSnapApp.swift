@@ -38,6 +38,8 @@ struct SlideSnapApp: App {
                 .onOpenURL { url in
                     router.handle(url)
                 }
+                // App Store 이벤트 링크(<번들 ID>://paywall)로 열리면 요금제를 띄운다 (LeeoKit).
+                .leeoPaywallLink { PaywallView().environmentObject(store).environmentObject(purchases) }
                 .task { await refreshPlan() }
                 .sheet(isPresented: $showingGraduation) {
                     LeeoGraduationOfferView(graduate: purchases.product(ProProduct.graduate)) {
