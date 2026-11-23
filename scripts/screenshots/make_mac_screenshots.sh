@@ -16,8 +16,8 @@ ROOT=$PWD
 ALL=(ko en en-GB zh-Hans zh-Hant ja ru es de fr it pt-BR th vi cs da el fi id nb nl pl sv tr)
 LANGS=(${@:-$ALL})
 DERIVED=$ROOT/build/mac-shots
-APP=$DERIVED/Build/Products/Debug-maccatalyst/SlideSnap.app
-BIN=$APP/Contents/MacOS/SlideSnap
+APP=$DERIVED/Build/Products/Debug-maccatalyst/CatchSlide.app
+BIN=$APP/Contents/MacOS/CatchSlide
 # 앱 컨테이너는 macOS 가 UUID 이름으로 만들기도 한다 — 번들 ID 로 찾아 지운다.
 wipe() {
   local d
@@ -39,7 +39,7 @@ slide_count() {
 RAW=docs/screenshots/raw/mac
 WORK=$(mktemp -d)
 
-if pgrep -f "/Applications/.*SlideSnap.app/Contents/MacOS" >/dev/null; then
+if pgrep -f "/Applications/.*(SlideSnap|CatchSlide).app/Contents/MacOS" >/dev/null; then
   echo "❌ 진짜 장표스냅 Mac 앱이 떠 있다 — 끄고 다시 돌릴 것"; exit 1
 fi
 

@@ -570,7 +570,9 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leeo.slidesnap;
+				PRODUCT_MODULE_NAME = SlideSnap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PRODUCT_NAME[sdk=macosx*]" = CatchSlide;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -614,7 +616,9 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leeo.slidesnap;
+				PRODUCT_MODULE_NAME = SlideSnap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PRODUCT_NAME[sdk=macosx*]" = CatchSlide;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
