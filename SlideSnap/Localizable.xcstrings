@@ -9200,149 +9200,6 @@
         }
       }
     },
-    "고객 인터뷰" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rozhovory se zákazníky"
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kundeinterviews"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kundeninterviews"
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Συνεντεύξεις πελατών"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Customer interviews"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Customer interviews"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Entrevistas con clientes"
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Asiakashaastattelut"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Entretiens clients"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wawancara pelanggan"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Interviste ai clienti"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "顧客インタビュー"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kundeintervjuer"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Klantinterviews"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wywiady z klientami"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Entrevistas com clientes"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Интервью с клиентами"
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kundintervjuer"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "สัมภาษณ์ลูกค้า"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Müşteri görüşmeleri"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Phỏng vấn khách hàng"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "客户访谈"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "客戶訪談"
-          }
-        }
-      }
-    },
     "고른 순서" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -52065,288 +51922,431 @@
         }
       }
     },
-    "예시 장표" : {
+    "국내 매출 성장" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sample slide"
+            "value" : "Domestic sales growth"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sample slide"
+            "value" : "Domestic sales growth"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "示例幻灯片"
+            "value" : "国内销售增长"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "範例投影片"
+            "value" : "國內銷售成長"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "サンプルのスライド"
+            "value" : "国内売上 成長率"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Пример слайда"
+            "value" : "Рост продаж в стране"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diapositiva de ejemplo"
+            "value" : "Crecimiento de ventas nacionales"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Beispielfolie"
+            "value" : "Inlandsumsatz Wachstum"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diapo d’exemple"
+            "value" : "Croissance des ventes France"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Slide di esempio"
+            "value" : "Crescita vendite Italia"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Slide de exemplo"
+            "value" : "Crescimento das vendas no Brasil"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "สไลด์ตัวอย่าง"
+            "value" : "ยอดขายในประเทศเติบโต"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Trang chiếu mẫu"
+            "value" : "Doanh thu trong nước tăng"
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ukázkový snímek"
+            "value" : "Růst domácích tržeb"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eksempeldias"
+            "value" : "Vækst i salget i Danmark"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Δείγμα διαφάνειας"
+            "value" : "Αύξηση εγχώριων πωλήσεων"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Esimerkkidia"
+            "value" : "Kotimaan myynnin kasvu"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Contoh slide"
+            "value" : "Pertumbuhan penjualan domestik"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eksempellysbilde"
+            "value" : "Vekst i salg i Norge"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Voorbeelddia"
+            "value" : "Groei binnenlandse omzet"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Przykładowy slajd"
+            "value" : "Wzrost sprzedaży krajowej"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exempelbild"
+            "value" : "Försäljningstillväxt i Sverige"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Örnek slayt"
+            "value" : "Yurt içi satış büyümesi"
           }
         }
       }
     },
-    "카메라" : {
+    "해외 비중" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Camera"
+            "value" : "Overseas share"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Camera"
+            "value" : "Overseas share"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "相机"
+            "value" : "海外占比"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "相機"
+            "value" : "海外占比"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "カメラ"
+            "value" : "海外比率"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Камера"
+            "value" : "Доля зарубежных продаж"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cámara"
+            "value" : "Peso internacional"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kamera"
+            "value" : "Auslandsanteil"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Appareil photo"
+            "value" : "Part à l’international"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fotocamera"
+            "value" : "Quota estera"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Câmera"
+            "value" : "Participação no exterior"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "กล้อง"
+            "value" : "สัดส่วนต่างประเทศ"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Camera"
+            "value" : "Tỷ trọng nước ngoài"
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fotoaparát"
+            "value" : "Podíl zahraničí"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kamera"
+            "value" : "Andel i udlandet"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Κάμερα"
+            "value" : "Μερίδιο εξωτερικού"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kamera"
+            "value" : "Ulkomaiden osuus"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kamera"
+            "value" : "Porsi luar negeri"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kamera"
+            "value" : "Andel i utlandet"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Camera"
+            "value" : "Aandeel buitenland"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aparat"
+            "value" : "Udział zagranicy"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kamera"
+            "value" : "Andel utomlands"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kamera"
+            "value" : "Yurt dışı payı"
+          }
+        }
+      }
+    },
+    "강의실 화면에 장표가 떠 있어요" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A slide is showing on the lecture hall screen"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A slide is showing on the lecture hall screen"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "教室屏幕上正显示一张幻灯片"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "教室螢幕上正顯示一張投影片"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "教室のスクリーンにスライドが映っています"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "На экране в аудитории показан слайд"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hay una diapositiva en la pantalla del aula"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Im Hörsaal wird eine Folie gezeigt"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une diapo s’affiche sur l’écran de la salle"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sullo schermo dell’aula c’è una slide"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Há um slide na tela do auditório"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "มีสไลด์แสดงอยู่บนจอในห้องเรียน"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Màn hình lớp học đang chiếu một trang chiếu"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Na plátně v posluchárně je snímek"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Et dias vises på lærredet i salen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μια διαφάνεια προβάλλεται στην οθόνη της αίθουσας"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Luentosalin näytöllä näkyy dia"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ada slide di layar ruang kuliah"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Et lysbilde vises på lerretet i salen"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Er staat een dia op het scherm in de zaal"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Na ekranie w sali wyświetlany jest slajd"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En bild visas på duken i salen"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sınıf ekranında bir slayt görünüyor"
           }
         }
       }

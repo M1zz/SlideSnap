@@ -2,32 +2,21 @@
 //  OnboardingView.swift
 //  SlideSnap
 //
-//  처음 쓰는 사람이 진짜로 해 본다 — 찍기 · 펴기 · 찾기.
-//  카메라도, 모서리 찾기 · 반듯하게 펴기 · 글자 읽기도 앱이 실제로 쓰는 그것이다. 가짜 그림이 아니다.
+//  처음 쓰는 사람이 해 본다 — 찍기 · 펴기 · 찾기. 누구나 같은 장면으로.
+//  강의실 화면을 손에 든 카메라처럼 비추고, 앱의 감지 테두리가 장표를 잡아 잠그면
+//  셔터를 누르거나 — 가만히 있어도 자동 촬영처럼 — 찰칵 찍힌다.
+//  그 사진의 모서리 찾기 · 반듯하게 펴기 · 글자 읽기는 앱이 실제로 쓰는 처리 그대로다.
 //  글은 큰 제목 한 줄뿐, 나머지는 그림과 움직임이 말한다. 한 장을 해 봐야 다음 단추가 깨어난다(건너뛰기는 늘 있다).
-//  눈앞에 장표가 없으면 셔터 옆에서 앨범의 강의 사진을 고르거나, 강의실 그림(예시)을 찍는다.
-//  카메라가 없거나(시뮬레이터) 허락을 받지 못해도 강의실 그림을 찍는다 — 그 뒤의 펴기 · 찾기는 그래도 진짜다.
-//  가로로 들고 찍은 사진도 가로 그대로 다룬다(아이폰 화면은 세로로 서 있어도 사진은 돌아 나온다).
-//  발표가 하나도 없는 첫 실행에만 뜬다 (→ PresentationListView.reacting).
+//  발표가 하나도 없는 첫 실행에만 뜬다 (→ PresentationListView.reacting). 끝내면 진짜 카메라가 열린다.
 //
 
 #if os(iOS) && !targetEnvironment(macCatalyst)
 import SwiftUI
-import AVFoundation
-import PhotosUI
 import Vision
 
 struct OnboardingView: View {
-    enum Outcome {
-        /// 건너뛰었다
-        case skipped
-        /// 강의실 그림으로 해 봤다 — 남길 장표는 없다
-        case triedSample
-        /// 카메라로 진짜 찍었다 — 첫 발표로 남긴다
-        case captured(UIImage)
-    }
-
-    var onFinish: (Outcome) -> Void
+    /// 끝났을 때. 마지막 단추로 끝냈으면 true — 이제 진짜로 찍으러 카메라를 연다.
+    var onFinish: (_ finished: Bool) -> Void
 
     @StateObject private var trial = OnboardingTrial()
     @State private var page = Self.startPage
@@ -35,7 +24,7 @@ struct OnboardingView: View {
 
     private let pageCount = 3
 
-    /// 시작 장. DEBUG 에서 `-SSOnboardingPage <0~2>` 로 가운데 장부터 볼 수 있다(그 장은 강의실 그림으로 채운다).
+    /// 시작 장. DEBUG 에서 `-SSOnboardingPage <0~2>` 로 가운데 장부터 볼 수 있다(확인 · 스크린샷용).
     private static var startPage: Int {
         #if DEBUG
         return UserDefaults.standard.integer(forKey: "SSOnboardingPage")
@@ -48,7 +37,7 @@ struct OnboardingView: View {
         VStack(spacing: 0) {
             HStack {
                 Spacer()
-                Button("건너뛰기") { onFinish(.skipped) }
+                Button("건너뛰기") { onFinish(false) }
                     .foregroundStyle(.secondary)
                     .padding()
             }
@@ -68,9 +57,7 @@ struct OnboardingView: View {
             footer
         }
         .background(Color(.systemBackground))
-        .task {
-            if page > 0 { await trial.useSample() }
-        }
+        .task { await trial.prepare() }
     }
 
     private var footer: some View {
@@ -102,21 +89,17 @@ struct OnboardingView: View {
     }
 
     private func next() {
-        guard page == pageCount - 1 else {
-            withAnimation(.spring(duration: 0.5)) { page += 1 }
-            return
-        }
-        if let photo = trial.photo, !trial.isSample {
-            onFinish(.captured(photo))
+        if page == pageCount - 1 {
+            onFinish(true)
         } else {
-            onFinish(.triedSample)
+            withAnimation(.spring(duration: 0.5)) { page += 1 }
         }
     }
 }
 
-// MARK: - 해 본 것 — 찍은 사진과 앱이 그 사진에서 찾아낸 것
+// MARK: - 해 본 것 — 강의실 사진과 앱이 그 사진에서 찾아낸 것
 
-/// 찍은 사진 한 장을 앱의 진짜 처리(모서리 찾기 → 펴기 → 글자 읽기)에 통과시킨다.
+/// 강의실 장면 한 장을 앱의 진짜 처리(모서리 찾기 → 펴기 → 글자 읽기)에 통과시킨다.
 @MainActor
 private final class OnboardingTrial: ObservableObject {
     /// 읽어 낸 낱말 하나와, 펴진 장표 위 그 자리들(0~1, 왼쪽 위 원점).
@@ -126,8 +109,10 @@ private final class OnboardingTrial: ObservableObject {
         var id: String { text }
     }
 
+    /// 장면을 그리는 크기 — 뷰파인더와 같은 3:4.
+    static let sceneSize = CGSize(width: 360, height: 480)
+
     @Published var photo: UIImage?
-    @Published var isSample = false
     @Published var quad: Quad?
     @Published var corrected: UIImage?
     @Published var words: [Word] = []
@@ -136,44 +121,31 @@ private final class OnboardingTrial: ObservableObject {
     /// 해 본 장 번호들.
     @Published var done: Set<Int> = []
 
-    func take(_ image: UIImage, sample: Bool) async {
-        let normalized = image.orientationNormalized()
-        photo = normalized
-        isSample = sample
-        quad = nil
-        corrected = nil
-        words = []
-        processed = false
-        done = [0]
+    private var preparing: Task<Void, Never>?
+
+    /// 장면을 찍어 처리해 둔다. 여러 곳에서 불러도 한 번만 한다.
+    func prepare() async {
+        if preparing == nil {
+            preparing = Task { await process() }
+        }
+        await preparing?.value
+    }
+
+    private func process() async {
+        let renderer = ImageRenderer(content: LectureScene().frame(width: Self.sceneSize.width, height: Self.sceneSize.height))
+        renderer.scale = 3
+        guard let image = renderer.uiImage else { processed = true; return }
+        photo = image
 
         let result = await Task.detached(priority: .userInitiated) {
-            let quad = ImageProcessor.detectSlideQuad(in: normalized)
-            let corrected = quad.flatMap { ImageProcessor.perspectiveCorrected(normalized, quad: $0) } ?? normalized
+            let quad = ImageProcessor.detectSlideQuad(in: image)
+            let corrected = quad.flatMap { ImageProcessor.perspectiveCorrected(image, quad: $0) } ?? image
             return (quad, corrected, Self.readWords(in: corrected))
         }.value
-        guard photo === normalized else { return }   // 그 사이 다시 찍었다
         quad = result.0
         corrected = result.1
         words = result.2
         processed = true
-    }
-
-    /// 다시 찍으려고 비운다.
-    func reset() {
-        photo = nil
-        quad = nil
-        corrected = nil
-        words = []
-        processed = false
-        done = []
-    }
-
-    /// 강의실 그림을 찍은 것으로 한다 — 카메라가 없거나, 가운데 장부터 볼 때.
-    func useSample() async {
-        let renderer = ImageRenderer(content: SampleScene().frame(width: 360, height: 480))
-        renderer.scale = 3
-        guard let image = renderer.uiImage else { return }
-        await take(image, sample: true)
     }
 
     /// 낱말과 그 자리. 위에서부터(제목부터) 읽은 순서다.
@@ -192,7 +164,7 @@ private final class OnboardingTrial: ObservableObject {
             guard let candidate = observation.topCandidates(1).first else { continue }
             let line = candidate.string
             line.enumerateSubstrings(in: line.startIndex..., options: .byWords) { word, range, _, _ in
-                guard let word, word.count >= 2, word.contains(where: \.isLetter),
+                guard let word, word.count >= 2, word.allSatisfy({ !$0.isNumber }), word.contains(where: \.isLetter),
                       let box = try? candidate.boundingBox(for: range)?.boundingBox else { return }
                 let key = word.lowercased()
                 if boxes[key] == nil { order.append(word) }
@@ -250,114 +222,51 @@ private func fittedRect(_ size: CGSize, in bounds: CGSize) -> CGRect {
 private struct CaptureStep: View {
     @ObservedObject var trial: OnboardingTrial
 
-    @StateObject private var camera = CameraController()
+    /// 뷰파인더에 뜬 감지 테두리. 처음엔 넉넉히 잡았다가 장표에 맞춰 조여 든다.
+    @State private var liveQuad: Quad?
+    @State private var locked = false
+    @State private var captured = false
     @State private var flash = false
+    @State private var sway = false
     @State private var pulse = false
-    /// 눈앞에 장표가 없어 강의실 그림(예시)을 보고 있는가.
-    @State private var showingSample = false
-    @State private var albumItem: PhotosPickerItem?
-    /// 한참 못 찍고 있으면 '앨범 · 예시' 단추가 살짝 튄다.
-    @State private var nudge = 0
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
-    /// 진짜 카메라를 쓸 수 있는가. 없거나(시뮬레이터) 허락을 못 받았으면 강의실 그림을 찍는다.
-    private var hasCamera: Bool {
-        !camera.authorizationDenied
-            && AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) != nil
-    }
-    /// 지금 뷰파인더에 카메라가 비치는가.
-    private var cameraLive: Bool { hasCamera && !showingSample }
-
     var body: some View {
-        StepPage(title: "장표를 찍어 보세요", done: trial.photo != nil) {
+        StepPage(title: "장표를 찍어 보세요", done: captured) {
             VStack(spacing: 22) {
                 viewfinder
-                HStack {
-                    album.frame(maxWidth: .infinity)
-                    shutter
-                    sample.frame(maxWidth: .infinity)
-                }
+                shutter
             }
         }
         .onAppear {
+            sway = true
             pulse = true
-            if hasCamera { camera.start() }
         }
-        .onDisappear { camera.stop() }
-        .onChange(of: albumItem) { _, item in
-            guard let item else { return }
-            Task {
-                if let data = try? await item.loadTransferable(type: Data.self), let image = UIImage(data: data) {
-                    await trial.take(image, sample: false)
-                }
-                albumItem = nil
-            }
-        }
-        .task {
-            // 5초 넘게 못 찍고 있으면 — 눈앞에 장표가 없는 것이다 — 옆 단추를 살짝 튀게 한다.
-            try? await Task.sleep(for: .seconds(5))
-            if trial.photo == nil { nudge += 1 }
-        }
-    }
-
-    /// 앨범에서 고르기 — 찍어 둔 강의 사진으로 진짜 해 본다.
-    private var album: some View {
-        PhotosPicker(selection: $albumItem, matching: .images) {
-            sideIcon("photo.on.rectangle.angled")
-        }
-        .accessibilityLabel(Text("사진에서 가져오기"))
-        .disabled(trial.photo != nil)
-        .opacity(trial.photo != nil ? 0 : 1)
-    }
-
-    /// 예시 장표 — 강의실 그림을 뷰파인더에 띄운다. 카메라가 없으면 늘 그림이라 단추가 없다.
-    @ViewBuilder
-    private var sample: some View {
-        if hasCamera {
-            Button {
-                withAnimation(.easeInOut(duration: 0.3)) { showingSample.toggle() }
-            } label: {
-                sideIcon(showingSample ? "camera.fill" : "rectangle.inset.filled.and.person.filled")
-            }
-            .accessibilityLabel(showingSample ? Text("카메라") : Text("예시 장표"))
-            .disabled(trial.photo != nil)
-            .opacity(trial.photo != nil ? 0 : 1)
-        } else {
-            Color.clear.frame(width: 54, height: 54)   // 셔터를 가운데에 두려고 자리만 잡는다
-        }
-    }
-
-    private func sideIcon(_ name: String) -> some View {
-        Image(systemName: name)
-            .font(.title2)
-            .foregroundStyle(Color.primary)
-            .frame(width: 54, height: 54)
-            .background(Color(.secondarySystemBackground), in: Circle())
-            .symbolEffect(.bounce, value: nudge)
-            .contentTransition(.symbolEffect(.replace))
+        .task { await play() }
     }
 
     private var viewfinder: some View {
         ZStack {
-            if hasCamera {
-                Color.black
-                CameraPreview(camera: camera)
-                    .opacity(showingSample ? 0 : 1)
-                if let quad = camera.detectedQuad {
-                    DetectionOverlay(quad: quad, aspect: camera.sourceAspect, locked: camera.isLocked)
-                        .allowsHitTesting(false)
+            // 손에 든 카메라처럼 장면이 살짝 흔들린다
+            ZStack {
+                FittedScene()
+                if let liveQuad {
+                    DetectionOverlay(quad: liveQuad, aspect: 3 / 4, locked: locked)
+                        .transition(.opacity)
                 }
             }
-            if !cameraLive {
-                SampleScene().transition(.opacity)
-            }
+            .scaleEffect(1.06)
+            .offset(x: sway && !captured ? 5 : -5, y: sway && !captured ? -4 : 3)
+            .rotationEffect(.degrees(sway && !captured ? 0.7 : -0.5))
+            .animation(reduceMotion || captured ? .easeOut(duration: 0.2)
+                                                : .easeInOut(duration: 2.4).repeatForever(autoreverses: true),
+                       value: sway)
 
-            // 찍은 사진이 멈춰 선다. 가로로 찍었으면 가로 그대로 — 잘라 내지 않고 틀 안에 맞춘다.
-            if let photo = trial.photo {
-                Color.black
+            // 찍힌 사진이 멈춰 선다
+            if captured, let photo = trial.photo {
                 Image(uiImage: photo)
                     .resizable()
-                    .scaledToFit()
+                    .scaledToFill()
                     .transition(.opacity)
             }
 
@@ -365,52 +274,66 @@ private struct CaptureStep: View {
         }
         .aspectRatio(3 / 4, contentMode: .fit)
         .clipShape(RoundedRectangle(cornerRadius: 24))
-        .overlay(alignment: .topTrailing) {
-            if trial.photo != nil { retake }
-        }
-    }
-
-    private var retake: some View {
-        Button {
-            withAnimation(.easeInOut(duration: 0.25)) { trial.reset() }
-        } label: {
-            Image(systemName: "arrow.counterclockwise")
-                .font(.headline)
-                .foregroundStyle(.white)
-                .padding(10)
-                .background(.black.opacity(0.5), in: Circle())
-        }
-        .padding(12)
-        .accessibilityLabel(Text("다시 찍기"))
+        .accessibilityElement()
+        .accessibilityLabel(Text("강의실 화면에 장표가 떠 있어요"))
     }
 
     private var shutter: some View {
         Button(action: capture) {
             ZStack {
                 Circle().stroke(Color.primary.opacity(0.85), lineWidth: 4).frame(width: 74, height: 74)
-                Circle().fill(Color.primary.opacity(0.85)).frame(width: 60, height: 60)
+                Circle().fill(locked ? Color.green : Color.primary.opacity(0.85)).frame(width: 60, height: 60)
             }
-            .scaleEffect(trial.photo == nil && pulse && !reduceMotion ? 1.07 : 1)
-            .animation(trial.photo == nil ? .easeInOut(duration: 0.8).repeatForever(autoreverses: true) : .default,
-                       value: pulse)
+            .scaleEffect(!captured && pulse && !reduceMotion ? 1.07 : 1)
+            .animation(captured ? .default : .easeInOut(duration: 0.8).repeatForever(autoreverses: true), value: pulse)
+            .animation(.easeInOut(duration: 0.3), value: locked)
         }
         .buttonStyle(ShutterPress())
         .accessibilityLabel(Text("셔터"))
-        .disabled(trial.photo != nil)
-        .opacity(trial.photo != nil ? 0.35 : 1)
+        .disabled(captured)
+        .opacity(captured ? 0.35 : 1)
+    }
+
+    /// 테두리가 장표를 찾아 조여 들고, 잠기고, 기다려도 안 누르면 저절로 찍힌다.
+    private func play() async {
+        await trial.prepare()
+        guard let quad = trial.quad else { return }
+        try? await Task.sleep(for: .milliseconds(700))
+        withAnimation(.easeOut(duration: 0.3)) { liveQuad = quad.inflated(by: 0.08) }
+        try? await Task.sleep(for: .milliseconds(450))
+        liveQuad = quad   // 테두리는 스스로 부드럽게 따라간다 (DetectionOverlay)
+        try? await Task.sleep(for: .milliseconds(900))
+        guard !captured else { return }
+        locked = true
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        // 장표가 잘 잡히면 앱도 저절로 찍는다 — 여기서도 그렇게.
+        try? await Task.sleep(for: .seconds(2.5))
+        if !Task.isCancelled && !captured { capture() }
     }
 
     private func capture() {
+        guard !captured else { return }
         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
         flash = true
-        withAnimation(.easeOut(duration: 0.4)) { flash = false }
-        if cameraLive {
-            camera.capturePhoto { image in
-                Task { @MainActor in await trial.take(image, sample: false) }
-            }
-        } else {
-            Task { await trial.useSample() }
+        withAnimation(.easeOut(duration: 0.45)) { flash = false }
+        withAnimation(.easeInOut(duration: 0.25)) {
+            captured = true
+            liveQuad = nil
         }
+        trial.done.insert(0)
+    }
+}
+
+private extension Quad {
+    /// 가운데에서 바깥으로 조금 부풀린 사각형 — 감지가 처음 넉넉히 잡는 모습.
+    func inflated(by amount: CGFloat) -> Quad {
+        let center = CGPoint(x: (topLeft.x + topRight.x + bottomRight.x + bottomLeft.x) / 4,
+                             y: (topLeft.y + topRight.y + bottomRight.y + bottomLeft.y) / 4)
+        func push(_ p: CGPoint) -> CGPoint {
+            CGPoint(x: p.x + (p.x - center.x) * amount * 2, y: p.y + (p.y - center.y) * amount * 2)
+        }
+        return Quad(topLeft: push(topLeft), topRight: push(topRight),
+                    bottomRight: push(bottomRight), bottomLeft: push(bottomLeft))
     }
 }
 
@@ -464,6 +387,7 @@ private struct StraightenStep: View {
                     Image(uiImage: photo)
                         .resizable()
                         .frame(width: photoRect.width, height: photoRect.height)
+                        .clipShape(RoundedRectangle(cornerRadius: 24))
                         .offset(x: photoRect.minX, y: photoRect.minY)
                         .opacity(straight ? 0 : 1)
                         .blur(radius: straight ? 8 : 0)
@@ -559,7 +483,7 @@ private struct SearchStep: View {
             }
         }
         .onChange(of: trial.processed, initial: true) { _, processed in
-            // 글자가 없는 사진이면 찾을 것이 없다 — 펴진 장표만 보여 주고 넘어가게 한다.
+            // 글자를 못 읽었으면 찾을 것이 없다 — 펴진 장표만 보여 주고 넘어가게 한다.
             if processed && trial.words.isEmpty { trial.done.insert(2) }
         }
     }
@@ -641,44 +565,99 @@ private struct SearchStep: View {
     }
 }
 
-// MARK: - 강의실 그림 — 카메라가 없을 때 찍는 장면
+// MARK: - 강의실 — 모두가 같이 찍는 장면
 
-/// 비스듬히 보이는 발표 화면. 이 그림을 찍어도 모서리 찾기 · 펴기 · 글자 읽기는 진짜로 돈다.
-private struct SampleScene: View {
+/// 장면을 찍을 때와 같은 크기로 그린 뒤 틀에 맞춰 줄인다 — 그래야 찾아낸 모서리가 화면의 장표와 겹친다.
+private struct FittedScene: View {
+    var body: some View {
+        GeometryReader { geo in
+            let size = OnboardingTrial.sceneSize
+            LectureScene()
+                .frame(width: size.width, height: size.height)
+                .scaleEffect(min(geo.size.width / size.width, geo.size.height / size.height))
+                .frame(width: geo.size.width, height: geo.size.height)
+        }
+    }
+}
+
+/// 뒷줄에서 비스듬히 본 강의실 스크린. 실제 강의 · 회의에서 볼 법한 장표가 떠 있다.
+private struct LectureScene: View {
     var body: some View {
         ZStack {
-            LinearGradient(colors: [Color(white: 0.24), Color(white: 0.1)], startPoint: .top, endPoint: .bottom)
-            VStack(alignment: .leading, spacing: 10) {
+            // 어두운 강의실 벽과 천장 조명
+            LinearGradient(colors: [Color(red: 0.16, green: 0.15, blue: 0.17), Color(red: 0.07, green: 0.07, blue: 0.08)],
+                           startPoint: .top, endPoint: .bottom)
+            HStack(spacing: 90) {
+                ForEach(0..<3, id: \.self) { _ in
+                    Capsule().fill(Color(white: 0.85).opacity(0.5)).frame(width: 46, height: 5)
+                        .shadow(color: .white.opacity(0.6), radius: 8)
+                }
+            }
+            .frame(maxHeight: .infinity, alignment: .top)
+            .padding(.top, 18)
+
+            // 스크린 — 둘레 빛이 번진다
+            screen
+                .shadow(color: Color(white: 0.9).opacity(0.25), radius: 24)
+                .rotation3DEffect(.degrees(26), axis: (x: 0.15, y: -1, z: 0.04), perspective: 0.55)
+                .rotationEffect(.degrees(-3))
+                .offset(x: 14, y: -34)
+        }
+        .overlay(alignment: .bottom) { audience }
+        .clipped()
+    }
+
+    private var screen: some View {
+        VStack(alignment: .leading, spacing: 7) {
+            HStack(spacing: 5) {
+                Text(verbatim: "2026")
                 Text("매출 전망")
-                    .font(.system(size: 26, weight: .heavy))
-                Text("고객 인터뷰")
-                    .font(.system(size: 16, weight: .semibold))
-                    .foregroundStyle(.gray)
-                HStack(alignment: .bottom, spacing: 12) {
-                    ForEach([0.35, 0.55, 0.7, 1.0], id: \.self) { height in
-                        RoundedRectangle(cornerRadius: 3)
-                            .fill(height == 1 ? Color.blue : Color.blue.opacity(0.4))
-                            .frame(width: 34, height: 70 * height)
+            }
+            .font(.system(size: 21, weight: .heavy))
+            .foregroundStyle(Color(red: 0.1, green: 0.15, blue: 0.3))
+
+            VStack(alignment: .leading, spacing: 3) {
+                // 숫자는 번역하지 않는다 — 말만 그 나라 말로.
+                HStack(spacing: 4) { Text(verbatim: "•"); Text("국내 매출 성장"); Text(verbatim: "+18%") }
+                HStack(spacing: 4) { Text(verbatim: "•"); Text("해외 비중"); Text(verbatim: "32% → 41%") }
+            }
+            .font(.system(size: 11, weight: .medium))
+            .foregroundStyle(Color(white: 0.25))
+
+            HStack(alignment: .bottom, spacing: 10) {
+                ForEach(Array(zip(["23", "24", "25", "26"], [0.42, 0.58, 0.74, 1.0])), id: \.0) { year, height in
+                    VStack(spacing: 2) {
+                        RoundedRectangle(cornerRadius: 2)
+                            .fill(year == "26" ? Color(red: 0.95, green: 0.45, blue: 0.2) : Color(red: 0.22, green: 0.4, blue: 0.75))
+                            .frame(width: 26, height: 52 * height)
+                        Text(verbatim: "’\(year)").font(.system(size: 8, weight: .semibold)).foregroundStyle(.gray)
                     }
                 }
+                Spacer(minLength: 0)
+                Text(verbatim: "12").font(.system(size: 8)).foregroundStyle(.gray)
             }
-            .foregroundStyle(.black)
-            .padding(18)
-            .frame(width: 250, height: 170, alignment: .topLeading)
-            .background(.white, in: Rectangle())
-            .rotation3DEffect(.degrees(24), axis: (x: 0.2, y: -1, z: 0.05), perspective: 0.6)
-            .rotationEffect(.degrees(-4))
-            .offset(y: -30)
         }
-        .overlay(alignment: .bottom) {
-            HStack(spacing: 14) {
-                ForEach(0..<6, id: \.self) { _ in
-                    Circle().fill(Color.black.opacity(0.6)).frame(width: 44, height: 44)
+        .padding(14)
+        .frame(width: 250, height: 168, alignment: .topLeading)
+        .background(Color(white: 0.97))
+        .overlay(alignment: .top) {
+            Rectangle().fill(Color(red: 0.22, green: 0.4, blue: 0.75)).frame(height: 4)
+        }
+    }
+
+    /// 앞줄 사람들 — 머리와 어깨.
+    private var audience: some View {
+        HStack(alignment: .bottom, spacing: -6) {
+            ForEach(0..<5, id: \.self) { index in
+                VStack(spacing: -6) {
+                    Circle().frame(width: 34, height: 34)
+                    Capsule().frame(width: 76, height: 46)
                 }
+                .offset(y: index.isMultiple(of: 2) ? 14 : 6)
             }
-            .offset(y: 16)
         }
-        .clipped()
+        .foregroundStyle(Color.black.opacity(0.85))
+        .offset(y: 22)
     }
 }
 
