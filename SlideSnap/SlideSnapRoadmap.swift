@@ -38,7 +38,7 @@ extension SlideSnapSpec {
         .init(id: "lang.more", status: .planned,
               title: String(localized: "더 많은 언어", comment: "Roadmap item: more languages"),
               detail: String(localized: "더 많은 나라 말로 앱을 쓸 수 있게 해요.", comment: "Roadmap item detail: more languages")),
-        .init(id: "onboarding", status: .building,
+        .init(id: "onboarding", status: .shipped("1.0.14"),
               title: String(localized: "처음 쓰는 분을 위한 안내", comment: "Roadmap item: first-run guide"),
               detail: String(localized: "처음 열었을 때 무엇을 할 수 있는지 짧게 보여 줘요.", comment: "Roadmap item detail: first-run guide")),
         .init(id: "whatsnew", status: .planned,
