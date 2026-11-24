@@ -57,6 +57,10 @@ struct PresentationListView: View {
     @State private var showingCamera = false
     @State private var cameraPresentationID: UUID?
     @State private var hasAutoLaunchedCamera = false
+    /// 첫 실행 체험 안내(→ OnboardingView). 끝내고 '찍으러 가기' 를 눌렀으면 닫힌 뒤 카메라를 연다.
+    @State private var showingOnboarding = false
+    @State private var cameraAfterOnboarding = false
+    @AppStorage("onboardingSeen") private var onboardingSeen = false
     /// 앱을 열면 무엇부터 보일지(설정 ▸ 촬영).
     @AppStorage(LaunchCamera.key) private var launchCamera: LaunchCamera = .always
     @State private var cameraCaptured = false
@@ -187,6 +191,15 @@ struct PresentationListView: View {
                 .foldConfined()
             }
         }
+        .fullScreenCover(isPresented: $showingOnboarding, onDismiss: {
+            if cameraAfterOnboarding { openCamera() }
+        }) {
+            OnboardingView { wantsCamera in
+                onboardingSeen = true
+                cameraAfterOnboarding = wantsCamera
+                showingOnboarding = false
+            }
+        }
         #endif
         .sheet(isPresented: $showingPhotoImport) {
             PhotoImportPicker { providers in
@@ -283,6 +296,8 @@ struct PresentationListView: View {
             // 공유로 넘어온 사진이 있어 열린 경우엔 카메라 대신 그 사진부터 정리한다.
             if !ShareInbox.pendingManifests().isEmpty {
                 importSharedPhotos()
+            } else if needsOnboarding {
+                showingOnboarding = true
             } else if router.cameraLaunchRequest > 0
                         || launchCamera.opensCamera(lastCapture: store.presentations.first?.slides.last?.createdAt,
                                                     hasPresentations: !store.presentations.isEmpty) {
@@ -458,6 +473,17 @@ struct PresentationListView: View {
             .accessibilityHidden(true)   // 선택 여부는 행의 '선택됨' 특성으로 읽는다
     }
 
+    /// 처음 온 사람인가 — 찍는 기기에서, 발표가 하나도 없고, 안내를 아직 못 봤고, 위젯 · 단축어로 찍으러 온 게 아니다.
+    /// 이미 발표가 있는 사람(안내가 생기기 전부터 쓰던 사람)은 본 것으로 치고 넘어간다.
+    private var needsOnboarding: Bool {
+        guard Capture.isAvailable, !onboardingSeen else { return false }
+        guard store.presentations.isEmpty else {
+            onboardingSeen = true
+            return false
+        }
+        return router.cameraLaunchRequest == 0
+    }
+
     /// 넛지는 목록 화면에 머물러 있고(카메라·다른 시트가 없고) 아직 노출 대상일 때만 띄운다.
     private var nudgeBinding: Binding<Bool> {
         Binding(
@@ -466,7 +492,7 @@ struct PresentationListView: View {
                 if DemoMode.screen != nil { return false }   // 스크린샷에 팝업이 찍히지 않게
                 #endif
                 return feedbackPrompt.shouldPrompt
-                    && !showingCamera && !showingFeedback && !showingSettings
+                    && !showingCamera && !showingOnboarding && !showingFeedback && !showingSettings
                     && !showingNewAlert && path.isEmpty
                     && paywallFeature == nil && !showingSavedToRecentPaywall
             },
