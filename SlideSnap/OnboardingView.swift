@@ -5,13 +5,16 @@
 //  처음 쓰는 사람이 진짜로 해 본다 — 찍기 · 펴기 · 찾기.
 //  카메라도, 모서리 찾기 · 반듯하게 펴기 · 글자 읽기도 앱이 실제로 쓰는 그것이다. 가짜 그림이 아니다.
 //  글은 큰 제목 한 줄뿐, 나머지는 그림과 움직임이 말한다. 한 장을 해 봐야 다음 단추가 깨어난다(건너뛰기는 늘 있다).
-//  카메라가 없거나(시뮬레이터) 허락을 받지 못하면 강의실 그림을 찍는다 — 그 뒤의 펴기 · 찾기는 그래도 진짜다.
+//  눈앞에 장표가 없으면 셔터 옆에서 앨범의 강의 사진을 고르거나, 강의실 그림(예시)을 찍는다.
+//  카메라가 없거나(시뮬레이터) 허락을 받지 못해도 강의실 그림을 찍는다 — 그 뒤의 펴기 · 찾기는 그래도 진짜다.
+//  가로로 들고 찍은 사진도 가로 그대로 다룬다(아이폰 화면은 세로로 서 있어도 사진은 돌아 나온다).
 //  발표가 하나도 없는 첫 실행에만 뜬다 (→ PresentationListView.reacting).
 //
 
 #if os(iOS) && !targetEnvironment(macCatalyst)
 import SwiftUI
 import AVFoundation
+import PhotosUI
 import Vision
 
 struct OnboardingView: View {
@@ -250,6 +253,11 @@ private struct CaptureStep: View {
     @StateObject private var camera = CameraController()
     @State private var flash = false
     @State private var pulse = false
+    /// 눈앞에 장표가 없어 강의실 그림(예시)을 보고 있는가.
+    @State private var showingSample = false
+    @State private var albumItem: PhotosPickerItem?
+    /// 한참 못 찍고 있으면 '앨범 · 예시' 단추가 살짝 튄다.
+    @State private var nudge = 0
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     /// 진짜 카메라를 쓸 수 있는가. 없거나(시뮬레이터) 허락을 못 받았으면 강의실 그림을 찍는다.
@@ -257,12 +265,18 @@ private struct CaptureStep: View {
         !camera.authorizationDenied
             && AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) != nil
     }
+    /// 지금 뷰파인더에 카메라가 비치는가.
+    private var cameraLive: Bool { hasCamera && !showingSample }
 
     var body: some View {
         StepPage(title: "장표를 찍어 보세요", done: trial.photo != nil) {
             VStack(spacing: 22) {
                 viewfinder
-                shutter
+                HStack {
+                    album.frame(maxWidth: .infinity)
+                    shutter
+                    sample.frame(maxWidth: .infinity)
+                }
             }
         }
         .onAppear {
@@ -270,6 +284,57 @@ private struct CaptureStep: View {
             if hasCamera { camera.start() }
         }
         .onDisappear { camera.stop() }
+        .onChange(of: albumItem) { _, item in
+            guard let item else { return }
+            Task {
+                if let data = try? await item.loadTransferable(type: Data.self), let image = UIImage(data: data) {
+                    await trial.take(image, sample: false)
+                }
+                albumItem = nil
+            }
+        }
+        .task {
+            // 5초 넘게 못 찍고 있으면 — 눈앞에 장표가 없는 것이다 — 옆 단추를 살짝 튀게 한다.
+            try? await Task.sleep(for: .seconds(5))
+            if trial.photo == nil { nudge += 1 }
+        }
+    }
+
+    /// 앨범에서 고르기 — 찍어 둔 강의 사진으로 진짜 해 본다.
+    private var album: some View {
+        PhotosPicker(selection: $albumItem, matching: .images) {
+            sideIcon("photo.on.rectangle.angled")
+        }
+        .accessibilityLabel(Text("사진에서 가져오기"))
+        .disabled(trial.photo != nil)
+        .opacity(trial.photo != nil ? 0 : 1)
+    }
+
+    /// 예시 장표 — 강의실 그림을 뷰파인더에 띄운다. 카메라가 없으면 늘 그림이라 단추가 없다.
+    @ViewBuilder
+    private var sample: some View {
+        if hasCamera {
+            Button {
+                withAnimation(.easeInOut(duration: 0.3)) { showingSample.toggle() }
+            } label: {
+                sideIcon(showingSample ? "camera.fill" : "rectangle.inset.filled.and.person.filled")
+            }
+            .accessibilityLabel(showingSample ? Text("카메라") : Text("예시 장표"))
+            .disabled(trial.photo != nil)
+            .opacity(trial.photo != nil ? 0 : 1)
+        } else {
+            Color.clear.frame(width: 54, height: 54)   // 셔터를 가운데에 두려고 자리만 잡는다
+        }
+    }
+
+    private func sideIcon(_ name: String) -> some View {
+        Image(systemName: name)
+            .font(.title2)
+            .foregroundStyle(Color.primary)
+            .frame(width: 54, height: 54)
+            .background(Color(.secondarySystemBackground), in: Circle())
+            .symbolEffect(.bounce, value: nudge)
+            .contentTransition(.symbolEffect(.replace))
     }
 
     private var viewfinder: some View {
@@ -277,27 +342,32 @@ private struct CaptureStep: View {
             if hasCamera {
                 Color.black
                 CameraPreview(camera: camera)
+                    .opacity(showingSample ? 0 : 1)
                 if let quad = camera.detectedQuad {
                     DetectionOverlay(quad: quad, aspect: camera.sourceAspect, locked: camera.isLocked)
                         .allowsHitTesting(false)
                 }
-            } else {
-                SampleScene()
+            }
+            if !cameraLive {
+                SampleScene().transition(.opacity)
             }
 
-            // 찍은 사진이 멈춰 선다
+            // 찍은 사진이 멈춰 선다. 가로로 찍었으면 가로 그대로 — 잘라 내지 않고 틀 안에 맞춘다.
             if let photo = trial.photo {
+                Color.black
                 Image(uiImage: photo)
                     .resizable()
-                    .scaledToFill()
+                    .scaledToFit()
                     .transition(.opacity)
-                    .overlay(alignment: .topTrailing) { retake }
             }
 
             Color.white.opacity(flash ? 0.9 : 0).allowsHitTesting(false)
         }
         .aspectRatio(3 / 4, contentMode: .fit)
         .clipShape(RoundedRectangle(cornerRadius: 24))
+        .overlay(alignment: .topTrailing) {
+            if trial.photo != nil { retake }
+        }
     }
 
     private var retake: some View {
@@ -334,7 +404,7 @@ private struct CaptureStep: View {
         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
         flash = true
         withAnimation(.easeOut(duration: 0.4)) { flash = false }
-        if hasCamera {
+        if cameraLive {
             camera.capturePhoto { image in
                 Task { @MainActor in await trial.take(image, sample: false) }
             }
