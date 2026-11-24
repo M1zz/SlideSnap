@@ -40,42 +40,42 @@ You can hide the sale notice for 3 days
 首次訂閱可用優惠價開始
 也可以選擇3天內不再顯示
 
-### App Store (ja, ja)
+### 앱스토어 (일본어, ja)
 
 App Storeのセールから料金プランをすぐ開けます
 セール期間中はアプリを開くとお知らせします
 初めての登録なら割引価格で始められます
 お知らせは3日間非表示にできます
 
-### App Store (ru, ru)
+### 앱스토어 (러시아어, ru)
 
 Акции в App Store сразу открывают тарифы
 Приложение сообщит о скидках при запуске
 Новая подписка по сниженной цене
 Уведомление можно скрыть на 3 дня
 
-### App Store (es, es)
+### 앱스토어 (스페인어, es)
 
 Las ofertas de App Store abren tu plan
 La app te avisa cuando hay ofertas
 Tu primera suscripción tiene descuento
 Puedes ocultar el aviso durante 3 días
 
-### App Store (de, de)
+### 앱스토어 (독일어, de)
 
 App-Store-Angebote öffnen die Tarife
 Die App zeigt dir laufende Angebote
 Neue Abos starten zum reduzierten Preis
 Du kannst den Hinweis 3 Tage ausblenden
 
-### App Store (fr, fr)
+### 앱스토어 (프랑스어, fr)
 
 Les offres App Store ouvrent les forfaits
 L’app vous prévient pendant les promos
 Premier abonnement à prix réduit
 Vous pouvez masquer l’annonce 3 jours
 
-### App Store (it, it)
+### 앱스토어 (이탈리아어, it)
 
 Le offerte dell’App Store aprono i piani
 L’app ti avvisa quando c’è un’offerta
@@ -89,84 +89,84 @@ O app avisa quando há promoção
 A primeira assinatura tem desconto
 Você pode ocultar o aviso por 3 dias
 
-### App Store (th, th)
+### 앱스토어 (태국어, th)
 
 ดีลใน App Store เปิดแพ็กเกจได้ทันที
 ช่วงลดราคา เราจะแจ้งเมื่อคุณเปิดแอป
 สมัครครั้งแรกเริ่มได้ในราคาพิเศษ
 ซ่อนการแจ้งเตือนได้ 3 วัน
 
-### App Store (vi, vi)
+### 앱스토어 (베트남어, vi)
 
 Ưu đãi trên App Store mở thẳng các gói
 Khi có ưu đãi, ứng dụng sẽ báo cho bạn
 Lần đăng ký đầu tiên có giá ưu đãi
 Bạn có thể ẩn thông báo trong 3 ngày
 
-### App Store (cs, cs)
+### 앱스토어 (체코어, cs)
 
 Akce v App Storu otevřou předplatné
 Během slev vám dáme vědět po otevření
 Noví předplatitelé začnou se slevou
 Oznámení můžete na 3 dny skrýt
 
-### App Store (da, da)
+### 앱스토어 (덴마크어, da)
 
 Tilbud i App Store åbner abonnementerne
 Appen fortæller dig, når der er udsalg
 Nye abonnenter starter til nedsat pris
 Du kan skjule beskeden i 3 dage
 
-### App Store (el, el)
+### 앱스토어 (그리스어, el)
 
 Οι προσφορές App Store ανοίγουν τα πακέτα
 Η εφαρμογή σας ενημερώνει για προσφορές
 Οι νέοι συνδρομητές ξεκινούν με έκπτωση
 Μπορείτε να την κρύψετε για 3 μέρες
 
-### App Store (fi, fi)
+### 앱스토어 (핀란드어, fi)
 
 App Storen tarjoukset avaavat tilaukset
 Alennuksista kerrotaan, kun avaat apin
 Uudet tilaajat aloittavat alennushintaan
 Ilmoituksen voi piilottaa 3 päiväksi
 
-### App Store (id, id)
+### 앱스토어 (인도네시아어, id)
 
 Promo App Store langsung membuka paket
 App memberi tahu saat ada diskon
 Pelanggan baru mulai dengan harga diskon
 Pemberitahuan bisa disembunyikan 3 hari
 
-### App Store (nb, nb)
+### 앱스토어 (노르웨이어(보크말), nb)
 
 Tilbud i App Store åpner abonnementene
 Appen sier fra når det er salg
 Nye abonnenter starter til redusert pris
 Du kan skjule meldingen i 3 dager
 
-### App Store (nl, nl)
+### 앱스토어 (네덜란드어, nl)
 
 App Store-acties openen de abonnementen
 De app laat weten wanneer er korting is
 Nieuwe abonnees beginnen met korting
 Je kunt de melding 3 dagen verbergen
 
-### App Store (pl, pl)
+### 앱스토어 (폴란드어, pl)
 
 Promocje w App Store otwierają plany
 Aplikacja powie Ci o promocjach
 Nowi subskrybenci zaczną w niższej cenie
 Powiadomienie możesz ukryć na 3 dni
 
-### App Store (sv, sv)
+### 앱스토어 (스웨덴어, sv)
 
 Erbjudanden i App Store öppnar planerna
 Appen berättar nu när det är rea
 Nya prenumeranter börjar till lägre pris
 Du kan dölja meddelandet i 3 dagar
 
-### App Store (tr, tr)
+### 앱스토어 (튀르키예어, tr)
 
 App Store fırsatları planları açar
 Uygulama indirimleri size haber verir
