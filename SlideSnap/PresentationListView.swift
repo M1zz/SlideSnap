@@ -57,9 +57,11 @@ struct PresentationListView: View {
     @State private var showingCamera = false
     @State private var cameraPresentationID: UUID?
     @State private var hasAutoLaunchedCamera = false
-    /// 첫 실행 체험 안내(→ OnboardingView). 끝내고 '찍으러 가기' 를 눌렀으면 닫힌 뒤 카메라를 연다.
+    /// 첫 실행 체험 안내(→ OnboardingView). 닫힌 뒤 그 결과대로 이어 간다(→ finishOnboarding).
     @State private var showingOnboarding = false
-    @State private var cameraAfterOnboarding = false
+    #if os(iOS) && !targetEnvironment(macCatalyst)
+    @State private var onboardingOutcome: OnboardingView.Outcome?
+    #endif
     @AppStorage("onboardingSeen") private var onboardingSeen = false
     /// 앱을 열면 무엇부터 보일지(설정 ▸ 촬영).
     @AppStorage(LaunchCamera.key) private var launchCamera: LaunchCamera = .always
@@ -191,12 +193,10 @@ struct PresentationListView: View {
                 .foldConfined()
             }
         }
-        .fullScreenCover(isPresented: $showingOnboarding, onDismiss: {
-            if cameraAfterOnboarding { openCamera() }
-        }) {
-            OnboardingView { wantsCamera in
+        .fullScreenCover(isPresented: $showingOnboarding, onDismiss: finishOnboarding) {
+            OnboardingView { outcome in
                 onboardingSeen = true
-                cameraAfterOnboarding = wantsCamera
+                onboardingOutcome = outcome
                 showingOnboarding = false
             }
         }
@@ -913,6 +913,31 @@ struct PresentationListView: View {
         }
         showingCamera = true
     }
+
+    #if os(iOS) && !targetEnvironment(macCatalyst)
+    /// 첫 실행 안내가 닫혔다. 진짜로 찍었으면 그 장표로 첫 발표를 만들어 열고,
+    /// 강의실 그림으로 해 봤으면 이제 진짜로 찍으러 카메라를 연다.
+    private func finishOnboarding() {
+        guard let outcome = onboardingOutcome else { return }
+        onboardingOutcome = nil
+        switch outcome {
+        case .skipped:
+            break
+        case .triedSample:
+            openCamera()
+        case .captured(let image):
+            let presentation = store.beginDraftPresentation(title: CalendarNaming.currentEventTitle() ?? Store.defaultTitle())
+            Task {
+                if await store.addSlide(image: image, to: presentation.id) != nil {
+                    store.promoteDraft(presentation.id)
+                    open(presentation.id)
+                } else {
+                    store.discardDraft(presentation.id)
+                }
+            }
+        }
+    }
+    #endif
 
     /// 카메라 위 "이어 찍기" — 새 발표 초안을 버리고 찍던 발표 뒤에 붙인다. 카메라는 닫지 않는다.
     private func continueCapture(_ id: UUID) {

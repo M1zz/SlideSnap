@@ -2,285 +2,306 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Capture slides with ${applicationName}" : {
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Vyfoť slajdy v ${applicationName}"
           }
         },
         "da" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Tag billeder af slides med ${applicationName}"
           }
         },
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Nimm Folien mit ${applicationName} auf"
           }
         },
         "el" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Τράβηξε διαφάνειες με το ${applicationName}"
+          }
+        },
+        "en" : {
+          "stringSet" : {
+            "state" : "new",
+            "values" : [
+              "Capture slides with ${applicationName}",
+              "Scan a slide with ${applicationName}",
+              "Open ${applicationName} camera"
+            ]
           }
         },
         "en-GB" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Capture slides with ${applicationName}"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Captura diapositivas con ${applicationName}"
           }
         },
         "fi" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Kuvaa kalvoja ${applicationName}illa"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Capture des diapositives avec ${applicationName}"
           }
         },
         "id" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Foto slide dengan ${applicationName}"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Scatta diapositive con ${applicationName}"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "${applicationName}でスライドを撮る"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "${applicationName}로 슬라이드 찍어줘"
           }
         },
         "nb" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Ta bilde av lysbilder med ${applicationName}"
           }
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Leg dia’s vast met ${applicationName}"
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Zrób zdjęcia slajdów w ${applicationName}"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Capture slides com o ${applicationName}"
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Сними слайды в ${applicationName}"
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Fota slides med ${applicationName}"
           }
         },
         "th" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "ถ่ายสไลด์ด้วย ${applicationName}"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "${applicationName} ile slayt çek"
           }
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Chụp slide bằng ${applicationName}"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "用${applicationName}拍幻灯片"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "用${applicationName}拍投影片"
           }
         }
       }
     },
-    "Scan a slide with ${applicationName}" : {
+    "Find a slide in ${applicationName}" : {
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Naskenuj slajd v ${applicationName}"
+            "state" : "needs_review",
+            "value" : "Najdi slajd v ${applicationName}"
           }
         },
         "da" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Scan en slide med ${applicationName}"
+            "state" : "needs_review",
+            "value" : "Find en slide i ${applicationName}"
           }
         },
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Scanne eine Folie mit ${applicationName}"
+            "state" : "needs_review",
+            "value" : "Finde eine Folie in ${applicationName}"
           }
         },
         "el" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Σάρωσε μια διαφάνεια με το ${applicationName}"
+            "state" : "needs_review",
+            "value" : "Βρες μια διαφάνεια στο ${applicationName}"
+          }
+        },
+        "en" : {
+          "stringSet" : {
+            "state" : "new",
+            "values" : [
+              "Find a slide in ${applicationName}",
+              "Search slides in ${applicationName}"
+            ]
           }
         },
         "en-GB" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Scan a slide with ${applicationName}"
+            "state" : "needs_review",
+            "value" : "Find a slide in ${applicationName}"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Escanea una diapositiva con ${applicationName}"
+            "state" : "needs_review",
+            "value" : "Busca una diapositiva en ${applicationName}"
           }
         },
         "fi" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Skannaa kalvo ${applicationName}illa"
+            "state" : "needs_review",
+            "value" : "Etsi kalvo ${applicationName}ista"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Scanne une diapositive avec ${applicationName}"
+            "state" : "needs_review",
+            "value" : "Trouve une diapositive dans ${applicationName}"
           }
         },
         "id" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pindai slide dengan ${applicationName}"
+            "state" : "needs_review",
+            "value" : "Cari slide di ${applicationName}"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Scansiona una diapositiva con ${applicationName}"
+            "state" : "needs_review",
+            "value" : "Trova una diapositiva in ${applicationName}"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "${applicationName}でスライドをスキャン"
+            "state" : "needs_review",
+            "value" : "${applicationName}でスライドを探す"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "${applicationName}로 장표 스캔"
+            "state" : "needs_review",
+            "value" : "${applicationName}에서 장표 찾아줘"
           }
         },
         "nb" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Skann et lysbilde med ${applicationName}"
+            "state" : "needs_review",
+            "value" : "Finn et lysbilde i ${applicationName}"
           }
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Scan een dia met ${applicationName}"
+            "state" : "needs_review",
+            "value" : "Zoek een dia in ${applicationName}"
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zeskanuj slajd w ${applicationName}"
+            "state" : "needs_review",
+            "value" : "Znajdź slajd w ${applicationName}"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Escaneie um slide com o ${applicationName}"
+            "state" : "needs_review",
+            "value" : "Encontre um slide no ${applicationName}"
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отсканируй слайд в ${applicationName}"
+            "state" : "needs_review",
+            "value" : "Найди слайд в ${applicationName}"
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Skanna en slide med ${applicationName}"
+            "state" : "needs_review",
+            "value" : "Hitta en slide i ${applicationName}"
           }
         },
         "th" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "สแกนสไลด์ด้วย ${applicationName}"
+            "state" : "needs_review",
+            "value" : "หาสไลด์ใน ${applicationName}"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "${applicationName} ile slayt tara"
+            "state" : "needs_review",
+            "value" : "${applicationName} içinde slayt bul"
           }
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Quét slide bằng ${applicationName}"
+            "state" : "needs_review",
+            "value" : "Tìm slide trong ${applicationName}"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "用${applicationName}扫描幻灯片"
+            "state" : "needs_review",
+            "value" : "在${applicationName}里找幻灯片"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "用${applicationName}掃描投影片"
+            "state" : "needs_review",
+            "value" : "在${applicationName}裡找投影片"
           }
         }
       }
@@ -427,144 +448,144 @@
         }
       }
     },
-    "Find a slide in ${applicationName}" : {
+    "Scan a slide with ${applicationName}" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Najdi slajd v ${applicationName}"
+            "value" : "Naskenuj slajd v ${applicationName}"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Find en slide i ${applicationName}"
+            "value" : "Scan en slide med ${applicationName}"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Finde eine Folie in ${applicationName}"
+            "value" : "Scanne eine Folie mit ${applicationName}"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Βρες μια διαφάνεια στο ${applicationName}"
+            "value" : "Σάρωσε μια διαφάνεια με το ${applicationName}"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Find a slide in ${applicationName}"
+            "value" : "Scan a slide with ${applicationName}"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Busca una diapositiva en ${applicationName}"
+            "value" : "Escanea una diapositiva con ${applicationName}"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Etsi kalvo ${applicationName}ista"
+            "value" : "Skannaa kalvo ${applicationName}illa"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Trouve une diapositive dans ${applicationName}"
+            "value" : "Scanne une diapositive avec ${applicationName}"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cari slide di ${applicationName}"
+            "value" : "Pindai slide dengan ${applicationName}"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Trova una diapositiva in ${applicationName}"
+            "value" : "Scansiona una diapositiva con ${applicationName}"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "${applicationName}でスライドを探す"
+            "value" : "${applicationName}でスライドをスキャン"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "${applicationName}에서 장표 찾아줘"
+            "value" : "${applicationName}로 장표 스캔"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Finn et lysbilde i ${applicationName}"
+            "value" : "Skann et lysbilde med ${applicationName}"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zoek een dia in ${applicationName}"
+            "value" : "Scan een dia met ${applicationName}"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Znajdź slajd w ${applicationName}"
+            "value" : "Zeskanuj slajd w ${applicationName}"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Encontre um slide no ${applicationName}"
+            "value" : "Escaneie um slide com o ${applicationName}"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Найди слайд в ${applicationName}"
+            "value" : "Отсканируй слайд в ${applicationName}"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hitta en slide i ${applicationName}"
+            "value" : "Skanna en slide med ${applicationName}"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "หาสไลด์ใน ${applicationName}"
+            "value" : "สแกนสไลด์ด้วย ${applicationName}"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "${applicationName} içinde slayt bul"
+            "value" : "${applicationName} ile slayt tara"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tìm slide trong ${applicationName}"
+            "value" : "Quét slide bằng ${applicationName}"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在${applicationName}里找幻灯片"
+            "value" : "用${applicationName}扫描幻灯片"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在${applicationName}裡找投影片"
+            "value" : "用${applicationName}掃描投影片"
           }
         }
       }
