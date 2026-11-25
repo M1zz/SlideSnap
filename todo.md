@@ -1,5 +1,12 @@
 # SlideSnap TODO
 
+## 페이월 기록이 허브에 하나도 없던 것 (2026-11-25)
+- [x] 원인: 페이월은 `LeeoAnalyticsCenter.track(.paywallShown)` 을 부르는데, Spec 에 `analytics` 가 없고 `register` 도 안 해서 LeeoKit 기본 기록처(`LeeoNoopAnalytics`)가 전부 버렸다
+- [x] `SlideSnapSpec.analytics = LeeoUsageAnalytics(spec:)`, 앱 init 에서 `LeeoAnalyticsCenter.register(SlideSnapSpec.self)` — 사용 통계와 같은 길
+- [x] 시뮬레이터 빌드 성공
+- [ ] 다음 빌드 배포 뒤 허브에서 페이월 노출 · 구매 시도가 잡히는지 보기
+- [ ] 로컬 main 에만 있는 커밋 80e2041(파일 · 클라우드에 저장)은 원격과 `Localizable.xcstrings` 가 겹쳐 아직 얹지 못함 — 정한 뒤 rebase
+
 ## iPad 가로 촬영 프리뷰가 90° 돌아가 보인다 (2026-11-17, 사용자 제보 "横向拍摄时预览和实际移动方向相差90度")
 - [x] 원인: RotationCoordinator 의 각도를 영상 프레임(감지 · 사진)에만 넣고 프리뷰 연결에는 넣지 않았다. 프리뷰는 세로(90°)에 멈춰 있어 세로 고정인 iPhone 에서는 안 보이던 문제
 - [x] `CameraController.rebuildRotationCoordinator` — 프리뷰 연결에 각도를 넣고, 기기를 돌릴 때마다 다시 넣는다(KVO). iOS 시뮬레이터 빌드 통과

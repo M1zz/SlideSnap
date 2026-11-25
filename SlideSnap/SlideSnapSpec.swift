@@ -30,6 +30,12 @@ enum SlideSnapSpec: LeeoAppSpec {
         marketingURL: URL(string: "https://m1zz.github.io/SlideSnap/")!
     )
 
+    /// 페이월 퍼널(노출 · 게이트 · 구매 시도 · 완료 · 복원)을 FeedbackHub 사용 통계로 보낸다.
+    /// 이것이 없으면 LeeoKit 의 기본 기록처가 아무 데도 보내지 않는 것(`LeeoNoopAnalytics`)이라,
+    /// 페이월이 `paywallShown` 을 부르고 있어도 허브에는 한 건도 오지 않았다. 사용 통계(`LeeoUsageReporter`)와
+    /// 같은 길로 간다 — 이벤트 이름만 올라가고 발표 내용은 나가지 않는다.
+    static let analytics: any LeeoAnalytics = LeeoUsageAnalytics(spec: SlideSnapSpec.self)
+
     /// 수익모델 — 무료로 찍고 펴고 묶다가, 한 학기를 통째로 담으면 Plus, 그때 한 말까지 담으면 Pro.
     /// 칸마다 주 · 월 · 연 구독과 평생. 무엇이 어느 칸인지는 `ProFeature.tier` 한 곳에 있다 (→ Plan.swift).
     /// 1.0.11 까지는 유료 다운로드 앱이었고, 그때 산 사람은 Pro 평생이다 (→ PaidDownloadBuyer).
