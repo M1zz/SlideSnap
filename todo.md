@@ -10,6 +10,11 @@
 - [x] 발표 화면 ⋯ 메뉴 · 선택 모드 공유 메뉴에 '파일 · 클라우드에 저장' — 이미지 · PDF · Markdown · PowerPoint 를 골라 저장할 위치 고르기(`FileSaver`, UIDocumentPickerViewController)로 바로 보낸다. 파일 앱에 켜 둔 OneDrive · Google Drive · WPS 등의 폴더가 뜬다. 잠금(Plus · Pro)은 공유와 같다
 - [x] 이미지는 "발표 제목 01.jpg" 꼴 이름으로 복사해 넘긴다(보관함 안의 이름은 식별자라서)
 - [x] 새 문구 2개 번역 24개 언어 · iOS 시뮬레이터 · Mac Catalyst(서명 없이) · visionOS 시뮬레이터 빌드 통과
+- [x] 오류 처리 다듬기 (2026-11-25, 리뷰 지적): `FileSaver` 에 Coordinator(delegate) — 저장 · 취소 뒤 시트 바인딩을 풀어 빈 시트가 남지 않게. 시트가 어떻게 닫히든(쓸어 닫기 포함) 임시 파일(save-images/<UUID> 폴더, pdf · zip · pptx)을 지운다. 저장하면 햅틱(visionOS 제외 — 앱에 토스트가 없어서)
+- [x] PDF 를 못 만들면 "내보내지 못했어요" 알림(전에는 조용히 끝났다). 그림 파일이 없는 장표는 빼고 저장 뒤 "일부 장표는 빼고 저장했어요 — N장" 알림, 다 없으면 저장 화면 대신 오류. 임시 폴더를 못 만들면 원본 이름 그대로라도 넘긴다
+- [x] 파일 이름은 제목을 200바이트(NFD 기준)로 잘라 만든다(`ExportFileName`, PDF · Markdown · PowerPoint 도 같이). 번호는 `%0Nld`
+- [x] 새 문구 4개 24개 언어 · iOS 시뮬레이터 · Mac Catalyst(서명 없이) · visionOS 시뮬레이터 빌드 통과
+- [ ] 실기기 · Mac 에서: 저장 / 취소 / 쓸어 닫기 뒤 빈 시트가 안 남는지, 저장 뒤 햅틱, tmp 가 비는지, 아주 긴 제목 발표 저장 — 빌드만 했다
 - [ ] 실기기에서 OneDrive · Google Drive(있으면 WPS) 폴더에 저장되는지, 장표가 많은 발표의 이미지 저장이 되는지 확인 — 빌드만 했고 화면을 눌러 보지는 못했다
 - [ ] 릴리즈 노트에 넣기
 - [ ] 보관함 전체 백업 · 되불러오기는 아직 없다(로드맵 '백업과 내보내기' 그대로 planned). 동기화는 여전히 iCloud 만

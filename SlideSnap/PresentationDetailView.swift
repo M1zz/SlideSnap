@@ -39,15 +39,56 @@ enum ExportDestination {
     case files
 }
 
+/// 파일 · 클라우드에 저장할 묶음.
+struct SaveBundle: Identifiable {
+    let id = UUID()
+    let urls: [URL]
+    /// 저장 화면이 닫히면 지울 임시 파일 · 폴더. 보관함의 원본은 절대 넣지 않는다.
+    let temporary: [URL]
+    /// 그림 파일을 찾지 못해 빠진 장표 수
+    var skipped = 0
+}
+
 /// 저장할 위치를 고르는 화면(UIDocumentPickerViewController). 파일은 복사해 넣으므로 원본은 그대로 남는다.
 struct FileSaver: UIViewControllerRepresentable {
     let urls: [URL]
+    /// 저장했으면 true, 취소했으면 false. 한 번만 불린다.
+    var onFinish: (Bool) -> Void = { _ in }
+
+    func makeCoordinator() -> Coordinator { Coordinator(onFinish: onFinish) }
 
     func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
-        UIDocumentPickerViewController(forExporting: urls, asCopy: true)
+        let picker = UIDocumentPickerViewController(forExporting: urls, asCopy: true)
+        picker.delegate = context.coordinator
+        return picker
     }
 
-    func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {}
+    func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {
+        context.coordinator.onFinish = onFinish
+    }
+
+    /// 고르기 화면은 저장 · 취소 뒤 스스로 닫히지만, 그것을 감싼 시트의 바인딩은 그대로 남아
+    /// (특히 Mac) 빈 시트가 남거나 다시 뜬다. 끝났다는 것을 알려 바인딩을 풀게 한다.
+    final class Coordinator: NSObject, UIDocumentPickerDelegate {
+        var onFinish: (Bool) -> Void
+        private var finished = false
+
+        init(onFinish: @escaping (Bool) -> Void) { self.onFinish = onFinish }
+
+        func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+            finish(true)
+        }
+
+        func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+            finish(false)
+        }
+
+        private func finish(_ saved: Bool) {
+            guard !finished else { return }
+            finished = true
+            onFinish(saved)
+        }
+    }
 }
 
 /// 발표 하나의 장표 그리드 화면.
@@ -75,7 +116,12 @@ struct PresentationDetailView: View {
     @State private var exportError: String?
     @State private var shareBundle: ShareBundle?
     /// 파일 · 클라우드에 저장할 파일들
-    @State private var saveBundle: ShareBundle?
+    @State private var saveBundle: SaveBundle?
+    /// 지금 저장 화면에 넘긴 묶음 — 시트가 닫힐 때 임시 파일을 지우고 결과를 알리려고 따로 쥔다.
+    @State private var pendingSave: SaveBundle?
+    @State private var saveSucceeded = false
+    /// 저장은 했지만 그림 파일을 찾지 못해 빠진 장표 수
+    @State private var skippedOnSave: Int?
 
     // 이름 변경
     @State private var showingRenameAlert = false
@@ -134,9 +180,12 @@ struct PresentationDetailView: View {
         .sheet(item: $shareBundle) { bundle in
             ShareSheet(items: bundle.items)
         }
-        .sheet(item: $saveBundle) { bundle in
-            FileSaver(urls: bundle.items.compactMap { $0 as? URL })
-                .ignoresSafeArea()
+        .sheet(item: $saveBundle, onDismiss: saveSheetDismissed) { bundle in
+            FileSaver(urls: bundle.urls) { saved in
+                saveSucceeded = saved
+                saveBundle = nil
+            }
+            .ignoresSafeArea()
         }
         .sheet(isPresented: $showingNotes) {
             PresentationNotesView(presentationID: presentationID)
@@ -151,6 +200,11 @@ struct PresentationDetailView: View {
             Button("확인", role: .cancel) {}
         } message: {
             Text(exportError ?? "")
+        }
+        .alert("일부 장표는 빼고 저장했어요", isPresented: Binding(get: { skippedOnSave != nil }, set: { if !$0 { skippedOnSave = nil } })) {
+            Button("확인", role: .cancel) {}
+        } message: {
+            Text("장표 \(skippedOnSave ?? 0)장은 그림 파일을 찾지 못해 넣지 못했어요.")
         }
         .navigationDestination(for: SlideRoute.self) { route in
             SlideDetailView(presentationID: route.presentationID, slideID: route.slideID)
@@ -624,40 +678,87 @@ struct PresentationDetailView: View {
                 Self.namedCopies(of: urls, title: title)
             }.value
             isExporting = false
-            deliver(named, to: .files)
+            guard !named.urls.isEmpty else {
+                // 모든 장표의 그림 파일이 없다 — 빈 저장 화면을 띄우지 않고 알린다.
+                named.temporary.forEach { try? FileManager.default.removeItem(at: $0) }
+                exportError = String(localized: "저장할 그림 파일을 찾지 못했어요.")
+                return
+            }
+            presentSaver(named)
         }
     }
 
-    /// 장표 그림을 임시 폴더에 "제목 01.jpg" 꼴로 복사한다. 복사하지 못한 그림은 원래 파일 그대로 넘긴다.
-    nonisolated private static func namedCopies(of urls: [URL], title: String) -> [URL] {
+    /// 장표 그림을 임시 폴더에 "제목 01.jpg" 꼴로 복사한다.
+    /// 복사하지 못한 그림은 원래 파일 그대로 넘기고(이름만 식별자), 원래 파일도 없는 장표는 빼고 그 수를 센다.
+    nonisolated private static func namedCopies(of urls: [URL], title: String) -> SaveBundle {
         let fm = FileManager.default
-        let invalid = CharacterSet(charactersIn: "/\\:?%*|\"<>\n\r\t")
-        let cleaned = title.components(separatedBy: invalid).joined(separator: "_").trimmingCharacters(in: .whitespaces)
-        let base = cleaned.isEmpty ? "slides" : cleaned
-        let folder = fm.temporaryDirectory.appendingPathComponent("save-images", isDirectory: true)
-        try? fm.removeItem(at: folder)
-        try? fm.createDirectory(at: folder, withIntermediateDirectories: true)
+        let base = ExportFileName.base(title)
+        // 내보낼 때마다 새 폴더 — 앞선 저장이 아직 끝나지 않았어도 서로 지우지 않는다.
+        let folder = fm.temporaryDirectory
+            .appendingPathComponent("save-images", isDirectory: true)
+            .appendingPathComponent(UUID().uuidString, isDirectory: true)
+        let folderReady: Bool
+        do {
+            try fm.createDirectory(at: folder, withIntermediateDirectories: true)
+            folderReady = true
+        } catch {
+            folderReady = false
+        }
         let digits = max(2, String(urls.count).count)
-        return urls.enumerated().map { index, url in
-            let number = String(format: "%0\(digits)d", index + 1)
+        var result: [URL] = []
+        var skipped = 0
+        for (index, url) in urls.enumerated() {
+            guard fm.fileExists(atPath: url.path) else {
+                skipped += 1
+                continue
+            }
+            guard folderReady else {
+                result.append(url)
+                continue
+            }
+            let number = String(format: "%0\(digits)ld", index + 1)
             let ext = url.pathExtension.isEmpty ? "jpg" : url.pathExtension
             let copy = folder.appendingPathComponent("\(base) \(number).\(ext)")
             do {
                 try fm.copyItem(at: url, to: copy)
-                return copy
+                result.append(copy)
             } catch {
-                return url
+                result.append(url)
             }
         }
+        return SaveBundle(urls: result, temporary: folderReady ? [folder] : [], skipped: skipped)
     }
 
     /// 만든 파일을 고른 곳으로 — 공유 시트 또는 저장할 위치 고르기.
+    /// `urls` 는 내보내기가 임시 폴더에 새로 만든 파일이어야 한다(저장 화면이 닫히면 지운다).
     fileprivate func deliver(_ urls: [URL], to destination: ExportDestination) {
         guard !urls.isEmpty else { return }
         switch destination {
         case .share: shareBundle = ShareBundle(items: urls)
-        case .files: saveBundle = ShareBundle(items: urls)
+        case .files: presentSaver(SaveBundle(urls: urls, temporary: urls))
         }
+    }
+
+    private func presentSaver(_ bundle: SaveBundle) {
+        saveSucceeded = false
+        pendingSave = bundle
+        saveBundle = bundle
+    }
+
+    /// 저장 화면이 어떻게 닫혔든(저장 · 취소 · 아래로 쓸어 닫기) 임시 파일을 지우고, 저장했으면 가볍게 알린다.
+    private func saveSheetDismissed() {
+        guard let bundle = pendingSave else { return }
+        pendingSave = nil
+        let tmp = FileManager.default.temporaryDirectory.standardizedFileURL.path
+        for url in bundle.temporary where url.standardizedFileURL.path.hasPrefix(tmp + "/") {
+            try? FileManager.default.removeItem(at: url)
+        }
+        guard saveSucceeded else { return }
+        saveSucceeded = false
+        #if !os(visionOS)
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
+        #endif
+        if bundle.skipped > 0 { skippedOnSave = bundle.skipped }
     }
 
     private func exportPDF(layout: PDFLayout = .one, to destination: ExportDestination = .share) {
@@ -679,6 +780,8 @@ struct PresentationDetailView: View {
             isExporting = false
             if let pdfURL {
                 deliver([pdfURL], to: destination)
+            } else {
+                exportError = String(localized: "PDF를 만들지 못했어요. 기기의 저장 공간을 확인하고 다시 해 보세요.")
             }
         }
     }

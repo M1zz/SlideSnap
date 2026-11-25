@@ -254,11 +254,33 @@ enum PDFExporter {
     }
 
     private static func sanitizeFileName(_ name: String) -> String {
+        ExportFileName.base(name)
+    }
+}
+
+/// 내보낼 파일 이름(확장자 앞부분)을 발표 제목에서 만든다.
+enum ExportFileName {
+    /// 파일 이름은 255바이트까지다. 번호 · 확장자(" 0001.jpeg" 등)를 붙일 자리를 남겨 두고,
+    /// 한글이 풀어 쓰여(NFD) 길어지는 파일 시스템도 있어서 풀어 쓴 길이로 잰다.
+    static let maxBytes = 200
+
+    static func base(_ title: String) -> String {
         let invalid = CharacterSet(charactersIn: "/\\:?%*|\"<>\n\r\t")
-        let cleaned = name
+        let cleaned = title
             .components(separatedBy: invalid)
             .joined(separator: "_")
             .trimmingCharacters(in: .whitespaces)
-        return cleaned.isEmpty ? "slides" : cleaned
+        var result = ""
+        var bytes = 0
+        for character in cleaned {
+            let size = String(character).decomposedStringWithCanonicalMapping.utf8.count
+            if bytes + size > maxBytes { break }
+            result.append(character)
+            bytes += size
+        }
+        // 마침표로 시작하면 숨김 파일이 된다.
+        while result.hasPrefix(".") { result.removeFirst() }
+        result = result.trimmingCharacters(in: .whitespaces)
+        return result.isEmpty ? "slides" : result
     }
 }

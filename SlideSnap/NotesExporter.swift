@@ -102,11 +102,6 @@ enum NotesExporter {
     }
 
     private static func sanitizeFileName(_ name: String) -> String {
-        let invalid = CharacterSet(charactersIn: "/\\:?%*|\"<>\n\r\t")
-        let cleaned = name
-            .components(separatedBy: invalid)
-            .joined(separator: "_")
-            .trimmingCharacters(in: .whitespaces)
-        return cleaned.isEmpty ? "slides" : cleaned
+        ExportFileName.base(name)
     }
 }
