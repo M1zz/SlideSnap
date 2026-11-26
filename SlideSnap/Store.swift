@@ -1,4 +1,5 @@
 import SwiftUI
+import AVFoundation
 
 /// 앱 데이터 저장소.
 /// 메타데이터는 Documents/store.json, 이미지는 Documents/Images/ 아래에 보관합니다.
@@ -488,6 +489,33 @@ final class Store: ObservableObject {
         presentations[pIndex].recordings?[rIndex].transcriptLocale = locale
         persist()
         track(save: [.recording(recordingID)])
+    }
+
+    /// 다른 앱에서 녹음한 파일을 이 발표의 녹음으로 들인다.
+    /// 장표와 맞추려면 녹음이 시작된 때를 알아야 한다 — 파일에 적힌 녹음 시각이 장표를 찍은 때와 겹치면 그것을,
+    /// 아니면 첫 장표를 찍은 때를 시작으로 본다. 원본은 그대로 두고 복사한다.
+    func importRecording(from source: URL, into presentationID: UUID) async throws {
+        let ext = source.pathExtension.isEmpty ? "m4a" : source.pathExtension.lowercased()
+        let id = UUID()
+        let file = "\(id.uuidString).\(ext)"
+        let destination = audioURL(file)
+        try fileManager.copyItem(at: source, to: destination)
+
+        do {
+            let asset = AVURLAsset(url: destination)
+            let duration = try await asset.load(.duration).seconds
+            guard duration.isFinite, duration > 0 else { throw CocoaError(.fileReadCorruptFile) }
+            let slideTimes = presentation(presentationID)?.slides.map(\.createdAt).sorted() ?? []
+            var startedAt = slideTimes.first ?? Date()
+            if let item = try await asset.load(.creationDate), let date = try await item.load(.dateValue),
+               slideTimes.contains(where: { $0 >= date && $0 <= date.addingTimeInterval(duration) }) {
+                startedAt = date
+            }
+            addRecording(Recording(id: id, startedAt: startedAt, duration: duration, file: file), to: presentationID)
+        } catch {
+            try? fileManager.removeItem(at: destination)
+            throw error
+        }
     }
 
     // MARK: - AI 요약

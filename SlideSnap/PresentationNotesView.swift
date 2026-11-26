@@ -1,4 +1,5 @@
 import SwiftUI
+import UniformTypeIdentifiers
 
 /// 발표 노트 — AI 요약, 녹음 목록, 받아쓰기를 한곳에서 다룬다.
 struct PresentationNotesView: View {
@@ -22,6 +23,21 @@ struct PresentationNotesView: View {
     @AppStorage("transcribe.language") private var transcribeLanguage = Transcriber.defaultLanguage
     /// 이 기기가 받아쓸 수 있는 언어. 화면이 뜰 때 불러온다.
     @State private var languages: [String] = []
+    /// 녹음 파일 · 자막 파일 가져오기
+    @State private var importing: ImportKind?
+    @State private var shareBundle: ShareBundle?
+
+    private enum ImportKind {
+        case audio
+        case subtitles(Recording)
+
+        var types: [UTType] {
+            switch self {
+            case .audio: [.audio]
+            case .subtitles: [UTType(filenameExtension: "srt"), UTType(filenameExtension: "vtt"), .plainText].compactMap { $0 }
+            }
+        }
+    }
 
     private var presentation: Presentation? { store.presentation(presentationID) }
 
@@ -59,6 +75,16 @@ struct PresentationNotesView: View {
                 Button("취소", role: .cancel) {}
             } message: {
                 Text("받아쓴 내용도 함께 삭제됩니다.")
+            }
+            .fileImporter(
+                isPresented: Binding(get: { importing != nil }, set: { if !$0 { importing = nil } }),
+                allowedContentTypes: importing?.types ?? []
+            ) { result in
+                guard let kind = importing, case .success(let url) = result else { return }
+                importFile(url, as: kind)
+            }
+            .sheet(item: $shareBundle) { bundle in
+                ShareSheet(items: bundle.items)
             }
             .onDisappear { playback.stop() }
             .paywall(for: $paywallFeature)
@@ -152,23 +178,26 @@ struct PresentationNotesView: View {
 
     @ViewBuilder
     private func recordingsSection(_ presentation: Presentation) -> some View {
-        if presentation.allRecordings.isEmpty {
-            // 녹음이 없으면 어디서 켜는지 알려 준다. 촬영이 되는 기기에서만(Mac · Vision Pro 는 찍지 않는다).
-            if Capture.isAvailable {
-                Section {
-                    Label("촬영 화면 위쪽의 '녹음'을 켜면 장표를 찍는 동안 발표를 함께 녹음해요.", systemImage: "mic")
-                        .foregroundStyle(.secondary)
-                } header: {
-                    Text("녹음 목록")
-                } footer: {
-                    Text("녹음은 촬영 화면이 떠 있는 동안 이어져요. 다른 앱으로 가거나 화면을 잠그면 멈췄다가, 돌아오면 다시 이어서 녹음해요.")
-                }
+        let recordings = presentation.allRecordings
+        Section {
+            ForEach(recordings) { recording in
+                recordingRow(recording)
             }
-        } else {
-            Section {
-                ForEach(presentation.allRecordings) { recording in
-                    recordingRow(recording)
+            // 녹음이 없으면 어디서 켜는지 알려 준다. 촬영이 되는 기기에서만(Mac · Vision Pro 는 찍지 않는다).
+            if recordings.isEmpty && Capture.isAvailable {
+                Label("촬영 화면 위쪽의 '녹음'을 켜면 장표를 찍는 동안 발표를 함께 녹음해요.", systemImage: "mic")
+                    .foregroundStyle(.secondary)
+            }
+            Button {
+                guard purchases.allows(.recording) else {
+                    paywallFeature = .recording
+                    return
                 }
+                importing = .audio
+            } label: {
+                Label("녹음 파일 가져오기", systemImage: ProFeature.recording.icon("waveform.badge.plus"))
+            }
+            if !recordings.isEmpty {
                 Picker("받아쓰기 언어", selection: $transcribeLanguage) {
                     ForEach(languages, id: \.self) { id in
                         Text(Transcriber.label(id)).tag(id)
@@ -179,9 +208,13 @@ struct PresentationNotesView: View {
                     transcribeLanguage = await Transcriber.resolve(transcribeLanguage, in: list)
                     languages = list
                 }
-            } header: {
-                Text("녹음 목록")
-            } footer: {
+            }
+        } header: {
+            Text("녹음 목록")
+        } footer: {
+            if recordings.isEmpty && Capture.isAvailable {
+                Text("녹음은 촬영 화면이 떠 있는 동안 이어져요. 다른 앱으로 가거나 화면을 잠그면 멈췄다가, 돌아오면 다시 이어서 녹음해요.")
+            } else if !recordings.isEmpty {
                 Text("받아쓰면 장표마다 그때 한 말을 볼 수 있고, 검색과 AI 요약에도 쓰여요.")
             }
         }
@@ -207,7 +240,25 @@ struct PresentationNotesView: View {
                         .foregroundStyle(.secondary)
                 }
                 Spacer()
-                ShareLink(item: store.audioURL(recording.file)) {
+                Menu {
+                    Button {
+                        share(recording, subtitles: false)
+                    } label: {
+                        Label("녹음 내보내기", systemImage: "waveform")
+                    }
+                    if recording.transcript?.isEmpty == false {
+                        Button {
+                            share(recording, subtitles: true)
+                        } label: {
+                            Label("자막 내보내기 (.srt)", systemImage: "captions.bubble")
+                        }
+                    }
+                    Button {
+                        importing = .subtitles(recording)
+                    } label: {
+                        Label("자막 가져오기 (.srt)", systemImage: "square.and.arrow.down")
+                    }
+                } label: {
                     Image(systemName: "square.and.arrow.up")
                 }
                 .buttonStyle(.borderless)
@@ -300,6 +351,58 @@ struct PresentationNotesView: View {
             }
             transcribingID = nil
             transcribeProgress = nil
+        }
+    }
+}
+
+// MARK: - 녹음 · 자막 파일
+
+extension PresentationNotesView {
+
+    /// 녹음 또는 자막을 "발표 제목 오후 2:30.m4a" 처럼 읽히는 이름으로 꺼내 공유 시트에 넘긴다.
+    private func share(_ recording: Recording, subtitles: Bool) {
+        let time = recording.startedAt.formatted(date: .omitted, time: .shortened)
+        let base = ExportFileName.base("\(presentation?.title ?? "") \(time)")
+        let source = store.audioURL(recording.file)
+        let ext = subtitles ? "srt" : (source.pathExtension.isEmpty ? "m4a" : source.pathExtension)
+        let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString, isDirectory: true)
+        let url = folder.appendingPathComponent("\(base).\(ext)")
+        do {
+            try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+            if subtitles {
+                try Data(Subtitles.srt(from: recording.transcript ?? []).utf8).write(to: url)
+            } else {
+                try FileManager.default.copyItem(at: source, to: url)
+            }
+            shareBundle = ShareBundle(items: [url])
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+
+    private func importFile(_ url: URL, as kind: ImportKind) {
+        Task {
+            let scoped = url.startAccessingSecurityScopedResource()
+            defer { if scoped { url.stopAccessingSecurityScopedResource() } }
+            switch kind {
+            case .audio:
+                do {
+                    try await store.importRecording(from: url, into: presentationID)
+                } catch {
+                    errorMessage = String(localized: "이 녹음 파일을 열지 못했어요.")
+                }
+            case .subtitles(let recording):
+                let text = (try? String(contentsOf: url, encoding: .utf8))
+                    ?? (try? String(contentsOf: url, encoding: .utf16))
+                    ?? ""
+                let segments = Subtitles.segments(from: text)
+                guard !segments.isEmpty else {
+                    errorMessage = String(localized: "이 파일에서 자막을 읽지 못했어요.")
+                    return
+                }
+                let locale = recording.transcriptLocale ?? transcribeLanguage
+                store.setTranscript(segments, locale: locale, recordingID: recording.id, presentationID: presentationID)
+            }
         }
     }
 }
