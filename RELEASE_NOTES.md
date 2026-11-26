@@ -3,6 +3,152 @@
 App Store "이 버전의 새로운 기능"에 그대로 올라가는 원본입니다.
 `## 버전` 아래 `### ... 앱스토어` 절만 스토어로 나갑니다.
 
+## 1.0.16
+
+### 앱스토어 (한국어)
+
+녹음과 자막 파일을 내보낼 수 있어요
+자막 파일을 가져와 장표마다 맞춰 볼 수 있어요
+다른 앱에서 녹음한 강의도 가져올 수 있어요
+
+### App Store (English)
+
+Export recordings and subtitle files
+Import subtitles to read with each slide
+Bring in lectures recorded in other apps
+
+### App Store (en-GB)
+
+Export recordings and subtitle files
+Import subtitles to read with each slide
+Bring in lectures recorded in other apps
+
+### App Store (zh-Hans)
+
+可以导出录音和字幕文件
+导入字幕，按每页幻灯片对照查看
+也能导入在其他 App 中录制的课程
+
+### App Store (zh-Hant)
+
+可以匯出錄音和字幕檔
+匯入字幕，依每頁投影片對照查看
+也能匯入在其他 App 錄下的課程
+
+### App Store (Japanese)
+
+録音と字幕ファイルを書き出せます
+字幕を読み込んでスライドごとに確認できます
+ほかのアプリで録音した講義も読み込めます
+
+### App Store (Russian)
+
+Экспорт записей и файлов субтитров
+Импорт субтитров с привязкой к слайдам
+Добавляйте лекции из других приложений
+
+### App Store (Spanish)
+
+Exporta grabaciones y subtítulos
+Importa subtítulos para cada diapositiva
+Añade clases grabadas con otras apps
+
+### App Store (German)
+
+Aufnahmen und Untertitel exportieren
+Untertitel passend zu jeder Folie laden
+Vorlesungen aus anderen Apps importieren
+
+### App Store (French)
+
+Exportez enregistrements et sous-titres
+Importez des sous-titres par diapo
+Ajoutez des cours enregistrés ailleurs
+
+### App Store (Italian)
+
+Esporta registrazioni e sottotitoli
+Importa sottotitoli per ogni slide
+Aggiungi lezioni registrate altrove
+
+### App Store (pt-BR)
+
+Exporte gravações e arquivos de legenda
+Importe legendas e veja em cada slide
+Traga aulas gravadas em outros apps
+
+### App Store (Thai)
+
+ส่งออกเสียงบันทึกและไฟล์คำบรรยายได้
+นำเข้าคำบรรยายแล้วดูคู่กับแต่ละสไลด์
+นำเข้าคาบเรียนที่อัดจากแอปอื่นได้
+
+### App Store (Vietnamese)
+
+Xuất bản ghi âm và tệp phụ đề
+Nhập phụ đề và xem theo từng trang chiếu
+Thêm bài giảng ghi âm từ ứng dụng khác
+
+### App Store (Czech)
+
+Export nahrávek a souborů titulků
+Import titulků přiřazených ke snímkům
+Přidejte přednášky nahrané jinde
+
+### App Store (Danish)
+
+Eksportér optagelser og undertekstfiler
+Importér undertekster til hvert dias
+Hent forelæsninger optaget i andre apps
+
+### App Store (Greek)
+
+Εξαγωγή ηχογραφήσεων και υποτίτλων
+Εισαγωγή υποτίτλων ανά διαφάνεια
+Προσθέστε διαλέξεις από άλλες εφαρμογές
+
+### App Store (Finnish)
+
+Vie äänitykset ja tekstitystiedostot
+Tuo tekstitys ja katso se dioittain
+Tuo muilla apeilla nauhoitetut luennot
+
+### App Store (Indonesian)
+
+Ekspor rekaman dan file subtitle
+Impor subtitle dan lihat per slide
+Tambahkan kuliah rekaman app lain
+
+### App Store (Norwegian)
+
+Eksporter opptak og undertekstfiler
+Importer undertekster til hvert lysbilde
+Hent forelesninger fra andre apper
+
+### App Store (Dutch)
+
+Exporteer opnames en ondertitelbestanden
+Importeer ondertitels per dia
+Voeg colleges uit andere apps toe
+
+### App Store (Polish)
+
+Eksportuj nagrania i pliki napisów
+Importuj napisy dopasowane do slajdów
+Dodawaj wykłady z innych aplikacji
+
+### App Store (Swedish)
+
+Exportera inspelningar och undertexter
+Importera undertexter till varje bild
+Lägg till föreläsningar från andra appar
+
+### App Store (Turkish)
+
+Kayıtları ve altyazıları dışa aktarın
+Altyazıları her slaytla birlikte görün
+Başka uygulamalardaki dersleri ekleyin
+
 ## 1.0.15
 
 ### 앱스토어 (한국어)
