@@ -158,6 +158,8 @@ extension UIImage {
     func orientationNormalized() -> UIImage {
         guard imageOrientation != .up else { return self }
         let format = UIGraphicsImageRendererFormat.default()
+        // 넓은 색 화면에서는 기본값이 16비트 버퍼라 12MP 사진이면 매우 무겁다. 사진·장표는 8비트로 충분하다.
+        format.preferredRange = .standard
         format.scale = scale
         let renderer = UIGraphicsImageRenderer(size: size, format: format)
         return renderer.image { _ in
@@ -215,6 +217,8 @@ extension UIImage {
         let ratio = maxDimension / largest
         let newSize = CGSize(width: size.width * ratio, height: size.height * ratio)
         let format = UIGraphicsImageRendererFormat.default()
+        // 넓은 색 화면에서는 기본값이 16비트 버퍼라 12MP 사진이면 매우 무겁다. 사진·장표는 8비트로 충분하다.
+        format.preferredRange = .standard
         format.scale = 1
         let renderer = UIGraphicsImageRenderer(size: newSize, format: format)
         return renderer.image { _ in

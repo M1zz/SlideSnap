@@ -8,6 +8,17 @@ import CoreImage
 import os
 import QuartzCore
 
+/// 실시간 감지 결과. 초당 여러 번 바뀌므로 촬영 화면 전체가 아니라
+/// 테두리 · 안내 글 · 셔터 테두리처럼 이것을 그리는 작은 뷰만 다시 그려지도록 따로 둔다.
+final class LiveDetection: ObservableObject {
+    /// 감지된 장표 모서리 (0...1 정규화, 왼쪽 위 원점, 프리뷰와 같은 방향)
+    @Published var quad: Quad?
+    /// 감지가 여러 프레임 동안 안정적으로 유지되어 "잘 잡힌" 상태인지
+    @Published var isLocked = false
+    /// 감지에 사용된 프레임의 가로/세로 비율 (프리뷰 오버레이 좌표 변환용)
+    @Published var aspect: CGFloat = 3.0 / 4.0
+}
+
 /// AVFoundation 캡처 세션 관리.
 /// 셔터를 누르면 라이브 비디오 프레임 한 장을 그대로 떠서 UIImage로 전달합니다(무음 촬영).
 /// AVCapturePhotoOutput을 쓰지 않으므로 지역과 상관없이 셔터음이 나지 않아 강의 중에도 조용히 찍을 수 있습니다.
@@ -18,14 +29,10 @@ final class CameraController: NSObject, ObservableObject {
 
     @Published var authorizationDenied = false
 
-    /// 실시간으로 감지된 장표 모서리 (0...1 정규화, 왼쪽 위 원점, 프리뷰와 같은 방향)
-    @Published var detectedQuad: Quad?
+    /// 실시간 감지 결과(화면용). 이 객체의 변화로는 촬영 화면 전체가 다시 그려지지 않는다.
+    let detection = LiveDetection()
     /// 마지막으로 감지된 모서리 그대로(화면용 보간 없이). 화면 테두리는 일부러 늦게 따라오므로 자르기엔 이 값을 쓴다.
     private(set) var latestQuad: Quad?
-    /// 감지가 여러 프레임 동안 안정적으로 유지되어 "잘 잡힌" 상태인지
-    @Published var isLocked = false
-    /// 감지에 사용된 프레임의 가로/세로 비율 (프리뷰 오버레이 좌표 변환용)
-    @Published var sourceAspect: CGFloat = 3.0 / 4.0
 
     /// 현재 줌 배율 (1.0 = 확대 없음)
     @Published var zoomFactor: CGFloat = 1.0
@@ -64,8 +71,8 @@ final class CameraController: NSObject, ObservableObject {
     /// 다음 프레임을 받아 갈 촬영 요청들 (videoQueue에서만 접근)
     private var pendingCaptures: [PendingCapture] = []
     private struct PendingCapture {
-        /// 프리뷰 방향으로 세워진 프레임에 추가로 적용할 회전(기기를 든 방향 반영)
-        let orientation: UIImage.Orientation
+        /// 센서 방향 프레임을 사진으로 세울 회전(기기를 든 방향 반영)
+        let orientation: CGImagePropertyOrientation
         let handler: (UIImage) -> Void
     }
     /// 촬영 프레임을 이미지로 바꾸는 작업은 감지 큐를 막지 않도록 따로 돌립니다.
@@ -205,6 +212,9 @@ final class CameraController: NSObject, ObservableObject {
                     self.videoDataOutput.setSampleBufferDelegate(self, queue: self.videoQueue)
                     if self.session.canAddOutput(self.videoDataOutput) {
                         self.session.addOutput(self.videoDataOutput)
+                        // 프레임은 센서 방향 그대로 받는다. 여기서 돌리면 12MP 프레임을 초당 30번 통째로 돌려
+                        // 프리뷰가 버벅이고 기기가 뜨거워진다. 돌리기는 감지용 축소본과 찍은 사진에서만 한다.
+                        self.videoDataOutput.connection(with: .video)?.videoRotationAngle = 0
                     }
                     Self.configureFocus(for: device)
                     self.videoDevice = device
@@ -234,20 +244,16 @@ final class CameraController: NSObject, ObservableObject {
     func capturePhoto(_ handler: @escaping (UIImage) -> Void) {
         videoQueue.async { [weak self] in
             guard let self, self.isConfigured else { return }
-            // 프레임은 프리뷰 방향(세로)으로 세워져 오므로, 기기를 눕혀 들었다면 그만큼 더 돌린다.
-            var orientation: UIImage.Orientation = .up
-            if let coordinator = self.rotationCoordinator {
-                let delta = coordinator.videoRotationAngleForHorizonLevelCapture
-                    - coordinator.videoRotationAngleForHorizonLevelPreview
-                orientation = Self.orientation(forClockwiseDegrees: delta)
-            }
+            // 프레임은 센서 방향으로 오므로, 기기를 든 방향만큼 돌려 세운다.
+            let angle = self.rotationCoordinator?.videoRotationAngleForHorizonLevelCapture ?? 90
+            let orientation = Self.orientation(forClockwiseDegrees: angle)
             self.shutterAt = CACurrentMediaTime()
             self.pendingCaptures.append(PendingCapture(orientation: orientation, handler: handler))
         }
     }
 
-    /// 시계 방향 회전 각도(도)를 UIImage 방향으로 바꿉니다.
-    private static func orientation(forClockwiseDegrees degrees: CGFloat) -> UIImage.Orientation {
+    /// 시계 방향 회전 각도(도)를 이미지 방향으로 바꿉니다.
+    private static func orientation(forClockwiseDegrees degrees: CGFloat) -> CGImagePropertyOrientation {
         let normalized = (Int(degrees.rounded()) % 360 + 360) % 360
         switch normalized {
         case 90: return .right
@@ -356,14 +362,8 @@ extension CameraController: AVCaptureVideoDataOutputSampleBufferDelegate {
             didLogFirstFrame = true
             log.info("first video frame +\(CACurrentMediaTime() - self.startRequestedAt, format: .fixed(precision: 2))s")
         }
-        // 프리뷰와 같은 방향으로 프레임을 세워 놓아야 오버레이 좌표가 일치합니다.
-        if let coordinator = rotationCoordinator {
-            let angle = coordinator.videoRotationAngleForHorizonLevelPreview
-            if connection.isVideoRotationAngleSupported(angle), connection.videoRotationAngle != angle {
-                connection.videoRotationAngle = angle
-            }
-        }
-        frameRotationAngle = connection.videoRotationAngle
+        // 감지 축소본은 프리뷰와 같은 방향으로 세운다(오버레이 좌표가 맞도록). 프레임 자체는 돌리지 않는다.
+        frameRotationAngle = rotationCoordinator?.videoRotationAngleForHorizonLevelPreview ?? 90
 
         // 촬영 요청이 있으면 이 프레임을 사진으로 넘깁니다.
         if !pendingCaptures.isEmpty, let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) {
@@ -380,29 +380,30 @@ extension CameraController: AVCaptureVideoDataOutputSampleBufferDelegate {
         detectRectangle(in: pixelBuffer)
     }
 
-    /// 프레임을 CGImage로 떠서 촬영 요청들에 전달합니다. 무거운 변환은 stillQueue에서 처리합니다.
+    /// 프레임을 바로 선 CGImage로 떠서 촬영 요청들에 전달합니다. 무거운 변환은 stillQueue에서 처리합니다.
+    /// 회전은 GPU 가 그리면서 함께 하므로, 뒤에서 12MP 사진을 CPU 로 다시 돌려 그릴 일이 없다.
     private func deliverStill(_ pixelBuffer: CVPixelBuffer, to requests: [PendingCapture]) {
         stillQueue.async { [weak self] in
             guard let self else { return }
-            let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
-            guard let cgImage = self.stillContext.createCGImage(ciImage, from: ciImage.extent) else { return }
-            self.log.info("photo ready +\(CACurrentMediaTime() - self.shutterAt, format: .fixed(precision: 2))s")
             for request in requests {
-                let image = UIImage(cgImage: cgImage, scale: 1, orientation: request.orientation)
+                let upright = CIImage(cvPixelBuffer: pixelBuffer).oriented(request.orientation)
+                guard let cgImage = self.stillContext.createCGImage(upright, from: upright.extent) else { continue }
+                let image = UIImage(cgImage: cgImage)
                 DispatchQueue.main.async { request.handler(image) }
             }
+            self.log.info("photo ready +\(CACurrentMediaTime() - self.shutterAt, format: .fixed(precision: 2))s")
         }
     }
 
-    /// 긴 변이 detectionMaxEdge를 넘으면 재사용 풀 버퍼로 축소해 반환합니다.
-    /// 크기가 작으면 nil을 반환해 원본을 그대로 쓰게 합니다.
+    /// 프레임을 프리뷰 방향으로 세우면서 긴 변 detectionMaxEdge 이하로 줄여 재사용 풀 버퍼에 그립니다.
+    /// 회전은 이 작은 그림에서만 하므로 거의 공짜다.
     private func downscaledBuffer(from pixelBuffer: CVPixelBuffer) -> CVPixelBuffer? {
-        let w = CGFloat(CVPixelBufferGetWidth(pixelBuffer))
-        let h = CGFloat(CVPixelBufferGetHeight(pixelBuffer))
+        let source = CIImage(cvPixelBuffer: pixelBuffer).oriented(Self.orientation(forClockwiseDegrees: frameRotationAngle))
+        let w = source.extent.width, h = source.extent.height
         let longEdge = max(w, h)
-        guard longEdge > detectionMaxEdge else { return nil }
+        guard longEdge > 0 else { return nil }
 
-        let scale = detectionMaxEdge / longEdge
+        let scale = min(1, detectionMaxEdge / longEdge)
         let dw = Int((w * scale).rounded()), dh = Int((h * scale).rounded())
 
         if scaledPool == nil || Int(scaledPoolSize.width) != dw || Int(scaledPoolSize.height) != dh {
@@ -423,21 +424,21 @@ extension CameraController: AVCaptureVideoDataOutputSampleBufferDelegate {
         CVPixelBufferPoolCreatePixelBuffer(nil, pool, &out)
         guard let outBuffer = out else { return nil }
 
-        let scaled = CIImage(cvPixelBuffer: pixelBuffer)
+        let scaled = source
+            .transformed(by: CGAffineTransform(translationX: -source.extent.minX, y: -source.extent.minY))
             .transformed(by: CGAffineTransform(scaleX: scale, y: scale))
         detectionContext.render(scaled, to: outBuffer)
         return outBuffer
     }
 
     private func detectRectangle(in pixelBuffer: CVPixelBuffer) {
-        let width = CGFloat(CVPixelBufferGetWidth(pixelBuffer))
-        let height = CGFloat(CVPixelBufferGetHeight(pixelBuffer))
-        let aspect = height > 0 ? width / height : 0.75
-
-        // 12MP 원본에 바로 감지를 돌리면 무거우므로 긴 변을 512px로 줄여서 감지합니다.
+        // 12MP 원본에 바로 감지를 돌리면 무거우므로 긴 변을 512px로 줄이고 프리뷰 방향으로 세워서 감지합니다.
         // 재사용 컨텍스트/버퍼로 렌더링해 매 프레임 리소스를 새로 만들지 않습니다.
         // 정규화 좌표(0...1)는 축소해도 그대로라 오버레이/보정에 영향이 없습니다.
-        let target = downscaledBuffer(from: pixelBuffer) ?? pixelBuffer
+        guard let target = downscaledBuffer(from: pixelBuffer) else { return }
+        let width = CGFloat(CVPixelBufferGetWidth(target))
+        let height = CGFloat(CVPixelBufferGetHeight(target))
+        let aspect = height > 0 ? width / height : 0.75
 
         // 자동 촬영 중복 방지를 위해 현재 화면의 내용 지문을 갱신한다.
         currentSignature = makeSignature(from: target)
@@ -478,9 +479,9 @@ extension CameraController: AVCaptureVideoDataOutputSampleBufferDelegate {
             smoothedQuad = nil
             stableFrames = 0
             DispatchQueue.main.async {
-                self.detectedQuad = nil
                 self.latestQuad = nil
-                self.isLocked = false
+                self.detection.quad = nil
+                if self.detection.isLocked { self.detection.isLocked = false }
             }
             return
         }
@@ -503,10 +504,12 @@ extension CameraController: AVCaptureVideoDataOutputSampleBufferDelegate {
         }
 
         DispatchQueue.main.async {
-            self.sourceAspect = aspect
-            self.detectedQuad = smoothed
             self.latestQuad = quad
-            self.isLocked = locked
+            let detection = self.detection
+            // 같은 값을 다시 넣어도 다시 그리게 되므로 바뀐 것만 넣는다.
+            if detection.aspect != aspect { detection.aspect = aspect }
+            detection.quad = smoothed
+            if detection.isLocked != locked { detection.isLocked = locked }
         }
 
         if locked {

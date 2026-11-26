@@ -59,6 +59,79 @@ struct DetectionOverlay: View {
     }
 }
 
+/// 실시간 감지 테두리 층. 감지는 초당 여러 번 바뀌므로 촬영 화면 전체가 아니라 이 층만 다시 그려지게 떼어 둔다.
+private struct DetectionLayer: View {
+    @ObservedObject var detection: LiveDetection
+    let autoCapture: Bool
+
+    var body: some View {
+        ZStack {
+            if let quad = detection.quad {
+                DetectionOverlay(quad: quad, aspect: detection.aspect, locked: detection.isLocked)
+                    .transition(.opacity)
+            }
+        }
+        .ignoresSafeArea()
+        .allowsHitTesting(false)
+        .animation(.easeInOut(duration: 0.25), value: detection.quad == nil)
+        .onChange(of: detection.isLocked) { _, locked in
+            guard locked else { return }
+            UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+            // VoiceOver: 장표가 화면에 잘 잡혔음을 소리로 알린다.
+            AccessibilityNotification.Announcement(autoCapture
+                ? String(localized: "장표를 잘 잡았어요 · 자동으로 담는 중")
+                : String(localized: "장표를 잘 잡았어요 · 지금 찍으세요")).post()
+        }
+    }
+}
+
+/// 감지 상태 안내 글 — 장표를 잡았는지 알려 준다.
+private struct DetectionStatusLabel: View {
+    @ObservedObject var detection: LiveDetection
+    let autoCapture: Bool
+
+    /// 흰 글씨를 얹어도 읽히는 진한 초록(기본 초록은 흰 글씨와 대비가 모자라다).
+    private static let lockedGreen = Color(red: 0.11, green: 0.52, blue: 0.24)
+
+    var body: some View {
+        Group {
+            if detection.quad != nil {
+                let locked = detection.isLocked
+                let lockedText = autoCapture
+                    ? String(localized: "장표를 잘 잡았어요 · 자동으로 담는 중")
+                    : String(localized: "장표를 잘 잡았어요 · 지금 찍으세요")
+                HStack(spacing: 6) {
+                    Image(systemName: locked ? "checkmark.circle.fill" : "viewfinder")
+                    Text(locked ? lockedText : String(localized: "장표를 화면에 맞춰 주세요"))
+                        .font(.subheadline.weight(.semibold))
+                }
+                .foregroundStyle(.white)
+                .padding(.horizontal, 14)
+                .padding(.vertical, 8)
+                .background((locked ? Self.lockedGreen : Color.black.opacity(0.5)), in: Capsule())
+                .padding(.top, 4)
+                .transition(.opacity)
+                .animation(.easeInOut(duration: 0.3), value: locked)
+                .accessibilityElement(children: .combine)
+            }
+        }
+        .animation(.easeInOut(duration: 0.25), value: detection.quad == nil)
+    }
+}
+
+/// 셔터 바깥 테두리 — 장표를 잡으면 초록, 다시 찍기면 주황.
+private struct ShutterRing: View {
+    @ObservedObject var detection: LiveDetection
+    let retakeArmed: Bool
+
+    var body: some View {
+        Circle()
+            .stroke(retakeArmed ? Color.orange : detection.isLocked ? Color.green : .white, lineWidth: 4)
+            .frame(width: 76, height: 76)
+            .animation(.easeOut(duration: 0.15), value: detection.isLocked)
+    }
+}
+
 /// 정규화(0...1, 왼쪽 위 원점) 사각형을 aspectFill 프리뷰 좌표로 그리는 애니메이터블 Shape.
 /// `animatableData`로 네 모서리(8개 좌표)를 노출해 SwiftUI가 프레임 단위로 보간한다.
 private struct DetectionQuadShape: Shape {
@@ -197,15 +270,7 @@ struct CameraCaptureView: View {
                 CameraPreview(camera: camera)
                     .ignoresSafeArea()
 
-                ZStack {
-                    if let quad = camera.detectedQuad {
-                        DetectionOverlay(quad: quad, aspect: camera.sourceAspect, locked: camera.isLocked)
-                            .transition(.opacity)
-                    }
-                }
-                .ignoresSafeArea()
-                .allowsHitTesting(false)
-                .animation(.easeInOut(duration: 0.25), value: camera.detectedQuad == nil)
+                DetectionLayer(detection: camera.detection, autoCapture: camera.autoCaptureEnabled)
 
                 // 줌 제스처를 받는 투명 레이어 (버튼들보다 아래에 두어 조작을 방해하지 않음)
                 zoomGestureLayer
@@ -219,8 +284,9 @@ struct CameraCaptureView: View {
             VStack {
                 topBar
                 continueBanner
-                statusLabel
-                    .animation(.easeInOut(duration: 0.25), value: camera.detectedQuad == nil)
+                if !camera.authorizationDenied {
+                    DetectionStatusLabel(detection: camera.detection, autoCapture: camera.autoCaptureEnabled)
+                }
                 Spacer()
                 zoomIndicator
                 if !Self.sideControls { bottomBar }
@@ -281,15 +347,6 @@ struct CameraCaptureView: View {
                 }
             }
             Button("취소", role: .cancel) {}
-        }
-        .onChange(of: camera.isLocked) { _, locked in
-            if locked {
-                UIImpactFeedbackGenerator(style: .soft).impactOccurred()
-                // VoiceOver: 장표가 화면에 잘 잡혔음을 소리로 알린다.
-                AccessibilityNotification.Announcement(camera.autoCaptureEnabled
-                    ? String(localized: "장표를 잘 잡았어요 · 자동으로 담는 중")
-                    : String(localized: "장표를 잘 잡았어요 · 지금 찍으세요")).post()
-            }
         }
         .onChange(of: camera.autoCaptureTick) { _, _ in
             capture(auto: true)   // 장표가 바뀌어 초록(락인)되면 자동으로 촬영
@@ -369,34 +426,6 @@ struct CameraCaptureView: View {
             .transition(.opacity)
         }
     }
-
-    // MARK: - 감지 상태 안내
-
-    @ViewBuilder
-    private var statusLabel: some View {
-        if !camera.authorizationDenied, camera.detectedQuad != nil {
-            let locked = camera.isLocked
-            let lockedText = camera.autoCaptureEnabled
-                ? String(localized: "장표를 잘 잡았어요 · 자동으로 담는 중")
-                : String(localized: "장표를 잘 잡았어요 · 지금 찍으세요")
-            HStack(spacing: 6) {
-                Image(systemName: locked ? "checkmark.circle.fill" : "viewfinder")
-                Text(locked ? lockedText : String(localized: "장표를 화면에 맞춰 주세요"))
-                    .font(.subheadline.weight(.semibold))
-            }
-            .foregroundStyle(.white)
-            .padding(.horizontal, 14)
-            .padding(.vertical, 8)
-            .background((locked ? Self.lockedGreen : Color.black.opacity(0.5)), in: Capsule())
-            .padding(.top, 4)
-            .transition(.opacity)
-            .animation(.easeInOut(duration: 0.3), value: locked)
-            .accessibilityElement(children: .combine)
-        }
-    }
-
-    /// 흰 글씨를 얹어도 읽히는 진한 초록(기본 초록은 흰 글씨와 대비가 모자라다).
-    private static let lockedGreen = Color(red: 0.11, green: 0.52, blue: 0.24)
 
     // MARK: - 줌
 
@@ -605,14 +634,11 @@ struct CameraCaptureView: View {
             capture()
         } label: {
             ZStack {
-                Circle()
-                    .stroke(activeRetake != nil ? Color.orange : camera.isLocked ? Color.green : .white, lineWidth: 4)
-                    .frame(width: 76, height: 76)
+                ShutterRing(detection: camera.detection, retakeArmed: activeRetake != nil)
                 Circle()
                     .fill(.white)
                     .frame(width: 62, height: 62)
             }
-            .animation(.easeOut(duration: 0.15), value: camera.isLocked)
         }
         .disabled(camera.authorizationDenied || retakeShot)
         .accessibilityLabel(activeRetake == nil ? Text("촬영하기") : Text("다시 찍기"))
