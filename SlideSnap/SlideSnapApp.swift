@@ -13,10 +13,10 @@ struct SlideSnapApp: App {
     @Environment(\.scenePhase) private var scenePhase
 
     init() {
-        // 백업 금고: 예약된 복원 · 업데이트 직전 백업을 저장소가 열리기 전에 한다
-        LeeoVault.start(SlideSnapSpec.self)
-        // 페이월 · 구매 이벤트가 FeedbackHub 로 모이게 한다 (→ SlideSnapSpec.analytics).
-        LeeoAnalyticsCenter.register(SlideSnapSpec.self)
+        // 금고(예약 복원 · 업데이트 직전 백업) → 실행 카운트 → 페이월 퍼널 → 크래시 · 멈춤 진단을 한 번에 켠다.
+        // 진단(MetricKit)은 이 줄 전까지 한 번도 구독된 적이 없어 허브에 기록이 0건이었다.
+        // 사용 스냅샷은 발표 수 · 장표 수를 함께 담아 아래 onAppear 에서 보낸다.
+        LeeoKit.bootstrap(SlideSnapSpec.self, usageReporting: false)
     }
 
     var body: some Scene {
@@ -61,9 +61,8 @@ struct SlideSnapApp: App {
                         feedback.scheduleBackgroundRefresh()
                         Task { await feedback.checkForNewFeedbackAndNotify() }
                     }
-                    // 익명 사용 통계 — 실행 카운트 + FeedbackHub로 설치 스냅샷 전송(하루 1회 throttle).
+                    // 익명 사용 통계 — FeedbackHub로 설치 스냅샷 전송(하루 1회 throttle). 실행 카운트는 bootstrap 이 센다.
                     // 앱 대략 지표(발표 수·장표 수)도 함께 담는다.
-                    LeeoEngagement.shared.registerLaunch()
                     let slideCount = store.presentations.reduce(0) { $0 + $1.slides.count }
                     LeeoUsageReporter(spec: SlideSnapSpec.self).reportInBackground(metrics: [
                         "presentations": Double(store.presentations.count),
