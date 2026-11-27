@@ -195,6 +195,8 @@ struct PresentationListView: View {
             if cameraAfterOnboarding { openCamera() }
         }) {
             OnboardingView { finished in
+                // 이 안내는 처음 한 번만 뜬다 (needsOnboarding) — 허브 품질 탭의 온보딩 칸
+                LeeoAnalyticsCenter.track(.custom(name: finished ? "onboarding_completed" : "onboarding_skipped", parameters: [:]))
                 onboardingSeen = true
                 cameraAfterOnboarding = finished
                 showingOnboarding = false
